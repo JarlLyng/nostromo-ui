@@ -7,14 +7,14 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   description: "A modern UI library inspired by the USCSS Nostromo. Built with React, Vue, TypeScript, and Tailwind CSS.",
   keywords: ["UI", "components", "React", "Vue", "TypeScript", "Tailwind", "design system"],
   authors: [{ name: "Nostromo UI Team" }],
+  manifest: "/manifest.json",
   openGraph: {
     title: "Nostromo UI - Space-grade UI Components",
     description: "A modern UI library inspired by the USCSS Nostromo. Built with React, Vue, TypeScript, and Tailwind CSS.",
