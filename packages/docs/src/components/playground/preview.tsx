@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from '@nostromo/ui-core/button'
-import { Badge } from '@nostromo/ui-core/badge'
+import { Button } from '@nostromo/ui-core'
+import { Badge } from '@nostromo/ui-core'
 
 interface PreviewProps {
   code: string

@@ -1,6 +1,4 @@
-import { Button } from '@nostromo/ui-core/button'
-import { Badge } from '@nostromo/ui-core/badge'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@nostromo/ui-core/card'
+import { Badge, Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@nostromo/ui-core'
 
 export default function Home() {
   return (

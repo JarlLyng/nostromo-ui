@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Import Nostromo theme */
-@import "@nostromo/ui-tw/themes/nostromo.css";
+@import "../../../ui-tw/dist/themes/nostromo.css";
 
 /* Docs-specific styles */
 body {
