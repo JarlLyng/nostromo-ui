@@ -15,6 +15,13 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  // Disable webpack cache to avoid stale data
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.cache = false;
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
