@@ -12,9 +12,34 @@
       "types": "./dist/index.d.ts"
     },
     "./button": {
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js",
-      "types": "./dist/button.d.ts"
+      "import": "./dist/components/button.js",
+      "require": "./dist/components/button.cjs",
+      "types": "./dist/components/button.d.ts"
+    },
+    "./badge": {
+      "import": "./dist/components/badge.js",
+      "require": "./dist/components/badge.cjs",
+      "types": "./dist/components/badge.d.ts"
+    },
+    "./card": {
+      "import": "./dist/components/card.js",
+      "require": "./dist/components/card.cjs",
+      "types": "./dist/components/card.d.ts"
+    },
+    "./avatar": {
+      "import": "./dist/components/avatar.js",
+      "require": "./dist/components/avatar.cjs",
+      "types": "./dist/components/avatar.d.ts"
+    },
+    "./input": {
+      "import": "./dist/components/input.js",
+      "require": "./dist/components/input.cjs",
+      "types": "./dist/components/input.d.ts"
+    },
+    "./dialog": {
+      "import": "./dist/components/dialog.js",
+      "require": "./dist/components/dialog.cjs",
+      "types": "./dist/components/dialog.d.ts"
     },
     "./vue": {
       "import": "./dist/vue/index.mjs",
