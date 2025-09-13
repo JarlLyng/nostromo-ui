@@ -3,20 +3,49 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const buttonVariants = cva(
-  // Base styles
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  // Base styles with modern aesthetics
+  'inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden',
   {
     variants: {
       variant: {
-        primary: 'bg-brand-500 text-neutral-50 hover:bg-brand-600 focus-visible:ring-brand-500',
-        secondary: 'bg-neutral-200 text-neutral-900 hover:bg-neutral-300 focus-visible:ring-neutral-500',
-        ghost: 'hover:bg-neutral-100 hover:text-neutral-900 focus-visible:ring-neutral-500',
-        destructive: 'bg-error-500 text-neutral-50 hover:bg-error-600 focus-visible:ring-error-500',
-        outline: 'border border-neutral-300 bg-transparent hover:bg-neutral-100 hover:text-neutral-900 focus-visible:ring-neutral-500',
-        link: 'text-brand-500 underline-offset-4 hover:underline focus-visible:ring-brand-500',
+        primary: [
+          'bg-brand-500 text-neutral-50 shadow-button',
+          'hover:bg-brand-600 hover:shadow-button-hover hover:-translate-y-0.5',
+          'active:translate-y-0 active:shadow-button',
+          'focus-visible:ring-brand-500/50',
+          'before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-500 hover:before:translate-x-[100%]'
+        ],
+        secondary: [
+          'bg-neutral-100 text-neutral-900 shadow-button border border-neutral-200',
+          'hover:bg-neutral-200 hover:shadow-button-hover hover:-translate-y-0.5',
+          'active:translate-y-0 active:shadow-button',
+          'focus-visible:ring-neutral-500/50'
+        ],
+        ghost: [
+          'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900',
+          'focus-visible:ring-neutral-500/50',
+          'hover:shadow-sm'
+        ],
+        destructive: [
+          'bg-error-500 text-neutral-50 shadow-button',
+          'hover:bg-error-600 hover:shadow-button-hover hover:-translate-y-0.5',
+          'active:translate-y-0 active:shadow-button',
+          'focus-visible:ring-error-500/50'
+        ],
+        outline: [
+          'border border-neutral-300 bg-transparent text-neutral-700 shadow-input',
+          'hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-button-hover hover:-translate-y-0.5',
+          'active:translate-y-0 active:shadow-input',
+          'focus-visible:ring-neutral-500/50'
+        ],
+        link: [
+          'text-brand-500 underline-offset-4 hover:underline',
+          'focus-visible:ring-brand-500/50',
+          'hover:text-brand-600'
+        ],
       },
       size: {
-        sm: 'h-8 px-3 text-xs',
+        sm: 'h-8 px-3 text-xs rounded-md',
         md: 'h-10 px-4 py-2',
         lg: 'h-12 px-8 text-base',
         icon: 'h-10 w-10',

@@ -4,16 +4,34 @@ import { cn } from '../lib/utils';
 
 const cardVariants = cva(
   [
-    'rounded-lg border bg-white text-neutral-950 shadow-sm',
-    'transition-colors duration-200',
+    'rounded-xl border bg-white text-neutral-950 shadow-card',
+    'transition-card hover:shadow-card-hover hover:-translate-y-1',
+    'group relative overflow-hidden',
   ],
   {
     variants: {
       variant: {
-        default: 'border-neutral-200',
-        outlined: 'border-neutral-300 border-2',
-        elevated: 'border-neutral-200 shadow-lg',
-        ghost: 'border-transparent shadow-none',
+        default: [
+          'border-neutral-200/60 bg-white/80 backdrop-blur-sm',
+          'hover:border-neutral-300/60 hover:bg-white/90'
+        ],
+        outlined: [
+          'border-neutral-300 border-2 bg-white/90',
+          'hover:border-neutral-400 hover:bg-white'
+        ],
+        elevated: [
+          'border-neutral-200/40 shadow-lg bg-white/90 backdrop-blur-sm',
+          'hover:shadow-xl hover:border-neutral-300/60'
+        ],
+        ghost: [
+          'border-transparent shadow-none bg-neutral-50/50',
+          'hover:bg-neutral-100/50 hover:shadow-sm'
+        ],
+        interactive: [
+          'border-neutral-200/60 bg-white/80 backdrop-blur-sm cursor-pointer',
+          'hover:border-brand-300/60 hover:bg-brand-50/30 hover:shadow-card-hover',
+          'active:translate-y-0 active:shadow-card'
+        ],
       },
       size: {
         sm: 'p-3',

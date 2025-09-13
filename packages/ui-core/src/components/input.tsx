@@ -3,16 +3,31 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const inputVariants = cva(
-  'flex w-full rounded-md border border-neutral-300 bg-transparent px-3 py-2 text-sm placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'flex w-full rounded-lg border bg-neutral-50/50 px-3 py-2 text-sm placeholder:text-neutral-400 transition-input focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 shadow-input',
   {
     variants: {
       variant: {
-        default: 'border-neutral-300 focus:ring-brand-500 focus:border-brand-500',
-        error: 'border-error-500 focus:ring-error-500 focus:border-error-500',
-        success: 'border-success-500 focus:ring-success-500 focus:border-success-500',
+        default: [
+          'border-neutral-200 bg-neutral-50/50',
+          'hover:border-neutral-300 hover:bg-neutral-50',
+          'focus:ring-brand-500/50 focus:border-brand-500 focus:bg-white focus:shadow-input-focus',
+          'focus-within:shadow-input-focus'
+        ],
+        error: [
+          'border-error-300 bg-error-50/50',
+          'hover:border-error-400 hover:bg-error-50',
+          'focus:ring-error-500/50 focus:border-error-500 focus:bg-white focus:shadow-input-focus',
+          'focus-within:shadow-input-focus'
+        ],
+        success: [
+          'border-success-300 bg-success-50/50',
+          'hover:border-success-400 hover:bg-success-50',
+          'focus:ring-success-500/50 focus:border-success-500 focus:bg-white focus:shadow-input-focus',
+          'focus-within:shadow-input-focus'
+        ],
       },
       size: {
-        sm: 'h-8 px-2 text-xs',
+        sm: 'h-8 px-2 text-xs rounded-md',
         md: 'h-10 px-3 py-2 text-sm',
         lg: 'h-12 px-4 py-3 text-base',
       },

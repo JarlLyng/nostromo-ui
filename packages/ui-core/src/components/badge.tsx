@@ -4,22 +4,51 @@ import { cn } from '../lib/utils';
 
 const badgeVariants = cva(
   [
-    'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors',
-    'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+    'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium transition-all duration-200',
+    'focus:outline-none focus:ring-2 focus:ring-offset-1 shadow-sm',
+    'relative overflow-hidden',
   ],
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-brand-500 text-white hover:bg-brand-600',
-        secondary: 'border-transparent bg-neutral-100 text-neutral-900 hover:bg-neutral-200',
-        destructive: 'border-transparent bg-red-500 text-white hover:bg-red-600',
-        outline: 'text-neutral-950 border-neutral-200',
-        success: 'border-transparent bg-green-500 text-white hover:bg-green-600',
-        warning: 'border-transparent bg-yellow-500 text-white hover:bg-yellow-600',
-        info: 'border-transparent bg-blue-500 text-white hover:bg-blue-600',
+        default: [
+          'border-transparent bg-brand-500 text-white shadow-brand-500/25',
+          'hover:bg-brand-600 hover:shadow-brand-500/40 hover:scale-105',
+          'focus:ring-brand-500/50'
+        ],
+        secondary: [
+          'border-neutral-200 bg-neutral-100 text-neutral-700 shadow-neutral-200/25',
+          'hover:bg-neutral-200 hover:shadow-neutral-300/40 hover:scale-105',
+          'focus:ring-neutral-500/50'
+        ],
+        destructive: [
+          'border-transparent bg-error-500 text-white shadow-error-500/25',
+          'hover:bg-error-600 hover:shadow-error-500/40 hover:scale-105',
+          'focus:ring-error-500/50'
+        ],
+        outline: [
+          'text-neutral-700 border-neutral-300 bg-white/80 backdrop-blur-sm',
+          'hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-neutral-300/40',
+          'focus:ring-neutral-500/50'
+        ],
+        success: [
+          'border-transparent bg-success-500 text-white shadow-success-500/25',
+          'hover:bg-success-600 hover:shadow-success-500/40 hover:scale-105',
+          'focus:ring-success-500/50'
+        ],
+        warning: [
+          'border-transparent bg-warning-500 text-white shadow-warning-500/25',
+          'hover:bg-warning-600 hover:shadow-warning-500/40 hover:scale-105',
+          'focus:ring-warning-500/50'
+        ],
+        info: [
+          'border-transparent bg-info-500 text-white shadow-info-500/25',
+          'hover:bg-info-600 hover:shadow-info-500/40 hover:scale-105',
+          'focus:ring-info-500/50'
+        ],
       },
       size: {
-        sm: 'px-2 py-0.5 text-xs',
+        sm: 'px-2 py-0.5 text-xs rounded-md',
         md: 'px-2.5 py-0.5 text-xs',
         lg: 'px-3 py-1 text-sm',
       },

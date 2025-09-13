@@ -5,8 +5,10 @@ import { cn } from '../lib/utils';
 const avatarVariants = cva(
   [
     'relative flex shrink-0 overflow-hidden rounded-full',
-    'bg-neutral-100 text-neutral-600',
-    'transition-colors duration-200',
+    'bg-gradient-to-br from-neutral-100 to-neutral-200 text-neutral-600',
+    'transition-all duration-200 shadow-sm border-2 border-white/50',
+    'hover:shadow-md hover:scale-105 hover:border-white/80',
+    'group',
   ],
   {
     variants: {
@@ -28,7 +30,7 @@ const avatarImageVariants = cva(
 );
 
 const avatarFallbackVariants = cva(
-  'flex h-full w-full items-center justify-center rounded-full bg-neutral-100 font-medium text-neutral-600',
+  'flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 font-medium text-neutral-600',
   {
     variants: {
       size: {
@@ -45,7 +47,7 @@ const avatarFallbackVariants = cva(
 );
 
 const avatarFallbackInlineVariants = cva(
-  'flex items-center justify-center rounded-full bg-neutral-100 font-medium text-neutral-600',
+  'flex items-center justify-center rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 font-medium text-neutral-600',
   {
     variants: {
       size: {

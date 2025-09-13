@@ -128,10 +128,19 @@ export const nostromoPreset: Partial<Config> = {
       },
       // Box shadows
       boxShadow: {
+        xs: 'var(--shadow-xs)',
         sm: 'var(--shadow-sm)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
         xl: 'var(--shadow-xl)',
+        '2xl': 'var(--shadow-2xl)',
+        inner: 'var(--shadow-inner)',
+        button: 'var(--shadow-button)',
+        'button-hover': 'var(--shadow-button-hover)',
+        card: 'var(--shadow-card)',
+        'card-hover': 'var(--shadow-card-hover)',
+        input: 'var(--shadow-input)',
+        'input-focus': 'var(--shadow-input-focus)',
       },
       // Spacing
       spacing: {
@@ -142,6 +151,15 @@ export const nostromoPreset: Partial<Config> = {
         xl: 'var(--spacing-xl)',
         '2xl': 'var(--spacing-2xl)',
         '3xl': 'var(--spacing-3xl)',
+      },
+      // Transitions
+      transitionDuration: {
+        fast: 'var(--transition-fast)',
+        normal: 'var(--transition-normal)',
+        slow: 'var(--transition-slow)',
+      },
+      transitionTimingFunction: {
+        bounce: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
       },
     },
   },
@@ -169,6 +187,18 @@ export const nostromoPreset: Partial<Config> = {
         },
         '.font-mono': {
           fontFamily: 'var(--font-mono)',
+        },
+        '.transition-button': {
+          transition: 'var(--transition-button)',
+        },
+        '.transition-input': {
+          transition: 'var(--transition-input)',
+        },
+        '.transition-card': {
+          transition: 'var(--transition-card)',
+        },
+        '.transition-modal': {
+          transition: 'var(--transition-modal)',
         },
       };
       addUtilities(newUtilities);
