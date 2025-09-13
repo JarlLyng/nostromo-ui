@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@nost
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950">
+    <div className="bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
@@ -35,8 +35,13 @@ export default function Home() {
               <Button size="lg" className="bg-brand-500 hover:bg-brand-600 text-white">
                 Get Started
               </Button>
-              <Button variant="outline" size="lg" className="border-neutral-700 hover:bg-neutral-800">
-                View Components
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-neutral-700 hover:bg-neutral-800"
+                asChild
+              >
+                <a href="/components/button">View Components</a>
               </Button>
             </div>
 
