@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
+  // Disable all PWA and service worker features
+  poweredByHeader: false,
+  // Disable compression to avoid issues
+  compress: false,
 };
 
 export default nextConfig;
