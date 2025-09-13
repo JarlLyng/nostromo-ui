@@ -14,6 +14,10 @@ export default defineConfig({
   outDir: 'dist',
   // Copy CSS files to dist
   publicDir: 'src/styles',
+  // Copy themes directory
+  copy: [
+    'src/themes/**/*',
+  ],
   // Ensure CSS files are included
   loader: {
     '.css': 'copy',
