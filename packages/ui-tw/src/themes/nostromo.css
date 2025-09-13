@@ -1,0 +1,177 @@
+/* Nostromo Theme - Inspired by the USCSS Nostromo from Alien (1979) */
+
+[data-theme="nostromo"] {
+  /* Brand Colors - Purple/Blue inspired by space and technology */
+  --color-brand-50: 262 84% 95%;
+  --color-brand-100: 262 84% 90%;
+  --color-brand-200: 262 84% 80%;
+  --color-brand-300: 262 84% 70%;
+  --color-brand-400: 262 84% 60%;
+  --color-brand-500: 262 84% 52%;
+  --color-brand-600: 262 84% 45%;
+  --color-brand-700: 262 84% 35%;
+  --color-brand-800: 262 84% 25%;
+  --color-brand-900: 262 84% 15%;
+  --color-brand-950: 262 84% 8%;
+
+  /* Neutral Colors - Dark, industrial grays */
+  --color-neutral-50: 0 0% 98%;
+  --color-neutral-100: 0 0% 96%;
+  --color-neutral-200: 0 0% 90%;
+  --color-neutral-300: 0 0% 83%;
+  --color-neutral-400: 0 0% 64%;
+  --color-neutral-500: 0 0% 45%;
+  --color-neutral-600: 0 0% 32%;
+  --color-neutral-700: 0 0% 25%;
+  --color-neutral-800: 0 0% 15%;
+  --color-neutral-900: 0 0% 9%;
+  --color-neutral-950: 0 0% 4%;
+
+  /* Success Colors - Green for operational status */
+  --color-success-50: 142 76% 95%;
+  --color-success-100: 142 76% 90%;
+  --color-success-200: 142 76% 80%;
+  --color-success-300: 142 76% 70%;
+  --color-success-400: 142 76% 60%;
+  --color-success-500: 142 76% 36%;
+  --color-success-600: 142 76% 30%;
+  --color-success-700: 142 76% 25%;
+  --color-success-800: 142 76% 20%;
+  --color-success-900: 142 76% 15%;
+  --color-success-950: 142 76% 8%;
+
+  /* Warning Colors - Amber for caution */
+  --color-warning-50: 38 92% 95%;
+  --color-warning-100: 38 92% 90%;
+  --color-warning-200: 38 92% 80%;
+  --color-warning-300: 38 92% 70%;
+  --color-warning-400: 38 92% 60%;
+  --color-warning-500: 38 92% 50%;
+  --color-warning-600: 38 92% 45%;
+  --color-warning-700: 38 92% 35%;
+  --color-warning-800: 38 92% 25%;
+  --color-warning-900: 38 92% 15%;
+  --color-warning-950: 38 92% 8%;
+
+  /* Error Colors - Red for critical alerts */
+  --color-error-50: 0 84% 95%;
+  --color-error-100: 0 84% 90%;
+  --color-error-200: 0 84% 80%;
+  --color-error-300: 0 84% 70%;
+  --color-error-400: 0 84% 60%;
+  --color-error-500: 0 84% 60%;
+  --color-error-600: 0 84% 50%;
+  --color-error-700: 0 84% 40%;
+  --color-error-800: 0 84% 30%;
+  --color-error-900: 0 84% 20%;
+  --color-error-950: 0 84% 10%;
+
+  /* Info Colors - Blue for information */
+  --color-info-50: 199 89% 95%;
+  --color-info-100: 199 89% 90%;
+  --color-info-200: 199 89% 80%;
+  --color-info-300: 199 89% 70%;
+  --color-info-400: 199 89% 60%;
+  --color-info-500: 199 89% 48%;
+  --color-info-600: 199 89% 40%;
+  --color-info-700: 199 89% 30%;
+  --color-info-800: 199 89% 20%;
+  --color-info-900: 199 89% 15%;
+  --color-info-950: 199 89% 8%;
+
+  /* Spacing Scale - Based on 4px grid */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+
+  /* Border Radius - Industrial, functional */
+  --radius-none: 0px;
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px */
+  --radius-lg: 0.75rem;    /* 12px */
+  --radius-xl: 1rem;       /* 16px */
+  --radius-full: 9999px;
+
+  /* Shadows - Subtle, industrial */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+  /* Typography - Modern, technical */
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Font Sizes - Clear hierarchy */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+}
+
+/* Dark Mode Variant */
+[data-theme="nostromo"][data-color-scheme="dark"] {
+  /* Invert neutral colors for dark mode */
+  --color-neutral-50: 0 0% 9%;
+  --color-neutral-100: 0 0% 15%;
+  --color-neutral-200: 0 0% 25%;
+  --color-neutral-300: 0 0% 35%;
+  --color-neutral-400: 0 0% 45%;
+  --color-neutral-500: 0 0% 55%;
+  --color-neutral-600: 0 0% 65%;
+  --color-neutral-700: 0 0% 75%;
+  --color-neutral-800: 0 0% 85%;
+  --color-neutral-900: 0 0% 95%;
+  --color-neutral-950: 0 0% 98%;
+
+  /* Adjust shadows for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+}
+
+/* System Preference Dark Mode */
+@media (prefers-color-scheme: dark) {
+  [data-theme="nostromo"] {
+    /* Invert neutral colors for dark mode */
+    --color-neutral-50: 0 0% 9%;
+    --color-neutral-100: 0 0% 15%;
+    --color-neutral-200: 0 0% 25%;
+    --color-neutral-300: 0 0% 35%;
+    --color-neutral-400: 0 0% 45%;
+    --color-neutral-500: 0 0% 55%;
+    --color-neutral-600: 0 0% 65%;
+    --color-neutral-700: 0 0% 75%;
+    --color-neutral-800: 0 0% 85%;
+    --color-neutral-900: 0 0% 95%;
+    --color-neutral-950: 0 0% 98%;
+
+    /* Adjust shadows for dark mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+  }
+}

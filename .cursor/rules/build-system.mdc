@@ -1,0 +1,481 @@
+---
+description: Build system and monorepo configuration rules
+globs: ["**/package.json", "**/tsconfig.json", "**/tsup.config.ts", "**/turbo.json", "**/pnpm-workspace.yaml"]
+alwaysApply: false
+---
+
+# Build System Rules
+
+## 🏗️ Monorepo Structure
+
+### Package Organization
+```
+nostromo-ui/
+├── packages/
+│   ├── ui-core/              # Core components
+│   ├── ui-marketing/         # Marketing components
+│   └── ui-tw/               # Tailwind preset & themes
+├── apps/
+│   ├── docs/                # Documentation site
+│   └── playground/          # Development playground
+├── tools/
+│   ├── eslint-config/       # Shared ESLint config
+│   └── tsconfig/           # Shared TypeScript configs
+├── package.json            # Root package.json
+├── pnpm-workspace.yaml     # pnpm workspace config
+├── turbo.json             # Turborepo config
+└── changeset.config.js    # Changesets config
+```
+
+### Root Package.json
+```json
+{
+  "name": "nostromo-ui",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "turbo": "^1.10.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  }
+}
+```
+
+## 📦 Package Configuration
+
+### Library Package.json Template
+```json
+{
+  "name": "@nostromo/ui-core",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/button.mjs",
+      "require": "./dist/button.js",
+      "types": "./dist/button.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^7.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
+```
+
+### App Package.json Template
+```json
+{
+  "name": "@nostromo/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nostromo/ui-core": "workspace:*",
+    "@nostromo/ui-marketing": "workspace:*",
+    "@nostromo/ui-tw": "workspace:*",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
+  }
+}
+```
+
+## 🔧 Build Configuration
+
+### tsup Configuration
+```ts
+// tsup.config.ts
+import { defineConfig } from 'tsup';
+
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['cjs', 'esm'],
+  dts: true,
+  splitting: false,
+  sourcemap: true,
+  clean: true,
+  external: ['react', 'react-dom'],
+  treeshake: true,
+  minify: true,
+  target: 'es2022',
+  outDir: 'dist',
+});
+```
+
+### TypeScript Configuration
+```json
+// tsconfig.base.json
+{
+  "compilerOptions": {
+    "strict": true,
+    "moduleResolution": "bundler",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "exclude": ["node_modules", "dist", "**/*.test.*", "**/*.stories.*"]
+}
+```
+
+### Package-specific tsconfig.json
+```json
+// packages/ui-core/tsconfig.json
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "**/*.test.*", "**/*.stories.*"]
+}
+```
+
+## ⚡ Turborepo Configuration
+
+### turbo.json
+```json
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
+```
+
+### pnpm-workspace.yaml
+```yaml
+packages:
+  - 'packages/*'
+  - 'apps/*'
+  - 'tools/*'
+```
+
+## 🧪 Testing Configuration
+
+### Vitest Configuration
+```ts
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    globals: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'src/test/',
+        '**/*.d.ts',
+        '**/*.stories.*',
+        '**/*.test.*'
+      ]
+    }
+  }
+});
+```
+
+### Test Setup
+```ts
+// src/test/setup.ts
+import '@testing-library/jest-dom';
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import * as matchers from '@testing-library/jest-dom/matchers';
+
+expect.extend(matchers);
+
+afterEach(() => {
+  cleanup();
+});
+```
+
+## 🔍 Linting Configuration
+
+### ESLint Configuration
+```js
+// tools/eslint-config/index.js
+module.exports = {
+  extends: [
+    '@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+  ],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+};
+```
+
+### Prettier Configuration
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf"
+}
+```
+
+## 📦 Release Configuration
+
+### Changesets Configuration
+```js
+// changeset.config.js
+module.exports = {
+  changelog: '@changesets/cli/changelog',
+  commit: false,
+  fixed: [],
+  linked: [],
+  access: 'public',
+  baseBranch: 'main',
+  updateInternalDependencies: 'patch',
+  ignore: [],
+};
+```
+
+### Release Scripts
+```json
+{
+  "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  }
+}
+```
+
+## 🚀 Build Commands
+
+### Development
+```bash
+# Start all development servers
+pnpm dev
+
+# Start specific package
+pnpm --filter @nostromo/ui-core dev
+
+# Start docs site
+pnpm --filter docs dev
+```
+
+### Building
+```bash
+# Build all packages
+pnpm build
+
+# Build specific package
+pnpm --filter @nostromo/ui-core build
+
+# Build with dependencies
+pnpm --filter @nostromo/ui-core build --include-dependencies
+```
+
+### Testing
+```bash
+# Run all tests
+pnpm test
+
+# Run tests for specific package
+pnpm --filter @nostromo/ui-core test
+
+# Run tests with coverage
+pnpm test --coverage
+```
+
+### Linting
+```bash
+# Lint all packages
+pnpm lint
+
+# Lint specific package
+pnpm --filter @nostromo/ui-core lint
+
+# Fix linting issues
+pnpm lint --fix
+```
+
+## 🔧 Build Optimization
+
+### Bundle Analysis
+```bash
+# Analyze bundle size
+pnpm --filter @nostromo/ui-core build --analyze
+
+# Check bundle size
+pnpm --filter @nostromo/ui-core build --size-limit
+```
+
+### Performance Monitoring
+```bash
+# Check build performance
+pnpm build --profile
+
+# Monitor build times
+pnpm build --timing
+```
+
+## 🚫 Build Anti-Patterns
+
+### ❌ Don't Do This
+```json
+// Wrong - missing sideEffects
+{
+  "sideEffects": true
+}
+
+// Wrong - incorrect exports
+{
+  "exports": {
+    ".": "./dist/index.js"
+  }
+}
+
+// Wrong - missing peer dependencies
+{
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}
+```
+
+### ✅ Do This Instead
+```json
+// Correct - tree-shakeable
+{
+  "sideEffects": false
+}
+
+// Correct - proper exports
+{
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}
+
+// Correct - peer dependencies
+{
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  }
+}
+```
+
+---
+
+**Remember**: The build system should be fast, reliable, and produce optimized bundles. Always test builds locally before pushing changes.

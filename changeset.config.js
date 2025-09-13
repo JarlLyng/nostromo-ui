@@ -1,0 +1,10 @@
+module.exports = {
+  changelog: '@changesets/cli/changelog',
+  commit: false,
+  fixed: [],
+  linked: [],
+  access: 'public',
+  baseBranch: 'main',
+  updateInternalDependencies: 'patch',
+  ignore: [],
+};

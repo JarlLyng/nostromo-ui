@@ -1,0 +1,390 @@
+---
+description: Component development patterns and standards
+globs: ["packages/ui-core/**/*", "packages/ui-marketing/**/*"]
+alwaysApply: false
+---
+
+# Component Development Rules
+
+## 🧩 Component Structure
+
+### File Organization
+```
+packages/ui-core/src/
+├── components/
+│   ├── button/
+│   │   ├── button.tsx          # React component
+│   │   ├── button.test.tsx     # Unit tests
+│   │   ├── button.stories.tsx  # Storybook stories
+│   │   └── index.ts           # Exports
+│   └── vue/
+│       ├── button/
+│       │   ├── button.vue     # Vue component
+│       │   ├── button.test.ts # Vue tests
+│       │   └── index.ts       # Exports
+```
+
+### Component Template
+```tsx
+// React component template
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const componentVariants = cva(
+  // Base classes
+  "base-classes-here",
+  {
+    variants: {
+      variant: {
+        primary: "primary-classes",
+        secondary: "secondary-classes",
+      },
+      size: {
+        sm: "small-classes",
+        md: "medium-classes",
+        lg: "large-classes",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
+  }
+);
+
+export interface ComponentProps
+  extends React.HTMLAttributes<HTMLElement>,
+    VariantProps<typeof componentVariants> {
+  // Additional props
+}
+
+export const Component = React.forwardRef<HTMLElement, ComponentProps>(
+  ({ className, variant, size, ...props }, ref) => {
+    return (
+      <element
+        className={cn(componentVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+Component.displayName = "Component";
+```
+
+## 🎨 Styling Guidelines
+
+### Tailwind Classes
+- **Use utility classes** for all styling
+- **Combine with CVA** for variant management
+- **Use CSS variables** for theme-aware colors
+- **Avoid custom CSS** unless absolutely necessary
+
+### Color Usage
+```tsx
+// ✅ Correct - using CSS variables
+className="bg-brand-500 text-white hover:bg-brand-600"
+
+// ❌ Wrong - hardcoded colors
+className="bg-purple-500 text-white hover:bg-purple-600"
+```
+
+### Spacing & Sizing
+```tsx
+// ✅ Correct - using design tokens
+className="p-4 rounded-md text-base"
+
+// ❌ Wrong - arbitrary values
+className="p-[16px] rounded-[8px] text-[16px]"
+```
+
+## 🔧 Variant System
+
+### Standard Variants
+All components should support these standard variants:
+
+```tsx
+type Size = "sm" | "md" | "lg";
+type Variant = "primary" | "secondary" | "ghost" | "destructive";
+type State = "default" | "loading" | "disabled";
+```
+
+### CVA Implementation
+```tsx
+const buttonVariants = cva(
+  // Base classes - always applied
+  "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        primary: "bg-brand-500 text-white hover:bg-brand-600",
+        secondary: "bg-neutral-200 text-neutral-900 hover:bg-neutral-300",
+        ghost: "hover:bg-neutral-100 hover:text-neutral-900",
+        destructive: "bg-error-500 text-white hover:bg-error-600",
+      },
+      size: {
+        sm: "h-8 px-3 text-sm",
+        md: "h-10 px-4 text-base",
+        lg: "h-12 px-6 text-lg",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
+  }
+);
+```
+
+## ♿ Accessibility Requirements
+
+### ARIA Attributes
+```tsx
+// ✅ Correct - proper ARIA
+<button
+  aria-label={isLoading ? "Loading..." : "Submit form"}
+  aria-disabled={isLoading}
+  disabled={isLoading}
+>
+  {isLoading ? <Spinner /> : "Submit"}
+</button>
+
+// ❌ Wrong - missing ARIA
+<button disabled={isLoading}>
+  {isLoading ? <Spinner /> : "Submit"}
+</button>
+```
+
+### Keyboard Navigation
+```tsx
+// ✅ Correct - keyboard support
+<div
+  role="button"
+  tabIndex={0}
+  onKeyDown={(e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick?.();
+    }
+  }}
+  onClick={onClick}
+>
+  Clickable div
+</div>
+```
+
+### Focus Management
+```tsx
+// ✅ Correct - focus trap for modals
+<Dialog>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Modal Title</DialogTitle>
+    </DialogHeader>
+    {/* Content */}
+  </DialogContent>
+</Dialog>
+```
+
+## 🧪 Testing Standards
+
+### Unit Tests
+```tsx
+// button.test.tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "./button";
+
+describe("Button", () => {
+  it("renders with correct text", () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole("button")).toHaveTextContent("Click me");
+  });
+
+  it("handles click events", () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    fireEvent.click(screen.getByRole("button"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("applies correct variant classes", () => {
+    render(<Button variant="primary">Primary</Button>);
+    expect(screen.getByRole("button")).toHaveClass("bg-brand-500");
+  });
+});
+```
+
+### Accessibility Tests
+```tsx
+// button.a11y.test.tsx
+import { render } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+import { Button } from "./button";
+
+expect.extend(toHaveNoViolations);
+
+describe("Button Accessibility", () => {
+  it("has no accessibility violations", async () => {
+    const { container } = render(<Button>Click me</Button>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
+```
+
+## 📚 Storybook Stories
+
+### Story Template
+```tsx
+// button.stories.tsx
+import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "./button";
+
+const meta: Meta<typeof Button> = {
+  title: "Components/Button",
+  component: Button,
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: { type: "select" },
+      options: ["primary", "secondary", "ghost", "destructive"],
+    },
+    size: {
+      control: { type: "select" },
+      options: ["sm", "md", "lg"],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {
+    variant: "primary",
+    children: "Button",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: "secondary",
+    children: "Button",
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+    children: "Loading...",
+  },
+};
+```
+
+## 🔄 Vue Component Equivalents
+
+### Vue Component Structure
+```vue
+<!-- button.vue -->
+<template>
+  <button
+    :class="cn(buttonVariants({ variant, size }), className)"
+    :disabled="disabled || loading"
+    v-bind="$attrs"
+    @click="handleClick"
+  >
+    <slot v-if="!loading" />
+    <Spinner v-else size="sm" />
+  </button>
+</template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { buttonVariants } from "./button-variants";
+import { cn } from "@/lib/utils";
+
+interface Props {
+  variant?: "primary" | "secondary" | "ghost" | "destructive";
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
+  loading?: boolean;
+  class?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  variant: "primary",
+  size: "md",
+  disabled: false,
+  loading: false,
+});
+
+const emit = defineEmits<{
+  click: [event: MouseEvent];
+}>();
+
+const handleClick = (event: MouseEvent) => {
+  if (!props.disabled && !props.loading) {
+    emit("click", event);
+  }
+};
+</script>
+```
+
+## 📦 Export Patterns
+
+### Index File
+```ts
+// index.ts
+export { Button } from "./button";
+export type { ButtonProps } from "./button";
+
+// Individual exports for tree-shaking
+export { Button as ButtonComponent } from "./button";
+```
+
+### Package.json Exports
+```json
+{
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./button": {
+      "import": "./dist/button.mjs",
+      "require": "./dist/button.js",
+      "types": "./dist/button.d.ts"
+    }
+  }
+}
+```
+
+## 🚫 Common Mistakes to Avoid
+
+### Styling Mistakes
+- ❌ Don't use hardcoded colors
+- ❌ Don't mix CSS-in-JS with Tailwind
+- ❌ Don't use arbitrary values without good reason
+- ❌ Don't forget to handle dark mode
+
+### Accessibility Mistakes
+- ❌ Don't forget ARIA attributes
+- ❌ Don't ignore keyboard navigation
+- ❌ Don't skip focus management
+- ❌ Don't forget to test with screen readers
+
+### Performance Mistakes
+- ❌ Don't add unnecessary re-renders
+- ❌ Don't forget to memoize expensive calculations
+- ❌ Don't ignore bundle size impact
+- ❌ Don't add runtime dependencies
+
+---
+
+**Remember**: Every component should be accessible, performant, and follow established patterns. When in doubt, check existing components for reference.
