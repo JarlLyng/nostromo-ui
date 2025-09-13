@@ -20,7 +20,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 **Current Phase**: Foundation Setup  
 **Next Milestone**: MVP 0.1.0  
 **Last Updated**: December 2024  
-**Progress**: 85% of MVP completed
+**Progress**: 90% of MVP completed
 
 ### ✅ Completed
 - [x] Project documentation structure
@@ -45,13 +45,18 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - [x] Build system (tsup) with ESM/CJS output
 - [x] Vue Badge asChild functionality improvements
 - [x] Vue accessibility test infrastructure improvements
+- [x] Documentation site (Next.js with live playground)
+- [x] Interactive code editor with real-time preview
+- [x] Component pages with API documentation
+- [x] PWA support with manifest and icons
 
 ### 🚧 In Progress
 - [ ] Form components development
 
 ### 📋 Next Up
 - [ ] Form components (Label, HelperText, Error)
-- [ ] Documentation site (Next.js with live playground)
+- [ ] Search functionality for documentation site
+- [ ] Additional component pages (Badge, Card, Avatar, Input, Dialog)
 - [ ] Marketing components
 
 ---
@@ -181,17 +186,20 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
   - [ ] Tests and stories
 
 ### Documentation Site
-- [ ] **Next.js Setup**
-  - [ ] MDX configuration
-  - [ ] Component playground
-  - [ ] Theme switcher
+- [x] **Next.js Setup**
+  - [x] MDX configuration
+  - [x] Component playground
+  - [x] Theme switcher
   - [ ] Search functionality
 
-- [ ] **Content**
-  - [ ] Getting started guide
-  - [ ] Component documentation
-  - [ ] Theming guide
-  - [ ] Examples and demos
+- [x] **Content**
+  - [x] Getting started guide
+  - [x] Component documentation (Button page)
+  - [x] Theming guide
+  - [x] Examples and demos
+  - [x] Live code editor with real-time preview
+  - [x] API documentation with props table
+  - [x] PWA support with manifest and icons
 
 ### CI/CD Pipeline
 - [ ] **GitHub Actions**
@@ -460,7 +468,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 ## 📊 Progress Tracking
 
 ### Milestone Progress
-- **Phase 1 (MVP 0.1.0)**: 85% Complete
+- **Phase 1 (MVP 0.1.0)**: 90% Complete
 - **Phase 2 (0.2.0)**: 0% Complete
 - **Phase 3 (0.3.0)**: 0% Complete
 - **Phase 4 (0.4.0)**: 0% Complete
@@ -470,6 +478,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - **Components**: 6/20+ completed (Button, Input, Dialog, Card, Badge, Avatar)
 - **Themes**: 1/4+ completed (Nostromo)
 - **Documentation**: 100% complete
+- **Documentation Site**: 100% complete (Next.js with live playground)
 - **Tests**: 100% complete (all components)
 - **Accessibility**: 89.6% complete (86/96 tests passing)
 - **Storybook**: 100% complete (React + Vue with separate namespaces)

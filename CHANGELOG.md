@@ -30,8 +30,15 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Accessibility testing (axe-core) with 89.6% coverage
 - Storybook setup with separate React/Vue namespaces
 - Build system with ESM/CJS output and type definitions
+- Documentation site (Next.js) with live playground
+- Interactive code editor with real-time preview
+- Component pages with API documentation
+- PWA support with manifest and icons
 
 ### Enhanced
+- Documentation site now includes live playground with real-time code editing
+- Component pages feature comprehensive API documentation with props tables
+- PWA support added with manifest.json and icon files
 - Avatar component now supports both compound component API (`AvatarImage`, `AvatarFallback`) and simple prop API
 - Vue Badge `asChild` functionality now properly handles multiple children
 - Vue accessibility tests migrated to `@testing-library/vue` for better compatibility

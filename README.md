@@ -111,6 +111,7 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 - **Form Components** - Label, HelperText, Error states
 
 ### 🎯 **Seneste Forbedringer**
+- **Documentation Site** - Next.js dokumentations-site med live playground og interaktiv kode editor
 - **Avatar Component** - Ny compound component API med `AvatarImage` og `AvatarFallback`
 - **Vue Badge** - Forbedret `asChild` funktionalitet med multiple children support
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
@@ -120,9 +121,9 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 ### 📋 **Planlagt**
 - **Marketing Components** - Hero, testimonials, galleries
 - **Advanced Components** - DataTable, Calendar, Charts
-- **Documentation Site** - Next.js med live playground
+- **Search Functionality** - Komponent søgning i dokumentations-site
 
-**Nuværende Progress: ~85% af MVP**
+**Nuværende Progress: ~90% af MVP**
 
 ---
 
@@ -169,7 +170,7 @@ Projektet organiseres som et **monorepo** (pnpm + Turborepo):
 - **`@nostromo/ui-tw`**\
   Tailwind preset + `base.css` + tema-variabler (CSS vars).
 
-- **`apps/docs`**\
+- **`@nostromo/docs`**\
   Dokumentationssite (Next.js) med eksempler, live playground og tema-switcher.
 
 > 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
@@ -223,12 +224,12 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 
 ## 🗺️ Roadmap
 
-### **MVP (0.1.0)** ✅ **70% Complete**
+### **MVP (0.1.0)** ✅ **90% Complete**
 - ✅ Opsætning af monorepo (pnpm + Turborepo).
 - ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
+- ✅ `@nostromo/docs`: Next.js dokumentations-site med live playground.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
-- 🚧 Apps/docs-site med eksempler.
 
 ### **0.2.0 – Flere Core-komponenter**
 - Form primitives (Label, HelperText, Error).
