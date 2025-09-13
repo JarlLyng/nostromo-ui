@@ -51,7 +51,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 ### 📋 Next Up
 - [ ] Form components (Label, HelperText, Error)
-- [ ] Documentation site setup
+- [ ] Documentation site (Next.js with live playground)
 - [ ] Marketing components
 
 ---

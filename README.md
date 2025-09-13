@@ -133,6 +133,7 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 - **[Theming](THEMING.md)** - Komplet theming guide med CSS-variabler og custom temaer
 - **[Component API](COMPONENT_API.md)** - API design, variant system og komponent patterns
 - **[Development](DEVELOPMENT.md)** - Setup, build process, testing og contribution guidelines
+- **[Documentation Site Strategy](DOCUMENTATION_SITE_STRATEGY.md)** - Strategi for interaktivt dokumentations-site
 
 ### Tekniske Specifikationer
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Dybere tekniske beslutninger og implementation details
