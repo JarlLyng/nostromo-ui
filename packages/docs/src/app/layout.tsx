@@ -39,6 +39,7 @@ export default function RootLayout({
     <html lang="en" data-theme="nostromo" data-color-scheme="dark">
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-neutral-950 text-neutral-50`}
+        suppressHydrationWarning={true}
       >
         <div className="flex min-h-screen">
           <Navigation />
