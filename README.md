@@ -107,17 +107,23 @@ export default function Example() {
 
 ## 📚 Dokumentation
 
-### Hoveddokumenter
+### 🚀 **Start Her**
+- **[📚 Dokumentations Index](DOCUMENTATION_INDEX.md)** - **START HER** - Centralt indeks for al dokumentation
+- **[🤖 AI Handover Guide](AI_HANDOVER.md)** - Komplet guide til AI-overtagelse af projektet
+
+### 📖 **Hoveddokumenter**
 - **[Arkitektur](ARCHITECTURE.md)** - Monorepo struktur, build system og pakke-organisation
 - **[Theming](THEMING.md)** - Komplet theming guide med CSS-variabler og custom temaer
 - **[Component API](COMPONENT_API.md)** - API design, variant system og komponent patterns
 - **[Development](DEVELOPMENT.md)** - Setup, build process, testing og contribution guidelines
+- **[API Reference](API_REFERENCE.md)** - Komplet API reference for alle komponenter og hooks
+- **[Examples](EXAMPLES.md)** - Praktiske eksempler og real-world use cases
+
+### 🔧 **Tekniske Specifikationer**
+- **[Technical Setup](TECHNICAL_SETUP.md)** - Dybere tekniske beslutninger og implementation details
 - **[Documentation Site Strategy](DOCUMENTATION_SITE_STRATEGY.md)** - Strategi for interaktivt dokumentations-site
 
-### Tekniske Specifikationer
-- **[Technical Setup](TECHNICAL_SETUP.md)** - Dybere tekniske beslutninger og implementation details
-
-### Projekt Filer
+### 📋 **Projekt Management**
 - **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones
 - **[Contributing](CONTRIBUTING.md)** - Hvordan du bidrager til projektet
 - **[Security](SECURITY.md)** - Sikkerhedspolitik og sårbarhedsrapportering
@@ -242,19 +248,24 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 
 ## 📖 Læs Mere
 
-### Dokumentation
+### 🚀 **Quick Start**
+- **[📚 Dokumentations Index](DOCUMENTATION_INDEX.md)** - **START HER** - Centralt indeks
+- **[🤖 AI Handover Guide](AI_HANDOVER.md)** - Guide til AI-overtagelse
+- **[Examples](EXAMPLES.md)** - Praktiske eksempler og use cases
+
+### 📚 **Komplet Dokumentation**
+- **[API Reference](API_REFERENCE.md)** - Komplet API reference for alle komponenter
 - **[Arkitektur](ARCHITECTURE.md)** - Detaljeret monorepo og pakke-struktur
 - **[Theming](THEMING.md)** - Komplet theming guide og eksempler  
 - **[Component API](COMPONENT_API.md)** - API design og variant system
 - **[Development](DEVELOPMENT.md)** - Setup, workflow og contribution guidelines
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Tekniske beslutninger og implementation details
 
-### Projekt Information
+### 📋 **Projekt Information**
 - **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones
 - **[Contributing](CONTRIBUTING.md)** - Hvordan du bidrager til projektet
 - **[Security](SECURITY.md)** - Sikkerhedspolitik og sårbarhedsrapportering
 - **[Changelog](CHANGELOG.md)** - Historik over alle ændringer
-- **[AI Handover](AI_HANDOVER.md)** - Guide til AI-overtagelse af projektet
 
 ---
 

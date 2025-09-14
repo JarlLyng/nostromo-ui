@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@nostromo/ui-core'
+import { ThemeSwitcher } from '../theme-switcher'
 // import { Badge } from '@nostromo/ui-core/badge'
 
 const navigation = [
@@ -25,6 +26,9 @@ const navigation = [
       { name: 'Avatar', href: '/components/avatar' },
       { name: 'Input', href: '/components/input' },
       { name: 'Dialog', href: '/components/dialog' },
+      { name: 'Label', href: '/components/label' },
+      { name: 'HelperText', href: '/components/helper-text' },
+      { name: 'ErrorMessage', href: '/components/error-message' },
     ]
   },
   {
@@ -109,8 +113,19 @@ export function Navigation() {
             ))}
           </nav>
 
-          {/* Framework Toggle */}
+          {/* Theme Switcher */}
           <div className="mt-8 pt-6 border-t border-neutral-800">
+            <div className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-3">
+              Theme
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-neutral-300">Switch theme</span>
+              <ThemeSwitcher />
+            </div>
+          </div>
+
+          {/* Framework Toggle */}
+          <div className="mt-6">
             <div className="text-sm font-semibold text-neutral-400 uppercase tracking-wider mb-3">
               Framework
             </div>

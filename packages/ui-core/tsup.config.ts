@@ -11,6 +11,9 @@ export default defineConfig({
     'src/components/input.tsx',
     'src/components/dialog.tsx',
     'src/components/error-boundary.tsx',
+    // Performance utilities
+    'src/lib/lazy.tsx',
+    'src/lib/performance.ts',
   ],
   format: ['cjs', 'esm'],
   dts: true,

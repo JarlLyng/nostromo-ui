@@ -11,18 +11,31 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
+    "test:run": "turbo run test:run",
+    "test:watch": "turbo run test:watch",
+    "test:coverage": "turbo run test:coverage",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "type-check": "turbo run type-check",
     "clean": "turbo run clean",
+    "clean:all": "turbo run clean && rm -rf node_modules && rm -rf packages/*/node_modules",
+    "docs:dev": "turbo run dev --filter=@nostromo/docs",
+    "docs:build": "turbo run build --filter=@nostromo/docs",
+    "ui-core:dev": "turbo run dev --filter=@nostromo/ui-core",
+    "ui-core:build": "turbo run build --filter=@nostromo/ui-core",
+    "ui-core:test": "turbo run test --filter=@nostromo/ui-core",
+    "analyze": "ANALYZE=true turbo run build",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "postinstall": "turbo run build --filter=@nostromo/ui-tw"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
     "eslint": "^9.35.0",
     "prettier": "^3.0.0",
     "turbo": "^1.13.4",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "bundle-analyzer": "^0.1.0"
   }
 }
