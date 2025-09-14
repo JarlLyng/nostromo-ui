@@ -1,3 +1,4 @@
+// Core UI Components
 export { Button, buttonVariants } from './components/button';
 export type { ButtonProps } from './components/button';
 
@@ -14,3 +15,9 @@ export type { AvatarProps } from './components/avatar';
 
 export { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './components/dialog';
 export type { DialogProps, DialogContentProps, DialogHeaderProps, DialogTitleProps, DialogDescriptionProps } from './components/dialog';
+
+// Error Handling
+export { ErrorBoundary, useErrorHandler } from './components/error-boundary';
+
+// Utilities
+export { cn } from './lib/utils';

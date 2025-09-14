@@ -34,12 +34,35 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  /**
+   * Whether the button should render as a child component
+   * @default false
+   */
   asChild?: boolean;
+  /**
+   * Whether the button is in a loading state
+   * @default false
+   */
   loading?: boolean;
+  /**
+   * The loading text to display when loading is true
+   * @default undefined
+   */
+  loadingText?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild: _asChild = false, loading, children, disabled, ...props }, ref) => {
+  ({ 
+    className, 
+    variant, 
+    size, 
+    asChild: _asChild = false, 
+    loading = false, 
+    loadingText,
+    children, 
+    disabled, 
+    ...props 
+  }, ref) => {
     const isDisabled = disabled || loading;
     
     return (
@@ -47,6 +70,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         disabled={isDisabled}
+        aria-disabled={isDisabled}
         {...props}
       >
         {loading && (
@@ -72,7 +96,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {children}
+        {loading && loadingText ? loadingText : children}
       </button>
     );
   }
