@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { CodeEditor } from './code-editor'
 import { Preview } from './preview'
-import { Button, Badge } from '../../../../ui-core/src'
+import { Button, Badge } from '@nostromo/ui-core'
 
 interface PlaygroundProps {
   initialCode: string
@@ -23,14 +23,14 @@ export function Playground({ initialCode, className = '' }: PlaygroundProps) {
       {/* Tab Navigation */}
       <div className="flex gap-2">
         <Button
-          variant={activeTab === 'preview' ? 'primary' : 'ghost'}
+          variant={activeTab === 'preview' ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setActiveTab('preview')}
         >
           Preview
         </Button>
         <Button
-          variant={activeTab === 'code' ? 'primary' : 'ghost'}
+          variant={activeTab === 'code' ? 'default' : 'ghost'}
           size="sm"
           onClick={() => setActiveTab('code')}
         >

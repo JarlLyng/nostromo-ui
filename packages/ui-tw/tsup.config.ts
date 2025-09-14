@@ -17,9 +17,19 @@ export default defineConfig({
   // Copy themes directory
   copy: [
     'src/themes/**/*',
+    'src/styles/**/*',
   ],
   // Ensure CSS files are included
   loader: {
     '.css': 'copy',
   },
+  // Plugin to copy files after build
+  plugins: [
+    {
+      name: 'copy-themes',
+      buildEnd() {
+        // This will be handled by the copy option above
+      },
+    },
+  ],
 });

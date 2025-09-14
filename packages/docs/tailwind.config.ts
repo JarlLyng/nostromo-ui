@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { nostromoPreset } from '../../../ui-tw/dist/tailwind.preset.js'
+import { nostromoPreset } from '@nostromo/ui-tw'
 
 const config: Config = {
   content: [
@@ -8,6 +8,7 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     // Include our UI components
     '../../packages/ui-core/src/**/*.{js,ts,jsx,tsx}',
+    '../../packages/ui-tw/src/**/*.{js,ts,jsx,tsx}',
   ],
   presets: [nostromoPreset],
   theme: {

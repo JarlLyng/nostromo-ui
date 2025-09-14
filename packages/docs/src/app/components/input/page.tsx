@@ -1,40 +1,70 @@
 import { Badge, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@nostromo/ui-core'
+// import { Input } from '@nostromo/ui-core/input'
 import { Playground } from '@/components/playground/playground'
 
-export default function ButtonPage() {
-  const defaultCode = `import { Button } from '@nostromo/ui-core/button'
+export default function InputPage() {
+  const defaultCode = `import { Input } from '@nostromo/ui-core/input'
 
-export function ButtonExample() {
+export function InputExample() {
   return (
-    <div className="flex gap-4">
-      <Button>Default</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
+    <div className="space-y-4">
+      <Input placeholder="Enter your email" />
+      <Input placeholder="Enter your password" type="password" />
+      <Input placeholder="Disabled input" disabled />
     </div>
   )
 }`
 
-  const variantsCode = `import { Button } from '@nostromo/ui-core/button'
+  const variantsCode = `import { Input } from '@nostromo/ui-core/input'
 
-export function ButtonVariants() {
+export function InputVariants() {
   return (
-    <div className="flex gap-4 flex-wrap">
-      <Button>Default</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
+    <div className="space-y-4">
+      <Input placeholder="Default input" />
+      <Input placeholder="Error state" className="border-error-500 focus:border-error-500" />
+      <Input placeholder="Success state" className="border-success-500 focus:border-success-500" />
+      <Input placeholder="Brand input" className="border-brand-500 focus:border-brand-500" />
     </div>
   )
 }`
 
-  const sizesCode = `import { Button } from '@nostromo/ui-core/button'
+  const sizesCode = `import { Input } from '@nostromo/ui-core/input'
 
-export function ButtonSizes() {
+export function InputSizes() {
   return (
-    <div className="flex gap-4 items-center">
-      <Button size="sm">Small</Button>
-      <Button size="default">Default</Button>
-      <Button size="lg">Large</Button>
+    <div className="space-y-4">
+      <Input placeholder="Small input" className="h-8" />
+      <Input placeholder="Default input" />
+      <Input placeholder="Large input" className="h-12" />
+    </div>
+  )
+}`
+
+  const withLabelsCode = `import { Input } from '@nostromo/ui-core/input'
+
+export function InputWithLabels() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">
+          Email Address
+        </label>
+        <Input placeholder="john@example.com" type="email" />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">
+          Password
+        </label>
+        <Input placeholder="Enter your password" type="password" />
+      </div>
+      
+      <div>
+        <label className="block text-sm font-medium text-neutral-300 mb-2">
+          Full Name
+        </label>
+        <Input placeholder="John Doe" />
+      </div>
     </div>
   )
 }`
@@ -45,14 +75,14 @@ export function ButtonSizes() {
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <h1 className="text-4xl font-bold text-neutral-50">Button</h1>
+            <h1 className="text-4xl font-bold text-neutral-50">Input</h1>
             <Badge variant="outline" className="text-brand-400 border-brand-400/20">
               React
             </Badge>
           </div>
           <p className="text-xl text-neutral-400 max-w-3xl">
-            Displays a button or a component that looks like a button. Built with Radix UI primitives 
-            and styled with Tailwind CSS. Supports multiple variants, sizes, and states.
+            Displays a form input field. Perfect for forms, search boxes, and any scenario 
+            where you need to collect user input. Built with accessibility in mind.
           </p>
         </div>
 
@@ -61,7 +91,7 @@ export function ButtonSizes() {
           <CardHeader>
             <CardTitle className="text-neutral-50">Installation</CardTitle>
             <CardDescription>
-              Install the Button component and its dependencies.
+              Install the Input component and its dependencies.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -82,7 +112,7 @@ export function ButtonSizes() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-neutral-50 mb-6">Variants</h2>
           <p className="text-neutral-400 mb-6">
-            Buttons come in different variants to suit different use cases and visual hierarchies.
+            Customize the input appearance with different border colors and states.
           </p>
           <Playground initialCode={variantsCode} />
         </section>
@@ -91,9 +121,18 @@ export function ButtonSizes() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-neutral-50 mb-6">Sizes</h2>
           <p className="text-neutral-400 mb-6">
-            Control the size of the button with the size prop.
+            Control the size of the input with Tailwind CSS classes.
           </p>
           <Playground initialCode={sizesCode} />
+        </section>
+
+        {/* With Labels */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-neutral-50 mb-6">With Labels</h2>
+          <p className="text-neutral-400 mb-6">
+            Properly labeled inputs for better accessibility and user experience.
+          </p>
+          <Playground initialCode={withLabelsCode} />
         </section>
 
         {/* API Reference */}
@@ -102,9 +141,9 @@ export function ButtonSizes() {
           
           <Card className="bg-neutral-900/50 border-neutral-700">
             <CardHeader>
-              <CardTitle className="text-neutral-50">Button Props</CardTitle>
+              <CardTitle className="text-neutral-50">Input Props</CardTitle>
               <CardDescription>
-                All the props available for the Button component.
+                All the props available for the Input component.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -120,22 +159,34 @@ export function ButtonSizes() {
                   </thead>
                   <tbody className="text-neutral-400">
                     <tr className="border-b border-neutral-800">
-                      <td className="py-3 px-4 font-mono text-brand-400">variant</td>
-                      <td className="py-3 px-4">&quot;default&quot; | &quot;outline&quot; | &quot;ghost&quot; | &quot;destructive&quot;</td>
-                      <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
-                      <td className="py-3 px-4">The visual style variant of the button</td>
+                      <td className="py-3 px-4 font-mono text-brand-400">type</td>
+                      <td className="py-3 px-4">&quot;text&quot; | &quot;email&quot; | &quot;password&quot; | &quot;number&quot; | &quot;tel&quot; | &quot;url&quot; | &quot;search&quot;</td>
+                      <td className="py-3 px-4 font-mono">&quot;text&quot;</td>
+                      <td className="py-3 px-4">The input type</td>
                     </tr>
                     <tr className="border-b border-neutral-800">
-                      <td className="py-3 px-4 font-mono text-brand-400">size</td>
-                      <td className="py-3 px-4">&quot;sm&quot; | &quot;default&quot; | &quot;lg&quot;</td>
-                      <td className="py-3 px-4 font-mono">&quot;default&quot;</td>
-                      <td className="py-3 px-4">The size of the button</td>
+                      <td className="py-3 px-4 font-mono text-brand-400">placeholder</td>
+                      <td className="py-3 px-4">string</td>
+                      <td className="py-3 px-4 font-mono">undefined</td>
+                      <td className="py-3 px-4">Placeholder text</td>
                     </tr>
                     <tr className="border-b border-neutral-800">
-                      <td className="py-3 px-4 font-mono text-brand-400">asChild</td>
+                      <td className="py-3 px-4 font-mono text-brand-400">disabled</td>
                       <td className="py-3 px-4">boolean</td>
                       <td className="py-3 px-4 font-mono">false</td>
-                      <td className="py-3 px-4">Render as a child component instead of a button</td>
+                      <td className="py-3 px-4">Whether the input is disabled</td>
+                    </tr>
+                    <tr className="border-b border-neutral-800">
+                      <td className="py-3 px-4 font-mono text-brand-400">value</td>
+                      <td className="py-3 px-4">string</td>
+                      <td className="py-3 px-4 font-mono">undefined</td>
+                      <td className="py-3 px-4">The input value</td>
+                    </tr>
+                    <tr className="border-b border-neutral-800">
+                      <td className="py-3 px-4 font-mono text-brand-400">onChange</td>
+                      <td className="py-3 px-4">(event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void</td>
+                      <td className="py-3 px-4 font-mono">undefined</td>
+                      <td className="py-3 px-4">Change event handler</td>
                     </tr>
                     <tr>
                       <td className="py-3 px-4 font-mono text-brand-400">className</td>
@@ -157,16 +208,17 @@ export function ButtonSizes() {
             <CardHeader>
               <CardTitle className="text-green-400">WCAG 2.1 AA Compliant</CardTitle>
               <CardDescription className="text-green-300">
-                The Button component follows accessibility best practices.
+                The Input component follows accessibility best practices.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-green-200">
                 <li>• Proper keyboard navigation support</li>
                 <li>• Screen reader friendly with appropriate ARIA attributes</li>
-                <li>• High contrast ratios for all variants</li>
+                <li>• High contrast ratios for all states</li>
                 <li>• Focus management and visual indicators</li>
-                <li>• Semantic HTML structure</li>
+                <li>• Semantic HTML structure with proper labels</li>
+                <li>• Support for all standard input types</li>
               </ul>
             </CardContent>
           </Card>

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Button } from '@nostromo/ui-core/button'
+import { Button } from '@nostromo/ui-core'
 // import { Badge } from '@nostromo/ui-core/badge'
 
 const navigation = [
@@ -34,15 +34,6 @@ const navigation = [
       { name: 'Overview', href: '/theming/overview' },
       { name: 'Customization', href: '/theming/customization' },
       { name: 'Theme Builder', href: '/theming/builder' },
-    ]
-  },
-  {
-    name: 'Examples',
-    href: '/examples',
-    children: [
-      { name: 'Dashboard', href: '/examples/dashboard' },
-      { name: 'Forms', href: '/examples/forms' },
-      { name: 'Marketing', href: '/examples/marketing' },
     ]
   },
 ]
@@ -105,12 +96,12 @@ export function Navigation() {
                 <ul className="space-y-1">
                   {section.children.map((item) => (
                     <li key={item.name}>
-                      <a
+                      <Link
                         href={item.href}
                         className="block px-3 py-2 text-sm text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

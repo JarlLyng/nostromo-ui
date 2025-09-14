@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from '../../../../ui-core/src'
+import { Button } from '@nostromo/ui-core'
 
 interface CodeEditorProps {
   initialCode: string
@@ -32,6 +32,7 @@ export function CodeEditor({
     try {
       await navigator.clipboard.writeText(code)
       // You could add a toast notification here
+      console.log('Code copied to clipboard!')
     } catch (err) {
       console.error('Failed to copy code:', err)
     }
