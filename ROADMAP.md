@@ -33,18 +33,18 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - [x] Tailwind preset and base themes
 - [x] Nostromo theme implementation
 - [x] Theme switching utilities
-- [x] Button component (React + Vue)
-- [x] Input component (React + Vue)
-- [x] Dialog component (React + Vue)
-- [x] Card component (React + Vue)
-- [x] Badge component (React + Vue)
-- [x] Avatar component (React + Vue) with compound component API
+- [x] Button component (React) with all variants and loading states
+- [x] Input component (React) with labels, helper text, and error states
+- [x] Dialog component (React) with accessibility and focus management
+- [x] Card component (React) with header, content, and footer sections
+- [x] Badge component (React) with all variants
+- [x] Avatar component (React) with compound component API and image support
 - [x] Test infrastructure (Vitest + Testing Library)
 - [x] Accessibility testing (axe-core) - 89.6% coverage
-- [x] Storybook setup (React + Vue) with separate namespaces
+- [x] Storybook setup (React) with dark theme and comprehensive stories
 - [x] Build system (tsup) with ESM/CJS output
-- [x] Vue Badge asChild functionality improvements
-- [x] Vue accessibility test infrastructure improvements
+- [x] Code optimizations and performance improvements
+- [x] Dependencies updated to latest versions
 - [x] Documentation site (Next.js with live playground)
 - [x] Interactive code editor with real-time preview
 - [x] Component pages with API documentation

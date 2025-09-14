@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@nost
 import { Playground } from '@/components/playground/playground'
 
 export default function ButtonPage() {
-  const defaultCode = `import { Button } from '@nostromo/ui-core'
+  const defaultCode = `import { Button } from '../../../../ui-core/src'
 
 export function ButtonExample() {
   return (
@@ -15,7 +15,7 @@ export function ButtonExample() {
   )
 }`
 
-  const variantsCode = `import { Button } from '@nostromo/ui-core'
+  const variantsCode = `import { Button } from '../../../../ui-core/src'
 
 export function ButtonVariants() {
   return (
@@ -28,7 +28,7 @@ export function ButtonVariants() {
   )
 }`
 
-  const sizesCode = `import { Button } from '@nostromo/ui-core'
+  const sizesCode = `import { Button } from '../../../../ui-core/src'
 
 export function ButtonSizes() {
   return (

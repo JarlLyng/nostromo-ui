@@ -1,125 +1,242 @@
 # Contributing to Nostromo UI
 
-Tak for din interesse i at bidrage til Nostromo UI! 🚀
+Tak for din interesse i at bidrage til Nostromo UI! Dette dokument beskriver hvordan du kan bidrage til projektet.
 
 ## 📋 Indhold
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
-- [Development Setup](#development-setup)
-- [Making Changes](#making-changes)
+- [Development Workflow](#development-workflow)
+- [Code Standards](#code-standards)
+- [Testing](#testing)
+- [Documentation](#documentation)
 - [Pull Request Process](#pull-request-process)
 - [Release Process](#release-process)
-- [Community Guidelines](#community-guidelines)
 
-## 🤝 Code of Conduct
+## Code of Conduct
 
-Dette projekt følger en Code of Conduct. Ved at deltage forventes det, at du respekterer alle medlemmer af vores community.
+Dette projekt følger vores [Code of Conduct](CODE_OF_CONDUCT.md). Ved at deltage accepterer du at overholde disse retningslinjer.
 
-### Vores Forpligtelser
-- Vær respektfuld og inkluderende
-- Vær konstruktiv i feedback
-- Fokusér på det, der er bedst for community'et
-- Vis empati over for andre medlemmer
+## Getting Started
 
-### Uacceptabel Adfærd
-- Brug af seksualiseret sprog eller billeder
-- Trolling, fornærmende kommentarer eller personlige angreb
-- Offentlig eller privat chikane
-- Anden uetisk eller uprofessionel adfærd
-
-## 🚀 Getting Started
-
-### Forudsætninger
+### Prerequisites
 - **Node.js**: >= 20.0.0
 - **pnpm**: >= 9.0.0
 - **Git**: Latest version
-- **Fork** af repository'et
 
-### Development Setup
+### Setup
+```bash
+# Fork og clone repository
+git clone https://github.com/your-username/nostromo-ui.git
+cd nostromo-ui
 
-1. **Fork og Clone**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/nostromo-ui.git
-   cd nostromo-ui
-   ```
+# Install dependencies
+pnpm install
 
-2. **Install Dependencies**
-   ```bash
-   pnpm install
-   ```
+# Start development server
+pnpm dev
+```
 
-3. **Start Development**
-   ```bash
-   pnpm dev
-   ```
+## Development Workflow
 
-4. **Verify Setup**
-   ```bash
-   pnpm test
-   pnpm lint
-   pnpm type-check
-   ```
+### 1. Create Feature Branch
+```bash
+git checkout -b feature/your-feature-name
+```
 
-## 🛠️ Development Workflow
+### 2. Make Changes
+- Implement din feature eller fix
+- Følg vores [code standards](#code-standards)
+- Skriv tests for din kode
+- Opdater dokumentation
 
-### Branch Strategy
-- **Main branch**: `main` (production-ready)
-- **Feature branches**: `feature/component-name`
-- **Bug fixes**: `fix/issue-description`
-- **Documentation**: `docs/update-description`
+### 3. Test Your Changes
+```bash
+# Run all tests
+pnpm test
 
-### Making Changes
+# Run linting
+pnpm lint
 
-1. **Create Feature Branch**
-   ```bash
-   git checkout -b feature/button-component
-   ```
+# Run type checking
+pnpm type-check
 
-2. **Make Changes**
-   - Følg [Component Development Rules](.cursor/rules/component-development.mdc)
-   - Skriv tests for nye funktioner
-   - Opdater dokumentation
+# Build packages
+pnpm build
+```
 
-3. **Test Changes**
-   ```bash
-   pnpm test
-   pnpm lint
-   pnpm type-check
-   pnpm build
-   ```
+### 4. Create Changeset
+```bash
+pnpm changeset
+```
 
-4. **Commit Changes**
-   ```bash
-   git add .
-   git commit -m "feat(button): add loading state"
-   ```
+### 5. Submit Pull Request
+- Opret en pull request mod `main` branch
+- Beskriv dine ændringer tydeligt
+- Link til relevante issues
 
-5. **Create Changeset**
-   ```bash
-   pnpm changeset
-   ```
+## Code Standards
 
-6. **Push and Create PR**
-   ```bash
-   git push origin feature/button-component
-   ```
+### TypeScript
+- **Strict mode**: Altid brug strict TypeScript
+- **No any**: Undgå `any` types
+- **Proper typing**: Definer typer for alle props og funktioner
 
-## 📝 Pull Request Process
+### React Components
+```tsx
+// ✅ Good
+interface ButtonProps {
+  variant?: 'default' | 'secondary' | 'ghost' | 'destructive';
+  size?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
+}
+
+export const Button = ({ variant = 'default', size = 'md', children, ...props }: ButtonProps) => {
+  return (
+    <button 
+      className={cn(buttonVariants({ variant, size }))}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### Vue Components
+```ts
+// ✅ Good
+export const NButton = defineComponent({
+  name: 'NButton',
+  props: {
+    variant: {
+      type: String as PropType<'default' | 'secondary' | 'ghost' | 'destructive'>,
+      default: 'default',
+    },
+    size: {
+      type: String as PropType<'sm' | 'md' | 'lg'>,
+      default: 'md',
+    },
+  },
+  setup(props, { slots }) {
+    // Implementation
+  },
+});
+```
+
+### Accessibility
+- **WCAG 2.1 AA**: Alle komponenter skal være tilgængelige
+- **ARIA attributes**: Brug korrekte ARIA attributes
+- **Keyboard navigation**: Understøt keyboard navigation
+- **Screen readers**: Test med screen readers
+
+### Performance
+- **Tree shaking**: Komponenter skal være tree-shakeable
+- **Bundle size**: Minimal bundle impact
+- **SSR compatible**: Ingen client-side dependencies
+
+## Testing
+
+### Unit Tests
+```tsx
+// src/components/Button.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button', () => {
+  it('renders with correct text', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole('button')).toHaveTextContent('Click me');
+  });
+
+  it('handles click events', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    fireEvent.click(screen.getByRole('button'));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+### Accessibility Tests
+```tsx
+// src/components/Button.a11y.test.tsx
+import { render } from '@testing-library/react';
+import { Button } from './Button';
+
+describe('Button Accessibility', () => {
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Button>Click me</Button>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
+```
+
+### Test Requirements
+- **Coverage**: Minimum 80% code coverage
+- **Accessibility**: Alle komponenter skal have a11y tests
+- **Edge cases**: Test edge cases og error states
+
+## Documentation
+
+### Component Documentation
+- **JSDoc**: Dokumenter alle public APIs
+- **Examples**: Inkluder praktiske eksempler
+- **Props table**: Auto-genereret fra TypeScript
+
+### Storybook Stories
+```tsx
+// src/components/Button.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button';
+
+const meta: Meta<typeof Button> = {
+  title: 'Components/Button',
+  component: Button,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'secondary', 'ghost', 'destructive'],
+    },
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: 'Button',
+  },
+};
+```
+
+### README Updates
+- Opdater README.md hvis du tilføjer nye features
+- Opdater installation instruktioner
+- Opdater eksempler
+
+## Pull Request Process
 
 ### PR Requirements
-- [ ] **Tests**: Alle tests passer
-- [ ] **Linting**: Ingen linting fejl
-- [ ] **Type Checking**: TypeScript kompilerer
-- [ ] **Accessibility**: WCAG 2.1 AA compliance
-- [ ] **Documentation**: Relevant dokumentation opdateret
-- [ ] **Changeset**: Changeset oprettet for breaking changes
-- [ ] **Storybook**: Stories tilføjet for nye komponenter
+- [ ] All tests pass
+- [ ] No linting errors
+- [ ] TypeScript compilation succeeds
+- [ ] Accessibility tests pass
+- [ ] Documentation updated
+- [ ] Changeset created
+- [ ] Storybook stories added
 
 ### PR Template
 ```markdown
 ## Description
-Kort beskrivelse af ændringerne.
+Beskriv dine ændringer...
 
 ## Type of Change
 - [ ] Bug fix
@@ -129,193 +246,64 @@ Kort beskrivelse af ændringerne.
 
 ## Testing
 - [ ] Unit tests added/updated
-- [ ] Accessibility tests pass
+- [ ] Accessibility tests added/updated
 - [ ] Manual testing completed
 
-## Screenshots (if applicable)
-Tilføj screenshots for UI ændringer.
-
 ## Checklist
-- [ ] Code follows project style guidelines
+- [ ] Code follows project standards
 - [ ] Self-review completed
 - [ ] Documentation updated
-- [ ] Changeset created (if needed)
+- [ ] Changeset created
 ```
 
 ### Review Process
-1. **Automated Checks**: CI/CD pipeline kører automatisk
-2. **Code Review**: Mindst én approver kræves
+1. **Automated checks**: CI/CD pipeline kører automatisk
+2. **Code review**: Mindst én approver kræves
 3. **Testing**: Manual testing af ændringer
-4. **Approval**: Maintainer godkender PR
-5. **Merge**: PR merges til main branch
+4. **Documentation**: Verificer at dokumentation er opdateret
 
-## 🚀 Release Process
+## Release Process
 
 ### Versioning
 Vi følger [Semantic Versioning](https://semver.org/):
 - **MAJOR**: Breaking changes
-- **MINOR**: Nye funktioner (backward compatible)
+- **MINOR**: New features (backward compatible)
 - **PATCH**: Bug fixes (backward compatible)
 
-### Release Steps
-1. **Changeset**: Automatisk version bump
-2. **Changelog**: Automatisk changelog generation
-3. **Publish**: Automatisk npm publish
-4. **Documentation**: Automatisk docs update
+### Changesets
+```bash
+# Create changeset
+pnpm changeset
 
-## 🧪 Testing Guidelines
-
-### Unit Tests
-```tsx
-// Eksempel test
-import { render, screen } from '@testing-library/react';
-import { Button } from './Button';
-
-test('renders button with correct text', () => {
-  render(<Button>Click me</Button>);
-  expect(screen.getByRole('button')).toHaveTextContent('Click me');
-});
+# Follow prompts to describe changes
 ```
 
-### Accessibility Tests
-```tsx
-import { axe, toHaveNoViolations } from 'jest-axe';
+### Release Workflow
+1. **Merge PR**: Changes merged to main
+2. **Version bump**: Changesets creates version PR
+3. **Publish**: Automated npm publish
+4. **Documentation**: Auto-updated docs site
 
-test('has no accessibility violations', async () => {
-  const { container } = render(<Button>Click me</Button>);
-  const results = await axe(container);
-  expect(results).toHaveNoViolations();
-});
-```
-
-### E2E Tests
-```ts
-// Playwright test
-import { test, expect } from '@playwright/test';
-
-test('button works correctly', async ({ page }) => {
-  await page.goto('/playground');
-  await expect(page.getByRole('button')).toBeVisible();
-});
-```
-
-## 📚 Documentation Guidelines
-
-### Code Documentation
-- **JSDoc**: For alle public APIs
-- **TypeScript**: Tydelige interface definitions
-- **Comments**: Forklar kompleks logik
-
-### Storybook Stories
-```tsx
-// Button.stories.tsx
-export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    children: 'Button',
-  },
-};
-```
-
-### README Updates
-- Opdater relevant dokumentation
-- Tilføj eksempler for nye funktioner
-- Opdater installation instruktioner
-
-## 🎨 Design Guidelines
-
-### Component Design
-- **Consistent API**: Følg etablerede patterns
-- **Accessibility**: WCAG 2.1 AA compliance
-- **Performance**: Minimal bundle impact
-- **Theming**: Støt alle prædefinerede temaer
-
-### Styling
-- **Tailwind-first**: Brug utility classes
-- **CSS Variables**: For theming
-- **Responsive**: Mobile-first approach
-- **Dark Mode**: Støt både system og manual
-
-## 🐛 Bug Reports
-
-### Bug Report Template
-```markdown
-## Bug Description
-Kort beskrivelse af fejlen.
-
-## Steps to Reproduce
-1. Gå til '...'
-2. Klik på '...'
-3. Se fejl
-
-## Expected Behavior
-Hvad skulle der ske?
-
-## Actual Behavior
-Hvad skete der i stedet?
-
-## Environment
-- OS: [e.g. macOS, Windows, Linux]
-- Browser: [e.g. Chrome, Firefox, Safari]
-- Version: [e.g. 0.1.0]
-
-## Screenshots
-Tilføj screenshots hvis relevant.
-```
-
-## 💡 Feature Requests
-
-### Feature Request Template
-```markdown
-## Feature Description
-Beskriv den ønskede funktion.
-
-## Use Case
-Hvordan vil denne funktion hjælpe?
-
-## Proposed Solution
-Har du en idé til implementation?
-
-## Alternatives
-Har du overvejet alternative løsninger?
-```
-
-## 🏷️ Labels
-
-Vi bruger følgende labels:
-- `bug`: Fejl der skal fixes
-- `enhancement`: Nye funktioner
-- `documentation`: Dokumentationsændringer
-- `good first issue`: Godt for nye bidragydere
-- `help wanted`: Ekstra hjælp ønsket
-- `question`: Spørgsmål eller diskussion
-
-## 📞 Getting Help
+## Getting Help
 
 ### Resources
-- **Documentation**: [README.md](README.md)
-- **Architecture**: [ARCHITECTURE.md](ARCHITECTURE.md)
-- **Component API**: [COMPONENT_API.md](COMPONENT_API.md)
-- **Development**: [DEVELOPMENT.md](DEVELOPMENT.md)
-
-### Community
 - **GitHub Issues**: Bug reports og feature requests
 - **GitHub Discussions**: Generelle spørgsmål
-- **Discord**: Real-time chat (kommer snart)
+- **Discord**: Real-time community support
 
-## 🎉 Recognition
+### Questions?
+Hvis du har spørgsmål, er du velkommen til at:
+- Oprette en GitHub issue
+- Deltage i GitHub discussions
+- Kontakte maintainers direkte
 
-Tak til alle bidragydere! Vi anerkender bidrag på følgende måder:
-- **Contributors**: Liste i README
-- **Release Notes**: Kreditering i changelog
-- **Community**: Highlighting af bidrag
+## Recognition
 
-## 📄 License
-
-Ved at bidrage accepterer du, at dine bidrag vil blive licenseret under MIT-licensen.
+Tak til alle bidragydere! Vi anerkender bidrag i:
+- Release notes
+- Contributors list
+- Special mentions for significant contributions
 
 ---
 
 **Tak for at bidrage til Nostromo UI!** 🚀
-
-*"In space, no one can hear you scream... but everyone can see your beautiful UI"*

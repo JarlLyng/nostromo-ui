@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { CodeEditor } from './code-editor'
 import { Preview } from './preview'
-import { Button, Badge } from '@nostromo/ui-core'
+import { Button, Badge } from '../../../../ui-core/src'
 
 interface PlaygroundProps {
   initialCode: string

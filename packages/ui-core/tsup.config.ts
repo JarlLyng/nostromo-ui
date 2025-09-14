@@ -3,7 +3,6 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   entry: [
     'src/index.ts', 
-    'src/vue/index.ts',
     // Individual component entries
     'src/components/button.tsx',
     'src/components/badge.tsx',
@@ -17,9 +16,13 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', 'vue'],
+  external: ['react', 'react-dom'],
   treeshake: true,
   minify: true,
   target: 'es2022',
   outDir: 'dist',
+  // Optimize bundle size
+  esbuildOptions: (options) => {
+    options.drop = ['console', 'debugger'];
+  },
 });

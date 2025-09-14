@@ -41,17 +41,16 @@
       "require": "./dist/components/dialog.cjs",
       "types": "./dist/components/dialog.d.ts"
     },
-    "./vue": {
-      "import": "./dist/vue/index.mjs",
-      "require": "./dist/vue/index.js",
-      "types": "./dist/vue/index.d.ts"
-    },
     "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -60,42 +59,42 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
-    "storybook:vue": "storybook dev -p 6008 --config-dir .storybook-vue",
     "build-storybook": "storybook build",
-    "build-storybook:vue": "storybook build --config-dir .storybook-vue",
     "test-storybook": "test-storybook",
-    "lint": "eslint src --ext .ts,.tsx,.vue",
+    "lint": "eslint src",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "vue": "^3.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^8.6.14",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/react": "^8.6.14",
-    "@storybook/react-vite": "^8.6.14",
-    "@storybook/test": "^8.6.14",
-    "@storybook/vue3": "8.6.14",
-    "@storybook/vue3-vite": "8.6.14",
+    "@eslint/js": "^9.35.0",
+    "@nostromo/ui-tw": "workspace:^",
+    "@storybook/addon-a11y": "^9.1.5",
+    "@storybook/addon-docs": "^9.1.5",
+    "@storybook/manager-api": "9.0.0-alpha.1",
+    "@storybook/react-vite": "^9.1.5",
+    "@storybook/test": "9.0.0-alpha.2",
+    "@storybook/theming": "9.0.0-alpha.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@testing-library/vue": "^8.1.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
     "@vitejs/plugin-react": "^4.7.0",
-    "@vitejs/plugin-vue": "^4.6.2",
-    "@vue/test-utils": "^2.4.6",
     "axe-core": "^4.10.3",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-storybook": "9.1.5",
     "jest-axe": "^10.0.0",
     "jsdom": "^27.0.0",
-    "storybook": "^8.6.14",
-    "tsup": "^7.0.0",
+    "storybook": "^9.1.5",
+    "tsup": "^7.2.0",
     "typescript": "^5.0.0",
     "vitest": "^1.6.1"
   },

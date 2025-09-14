@@ -1,24 +1,26 @@
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import type { StorybookConfig } from '@storybook/react-vite';
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: [
-    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../src/**/*.story.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/components/**/*.story.@(js|jsx|mjs|ts|tsx)',
   ],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-a11y',
-  ],
+
+  addons: [getAbsolutePath("@storybook/addon-a11y"), getAbsolutePath("@storybook/addon-docs")],
+
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {},
   },
+
   features: {
-    storyStoreV7: true,
+    argTypeTargetsV7: true,
   },
-  docs: {
-    autodocs: 'tag',
-  },
+
   typescript: {
     check: false,
     reactDocgen: 'react-docgen-typescript',
@@ -27,21 +29,21 @@ const config: StorybookConfig = {
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
-      viteFinal: async (config) => {
-        // Disable PostCSS to avoid conflicts
-        config.css = {
-          postcss: false,
-        };
 
-        // Add alias for our CSS files
-        config.resolve = config.resolve || {};
-        config.resolve.alias = {
-          ...config.resolve.alias,
-          '@nostromo/ui-tw': '../../packages/ui-tw/src',
-        };
+  viteFinal: async (config) => {
+    // Add alias for our CSS files
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@nostromo/ui-tw': '../../ui-tw/src',
+    };
 
-        return config;
-      },
+    return config;
+  }
 };
 
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}

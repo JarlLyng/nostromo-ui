@@ -1,6 +1,6 @@
 # Nostromo UI
 
-Et open source UI-bibliotek bygget med **React**, **Vue**, **TypeScript** og **Tailwind CSS**.\
+Et open source UI-bibliotek bygget med **React**, **TypeScript** og **Tailwind CSS**.\
 Målet er at levere et sæt komponenter, der **virker ud af boksen**, men som også er nemme at tilpasse via temaer (farver, typografi, radius).
 
 Biblioteket opdeles i to områder:
@@ -16,7 +16,7 @@ Navnet er inspireret af rumskibet *USCSS Nostromo* fra filmen **Alien** (1979).
 
 ### Installation
 ```bash
-# React eller Vue projekt
+# React projekt
 npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 # eller
 yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
@@ -31,8 +31,8 @@ const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,vue,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx,vue}"
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
   ],
   presets: [nostromoPreset],
 };
@@ -40,7 +40,7 @@ module.exports = {
 
 ### Import af base CSS
 ```ts
-// I din entry-fil (fx main.tsx eller main.ts i Vue)
+// I din entry-fil (fx main.tsx)
 import "@nostromo/ui-tw/styles/base.css";
 import "@nostromo/ui-tw/themes/nostromo.css"; // vælg eller tilpas tema
 ```
@@ -52,7 +52,7 @@ import { Button, Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core";
 export default function Example() {
   return (
     <div className="flex items-center gap-4">
-      <Button variant="primary">Start mission</Button>
+      <Button variant="default">Start mission</Button>
       
       {/* Compound Component API (anbefalet) */}
       <Avatar size="lg">
@@ -67,27 +67,6 @@ export default function Example() {
 }
 ```
 
-### Brug i Vue 3
-```vue
-<script setup lang="ts">
-import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-core/vue";
-</script>
-
-<template>
-  <div class="flex items-center gap-4">
-    <NButton variant="primary">Start mission</NButton>
-    
-    <!-- Compound Component API (anbefalet) -->
-    <NAvatar size="lg">
-      <NAvatarImage src="/user.jpg" alt="User avatar" />
-      <NAvatarFallback>JD</NAvatarFallback>
-    </NAvatar>
-    
-    <!-- Eller simpel prop API -->
-    <NAvatar src="/user.jpg" alt="User avatar" fallback="JD" size="md" />
-  </div>
-</template>
-```
 
 ---
 
@@ -97,14 +76,14 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables med HSL farver
 - **Tailwind Preset** - Komplet preset med Nostromo tema
-- **Button Component** - React + Vue med alle variants
-- **Input Component** - React + Vue med validation states
-- **Dialog Component** - React + Vue med accessibility og focus management
-- **Card Component** - React + Vue med variants og subkomponenter
-- **Badge Component** - React + Vue med status og label variants
-- **Avatar Component** - React + Vue med compound component API, image support og fallbacks
+- **Button Component** - React med alle variants
+- **Input Component** - React med validation states
+- **Dialog Component** - React med accessibility og focus management
+- **Card Component** - React med variants og subkomponenter
+- **Badge Component** - React med status og label variants
+- **Avatar Component** - React med compound component API, image support og fallbacks
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (89.6% accessibility test coverage)
-- **Storybook Setup** - React + Vue med dark theme og separate namespaces
+- **Storybook Setup** - React med dark theme
 - **Build System** - tsup med ESM + CJS output og type definitions
 
 ### 🚧 **I Udvikling**
@@ -113,10 +92,9 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 ### 🎯 **Seneste Forbedringer**
 - **Documentation Site** - Next.js dokumentations-site med live playground og interaktiv kode editor
 - **Avatar Component** - Ny compound component API med `AvatarImage` og `AvatarFallback`
-- **Vue Badge** - Forbedret `asChild` funktionalitet med multiple children support
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
-- **Storybook** - Separate namespaces for React og Vue komponenter
-- **Test Infrastructure** - Skiftet til `@testing-library/vue` for bedre Vue test support
+- **Storybook** - React komponenter med dark theme
+- **Test Infrastructure** - Vitest + Testing Library for React
 
 ### 📋 **Planlagt**
 - **Marketing Components** - Hero, testimonials, galleries
@@ -153,7 +131,7 @@ import { NButton, NAvatar, NAvatarImage, NAvatarFallback } from "@nostromo/ui-co
 - Gør det **enkelt at vælge et tema** (eller definere sit eget).
 - Lever både **små primitives** og **store blokke**, så man kan bygge alt fra SaaS-dashboards til landingssider.
 - Inspireret af shadcn/ui, men med en **klar todeling** (produkt vs marketing).
-- Understøtter både **React og Vue** for bredere adoption.
+- Fokuserer på **React** for optimal performance og udvikleroplevelse.
 
 ---
 

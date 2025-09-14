@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from '@nostromo/ui-core'
+import { Button } from '../../../../ui-core/src'
 
 interface CodeEditorProps {
   initialCode: string

@@ -1,93 +1,53 @@
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
-
-const inputVariants = cva(
-  'flex w-full rounded-lg border bg-neutral-50/50 px-3 py-2 text-sm placeholder:text-neutral-400 transition-input focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 shadow-input',
-  {
-    variants: {
-      variant: {
-        default: [
-          'border-neutral-200 bg-neutral-50/50',
-          'hover:border-neutral-300 hover:bg-neutral-50',
-          'focus:ring-brand-500/50 focus:border-brand-500 focus:bg-white focus:shadow-input-focus',
-          'focus-within:shadow-input-focus'
-        ],
-        error: [
-          'border-error-300 bg-error-50/50',
-          'hover:border-error-400 hover:bg-error-50',
-          'focus:ring-error-500/50 focus:border-error-500 focus:bg-white focus:shadow-input-focus',
-          'focus-within:shadow-input-focus'
-        ],
-        success: [
-          'border-success-300 bg-success-50/50',
-          'hover:border-success-400 hover:bg-success-50',
-          'focus:ring-success-500/50 focus:border-success-500 focus:bg-white focus:shadow-input-focus',
-          'focus-within:shadow-input-focus'
-        ],
-      },
-      size: {
-        sm: 'h-8 px-2 text-xs rounded-md',
-        md: 'h-10 px-3 py-2 text-sm',
-        lg: 'h-12 px-4 py-3 text-base',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'md',
-    },
-  }
-);
+import * as React from "react";
+import { cn } from "../lib/utils";
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    VariantProps<typeof inputVariants> {
-  error?: string;
-  success?: string;
-  label?: string;
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: boolean;
   helperText?: string;
+  label?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, variant, size, error, success, label, helperText, id, ...props }, ref) => {
+  ({ className, type, error, helperText, label, id, ...props }, ref) => {
     const inputId = id || React.useId();
+    const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
-    const helperId = helperText ? `${inputId}-helper` : undefined;
-    const describedBy = [errorId, helperId].filter(Boolean).join(' ');
-
-    // Determine variant based on error/success states
-    const inputVariant = error ? 'error' : success ? 'success' : variant;
 
     return (
-      <div className="w-full">
+      <div className="space-y-2">
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-neutral-700 mb-1"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             {label}
           </label>
         )}
         <input
-          id={inputId}
-          className={cn(inputVariants({ variant: inputVariant, size, className }))}
+          type={type}
+          className={cn(
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            error && "border-destructive focus-visible:ring-destructive",
+            className
+          )}
           ref={ref}
-          aria-invalid={error ? 'true' : 'false'}
-          aria-describedby={describedBy || undefined}
+          id={inputId}
+          aria-describedby={cn(
+            helperTextId,
+            errorId
+          ) || undefined}
+          aria-invalid={error}
           {...props}
         />
-        {error && (
-          <p id={errorId} className="mt-1 text-sm text-error-600" role="alert">
-            {error}
-          </p>
-        )}
-        {success && !error && (
-          <p id={helperId} className="mt-1 text-sm text-success-600">
-            {success}
-          </p>
-        )}
-        {helperText && !error && !success && (
-          <p id={helperId} className="mt-1 text-sm text-neutral-500">
+        {helperText && (
+          <p
+            id={helperTextId}
+            className={cn(
+              "text-sm text-muted-foreground",
+              error && "text-destructive"
+            )}
+          >
             {helperText}
           </p>
         )}
@@ -95,7 +55,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+Input.displayName = "Input";
 
-Input.displayName = 'Input';
-
-export { Input, inputVariants };
+export { Input };

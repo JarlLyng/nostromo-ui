@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     ppr: false,
   },
   // Set correct workspace root to avoid lockfile warnings
-  outputFileTracingRoot: '/Users/jarl.l/Documents/Github/nostromo-ui',
+  outputFileTracingRoot: process.cwd(),
   // Disable service worker and PWA features
   generateEtags: false,
   // Disable static optimization for better dev experience

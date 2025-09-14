@@ -47,8 +47,9 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Build system enhanced with proper TypeScript declarations
 - Storybook setup (React + Vue)
 - Build system (tsup)
-- Vue Storybook configuration
+- Vue Storybook configuration and setup
 - Component stories and documentation
+- Vue Storybook running on port 6008 with separate configuration
 
 ### Changed
 - Updated Vite plugins to latest versions

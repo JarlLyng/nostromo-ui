@@ -1,59 +1,32 @@
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../lib/utils";
 
 const buttonVariants = cva(
-  // Base styles with modern aesthetics
-  'inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-button focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden',
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: [
-          'bg-brand-500 text-neutral-50 shadow-button',
-          'hover:bg-brand-600 hover:shadow-button-hover hover:-translate-y-0.5',
-          'active:translate-y-0 active:shadow-button',
-          'focus-visible:ring-brand-500/50',
-          'before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-500 hover:before:translate-x-[100%]'
-        ],
-        secondary: [
-          'bg-neutral-100 text-neutral-900 shadow-button border border-neutral-200',
-          'hover:bg-neutral-200 hover:shadow-button-hover hover:-translate-y-0.5',
-          'active:translate-y-0 active:shadow-button',
-          'focus-visible:ring-neutral-500/50'
-        ],
-        ghost: [
-          'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900',
-          'focus-visible:ring-neutral-500/50',
-          'hover:shadow-sm'
-        ],
-        destructive: [
-          'bg-error-500 text-neutral-50 shadow-button',
-          'hover:bg-error-600 hover:shadow-button-hover hover:-translate-y-0.5',
-          'active:translate-y-0 active:shadow-button',
-          'focus-visible:ring-error-500/50'
-        ],
-        outline: [
-          'border border-neutral-300 bg-transparent text-neutral-700 shadow-input',
-          'hover:bg-neutral-50 hover:border-neutral-400 hover:shadow-button-hover hover:-translate-y-0.5',
-          'active:translate-y-0 active:shadow-input',
-          'focus-visible:ring-neutral-500/50'
-        ],
-        link: [
-          'text-brand-500 underline-offset-4 hover:underline',
-          'focus-visible:ring-brand-500/50',
-          'hover:text-brand-600'
-        ],
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        sm: 'h-8 px-3 text-xs rounded-md',
-        md: 'h-10 px-4 py-2',
-        lg: 'h-12 px-8 text-base',
-        icon: 'h-10 w-10',
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
-      variant: 'primary',
-      size: 'md',
+      variant: "default",
+      size: "default",
     },
   }
 );
@@ -66,9 +39,9 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, loading = false, children, disabled, ...props }, ref) => {
+  ({ className, variant, size, asChild: _asChild = false, loading, children, disabled, ...props }, ref) => {
     const isDisabled = disabled || loading;
-
+    
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
@@ -82,6 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <circle
               className="opacity-25"
@@ -103,7 +77,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
-
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export { Button, buttonVariants };
