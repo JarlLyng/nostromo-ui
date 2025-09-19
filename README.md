@@ -90,7 +90,7 @@ export default function Example() {
 - **Form Components** - Label, HelperText, Error states
 
 ### 🎯 **Seneste Forbedringer**
-- **Documentation Site** - Next.js dokumentations-site med live playground og interaktiv kode editor
+- **Docusaurus Documentation Site** - Komplet migration fra Next.js til Docusaurus med GitHub Pages deployment
 - **Avatar Component** - Ny compound component API med `AvatarImage` og `AvatarFallback`
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
 - **Storybook** - React komponenter med dark theme
@@ -108,20 +108,16 @@ export default function Example() {
 ## 📚 Dokumentation
 
 ### 🚀 **Start Her**
-- **[📚 Dokumentations Index](DOCUMENTATION_INDEX.md)** - **START HER** - Centralt indeks for al dokumentation
-- **[🤖 AI Handover Guide](AI_HANDOVER.md)** - Komplet guide til AI-overtagelse af projektet
+- **[📚 Docusaurus Documentation](https://jarl.l.github.io/nostromo-ui/)** - **START HER** - Live dokumentationssite
+- **[🎨 Storybook](https://jarl.l.github.io/nostromo-ui/storybook/)** - Interaktive komponent eksempler
 
 ### 📖 **Hoveddokumenter**
 - **[Arkitektur](ARCHITECTURE.md)** - Monorepo struktur, build system og pakke-organisation
 - **[Theming](THEMING.md)** - Komplet theming guide med CSS-variabler og custom temaer
 - **[Component API](COMPONENT_API.md)** - API design, variant system og komponent patterns
 - **[Development](DEVELOPMENT.md)** - Setup, build process, testing og contribution guidelines
-- **[API Reference](API_REFERENCE.md)** - Komplet API reference for alle komponenter og hooks
-- **[Examples](EXAMPLES.md)** - Praktiske eksempler og real-world use cases
-
-### 🔧 **Tekniske Specifikationer**
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Dybere tekniske beslutninger og implementation details
-- **[Documentation Site Strategy](DOCUMENTATION_SITE_STRATEGY.md)** - Strategi for interaktivt dokumentations-site
+- **[Deployment](DEPLOYMENT.md)** - Deployment guide for GitHub Pages
 
 ### 📋 **Projekt Management**
 - **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones
@@ -212,7 +208,7 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - ✅ Opsætning af monorepo (pnpm + Turborepo).
 - ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs-docusaurus`: Docusaurus dokumentations-site med automatisk API dokumentation.
+- ✅ `@nostromo/docs-docusaurus`: Docusaurus dokumentations-site med automatisk API dokumentation og GitHub Pages deployment.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
 
 ### **0.2.0 – Flere Core-komponenter**
@@ -249,17 +245,16 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 ## 📖 Læs Mere
 
 ### 🚀 **Quick Start**
-- **[📚 Dokumentations Index](DOCUMENTATION_INDEX.md)** - **START HER** - Centralt indeks
-- **[🤖 AI Handover Guide](AI_HANDOVER.md)** - Guide til AI-overtagelse
-- **[Examples](EXAMPLES.md)** - Praktiske eksempler og use cases
+- **[📚 Docusaurus Documentation](https://jarl.l.github.io/nostromo-ui/)** - **START HER** - Live dokumentationssite
+- **[🎨 Storybook](https://jarl.l.github.io/nostromo-ui/storybook/)** - Interaktive komponent eksempler
 
 ### 📚 **Komplet Dokumentation**
-- **[API Reference](API_REFERENCE.md)** - Komplet API reference for alle komponenter
 - **[Arkitektur](ARCHITECTURE.md)** - Detaljeret monorepo og pakke-struktur
 - **[Theming](THEMING.md)** - Komplet theming guide og eksempler  
 - **[Component API](COMPONENT_API.md)** - API design og variant system
 - **[Development](DEVELOPMENT.md)** - Setup, workflow og contribution guidelines
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Tekniske beslutninger og implementation details
+- **[Deployment](DEPLOYMENT.md)** - GitHub Pages deployment guide
 
 ### 📋 **Projekt Information**
 - **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones

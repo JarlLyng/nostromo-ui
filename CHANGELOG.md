@@ -45,7 +45,7 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Accessibility testing (axe-core) with 89.6% coverage
 - Storybook setup with separate React/Vue namespaces
 - Build system with ESM/CJS output and type definitions
-- Documentation site (Next.js) with live playground
+- Documentation site (Docusaurus) with GitHub Pages deployment
 - Interactive code editor with real-time preview
 - Component pages with API documentation
 - PWA support with manifest and icons

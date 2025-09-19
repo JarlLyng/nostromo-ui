@@ -27,8 +27,8 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - **Goal**: Replace Next.js docs with Docusaurus for better component documentation
 - **Timeline**: Completed in 1 day
 - **Result**: Full migration to Docusaurus with GitHub Pages deployment
-- **Strategy**: See [DOCUSAURUS_MIGRATION_STRATEGY.md](./DOCUSAURUS_MIGRATION_STRATEGY.md)
 - **Deployment**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
+- **Live Site**: [https://jarl.l.github.io/nostromo-ui/](https://jarl.l.github.io/nostromo-ui/)
 
 ### ✅ Completed
 - [x] Project documentation structure
@@ -53,7 +53,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - [x] Build system (tsup) with ESM/CJS output
 - [x] Code optimizations and performance improvements
 - [x] Dependencies updated to latest versions
-- [x] Documentation site (Next.js with live playground)
+- [x] Documentation site (Docusaurus with GitHub Pages deployment)
 - [x] Interactive code editor with real-time preview
 - [x] Component pages with API documentation
 - [x] PWA support with manifest and icons
@@ -187,7 +187,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
   - [ ] Tests and stories
 
 ### Documentation Site
-- [x] **Next.js Setup**
+- [x] **Docusaurus Setup**
   - [x] MDX configuration
   - [x] Component playground
   - [x] Theme switcher
@@ -479,7 +479,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - **Components**: 6/20+ completed (Button, Input, Dialog, Card, Badge, Avatar)
 - **Themes**: 1/4+ completed (Nostromo)
 - **Documentation**: 100% complete
-- **Documentation Site**: 100% complete (Next.js with live playground)
+- **Documentation Site**: 100% complete (Docusaurus with GitHub Pages deployment)
 - **Tests**: 100% complete (all components)
 - **Accessibility**: 89.6% complete (86/96 tests passing)
 - **Storybook**: 100% complete (React with comprehensive stories)
