@@ -103,26 +103,6 @@ export const Button = ({ variant = 'default', size = 'md', children, ...props }:
 };
 ```
 
-### Vue Components
-```ts
-// ✅ Good
-export const NButton = defineComponent({
-  name: 'NButton',
-  props: {
-    variant: {
-      type: String as PropType<'default' | 'secondary' | 'ghost' | 'destructive'>,
-      default: 'default',
-    },
-    size: {
-      type: String as PropType<'sm' | 'md' | 'lg'>,
-      default: 'md',
-    },
-  },
-  setup(props, { slots }) {
-    // Implementation
-  },
-});
-```
 
 ### Accessibility
 - **WCAG 2.1 AA**: Alle komponenter skal være tilgængelige

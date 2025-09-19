@@ -251,8 +251,8 @@ const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset");
 module.exports = {
   presets: [nostromoPreset],
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,vue}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx,vue}"
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
   ],
 };
 ```

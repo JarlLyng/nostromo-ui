@@ -61,13 +61,13 @@ nostromo-ui/
 │       │   └── themes/      # Tema filer
 │       ├── package.json
 │       └── tsconfig.json
-├── docs/                    # Dokumentationssite
+├── docs-docusaurus/         # Dokumentationssite (Docusaurus)
 │   ├── src/
 │   │   ├── pages/          # MDX pages
 │   │   ├── components/     # Doc komponenter
-│   │   └── app/           # Next.js app
+│   │   └── css/           # Custom CSS
 │   ├── package.json
-│   └── next.config.js
+│   └── docusaurus.config.ts
 ├── apps/
 │   └── playground/         # Development playground
 │       ├── src/
@@ -119,7 +119,7 @@ pnpm --filter @nostromo/ui-core build
 pnpm --filter @nostromo/ui-core test
 
 # Start dev server for docs
-pnpm --filter docs dev
+pnpm docs:dev
 
 # Start playground
 pnpm --filter playground dev

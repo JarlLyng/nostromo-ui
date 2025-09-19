@@ -1,0 +1,108 @@
+# Button
+
+Displays a button or a component that looks like a button. Built with Radix UI primitives and styled with Tailwind CSS. Supports multiple variants, sizes, and states.
+
+## Installation
+
+Install the Button component and its dependencies.
+
+```bash
+# Install with pnpm
+pnpm add @nostromo/ui-core
+```
+
+## Basic Usage
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+
+export function ButtonExample() {
+  return (
+    <div className="flex gap-4">
+      <Button>Default</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+    </div>
+  )
+}
+```
+
+## Variants
+
+Buttons come in different variants to suit different use cases and visual hierarchies.
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+
+export function ButtonVariants() {
+  return (
+    <div className="flex gap-4 flex-wrap">
+      <Button>Default</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="destructive">Destructive</Button>
+    </div>
+  )
+}
+```
+
+## Sizes
+
+Control the size of the button with the size prop.
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+
+export function ButtonSizes() {
+  return (
+    <div className="flex gap-4 items-center">
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+    </div>
+  )
+}
+```
+
+## Loading States
+
+Show loading states with the loading prop and optional loading text.
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+
+export function ButtonLoading() {
+  return (
+    <div className="flex gap-4">
+      <Button loading>Loading</Button>
+      <Button loading loadingText="Saving...">Save</Button>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Button Props
+
+All the props available for the Button component.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "outline" \| "ghost" \| "destructive"` | `"default"` | The visual style variant of the button |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | The size of the button |
+| `loading` | `boolean` | `false` | Whether the button is in a loading state |
+| `loadingText` | `string` | `undefined` | Text to display when loading is true |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+## Accessibility
+
+### WCAG 2.1 AA Compliant
+
+The Button component follows accessibility best practices.
+
+- Proper keyboard navigation support
+- Screen reader friendly with appropriate ARIA attributes
+- High contrast ratios for all variants
+- Focus management and visual indicators
+- Semantic HTML structure

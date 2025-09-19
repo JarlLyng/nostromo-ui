@@ -8,6 +8,21 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
+- Docusaurus migration completed
+- GitHub Pages deployment setup
+- Automatic API documentation generation
+- New deployment documentation
+
+### Changed
+- Migrated from Next.js to Docusaurus for documentation
+- Updated all documentation references
+- Improved navigation and user experience
+
+### Removed
+- Old Next.js documentation site
+- Vue.js support and references
+
+### Added (Previous)
 - Initial project setup
 - Documentation structure
 - Cursor rules configuration

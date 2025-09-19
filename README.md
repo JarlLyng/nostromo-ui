@@ -154,8 +154,8 @@ Projektet organiseres som et **monorepo** (pnpm + Turborepo):
 - **`@nostromo/ui-tw`**\
   Tailwind preset + `base.css` + tema-variabler (CSS vars).
 
-- **`@nostromo/docs`**\
-  Dokumentationssite (Next.js) med eksempler, live playground og tema-switcher.
+- **`@nostromo/docs-docusaurus`**\
+  Docusaurus dokumentations-site med automatisk API dokumentation, komponent eksempler og Storybook integration. Deployet til GitHub Pages.
 
 > 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
 
@@ -212,7 +212,7 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - ✅ Opsætning af monorepo (pnpm + Turborepo).
 - ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs`: Next.js dokumentations-site med live playground.
+- ✅ `@nostromo/docs-docusaurus`: Docusaurus dokumentations-site med automatisk API dokumentation.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
 
 ### **0.2.0 – Flere Core-komponenter**

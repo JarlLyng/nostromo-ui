@@ -23,7 +23,7 @@ nostromo-ui/
 │   ├── ui-core/           # Produkt- og app-komponenter
 │   ├── ui-marketing/      # Marketing-komponenter
 │   └── ui-tw/            # Tailwind preset + temaer
-├── docs/                 # Dokumentationssite
+├── docs-docusaurus/      # Dokumentationssite (Docusaurus)
 ├── apps/
 │   └── playground/       # Development playground
 ├── tools/
@@ -98,7 +98,7 @@ module.exports = {
 - **TypeScript**: Strict mode, bundler resolution
 
 ### Dokumentation
-- **Framework**: Next.js + MDX
+- **Framework**: Docusaurus + MDX
 - **Features**: Live playground, tema-switcher, eksempler
 - **Deployment**: Vercel/Netlify
 
@@ -136,8 +136,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 
 ### Peer Dependencies
 - **React pakker**: `react`, `react-dom`
-- **Vue pakker**: `vue@^3`
-- **Headless primitives**: `@radix-ui/*` (React), `@ark-ui/vue` (Vue)
+- **Headless primitives**: `@radix-ui/*` (React)
 
 ### Dev Dependencies (Shared)
 - **Build**: `tsup`, `typescript`
@@ -195,7 +194,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
-4. **Documentation**: Auto-updated docs site
+4. **Documentation**: Docusaurus site with auto-generated API docs
 
 ## CI/CD Pipeline
 

@@ -24,9 +24,9 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup && npm run copy-css",
-    "copy-css": "mkdir -p dist/themes && cp src/themes/*.css dist/themes/",
+    "copy-css": "mkdir -p dist/themes && cp src/themes/*.css dist/themes/ && cp src/styles/*.css dist/",
     "dev": "tsup --watch",
-    "test": "vitest",
+    "test": "vitest --passWithNoTests",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist"

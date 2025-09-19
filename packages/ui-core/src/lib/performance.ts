@@ -21,7 +21,7 @@ export function usePerformanceMonitor(
   options: PerformanceOptions = {}
 ) {
   const {
-    enabled = process.env.NODE_ENV === 'development',
+    enabled = typeof window !== 'undefined' && window.location?.hostname === 'localhost',
     logToConsole = true,
     onMetric,
     threshold = 0,
@@ -117,7 +117,7 @@ export function useMemoryMonitor() {
   } | null>(null);
 
   React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return;
+    if (typeof window === 'undefined' || window.location?.hostname !== 'localhost') return;
     if (typeof window === 'undefined' || !('memory' in performance)) return;
 
     const updateMemoryInfo = () => {
@@ -151,7 +151,7 @@ export const performanceUtils = {
     func: T,
     wait: number
   ): ((...args: Parameters<T>) => void) => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     return (...args: Parameters<T>) => {
       clearTimeout(timeout);
       timeout = setTimeout(() => func(...args), wait);

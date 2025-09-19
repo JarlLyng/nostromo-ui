@@ -1,6 +1,6 @@
 # Component API Design
 
-Denne fil beskriver API-designet for Nostromo UI komponenter, inklusive variant system, props struktur og konsistente patterns på tværs af React og Vue.
+Denne fil beskriver API-designet for Nostromo UI komponenter, inklusive variant system, props struktur og konsistente patterns for React komponenter.
 
 ## 📋 Indhold
 
@@ -17,8 +17,8 @@ Denne fil beskriver API-designet for Nostromo UI komponenter, inklusive variant 
 ## API Design Principper
 
 ### Konsistens
-- **Ens API** mellem React og Vue komponenter
 - **Konsistente prop navne** på tværs af alle komponenter
+- **Ens variant system** for alle komponenter
 - **Standardiserede variant systemer** (size, variant, state)
 
 ### Fleksibilitet
@@ -106,26 +106,6 @@ function Example() {
 }
 ```
 
-```vue
-<!-- Vue -->
-<script setup lang="ts">
-import { NButton } from "@nostromo/ui-core/vue";
-</script>
-
-<template>
-  <div class="space-x-2">
-    <NButton variant="primary" size="md">
-      Primary Button
-    </NButton>
-    <NButton variant="secondary" size="lg" :loading="true">
-      Loading Button
-    </NButton>
-    <NButton variant="ghost" size="sm" :disabled="true">
-      Disabled Button
-    </NButton>
-  </div>
-</template>
-```
 
 ### Input
 ```tsx
@@ -148,25 +128,6 @@ function LoginForm() {
 }
 ```
 
-```vue
-<!-- Vue -->
-<script setup lang="ts">
-import { NInput, NLabel, NFormField } from "@nostromo/ui-core/vue";
-</script>
-
-<template>
-  <NFormField>
-    <NLabel for="email">Email</NLabel>
-    <NInput
-      id="email"
-      type="email"
-      placeholder="Enter your email"
-      size="md"
-      variant="default"
-    />
-  </NFormField>
-</template>
-```
 
 ### Dialog
 ```tsx
@@ -203,7 +164,6 @@ Alle komponenter støtter disse standard props:
 interface BaseComponentProps {
   // Styling
   className?: string;           // React
-  class?: string;              // Vue
   
   // Accessibility
   id?: string;
@@ -218,9 +178,6 @@ interface BaseComponentProps {
   onClick?: (event: MouseEvent) => void;
   onChange?: (event: ChangeEvent) => void;
   
-  // Events (Vue)
-  onClick?: (event: MouseEvent) => void;
-  onChange?: (event: Event) => void;
 }
 ```
 
@@ -290,22 +247,6 @@ interface DialogProps extends BaseComponentProps {
 </Popover>
 ```
 
-```vue
-<!-- Vue med slots -->
-<template>
-  <NPopover>
-    <template #trigger>
-      <NButton>Open</NButton>
-    </template>
-    <template #content="{ close }">
-      <div>
-        <p>Popover content</p>
-        <NButton @click="close">Close</NButton>
-      </div>
-    </template>
-  </NPopover>
-</template>
-```
 
 ## Accessibility
 

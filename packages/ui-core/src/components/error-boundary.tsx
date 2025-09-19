@@ -29,7 +29,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log the error to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (typeof window !== 'undefined' && window.location?.hostname === 'localhost') {
       console.error('ErrorBoundary caught an error:', error, errorInfo);
     }
 
@@ -69,7 +69,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
               Try again
             </button>
           </div>
-          {process.env.NODE_ENV === 'development' && this.state.error && (
+          {typeof window !== 'undefined' && window.location?.hostname === 'localhost' && this.state.error && (
             <details className="mt-4 w-full max-w-md">
               <summary className="cursor-pointer text-sm font-medium text-muted-foreground">
                 Error Details (Development)

@@ -16,11 +16,6 @@
       "require": "./dist/hero.js",
       "types": "./dist/hero.d.ts"
     },
-    "./vue": {
-      "import": "./dist/vue/index.mjs",
-      "require": "./dist/vue/index.js",
-      "types": "./dist/vue/index.d.ts"
-    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -30,21 +25,21 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "test": "vitest",
-    "lint": "eslint src --ext .ts,.tsx,.vue",
+    "test": "vitest --passWithNoTests",
+    "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "vue": "^3.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "tsup": "^7.0.0",
     "typescript": "^5.0.0",
     "vitest": "^1.0.0",
     "@vitejs/plugin-react": "^4.0.0",
-    "@vitejs/plugin-vue": "^4.0.0"
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9"
   }
 }

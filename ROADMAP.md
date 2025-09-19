@@ -22,6 +22,14 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 **Last Updated**: December 2024  
 **Progress**: 90% of MVP completed
 
+### ✅ **Completed: Docusaurus Migration**
+- **Status**: ✅ **COMPLETED**
+- **Goal**: Replace Next.js docs with Docusaurus for better component documentation
+- **Timeline**: Completed in 1 day
+- **Result**: Full migration to Docusaurus with GitHub Pages deployment
+- **Strategy**: See [DOCUSAURUS_MIGRATION_STRATEGY.md](./DOCUSAURUS_MIGRATION_STRATEGY.md)
+- **Deployment**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
+
 ### ✅ Completed
 - [x] Project documentation structure
 - [x] Cursor rules configuration
@@ -82,7 +90,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Testing Infrastructure**
   - [x] Vitest setup
-  - [x] Testing Library configuration (React + Vue)
+  - [x] Testing Library configuration (React)
   - [x] Coverage reporting (89.6% accessibility coverage)
   - [ ] Playwright for E2E
 
@@ -108,7 +116,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 ### @nostromo/ui-core Package
 - [x] **Button Component**
   - [x] React implementation
-  - [x] Vue implementation
   - [x] Variant system (primary, secondary, ghost, destructive)
   - [x] Size variants (sm, md, lg)
   - [x] Loading state
@@ -117,7 +124,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Input Component**
   - [x] React implementation
-  - [x] Vue implementation
   - [x] Form integration
   - [x] Validation states
   - [x] Accessibility features
@@ -125,7 +131,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Dialog Component**
   - [x] React implementation (Radix UI)
-  - [x] Vue implementation (Ark UI)
   - [x] Focus management
   - [x] Keyboard navigation
   - [x] Accessibility features
@@ -133,7 +138,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Card Component**
   - [x] React implementation
-  - [x] Vue implementation
   - [x] Variant system
   - [x] Subcomponents (Header, Title, Description, Content, Footer)
   - [x] Accessibility features
@@ -141,7 +145,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Badge Component**
   - [x] React implementation
-  - [x] Vue implementation
   - [x] Variant system (default, secondary, destructive, outline)
   - [x] Size variants (sm, md, lg)
   - [x] Accessibility features
@@ -149,7 +152,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [x] **Avatar Component**
   - [x] React implementation
-  - [x] Vue implementation
   - [x] Image support with fallback
   - [x] Size variants (sm, md, lg, xl)
   - [x] Subcomponents (AvatarImage, AvatarFallback)
@@ -158,7 +160,6 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 - [ ] **Tabs Component**
   - [ ] React implementation
-  - [ ] Vue implementation
   - [ ] Keyboard navigation
   - [ ] Accessibility features
   - [ ] Tests and stories
@@ -217,7 +218,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 ### Form Components
 - [ ] **Label Component**
-  - [ ] React and Vue implementations
+  - [ ] React implementation
   - [ ] Form association
   - [ ] Accessibility features
 
@@ -481,7 +482,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - **Documentation Site**: 100% complete (Next.js with live playground)
 - **Tests**: 100% complete (all components)
 - **Accessibility**: 89.6% complete (86/96 tests passing)
-- **Storybook**: 100% complete (React + Vue with separate namespaces)
+- **Storybook**: 100% complete (React with comprehensive stories)
 - **Build System**: 100% complete (ESM/CJS output with type definitions)
 
 ### Success Criteria
