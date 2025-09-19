@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import * as React from 'react';
 import { LazyComponent, withLazyLoading, useLazyLoading, LazyInView } from '../lazy';
-import { ErrorBoundary } from '../../components/error-boundary';
 
 // Mock IntersectionObserver
 const mockIntersectionObserver = vi.fn();

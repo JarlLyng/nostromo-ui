@@ -25,6 +25,12 @@ export type { HelperTextProps } from './components/helper-text';
 export { Label, labelVariants } from './components/label';
 export type { LabelProps } from './components/label';
 
+export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants, tabsTriggerVariants, tabsContentVariants } from './components/tabs';
+export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } from './components/tabs';
+
+export { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectLabel, SelectItem, SelectSeparator, selectTriggerVariants, selectContentVariants, selectItemVariants } from './components/select';
+export type { SelectProps, SelectGroupProps, SelectValueProps, SelectTriggerProps, SelectContentProps, SelectLabelProps, SelectItemProps, SelectSeparatorProps } from './components/select';
+
 // Error Handling
 export { ErrorBoundary, useErrorHandler } from './components/error-boundary';
 

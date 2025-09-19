@@ -4,7 +4,7 @@ Denne guide beskriver hvordan Nostromo UI dokumentationssite deployes og vedlige
 
 ## 📋 Oversigt
 
-Nostromo UI bruger **Docusaurus** til dokumentation og deployes automatisk til **GitHub Pages** via GitHub Actions.
+Nostromo UI bruger en **simpel HTML-baseret dokumentationssite** der deployes automatisk til **GitHub Pages** via GitHub Actions. Denne løsning er optimeret for performance og fungerer perfekt uden komplekse build-processer.
 
 ## 🌐 Deployment Targets
 
@@ -15,15 +15,15 @@ Nostromo UI bruger **Docusaurus** til dokumentation og deployes automatisk til *
 - **Trigger**: Automatisk ved push til main branch
 
 ### **Development (Lokal)**
-- **URL**: http://localhost:3000
-- **Command**: `pnpm docs:dev`
+- **URL**: http://localhost:8080
+- **Command**: `cd packages/docs-simple && python3 -m http.server 8080`
 
 ## 🔧 Deployment Process
 
 ### **Automatisk Deployment**
 
 1. **Push til main branch** med ændringer i:
-   - `packages/docs-docusaurus/`
+   - `packages/docs-simple/`
    - `packages/ui-core/`
    - `packages/ui-tw/`
    - `packages/ui-marketing/`
@@ -31,7 +31,7 @@ Nostromo UI bruger **Docusaurus** til dokumentation og deployes automatisk til *
 2. **GitHub Actions workflow** kører automatisk:
    - Installerer dependencies
    - Bygger alle pakker
-   - Bygger Docusaurus site
+   - Kopierer simple HTML dokumentation til build output
    - Deployer til GitHub Pages
 
 ### **Manuel Deployment**
@@ -40,24 +40,24 @@ Nostromo UI bruger **Docusaurus** til dokumentation og deployes automatisk til *
 # 1. Build alle pakker
 pnpm build
 
-# 2. Build Docusaurus site
-cd packages/docs-docusaurus
-pnpm build
+# 2. Kopier simple HTML dokumentation til build output
+cp -r packages/docs-simple/* build/
 
 # 3. Deploy til GitHub Pages
-pnpm deploy
+cd build
+git add .
+git commit -m "Deploy documentation"
+git push origin gh-pages
 ```
 
 ## 📁 Build Output
 
-Docusaurus genererer statiske filer i:
+Simple HTML dokumentation genererer statiske filer i:
 ```
-packages/docs-docusaurus/build/
+packages/docs-simple/
 ├── index.html
-├── docs/
-├── api/
-├── static/
-└── assets/
+├── package.json
+└── README.md
 ```
 
 ## 🔗 Links og Navigation

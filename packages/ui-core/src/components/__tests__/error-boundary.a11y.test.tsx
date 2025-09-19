@@ -55,7 +55,7 @@ describe('ErrorBoundary Accessibility', () => {
   });
 
   it('should not have accessibility violations with accessible error fallback', async () => {
-    const AccessibleFallback = ({ error, resetError }: { error?: Error; resetError: () => void }) => (
+    const AccessibleFallback = ({ error: _error, resetError }: { error?: Error; resetError: () => void }) => (
       <div 
         role="alert" 
         aria-live="assertive" 

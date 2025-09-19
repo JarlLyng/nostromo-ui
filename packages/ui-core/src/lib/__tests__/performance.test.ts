@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { 
   usePerformanceMonitor, 
-  withPerformanceMonitoring, 
   performanceUtils 
 } from '../performance';
 

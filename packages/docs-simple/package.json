@@ -1,0 +1,15 @@
+{
+  "name": "@nostromo/docs-simple",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Simple HTML documentation for Nostromo UI",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "dev:node": "npx http-server -p 3000",
+    "build": "echo 'No build step required - static HTML'",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

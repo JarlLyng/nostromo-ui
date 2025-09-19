@@ -11,6 +11,11 @@ export default defineConfig({
     'src/components/input.tsx',
     'src/components/dialog.tsx',
     'src/components/error-boundary.tsx',
+    'src/components/tabs.tsx',
+    'src/components/select.tsx',
+    'src/components/label.tsx',
+    'src/components/helper-text.tsx',
+    'src/components/error-message.tsx',
     // Performance utilities
     'src/lib/lazy.tsx',
     'src/lib/performance.ts',

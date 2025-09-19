@@ -10,6 +10,12 @@ Biblioteket opdeles i to områder:
 
 Navnet er inspireret af rumskibet *USCSS Nostromo* fra filmen **Alien** (1979).
 
+## 📚 Dokumentation
+
+**Live dokumentation**: [https://jarl.l.github.io/nostromo-ui/](https://jarl.l.github.io/nostromo-ui/)
+
+Vi har en simpel, fungerende HTML-baseret dokumentationsside der viser alle komponenter, features og quick start guide. Dokumentationen er optimeret for performance og fungerer perfekt uden komplekse build-processer.
+
 ---
 
 ## 🚀 Quick Start
@@ -23,6 +29,8 @@ yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 # eller
 pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
+
+> **Note**: Vi anbefaler at bruge `pnpm` for bedste performance i vores monorepo setup.
 
 ### Opsætning af Tailwind
 ```js
@@ -67,6 +75,31 @@ export default function Example() {
 }
 ```
 
+## 🧩 Tilgængelige Komponenter
+
+### Core Components (11 komponenter)
+- **Button** - Interaktive knapper med loading states og varianter
+- **Input** - Tekst input felter med validation og form integration
+- **Dialog** - Modal dialoger med accessibility og focus management
+- **Badge** - Status indikatorer og labels
+- **Card** - Container komponenter til indhold
+- **Avatar** - Bruger profil billeder med fallback support
+- **Tabs** - Tab navigation med keyboard accessibility
+- **Select** - Dropdown selects med search og multi-select
+- **Label** - Form labels med accessibility features
+- **HelperText** - Hjælpetekst til form felter
+- **ErrorMessage** - Fejlmeddelelser til validation
+
+### Marketing Components
+- **Hero** - Hero sektioner til marketing sites
+
+Alle komponenter er bygget med:
+- ♿ **WCAG 2.1 AA compliance**
+- 🎯 **TypeScript** med fuld type safety
+- 🎨 **Tailwind CSS** med custom themes
+- 📱 **Responsive design**
+- 🌙 **Dark mode support**
+
 
 ---
 
@@ -76,22 +109,18 @@ export default function Example() {
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables med HSL farver
 - **Tailwind Preset** - Komplet preset med Nostromo tema
-- **Button Component** - React med alle variants
-- **Input Component** - React med validation states
-- **Dialog Component** - React med accessibility og focus management
-- **Card Component** - React med variants og subkomponenter
-- **Badge Component** - React med status og label variants
-- **Avatar Component** - React med compound component API, image support og fallbacks
+- **11 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage
+- **Form Components** - Komplet sæt af form-relaterede komponenter
+- **Navigation Components** - Tabs og Select med keyboard accessibility
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (89.6% accessibility test coverage)
 - **Storybook Setup** - React med dark theme
 - **Build System** - tsup med ESM + CJS output og type definitions
-
-### 🚧 **I Udvikling**
-- **Form Components** - Label, HelperText, Error states
+- **Documentation Site** - Simpel HTML-baseret dokumentation der fungerer perfekt
 
 ### 🎯 **Seneste Forbedringer**
-- **Docusaurus Documentation Site** - Komplet migration fra Next.js til Docusaurus med GitHub Pages deployment
-- **Avatar Component** - Ny compound component API med `AvatarImage` og `AvatarFallback`
+- **Simple Documentation** - HTML-baseret dokumentationsside uden komplekse build-processer
+- **Form Components** - Label, HelperText, ErrorMessage med accessibility features
+- **Navigation Components** - Tabs og Select med Radix UI integration
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
 - **Storybook** - React komponenter med dark theme
 - **Test Infrastructure** - Vitest + Testing Library for React
