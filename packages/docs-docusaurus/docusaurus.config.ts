@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jarl.l/nostromo-ui/tree/main/',
         },
         blog: {
           showReadingTime: true,
@@ -56,7 +56,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jarl.l/nostromo-ui/tree/main/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -81,6 +81,21 @@ const config: Config = {
         readme: 'none',
         plugin: ['typedoc-plugin-markdown'],
         watch: process.env.NODE_ENV === 'development',
+        // Remove invalid options that were causing errors
+        excludePrivate: true,
+        excludeProtected: true,
+        excludeExternals: true,
+        sort: ['source-order'],
+        categorizeByGroup: true,
+        defaultCategory: 'Other',
+        categoryOrder: [
+          'Components',
+          'Utilities',
+          'Types',
+          'Other'
+        ],
+        searchInComments: true,
+        cleanOutputDir: true
       },
     ],
   ],
@@ -122,7 +137,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/nostromo-ui/nostromo-ui',
+          href: 'https://github.com/jarl.l/nostromo-ui',
           label: 'GitHub',
           position: 'right',
         },
@@ -161,7 +176,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/nostromo-ui/nostromo-ui',
+              href: 'https://github.com/jarl.l/nostromo-ui',
             },
             {
               label: 'NPM',
@@ -174,11 +189,11 @@ const config: Config = {
           items: [
             {
               label: 'Issues',
-              href: 'https://github.com/nostromo-ui/nostromo-ui/issues',
+              href: 'https://github.com/jarl.l/nostromo-ui/issues',
             },
             {
               label: 'Discussions',
-              href: 'https://github.com/nostromo-ui/nostromo-ui/discussions',
+              href: 'https://github.com/jarl.l/nostromo-ui/discussions',
             },
           ],
         },

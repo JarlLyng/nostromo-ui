@@ -1,32 +1,39 @@
 import React from 'react';
-
 // For now, we'll create simple implementations that match our design system
 // Later we can replace these with actual imports from @nostromo/ui-core
 
 export const Button: React.FC<{
-  variant?: 'primary' | 'secondary' | 'ghost' | 'destructive';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
   children: React.ReactNode;
   className?: string;
-}> = ({ variant = 'primary', size = 'md', children, className = '' }) => {
+  loading?: boolean;
+  loadingText?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+}> = ({ variant = 'default', size = 'default', children, className = '', ...props }) => {
   const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
   
   const variantClasses = {
-    primary: 'bg-brand-500 text-white hover:bg-brand-600',
+    default: 'bg-brand-500 text-white hover:bg-brand-600',
     secondary: 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200',
     ghost: 'hover:bg-neutral-100 hover:text-neutral-900',
-    destructive: 'bg-error-500 text-white hover:bg-error-600'
+    destructive: 'bg-error-500 text-white hover:bg-error-600',
+    outline: 'border border-neutral-300 bg-transparent hover:bg-neutral-100',
+    link: 'text-brand-500 underline-offset-4 hover:underline'
   };
   
   const sizeClasses = {
+    default: 'h-10 px-4 py-2',
     sm: 'h-8 px-3 text-sm',
-    md: 'h-10 px-4 py-2',
-    lg: 'h-12 px-8 text-lg'
+    lg: 'h-12 px-8 text-lg',
+    icon: 'h-10 w-10'
   };
   
   return (
     <button 
       className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      {...props}
     >
       {children}
     </button>

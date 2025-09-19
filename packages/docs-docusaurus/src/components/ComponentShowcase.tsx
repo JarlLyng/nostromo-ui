@@ -10,16 +10,16 @@ export default function ComponentShowcase(): JSX.Element {
       <div className="margin-bottom--lg">
         <h3>Buttons</h3>
         <div className="margin-bottom--md">
-          <Button variant="primary" size="md" className="margin-right--sm">
+          <Button variant="default" size="default" className="margin-right--sm">
             Primary Button
           </Button>
-          <Button variant="secondary" size="md" className="margin-right--sm">
+          <Button variant="secondary" size="default" className="margin-right--sm">
             Secondary Button
           </Button>
-          <Button variant="ghost" size="md" className="margin-right--sm">
+          <Button variant="ghost" size="default" className="margin-right--sm">
             Ghost Button
           </Button>
-          <Button variant="destructive" size="md">
+          <Button variant="destructive" size="default">
             Destructive Button
           </Button>
         </div>
@@ -56,7 +56,7 @@ export default function ComponentShowcase(): JSX.Element {
               </CardHeader>
               <CardContent>
                 <p>Card content goes here. You can put any content inside a card.</p>
-                <Button variant="primary" size="sm">
+                <Button variant="default" size="sm">
                   Action
                 </Button>
               </CardContent>

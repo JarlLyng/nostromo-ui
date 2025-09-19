@@ -109,9 +109,11 @@ describe('ErrorBoundary', () => {
     process.env.NODE_ENV = originalEnv;
   });
 
-  it('does not show error details in production mode', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
+  it('does not show error details when not on localhost', () => {
+    // Mock window.location.hostname to simulate production environment
+    const originalLocation = window.location;
+    delete (window as any).location;
+    window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
 
     render(
       <ErrorBoundary>
@@ -121,7 +123,8 @@ describe('ErrorBoundary', () => {
 
     expect(screen.queryByText('Error Details (Development)')).not.toBeInTheDocument();
 
-    process.env.NODE_ENV = originalEnv;
+    // Restore original location
+    window.location = originalLocation;
   });
 
   it('logs error to console in development mode', () => {
@@ -143,10 +146,12 @@ describe('ErrorBoundary', () => {
     process.env.NODE_ENV = originalEnv;
   });
 
-  it('does not log error to console in production mode', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
-    
+  it('does not log error to console when not on localhost', () => {
+    // Mock window.location.hostname to simulate production environment
+    const originalLocation = window.location;
+    delete (window as any).location;
+    window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
+
     // Clear any previous calls
     vi.clearAllMocks();
 
@@ -156,7 +161,7 @@ describe('ErrorBoundary', () => {
       </ErrorBoundary>
     );
 
-    // In production, our ErrorBoundary should not log to console
+    // When not on localhost, our ErrorBoundary should not log to console
     // But React itself might still log, so we check for our specific log
     expect(console.error).not.toHaveBeenCalledWith(
       'ErrorBoundary caught an error:',
@@ -164,7 +169,8 @@ describe('ErrorBoundary', () => {
       expect.any(Object)
     );
 
-    process.env.NODE_ENV = originalEnv;
+    // Restore original location
+    window.location = originalLocation;
   });
 
   it('handles errors in useEffect', () => {
