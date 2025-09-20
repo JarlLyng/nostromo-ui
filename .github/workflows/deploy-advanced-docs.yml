@@ -8,7 +8,7 @@ on:
       - 'packages/ui-core/**'
       - 'packages/ui-tw/**'
       - 'packages/ui-marketing/**'
-      - '.github/workflows/deploy-docs.yml'
+      - '.github/workflows/deploy-advanced-docs.yml'
   pull_request:
     branches: [ main ]
     paths:
@@ -16,7 +16,7 @@ on:
       - 'packages/ui-core/**'
       - 'packages/ui-tw/**'
       - 'packages/ui-marketing/**'
-      - '.github/workflows/deploy-docs.yml'
+      - '.github/workflows/deploy-advanced-docs.yml'
 
 jobs:
   build-and-deploy:
@@ -59,6 +59,7 @@ jobs:
         run: |
           mkdir -p build
           cp -r packages/docs-advanced/* build/
+          ls -la build/
           
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
@@ -67,3 +68,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           cname: nostromo-ui.dev
+          force_orphan: true
