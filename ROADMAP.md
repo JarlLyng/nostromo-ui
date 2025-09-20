@@ -293,20 +293,39 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 ## 🎨 Phase 3: Marketing Components (0.3.0)
 
-**Target**: Q3 2025  
+**Target**: ✅ **COMPLETED**  
 **Goal**: Complete marketing component library
+
+### ✅ **Completed Marketing Components**
+- [x] **Hero Component**
+  - [x] Customizable layouts and backgrounds
+  - [x] Call-to-action integration
+  - [x] Responsive design
+  - [x] Accessibility features
+
+- [x] **Testimonials Component**
+  - [x] Customer testimonials with ratings
+  - [x] Avatar support
+  - [x] Responsive grid layouts
+  - [x] Accessibility features
+
+- [x] **Features Component**
+  - [x] Feature showcase grids
+  - [x] Icon support and hover effects
+  - [x] Flexible column layouts
+  - [x] Accessibility features
+
+- [x] **Pricing Table Component**
+  - [x] Flexible pricing display
+  - [x] Yearly/monthly toggle
+  - [x] Popular plan highlighting
+  - [x] Accessibility features
 
 ### Advanced Marketing Components
 - [ ] **Gallery Component**
   - [ ] Image grid
   - [ ] Lightbox functionality
   - [ ] Responsive design
-  - [ ] Accessibility features
-
-- [ ] **Pricing Table Component**
-  - [ ] Flexible pricing display
-  - [ ] Feature comparison
-  - [ ] CTA integration
   - [ ] Accessibility features
 
 - [ ] **Logo Wall Component**

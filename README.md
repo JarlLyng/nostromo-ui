@@ -90,8 +90,11 @@ export default function Example() {
 - **HelperText** - Hjælpetekst til form felter
 - **ErrorMessage** - Fejlmeddelelser til validation
 
-### Marketing Components
-- **Hero** - Hero sektioner til marketing sites
+### Marketing Components (4 komponenter)
+- **Hero** - Hero sektioner med customizable layouts og call-to-action buttons
+- **Testimonials** - Kunde testimonials med ratings, avatars og responsive grids
+- **Features** - Feature showcase grids med ikoner og hover effects
+- **Pricing** - Pricing tables med yearly/monthly toggle og popular plan highlighting
 
 Alle komponenter er bygget med:
 - ♿ **WCAG 2.1 AA compliance**
@@ -110,6 +113,7 @@ Alle komponenter er bygget med:
 - **Theming System** - CSS variables med HSL farver
 - **Tailwind Preset** - Komplet preset med Nostromo tema
 - **11 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage
+- **4 Marketing Components** - Hero, Testimonials, Features, Pricing med fuld design system integration
 - **Form Components** - Komplet sæt af form-relaterede komponenter
 - **Navigation Components** - Tabs og Select med keyboard accessibility
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (89.6% accessibility test coverage)
@@ -118,6 +122,7 @@ Alle komponenter er bygget med:
 - **Documentation Site** - Simpel HTML-baseret dokumentation der fungerer perfekt
 
 ### 🎯 **Seneste Forbedringer**
+- **Marketing Components** - Hero, Testimonials, Features, Pricing med CVA variants og responsive design
 - **Simple Documentation** - HTML-baseret dokumentationsside uden komplekse build-processer
 - **Form Components** - Label, HelperText, ErrorMessage med accessibility features
 - **Navigation Components** - Tabs og Select med Radix UI integration
@@ -126,9 +131,9 @@ Alle komponenter er bygget med:
 - **Test Infrastructure** - Vitest + Testing Library for React
 
 ### 📋 **Planlagt**
-- **Marketing Components** - Hero, testimonials, galleries
 - **Advanced Components** - DataTable, Calendar, Charts
 - **Search Functionality** - Komponent søgning i dokumentations-site
+- **Performance Optimization** - Bundle size optimization og performance monitoring
 
 **Nuværende Progress: ~90% af MVP**
 
