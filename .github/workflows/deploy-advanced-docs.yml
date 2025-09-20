@@ -1,10 +1,10 @@
-name: Deploy Docusaurus Documentation
+name: Deploy Advanced Documentation
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'packages/docs-docusaurus/**'
+      - 'packages/docs-advanced/**'
       - 'packages/ui-core/**'
       - 'packages/ui-tw/**'
       - 'packages/ui-marketing/**'
@@ -12,7 +12,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - 'packages/docs-docusaurus/**'
+      - 'packages/docs-advanced/**'
       - 'packages/ui-core/**'
       - 'packages/ui-tw/**'
       - 'packages/ui-marketing/**'
@@ -35,8 +35,6 @@ jobs:
           
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
           
       - name: Get pnpm store directory
         shell: bash
@@ -57,15 +55,15 @@ jobs:
       - name: Build packages
         run: pnpm build
         
-      - name: Build Docusaurus site
+      - name: Prepare documentation site
         run: |
-          cd packages/docs-docusaurus
-          pnpm build
+          mkdir -p build
+          cp -r packages/docs-advanced/* build/
           
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/docs-docusaurus/build
+          publish_dir: ./build
           cname: nostromo-ui.dev
