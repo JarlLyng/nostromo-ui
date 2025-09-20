@@ -14,7 +14,7 @@ Navnet er inspireret af rumskibet *USCSS Nostromo* fra filmen **Alien** (1979).
 
 **Live dokumentation**: [https://jarl.l.github.io/nostromo-ui/](https://jarl.l.github.io/nostromo-ui/)
 
-Vi har en simpel, fungerende HTML-baseret dokumentationsside der viser alle komponenter, features og quick start guide. Dokumentationen er optimeret for performance og fungerer perfekt uden komplekse build-processer.
+Vi har en avanceret HTML-baseret dokumentationsside med alle 15 komponenter, interaktive features, live previews og komplet API dokumentation. Dokumentationen er optimeret for performance og fungerer perfekt uden komplekse build-processer.
 
 ---
 
@@ -119,11 +119,11 @@ Alle komponenter er bygget med:
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (89.6% accessibility test coverage)
 - **Storybook Setup** - React med dark theme
 - **Build System** - tsup med ESM + CJS output og type definitions
-- **Documentation Site** - Simpel HTML-baseret dokumentation der fungerer perfekt
+- **Advanced Documentation Site** - HTML-baseret dokumentation med alle 15 komponenter, interaktive features og live previews
 
 ### 🎯 **Seneste Forbedringer**
 - **Marketing Components** - Hero, Testimonials, Features, Pricing med CVA variants og responsive design
-- **Simple Documentation** - HTML-baseret dokumentationsside uden komplekse build-processer
+- **Advanced Documentation** - HTML-baseret dokumentationsside med alle 15 komponenter, interaktive features og live previews
 - **Form Components** - Label, HelperText, ErrorMessage med accessibility features
 - **Navigation Components** - Tabs og Select med Radix UI integration
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
@@ -184,8 +184,8 @@ Projektet organiseres som et **monorepo** (pnpm + Turborepo):
 - **`@nostromo/ui-tw`**\
   Tailwind preset + `base.css` + tema-variabler (CSS vars).
 
-- **`@nostromo/docs-docusaurus`**\
-  Docusaurus dokumentations-site med automatisk API dokumentation, komponent eksempler og Storybook integration. Deployet til GitHub Pages.
+- **`@nostromo/docs-advanced`**\
+  Avanceret HTML-baseret dokumentations-site med alle 15 komponenter, interaktive features, live previews og komplet API dokumentation. Deployet til GitHub Pages.
 
 > 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
 
@@ -242,7 +242,7 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - ✅ Opsætning af monorepo (pnpm + Turborepo).
 - ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs-docusaurus`: Docusaurus dokumentations-site med automatisk API dokumentation og GitHub Pages deployment.
+- ✅ `@nostromo/docs-advanced`: Avanceret HTML-baseret dokumentations-site med alle 15 komponenter og interaktive features.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
 
 ### **0.2.0 – Flere Core-komponenter**

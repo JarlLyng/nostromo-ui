@@ -61,13 +61,11 @@ nostromo-ui/
 │       │   └── themes/      # Tema filer
 │       ├── package.json
 │       └── tsconfig.json
-├── docs-docusaurus/         # Dokumentationssite (Docusaurus)
-│   ├── src/
-│   │   ├── pages/          # MDX pages
-│   │   ├── components/     # Doc komponenter
-│   │   └── css/           # Custom CSS
-│   ├── package.json
-│   └── docusaurus.config.ts
+├── docs-advanced/           # Avanceret dokumentationssite (HTML)
+│   ├── components/         # Komponent dokumentation
+│   ├── getting-started/    # Getting started guides
+│   ├── assets/            # CSS, JS og billeder
+│   └── package.json
 ├── apps/
 │   └── playground/         # Development playground
 │       ├── src/

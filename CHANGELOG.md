@@ -8,13 +8,13 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
-- Docusaurus migration completed
+- Avanceret HTML-baseret dokumentationssite implementeret
 - GitHub Pages deployment setup
 - Automatic API documentation generation
 - New deployment documentation
 
 ### Changed
-- Migrated from Next.js to Docusaurus for documentation
+- Migrated from Docusaurus to avanceret HTML-baseret dokumentationssite
 - Updated all documentation references
 - Improved navigation and user experience
 
@@ -45,7 +45,7 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - Accessibility testing (axe-core) with 89.6% coverage
 - Storybook setup with separate React/Vue namespaces
 - Build system with ESM/CJS output and type definitions
-- Documentation site (Docusaurus) with GitHub Pages deployment
+- Avanceret dokumentationssite (HTML) med alle 15 komponenter og GitHub Pages deployment
 - Interactive code editor with real-time preview
 - Component pages with API documentation
 - PWA support with manifest and icons

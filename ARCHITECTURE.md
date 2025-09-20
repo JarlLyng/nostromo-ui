@@ -23,7 +23,7 @@ nostromo-ui/
 │   ├── ui-core/           # Produkt- og app-komponenter
 │   ├── ui-marketing/      # Marketing-komponenter
 │   └── ui-tw/            # Tailwind preset + temaer
-├── docs-docusaurus/      # Dokumentationssite (Docusaurus)
+├── docs-advanced/        # Avanceret dokumentationssite (HTML)
 ├── apps/
 │   └── playground/       # Development playground
 ├── tools/
@@ -98,7 +98,7 @@ module.exports = {
 - **TypeScript**: Strict mode, bundler resolution
 
 ### Dokumentation
-- **Framework**: Docusaurus + MDX
+- **Framework**: HTML + CSS + JavaScript (avanceret dokumentationssite)
 - **Features**: Live playground, tema-switcher, eksempler
 - **Deployment**: Vercel/Netlify
 
@@ -194,7 +194,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
-4. **Documentation**: Docusaurus site with auto-generated API docs
+4. **Documentation**: Avanceret HTML-baseret dokumentationssite med alle 15 komponenter
 
 ## CI/CD Pipeline
 

@@ -4,7 +4,7 @@ Denne guide beskriver hvordan Nostromo UI dokumentationssite deployes og vedlige
 
 ## 📋 Oversigt
 
-Nostromo UI bruger en **simpel HTML-baseret dokumentationssite** der deployes automatisk til **GitHub Pages** via GitHub Actions. Denne løsning er optimeret for performance og fungerer perfekt uden komplekse build-processer.
+Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 15 komponenter, interaktive features og live previews. Den deployes automatisk til **GitHub Pages** via GitHub Actions og er optimeret for performance uden komplekse build-processer.
 
 ## 🌐 Deployment Targets
 
@@ -15,15 +15,15 @@ Nostromo UI bruger en **simpel HTML-baseret dokumentationssite** der deployes au
 - **Trigger**: Automatisk ved push til main branch
 
 ### **Development (Lokal)**
-- **URL**: http://localhost:8080
-- **Command**: `cd packages/docs-simple && python3 -m http.server 8080`
+- **URL**: http://localhost:3003
+- **Command**: `cd packages/docs-advanced && python3 -m http.server 3003`
 
 ## 🔧 Deployment Process
 
 ### **Automatisk Deployment**
 
 1. **Push til main branch** med ændringer i:
-   - `packages/docs-simple/`
+   - `packages/docs-advanced/`
    - `packages/ui-core/`
    - `packages/ui-tw/`
    - `packages/ui-marketing/`
@@ -40,8 +40,8 @@ Nostromo UI bruger en **simpel HTML-baseret dokumentationssite** der deployes au
 # 1. Build alle pakker
 pnpm build
 
-# 2. Kopier simple HTML dokumentation til build output
-cp -r packages/docs-simple/* build/
+# 2. Kopier avanceret HTML dokumentation til build output
+cp -r packages/docs-advanced/* build/
 
 # 3. Deploy til GitHub Pages
 cd build
@@ -52,9 +52,9 @@ git push origin gh-pages
 
 ## 📁 Build Output
 
-Simple HTML dokumentation genererer statiske filer i:
+Avanceret HTML dokumentation genererer statiske filer i:
 ```
-packages/docs-simple/
+packages/docs-advanced/
 ├── index.html
 ├── package.json
 └── README.md

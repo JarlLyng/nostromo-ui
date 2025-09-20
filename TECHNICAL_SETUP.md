@@ -17,7 +17,7 @@ Build system
 	•	Output: ESM + CJS + .d.ts.
 	•	sideEffects: false i package.json for optimal tree-shaking.
 	•	Docs:
-	•	Docusaurus + MDX til React-dokumentation.
+	•	Avanceret HTML-baseret dokumentationssite med alle 15 komponenter.
 	•	Mulighed for VitePress-site til Vue-eksempler.
 
 TypeScript-konfiguration
@@ -73,7 +73,7 @@ Komponent API & Variants
 ⸻
 
 Performance
-	•	SSR-kompatibilitet: Ingen afhængighed af window/document uden guards. Testes i Docusaurus og andre SSR miljøer.
+	•	SSR-kompatibilitet: Ingen afhængighed af window/document uden guards. Testes i React SSR miljøer.
 	•	Hydration: Konsistente id’er via Radix/Ark patterns. Undgå runtime-randomization.
 	•	CSS-loading: base.css og tema-vars indlæses kritisk i <head>.
 	•	Bundle-optimering: ESM-first output, sideEffects disabled, lazy-load tunge komponenter (fx Charts, Gallery).
@@ -83,7 +83,7 @@ Performance
 Development Workflow
 	•	Hot reload: Turborepo + pnpm workspaces muliggør øjeblikkelig opdatering af core/marketing i docs.
 	•	Shared devDependencies i roden (tsup, eslint, prettier, vitest, playwright, storybook).
-	•	Playground: docs-appen fungerer som central udviklings- og testmiljø (Docusaurus med MDX + live komponenter).
+	•	Playground: docs-appen fungerer som central udviklings- og testmiljø (avanceret HTML-baseret dokumentationssite med live komponenter).
 
 ⸻
 
