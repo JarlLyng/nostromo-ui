@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@nostromo/ui-core/lib/utils';
+import { cn } from '@nostromo/ui-core';
 
 const pricingVariants = cva(
   'py-16 md:py-24',

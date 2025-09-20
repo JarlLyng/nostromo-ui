@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@nostromo/ui-core/lib/utils';
+import { cn } from '@nostromo/ui-core';
 
 const testimonialsVariants = cva(
   'py-16 md:py-24',
@@ -127,7 +127,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({
               )}
               
               <blockquote className="text-muted-foreground mb-6">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </blockquote>
               
               <div className="flex items-center gap-3">
