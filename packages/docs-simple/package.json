@@ -7,7 +7,15 @@
     "dev": "python3 -m http.server 3000",
     "dev:node": "npx http-server -p 3000",
     "build": "echo 'No build step required - static HTML'",
-    "serve": "python3 -m http.server 8080"
+    "serve": "python3 -m http.server 8080",
+    "test": "echo 'No tests for static HTML'",
+    "test:run": "echo 'No tests for static HTML'",
+    "test:watch": "echo 'No tests for static HTML'",
+    "test:coverage": "echo 'No tests for static HTML'",
+    "lint": "echo 'No linting for static HTML'",
+    "lint:fix": "echo 'No linting for static HTML'",
+    "type-check": "echo 'No type checking for static HTML'",
+    "clean": "echo 'No cleanup needed for static HTML'"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

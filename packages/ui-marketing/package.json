@@ -16,6 +16,21 @@
       "require": "./dist/hero.js",
       "types": "./dist/hero.d.ts"
     },
+    "./testimonials": {
+      "import": "./dist/testimonials.mjs",
+      "require": "./dist/testimonials.js",
+      "types": "./dist/testimonials.d.ts"
+    },
+    "./features": {
+      "import": "./dist/features.mjs",
+      "require": "./dist/features.js",
+      "types": "./dist/features.d.ts"
+    },
+    "./pricing": {
+      "import": "./dist/pricing.mjs",
+      "require": "./dist/pricing.js",
+      "types": "./dist/pricing.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -32,7 +47,13 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@nostromo/ui-core": "workspace:^"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "tsup": "^7.0.0",
