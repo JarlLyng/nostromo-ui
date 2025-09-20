@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostromo UI - Advanced Documentation</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="#components" class="nav-link">Components</a></li>
+                        <li><a href="#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="#examples" class="nav-link">Examples</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="components/button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="components/input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="components/dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="components/badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="components/card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="components/avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="components/tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="components/select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="components/label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="components/helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="components/error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="components/marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="components/marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="components/marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="components/marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1>Nostromo UI</h1>
+                <p>Space-grade UI Components for React</p>
+                <p>Built with modern web technologies including React, TypeScript, and Tailwind CSS. Designed for performance, accessibility, and developer experience.</p>
+                <div class="flex gap-4 justify-center">
+                    <a href="getting-started/installation.html" class="btn btn-primary">Get Started</a>
+                    <a href="https://github.com/jarl.l/nostromo-ui" class="btn btn-secondary">View on GitHub</a>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="grid grid-cols-3 mb-16">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🚀 Space-grade Performance</h3>
+                    </div>
+                    <p class="card-description">Optimized for speed and efficiency with tree-shaking and minimal bundle size. Built for the modern web.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🎨 Beautiful Design</h3>
+                    </div>
+                    <p class="card-description">Inspired by the iconic Nostromo aesthetic with modern design principles and attention to detail.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">♿ Accessible</h3>
+                    </div>
+                    <p class="card-description">WCAG 2.1 AA compliant components with full keyboard navigation and screen reader support.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🎯 TypeScript</h3>
+                    </div>
+                    <p class="card-description">Full type safety and IntelliSense support for better developer experience and fewer bugs.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🎨 Tailwind CSS</h3>
+                    </div>
+                    <p class="card-description">Utility-first styling with custom themes, CSS variables, and seamless integration.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">🌙 Dark Mode</h3>
+                    </div>
+                    <p class="card-description">Built-in dark/light theme support with smooth transitions and system preference detection.</p>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section id="quick-start" class="mb-16">
+                <h2>Quick Start</h2>
+                <p>Get started with Nostromo UI in minutes. Install the package and start building beautiful interfaces.</p>
+                
+                <div class="code-block">
+<pre><code># Install with pnpm
+pnpm add @nostromo/ui-core
+
+# Or with npm
+npm install @nostromo/ui-core
+
+# Or with yarn
+yarn add @nostromo/ui-core</code></pre>
+                </div>
+
+                <div class="code-block">
+<pre><code>import { Button } from '@nostromo/ui-core'
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button variant="primary"&gt;Launch Mission&lt;/Button&gt;
+      &lt;Button variant="secondary"&gt;Abort Mission&lt;/Button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="getting-started/installation.html" class="btn btn-primary">Installation Guide</a>
+                    <a href="components/button.html" class="btn btn-secondary">View Components</a>
+                </div>
+            </section>
+
+            <!-- Component Overview -->
+            <section id="components" class="mb-16">
+                <h2>Components</h2>
+                <p>Explore our comprehensive collection of UI components, each designed for specific use cases and built with accessibility in mind.</p>
+
+                <div class="grid grid-cols-2 mb-8">
+                    <div>
+                        <h3>Core Components (11)</h3>
+                        <p>Essential UI building blocks for applications</p>
+                    </div>
+                    <div>
+                        <h3>Marketing Components (4)</h3>
+                        <p>Specialized components for landing pages and marketing</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Button</h4>
+                        </div>
+                        <p class="card-description">Interactive buttons with multiple variants, sizes, and loading states.</p>
+                        <a href="components/button.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Input</h4>
+                        </div>
+                        <p class="card-description">Flexible input components with validation and form integration.</p>
+                        <a href="components/input.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Dialog</h4>
+                        </div>
+                        <p class="card-description">Modal dialogs with accessibility and keyboard navigation support.</p>
+                        <a href="components/dialog.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Badge</h4>
+                        </div>
+                        <p class="card-description">Small status indicators and labels for various use cases.</p>
+                        <a href="components/badge.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Card</h4>
+                        </div>
+                        <p class="card-description">Container components for organizing content with consistent styling.</p>
+                        <a href="components/card.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Avatar</h4>
+                        </div>
+                        <p class="card-description">User profile images with fallback support and size variants.</p>
+                        <a href="components/avatar.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Tabs</h4>
+                        </div>
+                        <p class="card-description">Tab navigation components with keyboard accessibility.</p>
+                        <a href="components/tabs.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Select</h4>
+                        </div>
+                        <p class="card-description">Dropdown select components with search and multi-select support.</p>
+                        <a href="components/select.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Label</h4>
+                        </div>
+                        <p class="card-description">Form labels with accessibility features and styling variants.</p>
+                        <a href="components/label.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">HelperText</h4>
+                        </div>
+                        <p class="card-description">Helper text components for form fields and user guidance.</p>
+                        <a href="components/helper-text.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">ErrorMessage</h4>
+                        </div>
+                        <p class="card-description">Error message components for form validation and user feedback.</p>
+                        <a href="components/error-message.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Hero</h4>
+                        </div>
+                        <p class="card-description">Hero sections with customizable layouts, backgrounds, and call-to-action buttons.</p>
+                        <a href="components/marketing/hero.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Testimonials</h4>
+                        </div>
+                        <p class="card-description">Customer testimonials with ratings, avatars, and responsive grid layouts.</p>
+                        <a href="components/marketing/testimonials.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Features</h4>
+                        </div>
+                        <p class="card-description">Feature showcase grids with icons, hover effects, and flexible column layouts.</p>
+                        <a href="components/marketing/features.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Pricing</h4>
+                        </div>
+                        <p class="card-description">Pricing tables with yearly/monthly toggle, badges, and popular plan highlighting.</p>
+                        <a href="components/marketing/pricing.html" class="btn btn-secondary">View Docs</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples -->
+            <section id="examples" class="mb-16">
+                <h2>Examples</h2>
+                <p>See Nostromo UI components in action with real-world examples and use cases.</p>
+                
+                <div class="grid grid-cols-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Form Example</h3>
+                        </div>
+                        <p class="card-description">Complete form with validation, error handling, and user feedback.</p>
+                        <a href="#" class="btn btn-primary">View Example</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Dashboard Layout</h3>
+                        </div>
+                        <p class="card-description">Modern dashboard using cards, tabs, and navigation components.</p>
+                        <a href="#" class="btn btn-primary">View Example</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="#components" class="nav-link">Components</a></li>
+            <li><a href="#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="#examples" class="nav-link">Examples</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="text-center mb-8">
+        <div class="container">
+            <p>&copy; 2024 Nostromo UI Team. Built with ❤️ and inspired by the USCSS Nostromo.</p>
+            <p>Open source project available on <a href="https://github.com/jarl.l/nostromo-ui">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/storybook-integration.js"></script>
+</body>
+</html>

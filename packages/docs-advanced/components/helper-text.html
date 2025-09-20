@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelperText Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link active">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>HelperText</h1>
+                <p>Helper text components for form fields with contextual information and guidance. Perfect for providing additional context to users.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { HelperText } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The HelperText component provides additional context and guidance for form fields.</p>
+                
+                <div class="code-block">
+<pre><code>import { HelperText } from '@nostromo/ui-core'
+
+export default function FormWithHelper() {
+  return (
+    &lt;div className="space-y-2"&gt;
+      &lt;label className="block text-sm font-medium"&gt;Password&lt;/label&gt;
+      &lt;input type="password" className="w-full p-2 border rounded" /&gt;
+      &lt;HelperText&gt;Password must be at least 8 characters long&lt;/HelperText&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium">Password</label>
+                        <input type="password" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <p class="text-sm text-gray-600">Password must be at least 8 characters long</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the HelperText component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">HelperText Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { HelperText } from '@nostromo/ui-core'
+
+export default function RegistrationForm() {
+  return (
+    &lt;form className="space-y-4"&gt;
+      &lt;div className="space-y-2"&gt;
+        &lt;label className="block text-sm font-medium"&gt;Username&lt;/label&gt;
+        &lt;input type="text" className="w-full p-3 border rounded-md" /&gt;
+        &lt;HelperText&gt;Choose a unique username that others can use to find you&lt;/HelperText&gt;
+      &lt;/div&gt;
+      &lt;div className="space-y-2"&gt;
+        &lt;label className="block text-sm font-medium"&gt;Email&lt;/label&gt;
+        &lt;input type="email" className="w-full p-3 border rounded-md" /&gt;
+        &lt;HelperText&gt;We'll never share your email with anyone else&lt;/HelperText&gt;
+      &lt;/div&gt;
+      &lt;div className="space-y-2"&gt;
+        &lt;label className="block text-sm font-medium"&gt;Password&lt;/label&gt;
+        &lt;input type="password" className="w-full p-3 border rounded-md" /&gt;
+        &lt;HelperText&gt;Must contain at least 8 characters, including uppercase, lowercase, and numbers&lt;/HelperText&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <form class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">Username</label>
+                            <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <p class="text-sm text-gray-600">Choose a unique username that others can use to find you</p>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">Email</label>
+                            <input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <p class="text-sm text-gray-600">We'll never share your email with anyone else</p>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium">Password</label>
+                            <input type="password" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <p class="text-sm text-gray-600">Must contain at least 8 characters, including uppercase, lowercase, and numbers</p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all HelperText component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>children</code></td>
+                            <td><code>ReactNode</code></td>
+                            <td><code>-</code></td>
+                            <td>Helper text content</td>
+                        </tr>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'default' | 'info' | 'warning' | 'error'</code></td>
+                            <td><code>'default'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('RegistrationForm')) {
+                preview.innerHTML = '<form class="space-y-4"><div class="space-y-2"><label class="block text-sm font-medium">Username</label><input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">Choose a unique username that others can use to find you</p></div><div class="space-y-2"><label class="block text-sm font-medium">Email</label><input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">We\'ll never share your email with anyone else</p></div><div class="space-y-2"><label class="block text-sm font-medium">Password</label><input type="password" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">Must contain at least 8 characters, including uppercase, lowercase, and numbers</p></div></form>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

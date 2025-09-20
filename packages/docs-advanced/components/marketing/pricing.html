@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="pricing.html" class="sidebar-link active">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Pricing</h1>
+                <p>Pricing tables with yearly/monthly toggle, badges, and popular plan highlighting. Perfect for SaaS and subscription products.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Pricing } from '@nostromo/ui-marketing'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Pricing component provides a flexible way to display subscription plans and pricing tiers.</p>
+                
+                <div class="code-block">
+<pre><code>import { Pricing } from '@nostromo/ui-marketing'
+
+const plans = [
+  {
+    name: "Starter",
+    price: { monthly: 9, yearly: 90 },
+    description: "Perfect for individuals and small teams",
+    features: ["Up to 5 projects", "Basic support", "1GB storage"],
+    cta: "Get Started"
+  },
+  {
+    name: "Pro",
+    price: { monthly: 29, yearly: 290 },
+    description: "Best for growing businesses",
+    features: ["Unlimited projects", "Priority support", "10GB storage"],
+    cta: "Start Free Trial",
+    popular: true
+  }
+]
+
+export default function PricingSection() {
+  return (
+    &lt;Pricing
+      title="Simple, Transparent Pricing"
+      subtitle="Choose the plan that's right for you"
+      plans={plans}
+    /&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold mb-2">Simple, Transparent Pricing</h2>
+                        <p class="text-gray-600">Choose the plan that's right for you</p>
+                        <div class="flex items-center justify-center mt-4">
+                            <span class="text-sm text-gray-600 mr-3">Monthly</span>
+                            <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-blue-600">
+                                <span class="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"></span>
+                            </button>
+                            <span class="text-sm text-gray-600 ml-3">Yearly <span class="text-green-600 font-medium">Save 20%</span></span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold mb-2">Starter</h3>
+                            <p class="text-gray-600 mb-4">Perfect for individuals and small teams</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold">$9</span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Up to 5 projects</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Basic support</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>1GB storage</li>
+                            </ul>
+                            <button class="w-full btn btn-secondary">Get Started</button>
+                        </div>
+                        <div class="bg-white border-2 border-blue-500 rounded-lg p-6 relative">
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Most Popular</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Pro</h3>
+                            <p class="text-gray-600 mb-4">Best for growing businesses</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold">$29</span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Unlimited projects</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Priority support</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>10GB storage</li>
+                            </ul>
+                            <button class="w-full btn btn-primary">Start Free Trial</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Pricing component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Pricing Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Pricing } from '@nostromo/ui-marketing'
+
+const plans = [
+  {
+    name: "Free",
+    price: { monthly: 0, yearly: 0 },
+    description: "Get started with our free plan",
+    features: ["3 projects", "Community support", "100MB storage"],
+    cta: "Get Started Free"
+  },
+  {
+    name: "Pro",
+    price: { monthly: 19, yearly: 190 },
+    description: "Perfect for professional developers",
+    features: ["Unlimited projects", "Priority support", "5GB storage", "Advanced analytics"],
+    cta: "Start Free Trial",
+    popular: true
+  },
+  {
+    name: "Enterprise",
+    price: { monthly: 99, yearly: 990 },
+    description: "For large teams and organizations",
+    features: ["Everything in Pro", "Custom integrations", "Unlimited storage", "Dedicated support"],
+    cta: "Contact Sales"
+  }
+]
+
+export default function ProductPricing() {
+  return (
+    &lt;Pricing
+      title="Choose Your Plan"
+      subtitle="Flexible pricing for teams of all sizes"
+      plans={plans}
+      showToggle={true}
+      columns={3}
+    /&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold mb-2">Choose Your Plan</h2>
+                        <p class="text-gray-600">Flexible pricing for teams of all sizes</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold mb-2">Free</h3>
+                            <p class="text-gray-600 mb-4">Get started with our free plan</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold">$0</span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>3 projects</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Community support</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>100MB storage</li>
+                            </ul>
+                            <button class="w-full btn btn-secondary">Get Started Free</button>
+                        </div>
+                        <div class="bg-white border-2 border-blue-500 rounded-lg p-6 relative">
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Most Popular</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Pro</h3>
+                            <p class="text-gray-600 mb-4">Perfect for professional developers</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold">$19</span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Unlimited projects</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Priority support</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>5GB storage</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Advanced analytics</li>
+                            </ul>
+                            <button class="w-full btn btn-primary">Start Free Trial</button>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold mb-2">Enterprise</h3>
+                            <p class="text-gray-600 mb-4">For large teams and organizations</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-bold">$99</span>
+                                <span class="text-gray-600">/month</span>
+                            </div>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Everything in Pro</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Custom integrations</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Unlimited storage</li>
+                                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Dedicated support</li>
+                            </ul>
+                            <button class="w-full btn btn-secondary">Contact Sales</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Pricing component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section title</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitle</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section subtitle</td>
+                        </tr>
+                        <tr>
+                            <td><code>plans</code></td>
+                            <td><code>PlanProps[]</code></td>
+                            <td><code>[]</code></td>
+                            <td>Array of pricing plan objects</td>
+                        </tr>
+                        <tr>
+                            <td><code>showToggle</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether to show monthly/yearly toggle</td>
+                        </tr>
+                        <tr>
+                            <td><code>columns</code></td>
+                            <td><code>number</code></td>
+                            <td><code>3</code></td>
+                            <td>Number of columns in grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('ProductPricing')) {
+                preview.innerHTML = '<div class="text-center mb-8"><h2 class="text-2xl font-bold mb-2">Choose Your Plan</h2><p class="text-gray-600">Flexible pricing for teams of all sizes</p></div><div class="grid grid-cols-3 gap-6"><div class="bg-white border border-gray-200 rounded-lg p-6"><h3 class="text-xl font-semibold mb-2">Free</h3><p class="text-gray-600 mb-4">Get started with our free plan</p><div class="mb-6"><span class="text-3xl font-bold">$0</span><span class="text-gray-600">/month</span></div><ul class="space-y-2 mb-6"><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>3 projects</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Community support</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>100MB storage</li></ul><button class="w-full btn btn-secondary">Get Started Free</button></div><div class="bg-white border-2 border-blue-500 rounded-lg p-6 relative"><div class="absolute -top-3 left-1/2 transform -translate-x-1/2"><span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">Most Popular</span></div><h3 class="text-xl font-semibold mb-2">Pro</h3><p class="text-gray-600 mb-4">Perfect for professional developers</p><div class="mb-6"><span class="text-3xl font-bold">$19</span><span class="text-gray-600">/month</span></div><ul class="space-y-2 mb-6"><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Unlimited projects</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Priority support</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>5GB storage</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Advanced analytics</li></ul><button class="w-full btn btn-primary">Start Free Trial</button></div><div class="bg-white border border-gray-200 rounded-lg p-6"><h3 class="text-xl font-semibold mb-2">Enterprise</h3><p class="text-gray-600 mb-4">For large teams and organizations</p><div class="mb-6"><span class="text-3xl font-bold">$99</span><span class="text-gray-600">/month</span></div><ul class="space-y-2 mb-6"><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Everything in Pro</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Custom integrations</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Unlimited storage</li><li class="flex items-center"><span class="text-green-500 mr-2">✓</span>Dedicated support</li></ul><button class="w-full btn btn-secondary">Contact Sales</button></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

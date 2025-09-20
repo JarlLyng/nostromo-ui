@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="testimonials.html" class="sidebar-link active">Testimonials</a></li>
+                        <li><a href="features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Testimonials</h1>
+                <p>Customer testimonials with ratings, avatars, and responsive grid layouts. Perfect for showcasing social proof and customer satisfaction.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Testimonials } from '@nostromo/ui-marketing'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Testimonials component provides a flexible way to display customer feedback and reviews.</p>
+                
+                <div class="code-block">
+<pre><code>import { Testimonials } from '@nostromo/ui-marketing'
+
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    title: "Product Manager",
+    company: "TechCorp",
+    avatar: "/avatars/sarah.jpg",
+    rating: 5,
+    content: "Nostromo UI has transformed our development workflow. The components are beautifully designed and incredibly easy to use."
+  },
+  {
+    name: "Mike Chen",
+    title: "Frontend Developer",
+    company: "StartupXYZ",
+    avatar: "/avatars/mike.jpg",
+    rating: 5,
+    content: "The documentation is excellent and the components are production-ready. Highly recommended!"
+  }
+]
+
+export default function TestimonialsSection() {
+  return (
+    &lt;Testimonials
+      title="What Our Customers Say"
+      subtitle="Don't just take our word for it"
+      testimonials={testimonials}
+    /&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold mb-2">What Our Customers Say</h2>
+                        <p class="text-gray-600">Don't just take our word for it</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-blue-600 font-semibold">SJ</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Sarah Johnson</h4>
+                                    <p class="text-sm text-gray-600">Product Manager, TechCorp</p>
+                                </div>
+                            </div>
+                            <div class="flex mb-3">
+                                <span class="text-yellow-400">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700">"Nostromo UI has transformed our development workflow. The components are beautifully designed and incredibly easy to use."</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-green-600 font-semibold">MC</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Mike Chen</h4>
+                                    <p class="text-sm text-gray-600">Frontend Developer, StartupXYZ</p>
+                                </div>
+                            </div>
+                            <div class="flex mb-3">
+                                <span class="text-yellow-400">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700">"The documentation is excellent and the components are production-ready. Highly recommended!"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Different testimonial variants for various design needs.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-blue-600 text-sm font-semibold">JD</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-sm">John Doe</h5>
+                                        <p class="text-xs text-gray-600">CEO, Company</p>
+                                    </div>
+                                </div>
+                                <div class="flex mb-2">
+                                    <span class="text-yellow-400 text-sm">★★★★★</span>
+                                </div>
+                                <p class="text-sm text-gray-700">"Great product!"</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Card</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-gray-50 border-l-4 border-blue-500 p-4">
+                                <div class="flex items-center mb-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <span class="text-blue-600 text-sm font-semibold">JD</span>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-sm">John Doe</h5>
+                                        <p class="text-xs text-gray-600">CEO, Company</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-700 italic">"Great product!"</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Quote</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="text-center p-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-blue-600 font-semibold">JD</span>
+                                </div>
+                                <h5 class="font-semibold text-sm mb-1">John Doe</h5>
+                                <p class="text-xs text-gray-600 mb-2">CEO, Company</p>
+                                <div class="flex justify-center mb-2">
+                                    <span class="text-yellow-400 text-sm">★★★★★</span>
+                                </div>
+                                <p class="text-sm text-gray-700">"Great product!"</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Centered</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Testimonials variant="card" /&gt;
+&lt;Testimonials variant="quote" /&gt;
+&lt;Testimonials variant="centered" /&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Testimonials component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Testimonials Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Testimonials } from '@nostromo/ui-marketing'
+
+const testimonials = [
+  {
+    name: "Alex Rodriguez",
+    title: "CTO",
+    company: "InnovateTech",
+    avatar: "/avatars/alex.jpg",
+    rating: 5,
+    content: "Nostromo UI has revolutionized how we build user interfaces. The component library is comprehensive and the documentation is outstanding."
+  },
+  {
+    name: "Emma Wilson",
+    title: "Design Lead",
+    company: "CreativeStudio",
+    avatar: "/avatars/emma.jpg",
+    rating: 5,
+    content: "The design system is incredibly well thought out. It has saved us countless hours in development time."
+  },
+  {
+    name: "David Kim",
+    title: "Senior Developer",
+    company: "WebSolutions",
+    avatar: "/avatars/david.jpg",
+    rating: 5,
+    content: "Best UI library I've used. The TypeScript support is excellent and the components are highly customizable."
+  }
+]
+
+export default function CustomerTestimonials() {
+  return (
+    &lt;Testimonials
+      title="Customer Success Stories"
+      subtitle="See how teams are building amazing products with Nostromo UI"
+      testimonials={testimonials}
+      variant="card"
+      size="large"
+    /&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-2">Customer Success Stories</h2>
+                        <p class="text-gray-600">See how teams are building amazing products with Nostromo UI</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-purple-600 font-semibold">AR</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Alex Rodriguez</h4>
+                                    <p class="text-sm text-gray-600">CTO, InnovateTech</p>
+                                </div>
+                            </div>
+                            <div class="flex mb-3">
+                                <span class="text-yellow-400">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700">"Nostromo UI has revolutionized how we build user interfaces. The component library is comprehensive and the documentation is outstanding."</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-pink-600 font-semibold">EW</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Emma Wilson</h4>
+                                    <p class="text-sm text-gray-600">Design Lead, CreativeStudio</p>
+                                </div>
+                            </div>
+                            <div class="flex mb-3">
+                                <span class="text-yellow-400">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700">"The design system is incredibly well thought out. It has saved us countless hours in development time."</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-indigo-600 font-semibold">DK</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">David Kim</h4>
+                                    <p class="text-sm text-gray-600">Senior Developer, WebSolutions</p>
+                                </div>
+                            </div>
+                            <div class="flex mb-3">
+                                <span class="text-yellow-400">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700">"Best UI library I've used. The TypeScript support is excellent and the components are highly customizable."</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Testimonials component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section title</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitle</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section subtitle</td>
+                        </tr>
+                        <tr>
+                            <td><code>testimonials</code></td>
+                            <td><code>TestimonialProps[]</code></td>
+                            <td><code>[]</code></td>
+                            <td>Array of testimonial objects</td>
+                        </tr>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'card' | 'quote' | 'centered'</code></td>
+                            <td><code>'card'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the testimonials</td>
+                        </tr>
+                        <tr>
+                            <td><code>columns</code></td>
+                            <td><code>number</code></td>
+                            <td><code>3</code></td>
+                            <td>Number of columns in grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>showRatings</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether to show star ratings</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Examples -->
+            <section class="mb-8">
+                <h2>Examples</h2>
+                <p>Real-world examples and use cases for the Testimonials component.</p>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Single Testimonial</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="max-w-2xl mx-auto text-center">
+                            <div class="mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-white font-bold text-xl">JS</span>
+                                </div>
+                                <h4 class="text-xl font-semibold mb-1">Jessica Smith</h4>
+                                <p class="text-gray-600 mb-3">VP of Engineering, TechFlow</p>
+                                <div class="flex justify-center mb-4">
+                                    <span class="text-yellow-400 text-lg">★★★★★</span>
+                                </div>
+                            </div>
+                            <blockquote class="text-lg text-gray-700 italic">
+                                "Nostromo UI has been a game-changer for our team. The components are not only beautiful but also incredibly well-engineered. The documentation is comprehensive and the support is outstanding."
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;Testimonials
+  testimonials={[singleTestimonial]}
+  variant="centered"
+  columns={1}
+  size="large"
+/&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Quote Style</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 border-l-4 border-blue-500 p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-blue-600 font-semibold">AB</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Anna Brown</h4>
+                                        <p class="text-sm text-gray-600">Product Designer, DesignCo</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">"The design system is incredibly well thought out. It has saved us countless hours in development time."</p>
+                            </div>
+                            <div class="bg-gray-50 border-l-4 border-green-500 p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                        <span class="text-green-600 font-semibold">CL</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold">Chris Lee</h4>
+                                        <p class="text-sm text-gray-600">Full Stack Developer, DevStudio</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 italic">"Best UI library I've used. The TypeScript support is excellent and the components are highly customizable."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;Testimonials
+  testimonials={testimonials}
+  variant="quote"
+  columns={1}
+/&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('CustomerTestimonials')) {
+                preview.innerHTML = '<div class="text-center mb-8"><h2 class="text-3xl font-bold mb-2">Customer Success Stories</h2><p class="text-gray-600">See how teams are building amazing products with Nostromo UI</p></div><div class="grid grid-cols-3 gap-6"><div class="bg-white border border-gray-200 rounded-lg p-6"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4"><span class="text-purple-600 font-semibold">AR</span></div><div><h4 class="font-semibold">Alex Rodriguez</h4><p class="text-sm text-gray-600">CTO, InnovateTech</p></div></div><div class="flex mb-3"><span class="text-yellow-400">★★★★★</span></div><p class="text-gray-700">"Nostromo UI has revolutionized how we build user interfaces. The component library is comprehensive and the documentation is outstanding."</p></div><div class="bg-white border border-gray-200 rounded-lg p-6"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-pink-600 font-semibold">EW</span></div><div><h4 class="font-semibold">Emma Wilson</h4><p class="text-sm text-gray-600">Design Lead, CreativeStudio</p></div></div><div class="flex mb-3"><span class="text-yellow-400">★★★★★</span></div><p class="text-gray-700">"The design system is incredibly well thought out. It has saved us countless hours in development time."</p></div><div class="bg-white border border-gray-200 rounded-lg p-6"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4"><span class="text-indigo-600 font-semibold">DK</span></div><div><h4 class="font-semibold">David Kim</h4><p class="text-sm text-gray-600">Senior Developer, WebSolutions</p></div></div><div class="flex mb-3"><span class="text-yellow-400">★★★★★</span></div><p class="text-gray-700">"Best UI library I've used. The TypeScript support is excellent and the components are highly customizable."</p></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

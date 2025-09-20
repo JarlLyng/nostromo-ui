@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link active">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Card</h1>
+                <p>Flexible container components for content organization. Perfect for displaying information, forms, and interactive elements.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Card component provides a flexible container for organizing content.</p>
+                
+                <div class="code-block">
+<pre><code>import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'
+
+export default function BasicCard() {
+  return (
+    &lt;Card&gt;
+      &lt;CardHeader&gt;
+        &lt;CardTitle&gt;Card Title&lt;/CardTitle&gt;
+        &lt;CardDescription&gt;Card description goes here&lt;/CardDescription&gt;
+      &lt;/CardHeader&gt;
+      &lt;CardContent&gt;
+        &lt;p&gt;This is the card content area.&lt;/p&gt;
+      &lt;/CardContent&gt;
+    &lt;/Card&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold">Card Title</h3>
+                            <p class="text-gray-600 mt-1">Card description goes here</p>
+                        </div>
+                        <div class="p-6">
+                            <p>This is the card content area.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Different card variants for various use cases.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Default</h4>
+                                <p class="text-sm text-gray-600">Standard card with border</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Default</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-white rounded-lg shadow-lg p-4">
+                                <h4 class="font-semibold mb-2">Elevated</h4>
+                                <p class="text-sm text-gray-600">Card with shadow</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Elevated</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                <h4 class="font-semibold mb-2">Outlined</h4>
+                                <p class="text-sm text-gray-600">Card with background</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Outlined</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Card variant="default"&gt;
+&lt;Card variant="elevated"&gt;
+&lt;Card variant="outlined"&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Card component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Card Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'
+
+export default function ProductCard() {
+  return (
+    &lt;Card variant="elevated" className="max-w-sm"&gt;
+      &lt;CardHeader&gt;
+        &lt;CardTitle&gt;Nostromo UI Pro&lt;/CardTitle&gt;
+        &lt;CardDescription&gt;Professional UI components for React&lt;/CardDescription&gt;
+      &lt;/CardHeader&gt;
+      &lt;CardContent&gt;
+        &lt;div className="space-y-4"&gt;
+          &lt;p className="text-gray-600"&gt;
+            Build beautiful, accessible user interfaces with our comprehensive component library.
+          &lt;/p&gt;
+          &lt;div className="flex items-center justify-between"&gt;
+            &lt;span className="text-2xl font-bold"&gt;$29&lt;/span&gt;
+            &lt;Button variant="primary"&gt;Get Started&lt;/Button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/CardContent&gt;
+    &lt;/Card&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="bg-white rounded-lg shadow-lg max-w-sm">
+                        <div class="p-6 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold">Nostromo UI Pro</h3>
+                            <p class="text-gray-600 mt-1">Professional UI components for React</p>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <p class="text-gray-600">
+                                    Build beautiful, accessible user interfaces with our comprehensive component library.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-2xl font-bold">$29</span>
+                                    <button class="btn btn-primary">Get Started</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Card component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'default' | 'elevated' | 'outlined'</code></td>
+                            <td><code>'default'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the card</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('ProductCard')) {
+                preview.innerHTML = '<div class="bg-white rounded-lg shadow-lg max-w-sm"><div class="p-6 border-b border-gray-200"><h3 class="text-lg font-semibold">Nostromo UI Pro</h3><p class="text-gray-600 mt-1">Professional UI components for React</p></div><div class="p-6"><div class="space-y-4"><p class="text-gray-600">Build beautiful, accessible user interfaces with our comprehensive component library.</p><div class="flex items-center justify-between"><span class="text-2xl font-bold">$29</span><button class="btn btn-primary">Get Started</button></div></div></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

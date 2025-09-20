@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="installation.html" class="sidebar-link active">Installation</a></li>
+                        <li><a href="setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../components/button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../components/input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../components/dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../components/badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../components/card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../components/avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../components/tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../components/select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../components/label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../components/helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../components/error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../components/marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="../components/marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="../components/marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="../components/marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Installation</h1>
+                <p>Get started with Nostromo UI by installing the packages you need for your project.</p>
+            </div>
+
+            <!-- Prerequisites -->
+            <section class="mb-8">
+                <h2>Prerequisites</h2>
+                <p>Before installing Nostromo UI, make sure you have the following installed:</p>
+                
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Required</h3>
+                    </div>
+                    <ul>
+                        <li><strong>Node.js</strong> - Version 18.0.0 or higher</li>
+                        <li><strong>React</strong> - Version 18.0.0 or higher</li>
+                        <li><strong>TypeScript</strong> - Version 5.0.0 or higher (recommended)</li>
+                    </ul>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Recommended</h3>
+                    </div>
+                    <ul>
+                        <li><strong>Tailwind CSS</strong> - For styling and theming</li>
+                        <li><strong>pnpm</strong> - For faster package management</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Package Manager -->
+            <section class="mb-8">
+                <h2>Choose Your Package Manager</h2>
+                <p>Nostromo UI supports all major package managers. Choose the one that fits your workflow:</p>
+
+                <div class="grid grid-cols-3 mb-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">pnpm (Recommended)</h3>
+                        </div>
+                        <p class="card-description">Fast, disk space efficient package manager</p>
+                        <div class="code-block">
+<pre><code>pnpm add @nostromo/ui-core</code></pre>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">npm</h3>
+                        </div>
+                        <p class="card-description">Standard Node.js package manager</p>
+                        <div class="code-block">
+<pre><code>npm install @nostromo/ui-core</code></pre>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">yarn</h3>
+                        </div>
+                        <p class="card-description">Fast, reliable, and secure dependency management</p>
+                        <div class="code-block">
+<pre><code>yarn add @nostromo/ui-core</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Package -->
+            <section class="mb-8">
+                <h2>Core Package</h2>
+                <p>Install the core UI components package for essential building blocks:</p>
+
+                <div class="code-block">
+<pre><code># Install core components
+pnpm add @nostromo/ui-core
+
+# Or install specific components (tree-shaking friendly)
+pnpm add @nostromo/ui-core/button
+pnpm add @nostromo/ui-core/input
+pnpm add @nostromo/ui-core/dialog</code></pre>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">What's Included</h3>
+                    </div>
+                    <ul>
+                        <li>Button, Input, Dialog, Badge, Card, Avatar</li>
+                        <li>Tabs, Select, Label, HelperText, ErrorMessage</li>
+                        <li>Error Boundary and Performance utilities</li>
+                        <li>TypeScript definitions</li>
+                        <li>Accessibility features</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Marketing Package -->
+            <section class="mb-8">
+                <h2>Marketing Package</h2>
+                <p>Install the marketing components package for landing pages and marketing sites:</p>
+
+                <div class="code-block">
+<pre><code># Install marketing components
+pnpm add @nostromo/ui-marketing
+
+# Or install specific components
+pnpm add @nostromo/ui-marketing/hero
+pnpm add @nostromo/ui-marketing/testimonials
+pnpm add @nostromo/ui-marketing/features
+pnpm add @nostromo/ui-marketing/pricing</code></pre>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">What's Included</h3>
+                    </div>
+                    <ul>
+                        <li>Hero sections with customizable layouts</li>
+                        <li>Testimonials with ratings and avatars</li>
+                        <li>Features showcase grids</li>
+                        <li>Pricing tables with toggles</li>
+                        <li>Responsive design patterns</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Tailwind Package -->
+            <section class="mb-8">
+                <h2>Tailwind CSS Package</h2>
+                <p>Install the Tailwind CSS preset and themes for consistent styling:</p>
+
+                <div class="code-block">
+<pre><code># Install Tailwind preset and themes
+pnpm add @nostromo/ui-tw
+
+# Add to your tailwind.config.js
+module.exports = {
+  presets: [require('@nostromo/ui-tw/tailwind.preset')],
+  // ... rest of your config
+}</code></pre>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">What's Included</h3>
+                    </div>
+                    <ul>
+                        <li>Nostromo theme with CSS variables</li>
+                        <li>Dark/light mode support</li>
+                        <li>Custom color palette</li>
+                        <li>Typography scales</li>
+                        <li>Spacing and sizing utilities</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Verification -->
+            <section class="mb-8">
+                <h2>Verify Installation</h2>
+                <p>Test your installation by importing and using a component:</p>
+
+                <div class="code-block">
+<pre><code>import { Button } from '@nostromo/ui-core'
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Welcome to Nostromo UI&lt;/h1&gt;
+      &lt;Button variant="primary"&gt;Launch Mission&lt;/Button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div>
+                        <h3>Welcome to Nostromo UI</h3>
+                        <button class="btn btn-primary">Launch Mission</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="mb-8">
+                <h2>Next Steps</h2>
+                <p>Now that you have Nostromo UI installed, here's what to do next:</p>
+
+                <div class="grid grid-cols-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">1. Setup Tailwind CSS</h3>
+                        </div>
+                        <p class="card-description">Configure Tailwind CSS with our preset for optimal styling.</p>
+                        <a href="setup.html" class="btn btn-primary">Setup Guide</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">2. Explore Components</h3>
+                        </div>
+                        <p class="card-description">Browse our component library and see examples.</p>
+                        <a href="../components/button.html" class="btn btn-secondary">View Components</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Troubleshooting -->
+            <section class="mb-8">
+                <h2>Troubleshooting</h2>
+                <p>Common installation issues and their solutions:</p>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-title">Module not found errors</h3>
+                    </div>
+                    <p>Make sure you're using the correct import path and that the package is installed in your project's node_modules.</p>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-title">TypeScript errors</h3>
+                    </div>
+                    <p>Ensure you have TypeScript installed and that your tsconfig.json includes the node_modules/@types directory.</p>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-title">Styling issues</h3>
+                    </div>
+                    <p>Make sure Tailwind CSS is properly configured and that you're importing the base styles from @nostromo/ui-tw.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

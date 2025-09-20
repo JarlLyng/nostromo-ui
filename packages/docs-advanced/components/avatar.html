@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link active">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Avatar</h1>
+                <p>User profile images with fallback support, different sizes, and status indicators. Perfect for user interfaces and profile displays.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Avatar component displays user profile images with fallback support.</p>
+                
+                <div class="code-block">
+<pre><code>import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core'
+
+export default function UserAvatar() {
+  return (
+    &lt;Avatar&gt;
+      &lt;AvatarImage src="/avatars/user.jpg" alt="User" /&gt;
+      &lt;AvatarFallback&gt;JD&lt;/AvatarFallback&gt;
+    &lt;/Avatar&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="text-blue-600 font-semibold">JD</span>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <span class="text-green-600 font-semibold">AB</span>
+                        </div>
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                            <span class="text-purple-600 font-semibold text-lg">SM</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sizes -->
+            <section class="mb-8">
+                <h2>Sizes</h2>
+                <p>Different avatar sizes for various contexts.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-600 text-xs font-semibold">XS</span>
+                            </div>
+                        </div>
+                        <div class="variant-name">Extra Small</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-600 text-sm font-semibold">SM</span>
+                            </div>
+                        </div>
+                        <div class="variant-name">Small</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-600 font-semibold">MD</span>
+                            </div>
+                        </div>
+                        <div class="variant-name">Medium</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                <span class="text-blue-600 font-semibold text-lg">LG</span>
+                            </div>
+                        </div>
+                        <div class="variant-name">Large</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Avatar size="xs"&gt;
+&lt;Avatar size="sm"&gt;
+&lt;Avatar size="md"&gt;
+&lt;Avatar size="lg"&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Avatar component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Avatar Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core'
+
+export default function TeamAvatars() {
+  return (
+    &lt;div className="flex items-center gap-4"&gt;
+      &lt;Avatar size="lg"&gt;
+        &lt;AvatarImage src="/avatars/john.jpg" alt="John Doe" /&gt;
+        &lt;AvatarFallback&gt;JD&lt;/AvatarFallback&gt;
+      &lt;/Avatar&gt;
+      &lt;Avatar size="md"&gt;
+        &lt;AvatarImage src="/avatars/jane.jpg" alt="Jane Smith" /&gt;
+        &lt;AvatarFallback&gt;JS&lt;/AvatarFallback&gt;
+      &lt;/Avatar&gt;
+      &lt;Avatar size="sm"&gt;
+        &lt;AvatarFallback&gt;AB&lt;/AvatarFallback&gt;
+      &lt;/Avatar&gt;
+    &lt;/div&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-semibold text-lg">JD</span>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-semibold">JS</span>
+                        </div>
+                        <div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-semibold">AB</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Avatar component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'xs' | 'sm' | 'md' | 'lg'</code></td>
+                            <td><code>'md'</code></td>
+                            <td>Size of the avatar</td>
+                        </tr>
+                        <tr>
+                            <td><code>src</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Image source URL</td>
+                        </tr>
+                        <tr>
+                            <td><code>alt</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Alt text for image</td>
+                        </tr>
+                        <tr>
+                            <td><code>fallback</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Fallback text when image fails</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('TeamAvatars')) {
+                preview.innerHTML = '<div class="flex items-center gap-4"><div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center"><span class="text-white font-semibold text-lg">JD</span></div><div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center"><span class="text-white font-semibold">JS</span></div><div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center"><span class="text-white text-sm font-semibold">AB</span></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link active">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Input</h1>
+                <p>Flexible input components with validation and form integration. Built for accessibility and user experience.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Input } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Input component provides a flexible foundation for form inputs with built-in validation support.</p>
+                
+                <div class="code-block">
+<pre><code>import { Input } from '@nostromo/ui-core'
+
+export default function ContactForm() {
+  return (
+    &lt;div className="space-y-4"&gt;
+      &lt;Input 
+        placeholder="Enter your name" 
+        label="Name"
+      /&gt;
+      &lt;Input 
+        type="email" 
+        placeholder="Enter your email" 
+        label="Email"
+      /&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Choose from different input variants to match your design system.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Default input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Default</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Filled input" class="w-full p-3 bg-gray-100 border-0 rounded-md">
+                        </div>
+                        <div class="variant-name">Filled</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Outlined input" class="w-full p-3 border-2 border-gray-300 rounded-md bg-transparent">
+                        </div>
+                        <div class="variant-name">Outlined</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Underlined input" class="w-full p-3 border-0 border-b-2 border-gray-300 rounded-none bg-transparent">
+                        </div>
+                        <div class="variant-name">Underlined</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Input variant="default" /&gt;
+&lt;Input variant="filled" /&gt;
+&lt;Input variant="outlined" /&gt;
+&lt;Input variant="underlined" /&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Input Types -->
+            <section class="mb-8">
+                <h2>Input Types</h2>
+                <p>Support for various HTML input types with appropriate styling and validation.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Text input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Text</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="email" placeholder="Email input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Email</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="password" placeholder="Password input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Password</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="number" placeholder="Number input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Number</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="tel" placeholder="Phone input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Phone</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="url" placeholder="URL input" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">URL</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Input type="text" /&gt;
+&lt;Input type="email" /&gt;
+&lt;Input type="password" /&gt;
+&lt;Input type="number" /&gt;
+&lt;Input type="tel" /&gt;
+&lt;Input type="url" /&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- States -->
+            <section class="mb-8">
+                <h2>States</h2>
+                <p>Input states for different interaction scenarios and validation feedback.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Default state" class="w-full p-3 border border-gray-300 rounded-md">
+                        </div>
+                        <div class="variant-name">Default</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Focused state" class="w-full p-3 border-2 border-blue-500 rounded-md ring-2 ring-blue-200">
+                        </div>
+                        <div class="variant-name">Focused</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Disabled state" class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed" disabled>
+                        </div>
+                        <div class="variant-name">Disabled</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Error state" class="w-full p-3 border-2 border-red-500 rounded-md ring-2 ring-red-200">
+                        </div>
+                        <div class="variant-name">Error</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <input type="text" placeholder="Success state" class="w-full p-3 border-2 border-green-500 rounded-md ring-2 ring-green-200">
+                        </div>
+                        <div class="variant-name">Success</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Input placeholder="Default state" /&gt;
+&lt;Input placeholder="Focused state" autoFocus /&gt;
+&lt;Input placeholder="Disabled state" disabled /&gt;
+&lt;Input placeholder="Error state" error /&gt;
+&lt;Input placeholder="Success state" success /&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Input component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Input Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Input } from '@nostromo/ui-core'
+
+export default function ContactForm() {
+  return (
+    &lt;form className="space-y-6"&gt;
+      &lt;Input 
+        label="Full Name"
+        placeholder="Enter your full name"
+        required
+      /&gt;
+      &lt;Input 
+        type="email"
+        label="Email Address"
+        placeholder="Enter your email"
+        required
+      /&gt;
+      &lt;Input 
+        type="tel"
+        label="Phone Number"
+        placeholder="Enter your phone number"
+      /&gt;
+      &lt;Input 
+        label="Message"
+        placeholder="Enter your message"
+        multiline
+        rows={4}
+      /&gt;
+    &lt;/form&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Full Name</label>
+                            <input type="text" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email Address</label>
+                            <input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone Number</label>
+                            <input type="tel" placeholder="Enter your phone number" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea placeholder="Enter your message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Input component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td><code>'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'</code></td>
+                            <td><code>'text'</code></td>
+                            <td>HTML input type</td>
+                        </tr>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'default' | 'filled' | 'outlined' | 'underlined'</code></td>
+                            <td><code>'default'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the input</td>
+                        </tr>
+                        <tr>
+                            <td><code>label</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Label text for the input</td>
+                        </tr>
+                        <tr>
+                            <td><code>placeholder</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Placeholder text</td>
+                        </tr>
+                        <tr>
+                            <td><code>disabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the input is disabled</td>
+                        </tr>
+                        <tr>
+                            <td><code>required</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the input is required</td>
+                        </tr>
+                        <tr>
+                            <td><code>error</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the input has an error</td>
+                        </tr>
+                        <tr>
+                            <td><code>success</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the input is in success state</td>
+                        </tr>
+                        <tr>
+                            <td><code>multiline</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether to render as textarea</td>
+                        </tr>
+                        <tr>
+                            <td><code>rows</code></td>
+                            <td><code>number</code></td>
+                            <td><code>3</code></td>
+                            <td>Number of rows for textarea</td>
+                        </tr>
+                        <tr>
+                            <td><code>onChange</code></td>
+                            <td><code>(event: ChangeEvent) =&gt; void</code></td>
+                            <td><code>-</code></td>
+                            <td>Change event handler</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Examples -->
+            <section class="mb-8">
+                <h2>Examples</h2>
+                <p>Real-world examples and use cases for the Input component.</p>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Contact Form</h3>
+                    </div>
+                    <div class="live-preview">
+                        <form class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">First Name</label>
+                                    <input type="text" placeholder="John" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Last Name</label>
+                                    <input type="text" placeholder="Doe" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" placeholder="john@example.com" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea placeholder="Your message here..." rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                            </div>
+                            <button class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;form className="space-y-4"&gt;
+  &lt;div className="grid grid-cols-2 gap-4"&gt;
+    &lt;Input label="First Name" placeholder="John" /&gt;
+    &lt;Input label="Last Name" placeholder="Doe" /&gt;
+  &lt;/div&gt;
+  &lt;Input type="email" label="Email" placeholder="john@example.com" /&gt;
+  &lt;Input label="Message" placeholder="Your message here..." multiline rows={4} /&gt;
+  &lt;Button variant="primary"&gt;Send Message&lt;/Button&gt;
+&lt;/form&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Search Form</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="flex gap-2">
+                            <div class="flex-1">
+                                <input type="search" placeholder="Search for components..." class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;div className="flex gap-2"&gt;
+  &lt;Input 
+    type="search" 
+    placeholder="Search for components..." 
+    className="flex-1" 
+  /&gt;
+  &lt;Button variant="primary"&gt;Search&lt;/Button&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            // Simple code execution for demo
+            if (code.includes('ContactForm')) {
+                preview.innerHTML = '<form class="space-y-6"><div><label class="block text-sm font-medium mb-2">Full Name</label><input type="text" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></div><div><label class="block text-sm font-medium mb-2">Email Address</label><input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></div><div><label class="block text-sm font-medium mb-2">Phone Number</label><input type="tel" placeholder="Enter your phone number" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></div><div><label class="block text-sm font-medium mb-2">Message</label><textarea placeholder="Enter your message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea></div></form>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="features.html" class="sidebar-link active">Features</a></li>
+                        <li><a href="pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Features</h1>
+                <p>Feature showcase grids with icons, hover effects, and flexible column layouts. Perfect for highlighting product capabilities and benefits.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Features } from '@nostromo/ui-marketing'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Features component provides a flexible way to showcase product capabilities and benefits.</p>
+                
+                <div class="code-block">
+<pre><code>import { Features } from '@nostromo/ui-marketing'
+
+const features = [
+  {
+    icon: "🚀",
+    title: "Lightning Fast",
+    description: "Built for performance with optimized rendering and minimal bundle size."
+  },
+  {
+    icon: "🎨",
+    title: "Beautiful Design",
+    description: "Carefully crafted components with attention to detail and modern aesthetics."
+  },
+  {
+    icon: "♿",
+    title: "Accessible",
+    description: "WCAG 2.1 AA compliant with full keyboard navigation and screen reader support."
+  },
+  {
+    icon: "🔧",
+    title: "Customizable",
+    description: "Highly flexible with extensive theming options and customization capabilities."
+  }
+]
+
+export default function FeaturesSection() {
+  return (
+    &lt;Features
+      title="Why Choose Nostromo UI"
+      subtitle="Built for modern developers"
+      features={features}
+    /&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">Why Choose Nostromo UI</h2>
+                        <p class="text-xl text-gray-600">Built for modern developers</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">🚀</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Lightning Fast</h3>
+                            <p class="text-gray-600">Built for performance with optimized rendering and minimal bundle size.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">🎨</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Beautiful Design</h3>
+                            <p class="text-gray-600">Carefully crafted components with attention to detail and modern aesthetics.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">♿</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Accessible</h3>
+                            <p class="text-gray-600">WCAG 2.1 AA compliant with full keyboard navigation and screen reader support.</p>
+                        </div>
+                        <div class="text-center p-6">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-3xl">🔧</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Customizable</h3>
+                            <p class="text-gray-600">Highly flexible with extensive theming options and customization capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Different feature variants for various design needs.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="text-center p-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-xl">⚡</span>
+                                </div>
+                                <h4 class="font-semibold mb-2">Grid</h4>
+                                <p class="text-sm text-gray-600">Standard grid layout</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Grid</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="flex items-start p-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="text-lg">⚡</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">List</h4>
+                                    <p class="text-sm text-gray-600">Horizontal list layout</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="variant-name">List</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 text-center">
+                                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-sm">
+                                    <span class="text-xl">⚡</span>
+                                </div>
+                                <h4 class="font-semibold mb-2">Card</h4>
+                                <p class="text-sm text-gray-600">Card-based layout</p>
+                            </div>
+                        </div>
+                        <div class="variant-name">Card</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Features variant="grid" /&gt;
+&lt;Features variant="list" /&gt;
+&lt;Features variant="card" /&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Features component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Features Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Features } from '@nostromo/ui-marketing'
+
+const features = [
+  {
+    icon: "🔒",
+    title: "Enterprise Security",
+    description: "Bank-grade security with end-to-end encryption and compliance certifications."
+  },
+  {
+    icon: "📊",
+    title: "Advanced Analytics",
+    description: "Comprehensive analytics dashboard with real-time insights and custom reports."
+  },
+  {
+    icon: "🌐",
+    title: "Global Scale",
+    description: "Built to handle millions of users with global CDN and edge computing."
+  },
+  {
+    icon: "🤖",
+    title: "AI Powered",
+    description: "Intelligent automation and machine learning capabilities for enhanced productivity."
+  },
+  {
+    icon: "📱",
+    title: "Mobile First",
+    description: "Responsive design that works perfectly on all devices and screen sizes."
+  },
+  {
+    icon: "🔌",
+    title: "API Integration",
+    description: "Extensive API ecosystem with pre-built integrations for popular services."
+  }
+]
+
+export default function ProductFeatures() {
+  return (
+    &lt;Features
+      title="Powerful Features for Modern Teams"
+      subtitle="Everything you need to build and scale your application"
+      features={features}
+      variant="card"
+      columns={3}
+      size="large"
+    /&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">Powerful Features for Modern Teams</h2>
+                        <p class="text-xl text-gray-600">Everything you need to build and scale your application</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Enterprise Security</h3>
+                            <p class="text-gray-600">Bank-grade security with end-to-end encryption and compliance certifications.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Advanced Analytics</h3>
+                            <p class="text-gray-600">Comprehensive analytics dashboard with real-time insights and custom reports.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">🌐</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Global Scale</h3>
+                            <p class="text-gray-600">Built to handle millions of users with global CDN and edge computing.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">🤖</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">AI Powered</h3>
+                            <p class="text-gray-600">Intelligent automation and machine learning capabilities for enhanced productivity.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">📱</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">Mobile First</h3>
+                            <p class="text-gray-600">Responsive design that works perfectly on all devices and screen sizes.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                                <span class="text-2xl">🔌</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">API Integration</h3>
+                            <p class="text-gray-600">Extensive API ecosystem with pre-built integrations for popular services.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Features component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section title</td>
+                        </tr>
+                        <tr>
+                            <td><code>subtitle</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Section subtitle</td>
+                        </tr>
+                        <tr>
+                            <td><code>features</code></td>
+                            <td><code>FeatureProps[]</code></td>
+                            <td><code>[]</code></td>
+                            <td>Array of feature objects</td>
+                        </tr>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'grid' | 'list' | 'card'</code></td>
+                            <td><code>'grid'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the features</td>
+                        </tr>
+                        <tr>
+                            <td><code>columns</code></td>
+                            <td><code>number</code></td>
+                            <td><code>3</code></td>
+                            <td>Number of columns in grid</td>
+                        </tr>
+                        <tr>
+                            <td><code>showIcons</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>true</code></td>
+                            <td>Whether to show feature icons</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Examples -->
+            <section class="mb-8">
+                <h2>Examples</h2>
+                <p>Real-world examples and use cases for the Features component.</p>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">List Layout</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="text-xl">⚡</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">Lightning Fast Performance</h4>
+                                    <p class="text-gray-600">Built for speed with optimized rendering and minimal bundle size for the best user experience.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="text-xl">🎨</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">Beautiful Design System</h4>
+                                    <p class="text-gray-600">Carefully crafted components with attention to detail and modern aesthetics that your users will love.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                    <span class="text-xl">♿</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">Accessibility First</h4>
+                                    <p class="text-gray-600">WCAG 2.1 AA compliant with full keyboard navigation and screen reader support for inclusive design.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;Features
+  features={features}
+  variant="list"
+  columns={1}
+/&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Two Column Grid</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-white text-2xl">🚀</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Launch Faster</h3>
+                                <p class="text-gray-600">Get your product to market quickly with our pre-built components and comprehensive documentation.</p>
+                            </div>
+                            <div class="text-center p-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-white text-2xl">📈</span>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Scale Effortlessly</h3>
+                                <p class="text-gray-600">Built to handle growth with performance optimizations and enterprise-ready features.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;Features
+  features={features}
+  variant="grid"
+  columns={2}
+  size="large"
+/&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('ProductFeatures')) {
+                preview.innerHTML = '<div class="text-center mb-12"><h2 class="text-3xl font-bold mb-4">Powerful Features for Modern Teams</h2><p class="text-xl text-gray-600">Everything you need to build and scale your application</p></div><div class="grid grid-cols-3 gap-6"><div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">🔒</span></div><h3 class="text-lg font-semibold mb-3">Enterprise Security</h3><p class="text-gray-600">Bank-grade security with end-to-end encryption and compliance certifications.</p></div><div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">📊</span></div><h3 class="text-lg font-semibold mb-3">Advanced Analytics</h3><p class="text-gray-600">Comprehensive analytics dashboard with real-time insights and custom reports.</p></div><div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">🌐</span></div><h3 class="text-lg font-semibold mb-3">Global Scale</h3><p class="text-gray-600">Built to handle millions of users with global CDN and edge computing.</p></div><div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">🤖</span></div><h3 class="text-lg font-semibold mb-3">AI Powered</h3><p class="text-gray-600">Intelligent automation and machine learning capabilities for enhanced productivity.</p></div><div class="bg-gradient-to-br from-teal-50 to-green-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">📱</span></div><h3 class="text-lg font-semibold mb-3">Mobile First</h3><p class="text-gray-600">Responsive design that works perfectly on all devices and screen sizes.</p></div><div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-6 text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm"><span class="text-2xl">🔌</span></div><h3 class="text-lg font-semibold mb-3">API Integration</h3><p class="text-gray-600">Extensive API ecosystem with pre-built integrations for popular services.</p></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

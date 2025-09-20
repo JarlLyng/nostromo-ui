@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link active">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Select</h1>
+                <p>Dropdown select components with search, multi-select, and keyboard navigation. Perfect for forms and data selection.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Select component provides a dropdown interface for selecting options.</p>
+                
+                <div class="code-block">
+<pre><code>import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+
+export default function BasicSelect() {
+  return (
+    &lt;Select&gt;
+      &lt;SelectTrigger&gt;
+        &lt;SelectValue placeholder="Select an option" /&gt;
+      &lt;/SelectTrigger&gt;
+      &lt;SelectContent&gt;
+        &lt;SelectItem value="option1"&gt;Option 1&lt;/SelectItem&gt;
+        &lt;SelectItem value="option2"&gt;Option 2&lt;/SelectItem&gt;
+        &lt;SelectItem value="option3"&gt;Option 3&lt;/SelectItem&gt;
+      &lt;/SelectContent&gt;
+    &lt;/Select&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="relative">
+                        <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Select an option</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Select component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Select Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+
+export default function CountrySelect() {
+  return (
+    &lt;div className="space-y-4"&gt;
+      &lt;label className="block text-sm font-medium"&gt;Country&lt;/label&gt;
+      &lt;Select&gt;
+        &lt;SelectTrigger className="w-full"&gt;
+          &lt;SelectValue placeholder="Choose your country" /&gt;
+        &lt;/SelectTrigger&gt;
+        &lt;SelectContent&gt;
+          &lt;SelectItem value="us"&gt;🇺🇸 United States&lt;/SelectItem&gt;
+          &lt;SelectItem value="dk"&gt;🇩🇰 Denmark&lt;/SelectItem&gt;
+          &lt;SelectItem value="uk"&gt;🇬🇧 United Kingdom&lt;/SelectItem&gt;
+          &lt;SelectItem value="de"&gt;🇩🇪 Germany&lt;/SelectItem&gt;
+          &lt;SelectItem value="fr"&gt;🇫🇷 France&lt;/SelectItem&gt;
+        &lt;/SelectContent&gt;
+      &lt;/Select&gt;
+    &lt;/div&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="space-y-4">
+                        <label class="block text-sm font-medium">Country</label>
+                        <div class="relative">
+                            <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Choose your country</option>
+                                <option value="us">🇺🇸 United States</option>
+                                <option value="dk">🇩🇰 Denmark</option>
+                                <option value="uk">🇬🇧 United Kingdom</option>
+                                <option value="de">🇩🇪 Germany</option>
+                                <option value="fr">🇫🇷 France</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Select component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>value</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Selected value</td>
+                        </tr>
+                        <tr>
+                            <td><code>onValueChange</code></td>
+                            <td><code>(value: string) =&gt; void</code></td>
+                            <td><code>-</code></td>
+                            <td>Callback when value changes</td>
+                        </tr>
+                        <tr>
+                            <td><code>placeholder</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Placeholder text</td>
+                        </tr>
+                        <tr>
+                            <td><code>disabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the select is disabled</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('CountrySelect')) {
+                preview.innerHTML = '<div class="space-y-4"><label class="block text-sm font-medium">Country</label><div class="relative"><select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><option value="">Choose your country</option><option value="us">🇺🇸 United States</option><option value="dk">🇩🇰 Denmark</option><option value="uk">🇬🇧 United Kingdom</option><option value="de">🇩🇪 Germany</option><option value="fr">🇫🇷 France</option></select></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

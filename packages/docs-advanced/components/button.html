@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link active">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Button</h1>
+                <p>Interactive buttons with multiple variants, sizes, and loading states. Built for accessibility and flexibility.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Button } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Button component is the foundation of user interaction in your application.</p>
+                
+                <div class="code-block">
+<pre><code>import { Button } from '@nostromo/ui-core'
+
+export default function App() {
+  return (
+    &lt;Button&gt;
+      Click me
+    &lt;/Button&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <button class="btn btn-primary">Click me</button>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Choose from different button variants to match your design system.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary">Primary</button>
+                        </div>
+                        <div class="variant-name">Primary</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-secondary">Secondary</button>
+                        </div>
+                        <div class="variant-name">Secondary</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn" style="background: var(--color-success); color: white;">Success</button>
+                        </div>
+                        <div class="variant-name">Success</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn" style="background: var(--color-warning); color: white;">Warning</button>
+                        </div>
+                        <div class="variant-name">Warning</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn" style="background: var(--color-error); color: white;">Error</button>
+                        </div>
+                        <div class="variant-name">Error</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Button variant="primary"&gt;Primary&lt;/Button&gt;
+&lt;Button variant="secondary"&gt;Secondary&lt;/Button&gt;
+&lt;Button variant="success"&gt;Success&lt;/Button&gt;
+&lt;Button variant="warning"&gt;Warning&lt;/Button&gt;
+&lt;Button variant="error"&gt;Error&lt;/Button&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sizes -->
+            <section class="mb-8">
+                <h2>Sizes</h2>
+                <p>Different button sizes for various use cases and contexts.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.75rem;">Small</button>
+                        </div>
+                        <div class="variant-name">Small</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary">Medium</button>
+                        </div>
+                        <div class="variant-name">Medium</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary" style="padding: 16px 32px; font-size: 1.125rem;">Large</button>
+                        </div>
+                        <div class="variant-name">Large</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Button size="small"&gt;Small&lt;/Button&gt;
+&lt;Button size="medium"&gt;Medium&lt;/Button&gt;
+&lt;Button size="large"&gt;Large&lt;/Button&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- States -->
+            <section class="mb-8">
+                <h2>States</h2>
+                <p>Button states for different interaction scenarios.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary">Default</button>
+                        </div>
+                        <div class="variant-name">Default</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary" style="opacity: 0.6; cursor: not-allowed;">Disabled</button>
+                        </div>
+                        <div class="variant-name">Disabled</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <button class="btn btn-primary" style="position: relative;">
+                                <span style="opacity: 0;">Loading</span>
+                                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">⏳</span>
+                            </button>
+                        </div>
+                        <div class="variant-name">Loading</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Button&gt;Default&lt;/Button&gt;
+&lt;Button disabled&gt;Disabled&lt;/Button&gt;
+&lt;Button loading&gt;Loading&lt;/Button&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Button component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Button Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Button } from '@nostromo/ui-core'
+
+export default function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button variant="primary"&gt;Launch Mission&lt;/Button&gt;
+      &lt;Button variant="secondary"&gt;Abort Mission&lt;/Button&gt;
+    &lt;/div&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div>
+                        <button class="btn btn-primary">Launch Mission</button>
+                        <button class="btn btn-secondary">Abort Mission</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Button component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'primary' | 'secondary' | 'success' | 'warning' | 'error'</code></td>
+                            <td><code>'primary'</code></td>
+                            <td>Visual style variant of the button</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the button</td>
+                        </tr>
+                        <tr>
+                            <td><code>disabled</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the button is disabled</td>
+                        </tr>
+                        <tr>
+                            <td><code>loading</code></td>
+                            <td><code>boolean</code></td>
+                            <td><code>false</code></td>
+                            <td>Whether the button is in loading state</td>
+                        </tr>
+                        <tr>
+                            <td><code>onClick</code></td>
+                            <td><code>(event: MouseEvent) =&gt; void</code></td>
+                            <td><code>-</code></td>
+                            <td>Click event handler</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Accessibility -->
+            <section class="mb-8">
+                <h2>Accessibility</h2>
+                <p>The Button component follows WCAG 2.1 AA guidelines and includes:</p>
+                <ul>
+                    <li>Proper ARIA attributes</li>
+                    <li>Keyboard navigation support</li>
+                    <li>Screen reader compatibility</li>
+                    <li>Focus management</li>
+                    <li>High contrast support</li>
+                </ul>
+            </section>
+
+            <!-- Examples -->
+            <section class="mb-8">
+                <h2>Examples</h2>
+                <p>Common use cases and patterns for the Button component.</p>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Form Actions</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="flex gap-4">
+                            <button class="btn btn-primary">Save</button>
+                            <button class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;div className="flex gap-4"&gt;
+  &lt;Button variant="primary"&gt;Save&lt;/Button&gt;
+  &lt;Button variant="secondary"&gt;Cancel&lt;/Button&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Icon Buttons</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="flex gap-4">
+                            <button class="btn btn-primary">🚀 Launch</button>
+                            <button class="btn btn-secondary">⚙️ Settings</button>
+                            <button class="btn" style="background: var(--color-error); color: white;">🗑️ Delete</button>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;Button variant="primary"&gt;🚀 Launch&lt;/Button&gt;
+&lt;Button variant="secondary"&gt;⚙️ Settings&lt;/Button&gt;
+&lt;Button variant="error"&gt;🗑️ Delete&lt;/Button&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            // Simple code execution for demo
+            if (code.includes('Launch Mission')) {
+                preview.innerHTML = '<div><button class="btn btn-primary">Launch Mission</button><button class="btn btn-secondary">Abort Mission</button></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="badge.html" class="sidebar-link active">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1>Badge</h1>
+                <p>Small status indicators and labels for various use cases. Perfect for notifications, status, and categorization.</p>
+            </div>
+
+            <!-- Installation -->
+            <section class="mb-8">
+                <h2>Installation</h2>
+                <div class="code-block">
+<pre><code>import { Badge } from '@nostromo/ui-core'</code></pre>
+                </div>
+            </section>
+
+            <!-- Basic Usage -->
+            <section class="mb-8">
+                <h2>Basic Usage</h2>
+                <p>The Badge component provides a simple way to display status information and labels.</p>
+                
+                <div class="code-block">
+<pre><code>import { Badge } from '@nostromo/ui-core'
+
+export default function StatusBadges() {
+  return (
+    &lt;div className="flex gap-2"&gt;
+      &lt;Badge&gt;New&lt;/Badge&gt;
+      &lt;Badge variant="success"&gt;Active&lt;/Badge&gt;
+      &lt;Badge variant="warning"&gt;Pending&lt;/Badge&gt;
+      &lt;Badge variant="error"&gt;Error&lt;/Badge&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+                </div>
+
+                <div class="live-preview">
+                    <div class="flex gap-2">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">New</span>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Active</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Pending</span>
+                        <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Error</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Variants -->
+            <section class="mb-8">
+                <h2>Variants</h2>
+                <p>Choose from different badge variants to match your design system.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Default</span>
+                        </div>
+                        <div class="variant-name">Default</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Success</span>
+                        </div>
+                        <div class="variant-name">Success</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Warning</span>
+                        </div>
+                        <div class="variant-name">Warning</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Error</span>
+                        </div>
+                        <div class="variant-name">Error</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Neutral</span>
+                        </div>
+                        <div class="variant-name">Neutral</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Info</span>
+                        </div>
+                        <div class="variant-name">Info</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Badge&gt;Default&lt;/Badge&gt;
+&lt;Badge variant="success"&gt;Success&lt;/Badge&gt;
+&lt;Badge variant="warning"&gt;Warning&lt;/Badge&gt;
+&lt;Badge variant="error"&gt;Error&lt;/Badge&gt;
+&lt;Badge variant="neutral"&gt;Neutral&lt;/Badge&gt;
+&lt;Badge variant="info"&gt;Info&lt;/Badge&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sizes -->
+            <section class="mb-8">
+                <h2>Sizes</h2>
+                <p>Different badge sizes for various contexts and use cases.</p>
+
+                <div class="component-variants">
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">Small</span>
+                        </div>
+                        <div class="variant-name">Small</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Medium</span>
+                        </div>
+                        <div class="variant-name">Medium</div>
+                    </div>
+                    <div class="variant-card">
+                        <div class="variant-preview">
+                            <span class="px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-base font-medium">Large</span>
+                        </div>
+                        <div class="variant-name">Large</div>
+                    </div>
+                </div>
+
+                <div class="code-block">
+<pre><code>&lt;Badge size="small"&gt;Small&lt;/Badge&gt;
+&lt;Badge size="medium"&gt;Medium&lt;/Badge&gt;
+&lt;Badge size="large"&gt;Large&lt;/Badge&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Interactive Code Editor -->
+            <section class="mb-8">
+                <h2>Try it out</h2>
+                <p>Experiment with the Badge component using our interactive code editor.</p>
+
+                <div class="code-editor">
+                    <div class="code-editor-header">
+                        <span class="code-editor-title">Badge Example</span>
+                        <div class="code-editor-actions">
+                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
+                            <button class="btn btn-primary" onclick="runCode()">Run</button>
+                        </div>
+                    </div>
+                    <div class="code-editor-content" contenteditable="true">import { Badge } from '@nostromo/ui-core'
+
+export default function NotificationBadges() {
+  return (
+    &lt;div className="space-y-4"&gt;
+      &lt;div className="flex items-center gap-2"&gt;
+        &lt;span&gt;Notifications&lt;/span&gt;
+        &lt;Badge variant="error"&gt;3&lt;/Badge&gt;
+      &lt;/div&gt;
+      &lt;div className="flex items-center gap-2"&gt;
+        &lt;span&gt;Messages&lt;/span&gt;
+        &lt;Badge variant="info"&gt;12&lt;/Badge&gt;
+      &lt;/div&gt;
+      &lt;div className="flex items-center gap-2"&gt;
+        &lt;span&gt;Status&lt;/span&gt;
+        &lt;Badge variant="success"&gt;Online&lt;/Badge&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}</div>
+                </div>
+
+                <div class="live-preview" id="live-preview">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2">
+                            <span>Notifications</span>
+                            <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">3</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>Messages</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">12</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>Status</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Online</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Props API -->
+            <section class="mb-8">
+                <h2>Props API</h2>
+                <p>Complete reference for all Badge component props.</p>
+
+                <table class="props-table">
+                    <thead>
+                        <tr>
+                            <th>Prop</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>variant</code></td>
+                            <td><code>'default' | 'success' | 'warning' | 'error' | 'neutral' | 'info'</code></td>
+                            <td><code>'default'</code></td>
+                            <td>Visual style variant</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td><code>'small' | 'medium' | 'large'</code></td>
+                            <td><code>'medium'</code></td>
+                            <td>Size of the badge</td>
+                        </tr>
+                        <tr>
+                            <td><code>children</code></td>
+                            <td><code>ReactNode</code></td>
+                            <td><code>-</code></td>
+                            <td>Badge content</td>
+                        </tr>
+                        <tr>
+                            <td><code>className</code></td>
+                            <td><code>string</code></td>
+                            <td><code>-</code></td>
+                            <td>Additional CSS classes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Examples -->
+            <section class="mb-8">
+                <h2>Examples</h2>
+                <p>Real-world examples and use cases for the Badge component.</p>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Notification Badges</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-6H4v6z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">Messages</span>
+                                </div>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">5</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="font-medium">Tasks</span>
+                                </div>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;div className="flex items-center justify-between"&gt;
+  &lt;span&gt;Messages&lt;/span&gt;
+  &lt;Badge variant="error"&gt;5&lt;/Badge&gt;
+&lt;/div&gt;
+&lt;div className="flex items-center justify-between"&gt;
+  &lt;span&gt;Tasks&lt;/span&gt;
+  &lt;Badge variant="success"&gt;Completed&lt;/Badge&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="card-header">
+                        <h3 class="card-title">Status Indicators</h3>
+                    </div>
+                    <div class="live-preview">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span>Server Status</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Online</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <span>Database</span>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Maintenance</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <span>API</span>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Offline</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+<pre><code>&lt;div className="flex items-center gap-2"&gt;
+  &lt;div className="w-3 h-3 bg-green-500 rounded-full"&gt;&lt;/div&gt;
+  &lt;span&gt;Server Status&lt;/span&gt;
+  &lt;Badge variant="success"&gt;Online&lt;/Badge&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu">
+        <ul class="nav-links">
+            <li><a href="../../index.html" class="nav-link">Home</a></li>
+            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+        </ul>
+    </nav>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        function copyCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!');
+            });
+        }
+
+        function runCode() {
+            const code = document.querySelector('.code-editor-content').textContent;
+            const preview = document.getElementById('live-preview');
+            
+            if (code.includes('NotificationBadges')) {
+                preview.innerHTML = '<div class="space-y-4"><div class="flex items-center gap-2"><span>Notifications</span><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">3</span></div><div class="flex items-center gap-2"><span>Messages</span><span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">12</span></div><div class="flex items-center gap-2"><span>Status</span><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Online</span></div></div>';
+            } else {
+                preview.innerHTML = '<div>Live preview will appear here</div>';
+            }
+        }
+    </script>
+</body>
+</html>
