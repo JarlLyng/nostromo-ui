@@ -21,6 +21,13 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     
     steps:
       - name: Checkout
@@ -62,6 +69,7 @@ jobs:
           ls -la build/
           
       - name: Deploy to GitHub Pages
+        id: deployment
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -69,3 +77,4 @@ jobs:
           publish_dir: ./build
           cname: nostromo-ui.dev
           force_orphan: true
+          enable_jekyll: false
