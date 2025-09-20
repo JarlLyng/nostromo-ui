@@ -7,29 +7,29 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
     "./hero": {
-      "import": "./dist/hero.mjs",
-      "require": "./dist/hero.js",
-      "types": "./dist/hero.d.ts"
+      "import": "./dist/components/hero.js",
+      "require": "./dist/components/hero.cjs",
+      "types": "./dist/components/hero.d.ts"
     },
     "./testimonials": {
-      "import": "./dist/testimonials.mjs",
-      "require": "./dist/testimonials.js",
-      "types": "./dist/testimonials.d.ts"
+      "import": "./dist/components/testimonials.js",
+      "require": "./dist/components/testimonials.cjs",
+      "types": "./dist/components/testimonials.d.ts"
     },
     "./features": {
-      "import": "./dist/features.mjs",
-      "require": "./dist/features.js",
-      "types": "./dist/features.d.ts"
+      "import": "./dist/components/features.js",
+      "require": "./dist/components/features.cjs",
+      "types": "./dist/components/features.d.ts"
     },
     "./pricing": {
-      "import": "./dist/pricing.mjs",
-      "require": "./dist/pricing.js",
-      "types": "./dist/pricing.d.ts"
+      "import": "./dist/components/pricing.js",
+      "require": "./dist/components/pricing.cjs",
+      "types": "./dist/components/pricing.d.ts"
     },
     "./package.json": "./package.json"
   },
