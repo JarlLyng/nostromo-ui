@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HelperText Component - Nostromo UI</title>
+    <title>HelperText - Nostromo UI</title>
+    <!-- Critical CSS inline for faster rendering -->
+    <link rel="stylesheet" href="../../assets/css/critical.css">
+    <link rel="stylesheet" href="../../assets/css/themes.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="preload" href="../../assets/css/search.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/accessibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/navigation.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/content.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../assets/css/themes.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/main.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/search.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/mobile.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/accessibility.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/navigation.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/content.css"></noscript>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../../assets/js/main.js" as="script">
+    <link rel="preload" href="../../assets/js/lazy-loading.js" as="script">
+    <link rel="preload" href="../../assets/js/performance.js" as="script">
+    
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
@@ -12,10 +33,10 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">Nostromo UI</div>
+                <a href="../index.html" class="logo">Nostromo UI</a>
                 <nav class="nav">
                     <ul class="nav-links">
-                        <li><a href="../../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
                         <li><a href="../../index.html#components" class="nav-link">Components</a></li>
                         <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
                         <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
@@ -45,42 +66,50 @@
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Getting Started</h3>
                     <ul class="sidebar-links">
-                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
-                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                        <li><a href="../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Themes</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../components/themes.html" class="sidebar-link">Themes</a></li>
                     </ul>
                 </div>
 
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Core Components</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="button.html" class="sidebar-link">Button</a></li>
-                        <li><a href="input.html" class="sidebar-link">Input</a></li>
-                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
-                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
-                        <li><a href="card.html" class="sidebar-link">Card</a></li>
-                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
-                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
-                        <li><a href="select.html" class="sidebar-link">Select</a></li>
-                        <li><a href="label.html" class="sidebar-link">Label</a></li>
-                        <li><a href="helper-text.html" class="sidebar-link active">HelperText</a></li>
-                                                <li><a href="icon.html" class="sidebar-link">Icon</a></li>
-                        <li><a href="table.html" class="sidebar-link">Table</a></li>
-                        <li><a href="toast.html" class="sidebar-link">Toast</a></li>
-                        <li><a href="tooltip.html" class="sidebar-link">Tooltip</a></li>
-                        <li><a href="accordion.html" class="sidebar-link">Accordion</a></li>
-                        <li><a href="skeleton.html" class="sidebar-link">Skeleton</a></li>
-                        <li><a href="progress.html" class="sidebar-link">Progress</a></li>
+                    <ul class="sidebar-links" id="core-components-nav">
+                        <li><a href="../components/button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../components/input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../components/dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../components/badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../components/card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../components/avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../components/tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../components/select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../components/label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../components/helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../components/error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="../components/icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="../components/table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="../components/toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="../components/tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="../components/accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="../components/skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="../components/progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
 
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Marketing Components</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
-                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
-                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
-                                                <li><a href="marketing/gallery.html" class="sidebar-link">Gallery</a></li>
-                        <li><a href="marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
+                    <ul class="sidebar-links" id="marketing-components-nav">
+                        <li><a href="../components/marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="../components/marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="../components/marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="../components/marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                        <li><a href="../components/marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="../components/marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
                     </ul>
                 </div>
             </nav>
@@ -88,6 +117,47 @@
 
         <!-- Main Content -->
         <main class="content">
+            <div class="container">
+                <div class="component-page">
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
             <!-- Page Header -->
             <div class="mb-8">
                 <h1>HelperText</h1>
@@ -225,38 +295,148 @@ export default function RegistrationForm() {
                     </tbody>
                 </table>
             </section>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Nostromo UI</h3>
+                        <p class="footer-description">A comprehensive UI library built with React, TypeScript, and Tailwind CSS.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-subtitle">Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="../../index.html#getting-started" class="footer-link">Getting Started</a></li>
+                            <li><a href="../../index.html#components" class="footer-link">Components</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui" class="footer-link">GitHub</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui/issues" class="footer-link">Issues</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2024 Nostromo UI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Mobile Menu -->
-    <nav class="mobile-menu">
-        <ul class="nav-links">
-            <li><a href="../../index.html" class="nav-link">Home</a></li>
-            <li><a href="../../index.html#components" class="nav-link">Components</a></li>
-            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
-            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
-        </ul>
-    </nav>
-
+    <!-- Navigation Data -->
+    <script src="../../assets/js/navigation-data.js"></script>
+    
+    <!-- Scripts - Load in order of priority -->
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/lazy-loading.js"></script>
+    <script src="../../assets/js/performance.js"></script>
+    <script src="../../assets/js/caching.js"></script>
+    
+    <!-- Load non-critical scripts asynchronously -->
     <script>
-        function copyCode() {
-            const code = document.querySelector('.code-editor-content').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('Code copied to clipboard!');
-            });
-        }
-
-        function runCode() {
-            const code = document.querySelector('.code-editor-content').textContent;
-            const preview = document.getElementById('live-preview');
-            
-            if (code.includes('RegistrationForm')) {
-                preview.innerHTML = '<form class="space-y-4"><div class="space-y-2"><label class="block text-sm font-medium">Username</label><input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">Choose a unique username that others can use to find you</p></div><div class="space-y-2"><label class="block text-sm font-medium">Email</label><input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">We\'ll never share your email with anyone else</p></div><div class="space-y-2"><label class="block text-sm font-medium">Password</label><input type="password" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"><p class="text-sm text-gray-600">Must contain at least 8 characters, including uppercase, lowercase, and numbers</p></div></form>';
-            } else {
-                preview.innerHTML = '<div>Live preview will appear here</div>';
-            }
-        }
+      // Load non-critical scripts after page load
+      window.addEventListener('load', function() {
+        // Load search functionality
+        const searchScript = document.createElement('script');
+        searchScript.src = '../../assets/js/search.js';
+        searchScript.async = true;
+        document.head.appendChild(searchScript);
+        
+        // Load search performance
+        const searchPerfScript = document.createElement('script');
+        searchPerfScript.src = '../../assets/js/search-performance.js';
+        searchPerfScript.async = true;
+        document.head.appendChild(searchPerfScript);
+        
+        // Load mobile optimizations
+        const mobileScript = document.createElement('script');
+        mobileScript.src = '../../assets/js/mobile.js';
+        mobileScript.async = true;
+        document.head.appendChild(mobileScript);
+        
+        // Load accessibility features
+        const accessibilityScript = document.createElement('script');
+        accessibilityScript.src = '../../assets/js/accessibility.js';
+        accessibilityScript.async = true;
+        document.head.appendChild(accessibilityScript);
+        
+        // Load theme functionality
+        const themeScript = document.createElement('script');
+        themeScript.src = '../../assets/js/theme.js';
+        themeScript.async = true;
+        document.head.appendChild(themeScript);
+        
+        // Load navigation functionality
+        const navScript = document.createElement('script');
+        navScript.src = '../../assets/js/navigation.js';
+        navScript.async = true;
+        document.head.appendChild(navScript);
+        
+        // Load content optimization
+        const contentScript = document.createElement('script');
+        contentScript.src = '../../assets/js/content.js';
+        contentScript.async = true;
+        document.head.appendChild(contentScript);
+      });
     </script>
 </body>
 </html>

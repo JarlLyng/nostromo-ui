@@ -4,20 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress - Nostromo UI</title>
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+    <!-- Critical CSS inline for faster rendering -->
+    <link rel="stylesheet" href="../../assets/css/critical.css">
+    <link rel="stylesheet" href="../../assets/css/themes.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="preload" href="../../assets/css/search.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/accessibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/navigation.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/content.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../assets/css/themes.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/main.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/search.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/mobile.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/accessibility.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/navigation.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/content.css"></noscript>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../../assets/js/main.js" as="script">
+    <link rel="preload" href="../../assets/js/lazy-loading.js" as="script">
+    <link rel="preload" href="../../assets/js/performance.js" as="script">
+    
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">Nostromo UI</div>
+                <a href="../index.html" class="logo">Nostromo UI</a>
                 <nav class="nav">
                     <ul class="nav-links">
                         <li><a href="../index.html" class="nav-link">Home</a></li>
-                        <li><a href="../index.html#components" class="nav-link">Components</a></li>
-                        <li><a href="../getting-started/installation.html" class="nav-link">Getting Started</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
                         <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
                     </ul>
                     <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
@@ -49,423 +70,235 @@
                         <li><a href="../getting-started/setup.html" class="sidebar-link">Setup</a></li>
                     </ul>
                 </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Themes</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../components/themes.html" class="sidebar-link">Themes</a></li>
+                    </ul>
+                </div>
 
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Core Components</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="button.html" class="sidebar-link">Button</a></li>
-                        <li><a href="input.html" class="sidebar-link">Input</a></li>
-                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
-                        <li><a href="card.html" class="sidebar-link">Card</a></li>
-                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
-                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
-                        <li><a href="select.html" class="sidebar-link">Select</a></li>
-                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
-                        <li><a href="label.html" class="sidebar-link">Label</a></li>
-                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
-                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
-                        <li><a href="icon.html" class="sidebar-link">Icon</a></li>
-                        <li><a href="progress.html" class="sidebar-link active">Progress</a></li>
+                    <ul class="sidebar-links" id="core-components-nav">
+                        <li><a href="../components/button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../components/input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../components/dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../components/badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../components/card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../components/avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../components/tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../components/select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../components/label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../components/helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../components/error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="../components/icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="../components/table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="../components/toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="../components/tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="../components/accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="../components/skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="../components/progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
 
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Marketing Components</h3>
-                    <ul class="sidebar-links">
-                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
-                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
-                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
-                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    <ul class="sidebar-links" id="marketing-components-nav">
+                        <li><a href="../components/marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="../components/marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="../components/marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="../components/marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                        <li><a href="../components/marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="../components/marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
                     </ul>
                 </div>
             </nav>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="content">
             <div class="container">
-                <!-- Page Header -->
-                <div class="page-header">
-                    <h1>Progress</h1>
-                    <p class="page-description">
-                        A flexible progress component with sci-fi styling and multiple variants. 
-                        Perfect for loading states, system status, and Nostromo-themed interfaces.
-                    </p>
+                <div class="component-page">
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
                 </div>
-
-                <!-- Installation -->
-                <section class="section">
-                    <h2>Installation</h2>
-                    <p>The Progress component is part of the core UI package.</p>
-                    
-                    <div class="code-block">
-                        <pre><code>import { Progress, CircularProgress } from '@nostromo/ui-core';</code></pre>
-                    </div>
-                </section>
-
-                <!-- Basic Usage -->
-                <section class="section">
-                    <h2>Basic Usage</h2>
-                    <p>Use the Progress component to show completion status.</p>
-                    
-                    <div class="code-block">
-                        <pre><code>&lt;Progress value={50} /&gt;
-&lt;Progress value={75} showLabel /&gt;
-&lt;CircularProgress value={60} showLabel /&gt;</code></pre>
-                    </div>
-                </section>
-
-                <!-- Sizes -->
-                <section class="section">
-                    <h2>Sizes</h2>
-                    <p>Progress bars come in multiple sizes to fit different use cases.</p>
-                    
-                    <div class="component-showcase">
-                        <div class="showcase-item">
-                            <div class="showcase-preview">
-                                <div class="progress-showcase">
-                                    <div class="progress-item">
-                                        <div class="progress-bar-small">
-                                            <div class="progress-fill" style="width: 60%;"></div>
-                                        </div>
-                                        <span class="progress-label">Small</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill" style="width: 60%;"></div>
-                                        </div>
-                                        <span class="progress-label">Medium</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-large">
-                                            <div class="progress-fill" style="width: 60%;"></div>
-                                        </div>
-                                        <span class="progress-label">Large</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-xl">
-                                            <div class="progress-fill" style="width: 60%;"></div>
-                                        </div>
-                                        <span class="progress-label">Extra Large</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-code">
-                                <pre><code>&lt;Progress value={60} size="sm" /&gt;
-&lt;Progress value={60} size="md" /&gt;
-&lt;Progress value={60} size="lg" /&gt;
-&lt;Progress value={60} size="xl" /&gt;</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Variants -->
-                <section class="section">
-                    <h2>Variants</h2>
-                    <p>Progress bars support different visual variants for various contexts.</p>
-                    
-                    <div class="component-showcase">
-                        <div class="showcase-item">
-                            <div class="showcase-preview">
-                                <div class="progress-showcase">
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-primary" style="width: 80%;"></div>
-                                        </div>
-                                        <span class="progress-label">Primary</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-success" style="width: 80%;"></div>
-                                        </div>
-                                        <span class="progress-label">Success</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-warning" style="width: 80%;"></div>
-                                        </div>
-                                        <span class="progress-label">Warning</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-error" style="width: 80%;"></div>
-                                        </div>
-                                        <span class="progress-label">Error</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-code">
-                                <pre><code>&lt;Progress value={80} variant="primary" /&gt;
-&lt;Progress value={80} variant="success" /&gt;
-&lt;Progress value={80} variant="warning" /&gt;
-&lt;Progress value={80} variant="error" /&gt;</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Sci-Fi Variants -->
-                <section class="section">
-                    <h2>Sci-Fi Variants</h2>
-                    <p>Special Nostromo-themed variants with glow effects and gradients.</p>
-                    
-                    <div class="component-showcase">
-                        <div class="showcase-item">
-                            <div class="showcase-preview">
-                                <div class="progress-showcase">
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-energy" style="width: 85%;"></div>
-                                        </div>
-                                        <span class="progress-label">Energy Core</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-health" style="width: 92%;"></div>
-                                        </div>
-                                        <span class="progress-label">Life Support</span>
-                                    </div>
-                                    <div class="progress-item">
-                                        <div class="progress-bar-medium">
-                                            <div class="progress-fill progress-alien" style="width: 67%;"></div>
-                                        </div>
-                                        <span class="progress-label">Xenomorph Detection</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-code">
-                                <pre><code>&lt;Progress value={85} variant="energy" glow /&gt;
-&lt;Progress value={92} variant="health" glow /&gt;
-&lt;Progress value={67} variant="alien" glow /&gt;</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Circular Progress -->
-                <section class="section">
-                    <h2>Circular Progress</h2>
-                    <p>Use CircularProgress for compact spaces or when you need a different visual style.</p>
-                    
-                    <div class="component-showcase">
-                        <div class="showcase-item">
-                            <div class="showcase-preview">
-                                <div class="circular-progress-showcase">
-                                    <div class="circular-progress-item">
-                                        <div class="circular-progress-sm">
-                                            <svg viewBox="0 0 36 36" class="circular-progress-svg">
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2"/>
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="60, 100" stroke-dashoffset="25"/>
-                                            </svg>
-                                            <span class="circular-progress-label">50%</span>
-                                        </div>
-                                        <span class="progress-label">Small</span>
-                                    </div>
-                                    <div class="circular-progress-item">
-                                        <div class="circular-progress-md">
-                                            <svg viewBox="0 0 36 36" class="circular-progress-svg">
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2"/>
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="60, 100" stroke-dashoffset="25"/>
-                                            </svg>
-                                            <span class="circular-progress-label">50%</span>
-                                        </div>
-                                        <span class="progress-label">Medium</span>
-                                    </div>
-                                    <div class="circular-progress-item">
-                                        <div class="circular-progress-lg">
-                                            <svg viewBox="0 0 36 36" class="circular-progress-svg">
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2"/>
-                                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="60, 100" stroke-dashoffset="25"/>
-                                            </svg>
-                                            <span class="circular-progress-label">50%</span>
-                                        </div>
-                                        <span class="progress-label">Large</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-code">
-                                <pre><code>&lt;CircularProgress value={50} size="sm" showLabel /&gt;
-&lt;CircularProgress value={50} size="md" showLabel /&gt;
-&lt;CircularProgress value={50} size="lg" showLabel /&gt;</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Nostromo System Status -->
-                <section class="section">
-                    <h2>Nostromo System Status</h2>
-                    <p>Perfect for sci-fi interfaces and system monitoring dashboards.</p>
-                    
-                    <div class="component-showcase">
-                        <div class="showcase-item">
-                            <div class="showcase-preview">
-                                <div class="nostromo-system-status">
-                                    <h3>USCSS Nostromo - System Status</h3>
-                                    <div class="system-progress-grid">
-                                        <div class="system-progress-item">
-                                            <div class="progress-bar-medium">
-                                                <div class="progress-fill progress-energy animated" style="width: 95%;"></div>
-                                            </div>
-                                            <span class="system-label">Main Power: 95%</span>
-                                        </div>
-                                        <div class="system-progress-item">
-                                            <div class="progress-bar-medium">
-                                                <div class="progress-fill progress-health" style="width: 88%;"></div>
-                                            </div>
-                                            <span class="system-label">Life Support: 88%</span>
-                                        </div>
-                                        <div class="system-progress-item">
-                                            <div class="progress-bar-medium">
-                                                <div class="progress-fill progress-primary" style="width: 72%;"></div>
-                                            </div>
-                                            <span class="system-label">Navigation: 72%</span>
-                                        </div>
-                                        <div class="system-progress-item">
-                                            <div class="progress-bar-medium">
-                                                <div class="progress-fill progress-warning" style="width: 45%;"></div>
-                                            </div>
-                                            <span class="system-label">Fuel Reserves: 45%</span>
-                                        </div>
-                                        <div class="system-progress-item">
-                                            <div class="progress-bar-medium">
-                                                <div class="progress-fill progress-alien animated" style="width: 12%;"></div>
-                                            </div>
-                                            <span class="system-label">Xenomorph Activity: 12%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="showcase-code">
-                                <pre><code>&lt;Progress value={95} variant="energy" showLabel label="Main Power" glow animated /&gt;
-&lt;Progress value={88} variant="health" showLabel label="Life Support" glow /&gt;
-&lt;Progress value={72} variant="primary" showLabel label="Navigation" /&gt;
-&lt;Progress value={45} variant="warning" showLabel label="Fuel Reserves" /&gt;
-&lt;Progress value={12} variant="alien" showLabel label="Xenomorph Activity" glow animated /&gt;</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Props API -->
-                <section class="section">
-                    <h2>Props API</h2>
-                    <div class="props-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Prop</th>
-                                    <th>Type</th>
-                                    <th>Default</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>value</code></td>
-                                    <td><code>number</code></td>
-                                    <td>-</td>
-                                    <td>The current progress value</td>
-                                </tr>
-                                <tr>
-                                    <td><code>max</code></td>
-                                    <td><code>number</code></td>
-                                    <td><code>100</code></td>
-                                    <td>The maximum progress value</td>
-                                </tr>
-                                <tr>
-                                    <td><code>size</code></td>
-                                    <td><code>'sm' | 'md' | 'lg' | 'xl'</code></td>
-                                    <td><code>'md'</code></td>
-                                    <td>The size of the progress bar</td>
-                                </tr>
-                                <tr>
-                                    <td><code>variant</code></td>
-                                    <td><code>'default' | 'primary' | 'success' | 'warning' | 'error' | 'energy' | 'health' | 'alien'</code></td>
-                                    <td><code>'default'</code></td>
-                                    <td>The visual variant of the progress bar</td>
-                                </tr>
-                                <tr>
-                                    <td><code>showLabel</code></td>
-                                    <td><code>boolean</code></td>
-                                    <td><code>false</code></td>
-                                    <td>Whether to show the progress label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>label</code></td>
-                                    <td><code>string</code></td>
-                                    <td>-</td>
-                                    <td>Custom label for the progress bar</td>
-                                </tr>
-                                <tr>
-                                    <td><code>animated</code></td>
-                                    <td><code>boolean</code></td>
-                                    <td><code>false</code></td>
-                                    <td>Whether to animate the progress bar</td>
-                                </tr>
-                                <tr>
-                                    <td><code>glow</code></td>
-                                    <td><code>boolean</code></td>
-                                    <td><code>false</code></td>
-                                    <td>Whether to add a glow effect (sci-fi styling)</td>
-                                </tr>
-                                <tr>
-                                    <td><code>indeterminate</code></td>
-                                    <td><code>boolean</code></td>
-                                    <td><code>false</code></td>
-                                    <td>Whether to show an indeterminate progress state</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                <!-- Accessibility -->
-                <section class="section">
-                    <h2>Accessibility</h2>
-                    <p>Progress components include proper accessibility features:</p>
-                    <ul>
-                        <li>Proper ARIA attributes (<code>role="progressbar"</code>, <code>aria-valuenow</code>, <code>aria-valuemin</code>, <code>aria-valuemax</code>)</li>
-                        <li>Screen reader support with descriptive labels</li>
-                        <li>Keyboard navigation support</li>
-                        <li>High contrast support for all variants</li>
-                        <li>Semantic HTML structure</li>
-                    </ul>
-                    
-                    <div class="code-block">
-                        <pre><code>&lt;!-- Accessible progress bar --&gt;
-&lt;Progress 
-  value={75} 
-  label="System Status" 
-  showLabel 
-  aria-label="System initialization progress" 
-/&gt;
-
-&lt;!-- Accessible circular progress --&gt;
-&lt;CircularProgress 
-  value={60} 
-  showLabel 
-  aria-label="Loading progress" 
-/&gt;</code></pre>
-                    </div>
-                </section>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
             </div>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Nostromo UI</h3>
+                        <p class="footer-description">A comprehensive UI library built with React, TypeScript, and Tailwind CSS.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-subtitle">Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="../../index.html#getting-started" class="footer-link">Getting Started</a></li>
+                            <li><a href="../../index.html#components" class="footer-link">Components</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui" class="footer-link">GitHub</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui/issues" class="footer-link">Issues</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2024 Nostromo UI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Nostromo UI Team. Built with ❤️ and inspired by the USCSS Nostromo.</p>
-            <p>Open source project available on <a href="https://github.com/jarl.l/nostromo-ui">GitHub</a></p>
-        </div>
-    </footer>
-
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/storybook-integration.js"></script>
-    <script src="../assets/js/live-components.js"></script>
-    <script src="../assets/js/interactive-playground.js"></script>
-    <script src="../assets/js/component-comparison.js"></script>
+    <!-- Navigation Data -->
+    <script src="../../assets/js/navigation-data.js"></script>
+    
+    <!-- Scripts - Load in order of priority -->
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/lazy-loading.js"></script>
+    <script src="../../assets/js/performance.js"></script>
+    <script src="../../assets/js/caching.js"></script>
+    
+    <!-- Load non-critical scripts asynchronously -->
+    <script>
+      // Load non-critical scripts after page load
+      window.addEventListener('load', function() {
+        // Load search functionality
+        const searchScript = document.createElement('script');
+        searchScript.src = '../../assets/js/search.js';
+        searchScript.async = true;
+        document.head.appendChild(searchScript);
+        
+        // Load search performance
+        const searchPerfScript = document.createElement('script');
+        searchPerfScript.src = '../../assets/js/search-performance.js';
+        searchPerfScript.async = true;
+        document.head.appendChild(searchPerfScript);
+        
+        // Load mobile optimizations
+        const mobileScript = document.createElement('script');
+        mobileScript.src = '../../assets/js/mobile.js';
+        mobileScript.async = true;
+        document.head.appendChild(mobileScript);
+        
+        // Load accessibility features
+        const accessibilityScript = document.createElement('script');
+        accessibilityScript.src = '../../assets/js/accessibility.js';
+        accessibilityScript.async = true;
+        document.head.appendChild(accessibilityScript);
+        
+        // Load theme functionality
+        const themeScript = document.createElement('script');
+        themeScript.src = '../../assets/js/theme.js';
+        themeScript.async = true;
+        document.head.appendChild(themeScript);
+        
+        // Load navigation functionality
+        const navScript = document.createElement('script');
+        navScript.src = '../../assets/js/navigation.js';
+        navScript.async = true;
+        document.head.appendChild(navScript);
+        
+        // Load content optimization
+        const contentScript = document.createElement('script');
+        contentScript.src = '../../assets/js/content.js';
+        contentScript.async = true;
+        document.head.appendChild(contentScript);
+      });
+    </script>
 </body>
 </html>

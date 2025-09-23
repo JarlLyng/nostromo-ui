@@ -1,14 +1,14 @@
 {
   "name": "@nostromo/docs-advanced",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Advanced documentation site for Nostromo UI",
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 3002",
-    "build": "echo 'Static site - no build needed'",
-    "start": "python3 -m http.server 3002"
+    "build": "node build-system/build.js",
+    "dev": "python3 -m http.server 8080",
+    "serve": "python3 -m http.server 8080"
   },
-  "keywords": ["documentation", "ui", "components", "react"],
+  "keywords": ["documentation", "ui", "components", "nostromo"],
   "author": "Nostromo UI Team",
   "license": "MIT"
 }

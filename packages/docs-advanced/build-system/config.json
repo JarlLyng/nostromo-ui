@@ -1,0 +1,48 @@
+{
+  "components": {
+    "core": [
+      { "name": "Button", "file": "button.html", "category": "interaction" },
+      { "name": "Input", "file": "input.html", "category": "form" },
+      { "name": "Dialog", "file": "dialog.html", "category": "overlay" },
+      { "name": "Badge", "file": "badge.html", "category": "display" },
+      { "name": "Card", "file": "card.html", "category": "layout" },
+      { "name": "Avatar", "file": "avatar.html", "category": "display" },
+      { "name": "Tabs", "file": "tabs.html", "category": "navigation" },
+      { "name": "Select", "file": "select.html", "category": "form" },
+      { "name": "Label", "file": "label.html", "category": "form" },
+      { "name": "HelperText", "file": "helper-text.html", "category": "form" },
+      { "name": "ErrorMessage", "file": "error-message.html", "category": "form" },
+      { "name": "Icon", "file": "icon.html", "category": "display" },
+      { "name": "Table", "file": "table.html", "category": "data" },
+      { "name": "Toast", "file": "toast.html", "category": "feedback" },
+      { "name": "Tooltip", "file": "tooltip.html", "category": "overlay" },
+      { "name": "Accordion", "file": "accordion.html", "category": "layout" },
+      { "name": "Skeleton", "file": "skeleton.html", "category": "feedback" },
+      { "name": "Progress", "file": "progress.html", "category": "feedback" }
+    ],
+    "marketing": [
+      { "name": "Hero", "file": "marketing/hero.html", "category": "layout" },
+      { "name": "Testimonials", "file": "marketing/testimonials.html", "category": "content" },
+      { "name": "Features", "file": "marketing/features.html", "category": "content" },
+      { "name": "Pricing", "file": "marketing/pricing.html", "category": "content" },
+      { "name": "Gallery", "file": "marketing/gallery.html", "category": "media" },
+      { "name": "Logo Wall", "file": "marketing/logo-wall.html", "category": "content" }
+    ]
+  },
+  "navigation": {
+    "gettingStarted": [
+      { "name": "Installation", "file": "getting-started/installation.html" },
+      { "name": "Setup", "file": "getting-started/setup.html" }
+    ],
+    "themes": [
+      { "name": "Themes", "file": "themes.html" }
+    ]
+  },
+  "paths": {
+    "root": "",
+    "components": "components",
+    "marketing": "components/marketing",
+    "gettingStarted": "getting-started",
+    "assets": "assets"
+  }
+}

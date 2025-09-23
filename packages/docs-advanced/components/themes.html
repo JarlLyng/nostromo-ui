@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes - Nostromo UI</title>
+    <!-- Critical CSS inline for faster rendering -->
+    <link rel="stylesheet" href="../../assets/css/critical.css">
+    <link rel="stylesheet" href="../../assets/css/themes.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="preload" href="../../assets/css/search.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/mobile.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/accessibility.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/navigation.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="../../assets/css/content.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../../assets/css/themes.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/main.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/search.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/mobile.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/accessibility.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/navigation.css"></noscript>
+    <noscript><link rel="stylesheet" href="../../assets/css/content.css"></noscript>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../../assets/js/main.js" as="script">
+    <link rel="preload" href="../../assets/js/lazy-loading.js" as="script">
+    <link rel="preload" href="../../assets/js/performance.js" as="script">
+    
+    <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">Nostromo UI</a>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links" id="core-components-nav">
+                        <li><a href="../components/button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../components/input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../components/dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../components/badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../components/card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../components/avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../components/tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../components/select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../components/label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../components/helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../components/error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="../components/icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="../components/table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="../components/toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="../components/tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="../components/accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="../components/skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="../components/progress.html" class="sidebar-link">Progress</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links" id="marketing-components-nav">
+                        <li><a href="../components/marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="../components/marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="../components/marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="../components/marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                        <li><a href="../components/marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="../components/marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="container">
+                <div class="component-page">
+                    
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Themes</h1>
+        <p>Explore the different color themes available in Nostromo UI. Each theme is inspired by the Alien universe and designed for different use cases.</p>
+      </div>
+
+      <!-- Theme Overview -->
+      <section class="mb-8">
+        <h2>Available Themes</h2>
+        <p>Nostromo UI comes with 4 carefully crafted themes, each inspired by different elements from the Alien universe:</p>
+      </section>
+
+      <!-- Theme Showcase -->
+      <section class="mb-8">
+        <h2>Theme Showcase</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Nostromo Theme -->
+          <div class="theme-card nostromo-theme">
+            <div class="theme-header">
+              <h3 class="theme-name">Nostromo</h3>
+              <p class="theme-description">Classic space industrial theme inspired by the USCSS Nostromo</p>
+            </div>
+            <div class="theme-preview">
+              <div class="theme-colors">
+                <div class="color-swatch" style="background: hsl(262 84% 52%);"></div>
+                <div class="color-swatch" style="background: hsl(0 0% 15%);"></div>
+                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
+              </div>
+              <div class="theme-demo nostromo-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Card Title</h4>
+                  </div>
+                  <div class="card-content">
+                    <p>This is a demo card showing the theme colors.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mother Theme -->
+          <div class="theme-card mother-theme">
+            <div class="theme-header">
+              <h3 class="theme-name">Mother</h3>
+              <p class="theme-description">Cold, clinical AI aesthetic inspired by the ship's computer</p>
+            </div>
+            <div class="theme-preview">
+              <div class="theme-colors">
+                <div class="color-swatch" style="background: hsl(195 100% 50%);"></div>
+                <div class="color-swatch" style="background: hsl(0 0% 98%);"></div>
+                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
+              </div>
+              <div class="theme-demo mother-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Card Title</h4>
+                  </div>
+                  <div class="card-content">
+                    <p>This is a demo card showing the theme colors.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LV-426 Theme -->
+          <div class="theme-card lv426-theme">
+            <div class="theme-header">
+              <h3 class="theme-name">LV-426</h3>
+              <p class="theme-description">Warm, rusty atmosphere inspired by the planet LV-426</p>
+            </div>
+            <div class="theme-preview">
+              <div class="theme-colors">
+                <div class="color-swatch" style="background: hsl(25 95% 50%);"></div>
+                <div class="color-swatch" style="background: hsl(30 20% 20%);"></div>
+                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
+              </div>
+              <div class="theme-demo lv426-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Card Title</h4>
+                  </div>
+                  <div class="card-content">
+                    <p>This is a demo card showing the theme colors.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sulaco Theme -->
+          <div class="theme-card sulaco-theme">
+            <div class="theme-header">
+              <h3 class="theme-name">Sulaco</h3>
+              <p class="theme-description">Modern, military-inspired aesthetic from the USS Sulaco</p>
+            </div>
+            <div class="theme-preview">
+              <div class="theme-colors">
+                <div class="color-swatch" style="background: hsl(210 40% 50%);"></div>
+                <div class="color-swatch" style="background: hsl(0 0% 15%);"></div>
+                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
+              </div>
+              <div class="theme-demo sulaco-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Card Title</h4>
+                  </div>
+                  <div class="card-content">
+                    <p>This is a demo card showing the theme colors.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Theme Usage -->
+      <section class="mb-8">
+        <h2>Using Themes</h2>
+        <p>To use a theme in your project, simply import the theme CSS file:</p>
+        
+        <div class="code-block">
+          <pre><code>// Import the theme you want to use
+import '@nostromo/ui-tw/themes/nostromo.css'
+// or
+import '@nostromo/ui-tw/themes/mother.css'
+// or
+import '@nostromo/ui-tw/themes/lv-426.css'
+// or
+import '@nostromo/ui-tw/themes/sulaco.css'</code></pre>
+        </div>
+
+        <p>You can also switch themes dynamically by setting the <code>data-theme</code> attribute:</p>
+        
+        <div class="code-block">
+          <pre><code>// Set theme on document element
+document.documentElement.setAttribute('data-theme', 'nostromo')
+document.documentElement.setAttribute('data-theme', 'mother')
+document.documentElement.setAttribute('data-theme', 'lv-426')
+document.documentElement.setAttribute('data-theme', 'sulaco')</code></pre>
+        </div>
+      </section>
+
+      <!-- Theme Customization -->
+      <section class="mb-8">
+        <h2>Customizing Themes</h2>
+        <p>Each theme uses CSS custom properties that you can override:</p>
+        
+        <div class="code-block">
+          <pre><code>/* Override theme colors */
+:root {
+  --color-primary: 262 84% 52%;
+  --color-secondary: 262 84% 45%;
+  --color-accent: 142 76% 36%;
+}
+
+/* Or use HSL values directly */
+:root {
+  --color-primary: hsl(262 84% 52%);
+  --color-secondary: hsl(262 84% 45%);
+  --color-accent: hsl(142 76% 36%);
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- Theme Features -->
+      <section class="mb-8">
+        <h2>Theme Features</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li><strong>Consistent Design:</strong> All themes follow the same design system</li>
+          <li><strong>Accessibility:</strong> Each theme meets WCAG 2.1 AA contrast requirements</li>
+          <li><strong>Dark Mode:</strong> All themes support both light and dark modes</li>
+          <li><strong>Customizable:</strong> Easy to override colors and variables</li>
+          <li><strong>Performance:</strong> Optimized CSS with minimal bundle size</li>
+        </ul>
+      </section>
+    
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Nostromo UI</h3>
+                        <p class="footer-description">A comprehensive UI library built with React, TypeScript, and Tailwind CSS.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-subtitle">Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="../../index.html#getting-started" class="footer-link">Getting Started</a></li>
+                            <li><a href="../../index.html#components" class="footer-link">Components</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui" class="footer-link">GitHub</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui/issues" class="footer-link">Issues</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2024 Nostromo UI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Navigation Data -->
+    <script src="../../assets/js/navigation-data.js"></script>
+    
+    <!-- Scripts - Load in order of priority -->
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/lazy-loading.js"></script>
+    <script src="../../assets/js/performance.js"></script>
+    <script src="../../assets/js/caching.js"></script>
+    
+    <!-- Load non-critical scripts asynchronously -->
+    <script>
+      // Load non-critical scripts after page load
+      window.addEventListener('load', function() {
+        // Load search functionality
+        const searchScript = document.createElement('script');
+        searchScript.src = '../../assets/js/search.js';
+        searchScript.async = true;
+        document.head.appendChild(searchScript);
+        
+        // Load search performance
+        const searchPerfScript = document.createElement('script');
+        searchPerfScript.src = '../../assets/js/search-performance.js';
+        searchPerfScript.async = true;
+        document.head.appendChild(searchPerfScript);
+        
+        // Load mobile optimizations
+        const mobileScript = document.createElement('script');
+        mobileScript.src = '../../assets/js/mobile.js';
+        mobileScript.async = true;
+        document.head.appendChild(mobileScript);
+        
+        // Load accessibility features
+        const accessibilityScript = document.createElement('script');
+        accessibilityScript.src = '../../assets/js/accessibility.js';
+        accessibilityScript.async = true;
+        document.head.appendChild(accessibilityScript);
+        
+        // Load theme functionality
+        const themeScript = document.createElement('script');
+        themeScript.src = '../../assets/js/theme.js';
+        themeScript.async = true;
+        document.head.appendChild(themeScript);
+        
+        // Load navigation functionality
+        const navScript = document.createElement('script');
+        navScript.src = '../../assets/js/navigation.js';
+        navScript.async = true;
+        document.head.appendChild(navScript);
+        
+        // Load content optimization
+        const contentScript = document.createElement('script');
+        contentScript.src = '../../assets/js/content.js';
+        contentScript.async = true;
+        document.head.appendChild(contentScript);
+      });
+    </script>
+</body>
+</html>
