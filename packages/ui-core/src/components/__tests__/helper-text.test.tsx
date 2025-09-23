@@ -11,25 +11,25 @@ describe('HelperText', () => {
   it('applies default variant styles', () => {
     render(<HelperText>Helper text content</HelperText>);
     const helperText = screen.getByText('Helper text content');
-    expect(helperText).toHaveClass('text-sm', 'text-muted-foreground');
+    expect(helperText).toHaveClass('text-sm', 'text-neutral-600');
   });
 
   it('applies error variant styles', () => {
     render(<HelperText variant="error">Error message</HelperText>);
     const helperText = screen.getByText('Error message');
-    expect(helperText).toHaveClass('text-destructive');
+    expect(helperText).toHaveClass('text-error-600');
   });
 
   it('applies success variant styles', () => {
     render(<HelperText variant="success">Success message</HelperText>);
     const helperText = screen.getByText('Success message');
-    expect(helperText).toHaveClass('text-green-600');
+    expect(helperText).toHaveClass('text-success-600');
   });
 
   it('applies warning variant styles', () => {
     render(<HelperText variant="warning">Warning message</HelperText>);
     const helperText = screen.getByText('Warning message');
-    expect(helperText).toHaveClass('text-yellow-600');
+    expect(helperText).toHaveClass('text-warning-600');
   });
 
   it('applies custom className', () => {

@@ -63,7 +63,13 @@
                         <li><a href="select.html" class="sidebar-link">Select</a></li>
                         <li><a href="label.html" class="sidebar-link">Label</a></li>
                         <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
-                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                                                <li><a href="icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
 
@@ -73,7 +79,8 @@
                         <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
                         <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
                         <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
-                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                                                <li><a href="marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
                     </ul>
                 </div>
             </nav>
@@ -119,12 +126,12 @@ export default function BasicCard() {
                 </div>
 
                 <div class="live-preview">
-                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
-                        <div class="p-6 border-b border-gray-200">
+                    <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-card hover:shadow-card-hover border-neutral-200 hover:border-neutral-300">
+                        <div class="p-4 sm:p-6 border-b border-neutral-200">
                             <h3 class="text-lg font-semibold">Card Title</h3>
                             <p class="text-gray-600 mt-1">Card description goes here</p>
                         </div>
-                        <div class="p-6">
+                        <div class="p-4 sm:p-6">
                             <p>This is the card content area.</p>
                         </div>
                     </div>
@@ -139,7 +146,7 @@ export default function BasicCard() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <div class="bg-white border border-gray-200 rounded-lg p-4">
+                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-card hover:shadow-card-hover border-neutral-200 hover:border-neutral-300 p-4 sm:p-6">
                                 <h4 class="font-semibold mb-2">Default</h4>
                                 <p class="text-sm text-gray-600">Standard card with border</p>
                             </div>
@@ -148,7 +155,7 @@ export default function BasicCard() {
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <div class="bg-white rounded-lg shadow-lg p-4">
+                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-lg hover:shadow-xl border-neutral-200 hover:border-neutral-300 p-4 sm:p-6">
                                 <h4 class="font-semibold mb-2">Elevated</h4>
                                 <p class="text-sm text-gray-600">Card with shadow</p>
                             </div>
@@ -157,7 +164,7 @@ export default function BasicCard() {
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-none border-2 border-neutral-300 hover:border-brand-500 hover:shadow-card p-4 sm:p-6">
                                 <h4 class="font-semibold mb-2">Outlined</h4>
                                 <p class="text-sm text-gray-600">Card with background</p>
                             </div>

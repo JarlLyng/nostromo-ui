@@ -63,7 +63,13 @@
                         <li><a href="select.html" class="sidebar-link">Select</a></li>
                         <li><a href="label.html" class="sidebar-link">Label</a></li>
                         <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
-                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                                                <li><a href="icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
 
@@ -73,7 +79,8 @@
                         <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
                         <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
                         <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
-                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                                                <li><a href="marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
                     </ul>
                 </div>
             </nav>
@@ -117,10 +124,10 @@ export default function StatusBadges() {
 
                 <div class="live-preview">
                     <div class="flex gap-2">
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">New</span>
-                        <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Active</span>
-                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Pending</span>
-                        <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Error</span>
+                        <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-brand-500 text-white hover:bg-brand-600">New</span>
+                        <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-success-500 text-white hover:bg-success-600">Active</span>
+                        <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-warning-500 text-white hover:bg-warning-600">Pending</span>
+                        <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-error-500 text-white hover:bg-error-600">Error</span>
                     </div>
                 </div>
             </section>
@@ -133,39 +140,39 @@ export default function StatusBadges() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Default</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-brand-500 text-white hover:bg-brand-600">Default</span>
                         </div>
                         <div class="variant-name">Default</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Success</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-success-500 text-white hover:bg-success-600">Success</span>
                         </div>
                         <div class="variant-name">Success</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Warning</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-warning-500 text-white hover:bg-warning-600">Warning</span>
                         </div>
                         <div class="variant-name">Warning</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Error</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-error-500 text-white hover:bg-error-600">Error</span>
                         </div>
                         <div class="variant-name">Error</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Neutral</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-neutral-200 text-neutral-900 hover:bg-neutral-300">Secondary</span>
                         </div>
-                        <div class="variant-name">Neutral</div>
+                        <div class="variant-name">Secondary</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Info</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-2 border-neutral-300 text-neutral-900 hover:border-brand-500 hover:text-brand-600 hover:shadow-badge">Outline</span>
                         </div>
-                        <div class="variant-name">Info</div>
+                        <div class="variant-name">Outline</div>
                     </div>
                 </div>
 
@@ -173,9 +180,9 @@ export default function StatusBadges() {
 <pre><code>&lt;Badge&gt;Default&lt;/Badge&gt;
 &lt;Badge variant="success"&gt;Success&lt;/Badge&gt;
 &lt;Badge variant="warning"&gt;Warning&lt;/Badge&gt;
-&lt;Badge variant="error"&gt;Error&lt;/Badge&gt;
-&lt;Badge variant="neutral"&gt;Neutral&lt;/Badge&gt;
-&lt;Badge variant="info"&gt;Info&lt;/Badge&gt;</code></pre>
+&lt;Badge variant="destructive"&gt;Error&lt;/Badge&gt;
+&lt;Badge variant="secondary"&gt;Secondary&lt;/Badge&gt;
+&lt;Badge variant="outline"&gt;Outline&lt;/Badge&gt;</code></pre>
                 </div>
             </section>
 
@@ -187,28 +194,28 @@ export default function StatusBadges() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">Small</span>
+                            <span class="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-brand-500 text-white hover:bg-brand-600">Small</span>
                         </div>
                         <div class="variant-name">Small</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Medium</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-brand-500 text-white hover:bg-brand-600">Default</span>
                         </div>
-                        <div class="variant-name">Medium</div>
+                        <div class="variant-name">Default</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <span class="px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-base font-medium">Large</span>
+                            <span class="inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-brand-500 text-white hover:bg-brand-600">Large</span>
                         </div>
                         <div class="variant-name">Large</div>
                     </div>
                 </div>
 
                 <div class="code-block">
-<pre><code>&lt;Badge size="small"&gt;Small&lt;/Badge&gt;
-&lt;Badge size="medium"&gt;Medium&lt;/Badge&gt;
-&lt;Badge size="large"&gt;Large&lt;/Badge&gt;</code></pre>
+<pre><code>&lt;Badge size="sm"&gt;Small&lt;/Badge&gt;
+&lt;Badge size="default"&gt;Default&lt;/Badge&gt;
+&lt;Badge size="lg"&gt;Large&lt;/Badge&gt;</code></pre>
                 </div>
             </section>
 
@@ -282,14 +289,14 @@ export default function NotificationBadges() {
                     <tbody>
                         <tr>
                             <td><code>variant</code></td>
-                            <td><code>'default' | 'success' | 'warning' | 'error' | 'neutral' | 'info'</code></td>
+                            <td><code>'default' | 'secondary' | 'destructive' | 'outline' | 'success' | 'warning' | 'info'</code></td>
                             <td><code>'default'</code></td>
                             <td>Visual style variant</td>
                         </tr>
                         <tr>
                             <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
+                            <td><code>'sm' | 'default' | 'lg'</code></td>
+                            <td><code>'default'</code></td>
                             <td>Size of the badge</td>
                         </tr>
                         <tr>
@@ -319,28 +326,28 @@ export default function NotificationBadges() {
                     </div>
                     <div class="live-preview">
                         <div class="space-y-3">
-                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-6H4v6z"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="font-medium">Messages</span>
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4 19h6v-6H4v6z"></path>
+                                    </svg>
                                 </div>
-                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">5</span>
+                                <span class="font-medium">Messages</span>
                             </div>
-                            <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                    <span class="font-medium">Tasks</span>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-error-500 text-white hover:bg-error-600">5</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
                                 </div>
-                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Completed</span>
+                                <span class="font-medium">Tasks</span>
                             </div>
+                            <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-success-500 text-white hover:bg-success-600">Completed</span>
+                        </div>
                         </div>
                     </div>
                     <div class="code-block">
@@ -364,17 +371,17 @@ export default function NotificationBadges() {
                             <div class="flex items-center gap-2">
                                 <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                                 <span>Server Status</span>
-                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Online</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-success-500 text-white hover:bg-success-600">Online</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                                 <span>Database</span>
-                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Maintenance</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-warning-500 text-white hover:bg-warning-600">Maintenance</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <div class="w-3 h-3 bg-red-500 rounded-full"></div>
                                 <span>API</span>
-                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Offline</span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 shadow-badge hover:shadow-badge-hover border-transparent bg-error-500 text-white hover:bg-error-600">Offline</span>
                             </div>
                         </div>
                     </div>

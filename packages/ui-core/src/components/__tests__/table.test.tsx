@@ -48,10 +48,13 @@ describe('Table', () => {
 
   it('applies correct variant classes', () => {
     const { rerender } = render(<Table data={sampleData} columns={columns} variant="striped" />);
-    expect(screen.getByRole('table')).toHaveClass('border', 'border-gray-200');
+    expect(screen.getByRole('table')).toHaveClass('border', 'border-neutral-200');
 
     rerender(<Table data={sampleData} columns={columns} variant="bordered" />);
-    expect(screen.getByRole('table')).toHaveClass('border', 'border-gray-200');
+    const table = screen.getByRole('table');
+    expect(table).toHaveClass('border-2', 'border-neutral-300');
+    // "bordered" should not have the thin border
+    expect(table).not.toHaveClass('border', 'border-neutral-200');
   });
 
   it('applies correct size classes', () => {

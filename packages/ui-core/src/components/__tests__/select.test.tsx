@@ -62,7 +62,7 @@ describe('Select', () => {
       </Select>
     );
 
-    expect(screen.getByRole('combobox')).toHaveClass('border-input');
+    expect(screen.getByRole('combobox')).toHaveClass('border-neutral-300');
 
     rerender(
       <Select defaultValue="apple">
@@ -75,7 +75,7 @@ describe('Select', () => {
       </Select>
     );
 
-    expect(screen.getByRole('combobox')).toHaveClass('border-2', 'border-input');
+    expect(screen.getByRole('combobox')).toHaveClass('border-2', 'border-neutral-300');
 
     rerender(
       <Select defaultValue="apple">

@@ -4,14 +4,16 @@ import { cn } from '../lib/utils';
 
 // Table variants
 const tableVariants = cva(
-  'w-full border-collapse',
+  'w-full border-collapse transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'border border-gray-200',
-        striped: 'border border-gray-200',
-        bordered: 'border border-gray-200',
-        hover: 'border border-gray-200'
+        default: 'border border-neutral-200 shadow-sm hover:shadow-md',
+        striped: 'border border-neutral-200 shadow-sm hover:shadow-md',
+        bordered: 'border-2 border-neutral-300 shadow-md hover:shadow-lg',
+        hover: 'border border-neutral-200 shadow-sm hover:shadow-md',
+        elevated: 'border border-neutral-200 shadow-lg hover:shadow-xl',
+        interactive: 'border border-neutral-200 shadow-sm hover:shadow-md hover:border-brand-500'
       },
       size: {
         sm: 'text-xs sm:text-sm',
@@ -27,14 +29,16 @@ const tableVariants = cva(
 );
 
 const tableHeaderVariants = cva(
-  'font-medium text-left',
+  'font-medium text-left transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'bg-gray-50 text-gray-900',
-        striped: 'bg-gray-50 text-gray-900',
-        bordered: 'bg-gray-50 text-gray-900',
-        hover: 'bg-gray-50 text-gray-900'
+        default: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
+        striped: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
+        bordered: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
+        hover: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
+        elevated: 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200',
+        interactive: 'bg-neutral-50 text-neutral-900 hover:bg-brand-50 hover:text-brand-900'
       },
       size: {
         sm: 'px-2 py-1 sm:px-3 sm:py-2',
@@ -50,14 +54,16 @@ const tableHeaderVariants = cva(
 );
 
 const tableCellVariants = cva(
-  'border-gray-200',
+  'border-neutral-200 transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'border-b',
-        striped: 'border-b even:bg-gray-50',
-        bordered: 'border',
-        hover: 'border-b hover:bg-gray-50'
+        default: 'border-b border-neutral-200 hover:bg-neutral-50',
+        striped: 'border-b border-neutral-200 even:bg-neutral-50 hover:bg-neutral-100',
+        bordered: 'border border-neutral-200 hover:bg-neutral-50',
+        hover: 'border-b border-neutral-200 hover:bg-neutral-50',
+        elevated: 'border-b border-neutral-200 hover:bg-neutral-100',
+        interactive: 'border-b border-neutral-200 hover:bg-brand-50 hover:text-brand-900'
       },
       size: {
         sm: 'px-2 py-1 sm:px-3 sm:py-2',
@@ -89,6 +95,7 @@ export interface TableProps<T = any> extends VariantProps<typeof tableVariants> 
   columns: TableColumn<T>[];
   loading?: boolean;
   emptyText?: string;
+  caption?: string;
   className?: string;
   rowKey?: keyof T | ((record: T) => string | number);
   onRowClick?: (record: T, index: number) => void;
@@ -151,6 +158,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     sortDirection,
     pagination,
     selection,
+    caption,
     ...props
   }, ref) => {
     const [sortState, setSortState] = useState<{
@@ -224,10 +232,17 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             className={cn(tableVariants({ variant, size }), className)}
             {...props}
           >
+            {caption && (
+              <caption className="sr-only">{caption}</caption>
+            )}
           <TableHeader>
             <TableRow>
               {selection && (
-                <TableCell variant={variant} size={size}>
+                <th
+                  className={cn(tableCellVariants({ variant, size }))}
+                  scope="col"
+                  role="columnheader"
+                >
                   <input
                     type="checkbox"
                     checked={isAllSelected}
@@ -238,18 +253,19 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
                     className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     aria-label="Select all rows"
                   />
-                </TableCell>
+                </th>
               )}
               {columns.map((column) => (
-                <TableCell
+                <th
                   key={column.key}
-                  variant={variant}
-                  size={size}
                   className={cn(
+                    tableCellVariants({ variant, size }),
                     column.className,
                     column.align === 'center' && 'text-center',
                     column.align === 'right' && 'text-right'
                   )}
+                  scope="col"
+                  role="columnheader"
                   {...(column.width && { style: { width: column.width } })}
                 >
                   <div className="flex items-center gap-2">
@@ -288,7 +304,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
                       </button>
                     )}
                   </div>
-                </TableCell>
+                </th>
               ))}
             </TableRow>
           </TableHeader>

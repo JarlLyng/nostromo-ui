@@ -4,13 +4,15 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const selectTriggerVariants = cva(
-  'flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'flex h-10 w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:shadow-input-hover',
   {
     variants: {
       variant: {
-        default: 'border-input',
-        outline: 'border-2 border-input',
-        ghost: 'border-transparent bg-transparent',
+        default: 'border-neutral-300 hover:border-neutral-400 focus:border-brand-500',
+        outline: 'border-2 border-neutral-300 hover:border-neutral-400 focus:border-brand-500',
+        ghost: 'border-transparent bg-transparent hover:bg-neutral-50',
+        error: 'border-error-500 hover:border-error-600 focus:border-error-500 focus:ring-error-500',
+        success: 'border-success-500 hover:border-success-600 focus:border-success-500 focus:ring-success-500',
       },
       size: {
         default: 'h-10 px-3 py-2 text-sm',
@@ -26,13 +28,15 @@ const selectTriggerVariants = cva(
 );
 
 const selectContentVariants = cva(
-  'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md',
+  'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'border',
-        outline: 'border-2',
-        ghost: 'border-transparent shadow-lg',
+        default: 'border-neutral-200 shadow-lg hover:shadow-xl',
+        outline: 'border-2 border-neutral-300 shadow-lg hover:shadow-xl',
+        ghost: 'border-transparent shadow-xl hover:shadow-2xl',
+        error: 'border-error-200 shadow-lg hover:shadow-xl',
+        success: 'border-success-200 shadow-lg hover:shadow-xl',
       },
     },
     defaultVariants: {
@@ -42,12 +46,14 @@ const selectContentVariants = cva(
 );
 
 const selectItemVariants = cva(
-  'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+  'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'focus:bg-accent focus:text-accent-foreground',
-        highlight: 'focus:bg-primary focus:text-primary-foreground',
+        default: 'focus:bg-neutral-100 focus:text-neutral-900 hover:bg-neutral-50',
+        highlight: 'focus:bg-brand-100 focus:text-brand-900 hover:bg-brand-50',
+        error: 'focus:bg-error-100 focus:text-error-900 hover:bg-error-50',
+        success: 'focus:bg-success-100 focus:text-success-900 hover:bg-success-50',
       },
     },
     defaultVariants: {

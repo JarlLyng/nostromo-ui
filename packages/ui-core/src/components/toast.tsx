@@ -4,15 +4,15 @@ import { cn } from '../lib/utils';
 
 // Toast variants
 const toastVariants = cva(
-  'relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all',
+  'relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300',
   {
     variants: {
       variant: {
-        default: 'border-gray-200 bg-white text-gray-900',
-        success: 'border-green-200 bg-green-50 text-green-900',
-        error: 'border-red-200 bg-red-50 text-red-900',
-        warning: 'border-yellow-200 bg-yellow-50 text-yellow-900',
-        info: 'border-blue-200 bg-blue-50 text-blue-900'
+        default: 'border-neutral-200 bg-white text-neutral-900 shadow-toast hover:shadow-toast-hover',
+        success: 'border-success-200 bg-success-50 text-success-900 shadow-toast hover:shadow-toast-hover',
+        error: 'border-error-200 bg-error-50 text-error-900 shadow-toast hover:shadow-toast-hover',
+        warning: 'border-warning-200 bg-warning-50 text-warning-900 shadow-toast hover:shadow-toast-hover',
+        info: 'border-info-200 bg-info-50 text-info-900 shadow-toast hover:shadow-toast-hover'
       },
       position: {
         'top-left': 'fixed top-4 left-4 z-50',
@@ -21,25 +21,33 @@ const toastVariants = cva(
         'bottom-left': 'fixed bottom-4 left-4 z-50',
         'bottom-center': 'fixed bottom-4 left-1/2 -translate-x-1/2 z-50',
         'bottom-right': 'fixed bottom-4 right-4 z-50'
+      },
+      animation: {
+        default: 'animate-in slide-in-from-right-full duration-300',
+        slide: 'animate-in slide-in-from-bottom-4 duration-300',
+        fade: 'animate-in fade-in-0 duration-300',
+        scale: 'animate-in zoom-in-95 duration-300',
+        none: ''
       }
     },
     defaultVariants: {
       variant: 'default',
-      position: 'top-right'
+      position: 'top-right',
+      animation: 'default'
     }
   }
 );
 
 const toastIconVariants = cva(
-  'flex-shrink-0 w-5 h-5',
+  'flex-shrink-0 w-5 h-5 transition-colors duration-200',
   {
     variants: {
       variant: {
-        default: 'text-gray-400',
-        success: 'text-green-500',
-        error: 'text-red-500',
-        warning: 'text-yellow-500',
-        info: 'text-blue-500'
+        default: 'text-neutral-500',
+        success: 'text-success-600',
+        error: 'text-error-600',
+        warning: 'text-warning-600',
+        info: 'text-info-600'
       }
     },
     defaultVariants: {
@@ -140,6 +148,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     description,
     variant = 'default',
     position = 'top-right',
+    animation = 'default',
     duration = 5000,
     onClose,
     action,
@@ -216,7 +225,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       <div
         ref={ref}
         className={cn(
-          toastVariants({ variant, position }),
+          toastVariants({ variant, position, animation }),
           isLeaving ? 'opacity-0' : 'opacity-100',
           'pointer-events-auto',
           className

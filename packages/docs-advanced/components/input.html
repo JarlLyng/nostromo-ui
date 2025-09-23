@@ -64,6 +64,13 @@
                         <li><a href="label.html" class="sidebar-link">Label</a></li>
                         <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
                         <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
 
@@ -74,6 +81,8 @@
                         <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
                         <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
                         <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                        <li><a href="marketing/gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="marketing/logo-wall.html" class="sidebar-link">Logo Wall</a></li>
                     </ul>
                 </div>
             </nav>
@@ -124,11 +133,11 @@ export default function ContactForm() {
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <input type="text" placeholder="Enter your name" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <input type="email" placeholder="Enter your email" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                     </div>
                 </div>
@@ -142,7 +151,7 @@ export default function ContactForm() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Default input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="text" placeholder="Default input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Default</div>
                     </div>
@@ -154,13 +163,13 @@ export default function ContactForm() {
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Outlined input" class="w-full p-3 border-2 border-gray-300 rounded-md bg-transparent">
+                            <input type="text" placeholder="Outlined input" class="flex w-full rounded-md border-2 border-neutral-300 bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Outlined</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Underlined input" class="w-full p-3 border-0 border-b-2 border-gray-300 rounded-none bg-transparent">
+                            <input type="text" placeholder="Underlined input" class="flex w-full border-0 border-b-2 border-neutral-300 rounded-none bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Underlined</div>
                     </div>
@@ -182,37 +191,37 @@ export default function ContactForm() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Text input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="text" placeholder="Text input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Text</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="email" placeholder="Email input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="email" placeholder="Email input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Email</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="password" placeholder="Password input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="password" placeholder="Password input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Password</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="number" placeholder="Number input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="number" placeholder="Number input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Number</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="tel" placeholder="Phone input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="tel" placeholder="Phone input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Phone</div>
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="url" placeholder="URL input" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="url" placeholder="URL input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">URL</div>
                     </div>
@@ -236,7 +245,7 @@ export default function ContactForm() {
                 <div class="component-variants">
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Default state" class="w-full p-3 border border-gray-300 rounded-md">
+                            <input type="text" placeholder="Default state" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div class="variant-name">Default</div>
                     </div>
@@ -248,7 +257,7 @@ export default function ContactForm() {
                     </div>
                     <div class="variant-card">
                         <div class="variant-preview">
-                            <input type="text" placeholder="Disabled state" class="w-full p-3 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed" disabled>
+                            <input type="text" placeholder="Disabled state" class="flex w-full rounded-md border border-neutral-300 bg-gray-100 cursor-not-allowed px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" disabled>
                         </div>
                         <div class="variant-name">Disabled</div>
                     </div>
@@ -324,19 +333,19 @@ export default function ContactForm() {
                     <form class="space-y-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Full Name</label>
-                            <input type="text" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            <input type="text" placeholder="Enter your full name" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Email Address</label>
-                            <input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                            <input type="email" placeholder="Enter your email" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Phone Number</label>
-                            <input type="tel" placeholder="Enter your phone number" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <input type="tel" placeholder="Enter your phone number" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-2">Message</label>
-                            <textarea placeholder="Enter your message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                            <textarea placeholder="Enter your message" rows="4" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></textarea>
                         </div>
                     </form>
                 </div>
@@ -453,20 +462,20 @@ export default function ContactForm() {
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium mb-2">First Name</label>
-                                    <input type="text" placeholder="John" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <input type="text" placeholder="John" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium mb-2">Last Name</label>
-                                    <input type="text" placeholder="Doe" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                    <input type="text" placeholder="Doe" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                                 </div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" placeholder="john@example.com" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="email" placeholder="john@example.com" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea placeholder="Your message here..." rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                                <textarea placeholder="Your message here..." rows="4" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></textarea>
                             </div>
                             <button class="btn btn-primary">Send Message</button>
                         </form>
@@ -491,7 +500,7 @@ export default function ContactForm() {
                     <div class="live-preview">
                         <div class="flex gap-2">
                             <div class="flex-1">
-                                <input type="search" placeholder="Search for components..." class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <input type="search" placeholder="Search for components..." class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
                             </div>
                             <button class="btn btn-primary">Search</button>
                         </div>
@@ -536,7 +545,7 @@ export default function ContactForm() {
             
             // Simple code execution for demo
             if (code.includes('ContactForm')) {
-                preview.innerHTML = '<form class="space-y-6"><div><label class="block text-sm font-medium mb-2">Full Name</label><input type="text" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></div><div><label class="block text-sm font-medium mb-2">Email Address</label><input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" required></div><div><label class="block text-sm font-medium mb-2">Phone Number</label><input type="tel" placeholder="Enter your phone number" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></div><div><label class="block text-sm font-medium mb-2">Message</label><textarea placeholder="Enter your message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea></div></form>';
+                preview.innerHTML = '<form class="space-y-6"><div><label class="block text-sm font-medium mb-2">Full Name</label><input type="text" placeholder="Enter your full name" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required></div><div><label class="block text-sm font-medium mb-2">Email Address</label><input type="email" placeholder="Enter your email" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required></div><div><label class="block text-sm font-medium mb-2">Phone Number</label><input type="tel" placeholder="Enter your phone number" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></div><div><label class="block text-sm font-medium mb-2">Message</label><textarea placeholder="Enter your message" rows="4" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></textarea></div></form>';
             } else {
                 preview.innerHTML = '<div>Live preview will appear here</div>';
             }

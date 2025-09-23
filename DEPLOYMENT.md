@@ -4,7 +4,7 @@ Denne guide beskriver hvordan Nostromo UI dokumentationssite deployes og vedlige
 
 ## 📋 Oversigt
 
-Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 15 komponenter, interaktive features og live previews. Den deployes automatisk til **GitHub Pages** via GitHub Actions og er optimeret for performance uden komplekse build-processer.
+Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 17 komponenter, interaktive features og live previews. Den deployes automatisk til **GitHub Pages** via GitHub Actions og er optimeret for performance uden komplekse build-processer.
 
 ## 🌐 Deployment Targets
 
@@ -31,7 +31,7 @@ Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 15 
 2. **GitHub Actions workflow** kører automatisk:
    - Installerer dependencies
    - Bygger alle pakker
-   - Kopierer simple HTML dokumentation til build output
+   - Kopierer avanceret HTML dokumentation til build output
    - Deployer til GitHub Pages
 
 ### **Manuel Deployment**
@@ -119,8 +119,8 @@ packages/docs-advanced/
 - **Page load**: <2 sekunder
 
 ### **Optimering**
-- **Code splitting**: Automatisk via Docusaurus
-- **Image optimization**: Via `@docusaurus/plugin-ideal-image`
+- **Static HTML**: Ingen build process nødvendig
+- **Image optimization**: Optimerede SVG og PNG billeder
 - **Caching**: GitHub Pages CDN
 
 ## 🔄 Maintenance
@@ -150,8 +150,8 @@ packages/docs-advanced/
    - Test lokalt
 
 2. **Opdater API dokumentation**:
-   - TypeDoc genererer automatisk fra TypeScript
-   - Ingen manuel opdatering nødvendig
+   - HTML dokumentation opdateres manuelt
+   - Komponent eksempler opdateres i HTML filer
 
 ## 🚨 Rollback
 

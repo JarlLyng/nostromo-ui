@@ -9,7 +9,8 @@ describe('Input', () => {
     render(<Input placeholder="Enter text" />);
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInTheDocument();
-    expect(input).toHaveClass('flex', 'h-10', 'w-full', 'rounded-md');
+    expect(input).toHaveClass('flex', 'w-full', 'rounded-md');
+    expect(input).toHaveClass('h-9', 'sm:h-10');
   });
 
   it('renders with label', () => {
@@ -36,7 +37,7 @@ describe('Input', () => {
     const input = screen.getByPlaceholderText('Enter text');
     const helperText = screen.getByText('This is an error');
     
-    expect(input).toHaveClass('border-destructive');
+    expect(input).toHaveClass('border-error-500');
     expect(input).toHaveAttribute('aria-invalid', 'true');
     expect(helperText).toHaveClass('text-destructive');
   });

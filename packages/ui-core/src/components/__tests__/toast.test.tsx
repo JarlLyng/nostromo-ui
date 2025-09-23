@@ -92,7 +92,7 @@ describe('Toast', () => {
     );
     const title1 = screen.getByText('Test');
     const toastRoot1 = title1.closest('[data-visible][data-leaving]')!;
-    expect(toastRoot1).toHaveClass('border-green-200', 'bg-green-50', 'text-green-900');
+    expect(toastRoot1).toHaveClass('border-success-200', 'bg-success-50', 'text-success-900');
 
     rerender(
       <Toast
@@ -104,7 +104,7 @@ describe('Toast', () => {
     );
     const title2 = screen.getByText('Test');
     const toastRoot2 = title2.closest('[data-visible][data-leaving]')!;
-    expect(toastRoot2).toHaveClass('border-red-200', 'bg-red-50', 'text-red-900');
+    expect(toastRoot2).toHaveClass('border-error-200', 'bg-error-50', 'text-error-900');
 
     rerender(
       <Toast
@@ -116,7 +116,7 @@ describe('Toast', () => {
     );
     const title3 = screen.getByText('Test');
     const toastRoot3 = title3.closest('[data-visible][data-leaving]')!;
-    expect(toastRoot3).toHaveClass('border-yellow-200', 'bg-yellow-50', 'text-yellow-900');
+    expect(toastRoot3).toHaveClass('border-warning-200', 'bg-warning-50', 'text-warning-900');
 
     rerender(
       <Toast
@@ -128,7 +128,7 @@ describe('Toast', () => {
     );
     const title4 = screen.getByText('Test');
     const toastRoot4 = title4.closest('[data-visible][data-leaving]')!;
-    expect(toastRoot4).toHaveClass('border-blue-200', 'bg-blue-50', 'text-blue-900');
+    expect(toastRoot4).toHaveClass('border-info-200', 'bg-info-50', 'text-info-900');
   });
 
   it('applies correct position classes', () => {
@@ -271,7 +271,7 @@ describe('Toast', () => {
     const title1 = screen.getByText('Success');
     const toastRoot1 = title1.closest('[data-visible][data-leaving]')!;
     const icon1 = toastRoot1.querySelector('svg')!;
-    expect(icon1).toHaveClass('text-green-500');
+    expect(icon1).toHaveClass('text-success-600');
 
     rerender(
       <Toast
@@ -284,7 +284,7 @@ describe('Toast', () => {
     const title2 = screen.getByText('Error');
     const toastRoot2 = title2.closest('[data-visible][data-leaving]')!;
     const icon2 = toastRoot2.querySelector('svg')!;
-    expect(icon2).toHaveClass('text-red-500');
+    expect(icon2).toHaveClass('text-error-600');
 
     rerender(
       <Toast
@@ -297,7 +297,7 @@ describe('Toast', () => {
     const title3 = screen.getByText('Warning');
     const toastRoot3 = title3.closest('[data-visible][data-leaving]')!;
     const icon3 = toastRoot3.querySelector('svg')!;
-    expect(icon3).toHaveClass('text-yellow-500');
+    expect(icon3).toHaveClass('text-warning-600');
 
     rerender(
       <Toast
@@ -310,7 +310,7 @@ describe('Toast', () => {
     const title4 = screen.getByText('Info');
     const toastRoot4 = title4.closest('[data-visible][data-leaving]')!;
     const icon4 = toastRoot4.querySelector('svg')!;
-    expect(icon4).toHaveClass('text-blue-500');
+    expect(icon4).toHaveClass('text-info-600');
   });
 
   it('applies custom className', () => {

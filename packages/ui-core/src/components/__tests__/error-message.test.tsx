@@ -11,13 +11,13 @@ describe('ErrorMessage', () => {
   it('applies default variant styles', () => {
     render(<ErrorMessage>Error message content</ErrorMessage>);
     const errorMessage = screen.getByText('Error message content');
-    expect(errorMessage).toHaveClass('text-sm', 'text-destructive', 'flex', 'items-center', 'gap-2');
+    expect(errorMessage).toHaveClass('text-sm', 'text-error-600', 'flex', 'items-center', 'gap-2');
   });
 
   it('applies inline variant styles', () => {
     render(<ErrorMessage variant="inline">Inline error</ErrorMessage>);
     const errorMessage = screen.getByText('Inline error');
-    expect(errorMessage).toHaveClass('text-xs', 'text-destructive');
+    expect(errorMessage).toHaveClass('text-sm', 'text-error-600');
   });
 
   it('applies custom className', () => {

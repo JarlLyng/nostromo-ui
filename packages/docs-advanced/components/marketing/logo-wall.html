@@ -8,8 +8,76 @@
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
-    <div class="component-page">
-        <div class="container">
+    <div class="main-layout">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="../../index.html" class="logo">Nostromo UI</a>
+                    <nav class="nav">
+                        <ul class="nav-links">
+                            <li><a href="../../index.html#getting-started" class="nav-link">Getting Started</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                        </ul>
+                        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="../input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="../dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="../badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="../card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="../avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="../tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="../select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="../label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="../helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="../error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="../icon.html" class="sidebar-link">Icon</a></li>
+                        <li><a href="../table.html" class="sidebar-link">Table</a></li>
+                        <li><a href="../toast.html" class="sidebar-link">Toast</a></li>
+                        <li><a href="../tooltip.html" class="sidebar-link">Tooltip</a></li>
+                        <li><a href="../accordion.html" class="sidebar-link">Accordion</a></li>
+                        <li><a href="../skeleton.html" class="sidebar-link">Skeleton</a></li>
+                        <li><a href="../progress.html" class="sidebar-link">Progress</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="pricing.html" class="sidebar-link">Pricing</a></li>
+                        <li><a href="gallery.html" class="sidebar-link">Gallery</a></li>
+                        <li><a href="logo-wall.html" class="sidebar-link active">Logo Wall</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="container">
+                <div class="component-page">
             <div class="component-header">
                 <h1 class="component-title">Logo Wall</h1>
                 <p class="component-description">Client logos with hover effects and responsive layouts.</p>
@@ -21,16 +89,16 @@
                     <div class="demo-container">
                         <div class="logo-wall">
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/120x60" alt="Company 1" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTIwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI2MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIweDYwPC90ZXh0Pjwvc3ZnPg==" alt="Company 1" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/120x60" alt="Company 2" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTIwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI2MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIweDYwPC90ZXh0Pjwvc3ZnPg==" alt="Company 2" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/120x60" alt="Company 3" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTIwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI2MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIweDYwPC90ZXh0Pjwvc3ZnPg==" alt="Company 3" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/120x60" alt="Company 4" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTIwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI2MCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTIweDYwPC90ZXh0Pjwvc3ZnPg==" alt="Company 4" class="logo-image">
                             </div>
                         </div>
                     </div>
@@ -44,32 +112,32 @@
                         <h3>3 Column Grid</h3>
                         <div class="logo-wall logo-wall-3-col">
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                         </div>
                         
                         <h3>5 Column Grid</h3>
                         <div class="logo-wall logo-wall-5-col">
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/80x40" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI0MCIgeT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODB4NDA8L3RleHQ+PC9zdmc+" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/80x40" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI0MCIgeT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODB4NDA8L3RleHQ+PC9zdmc+" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/80x40" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI0MCIgeT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODB4NDA8L3RleHQ+PC9zdmc+" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/80x40" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI0MCIgeT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODB4NDA8L3RleHQ+PC9zdmc+" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/80x40" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI0MCIgeT0iMjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODB4NDA8L3RleHQ+PC9zdmc+" alt="Company" class="logo-image">
                             </div>
                         </div>
                     </div>
@@ -82,13 +150,13 @@
                     <div class="demo-container">
                         <div class="logo-wall-effects">
                             <div class="logo-item logo-hover-scale">
-                                <img src="https://via.placeholder.com/100x50" alt="Scale effect" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Scale effect" class="logo-image">
                             </div>
                             <div class="logo-item logo-hover-lift">
-                                <img src="https://via.placeholder.com/100x50" alt="Lift effect" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Lift effect" class="logo-image">
                             </div>
                             <div class="logo-item logo-hover-glow">
-                                <img src="https://via.placeholder.com/100x50" alt="Glow effect" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Glow effect" class="logo-image">
                             </div>
                         </div>
                     </div>
@@ -101,13 +169,13 @@
                     <div class="demo-container">
                         <div class="logo-wall logo-wall-grayscale">
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                             <div class="logo-item">
-                                <img src="https://via.placeholder.com/100x50" alt="Company" class="logo-image">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMTAwIDUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCIgeT0iMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iIzY2NjY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTAweDUwPC90ZXh0Pjwvc3ZnPg==" alt="Company" class="logo-image">
                             </div>
                         </div>
                     </div>
@@ -173,5 +241,32 @@
             </div>
         </div>
     </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 class="footer-title">Nostromo UI</h3>
+                        <p class="footer-description">A comprehensive UI library built with React, Vue, and Tailwind CSS.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-subtitle">Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="../../index.html#getting-started" class="footer-link">Getting Started</a></li>
+                            <li><a href="https://github.com/jarl.l/nostromo-ui" class="footer-link">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2024 Nostromo UI. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

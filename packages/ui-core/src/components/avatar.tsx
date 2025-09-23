@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full",
+  "relative flex shrink-0 overflow-hidden rounded-full transition-all duration-200 shadow-avatar hover:shadow-avatar-hover",
   {
     variants: {
       size: {
@@ -12,9 +12,17 @@ const avatarVariants = cva(
         lg: "h-12 w-12",
         xl: "h-16 w-16",
       },
+      variant: {
+        default: "shadow-avatar hover:shadow-avatar-hover",
+        elevated: "shadow-lg hover:shadow-xl",
+        outline: "border-2 border-neutral-300 shadow-sm hover:border-brand-500 hover:shadow-avatar",
+        filled: "bg-neutral-100 shadow-sm hover:shadow-avatar",
+        interactive: "shadow-avatar hover:shadow-avatar-hover cursor-pointer hover:scale-105",
+      },
     },
     defaultVariants: {
       size: "default",
+      variant: "default",
     },
   }
 );
@@ -28,7 +36,7 @@ export interface AvatarProps
 }
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, size, src, alt, fallback, children, ...props }, ref) => {
+  ({ className, size, variant, src, alt, fallback, children, ...props }, ref) => {
     const [imageError, setImageError] = React.useState(false);
     
     // Reset image error when src changes
@@ -41,7 +49,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       return (
         <div
           ref={ref}
-          className={cn(avatarVariants({ size }), className)}
+          className={cn(avatarVariants({ size, variant }), className)}
           {...props}
         >
           {children}
@@ -53,7 +61,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     return (
       <div
         ref={ref}
-        className={cn(avatarVariants({ size }), className)}
+        className={cn(avatarVariants({ size, variant }), className)}
         {...props}
       >
         {src && !imageError ? (
@@ -64,7 +72,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium">
+          <div className="flex h-full w-full items-center justify-center rounded-full bg-neutral-100 text-sm font-medium text-neutral-600">
             {fallback}
           </div>
         )}
@@ -93,7 +101,7 @@ const AvatarFallback = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium",
+      "flex h-full w-full items-center justify-center rounded-full bg-neutral-100 text-sm font-medium text-neutral-600",
       className
     )}
     {...props}

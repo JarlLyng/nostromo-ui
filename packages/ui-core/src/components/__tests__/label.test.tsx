@@ -23,7 +23,7 @@ describe('Label', () => {
   it('applies default styles', () => {
     render(<Label>Test Label</Label>);
     const label = screen.getByText('Test Label');
-    expect(label).toHaveClass('text-sm', 'font-medium', 'leading-none');
+    expect(label).toHaveClass('text-sm', 'font-medium', 'text-neutral-900');
   });
 
   it('handles disabled state styles', () => {

@@ -3,18 +3,25 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const helperTextVariants = cva(
-  'text-sm text-muted-foreground',
+  'text-sm transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'text-muted-foreground',
-        error: 'text-destructive',
-        success: 'text-green-600',
-        warning: 'text-yellow-600',
+        default: 'text-neutral-600',
+        error: 'text-error-600',
+        success: 'text-success-600',
+        warning: 'text-warning-600',
+        info: 'text-info-600',
+      },
+      size: {
+        sm: 'text-xs',
+        default: 'text-sm',
+        lg: 'text-base',
       },
     },
     defaultVariants: {
       variant: 'default',
+      size: 'default',
     },
   }
 );
@@ -24,10 +31,10 @@ export interface HelperTextProps
     VariantProps<typeof helperTextVariants> {}
 
 const HelperText = React.forwardRef<HTMLDivElement, HelperTextProps>(
-  ({ className, variant, ...props }, ref) => (
+  ({ className, variant, size, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(helperTextVariants({ variant }), className)}
+      className={cn(helperTextVariants({ variant, size }), className)}
       {...props}
     />
   )

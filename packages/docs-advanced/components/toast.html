@@ -19,15 +19,15 @@
                 <h2>Basic Usage</h2>
                 <div class="component-demo">
                     <div class="demo-container">
-                        <div class="toast toast-success">
-                            <div class="toast-content">
-                                <div class="toast-icon">✓</div>
-                                <div class="toast-message">
-                                    <div class="toast-title">Success!</div>
-                                    <div class="toast-description">Your changes have been saved.</div>
+                        <div class="relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300 border-success-200 bg-success-50 text-success-900 shadow-toast hover:shadow-toast-hover">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0 w-5 h-5 transition-colors duration-200 text-success-600">✓</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-sm font-medium">Success!</div>
+                                    <div class="mt-1 text-sm opacity-90">Your changes have been saved.</div>
                                 </div>
                             </div>
-                            <button class="toast-close" aria-label="Close notification">×</button>
+                            <button class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" aria-label="Close notification">×</button>
                         </div>
                     </div>
                 </div>
@@ -38,42 +38,42 @@
                 <div class="component-demo">
                     <div class="demo-container">
                         <div class="toast-grid">
-                            <div class="toast toast-success">
-                                <div class="toast-content">
-                                    <div class="toast-icon">✓</div>
-                                    <div class="toast-message">
-                                        <div class="toast-title">Success</div>
-                                        <div class="toast-description">Operation completed successfully.</div>
+                            <div class="relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300 border-success-200 bg-success-50 text-success-900 shadow-toast hover:shadow-toast-hover">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0 w-5 h-5 transition-colors duration-200 text-success-600">✓</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-sm font-medium">Success</div>
+                                        <div class="mt-1 text-sm opacity-90">Operation completed successfully.</div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="toast toast-error">
-                                <div class="toast-content">
-                                    <div class="toast-icon">✕</div>
-                                    <div class="toast-message">
-                                        <div class="toast-title">Error</div>
-                                        <div class="toast-description">Something went wrong.</div>
+                            <div class="relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300 border-error-200 bg-error-50 text-error-900 shadow-toast hover:shadow-toast-hover">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0 w-5 h-5 transition-colors duration-200 text-error-600">✕</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-sm font-medium">Error</div>
+                                        <div class="mt-1 text-sm opacity-90">Something went wrong.</div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="toast toast-warning">
-                                <div class="toast-content">
-                                    <div class="toast-icon">⚠</div>
-                                    <div class="toast-message">
-                                        <div class="toast-title">Warning</div>
-                                        <div class="toast-description">Please check your input.</div>
+                            <div class="relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300 border-warning-200 bg-warning-50 text-warning-900 shadow-toast hover:shadow-toast-hover">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0 w-5 h-5 transition-colors duration-200 text-warning-600">⚠</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-sm font-medium">Warning</div>
+                                        <div class="mt-1 text-sm opacity-90">Please check your input.</div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="toast toast-info">
-                                <div class="toast-content">
-                                    <div class="toast-icon">ℹ</div>
-                                    <div class="toast-message">
-                                        <div class="toast-title">Info</div>
-                                        <div class="toast-description">Here's some information.</div>
+                            <div class="relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300 border-info-200 bg-info-50 text-info-900 shadow-toast hover:shadow-toast-hover">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0 w-5 h-5 transition-colors duration-200 text-info-600">ℹ</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="text-sm font-medium">Info</div>
+                                        <div class="mt-1 text-sm opacity-90">Here's some information.</div>
                                     </div>
                                 </div>
                             </div>

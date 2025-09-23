@@ -44,22 +44,30 @@ class NostromoDocs {
 
   // Navigation
   setupNavigation() {
-    // Handle sidebar navigation
+    // Handle sidebar navigation - only for anchor links
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     sidebarLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.navigateToPage(link.getAttribute('href'));
-      });
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.navigateToPage(href);
+        });
+      }
+      // Let normal page navigation work for other links
     });
 
-    // Handle main navigation
+    // Handle main navigation - only for anchor links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.navigateToPage(link.getAttribute('href'));
-      });
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.navigateToPage(href);
+        });
+      }
+      // Let normal page navigation work for other links
     });
 
     // Set active navigation item
