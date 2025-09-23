@@ -32,7 +32,7 @@ describe('Card Components', () => {
         </Card>
       );
       const header = screen.getByText('Header content');
-      expect(header).toHaveClass('flex', 'flex-col', 'space-y-1.5', 'p-6');
+      expect(header).toHaveClass('flex', 'flex-col', 'space-y-1.5', 'p-4', 'sm:p-6');
     });
   });
 
@@ -45,7 +45,7 @@ describe('Card Components', () => {
       );
       const title = screen.getByRole('heading', { level: 3 });
       expect(title).toHaveTextContent('Card Title');
-      expect(title).toHaveClass('text-2xl', 'font-semibold');
+      expect(title).toHaveClass('text-xl', 'sm:text-2xl', 'font-semibold');
     });
   });
 
@@ -69,7 +69,7 @@ describe('Card Components', () => {
         </Card>
       );
       const content = screen.getByText('Card content');
-      expect(content).toHaveClass('p-6', 'pt-0');
+      expect(content).toHaveClass('p-4', 'sm:p-6', 'pt-0');
     });
   });
 
@@ -81,7 +81,7 @@ describe('Card Components', () => {
         </Card>
       );
       const footer = screen.getByText('Footer content');
-      expect(footer).toHaveClass('flex', 'items-center', 'p-6', 'pt-0');
+      expect(footer).toHaveClass('flex', 'items-center', 'p-4', 'sm:p-6', 'pt-0');
     });
   });
 

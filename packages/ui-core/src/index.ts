@@ -31,6 +31,27 @@ export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } fro
 export { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectLabel, SelectItem, SelectSeparator, selectTriggerVariants, selectContentVariants, selectItemVariants } from './components/select';
 export type { SelectProps, SelectGroupProps, SelectValueProps, SelectTriggerProps, SelectContentProps, SelectLabelProps, SelectItemProps, SelectSeparatorProps } from './components/select';
 
+export { Icon, iconNames } from './components/icon';
+export type { IconName, IconProps } from './components/icon';
+
+export { Progress, CircularProgress, progressVariants, progressBarVariants, progressLabelVariants } from './components/progress';
+export type { ProgressProps, CircularProgressProps } from './components/progress';
+
+export { Table, TableHeader, TableBody, TableRow, TableCell, TableHead, tableVariants, tableHeaderVariants, tableCellVariants } from './components/table';
+export type { TableProps, TableColumn, TableHeaderProps, TableBodyProps, TableRowProps, TableCellProps } from './components/table';
+
+export { Toast, ToastProvider, useToastNotification, toastVariants, toastIconVariants } from './components/toast';
+export type { ToastProps, ToastContextType } from './components/toast';
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, tooltipVariants, arrowVariants } from './components/tooltip';
+export type { TooltipProps, TooltipContentProps, TooltipTriggerProps, TooltipProviderProps } from './components/tooltip';
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent, accordionVariants, accordionItemVariants, accordionTriggerVariants, accordionContentVariants, accordionChevronVariants } from './components/accordion';
+export type { AccordionProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from './components/accordion';
+
+export { Skeleton, SkeletonText, SkeletonAvatar, SkeletonButton, SkeletonCard, SkeletonTable, SkeletonList, skeletonVariants } from './components/skeleton';
+export type { SkeletonProps, SkeletonTextProps, SkeletonAvatarProps, SkeletonButtonProps, SkeletonCardProps } from './components/skeleton';
+
 // Error Handling
 export { ErrorBoundary, useErrorHandler } from './components/error-boundary';
 

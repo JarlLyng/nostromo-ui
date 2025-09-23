@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Nostromo UI</div>
+                <nav class="nav">
+                    <ul class="nav-links">
+                        <li><a href="../index.html" class="nav-link">Home</a></li>
+                        <li><a href="../index.html#components" class="nav-link">Components</a></li>
+                        <li><a href="../getting-started/installation.html" class="nav-link">Getting Started</a></li>
+                        <li><a href="https://github.com/jarl.l/nostromo-ui" class="nav-link">GitHub</a></li>
+                    </ul>
+                    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+                </nav>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Search -->
+            <div class="search">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" class="search-input" placeholder="Search components...">
+                <div class="search-results"></div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Getting Started</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../getting-started/installation.html" class="sidebar-link">Installation</a></li>
+                        <li><a href="../getting-started/setup.html" class="sidebar-link">Setup</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Core Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="button.html" class="sidebar-link">Button</a></li>
+                        <li><a href="input.html" class="sidebar-link">Input</a></li>
+                        <li><a href="badge.html" class="sidebar-link">Badge</a></li>
+                        <li><a href="card.html" class="sidebar-link">Card</a></li>
+                        <li><a href="avatar.html" class="sidebar-link">Avatar</a></li>
+                        <li><a href="tabs.html" class="sidebar-link">Tabs</a></li>
+                        <li><a href="select.html" class="sidebar-link">Select</a></li>
+                        <li><a href="dialog.html" class="sidebar-link">Dialog</a></li>
+                        <li><a href="label.html" class="sidebar-link">Label</a></li>
+                        <li><a href="helper-text.html" class="sidebar-link">HelperText</a></li>
+                        <li><a href="error-message.html" class="sidebar-link">ErrorMessage</a></li>
+                        <li><a href="icon.html" class="sidebar-link active">Icon</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Marketing Components</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="marketing/hero.html" class="sidebar-link">Hero</a></li>
+                        <li><a href="marketing/testimonials.html" class="sidebar-link">Testimonials</a></li>
+                        <li><a href="marketing/features.html" class="sidebar-link">Features</a></li>
+                        <li><a href="marketing/pricing.html" class="sidebar-link">Pricing</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1>Icon</h1>
+                    <p class="page-description">
+                        A flexible icon component using Phosphor Icons with multiple sizes, weights, and colors. 
+                        Perfect for adding visual elements to your Nostromo UI components.
+                    </p>
+                </div>
+
+                <!-- Installation -->
+                <section class="section">
+                    <h2>Installation</h2>
+                    <p>The Icon component is part of the core UI package and uses Phosphor Icons internally.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>import { Icon } from '@nostromo/ui-core';</code></pre>
+                    </div>
+                </section>
+
+                <!-- Basic Usage -->
+                <section class="section">
+                    <h2>Basic Usage</h2>
+                    <p>Use the Icon component with any of the available icon names.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;Icon name="heart" /&gt;
+&lt;Icon name="star" /&gt;
+&lt;Icon name="user" /&gt;</code></pre>
+                    </div>
+                </section>
+
+                <!-- Sizes -->
+                <section class="section">
+                    <h2>Sizes</h2>
+                    <p>Icons come in multiple sizes to fit different use cases.</p>
+                    
+                    <div class="component-showcase">
+                        <div class="showcase-item">
+                            <div class="showcase-preview">
+                                <div class="icon-grid">
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">xs</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">sm</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">md</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">lg</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">xl</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">2xl</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">3xl</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-code">
+                                <pre><code>&lt;Icon name="heart" size="xs" /&gt;
+&lt;Icon name="heart" size="sm" /&gt;
+&lt;Icon name="heart" size="md" /&gt;
+&lt;Icon name="heart" size="lg" /&gt;
+&lt;Icon name="heart" size="xl" /&gt;
+&lt;Icon name="heart" size="2xl" /&gt;
+&lt;Icon name="heart" size="3xl" /&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Weights -->
+                <section class="section">
+                    <h2>Weights</h2>
+                    <p>Icons support different weights/styles for visual variety.</p>
+                    
+                    <div class="component-showcase">
+                        <div class="showcase-item">
+                            <div class="showcase-preview">
+                                <div class="icon-grid">
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">thin</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">light</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">regular</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">bold</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">fill</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-code">
+                                <pre><code>&lt;Icon name="heart" weight="thin" /&gt;
+&lt;Icon name="heart" weight="light" /&gt;
+&lt;Icon name="heart" weight="regular" /&gt;
+&lt;Icon name="heart" weight="bold" /&gt;
+&lt;Icon name="heart" weight="fill" /&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Colors -->
+                <section class="section">
+                    <h2>Colors</h2>
+                    <p>Icons support semantic colors that adapt to your theme.</p>
+                    
+                    <div class="component-showcase">
+                        <div class="showcase-item">
+                            <div class="showcase-preview">
+                                <div class="icon-grid">
+                                    <div class="icon-item">
+                                        <div class="icon-preview">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">current</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview" style="color: #3b82f6;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">primary</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview" style="color: #6b7280;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">secondary</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview" style="color: #10b981;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">success</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview" style="color: #f59e0b;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">warning</span>
+                                    </div>
+                                    <div class="icon-item">
+                                        <div class="icon-preview" style="color: #ef4444;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                            </svg>
+                                        </div>
+                                        <span class="icon-label">error</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-code">
+                                <pre><code>&lt;Icon name="heart" color="current" /&gt;
+&lt;Icon name="heart" color="primary" /&gt;
+&lt;Icon name="heart" color="secondary" /&gt;
+&lt;Icon name="heart" color="success" /&gt;
+&lt;Icon name="heart" color="warning" /&gt;
+&lt;Icon name="heart" color="error" /&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Icon Categories -->
+                <section class="section">
+                    <h2>Icon Categories</h2>
+                    <p>Nostromo UI includes a curated selection of icons organized by category.</p>
+                    
+                    <div class="icon-categories">
+                        <div class="icon-category">
+                            <h3>Navigation</h3>
+                            <div class="icon-grid">
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">house</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">user</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">settings</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <path d="M21 21l-4.35-4.35"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">search</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="icon-category">
+                            <h3>Actions</h3>
+                            <div class="icon-grid">
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">plus</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20,6 9,17 4,12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">check</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="3,6 5,6 21,6"></polyline>
+                                            <path d="M19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">trash</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">heart</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="icon-category">
+                            <h3>Nostromo Themed</h3>
+                            <div class="icon-grid">
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                            <path d="M2 17l10 5 10-5"></path>
+                                            <path d="M2 12l10 5 10-5"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">alien</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                            <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">spaceship</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <path d="M12 6v6l4 2"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">atom</span>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-preview">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 12l2 2 4-4"></path>
+                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
+                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
+                                            <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"></path>
+                                            <path d="M12 21c0-1-1-3-3-3s-3 2-3 3 1 3 3 3 3-2 3-3"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="icon-label">flask</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Props API -->
+                <section class="section">
+                    <h2>Props API</h2>
+                    <div class="props-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Prop</th>
+                                    <th>Type</th>
+                                    <th>Default</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>name</code></td>
+                                    <td><code>IconName</code></td>
+                                    <td>-</td>
+                                    <td>The name of the icon to display</td>
+                                </tr>
+                                <tr>
+                                    <td><code>size</code></td>
+                                    <td><code>'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'</code></td>
+                                    <td><code>'md'</code></td>
+                                    <td>The size of the icon</td>
+                                </tr>
+                                <tr>
+                                    <td><code>weight</code></td>
+                                    <td><code>'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone'</code></td>
+                                    <td><code>'regular'</code></td>
+                                    <td>The weight/style of the icon</td>
+                                </tr>
+                                <tr>
+                                    <td><code>color</code></td>
+                                    <td><code>'current' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'muted'</code></td>
+                                    <td><code>'current'</code></td>
+                                    <td>The color of the icon</td>
+                                </tr>
+                                <tr>
+                                    <td><code>className</code></td>
+                                    <td><code>string</code></td>
+                                    <td>-</td>
+                                    <td>Additional CSS classes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Accessibility -->
+                <section class="section">
+                    <h2>Accessibility</h2>
+                    <p>Icons should be used with proper accessibility considerations:</p>
+                    <ul>
+                        <li>Use <code>aria-label</code> for decorative icons that convey meaning</li>
+                        <li>Use <code>aria-hidden="true"</code> for purely decorative icons</li>
+                        <li>Ensure sufficient color contrast for colored icons</li>
+                        <li>Consider using text alongside icons for important actions</li>
+                    </ul>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Decorative icon --&gt;
+&lt;Icon name="heart" aria-hidden="true" /&gt;
+
+&lt;!-- Meaningful icon --&gt;
+&lt;Icon name="search" aria-label="Search" /&gt;
+
+&lt;!-- Icon with text --&gt;
+&lt;button&gt;
+  &lt;Icon name="download" /&gt;
+  Download
+&lt;/button&gt;</code></pre>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nostromo UI Team. Built with ❤️ and inspired by the USCSS Nostromo.</p>
+            <p>Open source project available on <a href="https://github.com/jarl.l/nostromo-ui">GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/storybook-integration.js"></script>
+    <script src="../assets/js/live-components.js"></script>
+    <script src="../assets/js/interactive-playground.js"></script>
+    <script src="../assets/js/component-comparison.js"></script>
+</body>
+</html>

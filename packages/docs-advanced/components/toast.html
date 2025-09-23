@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="component-page">
+        <div class="container">
+            <div class="component-header">
+                <h1 class="component-title">Toast</h1>
+                <p class="component-description">Notification system with auto-dismiss, positioning, and accessibility.</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Basic Usage</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="toast toast-success">
+                            <div class="toast-content">
+                                <div class="toast-icon">✓</div>
+                                <div class="toast-message">
+                                    <div class="toast-title">Success!</div>
+                                    <div class="toast-description">Your changes have been saved.</div>
+                                </div>
+                            </div>
+                            <button class="toast-close" aria-label="Close notification">×</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Variants</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="toast-grid">
+                            <div class="toast toast-success">
+                                <div class="toast-content">
+                                    <div class="toast-icon">✓</div>
+                                    <div class="toast-message">
+                                        <div class="toast-title">Success</div>
+                                        <div class="toast-description">Operation completed successfully.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="toast toast-error">
+                                <div class="toast-content">
+                                    <div class="toast-icon">✕</div>
+                                    <div class="toast-message">
+                                        <div class="toast-title">Error</div>
+                                        <div class="toast-description">Something went wrong.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="toast toast-warning">
+                                <div class="toast-content">
+                                    <div class="toast-icon">⚠</div>
+                                    <div class="toast-message">
+                                        <div class="toast-title">Warning</div>
+                                        <div class="toast-description">Please check your input.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="toast toast-info">
+                                <div class="toast-content">
+                                    <div class="toast-icon">ℹ</div>
+                                    <div class="toast-message">
+                                        <div class="toast-title">Info</div>
+                                        <div class="toast-description">Here's some information.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Positions</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="toast-positions">
+                            <div class="toast toast-success toast-top-left">Top Left</div>
+                            <div class="toast toast-success toast-top-center">Top Center</div>
+                            <div class="toast toast-success toast-top-right">Top Right</div>
+                            <div class="toast toast-success toast-bottom-left">Bottom Left</div>
+                            <div class="toast toast-success toast-bottom-center">Bottom Center</div>
+                            <div class="toast toast-success toast-bottom-right">Bottom Right</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="table-header">Prop</th>
+                                <th class="table-header">Type</th>
+                                <th class="table-header">Default</th>
+                                <th class="table-header">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>variant</code></td>
+                                <td class="table-cell"><code>'default' | 'success' | 'error' | 'warning' | 'info'</code></td>
+                                <td class="table-cell"><code>'default'</code></td>
+                                <td class="table-cell">Toast variant style</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>position</code></td>
+                                <td class="table-cell"><code>'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'</code></td>
+                                <td class="table-cell"><code>'top-right'</code></td>
+                                <td class="table-cell">Toast position</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>duration</code></td>
+                                <td class="table-cell"><code>number</code></td>
+                                <td class="table-cell"><code>5000</code></td>
+                                <td class="table-cell">Auto-dismiss duration in ms</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>title</code></td>
+                                <td class="table-cell"><code>string</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Toast title</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>description</code></td>
+                                <td class="table-cell"><code>string</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Toast description</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>ARIA live regions for screen readers</li>
+                    <li>Keyboard navigation support</li>
+                    <li>Focus management</li>
+                    <li>Proper semantic markup</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

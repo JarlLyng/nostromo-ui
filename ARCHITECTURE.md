@@ -40,8 +40,9 @@ nostromo-ui/
 **Komponenter:**
 - **Primitives**: Button, Input, Label, Form, Select, Checkbox, Radio
 - **Navigation**: Tabs, Dropdown, Popover, Dialog, Sheet
-- **Feedback**: Toast, Alert, Skeleton, Spinner
-- **Data**: Table, Badge, Card, List
+- **Feedback**: Toast, Alert, Skeleton, Spinner, Progress, Tooltip
+- **Data**: Table, Badge, Card, List, Accordion
+- **Layout**: Skeleton, Progress, Accordion
 
 **API:**
 ```tsx
@@ -57,11 +58,9 @@ import { Button } from "@nostromo/ui-core/button"
 - **Hero** (headline, media, CTA)
 - **Features** (grid med ikoner + tekst)
 - **Testimonials/Quotes**
-- **Image Gallery**
+- **Gallery** (image grid med lightbox)
 - **Pricing Table**
-- **Logo Wall**
-- **FAQ Section**
-- **CTA/Signup Block**
+- **Logo Wall** (client logos med hover effects)
 
 **API:**
 ```tsx
@@ -76,7 +75,7 @@ import { Hero } from "@nostromo/ui-marketing/hero"
 **Indhold:**
 - Tailwind preset med Nostromo tokens
 - Base CSS med reset og utility classes
-- Prædefinerede temaer (Nostromo, Mother, LV-426, Sulaco)
+- Prædefinerede temaer (Nostromo, Mother, LV-426, Sulaco) - 4 komplette themes
 - CSS variabel system for custom theming
 
 **API:**

@@ -82,9 +82,9 @@ packages/docs-advanced/
 
 1. **TypeDoc fejl**:
    ```bash
-   # Check TypeDoc konfiguration
-   cd packages/docs-docusaurus
-   npx typedoc --help
+   # Check dokumentationssite
+   cd packages/docs-advanced
+   python3 -m http.server 3000
    ```
 
 2. **Broken links**:
@@ -145,8 +145,8 @@ packages/docs-advanced/
 ### **Content Updates**
 
 1. **Tilføj ny komponent**:
-   - Opret dokumentation i `packages/docs-docusaurus/docs/components/`
-   - Opdater `sidebars.ts`
+   - Opret dokumentation i `packages/docs-advanced/components/`
+   - Opdater navigation i HTML filer
    - Test lokalt
 
 2. **Opdater API dokumentation**:
@@ -165,8 +165,8 @@ Hvis deployment fejler:
 
 2. **Manuel deployment**:
    ```bash
-   cd packages/docs-docusaurus
-   pnpm deploy
+   cd packages/docs-advanced
+   python3 -m http.server 3000
    ```
 
 ## 📞 Support

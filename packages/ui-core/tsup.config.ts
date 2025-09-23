@@ -16,6 +16,13 @@ export default defineConfig({
     'src/components/label.tsx',
     'src/components/helper-text.tsx',
     'src/components/error-message.tsx',
+    'src/components/icon.tsx',
+    'src/components/progress.tsx',
+    'src/components/table.tsx',
+    'src/components/toast.tsx',
+    'src/components/tooltip.tsx',
+    'src/components/accordion.tsx',
+    'src/components/skeleton.tsx',
     // Performance utilities
     'src/lib/lazy.tsx',
     'src/lib/performance.ts',

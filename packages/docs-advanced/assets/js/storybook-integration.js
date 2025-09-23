@@ -260,8 +260,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Add CSS for Storybook integration
-const style = document.createElement('style');
-style.textContent = `
+const storybookStyle = document.createElement('style');
+storybookStyle.textContent = `
   .storybook-integration {
     margin: 2rem 0;
   }
@@ -396,4 +396,4 @@ style.textContent = `
     }
   }
 `;
-document.head.appendChild(style);
+document.head.appendChild(storybookStyle);

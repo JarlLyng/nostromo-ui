@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="component-page">
+        <div class="container">
+            <div class="component-header">
+                <h1 class="component-title">Accordion</h1>
+                <p class="component-description">Collapsible sections with keyboard navigation and accessibility.</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Basic Usage</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="accordion">
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="true" aria-controls="accordion-content-1">
+                                    <span class="accordion-title">Section 1</span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content" id="accordion-content-1" aria-labelledby="accordion-trigger-1">
+                                    <div class="accordion-content-inner">
+                                        This is the content of section 1. It can contain any HTML content.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-content-2">
+                                    <span class="accordion-title">Section 2</span>
+                                    <span class="accordion-icon">▶</span>
+                                </button>
+                                <div class="accordion-content accordion-content-closed" id="accordion-content-2" aria-labelledby="accordion-trigger-2">
+                                    <div class="accordion-content-inner">
+                                        This is the content of section 2. It can contain any HTML content.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-content-3">
+                                    <span class="accordion-title">Section 3</span>
+                                    <span class="accordion-icon">▶</span>
+                                </button>
+                                <div class="accordion-content accordion-content-closed" id="accordion-content-3" aria-labelledby="accordion-trigger-3">
+                                    <div class="accordion-content-inner">
+                                        This is the content of section 3. It can contain any HTML content.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Variants</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <h3>Bordered Accordion</h3>
+                        <div class="accordion accordion-bordered">
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" aria-expanded="true">
+                                    <span class="accordion-title">Bordered Item 1</span>
+                                    <span class="accordion-icon">▼</span>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-content-inner">
+                                        Content with border styling.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="table-header">Prop</th>
+                                <th class="table-header">Type</th>
+                                <th class="table-header">Default</th>
+                                <th class="table-header">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>type</code></td>
+                                <td class="table-cell"><code>'single' | 'multiple'</code></td>
+                                <td class="table-cell"><code>'single'</code></td>
+                                <td class="table-cell">Accordion type</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>defaultValue</code></td>
+                                <td class="table-cell"><code>string | string[]</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Default open items</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>value</code></td>
+                                <td class="table-cell"><code>string | string[]</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Controlled open items</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>onValueChange</code></td>
+                                <td class="table-cell"><code>(value: string | string[]) => void</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Value change handler</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>disabled</code></td>
+                                <td class="table-cell"><code>boolean</code></td>
+                                <td class="table-cell"><code>false</code></td>
+                                <td class="table-cell">Disable accordion</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>ARIA attributes for screen readers</li>
+                    <li>Keyboard navigation (Arrow keys, Home, End)</li>
+                    <li>Focus management</li>
+                    <li>Proper semantic markup</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

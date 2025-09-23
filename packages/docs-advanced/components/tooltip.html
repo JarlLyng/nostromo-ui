@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltip Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="component-page">
+        <div class="container">
+            <div class="component-header">
+                <h1 class="component-title">Tooltip</h1>
+                <p class="component-description">Contextual information with positioning, triggers, and accessibility.</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Basic Usage</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="tooltip-demo">
+                            <button class="btn btn-primary tooltip-trigger">
+                                Hover me
+                                <div class="tooltip tooltip-top">
+                                    <div class="tooltip-content">
+                                        This is a tooltip
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Positions</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="tooltip-positions">
+                            <button class="btn btn-primary tooltip-trigger">
+                                Top
+                                <div class="tooltip tooltip-top">
+                                    <div class="tooltip-content">Top tooltip</div>
+                                </div>
+                            </button>
+                            
+                            <button class="btn btn-primary tooltip-trigger">
+                                Right
+                                <div class="tooltip tooltip-right">
+                                    <div class="tooltip-content">Right tooltip</div>
+                                </div>
+                            </button>
+                            
+                            <button class="btn btn-primary tooltip-trigger">
+                                Bottom
+                                <div class="tooltip tooltip-bottom">
+                                    <div class="tooltip-content">Bottom tooltip</div>
+                                </div>
+                            </button>
+                            
+                            <button class="btn btn-primary tooltip-trigger">
+                                Left
+                                <div class="tooltip tooltip-left">
+                                    <div class="tooltip-content">Left tooltip</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Triggers</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="tooltip-triggers">
+                            <button class="btn btn-primary tooltip-trigger">
+                                Hover
+                                <div class="tooltip tooltip-top">
+                                    <div class="tooltip-content">Hover trigger</div>
+                                </div>
+                            </button>
+                            
+                            <button class="btn btn-primary tooltip-trigger">
+                                Click
+                                <div class="tooltip tooltip-top">
+                                    <div class="tooltip-content">Click trigger</div>
+                                </div>
+                            </button>
+                            
+                            <button class="btn btn-primary tooltip-trigger">
+                                Focus
+                                <div class="tooltip tooltip-top">
+                                    <div class="tooltip-content">Focus trigger</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="table-header">Prop</th>
+                                <th class="table-header">Type</th>
+                                <th class="table-header">Default</th>
+                                <th class="table-header">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>content</code></td>
+                                <td class="table-cell"><code>string</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Tooltip content</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>position</code></td>
+                                <td class="table-cell"><code>'top' | 'right' | 'bottom' | 'left'</code></td>
+                                <td class="table-cell"><code>'top'</code></td>
+                                <td class="table-cell">Tooltip position</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>trigger</code></td>
+                                <td class="table-cell"><code>'hover' | 'click' | 'focus'</code></td>
+                                <td class="table-cell"><code>'hover'</code></td>
+                                <td class="table-cell">Trigger event</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>delay</code></td>
+                                <td class="table-cell"><code>number</code></td>
+                                <td class="table-cell"><code>0</code></td>
+                                <td class="table-cell">Show delay in ms</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>disabled</code></td>
+                                <td class="table-cell"><code>boolean</code></td>
+                                <td class="table-cell"><code>false</code></td>
+                                <td class="table-cell">Disable tooltip</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>ARIA attributes for screen readers</li>
+                    <li>Keyboard navigation support</li>
+                    <li>Focus management</li>
+                    <li>Proper semantic markup</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

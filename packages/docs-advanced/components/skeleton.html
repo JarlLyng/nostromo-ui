@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skeleton Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="component-page">
+        <div class="container">
+            <div class="component-header">
+                <h1 class="component-title">Skeleton</h1>
+                <p class="component-description">Loading states with animations and specialized components.</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Basic Usage</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="skeleton-demo">
+                            <div class="skeleton skeleton-text">Loading content...</div>
+                            <div class="skeleton skeleton-rectangle" style="width: 200px; height: 100px;"></div>
+                            <div class="skeleton skeleton-circle" style="width: 50px; height: 50px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Variants</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="skeleton-variants">
+                            <div class="skeleton skeleton-text skeleton-sm">Small text</div>
+                            <div class="skeleton skeleton-text skeleton-md">Medium text</div>
+                            <div class="skeleton skeleton-text skeleton-lg">Large text</div>
+                            
+                            <div class="skeleton skeleton-rectangle skeleton-sm" style="width: 100px; height: 20px;"></div>
+                            <div class="skeleton skeleton-rectangle skeleton-md" style="width: 150px; height: 30px;"></div>
+                            <div class="skeleton skeleton-rectangle skeleton-lg" style="width: 200px; height: 40px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Specialized Components</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="skeleton-specialized">
+                            <div class="skeleton-card">
+                                <div class="skeleton skeleton-circle" style="width: 40px; height: 40px;"></div>
+                                <div class="skeleton-content">
+                                    <div class="skeleton skeleton-text skeleton-sm"></div>
+                                    <div class="skeleton skeleton-text skeleton-md"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skeleton-table">
+                                <div class="skeleton skeleton-text skeleton-sm"></div>
+                                <div class="skeleton skeleton-text skeleton-sm"></div>
+                                <div class="skeleton skeleton-text skeleton-sm"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="table-header">Prop</th>
+                                <th class="table-header">Type</th>
+                                <th class="table-header">Default</th>
+                                <th class="table-header">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>variant</code></td>
+                                <td class="table-cell"><code>'text' | 'rectangle' | 'circle'</code></td>
+                                <td class="table-cell"><code>'text'</code></td>
+                                <td class="table-cell">Skeleton variant</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>size</code></td>
+                                <td class="table-cell"><code>'sm' | 'md' | 'lg'</code></td>
+                                <td class="table-cell"><code>'md'</code></td>
+                                <td class="table-cell">Skeleton size</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>animated</code></td>
+                                <td class="table-cell"><code>boolean</code></td>
+                                <td class="table-cell"><code>true</code></td>
+                                <td class="table-cell">Enable animation</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>className</code></td>
+                                <td class="table-cell"><code>string</code></td>
+                                <td class="table-cell"><code>undefined</code></td>
+                                <td class="table-cell">Custom CSS class</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>ARIA live regions for screen readers</li>
+                    <li>Proper semantic markup</li>
+                    <li>Loading state indicators</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

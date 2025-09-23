@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Component - Nostromo UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="component-page">
+        <div class="container">
+            <div class="component-header">
+                <h1 class="component-title">Table</h1>
+                <p class="component-description">Data tables with sortable columns, pagination, and responsive design.</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Basic Usage</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <div class="table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="table-header">Name</th>
+                                        <th class="table-header">Email</th>
+                                        <th class="table-header">Role</th>
+                                        <th class="table-header">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-row">
+                                        <td class="table-cell">John Doe</td>
+                                        <td class="table-cell">john@example.com</td>
+                                        <td class="table-cell">Admin</td>
+                                        <td class="table-cell">
+                                            <span class="badge badge-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="table-cell">Jane Smith</td>
+                                        <td class="table-cell">jane@example.com</td>
+                                        <td class="table-cell">User</td>
+                                        <td class="table-cell">
+                                            <span class="badge badge-warning">Pending</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Variants</h2>
+                <div class="component-demo">
+                    <div class="demo-container">
+                        <h3>Striped Table</h3>
+                        <div class="table-container">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="table-header">Product</th>
+                                        <th class="table-header">Price</th>
+                                        <th class="table-header">Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-row">
+                                        <td class="table-cell">Widget A</td>
+                                        <td class="table-cell">$29.99</td>
+                                        <td class="table-cell">In Stock</td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td class="table-cell">Widget B</td>
+                                        <td class="table-cell">$39.99</td>
+                                        <td class="table-cell">Out of Stock</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Props</h2>
+                <div class="props-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="table-header">Prop</th>
+                                <th class="table-header">Type</th>
+                                <th class="table-header">Default</th>
+                                <th class="table-header">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>variant</code></td>
+                                <td class="table-cell"><code>'default' | 'striped' | 'bordered' | 'hover'</code></td>
+                                <td class="table-cell"><code>'default'</code></td>
+                                <td class="table-cell">Table variant style</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>size</code></td>
+                                <td class="table-cell"><code>'sm' | 'md' | 'lg'</code></td>
+                                <td class="table-cell"><code>'md'</code></td>
+                                <td class="table-cell">Table size</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>sortable</code></td>
+                                <td class="table-cell"><code>boolean</code></td>
+                                <td class="table-cell"><code>false</code></td>
+                                <td class="table-cell">Enable column sorting</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell"><code>pagination</code></td>
+                                <td class="table-cell"><code>boolean</code></td>
+                                <td class="table-cell"><code>false</code></td>
+                                <td class="table-cell">Enable pagination</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Accessibility</h2>
+                <ul>
+                    <li>Proper table structure with <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code></li>
+                    <li>Column headers with <code>role="columnheader"</code></li>
+                    <li>Keyboard navigation support</li>
+                    <li>Screen reader friendly</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

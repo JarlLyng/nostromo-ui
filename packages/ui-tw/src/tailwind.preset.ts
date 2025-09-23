@@ -165,7 +165,7 @@ export const nostromoPreset: Partial<Config> = {
   },
   // Add custom utilities
   plugins: [
-    function({ addUtilities }: any) {
+    function({ addUtilities }: { addUtilities: (utilities: Record<string, Record<string, string>>) => void }) {
       const newUtilities = {
         '.text-brand': {
           color: 'hsl(var(--color-brand-500))',

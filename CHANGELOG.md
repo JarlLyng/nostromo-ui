@@ -8,19 +8,31 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
-- Avanceret HTML-baseret dokumentationssite implementeret
-- GitHub Pages deployment setup
-- Automatic API documentation generation
-- New deployment documentation
+- Table Component med sortable columns, pagination, responsive design og accessibility
+- Toast Component med auto-dismiss, positioning, variants og accessibility
+- Tooltip Component med positioning, triggers og accessibility
+- Accordion Component med collapsible sections, keyboard navigation og accessibility
+- Skeleton Component med loading states, animations og accessibility
+- Gallery Component med image grid, lightbox functionality, responsive design og accessibility
+- Logo Wall Component med client logos, hover effects, responsive grid og accessibility
+- Mother Theme med cold, clinical AI aesthetic, dashboard-focused design og dark mode support
+- LV-426 Theme med warm, rusty atmosphere, marketing-focused design og gradient effects
+- Sulaco Theme med modern, military-inspired aesthetic, professional design og status indicators
+- Responsive design implementation (sm:, md:, lg: breakpoints)
+- Accessibility improvements (Table accessibility, ARIA attributes)
+- Accordion component tests (ARIA attributes og state management problemer)
 
 ### Changed
-- Migrated from Docusaurus to avanceret HTML-baseret dokumentationssite
-- Updated all documentation references
-- Improved navigation and user experience
+- Updated all components with responsive design breakpoints
+- Improved accessibility across all components
+- Enhanced ARIA attributes for better screen reader support
+- Updated test coverage and accessibility testing
 
-### Removed
-- Old Next.js documentation site
-- Vue.js support and references
+### Fixed
+- Table accessibility issues (columnheader role, pagination buttons)
+- Accordion state management and ARIA attributes
+- Responsive design tests updated for new CSS classes
+- Jest to Vitest migration in test files
 
 ### Added (Previous)
 - Initial project setup

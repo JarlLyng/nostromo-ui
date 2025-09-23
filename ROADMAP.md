@@ -20,7 +20,7 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 **Current Phase**: Foundation Setup  
 **Next Milestone**: MVP 0.1.0  
 **Last Updated**: December 2024  
-**Progress**: 90% of MVP completed
+**Progress**: 95% of MVP completed
 
 ### ✅ **Completed: Documentation Solution**
 - **Status**: ✅ **COMPLETED**
@@ -62,9 +62,20 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 - [x] Tabs Component
 - [x] Select/Dropdown Component
 - [x] Documentation site optimization and MDX issue resolution
+- [x] Progress Component (loading states, variants, accessibility)
+- [x] Table Component (sortable columns, pagination, responsive design, accessibility)
+- [x] Toast Component (auto-dismiss, positioning, variants, accessibility)
+- [x] Tooltip Component (positioning, triggers, accessibility)
+- [x] Accordion Component (collapsible sections, keyboard navigation, accessibility)
+- [x] Skeleton Component (loading states, animations, accessibility)
+- [x] Responsive design implementation (sm:, md:, lg: breakpoints)
+- [x] Accessibility improvements (Table accessibility, ARIA attributes)
+- [x] Accordion component tests (ARIA attributes og state management problemer)
 
 ### 🚧 In Progress
+- [ ] Tooltip component tests (timing problemer)
 - [ ] Marketing components development
+- [ ] Accessibility improvements (få alle 96 tests til at passere)
 
 ### 📋 Next Up
 - [ ] Search functionality for documentation site
@@ -241,11 +252,41 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
   - [x] Tests and stories
 
 ### Data Components
-- [ ] **Table Component**
-  - [ ] Sortable columns
-  - [ ] Pagination
-  - [ ] Responsive design
-  - [ ] Accessibility features
+- [x] **Table Component**
+  - [x] Sortable columns
+  - [x] Pagination
+  - [x] Responsive design
+  - [x] Accessibility features
+
+- [x] **Progress Component**
+  - [x] Loading states
+  - [x] Variants (default, success, warning, error)
+  - [x] Size variants (sm, md, lg)
+  - [x] Accessibility features
+
+- [x] **Toast Component**
+  - [x] Auto-dismiss functionality
+  - [x] Positioning system
+  - [x] Variants (default, success, warning, error)
+  - [x] Accessibility features
+
+- [x] **Tooltip Component**
+  - [x] Positioning system
+  - [x] Multiple triggers (hover, click, focus)
+  - [x] Variants and sizes
+  - [x] Accessibility features
+
+- [x] **Accordion Component**
+  - [x] Collapsible sections
+  - [x] Keyboard navigation
+  - [x] Single/multiple selection
+  - [x] Accessibility features
+
+- [x] **Skeleton Component**
+  - [x] Loading states
+  - [x] Animations (pulse, wave, none)
+  - [x] Specialized components (Text, Avatar, Button, Card, Table, List)
+  - [x] Accessibility features
 
 - [ ] **Badge Component**
   - [ ] Variant system
@@ -322,36 +363,49 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
   - [x] Accessibility features
 
 ### Advanced Marketing Components
-- [ ] **Gallery Component**
-  - [ ] Image grid
-  - [ ] Lightbox functionality
-  - [ ] Responsive design
-  - [ ] Accessibility features
+- [x] **Gallery Component**
+  - [x] Image grid with responsive columns
+  - [x] Lightbox functionality with navigation
+  - [x] Responsive design (sm:, md:, lg: breakpoints)
+  - [x] Accessibility features (keyboard navigation, ARIA labels)
+  - [x] Hover effects and animations
+  - [x] Image metadata support (title, description)
 
-- [ ] **Logo Wall Component**
-  - [ ] Client logos
-  - [ ] Responsive grid
-  - [ ] Animation support
-  - [ ] Accessibility features
+- [x] **Logo Wall Component**
+  - [x] Client logos with responsive grid
+  - [x] Hover effects and animations
+  - [x] Accessibility features (ARIA labels, keyboard navigation)
+  - [x] Clickable logos with external links
+  - [x] Grayscale filter with hover effects
+  - [x] Flexible sizing and spacing options
 
 ### Additional Themes
-- [ ] **Mother Theme**
-  - [ ] Cold, clinical aesthetic
-  - [ ] Dashboard-focused
-  - [ ] Color palette
-  - [ ] Typography
+- [x] **Mother Theme**
+  - [x] Cold, clinical aesthetic with AI-inspired design
+  - [x] Dashboard-focused with clean, minimal interface
+  - [x] Color palette: Cold blue/cyan primary, clinical whites
+  - [x] Typography: Inter font family with clean, readable styles
+  - [x] Dark mode support with clinical dark theme
+  - [x] Component overrides for buttons, cards, inputs
+  - [x] Custom animations and transitions
 
-- [ ] **LV-426 Theme**
-  - [ ] Warm, rusty atmosphere
-  - [ ] Marketing-focused
-  - [ ] Color palette
-  - [ ] Typography
+- [x] **LV-426 Theme**
+  - [x] Warm, rusty atmosphere with earthy tones
+  - [x] Marketing-focused with warm, inviting design
+  - [x] Color palette: Warm orange/rust primary, earth tones
+  - [x] Typography: Inter font family with warm, approachable styles
+  - [x] Dark mode support with warm dark theme
+  - [x] Component overrides with gradient effects
+  - [x] Special effects: gradient buttons, elevated cards, text effects
 
-- [ ] **Sulaco Theme**
-  - [ ] Modern, military-inspired
-  - [ ] Professional look
-  - [ ] Color palette
-  - [ ] Typography
+- [x] **Sulaco Theme**
+  - [x] Modern, military-inspired aesthetic from USS Sulaco
+  - [x] Professional look with military blue/gray colors
+  - [x] Color palette: Military blue/gray primary, steel tones
+  - [x] Typography: Inter font family with professional styling
+  - [x] Dark mode support with military dark theme
+  - [x] Component overrides with military styling
+  - [x] Special effects: military buttons, status indicators, command grids
 
 ### Advanced Theming
 - [ ] **Theme Builder**
