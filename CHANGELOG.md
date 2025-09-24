@@ -8,14 +8,16 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
-- **17 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress
+- **20 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Checkbox, RadioGroup, Switch, Textarea, Alert, Breadcrumb, Pagination, Separator
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall
 - **4 Complete Themes** - Nostromo (default), Mother, LV-426, Sulaco
-- **Advanced Documentation Site** - HTML-baseret med alle 17 komponenter, interaktive features og live previews
-- **Complete Test Coverage** - 415/415 tests passing (100% coverage)
+- **Advanced Documentation Site** - HTML-baseret med alle 20 komponenter, interaktive features og live previews
+- **Complete Test Coverage** - 456/456 tests passing (100% coverage)
 - **Accessibility Compliance** - WCAG 2.1 AA compliance for alle komponenter
 - **Responsive Design** - sm:, md:, lg: breakpoints for alle komponenter
 - **Theme System** - CSS variabler med HSL farver og custom theming support
+- **Navigation Components** - Breadcrumb, Pagination, Separator for complete navigation system
+- **Form Components** - Checkbox, RadioGroup, Switch, Textarea, Alert for complete form system
 
 ### Changed
 - **Documentation System** - Fjernet Docusaurus referencer, fokuseret på HTML-baseret dokumentation

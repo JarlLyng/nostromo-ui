@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -122,10 +123,6 @@
                     
             
                     
-            
-                    
-            
-                    
       <!-- Page Header -->
       <div class="mb-8">
         <h1>Toast</h1>
@@ -137,6 +134,18 @@
         <h2>Installation</h2>
         <div class="code-block">
           <pre><code>import { Toast, ToastProvider, useToast } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
+
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Toast" data-props='{"title":"Success!","description":"Your action was completed successfully.","variant":"success","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
         </div>
       </section>
 
@@ -172,27 +181,32 @@ function MyComponent() {
   )
 }</code></pre>
         </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Toast" data-props='{"title":"Basic Toast","description":"This is a basic toast notification.","variant":"default","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Variants -->
       <section class="mb-8">
         <h2>Variants</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-4 border rounded-lg">
-            <h3 class="font-semibold mb-2">Success</h3>
-            <p class="text-sm text-gray-600">Green toast for successful actions</p>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Toast" data-props='{"title":"Success Toast","description":"Your action was completed successfully.","variant":"success","size":"md"}'>
+            <!-- Live component will be rendered here -->
           </div>
-          <div class="p-4 border rounded-lg">
-            <h3 class="font-semibold mb-2">Error</h3>
-            <p class="text-sm text-gray-600">Red toast for errors and failures</p>
+          <div class="live-component" data-component="Toast" data-props='{"title":"Error Toast","description":"Something went wrong. Please try again.","variant":"error","size":"md"}'>
+            <!-- Live component will be rendered here -->
           </div>
-          <div class="p-4 border rounded-lg">
-            <h3 class="font-semibold mb-2">Warning</h3>
-            <p class="text-sm text-gray-600">Yellow toast for warnings</p>
+          <div class="live-component" data-component="Toast" data-props='{"title":"Warning Toast","description":"Please review your settings before proceeding.","variant":"warning","size":"md"}'>
+            <!-- Live component will be rendered here -->
           </div>
-          <div class="p-4 border rounded-lg">
-            <h3 class="font-semibold mb-2">Info</h3>
-            <p class="text-sm text-gray-600">Blue toast for information</p>
+          <div class="live-component" data-component="Toast" data-props='{"title":"Info Toast","description":"Here is some important information for you.","variant":"info","size":"md"}'>
+            <!-- Live component will be rendered here -->
           </div>
         </div>
       </section>
@@ -254,12 +268,6 @@ function MyComponent() {
         </div>
       </section>
     
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
                 </div>
             </div>
         
@@ -346,6 +354,51 @@ function MyComponent() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

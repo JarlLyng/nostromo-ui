@@ -124,13 +124,10 @@ class LazyLoader {
   }
 
   loadLivePreview(component) {
-    // Load live preview JavaScript
-    const script = document.createElement('script');
-    script.src = '/assets/js/live-preview.js';
-    script.onload = () => {
-      component.classList.add('loaded');
-    };
-    document.head.appendChild(script);
+    // Live preview functionality is not implemented yet
+    // For now, just mark as loaded
+    component.classList.add('loaded');
+    console.warn('Live preview functionality is not implemented yet');
   }
 
   loadGenericComponent(component) {

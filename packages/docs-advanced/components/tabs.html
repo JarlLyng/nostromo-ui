@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,251 +129,81 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Tabs</h1>
-                <p>Tab navigation components with keyboard support and accessibility. Perfect for organizing content into sections.</p>
-            </div>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Tabs</h1>
+        <p>Navigation tabs with content switching and multiple variants.</p>
+      </div>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Overview","content":"This is the overview tab content."},{"id":"tab2","label":"Details","content":"This is the details tab content."},{"id":"tab3","label":"Settings","content":"This is the settings tab content."}],"activeTab":"tab1","variant":"default","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Tabs component provides organized navigation between different content sections.</p>
-                
-                <div class="code-block">
-<pre><code>import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core'
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Tabs } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-export default function BasicTabs() {
-  return (
-    &lt;Tabs defaultValue="overview"&gt;
-      &lt;TabsList&gt;
-        &lt;TabsTrigger value="overview"&gt;Overview&lt;/TabsTrigger&gt;
-        &lt;TabsTrigger value="settings"&gt;Settings&lt;/TabsTrigger&gt;
-        &lt;TabsTrigger value="billing"&gt;Billing&lt;/TabsTrigger&gt;
-      &lt;/TabsList&gt;
-      &lt;TabsContent value="overview"&gt;
-        &lt;p&gt;Overview content goes here.&lt;/p&gt;
-      &lt;/TabsContent&gt;
-      &lt;TabsContent value="settings"&gt;
-        &lt;p&gt;Settings content goes here.&lt;/p&gt;
-      &lt;/TabsContent&gt;
-      &lt;TabsContent value="billing"&gt;
-        &lt;p&gt;Billing content goes here.&lt;/p&gt;
-      &lt;/TabsContent&gt;
-    &lt;/Tabs&gt;
-  )
-}</code></pre>
-                </div>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Tabs tabs={tabs} activeTab="tab1" /&gt;</code></pre>
+        </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Home","content":"Welcome to the home tab."},{"id":"tab2","label":"About","content":"Learn more about us."}],"activeTab":"tab1","variant":"default","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div class="live-preview">
-                    <div class="tabs-container">
-                        <div class="tabs-list">
-                            <button class="tab-trigger active">Overview</button>
-                            <button class="tab-trigger">Settings</button>
-                            <button class="tab-trigger">Billing</button>
-                        </div>
-                        <div class="tab-content">
-                            <p>Overview content goes here.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Default","content":"This is a default tab style."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"default","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Pills","content":"This is a pills tab style."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"pills","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Underline","content":"This is an underline tab style."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"underline","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
 
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Tabs component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Tabs Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core'
-
-export default function UserProfileTabs() {
-  return (
-    &lt;Tabs defaultValue="profile" className="w-full"&gt;
-      &lt;TabsList className="grid w-full grid-cols-3"&gt;
-        &lt;TabsTrigger value="profile"&gt;Profile&lt;/TabsTrigger&gt;
-        &lt;TabsTrigger value="account"&gt;Account&lt;/TabsTrigger&gt;
-        &lt;TabsTrigger value="notifications"&gt;Notifications&lt;/TabsTrigger&gt;
-      &lt;/TabsList&gt;
-      &lt;TabsContent value="profile" className="mt-6"&gt;
-        &lt;div className="space-y-4"&gt;
-          &lt;h3 className="text-lg font-semibold"&gt;Profile Information&lt;/h3&gt;
-          &lt;p className="text-gray-600"&gt;Manage your personal information and preferences.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/TabsContent&gt;
-      &lt;TabsContent value="account" className="mt-6"&gt;
-        &lt;div className="space-y-4"&gt;
-          &lt;h3 className="text-lg font-semibold"&gt;Account Settings&lt;/h3&gt;
-          &lt;p className="text-gray-600"&gt;Update your account settings and security preferences.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/TabsContent&gt;
-      &lt;TabsContent value="notifications" className="mt-6"&gt;
-        &lt;div className="space-y-4"&gt;
-          &lt;h3 className="text-lg font-semibold"&gt;Notification Preferences&lt;/h3&gt;
-          &lt;p className="text-gray-600"&gt;Configure how you receive notifications.&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/TabsContent&gt;
-    &lt;/Tabs&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <div class="tabs-container w-full">
-                        <div class="tabs-list grid grid-cols-3 w-full">
-                            <button class="tab-trigger active">Profile</button>
-                            <button class="tab-trigger">Account</button>
-                            <button class="tab-trigger">Notifications</button>
-                        </div>
-                        <div class="tab-content mt-6">
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold">Profile Information</h3>
-                                <p class="text-gray-600">Manage your personal information and preferences.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Tabs component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>defaultValue</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Default active tab value</td>
-                        </tr>
-                        <tr>
-                            <td><code>value</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Controlled active tab value</td>
-                        </tr>
-                        <tr>
-                            <td><code>onValueChange</code></td>
-                            <td><code>(value: string) =&gt; void</code></td>
-                            <td><code>-</code></td>
-                            <td>Callback when tab value changes</td>
-                        </tr>
-                        <tr>
-                            <td><code>orientation</code></td>
-                            <td><code>'horizontal' | 'vertical'</code></td>
-                            <td><code>'horizontal'</code></td>
-                            <td>Tab orientation</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Small","content":"This is a small tab."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"default","size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Medium","content":"This is a medium tab."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"default","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Tabs" data-props='{"tabs":[{"id":"tab1","label":"Large","content":"This is a large tab."},{"id":"tab2","label":"Tab 2","content":"Content for tab 2."}],"activeTab":"tab1","variant":"default","size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -468,6 +299,51 @@ export default function UserProfileTabs() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

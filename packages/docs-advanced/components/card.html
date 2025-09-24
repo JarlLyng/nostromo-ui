@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,269 +129,119 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Card</h1>
-                <p>Flexible container components for content organization. Perfect for displaying information, forms, and interactive elements.</p>
-            </div>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Card</h1>
+        <p>Flexible content containers with multiple variants and layouts.</p>
+      </div>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Card" data-props='{"title":"Card Title", "content":"This is a basic card with some content.", "variant":"default", "size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Card component provides a flexible container for organizing content.</p>
-                
-                <div class="code-block">
-<pre><code>import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Card } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-export default function BasicCard() {
-  return (
-    &lt;Card&gt;
-      &lt;CardHeader&gt;
-        &lt;CardTitle&gt;Card Title&lt;/CardTitle&gt;
-        &lt;CardDescription&gt;Card description goes here&lt;/CardDescription&gt;
-      &lt;/CardHeader&gt;
-      &lt;CardContent&gt;
-        &lt;p&gt;This is the card content area.&lt;/p&gt;
-      &lt;/CardContent&gt;
-    &lt;/Card&gt;
-  )
-}</code></pre>
-                </div>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Card&gt;Content here&lt;/Card&gt;</code></pre>
+        </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Card" data-props='{"title":"Basic Card", "content":"This is a basic card with some content.", "variant":"default", "size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div class="live-preview">
-                    <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-card hover:shadow-card-hover border-neutral-200 hover:border-neutral-300">
-                        <div class="p-4 sm:p-6 border-b border-neutral-200">
-                            <h3 class="text-lg font-semibold">Card Title</h3>
-                            <p class="text-gray-600 mt-1">Card description goes here</p>
-                        </div>
-                        <div class="p-4 sm:p-6">
-                            <p>This is the card content area.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Default Card -->
+          <div class="component-example">
+            <h3>Default</h3>
+            <div class="live-component" data-component="Card" data-props='{"title":"Default Card", "content":"This is a default card with subtle shadow.", "variant":"default", "size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+          
+          <!-- Elevated Card -->
+          <div class="component-example">
+            <h3>Elevated</h3>
+            <div class="live-component" data-component="Card" data-props='{"title":"Elevated Card", "content":"This is an elevated card with more shadow.", "variant":"elevated", "size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+          
+          <!-- Outlined Card -->
+          <div class="component-example">
+            <h3>Outlined</h3>
+            <div class="live-component" data-component="Card" data-props='{"title":"Outlined Card", "content":"This is an outlined card with border.", "variant":"outlined", "size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+          
+          <!-- Card with Image -->
+          <div class="component-example">
+            <h3>With Image</h3>
+            <div class="live-component" data-component="Card" data-props='{"title":"Card with Image", "content":"This card includes an image header.", "variant":"default", "size":"md", "hasImage":true}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Variants -->
-            <section class="mb-8">
-                <h2>Variants</h2>
-                <p>Different card variants for various use cases.</p>
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Card" data-props='{"title":"Small Card", "content":"This is a small card.", "variant":"default", "size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Card" data-props='{"title":"Medium Card", "content":"This is a medium card.", "variant":"default", "size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Card" data-props='{"title":"Large Card", "content":"This is a large card with more content.", "variant":"default", "size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
 
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-card hover:shadow-card-hover border-neutral-200 hover:border-neutral-300 p-4 sm:p-6">
-                                <h4 class="font-semibold mb-2">Default</h4>
-                                <p class="text-sm text-gray-600">Standard card with border</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-lg hover:shadow-xl border-neutral-200 hover:border-neutral-300 p-4 sm:p-6">
-                                <h4 class="font-semibold mb-2">Elevated</h4>
-                                <p class="text-sm text-gray-600">Card with shadow</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Elevated</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="rounded-lg border bg-card text-card-foreground transition-all duration-200 shadow-none border-2 border-neutral-300 hover:border-brand-500 hover:shadow-card p-4 sm:p-6">
-                                <h4 class="font-semibold mb-2">Outlined</h4>
-                                <p class="text-sm text-gray-600">Card with background</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Outlined</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Card variant="default"&gt;
-&lt;Card variant="elevated"&gt;
-&lt;Card variant="outlined"&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Card component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Card Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@nostromo/ui-core'
-
-export default function ProductCard() {
-  return (
-    &lt;Card variant="elevated" className="max-w-sm"&gt;
-      &lt;CardHeader&gt;
-        &lt;CardTitle&gt;Nostromo UI Pro&lt;/CardTitle&gt;
-        &lt;CardDescription&gt;Professional UI components for React&lt;/CardDescription&gt;
-      &lt;/CardHeader&gt;
-      &lt;CardContent&gt;
-        &lt;div className="space-y-4"&gt;
-          &lt;p className="text-gray-600"&gt;
-            Build beautiful, accessible user interfaces with our comprehensive component library.
-          &lt;/p&gt;
-          &lt;div className="flex items-center justify-between"&gt;
-            &lt;span className="text-2xl font-bold"&gt;$29&lt;/span&gt;
-            &lt;Button variant="primary"&gt;Get Started&lt;/Button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/CardContent&gt;
-    &lt;/Card&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <div class="bg-white rounded-lg shadow-lg max-w-sm">
-                        <div class="p-6 border-b border-gray-200">
-                            <h3 class="text-lg font-semibold">Nostromo UI Pro</h3>
-                            <p class="text-gray-600 mt-1">Professional UI components for React</p>
-                        </div>
-                        <div class="p-6">
-                            <div class="space-y-4">
-                                <p class="text-gray-600">
-                                    Build beautiful, accessible user interfaces with our comprehensive component library.
-                                </p>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-2xl font-bold">$29</span>
-                                    <button class="btn btn-primary">Get Started</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Card component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>variant</code></td>
-                            <td><code>'default' | 'elevated' | 'outlined'</code></td>
-                            <td><code>'default'</code></td>
-                            <td>Visual style variant</td>
-                        </tr>
-                        <tr>
-                            <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
-                            <td>Size of the card</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+      <!-- Content Types -->
+      <section class="mb-8">
+        <h2>Content Types</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Card" data-props='{"title":"Basic Card", "content":"This is a basic card with just content.", "variant":"default", "size":"md", "hasImage":false, "hasActions":false}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Card" data-props='{"title":"Card with Actions", "content":"This card includes action buttons.", "variant":"default", "size":"md", "hasImage":false, "hasActions":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Card" data-props='{"title":"Complete Card", "content":"This card has everything: image, content, and actions.", "variant":"elevated", "size":"md", "hasImage":true, "hasActions":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -486,6 +337,51 @@ export default function ProductCard() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

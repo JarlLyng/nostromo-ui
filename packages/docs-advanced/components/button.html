@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,376 +129,129 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Button</h1>
-                <p>Interactive buttons with multiple variants, sizes, and loading states. Built for accessibility and flexibility.</p>
-            </div>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Button</h1>
+        <p>Interactive buttons with multiple variants, sizes, and states. Built for accessibility and flexibility.</p>
+      </div>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Button } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="live-component" data-component="Button" data-props='{"children":"Click me"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Button component is the foundation of user interaction in your application.</p>
-                
-                <div class="code-block">
-<pre><code>import { Button } from '@nostromo/ui-core'
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Button } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-export default function App() {
-  return (
-    &lt;Button&gt;
-      Click me
-    &lt;/Button&gt;
-  )
-}</code></pre>
-                </div>
-
-                <div class="live-preview">
-                    <button class="btn btn-primary">Click me</button>
-                </div>
-            </section>
-
-            <!-- Variants -->
-            <section class="mb-8">
-                <h2>Variants</h2>
-                <p>Choose from different button variants to match your design system.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary">Primary</button>
-                        </div>
-                        <div class="variant-name">Primary</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-secondary">Secondary</button>
-                        </div>
-                        <div class="variant-name">Secondary</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn" style="background: var(--color-success); color: white;">Success</button>
-                        </div>
-                        <div class="variant-name">Success</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn" style="background: var(--color-warning); color: white;">Warning</button>
-                        </div>
-                        <div class="variant-name">Warning</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn" style="background: var(--color-error); color: white;">Error</button>
-                        </div>
-                        <div class="variant-name">Error</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Button variant="primary"&gt;Primary&lt;/Button&gt;
-&lt;Button variant="secondary"&gt;Secondary&lt;/Button&gt;
-&lt;Button variant="success"&gt;Success&lt;/Button&gt;
-&lt;Button variant="warning"&gt;Warning&lt;/Button&gt;
-&lt;Button variant="error"&gt;Error&lt;/Button&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Sizes -->
-            <section class="mb-8">
-                <h2>Sizes</h2>
-                <p>Different button sizes for various use cases and contexts.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.75rem;">Small</button>
-                        </div>
-                        <div class="variant-name">Small</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary">Medium</button>
-                        </div>
-                        <div class="variant-name">Medium</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary" style="padding: 16px 32px; font-size: 1.125rem;">Large</button>
-                        </div>
-                        <div class="variant-name">Large</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Button size="small"&gt;Small&lt;/Button&gt;
-&lt;Button size="medium"&gt;Medium&lt;/Button&gt;
-&lt;Button size="large"&gt;Large&lt;/Button&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- States -->
-            <section class="mb-8">
-                <h2>States</h2>
-                <p>Button states for different interaction scenarios.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary">Default</button>
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary" style="opacity: 0.6; cursor: not-allowed;">Disabled</button>
-                        </div>
-                        <div class="variant-name">Disabled</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <button class="btn btn-primary" style="position: relative;">
-                                <span style="opacity: 0;">Loading</span>
-                                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">⏳</span>
-                            </button>
-                        </div>
-                        <div class="variant-name">Loading</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Button&gt;Default&lt;/Button&gt;
-&lt;Button disabled&gt;Disabled&lt;/Button&gt;
-&lt;Button loading&gt;Loading&lt;/Button&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Button component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Button Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Button } from '@nostromo/ui-core'
-
-export default function App() {
-  return (
-    &lt;div&gt;
-      &lt;Button variant="primary"&gt;Launch Mission&lt;/Button&gt;
-      &lt;Button variant="secondary"&gt;Abort Mission&lt;/Button&gt;
-    &lt;/div&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <div>
-                        <button class="btn btn-primary">Launch Mission</button>
-                        <button class="btn btn-secondary">Abort Mission</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Button component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>variant</code></td>
-                            <td><code>'primary' | 'secondary' | 'success' | 'warning' | 'error'</code></td>
-                            <td><code>'primary'</code></td>
-                            <td>Visual style variant of the button</td>
-                        </tr>
-                        <tr>
-                            <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
-                            <td>Size of the button</td>
-                        </tr>
-                        <tr>
-                            <td><code>disabled</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the button is disabled</td>
-                        </tr>
-                        <tr>
-                            <td><code>loading</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the button is in loading state</td>
-                        </tr>
-                        <tr>
-                            <td><code>onClick</code></td>
-                            <td><code>(event: MouseEvent) =&gt; void</code></td>
-                            <td><code>-</code></td>
-                            <td>Click event handler</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Accessibility -->
-            <section class="mb-8">
-                <h2>Accessibility</h2>
-                <p>The Button component follows WCAG 2.1 AA guidelines and includes:</p>
-                <ul>
-                    <li>Proper ARIA attributes</li>
-                    <li>Keyboard navigation support</li>
-                    <li>Screen reader compatibility</li>
-                    <li>Focus management</li>
-                    <li>High contrast support</li>
-                </ul>
-            </section>
-
-            <!-- Examples -->
-            <section class="mb-8">
-                <h2>Examples</h2>
-                <p>Common use cases and patterns for the Button component.</p>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Form Actions</h3>
-                    </div>
-                    <div class="live-preview">
-                        <div class="flex gap-4">
-                            <button class="btn btn-primary">Save</button>
-                            <button class="btn btn-secondary">Cancel</button>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;div className="flex gap-4"&gt;
-  &lt;Button variant="primary"&gt;Save&lt;/Button&gt;
-  &lt;Button variant="secondary"&gt;Cancel&lt;/Button&gt;
-&lt;/div&gt;</code></pre>
-                    </div>
-                </div>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Icon Buttons</h3>
-                    </div>
-                    <div class="live-preview">
-                        <div class="flex gap-4">
-                            <button class="btn btn-primary">🚀 Launch</button>
-                            <button class="btn btn-secondary">⚙️ Settings</button>
-                            <button class="btn" style="background: var(--color-error); color: white;">🗑️ Delete</button>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;Button variant="primary"&gt;🚀 Launch&lt;/Button&gt;
-&lt;Button variant="secondary"&gt;⚙️ Settings&lt;/Button&gt;
-&lt;Button variant="error"&gt;🗑️ Delete&lt;/Button&gt;</code></pre>
-                    </div>
-                </div>
-            </section>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Button&gt;Click me&lt;/Button&gt;</code></pre>
+        </div>
         
-                </div>
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Button" data-props='{"children":"Basic Button", "variant":"primary", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Primary Button -->
+          <div class="component-example">
+            <h3>Primary</h3>
+            <div class="live-component" data-component="Button" data-props='{"children":"Primary Button", "variant":"primary", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Secondary Button -->
+          <div class="component-example">
+            <h3>Secondary</h3>
+            <div class="live-component" data-component="Button" data-props='{"children":"Secondary Button", "variant":"secondary", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Ghost Button -->
+          <div class="component-example">
+            <h3>Ghost</h3>
+            <div class="live-component" data-component="Button" data-props='{"children":"Ghost Button", "variant":"ghost", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Destructive Button -->
+          <div class="component-example">
+            <h3>Destructive</h3>
+            <div class="live-component" data-component="Button" data-props='{"children":"Destructive Button", "variant":"destructive", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="flex gap-4 items-center">
+          <div class="live-component" data-component="Button" data-props='{"children":"Small", "variant":"primary", "size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Button" data-props='{"children":"Medium", "variant":"primary", "size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Button" data-props='{"children":"Large", "variant":"primary", "size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+      
+      <!-- States -->
+      <section class="mb-8">
+        <h2>States</h2>
+        <div class="flex gap-4 items-center">
+          <div class="live-component" data-component="Button" data-props='{"children":"Normal", "variant":"primary", "size":"md", "disabled":false}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Button" data-props='{"children":"Disabled", "variant":"primary", "size":"md", "disabled":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- API Reference -->
+      <section class="mb-8">
+        <h2>API Reference</h2>
+        <div class="space-y-4">
+          <div class="border rounded-lg p-4">
+            <h3 class="font-semibold mb-2">Button Props</h3>
+            <div class="space-y-2 text-sm">
+              <div><code class="bg-gray-100 px-2 py-1 rounded">variant</code> - Button style variant</div>
+              <div><code class="bg-gray-100 px-2 py-1 rounded">size</code> - Button size (sm, md, lg)</div>
+              <div><code class="bg-gray-100 px-2 py-1 rounded">disabled</code> - Disabled state</div>
             </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -593,6 +347,51 @@ export default function App() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

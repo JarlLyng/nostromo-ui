@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Themes - Nostromo UI</title>
+    <title>RadioGroup - Nostromo UI</title>
     <!-- Critical CSS inline for faster rendering -->
     <link rel="stylesheet" href="../../assets/css/critical.css">
     <link rel="stylesheet" href="../../assets/css/themes.css">
@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -71,6 +72,13 @@
                     </ul>
                 </div>
                 <div class="sidebar-section">
+                    <h3 class="sidebar-title">Themes</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="../components/themes.html" class="sidebar-link">Themes</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
                     <h3 class="sidebar-title">Core Components</h3>
                     <ul class="sidebar-links" id="core-components-nav">
                         <li><a href="../components/button.html" class="sidebar-link">Button</a></li>
@@ -93,6 +101,7 @@
                         <li><a href="../components/progress.html" class="sidebar-link">Progress</a></li>
                     </ul>
                 </div>
+
                 <div class="sidebar-section">
                     <h3 class="sidebar-title">Marketing Components</h3>
                     <ul class="sidebar-links" id="marketing-components-nav">
@@ -112,195 +121,85 @@
             <div class="container">
                 <div class="component-page">
                     
+            
+                    
+            
+                    
+            
+                    
+            
+                    
       <!-- Page Header -->
       <div class="mb-8">
-        <h1>Themes</h1>
-        <p>Explore the different color themes available in Nostromo UI. Each theme is inspired by the Alien universe and designed for different use cases.</p>
+        <h1>RadioGroup</h1>
+        <p>Radio button groups with multiple options and variants.</p>
       </div>
 
-      <!-- Theme Overview -->
+      <!-- Live Preview -->
       <section class="mb-8">
-        <h2>Available Themes</h2>
-        <p>Nostromo UI comes with 4 carefully crafted themes, each inspired by different elements from the Alien universe:</p>
-      </section>
-
-      <!-- Theme Showcase -->
-      <section class="mb-8">
-        <h2>Theme Showcase</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Nostromo Theme -->
-          <div class="theme-card nostromo-theme">
-            <div class="theme-header">
-              <h3 class="theme-name">Nostromo</h3>
-              <p class="theme-description">Classic space industrial theme inspired by the USCSS Nostromo</p>
-            </div>
-            <div class="theme-preview">
-              <div class="theme-colors">
-                <div class="color-swatch" style="background: hsl(262 84% 52%);"></div>
-                <div class="color-swatch" style="background: hsl(0 0% 15%);"></div>
-                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
-              </div>
-              <div class="theme-demo nostromo-demo">
-                <button class="btn btn-primary">Primary Button</button>
-                <button class="btn btn-secondary">Secondary Button</button>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Card Title</h4>
-                  </div>
-                  <div class="card-content">
-                    <p>This is a demo card showing the theme colors.</p>
-                  </div>
-                </div>
-              </div>
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="RadioGroup" data-props='{"options":[{"value":"option1","label":"Option 1"},{"value":"option2","label":"Option 2"}],"size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
           </div>
-
-          <!-- Mother Theme -->
-          <div class="theme-card mother-theme">
-            <div class="theme-header">
-              <h3 class="theme-name">Mother</h3>
-              <p class="theme-description">Cold, clinical AI aesthetic inspired by the ship's computer</p>
-            </div>
-            <div class="theme-preview">
-              <div class="theme-colors">
-                <div class="color-swatch" style="background: hsl(195 100% 50%);"></div>
-                <div class="color-swatch" style="background: hsl(0 0% 98%);"></div>
-                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
-              </div>
-              <div class="theme-demo mother-demo">
-                <button class="btn btn-primary">Primary Button</button>
-                <button class="btn btn-secondary">Secondary Button</button>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Card Title</h4>
-                  </div>
-                  <div class="card-content">
-                    <p>This is a demo card showing the theme colors.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- LV-426 Theme -->
-          <div class="theme-card lv426-theme">
-            <div class="theme-header">
-              <h3 class="theme-name">LV-426</h3>
-              <p class="theme-description">Warm, rusty atmosphere inspired by the planet LV-426</p>
-            </div>
-            <div class="theme-preview">
-              <div class="theme-colors">
-                <div class="color-swatch" style="background: hsl(25 95% 50%);"></div>
-                <div class="color-swatch" style="background: hsl(30 20% 20%);"></div>
-                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
-              </div>
-              <div class="theme-demo lv426-demo">
-                <button class="btn btn-primary">Primary Button</button>
-                <button class="btn btn-secondary">Secondary Button</button>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Card Title</h4>
-                  </div>
-                  <div class="card-content">
-                    <p>This is a demo card showing the theme colors.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Sulaco Theme -->
-          <div class="theme-card sulaco-theme">
-            <div class="theme-header">
-              <h3 class="theme-name">Sulaco</h3>
-              <p class="theme-description">Modern, military-inspired aesthetic from the USS Sulaco</p>
-            </div>
-            <div class="theme-preview">
-              <div class="theme-colors">
-                <div class="color-swatch" style="background: hsl(210 40% 50%);"></div>
-                <div class="color-swatch" style="background: hsl(0 0% 15%);"></div>
-                <div class="color-swatch" style="background: hsl(142 76% 36%);"></div>
-              </div>
-              <div class="theme-demo sulaco-demo">
-                <button class="btn btn-primary">Primary Button</button>
-                <button class="btn btn-secondary">Secondary Button</button>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Card Title</h4>
-                  </div>
-                  <div class="card-content">
-                    <p>This is a demo card showing the theme colors.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </section>
 
-      <!-- Theme Usage -->
+      <!-- Installation -->
       <section class="mb-8">
-        <h2>Using Themes</h2>
-        <p>To use a theme in your project, simply import the theme CSS file:</p>
-        
+        <h2>Installation</h2>
         <div class="code-block">
-          <pre><code>// Import the theme you want to use
-import '@nostromo/ui-tw/themes/nostromo.css'
-// or
-import '@nostromo/ui-tw/themes/mother.css'
-// or
-import '@nostromo/ui-tw/themes/lv-426.css'
-// or
-import '@nostromo/ui-tw/themes/sulaco.css'</code></pre>
-        </div>
-
-        <p>You can also switch themes dynamically by setting the <code>data-theme</code> attribute:</p>
-        
-        <div class="code-block">
-          <pre><code>// Set theme on document element
-document.documentElement.setAttribute('data-theme', 'nostromo')
-document.documentElement.setAttribute('data-theme', 'mother')
-document.documentElement.setAttribute('data-theme', 'lv-426')
-document.documentElement.setAttribute('data-theme', 'sulaco')</code></pre>
+          <pre><code>import { RadioGroup } from '@nostromo/ui-core'</code></pre>
         </div>
       </section>
 
-      <!-- Theme Customization -->
+      <!-- Basic Usage -->
       <section class="mb-8">
-        <h2>Customizing Themes</h2>
-        <p>Each theme uses CSS custom properties that you can override:</p>
-        
+        <h2>Basic Usage</h2>
         <div class="code-block">
-          <pre><code>/* Override theme colors */
-:root {
-  --color-primary: 262 84% 52%;
-  --color-secondary: 262 84% 45%;
-  --color-accent: 142 76% 36%;
-}
-
-/* Or use HSL values directly */
-:root {
-  --color-primary: hsl(262 84% 52%);
-  --color-secondary: hsl(262 84% 45%);
-  --color-accent: hsl(142 76% 36%);
-}</code></pre>
+          <pre><code>&lt;RadioGroup options={options} /&gt;</code></pre>
+        </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="RadioGroup" data-props='{"options":[{"value":"small","label":"Small"},{"value":"medium","label":"Medium"},{"value":"large","label":"Large"}],"size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Theme Features -->
+      <!-- Variants -->
       <section class="mb-8">
-        <h2>Theme Features</h2>
-        <ul class="list-disc list-inside space-y-2">
-          <li><strong>Consistent Design:</strong> All themes follow the same design system</li>
-          <li><strong>Accessibility:</strong> Each theme meets WCAG 2.1 AA contrast requirements</li>
-          <li><strong>Dark Mode:</strong> All themes support both light and dark modes</li>
-          <li><strong>Customizable:</strong> Easy to override colors and variables</li>
-          <li><strong>Performance:</strong> Optimized CSS with minimal bundle size</li>
-        </ul>
+        <h2>Variants</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="RadioGroup" data-props='{"options":[{"value":"default","label":"Default"}],"size":"md","variant":"default"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="RadioGroup" data-props='{"options":[{"value":"error","label":"Error"}],"size":"md","variant":"error"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="RadioGroup" data-props='{"options":[{"value":"disabled","label":"Disabled"}],"size":"md","disabled":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
       </section>
     
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        
                 </div>
             </div>
         </main>
@@ -384,6 +283,51 @@ document.documentElement.setAttribute('data-theme', 'sulaco')</code></pre>
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

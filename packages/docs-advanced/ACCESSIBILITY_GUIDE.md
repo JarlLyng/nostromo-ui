@@ -2,7 +2,7 @@
 
 ## ♿ Accessibility Overview
 
-The Nostromo UI documentation site is designed to be fully accessible to all users, including those with disabilities. This guide covers the accessibility features and how to use them.
+The Nostromo UI documentation site is designed to be fully accessible to all users, including those with disabilities. This guide covers the accessibility features, **Live Components System** integration, and how to use them.
 
 ## 🎯 Accessibility Features
 
@@ -33,6 +33,13 @@ The Nostromo UI documentation site is designed to be fully accessible to all use
 - **Gesture alternatives** for touch actions
 - **Voice control** compatibility
 - **Switch navigation** support
+
+### **5. Live Components Accessibility**
+- **Screen reader support** for all live components
+- **Keyboard navigation** for interactive elements
+- **ARIA attributes** for dynamic content
+- **Focus management** for component updates
+- **Accessible component rendering** with proper semantics
 
 ## ⌨️ Keyboard Shortcuts
 

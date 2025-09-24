@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,509 +129,122 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Input</h1>
-                <p>Flexible input components with validation and form integration. Built for accessibility and user experience.</p>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Input</h1>
+        <p>Form input fields with validation states and accessibility features.</p>
+      </div>
+
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter text...", "type":"text", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Input } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Input } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Input component provides a flexible foundation for form inputs with built-in validation support.</p>
-                
-                <div class="code-block">
-<pre><code>import { Input } from '@nostromo/ui-core'
-
-export default function ContactForm() {
-  return (
-    &lt;div className="space-y-4"&gt;
-      &lt;Input 
-        placeholder="Enter your name" 
-        label="Name"
-      /&gt;
-      &lt;Input 
-        type="email" 
-        placeholder="Enter your email" 
-        label="Email"
-      /&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                </div>
-
-                <div class="live-preview">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" placeholder="Enter your name" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" placeholder="Enter your email" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Variants -->
-            <section class="mb-8">
-                <h2>Variants</h2>
-                <p>Choose from different input variants to match your design system.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Default input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Filled input" class="w-full p-3 bg-gray-100 border-0 rounded-md">
-                        </div>
-                        <div class="variant-name">Filled</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Outlined input" class="flex w-full rounded-md border-2 border-neutral-300 bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Outlined</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Underlined input" class="flex w-full border-0 border-b-2 border-neutral-300 rounded-none bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Underlined</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Input variant="default" /&gt;
-&lt;Input variant="filled" /&gt;
-&lt;Input variant="outlined" /&gt;
-&lt;Input variant="underlined" /&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Input Types -->
-            <section class="mb-8">
-                <h2>Input Types</h2>
-                <p>Support for various HTML input types with appropriate styling and validation.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Text input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Text</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="email" placeholder="Email input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Email</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="password" placeholder="Password input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Password</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="number" placeholder="Number input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Number</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="tel" placeholder="Phone input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Phone</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="url" placeholder="URL input" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">URL</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Input type="text" /&gt;
-&lt;Input type="email" /&gt;
-&lt;Input type="password" /&gt;
-&lt;Input type="number" /&gt;
-&lt;Input type="tel" /&gt;
-&lt;Input type="url" /&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- States -->
-            <section class="mb-8">
-                <h2>States</h2>
-                <p>Input states for different interaction scenarios and validation feedback.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Default state" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Focused state" class="w-full p-3 border-2 border-blue-500 rounded-md ring-2 ring-blue-200">
-                        </div>
-                        <div class="variant-name">Focused</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Disabled state" class="flex w-full rounded-md border border-neutral-300 bg-gray-100 cursor-not-allowed px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" disabled>
-                        </div>
-                        <div class="variant-name">Disabled</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Error state" class="w-full p-3 border-2 border-red-500 rounded-md ring-2 ring-red-200">
-                        </div>
-                        <div class="variant-name">Error</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <input type="text" placeholder="Success state" class="w-full p-3 border-2 border-green-500 rounded-md ring-2 ring-green-200">
-                        </div>
-                        <div class="variant-name">Success</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Input placeholder="Default state" /&gt;
-&lt;Input placeholder="Focused state" autoFocus /&gt;
-&lt;Input placeholder="Disabled state" disabled /&gt;
-&lt;Input placeholder="Error state" error /&gt;
-&lt;Input placeholder="Success state" success /&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Input component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Input Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Input } from '@nostromo/ui-core'
-
-export default function ContactForm() {
-  return (
-    &lt;form className="space-y-6"&gt;
-      &lt;Input 
-        label="Full Name"
-        placeholder="Enter your full name"
-        required
-      /&gt;
-      &lt;Input 
-        type="email"
-        label="Email Address"
-        placeholder="Enter your email"
-        required
-      /&gt;
-      &lt;Input 
-        type="tel"
-        label="Phone Number"
-        placeholder="Enter your phone number"
-      /&gt;
-      &lt;Input 
-        label="Message"
-        placeholder="Enter your message"
-        multiline
-        rows={4}
-      /&gt;
-    &lt;/form&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <form class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Full Name</label>
-                            <input type="text" placeholder="Enter your full name" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Email Address</label>
-                            <input type="email" placeholder="Enter your email" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus" required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Phone Number</label>
-                            <input type="tel" placeholder="Enter your phone number" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Message</label>
-                            <textarea placeholder="Enter your message" rows="4" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></textarea>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Input component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>type</code></td>
-                            <td><code>'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'</code></td>
-                            <td><code>'text'</code></td>
-                            <td>HTML input type</td>
-                        </tr>
-                        <tr>
-                            <td><code>variant</code></td>
-                            <td><code>'default' | 'filled' | 'outlined' | 'underlined'</code></td>
-                            <td><code>'default'</code></td>
-                            <td>Visual style variant</td>
-                        </tr>
-                        <tr>
-                            <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
-                            <td>Size of the input</td>
-                        </tr>
-                        <tr>
-                            <td><code>label</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Label text for the input</td>
-                        </tr>
-                        <tr>
-                            <td><code>placeholder</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Placeholder text</td>
-                        </tr>
-                        <tr>
-                            <td><code>disabled</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the input is disabled</td>
-                        </tr>
-                        <tr>
-                            <td><code>required</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the input is required</td>
-                        </tr>
-                        <tr>
-                            <td><code>error</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the input has an error</td>
-                        </tr>
-                        <tr>
-                            <td><code>success</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the input is in success state</td>
-                        </tr>
-                        <tr>
-                            <td><code>multiline</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether to render as textarea</td>
-                        </tr>
-                        <tr>
-                            <td><code>rows</code></td>
-                            <td><code>number</code></td>
-                            <td><code>3</code></td>
-                            <td>Number of rows for textarea</td>
-                        </tr>
-                        <tr>
-                            <td><code>onChange</code></td>
-                            <td><code>(event: ChangeEvent) =&gt; void</code></td>
-                            <td><code>-</code></td>
-                            <td>Change event handler</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Examples -->
-            <section class="mb-8">
-                <h2>Examples</h2>
-                <p>Real-world examples and use cases for the Input component.</p>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Contact Form</h3>
-                    </div>
-                    <div class="live-preview">
-                        <form class="space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">First Name</label>
-                                    <input type="text" placeholder="John" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Last Name</label>
-                                    <input type="text" placeholder="Doe" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" placeholder="john@example.com" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea placeholder="Your message here..." rows="4" class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus"></textarea>
-                            </div>
-                            <button class="btn btn-primary">Send Message</button>
-                        </form>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;form className="space-y-4"&gt;
-  &lt;div className="grid grid-cols-2 gap-4"&gt;
-    &lt;Input label="First Name" placeholder="John" /&gt;
-    &lt;Input label="Last Name" placeholder="Doe" /&gt;
-  &lt;/div&gt;
-  &lt;Input type="email" label="Email" placeholder="john@example.com" /&gt;
-  &lt;Input label="Message" placeholder="Your message here..." multiline rows={4} /&gt;
-  &lt;Button variant="primary"&gt;Send Message&lt;/Button&gt;
-&lt;/form&gt;</code></pre>
-                    </div>
-                </div>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Search Form</h3>
-                    </div>
-                    <div class="live-preview">
-                        <div class="flex gap-2">
-                            <div class="flex-1">
-                                <input type="search" placeholder="Search for components..." class="flex w-full rounded-md border border-neutral-300 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:border-neutral-400 focus-visible:border-brand-500 focus-visible:shadow-input-focus">
-                            </div>
-                            <button class="btn btn-primary">Search</button>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;div className="flex gap-2"&gt;
-  &lt;Input 
-    type="search" 
-    placeholder="Search for components..." 
-    className="flex-1" 
-  /&gt;
-  &lt;Button variant="primary"&gt;Search&lt;/Button&gt;
-&lt;/div&gt;</code></pre>
-                    </div>
-                </div>
-            </section>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Input placeholder="Enter text..." /&gt;</code></pre>
+        </div>
         
-                </div>
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter text...", "type":"text", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Input Types -->
+      <section class="mb-8">
+        <h2>Input Types</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Text Input -->
+          <div class="component-example">
+            <h3>Text</h3>
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter text...", "type":"text", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Email Input -->
+          <div class="component-example">
+            <h3>Email</h3>
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter email...", "type":"email", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Password Input -->
+          <div class="component-example">
+            <h3>Password</h3>
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter password...", "type":"password", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Number Input -->
+          <div class="component-example">
+            <h3>Number</h3>
+            <div class="live-component" data-component="Input" data-props='{"placeholder":"Enter number...", "type":"number", "size":"md"}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+          </div>
+        </div>
+      </section>
+
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Small input", "type":"text", "size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Medium input", "type":"text", "size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Large input", "type":"text", "size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- States -->
+      <section class="mb-8">
+        <h2>States</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Normal input", "type":"text", "size":"md", "error":false, "disabled":false}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Error input", "type":"text", "size":"md", "error":true, "disabled":false}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Success input", "type":"text", "size":"md", "variant":"success", "disabled":false}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Input" data-props='{"placeholder":"Disabled input", "type":"text", "size":"md", "error":false, "disabled":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -726,6 +340,51 @@ export default function ContactForm() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

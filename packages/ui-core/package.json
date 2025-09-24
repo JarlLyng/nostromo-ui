@@ -36,6 +36,46 @@
       "require": "./dist/components/input.cjs",
       "types": "./dist/components/input.d.ts"
     },
+    "./checkbox": {
+      "import": "./dist/components/checkbox.js",
+      "require": "./dist/components/checkbox.cjs",
+      "types": "./dist/components/checkbox.d.ts"
+    },
+    "./radio-group": {
+      "import": "./dist/components/radio-group.js",
+      "require": "./dist/components/radio-group.cjs",
+      "types": "./dist/components/radio-group.d.ts"
+    },
+        "./switch": {
+          "import": "./dist/components/switch.js",
+          "require": "./dist/components/switch.cjs",
+          "types": "./dist/components/switch.d.ts"
+        },
+        "./textarea": {
+          "import": "./dist/components/textarea.js",
+          "require": "./dist/components/textarea.cjs",
+          "types": "./dist/components/textarea.d.ts"
+        },
+        "./alert": {
+          "import": "./dist/components/alert.js",
+          "require": "./dist/components/alert.cjs",
+          "types": "./dist/components/alert.d.ts"
+        },
+        "./breadcrumb": {
+          "import": "./dist/components/breadcrumb.js",
+          "require": "./dist/components/breadcrumb.cjs",
+          "types": "./dist/components/breadcrumb.d.ts"
+        },
+        "./pagination": {
+          "import": "./dist/components/pagination.js",
+          "require": "./dist/components/pagination.cjs",
+          "types": "./dist/components/pagination.d.ts"
+        },
+        "./separator": {
+          "import": "./dist/components/separator.js",
+          "require": "./dist/components/separator.cjs",
+          "types": "./dist/components/separator.d.ts"
+        },
     "./dialog": {
       "import": "./dist/components/dialog.js",
       "require": "./dist/components/dialog.cjs",
@@ -131,6 +171,7 @@
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

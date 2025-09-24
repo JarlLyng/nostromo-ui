@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,233 +129,81 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Select</h1>
-                <p>Dropdown select components with search, multi-select, and keyboard navigation. Perfect for forms and data selection.</p>
-            </div>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Select</h1>
+        <p>Dropdown select components with multiple options and variants.</p>
+      </div>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Select" data-props='{"options":[{"value":"option1","label":"Option 1"},{"value":"option2","label":"Option 2"}],"placeholder":"Select an option","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Select component provides a dropdown interface for selecting options.</p>
-                
-                <div class="code-block">
-<pre><code>import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Select } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-export default function BasicSelect() {
-  return (
-    &lt;Select&gt;
-      &lt;SelectTrigger&gt;
-        &lt;SelectValue placeholder="Select an option" /&gt;
-      &lt;/SelectTrigger&gt;
-      &lt;SelectContent&gt;
-        &lt;SelectItem value="option1"&gt;Option 1&lt;/SelectItem&gt;
-        &lt;SelectItem value="option2"&gt;Option 2&lt;/SelectItem&gt;
-        &lt;SelectItem value="option3"&gt;Option 3&lt;/SelectItem&gt;
-      &lt;/SelectContent&gt;
-    &lt;/Select&gt;
-  )
-}</code></pre>
-                </div>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Select options={options} placeholder="Select an option" /&gt;</code></pre>
+        </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Select" data-props='{"options":[{"value":"home","label":"Home"},{"value":"about","label":"About"}],"placeholder":"Choose a page","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div class="live-preview">
-                    <div class="relative">
-                        <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option value="">Select an option</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </div>
-                </div>
-            </section>
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"default","label":"Default Select"}],"placeholder":"Default style","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"error","label":"Error Select"}],"placeholder":"Error state","size":"md","error":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"disabled","label":"Disabled Select"}],"placeholder":"Disabled","size":"md","disabled":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
 
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Select component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Select Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
-
-export default function CountrySelect() {
-  return (
-    &lt;div className="space-y-4"&gt;
-      &lt;label className="block text-sm font-medium"&gt;Country&lt;/label&gt;
-      &lt;Select&gt;
-        &lt;SelectTrigger className="w-full"&gt;
-          &lt;SelectValue placeholder="Choose your country" /&gt;
-        &lt;/SelectTrigger&gt;
-        &lt;SelectContent&gt;
-          &lt;SelectItem value="us"&gt;🇺🇸 United States&lt;/SelectItem&gt;
-          &lt;SelectItem value="dk"&gt;🇩🇰 Denmark&lt;/SelectItem&gt;
-          &lt;SelectItem value="uk"&gt;🇬🇧 United Kingdom&lt;/SelectItem&gt;
-          &lt;SelectItem value="de"&gt;🇩🇪 Germany&lt;/SelectItem&gt;
-          &lt;SelectItem value="fr"&gt;🇫🇷 France&lt;/SelectItem&gt;
-        &lt;/SelectContent&gt;
-      &lt;/Select&gt;
-    &lt;/div&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <div class="space-y-4">
-                        <label class="block text-sm font-medium">Country</label>
-                        <div class="relative">
-                            <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="">Choose your country</option>
-                                <option value="us">🇺🇸 United States</option>
-                                <option value="dk">🇩🇰 Denmark</option>
-                                <option value="uk">🇬🇧 United Kingdom</option>
-                                <option value="de">🇩🇪 Germany</option>
-                                <option value="fr">🇫🇷 France</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Select component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>value</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Selected value</td>
-                        </tr>
-                        <tr>
-                            <td><code>onValueChange</code></td>
-                            <td><code>(value: string) =&gt; void</code></td>
-                            <td><code>-</code></td>
-                            <td>Callback when value changes</td>
-                        </tr>
-                        <tr>
-                            <td><code>placeholder</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Placeholder text</td>
-                        </tr>
-                        <tr>
-                            <td><code>disabled</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the select is disabled</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"small","label":"Small"}],"placeholder":"Small select","size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"medium","label":"Medium"}],"placeholder":"Medium select","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Select" data-props='{"options":[{"value":"large","label":"Large"}],"placeholder":"Large select","size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -450,6 +299,51 @@ export default function CountrySelect() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

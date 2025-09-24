@@ -56,7 +56,7 @@ class PerformanceOptimizer {
     this.lazyLoadModule('theme', '/assets/js/theme.js');
     this.lazyLoadModule('navigation', '/assets/js/navigation.js');
     this.lazyLoadModule('codeEditor', '/assets/js/code-editor.js');
-    this.lazyLoadModule('livePreview', '/assets/js/live-preview.js');
+    // Note: live-preview.js is not implemented yet
   }
 
   async lazyLoadModule(name, src) {

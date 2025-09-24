@@ -27,6 +27,7 @@
     <link rel="preload" href="../../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -158,407 +159,119 @@
                     
             
                     
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Hero</h1>
-                <p>Hero sections with customizable layouts, backgrounds, and call-to-action buttons. Perfect for landing pages and marketing sites.</p>
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+            
+                    
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Hero</h1>
+        <p>A hero component with multiple variants and configurations.</p>
+      </div>
+
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Hero } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
+
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Hero /&gt;</code></pre>
+        </div>
+      </section>
+
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <p>This component supports multiple variants and configurations.</p>
+      </section>
+
+      <!-- API Reference -->
+      <section class="mb-8">
+        <h2>API Reference</h2>
+        <p>Component props and configuration options will be documented here.</p>
+      </section>
+    
+                </div>
             </div>
-
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Hero } from '@nostromo/ui-marketing'</code></pre>
+        
                 </div>
-            </section>
-
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Hero component provides a flexible foundation for creating compelling landing page headers.</p>
-                
-                <div class="code-block">
-<pre><code>import { Hero } from '@nostromo/ui-marketing'
-
-export default function LandingPage() {
-  return (
-    &lt;Hero
-      title="Welcome to Nostromo UI"
-      subtitle="Space-grade UI components for React"
-      description="Built with modern web technologies including React, TypeScript, and Tailwind CSS."
-      primaryAction={{
-        label: "Get Started",
-        href: "/getting-started"
-      }}
-      secondaryAction={{
-        label: "View on GitHub",
-        href: "https://github.com/jarl.l/nostromo-ui"
-      }}
-    /&gt;
-  )
-}</code></pre>
+            </div>
+        
                 </div>
-
-                <div class="live-preview">
-                    <div class="hero text-center p-8 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg">
-                        <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Welcome to Nostromo UI</h1>
-                        <p class="text-xl text-gray-600 mb-2">Space-grade UI components for React</p>
-                        <p class="text-gray-500 mb-8 max-w-2xl mx-auto">Built with modern web technologies including React, TypeScript, and Tailwind CSS.</p>
-                        <div class="flex gap-4 justify-center">
-                            <button class="btn btn-primary">Get Started</button>
-                            <button class="btn btn-secondary">View on GitHub</button>
-                        </div>
-                    </div>
+            </div>
+        
                 </div>
-            </section>
-
-            <!-- Variants -->
-            <section class="mb-8">
-                <h2>Variants</h2>
-                <p>Choose from different Hero variants to match your design needs.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded">
-                                <h2 class="text-2xl font-bold mb-2">Default</h2>
-                                <p class="text-gray-600 mb-4">Standard hero layout</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-left p-6 bg-gray-900 text-white rounded">
-                                <h2 class="text-2xl font-bold mb-2">Dark</h2>
-                                <p class="text-gray-300 mb-4">Dark theme variant</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Dark</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-6 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded">
-                                <h2 class="text-2xl font-bold mb-2">Gradient</h2>
-                                <p class="text-green-100 mb-4">Gradient background</p>
-                                <button class="btn" style="background: white; color: #1f2937;">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Gradient</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-6 bg-white border-2 border-gray-200 rounded">
-                                <h2 class="text-2xl font-bold mb-2">Minimal</h2>
-                                <p class="text-gray-600 mb-4">Clean minimal design</p>
-                                <button class="btn btn-secondary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Minimal</div>
-                    </div>
+            </div>
+        
                 </div>
-
-                <div class="code-block">
-<pre><code>&lt;Hero variant="default" /&gt;
-&lt;Hero variant="dark" /&gt;
-&lt;Hero variant="gradient" /&gt;
-&lt;Hero variant="minimal" /&gt;</code></pre>
+            </div>
+        
                 </div>
-            </section>
-
-            <!-- Sizes -->
-            <section class="mb-8">
-                <h2>Sizes</h2>
-                <p>Different Hero sizes for various use cases and page layouts.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-4 bg-blue-50 rounded">
-                                <h3 class="text-lg font-bold mb-1">Small</h3>
-                                <p class="text-sm text-gray-600 mb-2">Compact hero section</p>
-                                <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.875rem;">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Small</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-6 bg-blue-50 rounded">
-                                <h2 class="text-2xl font-bold mb-2">Medium</h2>
-                                <p class="text-gray-600 mb-4">Standard hero section</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Medium</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-12 bg-blue-50 rounded">
-                                <h1 class="text-4xl font-bold mb-4">Large</h1>
-                                <p class="text-xl text-gray-600 mb-6">Full-height hero section</p>
-                                <button class="btn btn-primary" style="padding: 16px 32px; font-size: 1.125rem;">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Large</div>
-                    </div>
+            </div>
+        
                 </div>
-
-                <div class="code-block">
-<pre><code>&lt;Hero size="small" /&gt;
-&lt;Hero size="medium" /&gt;
-&lt;Hero size="large" /&gt;</code></pre>
+            </div>
+        
                 </div>
-            </section>
-
-            <!-- Content Alignment -->
-            <section class="mb-8">
-                <h2>Content Alignment</h2>
-                <p>Control the alignment of content within the Hero component.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-left p-6 bg-gray-50 rounded">
-                                <h3 class="text-lg font-bold mb-2">Left Aligned</h3>
-                                <p class="text-sm text-gray-600 mb-3">Content aligned to the left</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Left</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-center p-6 bg-gray-50 rounded">
-                                <h3 class="text-lg font-bold mb-2">Center Aligned</h3>
-                                <p class="text-sm text-gray-600 mb-3">Content centered</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Center</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="hero text-right p-6 bg-gray-50 rounded">
-                                <h3 class="text-lg font-bold mb-2">Right Aligned</h3>
-                                <p class="text-sm text-gray-600 mb-3">Content aligned to the right</p>
-                                <button class="btn btn-primary">Get Started</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Right</div>
-                    </div>
+            </div>
+        
                 </div>
-
-                <div class="code-block">
-<pre><code>&lt;Hero contentAlign="left" /&gt;
-&lt;Hero contentAlign="center" /&gt;
-&lt;Hero contentAlign="right" /&gt;</code></pre>
+            </div>
+        
                 </div>
-            </section>
-
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Hero component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Hero Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Hero } from '@nostromo/ui-marketing'
-
-export default function LandingPage() {
-  return (
-    &lt;Hero
-      title="Launch Your Mission"
-      subtitle="With Nostromo UI"
-      description="Build beautiful, accessible React applications with our space-grade components."
-      variant="gradient"
-      size="large"
-      contentAlign="center"
-      primaryAction={{
-        label: "Start Building",
-        href: "/getting-started"
-      }}
-      secondaryAction={{
-        label: "View Examples",
-        href: "/examples"
-      }}
-    /&gt;
-  )
-}</div>
+            </div>
+        
                 </div>
-
-                <div class="live-preview" id="live-preview">
-                    <div class="hero text-center p-8 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg">
-                        <h1 class="text-4xl font-bold mb-4">Launch Your Mission</h1>
-                        <p class="text-xl mb-2">With Nostromo UI</p>
-                        <p class="text-purple-100 mb-8 max-w-2xl mx-auto">Build beautiful, accessible React applications with our space-grade components.</p>
-                        <div class="flex gap-4 justify-center">
-                            <button class="btn" style="background: white; color: #7c3aed;">Start Building</button>
-                            <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);">View Examples</button>
-                        </div>
-                    </div>
+            </div>
+        
                 </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Hero component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>title</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Main heading text</td>
-                        </tr>
-                        <tr>
-                            <td><code>subtitle</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Subtitle text</td>
-                        </tr>
-                        <tr>
-                            <td><code>description</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Description text</td>
-                        </tr>
-                        <tr>
-                            <td><code>variant</code></td>
-                            <td><code>'default' | 'dark' | 'gradient' | 'minimal'</code></td>
-                            <td><code>'default'</code></td>
-                            <td>Visual style variant</td>
-                        </tr>
-                        <tr>
-                            <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
-                            <td>Size of the hero section</td>
-                        </tr>
-                        <tr>
-                            <td><code>contentAlign</code></td>
-                            <td><code>'left' | 'center' | 'right'</code></td>
-                            <td><code>'center'</code></td>
-                            <td>Content alignment</td>
-                        </tr>
-                        <tr>
-                            <td><code>primaryAction</code></td>
-                            <td><code>ActionProps</code></td>
-                            <td><code>-</code></td>
-                            <td>Primary call-to-action button</td>
-                        </tr>
-                        <tr>
-                            <td><code>secondaryAction</code></td>
-                            <td><code>ActionProps</code></td>
-                            <td><code>-</code></td>
-                            <td>Secondary call-to-action button</td>
-                        </tr>
-                        <tr>
-                            <td><code>backgroundImage</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Background image URL</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Examples -->
-            <section class="mb-8">
-                <h2>Examples</h2>
-                <p>Real-world examples and use cases for the Hero component.</p>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Landing Page Hero</h3>
-                    </div>
-                    <div class="live-preview">
-                        <div class="hero text-center p-12 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 text-white rounded-lg">
-                            <h1 class="text-5xl font-bold mb-6">Build the Future</h1>
-                            <p class="text-xl mb-4">With Nostromo UI Components</p>
-                            <p class="text-blue-100 mb-8 max-w-3xl mx-auto text-lg">Create stunning, accessible React applications with our comprehensive component library. Built for developers, designed for users.</p>
-                            <div class="flex gap-4 justify-center">
-                                <button class="btn" style="background: white; color: #1e40af; padding: 16px 32px; font-size: 1.125rem;">Get Started Free</button>
-                                <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 16px 32px; font-size: 1.125rem;">Watch Demo</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;Hero
-  title="Build the Future"
-  subtitle="With Nostromo UI Components"
-  description="Create stunning, accessible React applications with our comprehensive component library. Built for developers, designed for users."
-  variant="gradient"
-  size="large"
-  primaryAction={{
-    label: "Get Started Free",
-    href: "/signup"
-  }}
-  secondaryAction={{
-    label: "Watch Demo",
-    href: "/demo"
-  }}
-/&gt;</code></pre>
-                    </div>
+            </div>
+        
                 </div>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Product Launch Hero</h3>
-                    </div>
-                    <div class="live-preview">
-                        <div class="hero text-center p-8 bg-white border-2 border-gray-200 rounded-lg">
-                            <div class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">🚀 New Release</div>
-                            <h1 class="text-4xl font-bold mb-4 text-gray-900">Nostromo UI v2.0</h1>
-                            <p class="text-xl text-gray-600 mb-6">The most advanced UI component library for React</p>
-                            <div class="flex gap-4 justify-center">
-                                <button class="btn btn-primary">Download Now</button>
-                                <button class="btn btn-secondary">Read Changelog</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;Hero
-  title="Nostromo UI v2.0"
-  subtitle="The most advanced UI component library for React"
-  variant="minimal"
-  badge="🚀 New Release"
-  primaryAction={{
-    label: "Download Now",
-    href: "/download"
-  }}
-  secondaryAction={{
-    label: "Read Changelog",
-    href: "/changelog"
-  }}
-/&gt;</code></pre>
-                    </div>
+            </div>
+        
                 </div>
-            </section>
+            </div>
+        
+                </div>
+            </div>
+        
+                </div>
+            </div>
         
                 </div>
             </div>
@@ -700,6 +413,51 @@ export default function LandingPage() {
         contentScript.src = '../../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,217 +129,81 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Label</h1>
-                <p>Form labels with accessibility support and proper association with form controls. Essential for accessible forms.</p>
-            </div>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Label</h1>
+        <p>Form labels with accessibility features and multiple variants.</p>
+      </div>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Label } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Label" data-props='{"children":"Email Address","htmlFor":"email","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Label component provides accessible labels for form controls.</p>
-                
-                <div class="code-block">
-<pre><code>import { Label } from '@nostromo/ui-core'
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Label } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-export default function FormLabel() {
-  return (
-    &lt;div className="space-y-2"&gt;
-      &lt;Label htmlFor="email"&gt;Email Address&lt;/Label&gt;
-      &lt;input id="email" type="email" className="w-full p-2 border rounded" /&gt;
-    &lt;/div&gt;
-  )
-}</code></pre>
-                </div>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Label htmlFor="email"&gt;Email Address&lt;/Label&gt;</code></pre>
+        </div>
+        
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Label" data-props='{"children":"Username","htmlFor":"username","size":"md"}'>
+              <!-- Live component will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <div class="live-preview">
-                    <div class="space-y-2">
-                        <label for="email" class="block text-sm font-medium">Email Address</label>
-                        <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    </div>
-                </div>
-            </section>
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Label" data-props='{"children":"Small Label","htmlFor":"small","size":"sm"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Label" data-props='{"children":"Medium Label","htmlFor":"medium","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Label" data-props='{"children":"Large Label","htmlFor":"large","size":"lg"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
 
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Label component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Label Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Label } from '@nostromo/ui-core'
-
-export default function ContactForm() {
-  return (
-    &lt;form className="space-y-4"&gt;
-      &lt;div className="space-y-2"&gt;
-        &lt;Label htmlFor="name" required&gt;Full Name&lt;/Label&gt;
-        &lt;input id="name" type="text" className="w-full p-3 border rounded-md" /&gt;
-      &lt;/div&gt;
-      &lt;div className="space-y-2"&gt;
-        &lt;Label htmlFor="email" required&gt;Email Address&lt;/Label&gt;
-        &lt;input id="email" type="email" className="w-full p-3 border rounded-md" /&gt;
-      &lt;/div&gt;
-      &lt;div className="space-y-2"&gt;
-        &lt;Label htmlFor="message"&gt;Message&lt;/Label&gt;
-        &lt;textarea id="message" rows="4" className="w-full p-3 border rounded-md"&gt;&lt;/textarea&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <form class="space-y-4">
-                        <div class="space-y-2">
-                            <label for="name" class="block text-sm font-medium">Full Name <span class="text-red-500">*</span></label>
-                            <input id="name" type="text" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div class="space-y-2">
-                            <label for="email" class="block text-sm font-medium">Email Address <span class="text-red-500">*</span></label>
-                            <input id="email" type="email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        </div>
-                        <div class="space-y-2">
-                            <label for="message" class="block text-sm font-medium">Message</label>
-                            <textarea id="message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Label component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>htmlFor</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>ID of the associated form control</td>
-                        </tr>
-                        <tr>
-                            <td><code>required</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the field is required</td>
-                        </tr>
-                        <tr>
-                            <td><code>children</code></td>
-                            <td><code>ReactNode</code></td>
-                            <td><code>-</code></td>
-                            <td>Label content</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Label" data-props='{"children":"Default Label","htmlFor":"default","size":"md"}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Label" data-props='{"children":"Required Label","htmlFor":"required","size":"md","required":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Label" data-props='{"children":"Disabled Label","htmlFor":"disabled","size":"md","disabled":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -434,6 +299,51 @@ export default function ContactForm() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

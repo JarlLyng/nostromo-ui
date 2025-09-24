@@ -27,6 +27,7 @@
     <link rel="preload" href="../../assets/js/performance.js" as="script">
     
     <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="../../assets/images/favicon.svg" as="image" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
@@ -128,442 +129,119 @@
                     
             
                     
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            
-                    
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1>Dialog</h1>
-                <p>Modal dialogs with accessibility and keyboard navigation support. Perfect for confirmations, forms, and content display.</p>
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h1>Dialog</h1>
+        <p>Modal dialogs with overlay backgrounds and interactive content.</p>
+      </div>
+
+      <!-- Live Preview -->
+      <section class="mb-8">
+        <h2>Live Preview</h2>
+        <div class="component-preview">
+          <div class="preview-container">
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Dialog Title", "content":"This is a dialog with some content.", "variant":"default", "size":"md", "hasTrigger":true}'>
+              <!-- Live component will be rendered here -->
             </div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Installation -->
-            <section class="mb-8">
-                <h2>Installation</h2>
-                <div class="code-block">
-<pre><code>import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core'</code></pre>
-                </div>
-            </section>
+      <!-- Installation -->
+      <section class="mb-8">
+        <h2>Installation</h2>
+        <div class="code-block">
+          <pre><code>import { Dialog } from '@nostromo/ui-core'</code></pre>
+        </div>
+      </section>
 
-            <!-- Basic Usage -->
-            <section class="mb-8">
-                <h2>Basic Usage</h2>
-                <p>The Dialog component provides a modal overlay with proper accessibility features.</p>
-                
-                <div class="code-block">
-<pre><code>import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core'
-
-export default function ExampleDialog() {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    &lt;&gt;
-      &lt;Button onClick={() =&gt; setIsOpen(true)}&gt;Open Dialog&lt;/Button&gt;
-      &lt;Dialog open={isOpen} onOpenChange={setIsOpen}&gt;
-        &lt;DialogContent&gt;
-          &lt;DialogHeader&gt;
-            &lt;DialogTitle&gt;Confirm Action&lt;/DialogTitle&gt;
-            &lt;DialogDescription&gt;
-              Are you sure you want to perform this action?
-            &lt;/DialogDescription&gt;
-          &lt;/DialogHeader&gt;
-          &lt;div className="flex gap-2 justify-end"&gt;
-            &lt;Button variant="secondary" onClick={() =&gt; setIsOpen(false)}&gt;
-              Cancel
-            &lt;/Button&gt;
-            &lt;Button variant="primary" onClick={() =&gt; setIsOpen(false)}&gt;
-              Confirm
-            &lt;/Button&gt;
-          &lt;/div&gt;
-        &lt;/DialogContent&gt;
-      &lt;/Dialog&gt;
-    &lt;/&gt;
-  )
-}</code></pre>
-                </div>
-
-                <div class="live-preview">
-                    <button class="btn btn-primary" onclick="openDialog()">Open Dialog</button>
-                    <div id="dialog-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background shadow-lg duration-300 transition-all border-neutral-200 shadow-lg hover:shadow-xl p-4 sm:p-6 sm:rounded-lg">
-                            <h3 class="text-lg font-semibold mb-2">Confirm Action</h3>
-                            <p class="text-gray-600 mb-4">Are you sure you want to perform this action?</p>
-                            <div class="flex gap-2 justify-end">
-                                <button class="btn btn-secondary" onclick="closeDialog()">Cancel</button>
-                                <button class="btn btn-primary" onclick="closeDialog()">Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Variants -->
-            <section class="mb-8">
-                <h2>Variants</h2>
-                <p>Different dialog variants for various use cases.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-lg">
-                                <h4 class="font-semibold mb-2">Default</h4>
-                                <p class="text-sm text-gray-600 mb-3">Standard dialog with backdrop</p>
-                                <button class="btn btn-primary text-sm">Open</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Default</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border-2 border-blue-200 rounded-lg p-4 shadow-lg">
-                                <h4 class="font-semibold mb-2">Alert</h4>
-                                <p class="text-sm text-gray-600 mb-3">Alert dialog with warning styling</p>
-                                <button class="btn" style="background: #ef4444; color: white;" class="text-sm">Open</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Alert</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border-2 border-green-200 rounded-lg p-4 shadow-lg">
-                                <h4 class="font-semibold mb-2">Success</h4>
-                                <p class="text-sm text-gray-600 mb-3">Success dialog with positive styling</p>
-                                <button class="btn" style="background: #10b981; color: white;" class="text-sm">Open</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Success</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border-2 border-yellow-200 rounded-lg p-4 shadow-lg">
-                                <h4 class="font-semibold mb-2">Warning</h4>
-                                <p class="text-sm text-gray-600 mb-3">Warning dialog with caution styling</p>
-                                <button class="btn" style="background: #f59e0b; color: white;" class="text-sm">Open</button>
-                            </div>
-                        </div>
-                        <div class="variant-name">Warning</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Dialog variant="default"&gt;
-&lt;Dialog variant="alert"&gt;
-&lt;Dialog variant="success"&gt;
-&lt;Dialog variant="warning"&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Sizes -->
-            <section class="mb-8">
-                <h2>Sizes</h2>
-                <p>Different dialog sizes for various content types.</p>
-
-                <div class="component-variants">
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-lg max-w-sm">
-                                <h4 class="font-semibold mb-2">Small</h4>
-                                <p class="text-sm text-gray-600">Compact dialog for simple messages</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Small</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-lg max-w-md">
-                                <h4 class="font-semibold mb-2">Medium</h4>
-                                <p class="text-sm text-gray-600">Standard dialog for most use cases</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Medium</div>
-                    </div>
-                    <div class="variant-card">
-                        <div class="variant-preview">
-                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-lg max-w-2xl">
-                                <h4 class="font-semibold mb-2">Large</h4>
-                                <p class="text-sm text-gray-600">Large dialog for complex content and forms</p>
-                            </div>
-                        </div>
-                        <div class="variant-name">Large</div>
-                    </div>
-                </div>
-
-                <div class="code-block">
-<pre><code>&lt;Dialog size="small"&gt;
-&lt;Dialog size="medium"&gt;
-&lt;Dialog size="large"&gt;</code></pre>
-                </div>
-            </section>
-
-            <!-- Interactive Code Editor -->
-            <section class="mb-8">
-                <h2>Try it out</h2>
-                <p>Experiment with the Dialog component using our interactive code editor.</p>
-
-                <div class="code-editor">
-                    <div class="code-editor-header">
-                        <span class="code-editor-title">Dialog Example</span>
-                        <div class="code-editor-actions">
-                            <button class="btn btn-secondary" onclick="copyCode()">Copy</button>
-                            <button class="btn btn-primary" onclick="runCode()">Run</button>
-                        </div>
-                    </div>
-                    <div class="code-editor-content" contenteditable="true">import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core'
-
-export default function UserSettingsDialog() {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    &lt;&gt;
-      &lt;Button onClick={() =&gt; setIsOpen(true)}&gt;Open Settings&lt;/Button&gt;
-      &lt;Dialog open={isOpen} onOpenChange={setIsOpen} size="large"&gt;
-        &lt;DialogContent&gt;
-          &lt;DialogHeader&gt;
-            &lt;DialogTitle&gt;User Settings&lt;/DialogTitle&gt;
-            &lt;DialogDescription&gt;
-              Manage your account settings and preferences.
-            &lt;/DialogDescription&gt;
-          &lt;/DialogHeader&gt;
-          &lt;div className="space-y-4"&gt;
-            &lt;Input label="Display Name" placeholder="Enter your name" /&gt;
-            &lt;Input type="email" label="Email" placeholder="Enter your email" /&gt;
-            &lt;Input type="password" label="Password" placeholder="Enter new password" /&gt;
-          &lt;/div&gt;
-          &lt;div className="flex gap-2 justify-end mt-6"&gt;
-            &lt;Button variant="secondary" onClick={() =&gt; setIsOpen(false)}&gt;
-              Cancel
-            &lt;/Button&gt;
-            &lt;Button variant="primary" onClick={() =&gt; setIsOpen(false)}&gt;
-              Save Changes
-            &lt;/Button&gt;
-          &lt;/div&gt;
-        &lt;/DialogContent&gt;
-      &lt;/Dialog&gt;
-    &lt;/&gt;
-  )
-}</div>
-                </div>
-
-                <div class="live-preview" id="live-preview">
-                    <button class="btn btn-primary" onclick="openSettingsDialog()">Open Settings</button>
-                    <div id="settings-dialog" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                        <div class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-2xl translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background shadow-lg duration-300 transition-all border-neutral-200 shadow-lg hover:shadow-xl p-4 sm:p-6 sm:rounded-lg">
-                            <h3 class="text-lg font-semibold mb-2">User Settings</h3>
-                            <p class="text-gray-600 mb-4">Manage your account settings and preferences.</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Display Name</label>
-                                    <input type="text" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-md">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Email</label>
-                                    <input type="email" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-md">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Password</label>
-                                    <input type="password" placeholder="Enter new password" class="w-full p-3 border border-gray-300 rounded-md">
-                                </div>
-                            </div>
-                            <div class="flex gap-2 justify-end mt-6">
-                                <button class="btn btn-secondary" onclick="closeSettingsDialog()">Cancel</button>
-                                <button class="btn btn-primary" onclick="closeSettingsDialog()">Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Props API -->
-            <section class="mb-8">
-                <h2>Props API</h2>
-                <p>Complete reference for all Dialog component props.</p>
-
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Prop</th>
-                            <th>Type</th>
-                            <th>Default</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>open</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>false</code></td>
-                            <td>Whether the dialog is open</td>
-                        </tr>
-                        <tr>
-                            <td><code>onOpenChange</code></td>
-                            <td><code>(open: boolean) =&gt; void</code></td>
-                            <td><code>-</code></td>
-                            <td>Callback when open state changes</td>
-                        </tr>
-                        <tr>
-                            <td><code>variant</code></td>
-                            <td><code>'default' | 'alert' | 'success' | 'warning'</code></td>
-                            <td><code>'default'</code></td>
-                            <td>Visual style variant</td>
-                        </tr>
-                        <tr>
-                            <td><code>size</code></td>
-                            <td><code>'small' | 'medium' | 'large'</code></td>
-                            <td><code>'medium'</code></td>
-                            <td>Size of the dialog</td>
-                        </tr>
-                        <tr>
-                            <td><code>closable</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>true</code></td>
-                            <td>Whether the dialog can be closed</td>
-                        </tr>
-                        <tr>
-                            <td><code>closeOnOverlayClick</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>true</code></td>
-                            <td>Whether clicking overlay closes dialog</td>
-                        </tr>
-                        <tr>
-                            <td><code>closeOnEscape</code></td>
-                            <td><code>boolean</code></td>
-                            <td><code>true</code></td>
-                            <td>Whether pressing Escape closes dialog</td>
-                        </tr>
-                        <tr>
-                            <td><code>className</code></td>
-                            <td><code>string</code></td>
-                            <td><code>-</code></td>
-                            <td>Additional CSS classes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Examples -->
-            <section class="mb-8">
-                <h2>Examples</h2>
-                <p>Real-world examples and use cases for the Dialog component.</p>
-
-                <div class="card mb-6">
-                    <div class="card-header">
-                        <h3 class="card-title">Confirmation Dialog</h3>
-                    </div>
-                    <div class="live-preview">
-                        <button class="btn" style="background: #ef4444; color: white;" onclick="openConfirmDialog()">Delete Item</button>
-                        <div id="confirm-dialog" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                            <div class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-md translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background shadow-lg duration-300 transition-all border-error-200 bg-error-50 shadow-lg hover:shadow-xl p-4 sm:p-6 sm:rounded-lg">
-                                <div class="flex items-center mb-4">
-                                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold">Delete Item</h3>
-                                        <p class="text-gray-600">This action cannot be undone.</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2 justify-end">
-                                    <button class="btn btn-secondary" onclick="closeConfirmDialog()">Cancel</button>
-                                    <button class="btn" style="background: #ef4444; color: white;" onclick="closeConfirmDialog()">Delete</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="code-block">
-<pre><code>&lt;Dialog open={isOpen} onOpenChange={setIsOpen} variant="alert"&gt;
-  &lt;DialogContent&gt;
-    &lt;DialogHeader&gt;
-      &lt;DialogTitle&gt;Delete Item&lt;/DialogTitle&gt;
-      &lt;DialogDescription&gt;This action cannot be undone.&lt;/DialogDescription&gt;
-    &lt;/DialogHeader&gt;
-    &lt;div className="flex gap-2 justify-end"&gt;
-      &lt;Button variant="secondary" onClick={() =&gt; setIsOpen(false)}&gt;
-        Cancel
-      &lt;/Button&gt;
-      &lt;Button variant="error" onClick={handleDelete}&gt;
-        Delete
-      &lt;/Button&gt;
-    &lt;/div&gt;
-  &lt;/DialogContent&gt;
-&lt;/Dialog&gt;</code></pre>
-                    </div>
-                </div>
-            </section>
+      <!-- Basic Usage -->
+      <section class="mb-8">
+        <h2>Basic Usage</h2>
+        <div class="code-block">
+          <pre><code>&lt;Dialog&gt;Content here&lt;/Dialog&gt;</code></pre>
+        </div>
         
-                </div>
+        <!-- Live Example -->
+        <div class="component-example">
+          <div class="example-preview">
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Basic Dialog", "content":"This is a basic dialog with some content.", "variant":"default", "size":"md", "hasTrigger":true}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Variants -->
+      <section class="mb-8">
+        <h2>Variants</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Default Dialog -->
+          <div class="component-example">
+            <h3>Default</h3>
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Default Dialog", "content":"This is a default dialog with standard styling.", "variant":"default", "size":"md", "hasTrigger":true}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Alert Dialog -->
+          <div class="component-example">
+            <h3>Alert</h3>
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Alert Dialog", "content":"This is an alert dialog for important messages.", "variant":"alert", "size":"md", "hasTrigger":true}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Confirmation Dialog -->
+          <div class="component-example">
+            <h3>Confirmation</h3>
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Confirm Action", "content":"Are you sure you want to proceed with this action?", "variant":"confirmation", "size":"md", "hasTrigger":true}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
+          </div>
+          
+          <!-- Without Trigger -->
+          <div class="component-example">
+            <h3>Without Trigger</h3>
+            <div class="live-component" data-component="Dialog" data-props='{"title":"Dialog Without Trigger", "content":"This dialog is shown without a trigger button.", "variant":"default", "size":"md", "hasTrigger":false}'>
+              <!-- Live component will be rendered here -->
             </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
-                </div>
-            </div>
-        
+          </div>
+        </div>
+      </section>
+
+      <!-- Sizes -->
+      <section class="mb-8">
+        <h2>Sizes</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Small Dialog", "content":"This is a small dialog.", "variant":"default", "size":"sm", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Medium Dialog", "content":"This is a medium dialog.", "variant":"default", "size":"md", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Large Dialog", "content":"This is a large dialog with more content.", "variant":"default", "size":"lg", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Types -->
+      <section class="mb-8">
+        <h2>Content Types</h2>
+        <div class="space-y-4">
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Simple Dialog", "content":"This is a simple dialog with basic content.", "variant":"default", "size":"md", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Form Dialog", "content":"This dialog contains a form with input fields and validation.", "variant":"default", "size":"md", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+          <div class="live-component" data-component="Dialog" data-props='{"title":"Information Dialog", "content":"This dialog provides information and requires user acknowledgment.", "variant":"info", "size":"md", "hasTrigger":true}'>
+            <!-- Live component will be rendered here -->
+          </div>
+        </div>
+      </section>
+    
                 </div>
             </div>
         
@@ -659,6 +337,51 @@ export default function UserSettingsDialog() {
         contentScript.src = '../../assets/js/content.js';
         contentScript.async = true;
         document.head.appendChild(contentScript);
+        
+        // Load Storybook integration for live components
+        const storybookScript = document.createElement('script');
+        storybookScript.src = '../../assets/js/storybook-integration.js';
+        storybookScript.async = true;
+        document.head.appendChild(storybookScript);
+        
+        // Load live components for visual rendering - DIRECT SCRIPT TAG
+        const liveComponentsScript = document.createElement('script');
+        liveComponentsScript.src = '../../assets/js/live-components.js';
+        liveComponentsScript.onload = () => {
+          console.log('🎯 live-components.js loaded successfully!');
+          // Wait a bit for the script to initialize
+          setTimeout(() => {
+            if (window.liveComponentRenderer) {
+              console.log('🎯 liveComponentRenderer found, calling renderLiveComponents...');
+              window.liveComponentRenderer.renderLiveComponents();
+            } else {
+              console.log('❌ liveComponentRenderer not found after script load');
+              // Try to create it manually
+              if (window.LiveComponentRenderer) {
+                console.log('🎯 Creating liveComponentRenderer manually...');
+                window.liveComponentRenderer = new window.LiveComponentRenderer();
+                window.liveComponentRenderer.renderLiveComponents();
+              } else {
+                console.log('❌ LiveComponentRenderer class not found');
+              }
+            }
+          }, 100);
+        };
+        liveComponentsScript.onerror = () => {
+          console.log('❌ Failed to load live-components.js');
+        };
+        document.head.appendChild(liveComponentsScript);
+        
+        // Load clipboard functionality
+        const clipboardScript = document.createElement('script');
+        clipboardScript.src = '../../assets/js/clipboard.js';
+        clipboardScript.onload = () => {
+          console.log('📋 clipboard.js loaded successfully!');
+        };
+        clipboardScript.onerror = () => {
+          console.log('❌ Failed to load clipboard.js');
+        };
+        document.head.appendChild(clipboardScript);
       });
     </script>
 </body>

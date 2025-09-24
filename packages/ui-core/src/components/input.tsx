@@ -11,7 +11,7 @@ const inputVariants = cva(
         error: "border-error-500 shadow-input focus-visible:ring-error-500 focus-visible:border-error-500 focus-visible:shadow-input-focus",
         success: "border-success-500 shadow-input focus-visible:ring-success-500 focus-visible:border-success-500 focus-visible:shadow-input-focus",
       },
-      size: {
+      inputSize: {
         default: "h-9 sm:h-10 px-3 sm:px-4 py-2",
         sm: "h-8 sm:h-9 px-2 sm:px-3 text-xs sm:text-sm",
         lg: "h-10 sm:h-11 px-4 sm:px-5 text-sm sm:text-base",
@@ -19,13 +19,13 @@ const inputVariants = cva(
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
+      inputSize: "default",
     },
   }
 );
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
     VariantProps<typeof inputVariants> {
   error?: boolean;
   helperText?: string;
@@ -33,7 +33,7 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, helperText, label, id, variant, size, ...props }, ref) => {
+  ({ className, type, error, helperText, label, id, variant, inputSize, ...props }, ref) => {
     const inputId = id || React.useId();
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
@@ -54,7 +54,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            inputVariants({ variant: inputVariant, size, className })
+            inputVariants({ variant: inputVariant, inputSize, className })
           )}
           ref={ref}
           id={inputId}

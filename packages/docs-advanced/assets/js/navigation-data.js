@@ -90,6 +90,46 @@ window.NostromoNavigation = {
       "name": "Progress",
       "file": "progress.html",
       "category": "feedback"
+    },
+    {
+      "name": "Checkbox",
+      "file": "checkbox.html",
+      "category": "form"
+    },
+    {
+      "name": "RadioGroup",
+      "file": "radio-group.html",
+      "category": "form"
+    },
+    {
+      "name": "Switch",
+      "file": "switch.html",
+      "category": "form"
+    },
+    {
+      "name": "Textarea",
+      "file": "textarea.html",
+      "category": "form"
+    },
+    {
+      "name": "Alert",
+      "file": "alert.html",
+      "category": "feedback"
+    },
+    {
+      "name": "Breadcrumb",
+      "file": "breadcrumb.html",
+      "category": "navigation"
+    },
+    {
+      "name": "Pagination",
+      "file": "pagination.html",
+      "category": "navigation"
+    },
+    {
+      "name": "Separator",
+      "file": "separator.html",
+      "category": "layout"
     }
   ],
   "marketing": [

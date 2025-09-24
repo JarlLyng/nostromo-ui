@@ -5,6 +5,59 @@ export type { ButtonProps } from './components/button';
 export { Input } from './components/input';
 export type { InputProps } from './components/input';
 
+export { Checkbox, checkboxVariants } from './components/checkbox';
+export type { CheckboxProps } from './components/checkbox';
+
+export { RadioGroup, RadioItem, radioGroupVariants, radioItemVariants } from './components/radio-group';
+export type { RadioGroupProps, RadioItemProps } from './components/radio-group';
+
+export { Switch, switchVariants, switchThumbVariants } from './components/switch';
+export type { SwitchProps } from './components/switch';
+
+export { Textarea, textareaVariants } from './components/textarea';
+export type { TextareaProps } from './components/textarea';
+
+export { 
+  Alert, 
+  AlertTitle, 
+  AlertDescription, 
+  alertVariants, 
+  alertTitleVariants, 
+  alertDescriptionVariants,
+  alertCloseVariants 
+} from './components/alert';
+export type { AlertProps } from './components/alert';
+
+export { 
+  Breadcrumb, 
+  BreadcrumbList, 
+  BreadcrumbItem,
+  BreadcrumbLink, 
+  BreadcrumbPage, 
+  BreadcrumbSeparator, 
+  BreadcrumbEllipsis,
+  breadcrumbVariants,
+  breadcrumbItemVariants,
+  breadcrumbSeparatorVariants
+} from './components/breadcrumb';
+export type { BreadcrumbProps, BreadcrumbEntry } from './components/breadcrumb';
+
+export { 
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+  paginationVariants,
+  paginationItemVariants
+} from './components/pagination';
+export type { PaginationProps } from './components/pagination';
+
+export { Separator, separatorVariants } from './components/separator';
+export type { SeparatorProps } from './components/separator';
+
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './components/card';
 
 export { Badge, badgeVariants } from './components/badge';

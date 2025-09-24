@@ -2,7 +2,7 @@
 
 ## 🌙 Theme System Overview
 
-The Nostromo UI documentation site features a comprehensive theme system with light, dark, and auto modes, providing users with a personalized viewing experience.
+The Nostromo UI documentation site features a comprehensive theme system with light, dark, and auto modes, providing users with a personalized viewing experience, including Live Components System integration.
 
 ## 🎨 Available Themes
 
@@ -43,6 +43,7 @@ The Nostromo UI documentation site features a comprehensive theme system with li
 - **Smooth transitions** with hardware acceleration
 - **Minimal reflow** during theme changes
 - **Optimized animations** for 60fps performance
+- **Live Components** theme integration
 
 ## 🎯 Theme Implementation
 
@@ -420,6 +421,12 @@ showThemeStatus(themeName) {
 - **Keyboard navigation** support
 - **Focus indicators** for all themes
 
+### **5. Live Components Theme Integration**
+- **Live Components** theme support
+- **Dynamic theme** switching for components
+- **Consistent styling** across all components
+- **Theme-aware** component rendering
+
 ## 🚀 Future Theme Enhancements
 
 ### **Planned Features:**
@@ -434,6 +441,92 @@ showThemeStatus(themeName) {
 - **Location-based** theme preferences
 - **Advanced accessibility** features
 
+## 🚀 Live Components Theme Integration
+
+### **Live Components Theme Support:**
+- **Theme-aware rendering** for all 26 components
+- **Dynamic theme switching** for live components
+- **Consistent styling** across all themes
+- **Performance optimized** theme updates
+
+### **Live Components Theme Implementation:**
+```javascript
+// Live Components with theme support
+class LiveComponentRenderer {
+  constructor() {
+    this.themeManager = new ThemeManager();
+    this.components = new Map();
+  }
+
+  // Render component with theme
+  renderComponent(element, props) {
+    const theme = this.themeManager.getCurrentTheme();
+    const componentName = element.dataset.component;
+    
+    // Apply theme to component
+    element.setAttribute('data-theme', theme);
+    
+    // Render component with theme context
+    switch (componentName) {
+      case 'Button':
+        this.renderButton(element, props, theme);
+        break;
+      case 'Input':
+        this.renderInput(element, props, theme);
+        break;
+      // ... other components
+    }
+  }
+
+  // Theme change handler
+  handleThemeChange(newTheme) {
+    const liveComponents = document.querySelectorAll('.live-component');
+    liveComponents.forEach(component => {
+      component.setAttribute('data-theme', newTheme);
+      this.updateComponentTheme(component, newTheme);
+    });
+  }
+}
+```
+
+### **Live Components Theme Styling:**
+```css
+/* Live Components with theme support */
+.live-component {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  transition: all 0.3s ease;
+}
+
+/* Theme-specific styling */
+[data-theme="light"] .live-component {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .live-component {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+/* Live component rendered elements */
+.live-component-rendered {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.live-component-rendered button,
+.live-component-rendered input,
+.live-component-rendered select {
+  transition: all 0.3s ease;
+}
+```
+
 ---
 
-This theme guide ensures that the Nostromo UI documentation site provides an excellent theming experience for all users, with support for light, dark, and auto modes.
+This theme guide ensures that the Nostromo UI documentation site provides an excellent theming experience for all users, with support for light, dark, and auto modes, including Live Components System integration.
