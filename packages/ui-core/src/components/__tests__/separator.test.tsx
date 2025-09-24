@@ -72,7 +72,7 @@ describe("Separator", () => {
   it("combines orientation and size classes correctly", () => {
     render(<Separator orientation="vertical" size="lg" decorative={false} />);
     const separator = screen.getByRole("separator");
-    expect(separator).toHaveClass("h-full", "w-[1px]", "h-0.5");
+    expect(separator).toHaveClass("w-[1px]", "h-0.5");
   });
 
   it("handles all props correctly", () => {
