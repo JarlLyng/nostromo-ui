@@ -35,11 +35,6 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
-   * Whether the button should render as a child component
-   * @default false
-   */
-  asChild?: boolean;
-  /**
    * Whether the button is in a loading state
    * @default false
    */
@@ -56,7 +51,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     className, 
     variant, 
     size, 
-    asChild: _asChild = false, 
     loading = false, 
     loadingText,
     children, 

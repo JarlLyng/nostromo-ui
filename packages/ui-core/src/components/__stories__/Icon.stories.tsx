@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Icon } from '../icon';
 import { iconNames } from '../icon';

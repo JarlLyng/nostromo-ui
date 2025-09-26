@@ -101,8 +101,8 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
     };
 
     const visiblePages = getVisiblePages();
-    const showStartEllipsis = visiblePages[0] > 1;
-    const showEndEllipsis = visiblePages[visiblePages.length - 1] < totalPages;
+    const showStartEllipsis = visiblePages[0]! > 1;
+    const showEndEllipsis = visiblePages[visiblePages.length - 1]! < totalPages;
 
     return (
       <nav

@@ -46,36 +46,36 @@
       "require": "./dist/components/radio-group.cjs",
       "types": "./dist/components/radio-group.d.ts"
     },
-        "./switch": {
-          "import": "./dist/components/switch.js",
-          "require": "./dist/components/switch.cjs",
-          "types": "./dist/components/switch.d.ts"
-        },
-        "./textarea": {
-          "import": "./dist/components/textarea.js",
-          "require": "./dist/components/textarea.cjs",
-          "types": "./dist/components/textarea.d.ts"
-        },
-        "./alert": {
-          "import": "./dist/components/alert.js",
-          "require": "./dist/components/alert.cjs",
-          "types": "./dist/components/alert.d.ts"
-        },
-        "./breadcrumb": {
-          "import": "./dist/components/breadcrumb.js",
-          "require": "./dist/components/breadcrumb.cjs",
-          "types": "./dist/components/breadcrumb.d.ts"
-        },
-        "./pagination": {
-          "import": "./dist/components/pagination.js",
-          "require": "./dist/components/pagination.cjs",
-          "types": "./dist/components/pagination.d.ts"
-        },
-        "./separator": {
-          "import": "./dist/components/separator.js",
-          "require": "./dist/components/separator.cjs",
-          "types": "./dist/components/separator.d.ts"
-        },
+    "./switch": {
+      "import": "./dist/components/switch.js",
+      "require": "./dist/components/switch.cjs",
+      "types": "./dist/components/switch.d.ts"
+    },
+    "./textarea": {
+      "import": "./dist/components/textarea.js",
+      "require": "./dist/components/textarea.cjs",
+      "types": "./dist/components/textarea.d.ts"
+    },
+    "./alert": {
+      "import": "./dist/components/alert.js",
+      "require": "./dist/components/alert.cjs",
+      "types": "./dist/components/alert.d.ts"
+    },
+    "./breadcrumb": {
+      "import": "./dist/components/breadcrumb.js",
+      "require": "./dist/components/breadcrumb.cjs",
+      "types": "./dist/components/breadcrumb.d.ts"
+    },
+    "./pagination": {
+      "import": "./dist/components/pagination.js",
+      "require": "./dist/components/pagination.cjs",
+      "types": "./dist/components/pagination.d.ts"
+    },
+    "./separator": {
+      "import": "./dist/components/separator.js",
+      "require": "./dist/components/separator.cjs",
+      "types": "./dist/components/separator.d.ts"
+    },
     "./dialog": {
       "import": "./dist/components/dialog.js",
       "require": "./dist/components/dialog.cjs",
@@ -143,6 +143,7 @@
     "@nostromo/ui-tw": "workspace:^",
     "@storybook/addon-a11y": "^9.1.5",
     "@storybook/addon-docs": "^9.1.5",
+    "@storybook/addon-onboarding": "^9.1.8",
     "@storybook/manager-api": "9.0.0-alpha.1",
     "@storybook/react-vite": "^9.1.5",
     "@storybook/test": "9.0.0-alpha.2",

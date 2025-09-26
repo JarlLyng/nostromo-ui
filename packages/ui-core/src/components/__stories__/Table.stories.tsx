@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Table, TableColumn } from '../table';
 
@@ -98,7 +99,7 @@ const columns: TableColumn[] = [
     dataIndex: 'salary',
     sortable: true,
     align: 'right',
-    render: (value: number) => `$${value.toLocaleString()}`
+    render: (value: number) => '$' + value.toLocaleString()
   }
 ];
 
