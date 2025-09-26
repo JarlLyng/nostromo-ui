@@ -1,0 +1,52 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Skeleton
+
+Skeleton komponenten giver dig loading placeholders.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-skeleton--default" />
+
+<StorybookEmbed story="components-skeleton--card" />
+
+<StorybookEmbed story="components-skeleton--text" />
+
+## Eksempler
+
+```jsx
+import { Skeleton } from '@nostromo/ui-core'
+
+export default function SkeletonExample() {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+      <Skeleton className="h-4 w-[150px]" />
+    </div>
+  )
+}
+```
+
+## Card Skeleton
+
+```jsx
+import { Skeleton } from '@nostromo/ui-core'
+
+export default function CardSkeleton() {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+      <Skeleton className="h-4 w-[150px]" />
+      <Skeleton className="h-4 w-[100px]" />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `className` | `string` | - | Custom CSS klasser |

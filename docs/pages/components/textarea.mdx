@@ -1,0 +1,53 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Textarea
+
+Textarea komponenten giver dig flerlinje tekstfelter.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-textarea--default" />
+
+<StorybookEmbed story="components-textarea--variants" />
+
+<StorybookEmbed story="components-textarea--form-example" />
+
+## Eksempler
+
+```jsx
+import { Textarea } from '@nostromo/ui-core'
+
+export default function TextareaExample() {
+  return (
+    <div className="space-y-4">
+      <Textarea placeholder="Skriv din besked her..." />
+      <Textarea placeholder="Stor textarea" rows={6} />
+    </div>
+  )
+}
+```
+
+## Med Label
+
+```jsx
+import { Textarea, Label } from '@nostromo/ui-core'
+
+export default function TextareaWithLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="message">Besked</Label>
+      <Textarea id="message" placeholder="Din besked..." />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `placeholder` | `string` | - | Placeholder tekst |
+| `rows` | `number` | `3` | Antal rækker |
+| `disabled` | `boolean` | `false` | Om textarea er deaktiveret |
+| `value` | `string` | - | Textarea værdi |
+| `onChange` | `function` | - | Change handler |

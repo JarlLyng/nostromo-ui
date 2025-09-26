@@ -43,14 +43,12 @@ nostromo-ui/
 │   ├── ui-core/              # Core komponenter
 │   │   ├── src/
 │   │   │   ├── components/   # React komponenter
-│   │   │   ├── vue/         # Vue komponenter
 │   │   │   └── index.ts     # Exports
 │   │   ├── package.json
 │   │   └── tsconfig.json
 │   ├── ui-marketing/         # Marketing komponenter
 │   │   ├── src/
 │   │   │   ├── components/
-│   │   │   ├── vue/
 │   │   │   └── index.ts
 │   │   ├── package.json
 │   │   └── tsconfig.json
@@ -61,10 +59,10 @@ nostromo-ui/
 │       │   └── themes/      # Tema filer
 │       ├── package.json
 │       └── tsconfig.json
-├── docs-advanced/           # Avanceret dokumentationssite (HTML)
-│   ├── components/         # Komponent dokumentation
-│   ├── getting-started/    # Getting started guides
-│   ├── assets/            # CSS, JS og billeder
+├── docs/                   # Nextra dokumentationssite
+│   ├── pages/             # Next.js Pages Router
+│   ├── components/        # React komponenter
+│   ├── styles/           # CSS filer
 │   └── package.json
 ├── apps/
 │   └── playground/         # Development playground
@@ -117,7 +115,7 @@ pnpm --filter @nostromo/ui-core build
 pnpm --filter @nostromo/ui-core test
 
 # Start dev server for docs
-pnpm docs:dev
+cd docs && npm run dev
 
 # Start playground
 pnpm --filter playground dev
@@ -179,10 +177,9 @@ export default defineConfig({
 // vitest.config.ts
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
-import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  plugins: [react(), vue()],
+  plugins: [react()],
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
@@ -336,13 +333,6 @@ pnpm storybook
 # Kører på http://localhost:6006
 ```
 
-#### Vue Storybook
-```bash
-# Start Vue Storybook
-cd packages/ui-core
-pnpm storybook:vue
-# Kører på http://localhost:6008
-```
 
 ### Storybook Konfiguration
 
@@ -367,34 +357,6 @@ const config: StorybookConfig = {
 };
 ```
 
-#### Vue Storybook (.storybook-vue/main.ts)
-```ts
-import type { StorybookConfig } from '@storybook/vue3-vite';
-
-const config: StorybookConfig = {
-  stories: ['../src/vue/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-a11y',
-  ],
-  framework: {
-    name: '@storybook/vue3-vite',
-    options: {},
-  },
-  viteFinal: async (config) => {
-    config.define = {
-      ...config.define,
-      __VUE_OPTIONS_API__: true,
-      __VUE_PROD_DEVTOOLS__: false,
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
-    };
-    return config;
-  },
-};
-```
-
-export default config;
-```
 
 ### Story Eksempel
 ```tsx
@@ -577,5 +539,35 @@ pnpm storybook
 - **GitHub Issues**: Bug reports and feature requests
 - **Discussions**: General questions and discussions
 - **Discord**: Real-time community support
+
+## 📚 Nextra Dokumentation
+
+### Development Server
+```bash
+# Start Nextra development server
+cd docs
+npm run dev
+
+# Build statiske sider
+npm run build
+
+# Preview build
+npm run start
+```
+
+### Struktur
+- **`pages/`** - Next.js Pages Router med MDX filer
+- **`components/`** - React komponenter til dokumentation (StorybookEmbed)
+- **`styles/`** - CSS filer (globals.css, Tailwind config)
+
+### Tilføj Ny Komponent Dokumentation
+1. Opret `pages/components/[component].mdx`
+2. Tilføj StorybookEmbed hvis nødvendigt
+3. Test med `npm run dev`
+
+### Storybook Integration
+- **Storybook**: Kører på http://localhost:6006
+- **Embed**: Brug `<StorybookEmbed story="components-[name]--[story]" />`
+- **Port**: Konfigureret til port 6006 i StorybookEmbed komponenten
 
 Denne guide giver dig alt du behøver for at udvikle med Nostromo UI effektivt og bidrage til projektet.

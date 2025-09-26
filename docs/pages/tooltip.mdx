@@ -1,0 +1,22 @@
+# Tooltip Component
+
+Tooltip komponenten giver hjælpetekst når brugeren hover over et element.
+
+## Eksempel
+
+```jsx
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover over mig</TooltipTrigger>
+        <TooltipContent>
+          <p>Dette er en tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```

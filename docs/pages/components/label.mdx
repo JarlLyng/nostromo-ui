@@ -1,0 +1,56 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Label
+
+Label komponenten giver dig form labels og beskrivelser.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-form-label--default" />
+
+<StorybookEmbed story="components-form-label--required" />
+
+<StorybookEmbed story="components-form-label--form-example" />
+
+## Kode Eksempler
+
+```jsx
+import { Label } from '@nostromo/ui-core'
+
+export default function LabelExample() {
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <input id="email" type="email" className="mt-1" />
+      </div>
+      
+      <div>
+        <Label htmlFor="password">Password</Label>
+        <input id="password" type="password" className="mt-1" />
+      </div>
+    </div>
+  )
+}
+```
+
+## Med Checkbox
+
+```jsx
+import { Label, Checkbox } from '@nostromo/ui-core'
+
+export default function LabelWithCheckbox() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms">Accepter vilkår og betingelser</Label>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `htmlFor` | `string` | - | HTML for attribut |

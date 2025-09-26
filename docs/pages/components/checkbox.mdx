@@ -1,0 +1,64 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Checkbox
+
+Checkbox komponenten giver dig checkbox komponenter og grupper.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-checkbox--default" />
+
+<StorybookEmbed story="components-checkbox--variants" />
+
+<StorybookEmbed story="components-checkbox--form-example" />
+
+## Kode Eksempler
+
+```jsx
+import { Checkbox } from '@nostromo/ui-core'
+
+export default function CheckboxExample() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label htmlFor="terms">Accepter vilkår og betingelser</label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Checkbox id="newsletter" />
+        <label htmlFor="newsletter">Tilmeld nyhedsbrev</label>
+      </div>
+    </div>
+  )
+}
+```
+
+## Med Label
+
+```jsx
+import { Checkbox, Label } from '@nostromo/ui-core'
+
+export default function CheckboxWithLabel() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="option1" />
+        <Label htmlFor="option1">Option 1</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <Checkbox id="option2" />
+        <Label htmlFor="option2">Option 2</Label>
+      </div>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Om checkbox er markeret |
+| `disabled` | `boolean` | `false` | Om checkbox er deaktiveret |
+| `onCheckedChange` | `function` | - | Change handler |

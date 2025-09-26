@@ -297,9 +297,9 @@ interface DialogProps extends BaseComponentProps {
 ### Named Imports
 ```tsx
 // Individuelle komponenter
-import { Button } from "@nostromo/ui-core/button";
-import { Input } from "@nostromo/ui-core/input";
-import { Dialog } from "@nostromo/ui-core/dialog";
+import { Button } from "@nostromo/ui-core";
+import { Input } from "@nostromo/ui-core";
+import { Dialog } from "@nostromo/ui-core";
 
 // Samlede imports
 import { Button, Input, Dialog } from "@nostromo/ui-core";
@@ -308,7 +308,7 @@ import { Button, Input, Dialog } from "@nostromo/ui-core";
 ### Tree Shaking
 ```tsx
 // Kun Button inkluderes i bundle
-import { Button } from "@nostromo/ui-core/button";
+import { Button } from "@nostromo/ui-core";
 
 // Alle komponenter inkluderes
 import * as Components from "@nostromo/ui-core";

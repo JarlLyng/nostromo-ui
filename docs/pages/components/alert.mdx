@@ -1,0 +1,45 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Alert
+
+Alert komponenten giver dig notifikationer og advarsler til din applikation.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-alert--default" />
+
+<StorybookEmbed story="components-alert--alert-examples" />
+
+<StorybookEmbed story="components-alert--controlled" />
+
+## Kode Eksempler
+
+```jsx
+import { Alert, AlertDescription, AlertTitle } from '@nostromo/ui-core'
+
+export default function AlertExamples() {
+  return (
+    <div className="space-y-4">
+      <Alert>
+        <AlertTitle>Information</AlertTitle>
+        <AlertDescription>
+          Dette er en informativ besked.
+        </AlertDescription>
+      </Alert>
+      
+      <Alert variant="destructive">
+        <AlertTitle>Fejl</AlertTitle>
+        <AlertDescription>
+          Der opstod en fejl. Prøv igen senere.
+        </AlertDescription>
+      </Alert>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive"` | `"default"` | Alert variant |

@@ -1,0 +1,44 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Tabs
+
+Tabs komponenten giver dig tab navigation og sektioner.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-tabs--default" />
+
+<StorybookEmbed story="components-tabs--with-icons" />
+
+<StorybookEmbed story="components-tabs--vertical" />
+
+## Kode Eksempler
+
+```jsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@nostromo/ui-core'
+
+export default function TabsExample() {
+  return (
+    <Tabs defaultValue="account" className="w-[400px]">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <p>Account indhold her.</p>
+      </TabsContent>
+      <TabsContent value="password">
+        <p>Password indhold her.</p>
+      </TabsContent>
+    </Tabs>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `defaultValue` | `string` | - | Standard aktiv tab |
+| `value` | `string` | - | Aktiv tab værdi |
+| `onValueChange` | `function` | - | Change handler |

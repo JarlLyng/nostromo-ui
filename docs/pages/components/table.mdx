@@ -1,0 +1,49 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Table
+
+Table komponenten giver dig datatabeller og lister.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-table--default" />
+
+<StorybookEmbed story="components-table--with-actions" />
+
+<StorybookEmbed story="components-table--sortable" />
+
+## Kode Eksempler
+
+```jsx
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@nostromo/ui-core'
+
+export default function TableExample() {
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Navn</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Status</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>John Doe</TableCell>
+          <TableCell>john@example.com</TableCell>
+          <TableCell>Aktiv</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Jane Smith</TableCell>
+          <TableCell>jane@example.com</TableCell>
+          <TableCell>Aktiv</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  )
+}
+```
+
+## Props
+
+Alle Table komponenter accepterer standard HTML props.

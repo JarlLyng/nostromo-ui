@@ -17,8 +17,8 @@ Build system
 	•	Output: ESM + CJS + .d.ts.
 	•	sideEffects: false i package.json for optimal tree-shaking.
 	•	Docs:
-	•	Avanceret HTML-baseret dokumentationssite med alle 15 komponenter.
-	•	Mulighed for VitePress-site til Vue-eksempler.
+	•	Nextra-baseret dokumentationssite med alle 27 komponenter.
+	•	Nextra-baseret dokumentationssite med Storybook integration.
 
 TypeScript-konfiguration
 	•	Fælles tsconfig.base.json i roden: strict: true, moduleResolution: "bundler".
@@ -29,9 +29,7 @@ TypeScript-konfiguration
 Radix UI / Ark UI Integration
 	•	React: Wrap Radix UI primitives (fx Dialog, Dropdown) i Nostromo-komponenter.
 → Radix leverer a11y + logik, Nostromo leverer Tailwind-klasser og API.
-	•	Vue: Brug Ark UI (Vue-implementering af Radix-principper).
-→ Samme API som React-udgaven for konsistens.
-	•	Begge er headless og fungerer problemfrit med Tailwind-first tilgang, da styling styres via Nostromo.
+	•	Headless primitives fungerer problemfrit med Tailwind-first tilgang, da styling styres via Nostromo.
 
 ⸻
 
@@ -65,7 +63,7 @@ Komponent API & Variants
 	•	state: default | loading | disabled
 	•	Implementation:
 	•	Standard = class-variance-authority (cva) til at definere varianter og kombinere Tailwind-klasser.
-	•	I Vue kan tailwind-variants benyttes, men API’et holdes ens.
+	•	API'et holdes konsistent på tværs af alle komponenter.
 	•	Alle komponenter kan importeres både samlet og pr. komponent:
 	•	import { Button } from "@nostromo/ui-core"
 	•	import { Button } from "@nostromo/ui-core/button"
@@ -83,7 +81,7 @@ Performance
 Development Workflow
 	•	Hot reload: Turborepo + pnpm workspaces muliggør øjeblikkelig opdatering af core/marketing i docs.
 	•	Shared devDependencies i roden (tsup, eslint, prettier, vitest, playwright, storybook).
-	•	Playground: docs-appen fungerer som central udviklings- og testmiljø (avanceret HTML-baseret dokumentationssite med live komponenter).
+	•	Playground: docs-appen fungerer som central udviklings- og testmiljø (Nextra-baseret dokumentationssite med live komponenter).
 
 ⸻
 
@@ -118,8 +116,8 @@ pnpm dlx create-turbo@latest .
 mkdir -p packages/ui-core packages/ui-marketing packages/ui-tw docs
 
 # Tilføj build tooling
-pnpm add -D typescript tsup vite @vitejs/plugin-react @vitejs/plugin-vue tailwindcss postcss autoprefixer \
-  eslint prettier vitest @testing-library/react @testing-library/vue @playwright/test @changesets/cli
+pnpm add -D typescript tsup vite @vitejs/plugin-react tailwindcss postcss autoprefixer \
+  eslint prettier vitest @testing-library/react @playwright/test @changesets/cli
 
 # Init TypeScript
 pnpm tsc --init

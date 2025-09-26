@@ -12,9 +12,9 @@ Navnet er inspireret af rumskibet *USCSS Nostromo* fra filmen **Alien** (1979).
 
 ## 📚 Dokumentation
 
-**Live dokumentation**: [https://jarl.l.github.io/nostromo-ui/](https://jarl.l.github.io/nostromo-ui/)
+**Live dokumentation**: [http://localhost:3000](http://localhost:3000) (lokal udvikling)
 
-Vi har en avanceret HTML-baseret dokumentationsside med alle 17 komponenter, interaktive features, live previews og komplet API dokumentation. Dokumentationen er optimeret for performance og fungerer perfekt uden komplekse build-processer.
+Vi har en moderne Nextra-baseret dokumentationsside med alle 27 komponenter, interaktive Storybook eksempler, live previews og komplet API dokumentation. Dokumentationen er bygget med Next.js og Nextra for optimal performance og udvikleroplevelse.
 
 ---
 
@@ -77,7 +77,7 @@ export default function Example() {
 
 ## 🧩 Tilgængelige Komponenter
 
-### Core Components (17 komponenter)
+### Core Components (27 komponenter)
 - **Button** - Interaktive knapper med loading states og varianter
 - **Input** - Tekst input felter med validation og form integration
 - **Dialog** - Modal dialoger med accessibility og focus management
@@ -96,6 +96,14 @@ export default function Example() {
 - **Accordion** - Collapsible sections med keyboard navigation
 - **Skeleton** - Loading states med animations og specialized components
 - **Progress** - Progress indicators med variants og accessibility
+- **Alert** - Notification alerts med variants og dismiss functionality
+- **Checkbox** - Form checkboxes med accessibility og validation
+- **RadioGroup** - Radio button groups med keyboard navigation
+- **Switch** - Toggle switches med accessibility og variants
+- **Textarea** - Multi-line text input med validation og resize
+- **Breadcrumb** - Navigation breadcrumbs med accessibility
+- **Pagination** - Page navigation med keyboard accessibility
+- **Separator** - Visual separators med horizontal og vertical variants
 
 ### Marketing Components (6 komponenter)
 - **Hero** - Hero sektioner med customizable layouts og call-to-action buttons
@@ -121,22 +129,22 @@ Alle komponenter er bygget med:
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables med HSL farver og 4 komplette themes
 - **Tailwind Preset** - Komplet preset med Nostromo tema
-- **17 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress
+- **27 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall med fuld design system integration
 - **Form Components** - Komplet sæt af form-relaterede komponenter
 - **Navigation Components** - Tabs og Select med keyboard accessibility
 - **Data Components** - Table med sortable columns, pagination og responsive design
 - **Feedback Components** - Toast, Tooltip, Progress med accessibility
 - **Layout Components** - Accordion, Skeleton med animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (100% test coverage - 415/415 tests)
+- **Test Infrastructure** - Vitest + Testing Library + axe-core (100% test coverage - 456/456 tests)
 - **Storybook Setup** - React med dark theme
 - **Build System** - tsup med ESM + CJS output og type definitions
-- **Advanced Documentation Site** - HTML-baseret dokumentation med alle 17 komponenter, interaktive features og live previews
+- **Nextra Documentation Site** - Moderne dokumentation med alle 27 komponenter, interaktive Storybook eksempler og live previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 
 ### 🎯 **Seneste Forbedringer**
 - **Marketing Components** - Hero, Testimonials, Features, Pricing med CVA variants og responsive design
-- **Advanced Documentation** - HTML-baseret dokumentationsside med alle 17 komponenter, interaktive features og live previews
+- **Nextra Documentation** - Moderne dokumentationsside med alle 27 komponenter, interaktive Storybook eksempler og live previews
 - **Form Components** - Label, HelperText, ErrorMessage med accessibility features
 - **Navigation Components** - Tabs og Select med Radix UI integration
 - **Accessibility Tests** - 89.6% test coverage med axe-core integration
@@ -155,7 +163,7 @@ Alle komponenter er bygget med:
 ## 📚 Dokumentation
 
 ### 🚀 **Start Her**
-- **[📚 HTML Documentation](https://jarl.l.github.io/nostromo-ui/)** - **START HER** - Live dokumentationssite med alle 17 komponenter
+- **[📚 Nextra Documentation](http://localhost:3000)** - **START HER** - Live dokumentationssite med alle 27 komponenter
 - **[🎨 Storybook](http://localhost:6006/)** - Interaktive komponent eksempler (lokal udvikling)
 
 ### 📖 **Hoveddokumenter**
@@ -197,8 +205,8 @@ Projektet organiseres som et **monorepo** (pnpm + Turborepo):
 - **`@nostromo/ui-tw`**\
   Tailwind preset + `base.css` + tema-variabler (CSS vars).
 
-- **`@nostromo/docs-advanced`**\
-  Avanceret HTML-baseret dokumentations-site med alle 17 komponenter, interaktive features, live previews og komplet API dokumentation. Deployet til GitHub Pages.
+- **`docs/`**\
+  Moderne Nextra-baseret dokumentations-site med alle 27 komponenter, interaktive Storybook eksempler, live previews og komplet API dokumentation. Kører lokalt på http://localhost:3000.
 
 > 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
 
@@ -255,7 +263,7 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - ✅ Opsætning af monorepo (pnpm + Turborepo).
 - ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs-advanced`: Avanceret HTML-baseret dokumentations-site med alle 17 komponenter og interaktive features.
+- ✅ `@nostromo/docs`: Moderne Nextra-baseret dokumentations-site med alle 27 komponenter og interaktive features.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
 
 ### **0.2.0 – Flere Core-komponenter**
@@ -292,7 +300,7 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 ## 📖 Læs Mere
 
 ### 🚀 **Quick Start**
-- **[📚 HTML Documentation](https://jarl.l.github.io/nostromo-ui/)** - **START HER** - Live dokumentationssite med alle 17 komponenter
+- **[📚 Nextra Documentation](http://localhost:3000)** - **START HER** - Live dokumentationssite med alle 27 komponenter
 - **[🎨 Storybook](http://localhost:6006/)** - Interaktive komponent eksempler (lokal udvikling)
 
 ### 📚 **Komplet Dokumentation**

@@ -1,0 +1,56 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Button
+
+Button komponenten giver dig forskellige knap varianter og størrelser.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-button--default" />
+
+<StorybookEmbed story="components-button--all-variants" />
+
+<StorybookEmbed story="components-button--all-sizes" />
+
+## Kode Eksempler
+
+```jsx
+import { Button } from '@nostromo/ui-core'
+
+export default function ButtonExamples() {
+  return (
+    <div className="space-x-4">
+      <Button variant="default">Default</Button>
+      <Button variant="destructive">Destructive</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  )
+}
+```
+
+## Størrelser
+
+```jsx
+import { Button } from '@nostromo/ui-core'
+
+export default function ButtonSizes() {
+  return (
+    <div className="space-x-4">
+      <Button size="sm">Small</Button>
+      <Button size="default">Default</Button>
+      <Button size="lg">Large</Button>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | Knap variant |
+| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Knap størrelse |
+| `disabled` | `boolean` | `false` | Om knappen er deaktiveret |

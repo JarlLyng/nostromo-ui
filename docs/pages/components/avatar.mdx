@@ -1,0 +1,62 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Avatar
+
+Avatar komponenten giver dig bruger avatars og profilbilleder.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-avatar--default" />
+
+<StorybookEmbed story="components-avatar--all-sizes" />
+
+<StorybookEmbed story="components-avatar--with-image" />
+
+## Kode Eksempler
+
+```jsx
+import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
+
+export default function AvatarExamples() {
+  return (
+    <div className="space-x-4">
+      <Avatar>
+        <AvatarImage src="/avatar.jpg" alt="Bruger" />
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+      
+      <Avatar>
+        <AvatarFallback>AB</AvatarFallback>
+      </Avatar>
+    </div>
+  )
+}
+```
+
+## Størrelser
+
+```jsx
+import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
+
+export default function AvatarSizes() {
+  return (
+    <div className="space-x-4">
+      <Avatar size="sm">
+        <AvatarFallback>SM</AvatarFallback>
+      </Avatar>
+      <Avatar size="default">
+        <AvatarFallback>MD</AvatarFallback>
+      </Avatar>
+      <Avatar size="lg">
+        <AvatarFallback>LG</AvatarFallback>
+      </Avatar>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Avatar størrelse |

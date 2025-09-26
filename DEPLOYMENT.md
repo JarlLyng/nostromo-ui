@@ -4,7 +4,7 @@ Denne guide beskriver hvordan Nostromo UI dokumentationssite deployes og vedlige
 
 ## 📋 Oversigt
 
-Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 17 komponenter, interaktive features og live previews. Den deployes automatisk til **GitHub Pages** via GitHub Actions og er optimeret for performance uden komplekse build-processer.
+Nostromo UI bruger en **Nextra-baseret dokumentationssite** med alle 27 komponenter, Storybook integration og live previews. Den kører lokalt på **http://localhost:3000** og er optimeret for development og testing.
 
 ## 🌐 Deployment Targets
 
@@ -15,8 +15,8 @@ Nostromo UI bruger en **avanceret HTML-baseret dokumentationssite** med alle 17 
 - **Trigger**: Automatisk ved push til main branch
 
 ### **Development (Lokal)**
-- **URL**: http://localhost:3003
-- **Command**: `cd packages/docs-advanced && python3 -m http.server 3003`
+- **URL**: http://localhost:3000
+- **Command**: `cd docs && npm run dev`
 
 ## 🔧 Deployment Process
 

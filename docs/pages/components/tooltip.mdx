@@ -1,0 +1,61 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Tooltip
+
+Tooltip komponenten giver dig hjælpetekst når brugeren hover over et element.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-tooltip--default" />
+
+<StorybookEmbed story="components-tooltip--with-delay" />
+
+<StorybookEmbed story="components-tooltip--positioning" />
+
+## Kode Eksempler
+
+```jsx
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@nostromo/ui-core'
+
+export default function TooltipExample() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover over mig</TooltipTrigger>
+        <TooltipContent>
+          <p>Dette er en tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+## Med Knapper
+
+```jsx
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from '@nostromo/ui-core'
+
+export default function TooltipWithButton() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Hover over knappen</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Dette er en tooltip på en knap</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `delayDuration` | `number` | `700` | Delay før tooltip vises (ms) |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Tooltip position |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | Tooltip alignment |

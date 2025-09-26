@@ -1,0 +1,66 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Select
+
+Select komponenten giver dig dropdown menuer og valg.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-form-select--default" />
+
+<StorybookEmbed story="components-form-select--variants" />
+
+<StorybookEmbed story="components-form-select--form-example" />
+
+## Kode Eksempler
+
+```jsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+
+export default function SelectExample() {
+  return (
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Vælg en option" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+        <SelectItem value="option3">Option 3</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}
+```
+
+## Med Label
+
+```jsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label } from '@nostromo/ui-core'
+
+export default function SelectWithLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="country">Land</Label>
+      <Select>
+        <SelectTrigger id="country">
+          <SelectValue placeholder="Vælg land" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="dk">Danmark</SelectItem>
+          <SelectItem value="se">Sverige</SelectItem>
+          <SelectItem value="no">Norge</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `value` | `string` | - | Valgt værdi |
+| `onValueChange` | `function` | - | Change handler |
+| `disabled` | `boolean` | `false` | Om select er deaktiveret |

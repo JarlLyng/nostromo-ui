@@ -1,0 +1,51 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Separator
+
+Separator komponenten giver dig adskillelseslinjer og dividers.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-separator--default" />
+
+<StorybookEmbed story="components-separator--vertical" />
+
+<StorybookEmbed story="components-separator--in-context" />
+
+## Kode Eksempler
+
+```jsx
+import { Separator } from '@nostromo/ui-core'
+
+export default function SeparatorExample() {
+  return (
+    <div className="space-y-4">
+      <div>Indhold over separator</div>
+      <Separator />
+      <div>Indhold under separator</div>
+    </div>
+  )
+}
+```
+
+## Vertikal
+
+```jsx
+import { Separator } from '@nostromo/ui-core'
+
+export default function VerticalSeparator() {
+  return (
+    <div className="flex items-center space-x-4">
+      <div>Venstre</div>
+      <Separator orientation="vertical" />
+      <div>Højre</div>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Separator retning |

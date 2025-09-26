@@ -179,7 +179,6 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ### Security Documentation
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [React Security](https://reactjs.org/docs/security.html)
-- [Vue Security](https://vuejs.org/guide/best-practices/security.html)
 - [Tailwind CSS Security](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
 
 ### Tools

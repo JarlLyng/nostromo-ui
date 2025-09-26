@@ -1,0 +1,64 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Card
+
+Card komponenten giver dig indholdskort og layout komponenter.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-card--default" />
+
+<StorybookEmbed story="components-card--with-footer" />
+
+<StorybookEmbed story="components-card--interactive" />
+
+## Kode Eksempler
+
+```jsx
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@nostromo/ui-core'
+
+export default function CardExample() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Kort Titel</CardTitle>
+        <CardDescription>Kort beskrivelse af indholdet</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Dette er indholdet i kortet.</p>
+      </CardContent>
+      <CardFooter>
+        <p>Footer indhold</p>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+## Med Knapper
+
+```jsx
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Button } from '@nostromo/ui-core'
+
+export default function CardWithButtons() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Produkt</CardTitle>
+        <CardDescription>Et fantastisk produkt</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Produkt beskrivelse og detaljer.</p>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline">Læs mere</Button>
+        <Button>Køb nu</Button>
+      </CardFooter>
+    </Card>
+  )
+}
+```
+
+## Props
+
+Alle Card komponenter accepterer standard HTML props.

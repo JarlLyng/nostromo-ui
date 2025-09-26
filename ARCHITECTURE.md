@@ -23,7 +23,7 @@ nostromo-ui/
 │   ├── ui-core/           # Produkt- og app-komponenter
 │   ├── ui-marketing/      # Marketing-komponenter
 │   └── ui-tw/            # Tailwind preset + temaer
-├── docs-advanced/        # Avanceret dokumentationssite (HTML)
+├── docs/                # Nextra dokumentationssite
 ├── apps/
 │   └── playground/       # Development playground
 ├── tools/
@@ -97,9 +97,9 @@ module.exports = {
 - **TypeScript**: Strict mode, bundler resolution
 
 ### Dokumentation
-- **Framework**: HTML + CSS + JavaScript (avanceret dokumentationssite)
-- **Features**: Live playground, tema-switcher, eksempler
-- **Deployment**: Vercel/Netlify
+- **Framework**: Nextra (Next.js + MDX)
+- **Features**: Storybook integration, live previews, interaktive eksempler
+- **Development**: Lokal server på http://localhost:3000
 
 ## TypeScript Konfiguration
 
@@ -141,7 +141,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 - **Build**: `tsup`, `typescript`
 - **Linting**: `eslint`, `prettier`
 - **Testing**: `vitest`, `@testing-library/*`, `@playwright/test`
-- **Docs**: `next`, `@next/mdx`
+- **Docs**: `nextra`, `nextra-theme-docs`
 - **Release**: `@changesets/cli`
 
 ## Monorepo Tools
@@ -193,7 +193,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
-4. **Documentation**: Avanceret HTML-baseret dokumentationssite med alle 15 komponenter
+4. **Documentation**: Nextra-baseret dokumentationssite med alle 27 komponenter og Storybook integration
 
 ## CI/CD Pipeline
 

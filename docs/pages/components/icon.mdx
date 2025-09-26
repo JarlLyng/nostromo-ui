@@ -1,0 +1,53 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Icon
+
+Icon komponenten giver dig ikoner og symboler til din applikation.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-icon--default" />
+
+<StorybookEmbed story="components-icon--sizes" />
+
+<StorybookEmbed story="components-icon--colors" />
+
+## Kode Eksempler
+
+```jsx
+import { Icon } from '@nostromo/ui-core'
+
+export default function IconExamples() {
+  return (
+    <div className="space-x-4">
+      <Icon name="home" />
+      <Icon name="user" />
+      <Icon name="settings" />
+      <Icon name="search" />
+    </div>
+  )
+}
+```
+
+## Størrelser
+
+```jsx
+import { Icon } from '@nostromo/ui-core'
+
+export default function IconSizes() {
+  return (
+    <div className="space-x-4">
+      <Icon name="star" size="sm" />
+      <Icon name="star" size="default" />
+      <Icon name="star" size="lg" />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `name` | `string` | - | Ikon navn |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Ikon størrelse |

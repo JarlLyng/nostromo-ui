@@ -1,0 +1,50 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Pagination
+
+Pagination komponenten giver dig sideinddeling og navigation.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-pagination--default" />
+
+<StorybookEmbed story="components-pagination--with-many-pages" />
+
+<StorybookEmbed story="components-pagination--compact" />
+
+## Kode Eksempler
+
+```jsx
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@nostromo/ui-core'
+
+export default function PaginationExample() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `isActive` | `boolean` | `false` | Om link er aktiv |
+| `href` | `string` | - | Link URL |

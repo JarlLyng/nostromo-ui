@@ -1,0 +1,70 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Dialog
+
+Dialog komponenten giver dig modaler og overlays til din applikation.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-dialog--default" />
+
+<StorybookEmbed story="components-dialog--with-actions" />
+
+<StorybookEmbed story="components-dialog--form-dialog" />
+
+## Kode Eksempler
+
+```jsx
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@nostromo/ui-core'
+
+export default function DialogExample() {
+  return (
+    <Dialog>
+      <DialogTrigger>Åbn Dialog</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Er du sikker?</DialogTitle>
+        </DialogHeader>
+        <p>Denne handling kan ikke fortrydes.</p>
+      </DialogContent>
+    </Dialog>
+  )
+}
+```
+
+## Med Form
+
+```jsx
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label } from '@nostromo/ui-core'
+
+export default function DialogWithForm() {
+  return (
+    <Dialog>
+      <DialogTrigger>Åbn Form</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Opret Bruger</DialogTitle>
+        </DialogHeader>
+        <form className="space-y-4">
+          <div>
+            <Label htmlFor="name">Navn</Label>
+            <Input id="name" placeholder="Dit navn" />
+          </div>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="din@email.com" />
+          </div>
+          <Button type="submit">Opret</Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `open` | `boolean` | `false` | Om dialog er åben |
+| `onOpenChange` | `function` | - | Open change handler |

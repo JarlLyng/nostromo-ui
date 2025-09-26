@@ -1,0 +1,39 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Toast
+
+Toast komponenten giver dig popup notifikationer.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-toast--default" />
+
+<StorybookEmbed story="components-toast--variants" />
+
+<StorybookEmbed story="components-toast--with-actions" />
+
+## Eksempler
+
+```jsx
+import { Toast, ToastAction, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from '@nostromo/ui-core'
+
+export default function ToastExample() {
+  return (
+    <ToastProvider>
+      <Toast>
+        <ToastTitle>Succes!</ToastTitle>
+        <ToastDescription>Din handling blev gennemført.</ToastDescription>
+        <ToastAction altText="Undo">Undo</ToastAction>
+      </Toast>
+      <ToastViewport />
+    </ToastProvider>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive"` | `"default"` | Toast variant |
+| `duration` | `number` | `5000` | Toast varighed i ms |

@@ -8,10 +8,10 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
-- **20 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Checkbox, RadioGroup, Switch, Textarea, Alert, Breadcrumb, Pagination, Separator
+- **27 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Checkbox, RadioGroup, Switch, Textarea, Alert, Breadcrumb, Pagination, Separator
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall
 - **4 Complete Themes** - Nostromo (default), Mother, LV-426, Sulaco
-- **Advanced Documentation Site** - HTML-baseret med alle 20 komponenter, interaktive features og live previews
+- **Nextra Documentation Site** - Moderne dokumentationssite med alle 27 komponenter, Storybook integration og live previews
 - **Complete Test Coverage** - 456/456 tests passing (100% coverage)
 - **Accessibility Compliance** - WCAG 2.1 AA compliance for alle komponenter
 - **Responsive Design** - sm:, md:, lg: breakpoints for alle komponenter
@@ -20,25 +20,27 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - **Form Components** - Checkbox, RadioGroup, Switch, Textarea, Alert for complete form system
 
 ### Changed
-- **Documentation System** - Fjernet Docusaurus referencer, fokuseret på HTML-baseret dokumentation
+- **Documentation System** - Migreret fra HTML til Nextra-baseret dokumentationssite med Storybook integration
 - **Component Design** - Alle komponenter opdateret med moderne design system og CVA variants
 - **Build System** - Optimized for production med ESM/CJS output og type definitions
 - **Test Infrastructure** - Migreret fra Jest til Vitest, 100% test coverage
 
 ### Fixed
 - **Accessibility Issues** - Alle ARIA attributes og keyboard navigation problemer løst
-- **Test Coverage** - Alle 415 tests passer nu (100% coverage)
+- **Test Coverage** - Alle 456 tests passer nu (100% coverage)
 - **Build Errors** - TypeScript compilation fejl løst
-- **Documentation Consistency** - Fjernet modsætninger mellem .md filer
+- **Documentation Consistency** - Opdateret alle .md filer med korrekt Nextra information
 - **Component API** - Konsistent API design på tværs af alle komponenter
+- **Storybook Integration** - React import fejl løst, alle 27 komponenter fungerer perfekt
+- **Documentation Site** - Nextra migration fuldført med Storybook integration
 
 ### Added (Previous)
 - **Project Foundation** - Monorepo setup med pnpm + Turborepo
 - **Theming System** - CSS variabler med HSL farver og 4 komplette themes
 - **Build System** - tsup med ESM/CJS output og type definitions
 - **Test Infrastructure** - Vitest + Testing Library + axe-core
-- **Documentation** - HTML-baseret dokumentationssite med alle komponenter
-- **Component Library** - 17 Core + 6 Marketing komponenter
+- **Documentation** - Nextra-baseret dokumentationssite med alle komponenter
+- **Component Library** - 27 Core + 6 Marketing komponenter
 - **Accessibility** - WCAG 2.1 AA compliance for alle komponenter
 - **Storybook** - React komponent showcase og dokumentation
 
@@ -84,12 +86,12 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - CI/CD pipeline with GitHub Actions
 
 ### Components Added
-- Button component (React & Vue)
-- Input component (React & Vue)
-- Dialog component (React & Vue)
-- Card component (React & Vue)
-- Badge component (React & Vue)
-- Avatar component (React & Vue)
+- Button component (React)
+- Input component (React)
+- Dialog component (React)
+- Card component (React)
+- Badge component (React)
+- Avatar component (React)
 - Hero marketing component
 - Features marketing component
 - Testimonial marketing component
@@ -107,7 +109,6 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ### Added
 - **Avatar Component** - Complete user profile and image display component
   - React implementation with TypeScript
-  - Vue 3 implementation with Composition API
   - Image support with automatic fallback handling
   - Size variants: sm (32px), md (40px), lg (48px), xl (64px)
   - Subcomponents: AvatarImage, AvatarFallback
@@ -125,7 +126,7 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - **Fallback System**: Automatic fallback to initials or custom content
 - **Size Variants**: Four size options for different use cases
 - **Accessibility**: WCAG 2.1 AA compliant
-- **TypeScript**: Full type safety for both React and Vue
+- **TypeScript**: Full type safety for React
 - **Testing**: Comprehensive test coverage with Vitest
 - **Documentation**: Complete Storybook stories and examples
 
@@ -139,14 +140,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core";
 </Avatar>
 ```
 
-```vue
-<!-- Vue -->
-<template>
-  <NAvatar src="/user.jpg" alt="User avatar">
-    <NAvatarFallback>JD</NAvatarFallback>
-  </NAvatar>
-</template>
-```
 
 ---
 

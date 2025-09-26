@@ -1,0 +1,55 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Input
+
+Input komponenten giver dig form input felter med validering og fejlhåndtering.
+
+## Live Eksempler
+
+<StorybookEmbed story="components-input--default" />
+
+<StorybookEmbed story="components-input--all-variants" />
+
+<StorybookEmbed story="components-input--with-error" />
+
+## Kode Eksempler
+
+```jsx
+import { Input } from '@nostromo/ui-core'
+
+export default function InputExamples() {
+  return (
+    <div className="space-y-4">
+      <Input placeholder="Skriv noget..." />
+      <Input type="email" placeholder="Email" />
+      <Input type="password" placeholder="Password" />
+      <Input disabled placeholder="Deaktiveret" />
+    </div>
+  )
+}
+```
+
+## Med Label
+
+```jsx
+import { Input, Label } from '@nostromo/ui-core'
+
+export default function InputWithLabel() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" placeholder="din@email.com" />
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Beskrivelse |
+|------|------|---------|-------------|
+| `type` | `string` | `"text"` | Input type |
+| `placeholder` | `string` | - | Placeholder tekst |
+| `disabled` | `boolean` | `false` | Om input er deaktiveret |
+| `value` | `string` | - | Input værdi |
+| `onChange` | `function` | - | Change handler |
