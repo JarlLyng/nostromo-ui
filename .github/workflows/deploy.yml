@@ -48,16 +48,14 @@ jobs:
         pnpm list --depth=0
         echo "ui-core dist contents:"
         ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
-      
-    - name: Build packages in correct order
+        
+    - name: Verify workspace links
       run: |
-        echo "Building ui-tw..."
-        pnpm --filter @nostromo/ui-tw build
-        echo "Building ui-core..."
-        pnpm --filter @nostromo/ui-core build
-        echo "Building ui-marketing..."
-        pnpm --filter @nostromo/ui-marketing build
-        echo "All packages built successfully!"
+        echo "Testing workspace resolution..."
+        pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@nostromo/ui-core/package.json'))\"" || echo "Workspace resolution failed"
+      
+    - name: Build all workspaces in graph order
+      run: pnpm -r build
       
     - name: Build documentation
       run: |
