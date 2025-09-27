@@ -38,11 +38,26 @@ jobs:
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
       
+    - name: Debug workspace info
+      run: |
+        echo "pnpm version:"
+        pnpm --version
+        echo "Node version:"
+        node --version
+        echo "Workspace packages:"
+        pnpm list --depth=0
+        echo "ui-core dist contents:"
+        ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
+      
     - name: Build packages in correct order
       run: |
+        echo "Building ui-tw..."
         pnpm --filter @nostromo/ui-tw build
+        echo "Building ui-core..."
         pnpm --filter @nostromo/ui-core build
+        echo "Building ui-marketing..."
         pnpm --filter @nostromo/ui-marketing build
+        echo "All packages built successfully!"
       
     - name: Build documentation
       run: |
