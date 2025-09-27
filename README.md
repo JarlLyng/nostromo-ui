@@ -223,20 +223,20 @@ The project is organized as a **monorepo** (pnpm + Turborepo):
 - **`docs/`**\
   Modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. Runs locally on http://localhost:3000.
 
-> 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
+> 📖 **Read more**: [Architecture documentation](ARCHITECTURE.md)
 
 ---
 
-## 🎨 Theming (Overblik)
+## 🎨 Theming (Overview)
 
-Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-konfigurationen.
+Theming is based on **CSS variables in HSL**, which integrate directly into the Tailwind configuration.
 
-- Default tokens (`--color-brand-500`, `--radius-sm`, `--font-heading`, osv.).
-- Light/dark mode via `[data-theme]` attribut.
-- Flere prædefinerede temaer (fx *Nostromo*, *Mother*, *LV-426*, *Sulaco*).
-- Brugere kan definere egne tema-vars for at matche deres brand.
+- Default tokens (`--color-brand-500`, `--radius-sm`, `--font-heading`, etc.).
+- Light/dark mode via `[data-theme]` attribute.
+- Multiple predefined themes (e.g. *Nostromo*, *Mother*, *LV-426*, *Sulaco*).
+- Users can define their own theme variables to match their brand.
 
-**Eksempel:**
+**Example:**
 ```css
 [data-theme="mybrand"] {
   --color-brand-500: 262 84% 52%;
@@ -246,11 +246,11 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 }
 ```
 
-> 🎨 **Læs mere**: [Komplet theming guide](THEMING.md)
+> 🎨 **Read more**: [Complete theming guide](THEMING.md)
 
 ---
 
-## 🧩 Komponentområder
+## 🧩 Component Areas
 
 ### Core
 - **Primitives**: Button, Input, Label, Form, Select, Checkbox, Radio.
@@ -268,36 +268,36 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - **FAQ Section**.
 - **CTA/Signup Block**.
 
-> 🔧 **Læs mere**: [Component API dokumentation](COMPONENT_API.md)
+> 🔧 **Read more**: [Component API documentation](COMPONENT_API.md)
 
 ---
 
 ## 🗺️ Roadmap
 
 ### **MVP (0.1.0)** ✅ **90% Complete**
-- ✅ Opsætning af monorepo (pnpm + Turborepo).
-- ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo tema.
+- ✅ Monorepo setup (pnpm + Turborepo).
+- ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo theme.
 - ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs`: Moderne Nextra-baseret dokumentations-site med alle 27 komponenter og interaktive features.
+- ✅ `@nostromo/docs`: Modern Nextra-based documentation site with all 27 components and interactive features.
 - 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
 
-### **0.2.0 – Flere Core-komponenter**
+### **0.2.0 – More Core Components**
 - Form primitives (Label, HelperText, Error).
 - Table, Skeleton, Toast.
 - Dark mode support.
 
-### **0.3.0 – Flere Marketing-blokke**
+### **0.3.0 – More Marketing Blocks**
 - Gallery, Pricing Table, Logo Wall.
-- Flere prædefinerede temaer (*Mother*, *LV-426*, *Sulaco*).
+- More predefined themes (*Mother*, *LV-426*, *Sulaco*).
 
 ### **0.4.0 – Playground & Theming Tool**
-- Live theme editor (vælg farver/typografi → generér CSS-vars).
-- Download/eksporér custom tema.
+- Live theme editor (choose colors/typography → generate CSS variables).
+- Download/export custom theme.
 
-### **1.0.0 – Stabil release**
-- Fuldt dækkende docs.
-- A11y-audit.
-- Semver stabilitet og changelog.
+### **1.0.0 – Stable Release**
+- Complete documentation coverage.
+- A11y audit.
+- Semver stability and changelog.
 
 ---
 
@@ -308,35 +308,35 @@ Theming baseres på **CSS-variabler i HSL**, som integreres direkte i Tailwind-k
 - **Release**: Changesets til semver.
 - **Tests**: Vitest + RTL for core, Playwright/Storybook for visuelle regressioner.
 
-> 🛠️ **Læs mere**: [Development guide](DEVELOPMENT.md)
+> 🛠️ **Read more**: [Development guide](DEVELOPMENT.md)
 
 ---
 
-## 📖 Læs Mere
+## 📖 Read More
 
 ### 🚀 **Quick Start**
-- **[📚 Nextra Documentation](http://localhost:3000)** - **START HER** - Live dokumentationssite med alle 27 komponenter
-- **[🎨 Storybook](http://localhost:6006/)** - Interaktive komponent eksempler (lokal udvikling)
+- **[📚 Nextra Documentation](http://localhost:3000)** - **START HERE** - Live documentation site with all 27 components
+- **[🎨 Storybook](http://localhost:6006/)** - Interactive component examples (local development)
 
-### 📚 **Komplet Dokumentation**
-- **[Arkitektur](ARCHITECTURE.md)** - Detaljeret monorepo og pakke-struktur
-- **[Theming](THEMING.md)** - Komplet theming guide og eksempler  
-- **[Component API](COMPONENT_API.md)** - API design og variant system
-- **[Development](DEVELOPMENT.md)** - Setup, workflow og contribution guidelines
-- **[Technical Setup](TECHNICAL_SETUP.md)** - Tekniske beslutninger og implementation details
+### 📚 **Complete Documentation**
+- **[Architecture](ARCHITECTURE.md)** - Detailed monorepo and package structure
+- **[Theming](THEMING.md)** - Complete theming guide and examples  
+- **[Component API](COMPONENT_API.md)** - API design and variant system
+- **[Development](DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
+- **[Technical Setup](TECHNICAL_SETUP.md)** - Technical decisions and implementation details
 - **[Deployment](DEPLOYMENT.md)** - GitHub Pages deployment guide
 
-### 📋 **Projekt Information**
-- **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones
-- **[Contributing](CONTRIBUTING.md)** - Hvordan du bidrager til projektet
-- **[Security](SECURITY.md)** - Sikkerhedspolitik og sårbarhedsrapportering
-- **[Changelog](CHANGELOG.md)** - Historik over alle ændringer
+### 📋 **Project Information**
+- **[Roadmap](ROADMAP.md)** - Detailed project plan and milestones
+- **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
+- **[Security](SECURITY.md)** - Security policy and vulnerability reporting
+- **[Changelog](CHANGELOG.md)** - History of all changes
 
 ---
 
-## 📄 Licens
+## 📄 License
 
-MIT License - se [LICENSE](LICENSE) filen for detaljer.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
