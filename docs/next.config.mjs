@@ -11,4 +11,6 @@ export default withNextra({
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   output: 'export',
   trailingSlash: true,
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '',
 })
