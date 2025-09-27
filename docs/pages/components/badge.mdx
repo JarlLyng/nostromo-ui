@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Badge
 
-Badge komponenten giver dig status badges og labels til din applikation.
+The Badge component provides you with status badges and labels for your application.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-badge--default" />
 
@@ -12,7 +12,7 @@ Badge komponenten giver dig status badges og labels til din applikation.
 
 <StorybookEmbed story="components-badge--with-icons" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Badge } from '@nostromo/ui-core'
@@ -29,7 +29,7 @@ export default function BadgeExamples() {
 }
 ```
 
-## Med Ikoner
+## With Icons
 
 ```jsx
 import { Badge } from '@nostromo/ui-core'
@@ -37,9 +37,9 @@ import { Badge } from '@nostromo/ui-core'
 export default function BadgeWithIcons() {
   return (
     <div className="space-x-2">
-      <Badge variant="default">✓ Aktiveret</Badge>
-      <Badge variant="destructive">✗ Deaktiveret</Badge>
-      <Badge variant="secondary">⏳ Afventer</Badge>
+      <Badge variant="default">✓ Active</Badge>
+      <Badge variant="destructive">✗ Inactive</Badge>
+      <Badge variant="secondary">⏳ Pending</Badge>
     </div>
   )
 }
@@ -47,7 +47,7 @@ export default function BadgeWithIcons() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `variant` | `"default" \| "secondary" \| "destructive" \| "outline"` | `"default"` | Badge variant |
-| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Badge størrelse |
+| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Badge size |

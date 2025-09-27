@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Accordion
 
-Accordion komponenten giver dig udvidbare sektioner til FAQ og organisering af indhold.
+The Accordion component provides you with expandable sections for FAQ and content organization.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-accordion--default" />
 
@@ -12,7 +12,7 @@ Accordion komponenten giver dig udvidbare sektioner til FAQ og organisering af i
 
 <StorybookEmbed story="components-accordion--multiple" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@nostromo/ui-core'
@@ -21,15 +21,15 @@ export default function AccordionExample() {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
-        <AccordionTrigger>Hvad er Nostromo UI?</AccordionTrigger>
+        <AccordionTrigger>What is Nostromo UI?</AccordionTrigger>
         <AccordionContent>
-          Nostromo UI er et omfattende UI bibliotek bygget med React, TypeScript og Tailwind CSS.
+          Nostromo UI is a comprehensive UI library built with React, TypeScript and Tailwind CSS.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>Hvordan installerer jeg det?</AccordionTrigger>
+        <AccordionTrigger>How do I install it?</AccordionTrigger>
         <AccordionContent>
-          Du kan installere det med npm: <code>npm install @nostromo/ui-core</code>
+          You can install it with npm: <code>npm install @nostromo/ui-core</code>
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -46,12 +46,12 @@ export default function MultipleAccordion() {
   return (
     <Accordion type="multiple">
       <AccordionItem value="item-1">
-        <AccordionTrigger>Sektion 1</AccordionTrigger>
-        <AccordionContent>Indhold i sektion 1</AccordionContent>
+        <AccordionTrigger>Section 1</AccordionTrigger>
+        <AccordionContent>Content in section 1</AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger>Sektion 2</AccordionTrigger>
-        <AccordionContent>Indhold i sektion 2</AccordionContent>
+        <AccordionTrigger>Section 2</AccordionTrigger>
+        <AccordionContent>Content in section 2</AccordionContent>
       </AccordionItem>
     </Accordion>
   )
@@ -60,7 +60,7 @@ export default function MultipleAccordion() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `type` | `"single" \| "multiple"` | `"single"` | Accordion type |
-| `collapsible` | `boolean` | `false` | Om items kan lukkes |
+| `collapsible` | `boolean` | `false` | Whether items can be closed |

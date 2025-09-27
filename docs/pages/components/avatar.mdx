@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Avatar
 
-Avatar komponenten giver dig bruger avatars og profilbilleder.
+The Avatar component provides you with user avatars and profile pictures.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-avatar--default" />
 
@@ -12,7 +12,7 @@ Avatar komponenten giver dig bruger avatars og profilbilleder.
 
 <StorybookEmbed story="components-avatar--with-image" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
@@ -21,7 +21,7 @@ export default function AvatarExamples() {
   return (
     <div className="space-x-4">
       <Avatar>
-        <AvatarImage src="/avatar.jpg" alt="Bruger" />
+        <AvatarImage src="/avatar.jpg" alt="User" />
         <AvatarFallback>JD</AvatarFallback>
       </Avatar>
       
@@ -33,7 +33,7 @@ export default function AvatarExamples() {
 }
 ```
 
-## Størrelser
+## Sizes
 
 ```jsx
 import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
@@ -57,6 +57,6 @@ export default function AvatarSizes() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Avatar størrelse |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Avatar size |

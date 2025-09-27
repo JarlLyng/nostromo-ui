@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Card
 
-Card komponenten giver dig indholdskort og layout komponenter.
+The Card component provides you with content cards and layout components.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-card--default" />
 
@@ -12,7 +12,7 @@ Card komponenten giver dig indholdskort og layout komponenter.
 
 <StorybookEmbed story="components-card--interactive" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@nostromo/ui-core'
@@ -21,21 +21,21 @@ export default function CardExample() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Kort Titel</CardTitle>
-        <CardDescription>Kort beskrivelse af indholdet</CardDescription>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Brief description of the content</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Dette er indholdet i kortet.</p>
+        <p>This is the content of the card.</p>
       </CardContent>
       <CardFooter>
-        <p>Footer indhold</p>
+        <p>Footer content</p>
       </CardFooter>
     </Card>
   )
 }
 ```
 
-## Med Knapper
+## With Buttons
 
 ```jsx
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Button } from '@nostromo/ui-core'
@@ -44,15 +44,15 @@ export default function CardWithButtons() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Produkt</CardTitle>
-        <CardDescription>Et fantastisk produkt</CardDescription>
+        <CardTitle>Product</CardTitle>
+        <CardDescription>An amazing product</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Produkt beskrivelse og detaljer.</p>
+        <p>Product description and details.</p>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Læs mere</Button>
-        <Button>Køb nu</Button>
+        <Button variant="outline">Read more</Button>
+        <Button>Buy now</Button>
       </CardFooter>
     </Card>
   )
@@ -61,4 +61,4 @@ export default function CardWithButtons() {
 
 ## Props
 
-Alle Card komponenter accepterer standard HTML props.
+All Card components accept standard HTML props.
