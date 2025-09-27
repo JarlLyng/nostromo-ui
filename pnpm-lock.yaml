@@ -151,7 +151,7 @@ importers:
   packages/ui-marketing:
     dependencies:
       '@nostromo/ui-core':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../ui-core
       class-variance-authority:
         specifier: ^0.7.1
