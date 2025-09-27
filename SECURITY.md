@@ -2,7 +2,7 @@
 
 ## 🛡️ Supported Versions
 
-Vi giver sikkerhedsopdateringer for følgende versioner:
+We provide security updates for the following versions:
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -14,64 +14,64 @@ Vi giver sikkerhedsopdateringer for følgende versioner:
 
 ## 🚨 Reporting a Vulnerability
 
-Vi tager sikkerhedsproblemer alvorligt. Hvis du opdager en sikkerhedsfejl, bedes du rapportere den ansvarligt.
+We take security issues seriously. If you discover a security vulnerability, please report it responsibly.
 
 ### How to Report
 
-1. **DO NOT** opret et offentligt GitHub issue
-2. Send en email til: security@nostromo-ui.dev
-3. Inkluder følgende information:
-   - Beskrivelse af sårbarheden
+1. **DO NOT** create a public GitHub issue
+2. Send an email to: security@nostromo-ui.dev
+3. Include the following information:
+   - Description of the vulnerability
    - Steps to reproduce
-   - Potentiel impact
-   - Forslag til fix (hvis relevant)
+   - Potential impact
+   - Suggested fix (if relevant)
 
 ### What to Expect
 
-- **Response Time**: Vi svarer inden for 48 timer
-- **Acknowledgment**: Bekræftelse af modtagelse
-- **Timeline**: Vi arbejder på en fix og koordinerer release
-- **Credit**: Vi krediterer dig i security advisory (hvis ønsket)
+- **Response Time**: We respond within 48 hours
+- **Acknowledgment**: Confirmation of receipt
+- **Timeline**: We work on a fix and coordinate release
+- **Credit**: We credit you in security advisory (if desired)
 
 ### Responsible Disclosure
 
-Vi følger responsible disclosure principper:
-1. **Private Report**: Initial rapport er privat
-2. **Investigation**: Vi undersøger og bekræfter problemet
-3. **Fix Development**: Vi udvikler en fix
-4. **Coordinated Release**: Vi koordinerer release med dig
-5. **Public Disclosure**: Vi offentliggør efter fix er tilgængelig
+We follow responsible disclosure principles:
+1. **Private Report**: Initial report is private
+2. **Investigation**: We investigate and confirm the issue
+3. **Fix Development**: We develop a fix
+4. **Coordinated Release**: We coordinate release with you
+5. **Public Disclosure**: We disclose publicly after fix is available
 
 ## 🔒 Security Considerations
 
 ### Component Security
 
 #### Input Validation
-- Alle input komponenter validerer data
-- XSS beskyttelse via proper escaping
-- CSRF tokens hvor relevant
+- All input components validate data
+- XSS protection via proper escaping
+- CSRF tokens where relevant
 
 #### Accessibility Security
-- ARIA attributes valideres
-- Keyboard navigation er sikker
-- Screen reader kompatibilitet
+- ARIA attributes are validated
+- Keyboard navigation is secure
+- Screen reader compatibility
 
 ### Build Security
 
 #### Dependencies
-- Regelmæssige security audits
+- Regular security audits
 - Automated dependency updates
-- Vulnerability scanning i CI/CD
+- Vulnerability scanning in CI/CD
 
 #### Bundle Security
 - Tree shaking for minimal attack surface
-- No eval() eller dynamic code execution
+- No eval() or dynamic code execution
 - Content Security Policy compliance
 
 ### Runtime Security
 
 #### SSR Safety
-- Ingen client-side secrets
+- No client-side secrets
 - Proper hydration without mismatches
 - Server-side rendering security
 
@@ -188,6 +188,6 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 
 ---
 
-**Sikkerhed er en del af vores DNA** 🛡️
+**Security is part of our DNA** 🛡️
 
-Vi tager sikkerhed alvorligt og arbejder kontinuerligt på at forbedre vores sikkerhedsstandarder. Hvis du har spørgsmål eller bekymringer, er du velkommen til at kontakte os.
+We take security seriously and continuously work to improve our security standards. If you have questions or concerns, please feel free to contact us.
