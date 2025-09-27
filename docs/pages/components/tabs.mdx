@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Tabs
 
-Tabs komponenten giver dig tab navigation og sektioner.
+The Tabs component provides you with tab navigation and sections.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-tabs--default" />
 
@@ -12,7 +12,7 @@ Tabs komponenten giver dig tab navigation og sektioner.
 
 <StorybookEmbed story="components-tabs--vertical" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@nostromo/ui-core'
@@ -25,10 +25,10 @@ export default function TabsExample() {
         <TabsTrigger value="password">Password</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <p>Account indhold her.</p>
+        <p>Account content here.</p>
       </TabsContent>
       <TabsContent value="password">
-        <p>Password indhold her.</p>
+        <p>Password content here.</p>
       </TabsContent>
     </Tabs>
   )
@@ -37,8 +37,8 @@ export default function TabsExample() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `defaultValue` | `string` | - | Standard aktiv tab |
-| `value` | `string` | - | Aktiv tab værdi |
+| `defaultValue` | `string` | - | Default active tab |
+| `value` | `string` | - | Active tab value |
 | `onValueChange` | `function` | - | Change handler |

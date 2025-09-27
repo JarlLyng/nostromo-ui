@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Label
 
-Label komponenten giver dig form labels og beskrivelser.
+The Label component provides you with form labels and descriptions.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-form-label--default" />
 
@@ -12,7 +12,7 @@ Label komponenten giver dig form labels og beskrivelser.
 
 <StorybookEmbed story="components-form-label--form-example" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Label } from '@nostromo/ui-core'
@@ -34,7 +34,7 @@ export default function LabelExample() {
 }
 ```
 
-## Med Checkbox
+## With Checkbox
 
 ```jsx
 import { Label, Checkbox } from '@nostromo/ui-core'
@@ -43,7 +43,7 @@ export default function LabelWithCheckbox() {
   return (
     <div className="flex items-center space-x-2">
       <Checkbox id="terms" />
-      <Label htmlFor="terms">Accepter vilkår og betingelser</Label>
+      <Label htmlFor="terms">Accept terms and conditions</Label>
     </div>
   )
 }
@@ -51,6 +51,6 @@ export default function LabelWithCheckbox() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `htmlFor` | `string` | - | HTML for attribut |
+| `htmlFor` | `string` | - | HTML for attribute |

@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Switch
 
-Switch komponenten giver dig toggle switches og checkboxes.
+The Switch component provides you with toggle switches and checkboxes.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-switch--default" />
 
@@ -12,7 +12,7 @@ Switch komponenten giver dig toggle switches og checkboxes.
 
 <StorybookEmbed story="components-switch--form-example" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Switch } from '@nostromo/ui-core'
@@ -22,7 +22,7 @@ export default function SwitchExample() {
     <div className="space-y-4">
       <div className="flex items-center space-x-2">
         <Switch id="notifications" />
-        <label htmlFor="notifications">Notifikationer</label>
+        <label htmlFor="notifications">Notifications</label>
       </div>
       
       <div className="flex items-center space-x-2">
@@ -34,7 +34,7 @@ export default function SwitchExample() {
 }
 ```
 
-## Med Label
+## With Label
 
 ```jsx
 import { Switch, Label } from '@nostromo/ui-core'
@@ -57,8 +57,8 @@ export default function SwitchWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Om switch er tændt |
-| `disabled` | `boolean` | `false` | Om switch er deaktiveret |
+| `checked` | `boolean` | `false` | Whether switch is on |
+| `disabled` | `boolean` | `false` | Whether switch is disabled |
 | `onCheckedChange` | `function` | - | Change handler |

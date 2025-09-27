@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Separator
 
-Separator komponenten giver dig adskillelseslinjer og dividers.
+The Separator component provides you with divider lines and separators.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-separator--default" />
 
@@ -12,7 +12,7 @@ Separator komponenten giver dig adskillelseslinjer og dividers.
 
 <StorybookEmbed story="components-separator--in-context" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Separator } from '@nostromo/ui-core'
@@ -20,15 +20,15 @@ import { Separator } from '@nostromo/ui-core'
 export default function SeparatorExample() {
   return (
     <div className="space-y-4">
-      <div>Indhold over separator</div>
+      <div>Content above separator</div>
       <Separator />
-      <div>Indhold under separator</div>
+      <div>Content below separator</div>
     </div>
   )
 }
 ```
 
-## Vertikal
+## Vertical
 
 ```jsx
 import { Separator } from '@nostromo/ui-core'
@@ -36,9 +36,9 @@ import { Separator } from '@nostromo/ui-core'
 export default function VerticalSeparator() {
   return (
     <div className="flex items-center space-x-4">
-      <div>Venstre</div>
+      <div>Left</div>
       <Separator orientation="vertical" />
-      <div>Højre</div>
+      <div>Right</div>
     </div>
   )
 }
@@ -46,6 +46,6 @@ export default function VerticalSeparator() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Separator retning |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Separator orientation |

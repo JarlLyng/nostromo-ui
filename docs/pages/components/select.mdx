@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Select
 
-Select komponenten giver dig dropdown menuer og valg.
+The Select component provides you with dropdown menus and choices.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-form-select--default" />
 
@@ -12,7 +12,7 @@ Select komponenten giver dig dropdown menuer og valg.
 
 <StorybookEmbed story="components-form-select--form-example" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
@@ -21,7 +21,7 @@ export default function SelectExample() {
   return (
     <Select>
       <SelectTrigger>
-        <SelectValue placeholder="Vælg en option" />
+        <SelectValue placeholder="Select an option" />
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="option1">Option 1</SelectItem>
@@ -33,7 +33,7 @@ export default function SelectExample() {
 }
 ```
 
-## Med Label
+## With Label
 
 ```jsx
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label } from '@nostromo/ui-core'
@@ -41,15 +41,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Label } 
 export default function SelectWithLabel() {
   return (
     <div className="space-y-2">
-      <Label htmlFor="country">Land</Label>
+      <Label htmlFor="country">Country</Label>
       <Select>
         <SelectTrigger id="country">
-          <SelectValue placeholder="Vælg land" />
+          <SelectValue placeholder="Select country" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="dk">Danmark</SelectItem>
-          <SelectItem value="se">Sverige</SelectItem>
-          <SelectItem value="no">Norge</SelectItem>
+          <SelectItem value="dk">Denmark</SelectItem>
+          <SelectItem value="se">Sweden</SelectItem>
+          <SelectItem value="no">Norway</SelectItem>
         </SelectContent>
       </Select>
     </div>
@@ -59,8 +59,8 @@ export default function SelectWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | - | Valgt værdi |
+| `value` | `string` | - | Selected value |
 | `onValueChange` | `function` | - | Change handler |
-| `disabled` | `boolean` | `false` | Om select er deaktiveret |
+| `disabled` | `boolean` | `false` | Whether select is disabled |

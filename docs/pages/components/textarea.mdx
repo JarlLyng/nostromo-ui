@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Textarea
 
-Textarea komponenten giver dig flerlinje tekstfelter.
+The Textarea component provides you with multi-line text fields.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-textarea--default" />
 
@@ -12,7 +12,7 @@ Textarea komponenten giver dig flerlinje tekstfelter.
 
 <StorybookEmbed story="components-textarea--form-example" />
 
-## Eksempler
+## Examples
 
 ```jsx
 import { Textarea } from '@nostromo/ui-core'
@@ -20,14 +20,14 @@ import { Textarea } from '@nostromo/ui-core'
 export default function TextareaExample() {
   return (
     <div className="space-y-4">
-      <Textarea placeholder="Skriv din besked her..." />
-      <Textarea placeholder="Stor textarea" rows={6} />
+      <Textarea placeholder="Type your message here..." />
+      <Textarea placeholder="Large textarea" rows={6} />
     </div>
   )
 }
 ```
 
-## Med Label
+## With Label
 
 ```jsx
 import { Textarea, Label } from '@nostromo/ui-core'
@@ -35,8 +35,8 @@ import { Textarea, Label } from '@nostromo/ui-core'
 export default function TextareaWithLabel() {
   return (
     <div className="space-y-2">
-      <Label htmlFor="message">Besked</Label>
-      <Textarea id="message" placeholder="Din besked..." />
+      <Label htmlFor="message">Message</Label>
+      <Textarea id="message" placeholder="Your message..." />
     </div>
   )
 }
@@ -44,10 +44,10 @@ export default function TextareaWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `placeholder` | `string` | - | Placeholder tekst |
-| `rows` | `number` | `3` | Antal rækker |
-| `disabled` | `boolean` | `false` | Om textarea er deaktiveret |
-| `value` | `string` | - | Textarea værdi |
+| `placeholder` | `string` | - | Placeholder text |
+| `rows` | `number` | `3` | Number of rows |
+| `disabled` | `boolean` | `false` | Whether textarea is disabled |
+| `value` | `string` | - | Textarea value |
 | `onChange` | `function` | - | Change handler |

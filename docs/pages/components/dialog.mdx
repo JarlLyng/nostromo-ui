@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Dialog
 
-Dialog komponenten giver dig modaler og overlays til din applikation.
+The Dialog component provides you with modals and overlays for your application.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-dialog--default" />
 
@@ -12,7 +12,7 @@ Dialog komponenten giver dig modaler og overlays til din applikation.
 
 <StorybookEmbed story="components-dialog--form-dialog" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@nostromo/ui-core'
@@ -20,19 +20,19 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 export default function DialogExample() {
   return (
     <Dialog>
-      <DialogTrigger>Åbn Dialog</DialogTrigger>
+      <DialogTrigger>Open Dialog</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Er du sikker?</DialogTitle>
+          <DialogTitle>Are you sure?</DialogTitle>
         </DialogHeader>
-        <p>Denne handling kan ikke fortrydes.</p>
+        <p>This action cannot be undone.</p>
       </DialogContent>
     </Dialog>
   )
 }
 ```
 
-## Med Form
+## With Form
 
 ```jsx
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label } from '@nostromo/ui-core'
@@ -40,21 +40,21 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button
 export default function DialogWithForm() {
   return (
     <Dialog>
-      <DialogTrigger>Åbn Form</DialogTrigger>
+      <DialogTrigger>Open Form</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Opret Bruger</DialogTitle>
+          <DialogTitle>Create User</DialogTitle>
         </DialogHeader>
         <form className="space-y-4">
           <div>
-            <Label htmlFor="name">Navn</Label>
-            <Input id="name" placeholder="Dit navn" />
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" placeholder="Your name" />
           </div>
           <div>
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="din@email.com" />
+            <Input id="email" type="email" placeholder="your@email.com" />
           </div>
-          <Button type="submit">Opret</Button>
+          <Button type="submit">Create</Button>
         </form>
       </DialogContent>
     </Dialog>
@@ -64,7 +64,7 @@ export default function DialogWithForm() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `open` | `boolean` | `false` | Om dialog er åben |
+| `open` | `boolean` | `false` | Whether dialog is open |
 | `onOpenChange` | `function` | - | Open change handler |

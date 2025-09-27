@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Table
 
-Table komponenten giver dig datatabeller og lister.
+The Table component provides you with data tables and lists.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-table--default" />
 
@@ -12,7 +12,7 @@ Table komponenten giver dig datatabeller og lister.
 
 <StorybookEmbed story="components-table--sortable" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@nostromo/ui-core'
@@ -22,7 +22,7 @@ export default function TableExample() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Navn</TableHead>
+          <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Status</TableHead>
         </TableRow>
@@ -31,12 +31,12 @@ export default function TableExample() {
         <TableRow>
           <TableCell>John Doe</TableCell>
           <TableCell>john@example.com</TableCell>
-          <TableCell>Aktiv</TableCell>
+          <TableCell>Active</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Jane Smith</TableCell>
           <TableCell>jane@example.com</TableCell>
-          <TableCell>Aktiv</TableCell>
+          <TableCell>Active</TableCell>
         </TableRow>
       </TableBody>
     </Table>
@@ -46,4 +46,4 @@ export default function TableExample() {
 
 ## Props
 
-Alle Table komponenter accepterer standard HTML props.
+All Table components accept standard HTML props.

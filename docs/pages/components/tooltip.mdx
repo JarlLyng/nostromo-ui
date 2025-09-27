@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Tooltip
 
-Tooltip komponenten giver dig hjælpetekst når brugeren hover over et element.
+The Tooltip component provides you with help text when the user hovers over an element.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-tooltip--default" />
 
@@ -12,7 +12,7 @@ Tooltip komponenten giver dig hjælpetekst når brugeren hover over et element.
 
 <StorybookEmbed story="components-tooltip--positioning" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@nostromo/ui-core'
@@ -21,9 +21,9 @@ export default function TooltipExample() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>Hover over mig</TooltipTrigger>
+        <TooltipTrigger>Hover over me</TooltipTrigger>
         <TooltipContent>
-          <p>Dette er en tooltip</p>
+          <p>This is a tooltip</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -31,7 +31,7 @@ export default function TooltipExample() {
 }
 ```
 
-## Med Knapper
+## With Buttons
 
 ```jsx
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Button } from '@nostromo/ui-core'
@@ -41,10 +41,10 @@ export default function TooltipWithButton() {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="outline">Hover over knappen</Button>
+          <Button variant="outline">Hover over button</Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Dette er en tooltip på en knap</p>
+          <p>This is a tooltip on a button</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
@@ -54,8 +54,8 @@ export default function TooltipWithButton() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `delayDuration` | `number` | `700` | Delay før tooltip vises (ms) |
+| `delayDuration` | `number` | `700` | Delay before tooltip shows (ms) |
 | `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Tooltip position |
 | `align` | `"start" \| "center" \| "end"` | `"center"` | Tooltip alignment |
