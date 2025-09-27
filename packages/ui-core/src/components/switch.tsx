@@ -60,7 +60,7 @@ const Switch = React.forwardRef<
   (
     {
       className,
-      children,
+      children: _children,
       label,
       helperText,
       error,

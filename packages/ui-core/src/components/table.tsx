@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
@@ -154,8 +154,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     rowKey = 'id',
     onRowClick,
     onSort,
-    sortColumn,
-    sortDirection,
+    sortColumn: _sortColumn,
+    sortDirection: _sortDirection,
     pagination,
     selection,
     caption,

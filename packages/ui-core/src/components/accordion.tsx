@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
@@ -169,7 +169,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   ({
     children,
     type = 'single',
-    collapsible = true,
+    collapsible: _collapsible = true,
     value: controlledValue,
     defaultValue,
     onValueChange,

@@ -18,11 +18,27 @@ Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. 
 
 ## 🎯 Current Status
 
-**Current Phase**: Navigation Components (1.2.0)  
-**Next Milestone**: 1.2.0 Release  
+**Current Phase**: Beta Testing (0.1.0)  
+**Next Milestone**: Stable Release (1.0.0)  
 **Last Updated**: December 2024  
-**Progress**: 100% of MVP completed - Production Ready! 🎉  
-**Current Focus**: Implementing navigation components (Breadcrumb, Pagination, Separator)
+**Progress**: 100% of MVP completed - Now in Beta Testing! 🧪  
+**Current Focus**: Community feedback and testing phase
+
+### 🧪 **Beta Testing Phase (0.1.0)**
+- **Status**: 🚧 **IN PROGRESS**
+- **Goal**: Gather community feedback and test components in real projects
+- **Timeline**: December 2024 - January 2025
+- **Key Activities**:
+  - Public GitHub repository for community access
+  - GitHub Pages documentation site deployment
+  - Community feedback collection via GitHub Issues
+  - Component testing in various project setups
+  - API refinement based on user feedback
+- **Success Criteria**:
+  - 10+ community testers
+  - 20+ GitHub issues with feedback
+  - Components tested in 5+ different project setups
+  - API stability confirmed
 
 ### ✅ **Completed: Documentation Solution**
 - **Status**: ✅ **COMPLETED**

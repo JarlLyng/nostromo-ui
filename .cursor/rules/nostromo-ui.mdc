@@ -39,6 +39,20 @@ alwaysApply: true
 
 ## 🛠️ DEVELOPMENT STANDARDS
 
+### Language & Documentation Standards
+- **ALL documentation must be in English** - README.md, .md files, comments, JSDoc
+- **ALL code comments must be in English** - Inline comments, function descriptions, API docs
+- **ALL commit messages must be in English** - For consistency and global accessibility
+- **ALL variable names and function names** - Use English (already standard)
+- **ALL user-facing text** - Error messages, console logs, UI text in English
+
+### Why English Standard?
+- **Global accessibility** - More developers can understand and contribute
+- **Open source standard** - Most UI libraries use English documentation
+- **GitHub community** - Easier to get contributions and feedback
+- **Professional appearance** - Looks more professional and production-ready
+- **SEO benefits** - Better search optimization for discoverability
+
 ### Code Quality
 - **TypeScript strict mode** - No `any` types allowed
 - **ESLint + Prettier** for consistent formatting
@@ -149,10 +163,11 @@ packages/
 
 ### When Responding
 - **Be concise but thorough** - Provide complete information
-- **Use Danish** as requested by the user
+- **Use Danish** as requested by the user (for AI responses only)
 - **Explain your reasoning** - Help the user understand decisions
 - **Ask follow-up questions** - Ensure you understand correctly
 - **Suggest alternatives** - Offer different approaches when relevant
+- **Remember: All code and documentation must be in English** - Even when responding in Danish
 
 ### When Asking Questions
 - **Be specific** - Ask about particular aspects, not general concepts

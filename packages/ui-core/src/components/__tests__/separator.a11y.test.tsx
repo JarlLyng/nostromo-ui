@@ -42,11 +42,11 @@ describe("Separator Accessibility", () => {
   });
 
   it("should have proper aria-orientation", () => {
-    const { rerender } = render(<Separator orientation="horizontal" />);
-    expect(screen.getByRole("none")).toHaveAttribute("aria-orientation", "horizontal");
+    const { rerender } = render(<Separator orientation="horizontal" decorative={false} />);
+    expect(screen.getByRole("separator")).toHaveAttribute("aria-orientation", "horizontal");
 
-    rerender(<Separator orientation="vertical" />);
-    expect(screen.getByRole("none")).toHaveAttribute("aria-orientation", "vertical");
+    rerender(<Separator orientation="vertical" decorative={false} />);
+    expect(screen.getByRole("separator")).toHaveAttribute("aria-orientation", "vertical");
   });
 
   it("should be properly styled for visual separation", () => {

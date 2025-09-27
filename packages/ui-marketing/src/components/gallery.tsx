@@ -104,7 +104,7 @@ export const Gallery: React.FC<GalleryProps> = ({
   itemHover = 'scale',
   itemAspectRatio = 'square',
   showThumbnails = false,
-  thumbnailSize = 'md',
+  thumbnailSize: _thumbnailSize = 'md',
   ...props
 }) => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);

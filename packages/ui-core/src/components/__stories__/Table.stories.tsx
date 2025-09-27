@@ -288,7 +288,7 @@ export const ComplexExample: Story = {
       },
       showSizeChanger: true
     },
-    onRowClick: (record, index) => {
+    onRowClick: (record, _index) => {
       console.log('Row clicked:', record);
     },
     onSort: (column, direction) => {

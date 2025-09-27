@@ -143,7 +143,7 @@ const ToastContainer: React.FC<{ toasts: ToastProps[] }> = ({ toasts }) => {
 // Individual Toast Component
 export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   ({
-    id,
+    id: _id,
     title,
     description,
     variant = 'default',

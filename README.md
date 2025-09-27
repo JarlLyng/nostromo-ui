@@ -1,20 +1,24 @@
 # Nostromo UI
 
-Et open source UI-bibliotek bygget med **React**, **TypeScript** og **Tailwind CSS**.\
-Målet er at levere et sæt komponenter, der **virker ud af boksen**, men som også er nemme at tilpasse via temaer (farver, typografi, radius).
+> **🚧 BETA VERSION** - This library is currently in beta testing phase. We're actively seeking feedback and testing from the community. Please report any issues or suggestions!
 
-Biblioteket opdeles i to områder:
+An open source UI library built with **React**, **TypeScript** and **Tailwind CSS**.\
+The goal is to deliver a set of components that **work out of the box**, but are also easy to customize via themes (colors, typography, radius).
 
-1. **Core** – produkt- og app-komponenter (knapper, inputs, dialoger osv.).
-2. **Marketing** – blokke til marketing-sites (hero-sektioner, testimonials, gallerier, citater osv.).
+The library is divided into two areas:
 
-Navnet er inspireret af rumskibet *USCSS Nostromo* fra filmen **Alien** (1979).
+1. **Core** – product and app components (buttons, inputs, dialogs, etc.).
+2. **Marketing** – blocks for marketing sites (hero sections, testimonials, galleries, quotes, etc.).
 
-## 📚 Dokumentation
+The name is inspired by the spaceship *USCSS Nostromo* from the movie **Alien** (1979).
 
-**Live dokumentation**: [http://localhost:3000](http://localhost:3000) (lokal udvikling)
+## 📚 Documentation
 
-Vi har en moderne Nextra-baseret dokumentationsside med alle 27 komponenter, interaktive Storybook eksempler, live previews og komplet API dokumentation. Dokumentationen er bygget med Next.js og Nextra for optimal performance og udvikleroplevelse.
+**Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) (GitHub Pages)
+
+We have a modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. The documentation is built with Next.js and Nextra for optimal performance and developer experience.
+
+> **Note**: Documentation is automatically deployed via GitHub Pages when changes are pushed to the main branch.
 
 ---
 
@@ -22,17 +26,17 @@ Vi har en moderne Nextra-baseret dokumentationsside med alle 27 komponenter, int
 
 ### Installation
 ```bash
-# React projekt
+# React project
 npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
-# eller
+# or
 yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
-# eller
+# or
 pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
 
-> **Note**: Vi anbefaler at bruge `pnpm` for bedste performance i vores monorepo setup.
+> **Note**: We recommend using `pnpm` for best performance in our monorepo setup.
 
-### Opsætning af Tailwind
+### Tailwind Setup
 ```js
 // tailwind.config.js
 const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
@@ -46,14 +50,14 @@ module.exports = {
 };
 ```
 
-### Import af base CSS
+### Import Base CSS
 ```ts
-// I din entry-fil (fx main.tsx)
+// In your entry file (e.g. main.tsx)
 import "@nostromo/ui-tw/styles/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css"; // vælg eller tilpas tema
+import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
-### Brug i React
+### Using in React
 ```tsx
 import { Button, Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core";
 
@@ -62,151 +66,162 @@ export default function Example() {
     <div className="flex items-center gap-4">
       <Button variant="default">Start mission</Button>
       
-      {/* Compound Component API (anbefalet) */}
+      {/* Compound Component API (recommended) */}
       <Avatar size="lg">
         <AvatarImage src="/user.jpg" alt="User avatar" />
         <AvatarFallback>JD</AvatarFallback>
       </Avatar>
       
-      {/* Eller simpel prop API */}
+      {/* Or simple prop API */}
       <Avatar src="/user.jpg" alt="User avatar" fallback="JD" size="md" />
     </div>
   );
 }
 ```
 
-## 🧩 Tilgængelige Komponenter
+## 🧩 Available Components
 
-### Core Components (27 komponenter)
-- **Button** - Interaktive knapper med loading states og varianter
-- **Input** - Tekst input felter med validation og form integration
-- **Dialog** - Modal dialoger med accessibility og focus management
-- **Badge** - Status indikatorer og labels
-- **Card** - Container komponenter til indhold
-- **Avatar** - Bruger profil billeder med fallback support
-- **Tabs** - Tab navigation med keyboard accessibility
-- **Select** - Dropdown selects med search og multi-select
-- **Label** - Form labels med accessibility features
-- **HelperText** - Hjælpetekst til form felter
-- **ErrorMessage** - Fejlmeddelelser til validation
-- **Icon** - SVG ikoner med customizable styling
-- **Table** - Data tables med sortable columns, pagination og responsive design
-- **Toast** - Notification system med auto-dismiss og positioning
-- **Tooltip** - Contextual information med positioning og triggers
-- **Accordion** - Collapsible sections med keyboard navigation
-- **Skeleton** - Loading states med animations og specialized components
-- **Progress** - Progress indicators med variants og accessibility
-- **Alert** - Notification alerts med variants og dismiss functionality
-- **Checkbox** - Form checkboxes med accessibility og validation
-- **RadioGroup** - Radio button groups med keyboard navigation
-- **Switch** - Toggle switches med accessibility og variants
-- **Textarea** - Multi-line text input med validation og resize
-- **Breadcrumb** - Navigation breadcrumbs med accessibility
-- **Pagination** - Page navigation med keyboard accessibility
-- **Separator** - Visual separators med horizontal og vertical variants
+### Core Components (27 components)
+- **Button** - Interactive buttons with loading states and variants
+- **Input** - Text input fields with validation and form integration
+- **Dialog** - Modal dialogs with accessibility and focus management
+- **Badge** - Status indicators and labels
+- **Card** - Container components for content
+- **Avatar** - User profile images with fallback support
+- **Tabs** - Tab navigation with keyboard accessibility
+- **Select** - Dropdown selects with search and multi-select
+- **Label** - Form labels with accessibility features
+- **HelperText** - Helper text for form fields
+- **ErrorMessage** - Error messages for validation
+- **Icon** - SVG icons with customizable styling
+- **Table** - Data tables with sortable columns, pagination and responsive design
+- **Toast** - Notification system with auto-dismiss and positioning
+- **Tooltip** - Contextual information with positioning and triggers
+- **Accordion** - Collapsible sections with keyboard navigation
+- **Skeleton** - Loading states with animations and specialized components
+- **Progress** - Progress indicators with variants and accessibility
+- **Alert** - Notification alerts with variants and dismiss functionality
+- **Checkbox** - Form checkboxes with accessibility and validation
+- **RadioGroup** - Radio button groups with keyboard navigation
+- **Switch** - Toggle switches with accessibility and variants
+- **Textarea** - Multi-line text input with validation and resize
+- **Breadcrumb** - Navigation breadcrumbs with accessibility
+- **Pagination** - Page navigation with keyboard accessibility
+- **Separator** - Visual separators with horizontal and vertical variants
 
-### Marketing Components (6 komponenter)
-- **Hero** - Hero sektioner med customizable layouts og call-to-action buttons
-- **Testimonials** - Kunde testimonials med ratings, avatars og responsive grids
-- **Features** - Feature showcase grids med ikoner og hover effects
-- **Pricing** - Pricing tables med yearly/monthly toggle og popular plan highlighting
-- **Gallery** - Image galleries med lightbox functionality og responsive grids
-- **Logo Wall** - Client logos med hover effects og responsive layouts
+### Marketing Components (6 components)
+- **Hero** - Hero sections with customizable layouts and call-to-action buttons
+- **Testimonials** - Customer testimonials with ratings, avatars and responsive grids
+- **Features** - Feature showcase grids with icons and hover effects
+- **Pricing** - Pricing tables with yearly/monthly toggle and popular plan highlighting
+- **Gallery** - Image galleries with lightbox functionality and responsive grids
+- **Logo Wall** - Client logos with hover effects and responsive layouts
 
-Alle komponenter er bygget med:
+All components are built with:
 - ♿ **WCAG 2.1 AA compliance**
-- 🎯 **TypeScript** med fuld type safety
-- 🎨 **Tailwind CSS** med custom themes
+- 🎯 **TypeScript** with full type safety
+- 🎨 **Tailwind CSS** with custom themes
 - 📱 **Responsive design**
 - 🌙 **Dark mode support**
 
 
 ---
 
-## 📊 Projekt Status
+## 📊 Project Status
 
-### ✅ **Færdige Features**
+**Current Phase**: Beta Testing (0.1.0)
+**Next Milestone**: Stable Release (1.0.0)
+**Current Focus**: Community feedback and testing
+
+### 🧪 **Beta Testing**
+We're actively seeking feedback from the community! Please help us by:
+- **Testing components** in your projects
+- **Reporting issues** via GitHub Issues
+- **Suggesting improvements** via GitHub Discussions
+- **Sharing feedback** on component APIs and design
+
+### ✅ **Completed Features**
 - **Monorepo Setup** - pnpm workspaces + Turborepo
-- **Theming System** - CSS variables med HSL farver og 4 komplette themes
-- **Tailwind Preset** - Komplet preset med Nostromo tema
+- **Theming System** - CSS variables with HSL colors and 4 complete themes
+- **Tailwind Preset** - Complete preset with Nostromo theme
 - **27 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator
-- **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall med fuld design system integration
-- **Form Components** - Komplet sæt af form-relaterede komponenter
-- **Navigation Components** - Tabs og Select med keyboard accessibility
-- **Data Components** - Table med sortable columns, pagination og responsive design
-- **Feedback Components** - Toast, Tooltip, Progress med accessibility
-- **Layout Components** - Accordion, Skeleton med animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (100% test coverage - 456/456 tests)
-- **Storybook Setup** - React med dark theme
-- **Build System** - tsup med ESM + CJS output og type definitions
-- **Nextra Documentation Site** - Moderne dokumentation med alle 27 komponenter, interaktive Storybook eksempler og live previews
+- **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall with full design system integration
+- **Form Components** - Complete set of form-related components
+- **Navigation Components** - Tabs and Select with keyboard accessibility
+- **Data Components** - Table with sortable columns, pagination and responsive design
+- **Feedback Components** - Toast, Tooltip, Progress with accessibility
+- **Layout Components** - Accordion, Skeleton with animations
+- **Test Infrastructure** - Vitest + Testing Library + axe-core (100% test coverage - 691/691 tests)
+- **Storybook Setup** - React with dark theme
+- **Build System** - tsup with ESM + CJS output and type definitions
+- **Nextra Documentation Site** - Modern documentation with all 27 components, interactive Storybook examples and live previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 
-### 🎯 **Seneste Forbedringer**
-- **Marketing Components** - Hero, Testimonials, Features, Pricing med CVA variants og responsive design
-- **Nextra Documentation** - Moderne dokumentationsside med alle 27 komponenter, interaktive Storybook eksempler og live previews
-- **Form Components** - Label, HelperText, ErrorMessage med accessibility features
-- **Navigation Components** - Tabs og Select med Radix UI integration
-- **Accessibility Tests** - 89.6% test coverage med axe-core integration
-- **Storybook** - React komponenter med dark theme
+### 🎯 **Latest Improvements**
+- **Marketing Components** - Hero, Testimonials, Features, Pricing with CVA variants and responsive design
+- **Nextra Documentation** - Modern documentation site with all 27 components, interactive Storybook examples and live previews
+- **Form Components** - Label, HelperText, ErrorMessage with accessibility features
+- **Navigation Components** - Tabs and Select with Radix UI integration
+- **Accessibility Tests** - 100% test coverage with axe-core integration
+- **Storybook** - React components with dark theme
 - **Test Infrastructure** - Vitest + Testing Library for React
 
-### 📋 **Planlagt**
+### 📋 **Planned**
 - **Advanced Components** - DataTable, Calendar, Charts
-- **Search Functionality** - Komponent søgning i dokumentations-site
-- **Performance Optimization** - Bundle size optimization og performance monitoring
+- **Search Functionality** - Component search in documentation site
+- **Performance Optimization** - Bundle size optimization and performance monitoring
 
-**Nuværende Progress: 100% af MVP - Production Ready! 🎉**
+**Current Progress: 100% of MVP - Production Ready! 🎉**
 
 ---
 
-## 📚 Dokumentation
+## 📚 Documentation
 
-### 🚀 **Start Her**
-- **[📚 Nextra Documentation](http://localhost:3000)** - **START HER** - Live dokumentationssite med alle 27 komponenter
-- **[🎨 Storybook](http://localhost:6006/)** - Interaktive komponent eksempler (lokal udvikling)
+### 🚀 **Start Here**
+- **[📚 Nextra Documentation](http://localhost:3000)** - **START HERE** - Live documentation site with all 27 components
+- **[🎨 Storybook](http://localhost:6006/)** - Interactive component examples (local development)
 
-### 📖 **Hoveddokumenter**
-- **[Arkitektur](ARCHITECTURE.md)** - Monorepo struktur, build system og pakke-organisation
-- **[Theming](THEMING.md)** - Komplet theming guide med CSS-variabler og custom temaer
-- **[Component API](COMPONENT_API.md)** - API design, variant system og komponent patterns
-- **[Development](DEVELOPMENT.md)** - Setup, build process, testing og contribution guidelines
-- **[Technical Setup](TECHNICAL_SETUP.md)** - Dybere tekniske beslutninger og implementation details
+### 📖 **Main Documents**
+- **[Architecture](ARCHITECTURE.md)** - Monorepo structure, build system and package organization
+- **[Theming](THEMING.md)** - Complete theming guide with CSS variables and custom themes
+- **[Component API](COMPONENT_API.md)** - API design, variant system and component patterns
+- **[Development](DEVELOPMENT.md)** - Setup, build process, testing and contribution guidelines
+- **[Technical Setup](TECHNICAL_SETUP.md)** - Deeper technical decisions and implementation details
 - **[Deployment](DEPLOYMENT.md)** - Deployment guide for GitHub Pages
 
-### 📋 **Projekt Management**
-- **[Roadmap](ROADMAP.md)** - Detaljeret projektplan og milestones
-- **[Contributing](CONTRIBUTING.md)** - Hvordan du bidrager til projektet
-- **[Security](SECURITY.md)** - Sikkerhedspolitik og sårbarhedsrapportering
-- **[Changelog](CHANGELOG.md)** - Historik over alle ændringer
+### 📋 **Project Management**
+- **[Roadmap](ROADMAP.md)** - Detailed project plan and milestones
+- **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
+- **[Security](SECURITY.md)** - Security policy and vulnerability reporting
+- **[Changelog](CHANGELOG.md)** - History of all changes
 
 ---
 
 ## 🎯 Vision
 
-- Giv udviklere et **moderne, tilgængeligt og Tailwind-first** komponentbibliotek.
-- Gør det **enkelt at vælge et tema** (eller definere sit eget).
-- Lever både **små primitives** og **store blokke**, så man kan bygge alt fra SaaS-dashboards til landingssider.
-- Inspireret af shadcn/ui, men med en **klar todeling** (produkt vs marketing).
-- Fokuserer på **React** for optimal performance og udvikleroplevelse.
+- Give developers a **modern, accessible and Tailwind-first** component library.
+- Make it **easy to choose a theme** (or define your own).
+- Deliver both **small primitives** and **large blocks**, so you can build everything from SaaS dashboards to landing pages.
+- Inspired by shadcn/ui, but with a **clear division** (product vs marketing).
+- Focuses on **React** for optimal performance and developer experience.
 
 ---
 
-## 🏗️ Arkitektur (Overblik)
+## 🏗️ Architecture (Overview)
 
-Projektet organiseres som et **monorepo** (pnpm + Turborepo):
+The project is organized as a **monorepo** (pnpm + Turborepo):
 
 - **`@nostromo/ui-core`**\
-  Produkt- og app-komponenter: Button, Input, Form, Dialog, Popover, Tabs, Table osv.
+  Product and app components: Button, Input, Form, Dialog, Popover, Tabs, Table etc.
 
 - **`@nostromo/ui-marketing`**\
-  Marketing-komponenter: Hero, Feature-sektion, Testimonial, Gallery, CTA-sektioner, Pricing, FAQ.
+  Marketing components: Hero, Feature section, Testimonial, Gallery, CTA sections, Pricing, FAQ.
 
 - **`@nostromo/ui-tw`**\
-  Tailwind preset + `base.css` + tema-variabler (CSS vars).
+  Tailwind preset + `base.css` + theme variables (CSS vars).
 
 - **`docs/`**\
-  Moderne Nextra-baseret dokumentations-site med alle 27 komponenter, interaktive Storybook eksempler, live previews og komplet API dokumentation. Kører lokalt på http://localhost:3000.
+  Modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. Runs locally on http://localhost:3000.
 
 > 📖 **Læs mere**: [Arkitektur dokumentation](ARCHITECTURE.md)
 

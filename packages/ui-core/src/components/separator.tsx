@@ -30,9 +30,10 @@ const separatorVariants = cva(
 );
 
 export interface SeparatorProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "aria-orientation">,
     VariantProps<typeof separatorVariants> {
   decorative?: boolean;
+  "aria-orientation"?: "horizontal" | "vertical";
 }
 
 const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
