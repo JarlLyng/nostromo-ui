@@ -9,4 +9,6 @@ const withNextra = nextra({
 export default withNextra({
   images: { unoptimized: true },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  output: 'export',
+  trailingSlash: true,
 })
