@@ -1,9 +1,9 @@
 # Changelog
 
-Alle bemærkelsesværdige ændringer til dette projekt vil blive dokumenteret i denne fil.
+All notable changes to this project will be documented in this file.
 
-Formatet er baseret på [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
@@ -25,51 +25,51 @@ og dette projekt følger [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - **27 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Checkbox, RadioGroup, Switch, Textarea, Alert, Breadcrumb, Pagination, Separator
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall
 - **4 Complete Themes** - Nostromo (default), Mother, LV-426, Sulaco
-- **Nextra Documentation Site** - Moderne dokumentationssite med alle 27 komponenter, Storybook integration og live previews
+- **Nextra Documentation Site** - Modern documentation site with all 27 components, Storybook integration and live previews
 - **Complete Test Coverage** - 691/691 tests passing (100% coverage)
-- **Accessibility Compliance** - WCAG 2.1 AA compliance for alle komponenter
-- **Responsive Design** - sm:, md:, lg: breakpoints for alle komponenter
-- **Theme System** - CSS variabler med HSL farver og custom theming support
+- **Accessibility Compliance** - WCAG 2.1 AA compliance for all components
+- **Responsive Design** - sm:, md:, lg: breakpoints for all components
+- **Theme System** - CSS variables with HSL colors and custom theming support
 - **Navigation Components** - Breadcrumb, Pagination, Separator for complete navigation system
 - **Form Components** - Checkbox, RadioGroup, Switch, Textarea, Alert for complete form system
 
 ### Changed
-- **Documentation System** - Migreret fra HTML til Nextra-baseret dokumentationssite med Storybook integration
-- **Component Design** - Alle komponenter opdateret med moderne design system og CVA variants
-- **Build System** - Optimized for production med ESM/CJS output og type definitions
-- **Test Infrastructure** - Migreret fra Jest til Vitest, 100% test coverage
+- **Documentation System** - Migrated from HTML to Nextra-based documentation site with Storybook integration
+- **Component Design** - All components updated with modern design system and CVA variants
+- **Build System** - Optimized for production with ESM/CJS output and type definitions
+- **Test Infrastructure** - Migrated from Jest to Vitest, 100% test coverage
 
 ### Fixed
-- **Accessibility Issues** - Alle ARIA attributes og keyboard navigation problemer løst
-- **Test Coverage** - Alle 691 tests passer nu (100% coverage)
-- **Build Errors** - TypeScript compilation fejl løst
-- **Documentation Consistency** - Opdateret alle .md filer med korrekt Nextra information
-- **Component API** - Konsistent API design på tværs af alle komponenter
-- **Storybook Integration** - React import fejl løst, alle 27 komponenter fungerer perfekt
-- **Documentation Site** - Nextra migration fuldført med Storybook integration
+- **Accessibility Issues** - All ARIA attributes and keyboard navigation problems resolved
+- **Test Coverage** - All 691 tests now pass (100% coverage)
+- **Build Errors** - TypeScript compilation errors resolved
+- **Documentation Consistency** - Updated all .md files with correct Nextra information
+- **Component API** - Consistent API design across all components
+- **Storybook Integration** - React import errors resolved, all 27 components work perfectly
+- **Documentation Site** - Nextra migration completed with Storybook integration
 
 ### Added (Previous)
-- **Project Foundation** - Monorepo setup med pnpm + Turborepo
-- **Theming System** - CSS variabler med HSL farver og 4 komplette themes
-- **Build System** - tsup med ESM/CJS output og type definitions
+- **Project Foundation** - Monorepo setup with pnpm + Turborepo
+- **Theming System** - CSS variables with HSL colors and 4 complete themes
+- **Build System** - tsup with ESM/CJS output and type definitions
 - **Test Infrastructure** - Vitest + Testing Library + axe-core
-- **Documentation** - Nextra-baseret dokumentationssite med alle komponenter
-- **Component Library** - 27 Core + 6 Marketing komponenter
-- **Accessibility** - WCAG 2.1 AA compliance for alle komponenter
-- **Storybook** - React komponent showcase og dokumentation
+- **Documentation** - Nextra-based documentation site with all components
+- **Component Library** - 27 Core + 6 Marketing components
+- **Accessibility** - WCAG 2.1 AA compliance for all components
+- **Storybook** - React component showcase and documentation
 
 ### Enhanced
-- **Documentation Site** - Live playground med real-time code editing
-- **Component API** - Comprehensive API documentation med props tables
-- **Design System** - Alle komponenter opdateret med moderne CVA variants
-- **Accessibility** - 100% test coverage med axe-core integration
-- **Performance** - Optimized bundle size og build process
-- **Developer Experience** - IntelliSense support og TypeScript integration
+- **Documentation Site** - Live playground with real-time code editing
+- **Component API** - Comprehensive API documentation with props tables
+- **Design System** - All components updated with modern CVA variants
+- **Accessibility** - 100% test coverage with axe-core integration
+- **Performance** - Optimized bundle size and build process
+- **Developer Experience** - IntelliSense support and TypeScript integration
 
 ### Changed
-- **Dependencies** - Opdateret til latest versions for alle pakker
-- **Build System** - Optimized for production med better tree shaking
-- **Documentation** - Konsolideret og opryddet i alle .md filer
+- **Dependencies** - Updated to latest versions for all packages
+- **Build System** - Optimized for production with better tree shaking
+- **Documentation** - Consolidated and cleaned up in all .md files
 
 ### Deprecated
 - N/A

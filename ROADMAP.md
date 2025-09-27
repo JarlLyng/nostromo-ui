@@ -1,8 +1,8 @@
 # Roadmap
 
-Denne fil beskriver Nostromo UI's udviklingsplan, milestones og prioriteringer. Den opdateres løbende for at afspejle projektets nuværende status og fremtidige retning.
+This file describes Nostromo UI's development plan, milestones and priorities. It is updated continuously to reflect the project's current status and future direction.
 
-## 📋 Indhold
+## 📋 Contents
 
 - [Current Status](#current-status)
 - [Phase 1: Foundation (MVP 0.1.0)](#phase-1-foundation-mvp-010)

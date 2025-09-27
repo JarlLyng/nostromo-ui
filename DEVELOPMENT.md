@@ -1,11 +1,11 @@
 # Development Guide
 
-Denne fil beskriver hvordan du sætter Nostromo UI op til udvikling, inklusive installation, build process, testing og contribution guidelines.
+This file describes how to set up Nostromo UI for development, including installation, build process, testing and contribution guidelines.
 
-## 📋 Indhold
+## 📋 Contents
 
 - [Quick Start](#quick-start)
-- [Projekt Struktur](#projekt-struktur)
+- [Project Structure](#project-structure)
 - [Development Commands](#development-commands)
 - [Build System](#build-system)
 - [Testing](#testing)
@@ -17,7 +17,7 @@ Denne fil beskriver hvordan du sætter Nostromo UI op til udvikling, inklusive i
 
 ## Quick Start
 
-### Forudsætninger
+### Prerequisites
 - **Node.js**: >= 20.0.0
 - **pnpm**: >= 9.0.0
 - **Git**: Latest version
@@ -35,34 +35,34 @@ pnpm install
 pnpm dev
 ```
 
-## Projekt Struktur
+## Project Structure
 
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/              # Core komponenter
+│   ├── ui-core/              # Core components
 │   │   ├── src/
-│   │   │   ├── components/   # React komponenter
+│   │   │   ├── components/   # React components
 │   │   │   └── index.ts     # Exports
 │   │   ├── package.json
 │   │   └── tsconfig.json
-│   ├── ui-marketing/         # Marketing komponenter
+│   ├── ui-marketing/         # Marketing components
 │   │   ├── src/
 │   │   │   ├── components/
 │   │   │   └── index.ts
 │   │   ├── package.json
 │   │   └── tsconfig.json
-│   └── ui-tw/               # Tailwind preset & temaer
+│   └── ui-tw/               # Tailwind preset & themes
 │       ├── src/
 │       │   ├── preset.ts    # Tailwind preset
 │       │   ├── base.css     # Base styles
-│       │   └── themes/      # Tema filer
+│       │   └── themes/      # Theme files
 │       ├── package.json
 │       └── tsconfig.json
-├── docs/                   # Nextra dokumentationssite
+├── docs/                   # Nextra documentation site
 │   ├── pages/             # Next.js Pages Router
-│   ├── components/        # React komponenter
-│   ├── styles/           # CSS filer
+│   ├── components/        # React components
+│   ├── styles/           # CSS files
 │   └── package.json
 ├── apps/
 │   └── playground/         # Development playground
@@ -106,12 +106,12 @@ pnpm type-check
 pnpm clean
 ```
 
-### Package-specifikke Commands
+### Package-specific Commands
 ```bash
-# Build specifik pakke
+# Build specific package
 pnpm --filter @nostromo/ui-core build
 
-# Test specifik pakke
+# Test specific package
 pnpm --filter @nostromo/ui-core test
 
 # Start dev server for docs
