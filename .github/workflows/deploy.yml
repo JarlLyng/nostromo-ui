@@ -55,13 +55,26 @@ jobs:
         pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@nostromo/ui-core/package.json'))\"" || echo "Workspace resolution failed"
       
     - name: Build all workspaces in graph order
-      run: pnpm -r build
+      run: |
+        echo "Building all packages..."
+        pnpm -r build
+        echo "Build completed successfully!"
+        echo "Checking build outputs..."
+        ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
+        ls -la packages/ui-marketing/dist/ || echo "ui-marketing dist not found"
+        ls -la packages/ui-tw/dist/ || echo "ui-tw dist not found"
       
     - name: Build documentation
       run: |
+        echo "Building documentation..."
         cd docs
+        echo "Installing docs dependencies..."
         npm ci
+        echo "Building docs..."
         npm run build
+        echo "Checking docs build output..."
+        ls -la out/ || echo "docs out directory not found"
+        echo "Documentation build completed!"
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
