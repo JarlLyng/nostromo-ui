@@ -38,8 +38,11 @@ jobs:
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
       
-    - name: Build packages
-      run: pnpm build
+    - name: Build packages in correct order
+      run: |
+        pnpm --filter @nostromo/ui-tw build
+        pnpm --filter @nostromo/ui-core build
+        pnpm --filter @nostromo/ui-marketing build
       
     - name: Build documentation
       run: |
