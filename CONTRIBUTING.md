@@ -1,8 +1,8 @@
 # Contributing to Nostromo UI
 
-Tak for din interesse i at bidrage til Nostromo UI! Dette dokument beskriver hvordan du kan bidrage til projektet.
+Thank you for your interest in contributing to Nostromo UI! This document describes how you can contribute to the project.
 
-## 📋 Indhold
+## 📋 Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
@@ -15,7 +15,7 @@ Tak for din interesse i at bidrage til Nostromo UI! Dette dokument beskriver hvo
 
 ## Code of Conduct
 
-Dette projekt følger vores [Code of Conduct](CODE_OF_CONDUCT.md). Ved at deltage accepterer du at overholde disse retningslinjer.
+This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to abide by these guidelines.
 
 ## Getting Started
 

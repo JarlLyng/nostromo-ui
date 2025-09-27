@@ -1,75 +1,75 @@
 # Code of Conduct
 
-## 🎯 Vores Forpligtelse
+## 🎯 Our Commitment
 
-I vores interesse for at skabe et åbent og velkommen miljø, forpligter vi os som bidragydere og maintainers til at gøre deltagelse i vores projekt og vores fællesskab til en hændelsesfri oplevelse for alle, uanset alder, kropsstørrelse, handicap, etnicitet, kønsidentitet og -udtryk, erfaring, nationalitet, personligt udseende, race, religion eller seksuel identitet og orientering.
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
-## 📋 Forventede Adfærd
+## 📋 Expected Behavior
 
-### ✅ **Positive Eksempler**
-- Brug venlig og inkluderende sprog
-- Respekter forskellige synspunkter og erfaringer
-- Accepter konstruktiv kritik med ydmyghed
-- Fokusér på det, der er bedst for fællesskabet
-- Vis empati over for andre medlemmer af fællesskabet
+### ✅ **Positive Examples**
+- Use welcoming and inclusive language
+- Respect differing viewpoints and experiences
+- Accept constructive criticism with humility
+- Focus on what is best for the community
+- Show empathy towards other community members
 
-### ❌ **Uacceptabel Adfærd**
-- Brug af seksualiseret sprog eller billeder
-- Trolling, fornærmende eller nedladende kommentarer
-- Offentlige eller private chikane
-- Offentliggørelse af andres private oplysninger uden udtrykkelig tilladelse
-- Anden adfærd, der kan betragtes som upassende i en professionel sammenhæng
+### ❌ **Unacceptable Behavior**
+- Use of sexualized language or imagery
+- Trolling, insulting or derogatory comments
+- Public or private harassment
+- Publishing others' private information without explicit permission
+- Other conduct which could reasonably be considered inappropriate in a professional setting
 
-## 🛡️ Vores Ansvar
+## 🛡️ Our Responsibilities
 
-Projekt maintainers er ansvarlige for at klargøre standarderne for acceptabel adfærd og forventes at tage passende og retfærdige korrigerende handlinger som svar på uacceptabel adfærd.
+Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
 
-Projekt maintainers har ret og ansvar til at fjerne, redigere eller afvise kommentarer, commits, kode, wiki-redigeringer, issues og andre bidrag, der ikke følger denne Code of Conduct, og vil meddele årsager til moderationsbeslutninger, når det er passende.
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned with this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
 
-## 🌍 Anvendelsesomfang
+## 🌍 Scope
 
-Denne Code of Conduct gælder både i projektrum og i offentlige rum, når en person repræsenterer projektet eller dets fællesskab. Eksempler på at repræsentere et projekt eller fællesskab omfatter brug af et officielt projekte-mail, post via en officiel social medie-konto eller optræden som udpeget repræsentant på et online eller offline arrangement. Repræsentation af et projekt kan yderligere defineres og afklares af projekt maintainers.
+This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
 
-## 🚨 Rapportering
+## 🚨 Reporting
 
-Instanser af krænkende, chikanerende eller på anden måde uacceptabel adfærd kan rapporteres ved at kontakte projektteamet på [security@nostromo-ui.dev](mailto:security@nostromo-ui.dev). Alle klager vil blive gennemgået og undersøgt og vil resultere i et svar, der anses for nødvendigt og passende i forhold til omstændighederne. Projektteamet er forpligtet til at opretholde fortrolighed med hensyn til den person, der rapporterer en hændelse.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [security@nostromo-ui.dev](mailto:security@nostromo-ui.dev). All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
 
-## ⚖️ Håndhævelse
+## ⚖️ Enforcement
 
-Projekt maintainers, der ikke følger eller håndhæver Code of Conduct i god tro, kan stå over for midlertidige eller permanente reaktioner, som bestemt af andre medlemmer af projektets ledelse.
+Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
 
-## 📞 Kontakt
+## 📞 Contact
 
 - **Email**: [security@nostromo-ui.dev](mailto:security@nostromo-ui.dev)
-- **GitHub Issues**: Brug "conduct" label for Code of Conduct relaterede spørgsmål
-- **GitHub Discussions**: Generelle spørgsmål om fællesskabsstandarder
+- **GitHub Issues**: Use "conduct" label for Code of Conduct related questions
+- **GitHub Discussions**: General questions about community standards
 
-## 📚 Ressourcer
+## 📚 Resources
 
-### **For Udviklere**
+### **For Developers**
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Development Guide](DEVELOPMENT.md)
 - [Security Policy](SECURITY.md)
 
-### **For Brugere**
+### **For Users**
 - [Getting Started](README.md)
 - [Component Documentation](https://jarl.l.github.io/nostromo-ui/)
 - [Theming Guide](THEMING.md)
 
-## 🔄 Opdateringer
+## 🔄 Updates
 
-Denne Code of Conduct kan blive opdateret fra tid til anden for at afspejle ændringer i fællesskabet eller nye bedste praksis. Væsentlige ændringer vil blive kommunikeret til fællesskabet gennem:
+This Code of Conduct may be updated from time to time to reflect changes in the community or new best practices. Significant changes will be communicated to the community through:
 
 - GitHub releases
-- Projekt discussions
-- Email notifications til aktive bidragydere
+- Project discussions
+- Email notifications to active contributors
 
-## 📄 Licens og Attribution
+## 📄 License and Attribution
 
-Denne Code of Conduct er tilpasset fra [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, tilgængelig på [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
+This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1, available at [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html](https://www.contributor-covenant.org/version/2/1/code_of_conduct.html).
 
 ---
 
-**Tak for at bidrage til et inkluderende og respektfuldt fællesskab!** 🤝
+**Thank you for contributing to an inclusive and respectful community!** 🤝
 
-*Sidst opdateret: December 2024*
+*Last updated: December 2024*

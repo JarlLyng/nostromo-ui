@@ -1,11 +1,11 @@
 # Theming System
 
-Nostromo UI's theming system er bygget omkring CSS-variabler i HSL-format, der integreres direkte med Tailwind CSS. Dette giver maksimal fleksibilitet og performance.
+Nostromo UI's theming system is built around CSS variables in HSL format that integrate directly with Tailwind CSS. This provides maximum flexibility and performance.
 
-## 📋 Indhold
+## 📋 Contents
 
 - [Design Tokens](#design-tokens)
-- [Prædefinerede Temaer](#prædefinerede-temaer)
+- [Predefined Themes](#predefined-themes)
 - [Custom Theming](#custom-theming)
 - [Dark Mode](#dark-mode)
 - [Tailwind Integration](#tailwind-integration)
