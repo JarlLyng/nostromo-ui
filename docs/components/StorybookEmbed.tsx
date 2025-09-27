@@ -25,14 +25,33 @@ export default function StorybookEmbed({
     
     const storyUrl = `${storybookUrl}/iframe.html?id=${encodeURIComponent(story)}&viewMode=story`
     
+    // Set error state immediately for production (no Storybook deployed)
+    if (process.env.NODE_ENV !== 'development') {
+      setHasError(true)
+      return
+    }
+    
     iframe.src = storyUrl
     
     // Handle iframe load error
     const handleError = () => setHasError(true)
+    const handleLoad = () => {
+      // Check if iframe loaded successfully
+      try {
+        if (iframe.contentDocument === null) {
+          setHasError(true)
+        }
+      } catch (e) {
+        setHasError(true)
+      }
+    }
+    
     iframe.addEventListener('error', handleError)
+    iframe.addEventListener('load', handleLoad)
     
     return () => {
       iframe.removeEventListener('error', handleError)
+      iframe.removeEventListener('load', handleLoad)
     }
   }, [story])
 
