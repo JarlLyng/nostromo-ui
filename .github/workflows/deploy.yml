@@ -72,6 +72,15 @@ jobs:
         ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
         ls -la packages/ui-marketing/dist/ || echo "ui-marketing dist not found"
         ls -la packages/ui-tw/dist/ || echo "ui-tw dist not found"
+        
+    - name: Build Storybook
+      run: |
+        echo "Building Storybook..."
+        cd packages/ui-core
+        pnpm run build-storybook
+        echo "Storybook build completed!"
+        echo "Checking Storybook output..."
+        ls -la storybook-static/ || echo "storybook-static not found"
       
     - name: Build documentation
       run: |
@@ -81,8 +90,11 @@ jobs:
         npm ci
         echo "Building docs..."
         npm run build
+        echo "Copying Storybook to docs output..."
+        cp -r ../packages/ui-core/storybook-static out/storybook
         echo "Checking docs build output..."
         ls -la out/ || echo "docs out directory not found"
+        ls -la out/storybook/ || echo "storybook directory not found"
         echo "Documentation build completed!"
         
     - name: Setup Pages

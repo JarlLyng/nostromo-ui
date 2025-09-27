@@ -25,12 +25,6 @@ export default function StorybookEmbed({
     
     const storyUrl = `${storybookUrl}/iframe.html?id=${encodeURIComponent(story)}&viewMode=story`
     
-    // Set error state immediately for production (no Storybook deployed)
-    if (process.env.NODE_ENV !== 'development') {
-      setHasError(true)
-      return
-    }
-    
     iframe.src = storyUrl
     
     // Handle iframe load error
