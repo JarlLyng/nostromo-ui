@@ -2,9 +2,9 @@ import StorybookEmbed from '../../components/StorybookEmbed'
 
 # Input
 
-Input komponenten giver dig form input felter med validering og fejlhåndtering.
+The Input component provides you with form input fields with validation and error handling.
 
-## Live Eksempler
+## Live Examples
 
 <StorybookEmbed story="components-input--default" />
 
@@ -12,7 +12,7 @@ Input komponenten giver dig form input felter med validering og fejlhåndtering.
 
 <StorybookEmbed story="components-input--with-error" />
 
-## Kode Eksempler
+## Code Examples
 
 ```jsx
 import { Input } from '@nostromo/ui-core'
@@ -20,16 +20,16 @@ import { Input } from '@nostromo/ui-core'
 export default function InputExamples() {
   return (
     <div className="space-y-4">
-      <Input placeholder="Skriv noget..." />
+      <Input placeholder="Type something..." />
       <Input type="email" placeholder="Email" />
       <Input type="password" placeholder="Password" />
-      <Input disabled placeholder="Deaktiveret" />
+      <Input disabled placeholder="Disabled" />
     </div>
   )
 }
 ```
 
-## Med Label
+## With Label
 
 ```jsx
 import { Input, Label } from '@nostromo/ui-core'
@@ -38,7 +38,7 @@ export default function InputWithLabel() {
   return (
     <div className="space-y-2">
       <Label htmlFor="email">Email</Label>
-      <Input id="email" type="email" placeholder="din@email.com" />
+      <Input id="email" type="email" placeholder="your@email.com" />
     </div>
   )
 }
@@ -46,10 +46,10 @@ export default function InputWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Beskrivelse |
+| Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `type` | `string` | `"text"` | Input type |
-| `placeholder` | `string` | - | Placeholder tekst |
-| `disabled` | `boolean` | `false` | Om input er deaktiveret |
-| `value` | `string` | - | Input værdi |
+| `placeholder` | `string` | - | Placeholder text |
+| `disabled` | `boolean` | `false` | Whether input is disabled |
+| `value` | `string` | - | Input value |
 | `onChange` | `function` | - | Change handler |
