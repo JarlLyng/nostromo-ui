@@ -1,0 +1,30 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Error Boundary
+
+The Error Boundary component provides you with error handling and fallback UI for your application.
+
+## Live Examples
+
+<StorybookEmbed story="components-error-boundary--default" />
+
+## Code Examples
+
+```jsx
+import { ErrorBoundary } from '@nostromo/ui-core'
+
+export default function ErrorBoundaryExample() {
+  return (
+    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
+      <YourComponent />
+    </ErrorBoundary>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `fallback` | `ReactNode` | - | Fallback UI to show when error occurs |
+| `onError` | `function` | - | Error handler function |

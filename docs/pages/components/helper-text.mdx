@@ -1,0 +1,35 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Helper Text
+
+The Helper Text component provides you with form helper text and descriptions.
+
+## Live Examples
+
+<StorybookEmbed story="components-form-helpertext--default" />
+
+<StorybookEmbed story="components-form-helpertext--error" />
+
+<StorybookEmbed story="components-form-helpertext--form-example" />
+
+## Code Examples
+
+```jsx
+import { HelperText } from '@nostromo/ui-core'
+
+export default function HelperTextExample() {
+  return (
+    <div>
+      <input type="password" />
+      <HelperText>Password must be at least 8 characters long</HelperText>
+    </div>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Helper text content |
+| `className` | `string` | - | Additional CSS classes |

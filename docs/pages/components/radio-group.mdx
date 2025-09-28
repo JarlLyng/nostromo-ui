@@ -1,0 +1,43 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Radio Group
+
+The Radio Group component provides you with radio button groups and selections.
+
+## Live Examples
+
+<StorybookEmbed story="components-radiogroup--default" />
+
+<StorybookEmbed story="components-radiogroup--horizontal" />
+
+<StorybookEmbed story="components-radiogroup--form-example" />
+
+## Code Examples
+
+```jsx
+import { RadioGroup, RadioGroupItem, Label } from '@nostromo/ui-core'
+
+export default function RadioGroupExample() {
+  return (
+    <RadioGroup defaultValue="option1">
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option1" id="r1" />
+        <Label htmlFor="r1">Option 1</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option2" id="r2" />
+        <Label htmlFor="r2">Option 2</Label>
+      </div>
+    </RadioGroup>
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | - | Selected value |
+| `defaultValue` | `string` | - | Default selected value |
+| `onValueChange` | `function` | - | Change handler |
+| `disabled` | `boolean` | `false` | Whether radio group is disabled |
