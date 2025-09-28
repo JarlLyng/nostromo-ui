@@ -1,0 +1,55 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Pricing
+
+The Pricing component provides you with pricing tables and plans.
+
+## Live Examples
+
+<StorybookEmbed story="components-pricing--default" />
+
+<StorybookEmbed story="components-pricing--featured" />
+
+<StorybookEmbed story="components-pricing--comparison" />
+
+## Code Examples
+
+```jsx
+import { Pricing } from '@nostromo/ui-marketing'
+
+export default function PricingExample() {
+  return (
+    <Pricing
+      title="Choose Your Plan"
+      subtitle="Flexible pricing for teams of all sizes"
+      plans={[
+        {
+          name: "Starter",
+          price: "$9",
+          period: "month",
+          features: ["Up to 5 projects", "Basic support", "1GB storage"],
+          cta: "Get Started"
+        },
+        {
+          name: "Pro",
+          price: "$29",
+          period: "month",
+          features: ["Unlimited projects", "Priority support", "10GB storage"],
+          cta: "Start Free Trial",
+          featured: true
+        }
+      ]}
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Section title |
+| `subtitle` | `string` | - | Section subtitle |
+| `plans` | `Plan[]` | - | Array of pricing plans |
+| `columns` | `number` | `3` | Number of columns |
+| `variant` | `"default" \| "featured" \| "comparison"` | `"default"` | Pricing variant |

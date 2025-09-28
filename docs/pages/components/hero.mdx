@@ -1,0 +1,48 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Hero
+
+The Hero component provides you with landing page hero sections and banners.
+
+## Live Examples
+
+<StorybookEmbed story="components-hero--default" />
+
+<StorybookEmbed story="components-hero--with-background" />
+
+<StorybookEmbed story="components-hero--large" />
+
+## Code Examples
+
+```jsx
+import { Hero } from '@nostromo/ui-marketing'
+import { Button } from '@nostromo/ui-core'
+
+export default function HeroExample() {
+  return (
+    <Hero
+      title="Welcome to Nostromo UI"
+      subtitle="A comprehensive UI library built with React, TypeScript and Tailwind CSS"
+      cta={
+        <>
+          <Button>Get Started</Button>
+          <Button variant="outline">Learn More</Button>
+        </>
+      }
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Hero title |
+| `subtitle` | `string` | - | Hero subtitle |
+| `cta` | `ReactNode` | - | Call-to-action content |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Hero size |
+| `variant` | `"default" \| "muted" \| "accent"` | `"default"` | Hero variant |
+| `contentAlign` | `"left" \| "center" \| "right"` | `"center"` | Content alignment |
+| `backgroundImage` | `string` | - | Background image URL |
+| `overlay` | `boolean` | `false` | Add overlay effect |

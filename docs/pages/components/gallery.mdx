@@ -1,0 +1,43 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Gallery
+
+The Gallery component provides you with image galleries and media showcases.
+
+## Live Examples
+
+<StorybookEmbed story="components-gallery--default" />
+
+<StorybookEmbed story="components-gallery--grid" />
+
+<StorybookEmbed story="components-gallery--masonry" />
+
+## Code Examples
+
+```jsx
+import { Gallery } from '@nostromo/ui-marketing'
+
+export default function GalleryExample() {
+  return (
+    <Gallery
+      images={[
+        { src: "/image1.jpg", alt: "Image 1" },
+        { src: "/image2.jpg", alt: "Image 2" },
+        { src: "/image3.jpg", alt: "Image 3" }
+      ]}
+      columns={3}
+      aspectRatio="square"
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `images` | `Image[]` | - | Array of image objects |
+| `columns` | `number` | `3` | Number of columns |
+| `aspectRatio` | `string` | `"auto"` | Image aspect ratio |
+| `spacing` | `string` | `"md"` | Grid spacing |
+| `lightbox` | `boolean` | `true` | Enable lightbox |

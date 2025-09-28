@@ -1,0 +1,54 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Testimonials
+
+The Testimonials component provides you with customer testimonials and reviews.
+
+## Live Examples
+
+<StorybookEmbed story="components-testimonials--default" />
+
+<StorybookEmbed story="components-testimonials--carousel" />
+
+<StorybookEmbed story="components-testimonials--grid" />
+
+## Code Examples
+
+```jsx
+import { Testimonials } from '@nostromo/ui-marketing'
+
+export default function TestimonialsExample() {
+  return (
+    <Testimonials
+      title="What Our Customers Say"
+      testimonials={[
+        {
+          content: "Nostromo UI has transformed our development workflow. The components are beautiful and easy to use.",
+          author: "Sarah Johnson",
+          role: "Frontend Developer",
+          company: "TechCorp",
+          avatar: "/avatar1.jpg"
+        },
+        {
+          content: "The accessibility features are outstanding. Our users love the improved experience.",
+          author: "Mike Chen",
+          role: "Product Manager",
+          company: "StartupXYZ",
+          avatar: "/avatar2.jpg"
+        }
+      ]}
+      variant="carousel"
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Section title |
+| `testimonials` | `Testimonial[]` | - | Array of testimonials |
+| `variant` | `"grid" \| "carousel"` | `"grid"` | Display variant |
+| `columns` | `number` | `3` | Number of columns (grid) |
+| `autoplay` | `boolean` | `true` | Auto-play (carousel) |

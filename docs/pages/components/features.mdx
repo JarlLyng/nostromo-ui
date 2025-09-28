@@ -1,0 +1,55 @@
+import StorybookEmbed from '../../components/StorybookEmbed'
+
+# Features
+
+The Features component provides you with feature showcase sections for landing pages.
+
+## Live Examples
+
+<StorybookEmbed story="components-features--default" />
+
+<StorybookEmbed story="components-features--grid" />
+
+<StorybookEmbed story="components-features--with-icons" />
+
+## Code Examples
+
+```jsx
+import { Features } from '@nostromo/ui-marketing'
+
+export default function FeaturesExample() {
+  return (
+    <Features
+      title="Why Choose Nostromo UI?"
+      subtitle="Built with modern web standards and best practices"
+      features={[
+        {
+          title: "TypeScript First",
+          description: "Full TypeScript support with strict type checking",
+          icon: "Code"
+        },
+        {
+          title: "Accessible",
+          description: "WCAG 2.1 AA compliant components out of the box",
+          icon: "Accessibility"
+        },
+        {
+          title: "Customizable",
+          description: "CSS variables and Tailwind for easy theming",
+          icon: "Palette"
+        }
+      ]}
+    />
+  )
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | - | Section title |
+| `subtitle` | `string` | - | Section subtitle |
+| `features` | `Feature[]` | - | Array of feature objects |
+| `columns` | `number` | `3` | Number of columns |
+| `variant` | `"default" \| "cards" \| "minimal"` | `"default"` | Feature variant |
