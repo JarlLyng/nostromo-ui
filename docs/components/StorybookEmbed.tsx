@@ -18,10 +18,10 @@ export default function StorybookEmbed({
     const iframe = iframeRef.current
     if (!iframe) return
 
-    // Storybook URL - tilpas til din Storybook port
-    const storybookUrl = process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:6006' 
-      : 'https://jarllyng.github.io/nostromo-ui/storybook'
+          // Storybook URL - tilpas til din Storybook port
+          const storybookUrl = process.env.NODE_ENV === 'development' 
+            ? 'http://localhost:6006' 
+            : 'https://jarllyng.github.io/nostromo-ui/storybook-static'
     
     const storyUrl = `${storybookUrl}/iframe.html?id=${encodeURIComponent(story)}&viewMode=story`
     
