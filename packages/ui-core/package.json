@@ -127,7 +127,6 @@
     "test:a11y": "vitest run --reporter=verbose src/components/__tests__/*.a11y.test.tsx",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "vercel --prod",
     "test-storybook": "test-storybook",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
