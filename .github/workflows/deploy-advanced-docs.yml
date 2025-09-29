@@ -68,13 +68,17 @@ jobs:
           cp -r packages/docs-advanced/* build/
           ls -la build/
           
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        if: github.ref == 'refs/heads/main'
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: ./build
+          
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          cname: nostromo-ui.dev
-          force_orphan: true
-          enable_jekyll: false
