@@ -197,8 +197,8 @@ We're actively seeking feedback from the community! Please help us by:
 ## 📚 Documentation
 
 ### 🚀 **Start Here**
-- **[📚 Nextra Documentation](http://localhost:3000)** - **START HERE** - Live documentation site with all 27 components
-- **[🎨 Storybook](http://localhost:6006/)** - Interactive component examples (local development)
+- **[📚 Live Documentation](https://jarllyng.github.io/nostromo-ui/)** - **START HERE** - Live documentation site with all 27 components
+- **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
 
 ### 📖 **Main Documents**
 - **[Architecture](ARCHITECTURE.md)** - Monorepo structure, build system and package organization
@@ -362,8 +362,8 @@ Theming is based on **CSS variables in HSL**, which integrate directly into the 
 ## 📖 Read More
 
 ### 🚀 **Quick Start**
-- **[📚 Nextra Documentation](http://localhost:3000)** - **START HERE** - Live documentation site with all 27 components
-- **[🎨 Storybook](http://localhost:6006/)** - Interactive component examples (local development)
+- **[📚 Live Documentation](https://jarllyng.github.io/nostromo-ui/)** - **START HERE** - Live documentation site with all 27 components
+- **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
 
 ### 📚 **Complete Documentation**
 - **[Architecture](ARCHITECTURE.md)** - Detailed monorepo and package structure
