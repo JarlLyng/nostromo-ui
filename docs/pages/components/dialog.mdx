@@ -62,6 +62,50 @@ export default function DialogWithForm() {
 }
 ```
 
+## Accessibility
+
+### Keyboard Navigation
+- **Tab**: Moves focus within the dialog
+- **Shift+Tab**: Moves focus backwards within the dialog
+- **Escape**: Closes the dialog
+- **Enter**: Activates focused buttons or form elements
+
+### ARIA Attributes
+- **role="dialog"**: Identifies the element as a dialog
+- **aria-modal="true"**: Indicates the dialog is modal
+- **aria-labelledby**: References the dialog title
+- **aria-describedby**: References additional description text
+
+### Focus Management
+- **Focus trap**: Prevents focus from escaping the dialog
+- **Initial focus**: Focuses the first interactive element
+- **Focus restoration**: Returns focus to the trigger element when closed
+- **Focus indicators**: Clear visual focus states
+
+### Screen Reader Support
+- **Live regions**: Announces dialog state changes
+- **Title announcement**: Dialog title is announced when opened
+- **State changes**: Open/close states are announced
+
+### Examples
+```jsx
+// Accessible dialog with proper labeling
+<Dialog>
+  <DialogTrigger aria-label="Open settings dialog">
+    Settings
+  </DialogTrigger>
+  <DialogContent aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <DialogHeader>
+      <DialogTitle id="dialog-title">Settings</DialogTitle>
+      <p id="dialog-description" className="sr-only">
+        Configure your application settings
+      </p>
+    </DialogHeader>
+    {/* Dialog content */}
+  </DialogContent>
+</Dialog>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

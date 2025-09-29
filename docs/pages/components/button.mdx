@@ -47,6 +47,44 @@ export default function ButtonSizes() {
 }
 ```
 
+## Accessibility
+
+### Keyboard Navigation
+- **Enter/Space**: Activates the button
+- **Tab**: Moves focus to the button
+- **Escape**: Closes any associated dialogs or menus
+
+### ARIA Attributes
+- **role="button"**: Identifies the element as a button
+- **aria-disabled**: Indicates when the button is disabled
+- **aria-pressed**: For toggle buttons (when applicable)
+
+### Focus Management
+- **Visible focus indicator**: Clear visual focus state
+- **Focus trap**: Prevents focus from escaping modal contexts
+- **Focus restoration**: Returns focus to trigger element
+
+### Screen Reader Support
+- **Semantic HTML**: Uses proper `<button>` element
+- **Descriptive text**: Clear button labels and descriptions
+- **State announcements**: Disabled and loading states are announced
+
+### Examples
+```jsx
+// Accessible button with proper labeling
+<Button aria-label="Close dialog">
+  <XIcon />
+</Button>
+
+// Button with loading state
+<Button disabled={isLoading} aria-describedby="loading-text">
+  {isLoading ? 'Saving...' : 'Save'}
+</Button>
+<div id="loading-text" className="sr-only">
+  Please wait while your changes are saved
+</div>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

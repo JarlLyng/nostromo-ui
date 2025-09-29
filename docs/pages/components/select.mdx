@@ -57,6 +57,53 @@ export default function SelectWithLabel() {
 }
 ```
 
+## Accessibility
+
+### Keyboard Navigation
+- **Arrow Keys**: Navigate through options
+- **Enter/Space**: Selects the focused option
+- **Escape**: Closes the dropdown
+- **Tab**: Moves focus to the next element
+- **Home/End**: Moves to first/last option
+
+### ARIA Attributes
+- **role="combobox"**: Identifies the select as a combobox
+- **aria-expanded**: Indicates if the dropdown is open
+- **aria-haspopup**: Indicates the presence of a popup
+- **aria-activedescendant**: References the currently focused option
+- **aria-labelledby**: References the label element
+
+### Focus Management
+- **Focus trap**: Prevents focus from escaping the dropdown
+- **Focus restoration**: Returns focus to the trigger when closed
+- **Focus indicators**: Clear visual focus states
+
+### Screen Reader Support
+- **Option announcements**: Selected options are announced
+- **State changes**: Open/close states are announced
+- **Navigation hints**: Keyboard navigation is described
+
+### Examples
+```jsx
+// Accessible select with proper labeling
+<Select>
+  <SelectTrigger aria-labelledby="country-label">
+    <SelectValue placeholder="Select a country" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="us" aria-describedby="us-description">
+      United States
+    </SelectItem>
+    <SelectItem value="ca" aria-describedby="ca-description">
+      Canada
+    </SelectItem>
+  </SelectContent>
+</Select>
+<label id="country-label" className="sr-only">
+  Select your country
+</label>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

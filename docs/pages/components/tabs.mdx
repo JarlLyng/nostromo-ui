@@ -35,6 +35,52 @@ export default function TabsExample() {
 }
 ```
 
+## Accessibility
+
+### Keyboard Navigation
+- **Arrow Keys**: Navigate between tabs
+- **Tab**: Moves focus to tab content
+- **Enter/Space**: Activates the focused tab
+- **Home/End**: Moves to first/last tab
+
+### ARIA Attributes
+- **role="tablist"**: Identifies the tab container
+- **role="tab"**: Identifies individual tabs
+- **role="tabpanel"**: Identifies tab content
+- **aria-selected**: Indicates the active tab
+- **aria-controls**: Links tabs to their content panels
+
+### Focus Management
+- **Roving tabindex**: Only one tab is focusable at a time
+- **Focus indicators**: Clear visual focus states
+- **Focus restoration**: Maintains focus when switching tabs
+
+### Screen Reader Support
+- **Tab announcements**: Active tab is announced
+- **Content changes**: Tab content changes are announced
+- **Navigation hints**: Keyboard navigation is described
+
+### Examples
+```jsx
+// Accessible tabs with proper labeling
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList aria-label="Account settings">
+    <TabsTrigger value="account" aria-controls="account-panel">
+      Account
+    </TabsTrigger>
+    <TabsTrigger value="password" aria-controls="password-panel">
+      Password
+    </TabsTrigger>
+  </TabsList>
+  <TabsContent value="account" id="account-panel" role="tabpanel">
+    <p>Account content here.</p>
+  </TabsContent>
+  <TabsContent value="password" id="password-panel" role="tabpanel">
+    <p>Password content here.</p>
+  </TabsContent>
+</Tabs>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |
