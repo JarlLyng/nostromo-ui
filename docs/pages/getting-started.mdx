@@ -7,8 +7,34 @@ Welcome to Nostromo UI! This guide helps you get started with our UI library.
 Install Nostromo UI in your project:
 
 ```bash
-npm install @nostromo/ui-core
+npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
+
+## Theming Setup
+
+### 1. Import Base CSS
+```ts
+// In your entry file (e.g. main.tsx)
+import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
+```
+
+### 2. Apply Theme
+```html
+<html data-theme="nostromo" data-color-scheme="light">
+  <!-- Your content -->
+</html>
+```
+
+### 3. Customize Brand Colors (Optional)
+```css
+[data-theme="mybrand"] {
+  --color-brand-500: 220 100% 50%;  /* Your brand blue */
+  --color-brand-600: 220 100% 40%;  /* Darker variant */
+}
+```
+
+[**Complete Theming Guide →**](/theming)
 
 ## Basic Usage
 

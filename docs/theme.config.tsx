@@ -12,6 +12,12 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'MIT © 2024 Nostromo UI.',
   },
+  sidebar: {
+    defaultMenuCollapseLevel: 1,
+  },
+  toc: {
+    backToTop: true,
+  },
 }
 
 export default config
