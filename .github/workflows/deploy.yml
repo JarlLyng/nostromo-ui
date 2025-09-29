@@ -81,6 +81,10 @@ jobs:
         echo "Storybook build completed!"
         echo "Checking Storybook output..."
         ls -la storybook-static/ || echo "storybook-static not found"
+        echo "Checking for vite-inject-mocker-entry.js..."
+        find storybook-static -name "*vite*" -o -name "*inject*" -o -name "*mocker*" || echo "vite files not found"
+        echo "Checking storybook-static structure..."
+        ls -la storybook-static/ | head -20
       
     - name: Build documentation
       run: |
@@ -90,11 +94,11 @@ jobs:
         npm ci
         echo "Building docs..."
         npm run build
-          echo "Copying Storybook to docs output..."
-          cp -r ../packages/ui-core/storybook-static out/storybook-static
-          echo "Checking docs build output..."
-          ls -la out/ || echo "docs out directory not found"
-          ls -la out/storybook-static/ || echo "storybook-static directory not found"
+        echo "Copying Storybook to docs output..."
+        cp -r ../packages/ui-core/storybook-static out/storybook-static
+        echo "Checking docs build output..."
+        ls -la out/ || echo "docs out directory not found"
+        ls -la out/storybook-static/ || echo "storybook-static directory not found"
         echo "Documentation build completed!"
         
     - name: Setup Pages
