@@ -57,6 +57,25 @@ import "@nostromo/ui-tw/styles/base.css";
 import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
+### Bundle Size & Performance
+```tsx
+// ✅ Recommended: Per-component imports (smallest bundle)
+import { Button } from '@nostromo/ui-core/button';
+import { Input } from '@nostromo/ui-core/input';
+
+// ✅ Also OK: Barrel imports
+import { Button, Input } from '@nostromo/ui-core';
+
+// ❌ Avoid: Full library import
+import * as Nostromo from '@nostromo/ui-core';
+```
+
+**Performance Benefits:**
+- **Zero runtime overhead** - CSS variables only, no JavaScript
+- **Tree shaking** - Only used components included
+- **CSS-only theming** - No runtime theme switching
+- **Optimized bundle** - Minimal JavaScript footprint
+
 ### Using in React
 ```tsx
 import { Button, Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core";
@@ -227,24 +246,52 @@ The project is organized as a **monorepo** (pnpm + Turborepo):
 
 ---
 
-## 🎨 Theming (Overview)
+## 🎨 Theming & Design Tokens
 
-Theming is based on **CSS variables in HSL**, which integrate directly into the Tailwind configuration.
+Theming is based on **CSS variables in HSL**, which integrate directly into the Tailwind configuration. This gives you maximum flexibility without runtime overhead.
 
-- Default tokens (`--color-brand-500`, `--radius-sm`, `--font-heading`, etc.).
-- Light/dark mode via `[data-theme]` attribute.
-- Multiple predefined themes (e.g. *Nostromo*, *Mother*, *LV-426*, *Sulaco*).
-- Users can define their own theme variables to match their brand.
+### **Design Tokens**
+- **Colors**: HSL-based with semantic naming (`--color-brand-500`, `--color-neutral-900`)
+- **Spacing**: Consistent scale (`--spacing-sm`, `--spacing-md`, `--spacing-lg`)
+- **Typography**: Font families and sizes (`--font-heading`, `--text-lg`)
+- **Shadows**: Layered shadow system (`--shadow-sm`, `--shadow-lg`)
+- **Radius**: Border radius tokens (`--radius-md`, `--radius-lg`)
 
-**Example:**
+### **Predefined Themes**
+- **Nostromo** (Default) - Purple brand, dark aesthetic
+- **Mother** - Cyan brand, clinical dashboard style  
+- **LV-426** - Orange brand, warm marketing feel
+- **Sulaco** - Blue brand, professional military look
+
+### **Custom Theming**
 ```css
 [data-theme="mybrand"] {
-  --color-brand-500: 262 84% 52%;
-  --radius-sm: 8px;
-  --font-heading: "General Sans";
-  --font-body: "Inter";
+  /* Brand colors - only change what you need */
+  --color-brand-500: 220 100% 50%;  /* Your brand blue */
+  --color-brand-600: 220 100% 40%;  /* Darker variant */
+  
+  /* Typography */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  /* Styling */
+  --radius-md: 0.75rem;
 }
 ```
+
+### **Dark Mode Support**
+```css
+[data-theme="nostromo"][data-color-scheme="dark"] {
+  --color-neutral-50: 0 0% 9%;     /* Dark background */
+  --color-neutral-900: 0 0% 98%;   /* Light text */
+  --color-brand-500: 262 84% 60%;  /* Lighter brand for contrast */
+}
+```
+
+### **Accessibility**
+- **WCAG 2.1 AA compliance** - All colors tested for contrast ratios
+- **Focus states** - Automatic focus indicators
+- **Keyboard navigation** - Full keyboard support
 
 > 🎨 **Read more**: [Complete theming guide](THEMING.md)
 

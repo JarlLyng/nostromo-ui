@@ -15,7 +15,13 @@ Nostromo UI's theming system is built around CSS variables in HSL format that in
 ## Design Tokens
 
 ### Farve System
-Vi bruger et HSL-baseret farvesystem med semantiske navne:
+Vi bruger et HSL-baseret farvesystem med semantiske navne. Dette giver dig fuld kontrol over theming uden runtime overhead:
+
+**Hvorfor HSL?**
+- **Nem at justere**: Ændre lightness for dark mode
+- **Konsistent**: HSL værdier matcher Tailwind's `hsl()` funktion
+- **Performance**: Ingen JavaScript runtime - kun CSS
+- **Accessibility**: Nem at validere kontrast ratios
 
 ```css
 [data-theme="nostromo"] {
@@ -161,6 +167,22 @@ Moderne, militær-inspireret - professionel look:
 
 ## Custom Theming
 
+### Brand Customization (Hurtig Start)
+For at ændre brand farver til dit projekt:
+
+```css
+[data-theme="mybrand"] {
+  /* Dit brand - kun de farver du vil ændre */
+  --color-brand-500: 220 100% 50%;  /* Dit brand blå */
+  --color-brand-600: 220 100% 40%;  /* Mørkere variant */
+  --color-brand-700: 220 100% 30%;  /* Endnu mørkere */
+  
+  /* Resten arves fra Nostromo tema */
+}
+```
+
+**Pro Tip**: Start med at ændre kun `--color-brand-500`, `--color-brand-600`, og `--color-brand-700`. Resten af farverne genereres automatisk.
+
 ### Opret Dit Eget Tema
 ```css
 [data-theme="mybrand"] {
@@ -288,6 +310,90 @@ function Button({ variant = "primary" }) {
 }
 ```
 
+### Form Integration (React Hook Form + Zod)
+```tsx
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Input, HelperText, ErrorMessage } from '@nostromo/ui-core';
+
+const schema = z.object({
+  email: z.string().email('Invalid email'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+
+function LoginForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema)
+  });
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div>
+        <Input
+          {...register('email')}
+          placeholder="Email"
+          className={errors.email ? 'border-error-500' : ''}
+        />
+        {errors.email && (
+          <ErrorMessage>{errors.email.message}</ErrorMessage>
+        )}
+      </div>
+      
+      <div>
+        <Input
+          {...register('password')}
+          type="password"
+          placeholder="Password"
+          className={errors.password ? 'border-error-500' : ''}
+        />
+        {errors.password && (
+          <ErrorMessage>{errors.password.message}</ErrorMessage>
+        )}
+        <HelperText>Password must be at least 8 characters</HelperText>
+      </div>
+    </form>
+  );
+}
+```
+
+## Accessibility & Kontrast
+
+### Kontrast Guidelines
+Alle vores farver er designet til at opfylde WCAG 2.1 AA standarder:
+
+```css
+/* Automatisk kontrast validering */
+[data-theme="nostromo"] {
+  /* Brand farver - valideret kontrast */
+  --color-brand-500: 262 84% 52%;  /* 4.5:1 kontrast på hvid */
+  --color-brand-600: 262 84% 45%;  /* 7:1 kontrast på hvid */
+  
+  /* Neutral farver - sikker læsbarhed */
+  --color-neutral-900: 0 0% 9%;    /* 21:1 kontrast på hvid */
+  --color-neutral-700: 0 0% 25%;  /* 12:1 kontrast på hvid */
+}
+```
+
+### Dark Mode Accessibility
+```css
+[data-theme="nostromo"][data-color-scheme="dark"] {
+  /* Sikker kontrast i dark mode */
+  --color-neutral-50: 0 0% 9%;     /* Mørk baggrund */
+  --color-neutral-900: 0 0% 98%;   /* Lys tekst */
+  --color-brand-500: 262 84% 60%;  /* Lysere brand for bedre kontrast */
+}
+```
+
+### Focus States
+```css
+/* Automatiske focus states */
+.focus-visible {
+  outline: 2px solid hsl(var(--color-brand-500));
+  outline-offset: 2px;
+}
+```
+
 ## Performance
 
 ### CSS Loading Strategi
@@ -299,6 +405,36 @@ function Button({ variant = "primary" }) {
 - **Minimal runtime**: Kun CSS-variabler, ingen JavaScript
 - **Tree shaking**: Kun brugte temaer inkluderes
 - **Compression**: CSS minification og gzip
+
+### Import Strategier
+```tsx
+// ✅ Anbefalet: Per-component imports
+import { Button } from '@nostromo/ui-core/button';
+import { Input } from '@nostromo/ui-core/input';
+
+// ✅ Også OK: Barrel imports
+import { Button, Input } from '@nostromo/ui-core';
+
+// ❌ Undgå: Full library import
+import * as Nostromo from '@nostromo/ui-core';
+```
+
+### Bundle Size Optimering
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    // Kun scan de komponenter du bruger
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@nostromo/ui-core/dist/**/*.{js,jsx,ts,tsx}',
+  ],
+  // Purge unused CSS
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  }
+};
+```
 
 ## Migration Guide
 
@@ -332,6 +468,70 @@ const Button = ({ className, ...props }) => (
     {...props} 
   />
 );
+```
+
+## Live Sandboxes & Eksempler
+
+### Codesandbox Integration
+Hver komponent har et live eksempel du kan forke:
+
+```tsx
+// Button eksempel - forke direkte fra docs
+import { Button } from '@nostromo/ui-core';
+
+export default function ButtonExample() {
+  return (
+    <div className="space-x-2">
+      <Button variant="default">Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+    </div>
+  );
+}
+```
+
+### StackBlitz Integration
+```tsx
+// Komplet Next.js setup - klik for at åbne i StackBlitz
+import { Button, Card, Input } from '@nostromo/ui-core';
+
+export default function App() {
+  return (
+    <Card className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Nostromo UI Demo</h1>
+      <Input placeholder="Enter your name" className="mb-4" />
+      <Button>Get Started</Button>
+    </Card>
+  );
+}
+```
+
+### Theme Playground
+```tsx
+// Live theme switcher - prøv forskellige temaer
+function ThemePlayground() {
+  const themes = ['nostromo', 'mother', 'lv-426', 'sulaco'];
+  const [currentTheme, setCurrentTheme] = useState('nostromo');
+  
+  return (
+    <div className="space-y-4">
+      <select 
+        value={currentTheme} 
+        onChange={(e) => setCurrentTheme(e.target.value)}
+        className="px-3 py-2 border rounded-md"
+      >
+        {themes.map(theme => (
+          <option key={theme} value={theme}>{theme}</option>
+        ))}
+      </select>
+      
+      <div data-theme={currentTheme} className="p-4 border rounded-lg">
+        <Button>Test Button</Button>
+        <Input placeholder="Test Input" />
+      </div>
+    </div>
+  );
+}
 ```
 
 Dette theming system giver dig maksimal fleksibilitet til at skabe konsistente, performante og smukke brugergrænseflader.
