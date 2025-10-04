@@ -89,10 +89,8 @@ jobs:
     - name: Build documentation
       run: |
         echo "Building documentation..."
-        cd docs
-        echo "Installing docs dependencies..."
-        pnpm install
         echo "Building docs..."
+        cd docs
         pnpm run build
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
