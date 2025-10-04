@@ -1,49 +1,48 @@
 # 🚀 Deployment Guide - Nostromo UI
 
-Denne guide beskriver hvordan Nostromo UI dokumentationssite deployes og vedligeholdes.
+This guide describes how the Nostromo UI documentation site is deployed and maintained.
 
-## 📋 Oversigt
+## 📋 Overview
 
-Nostromo UI bruger en **Nextra-baseret dokumentationssite** med alle 27 komponenter, Storybook integration og live previews. Den kører lokalt på **http://localhost:3000** og er optimeret for development og testing.
+Nostromo UI uses a **Nextra-based documentation site** with all 27 components, Storybook integration and live previews. It runs locally on **http://localhost:3000** and is optimized for development and testing.
 
 ## 🌐 Deployment Targets
 
 ### **Production (GitHub Pages)**
-- **URL**: https://jarl.l.github.io/nostromo-ui/
-- **Custom Domain**: https://nostromo-ui.dev (konfigureret via CNAME)
+- **URL**: https://jarllyng.github.io/nostromo-ui/
+- **Custom Domain**: Coming soon - Currently using GitHub Pages
 - **Branch**: `main`
-- **Trigger**: Automatisk ved push til main branch
+- **Trigger**: Automatic on push to main branch
 
-### **Development (Lokal)**
+### **Development (Local)**
 - **URL**: http://localhost:3000
 - **Command**: `cd docs && npm run dev`
 
 ## 🔧 Deployment Process
 
-### **Automatisk Deployment**
+### **Automatic Deployment**
 
-1. **Push til main branch** med ændringer i:
-   - `packages/docs-advanced/`
+1. **Push to main branch** with changes in:
    - `packages/ui-core/`
    - `packages/ui-tw/`
    - `packages/ui-marketing/`
 
-2. **GitHub Actions workflow** kører automatisk:
-   - Installerer dependencies
-   - Bygger alle pakker
-   - Kopierer avanceret HTML dokumentation til build output
-   - Deployer til GitHub Pages
+2. **GitHub Actions workflow** runs automatically:
+   - Installs dependencies
+   - Builds documentation site
+   - Copies advanced HTML documentation to build output
+   - Deploys to GitHub Pages
 
-### **Manuel Deployment**
+### **Manual Deployment**
 
 ```bash
-# 1. Build alle pakker
+# 1. Build all packages
 pnpm build
 
-# 2. Kopier avanceret HTML dokumentation til build output
+# 2. Copy advanced HTML documentation to build output
 cp -r packages/docs-advanced/* build/
 
-# 3. Deploy til GitHub Pages
+# 3. Deploy to GitHub Pages
 cd build
 git add .
 git commit -m "Deploy documentation"
@@ -52,82 +51,85 @@ git push origin gh-pages
 
 ## 📁 Build Output
 
-Avanceret HTML dokumentation genererer statiske filer i:
+Advanced HTML documentation generates static files in:
+
 ```
-packages/docs-advanced/
+build/
 ├── index.html
-├── package.json
-└── README.md
+├── components/
+├── assets/
+└── ...
 ```
 
-## 🔗 Links og Navigation
+## 🔗 Links and Navigation
 
-### **Hovednavigation**
+### **Main Navigation**
 - **Home**: `/`
-- **Components**: `/docs/components/`
+- **Components**: `/components/`
 - **Getting Started**: `/docs/getting-started/`
 - **Theming**: `/docs/theming/`
 - **API Reference**: `/api/`
-- **Storybook**: `/storybook`
 
-### **Komponenter**
+### **Component Pages**
 - **Button**: `/docs/components/button`
-- **Badge**: `/docs/components/badge`
-- **Card**: `/docs/components/card`
+- **Input**: `/docs/components/input`
 - **Avatar**: `/docs/components/avatar`
+- **Card**: `/docs/components/card`
+- **Dialog**: `/docs/components/dialog`
 
 ## 🛠️ Troubleshooting
 
-### **Build Fejl**
+### **Build Errors**
 
-1. **TypeDoc fejl**:
+1. **Dependency issues**:
    ```bash
-   # Check dokumentationssite
-   cd packages/docs-advanced
-   python3 -m http.server 3000
+   # Check documentation site
+   cd docs
+   npm install
+   npm run dev
    ```
 
 2. **Broken links**:
    ```bash
    # Check for broken links
    pnpm build
-   # Se fejl i output
+   # See errors in output
    ```
 
-3. **Dependency problemer**:
+3. **Dependency problems**:
    ```bash
-   # Rens og reinstall
-   pnpm clean:all
+   # Clean and reinstall
+   rm -rf node_modules
    pnpm install
    ```
 
-### **Deployment Fejl**
+### **Deployment Errors**
 
-1. **GitHub Actions fejl**:
-   - Check workflow logs i GitHub Actions tab
-   - Verificer at alle dependencies er korrekte
+1. **GitHub Actions errors**:
+   - Check workflow logs in GitHub Actions tab
+   - Verify all dependencies are correct
 
-2. **GitHub Pages fejl**:
+2. **GitHub Pages errors**:
    - Check repository settings > Pages
-   - Verificer at GitHub Actions har Pages permissions
+   - Verify GitHub Actions has Pages permissions
 
 ## 📊 Performance
 
 ### **Build Metrics**
-- **Build tid**: ~30-45 sekunder
-- **Bundle størrelse**: ~2-3 MB
-- **Page load**: <2 sekunder
+- **Build time**: ~30-45 seconds
+- **Bundle size**: Optimized for fast loading
+- **Page load**: <2 seconds
 
-### **Optimering**
-- **Static HTML**: Ingen build process nødvendig
-- **Image optimization**: Optimerede SVG og PNG billeder
+### **Optimization**
+- **Static HTML**: No build process needed
+- **Image optimization**: Optimized SVG and PNG images
 - **Caching**: GitHub Pages CDN
 
 ## 🔄 Maintenance
 
-### **Regelmæssige Opgaver**
+### **Regular Tasks**
 
-1. **Opdater dependencies**:
+1. **Update dependencies**:
    ```bash
    pnpm update
    ```
@@ -135,47 +137,49 @@ packages/docs-advanced/
 2. **Check for broken links**:
    ```bash
    pnpm build
+   # Review output for errors
    ```
 
-3. **Test lokalt**:
+3. **Test locally**:
    ```bash
-   pnpm docs:dev
+   cd docs
+   npm run dev
+   # Test all pages and links
    ```
 
 ### **Content Updates**
 
-1. **Tilføj ny komponent**:
-   - Opret dokumentation i `packages/docs-advanced/components/`
-   - Opdater navigation i HTML filer
-   - Test lokalt
+1. **Add new component**:
+   - Create documentation in `packages/docs-advanced/components/`
+   - Update navigation in HTML files
+   - Test locally before deploying
 
-2. **Opdater API dokumentation**:
-   - HTML dokumentation opdateres manuelt
-   - Komponent eksempler opdateres i HTML filer
+2. **Update API documentation**:
+   - HTML documentation is updated manually
+   - Component examples are updated in HTML files
 
 ## 🚨 Rollback
 
-Hvis deployment fejler:
+If deployment fails:
 
-1. **Rollback til forrige commit**:
+1. **Rollback to previous commit**:
    ```bash
    git revert HEAD
    git push origin main
    ```
 
-2. **Manuel deployment**:
+2. **Manual deployment**:
    ```bash
-   cd packages/docs-advanced
-   python3 -m http.server 3000
+   # Follow manual deployment steps above
    ```
 
 ## 📞 Support
 
-For problemer med deployment:
+For deployment issues:
 - Check GitHub Actions logs
-- Verificer repository permissions
-- Test lokalt først
+- Verify repository permissions
+- Contact maintainers via GitHub Issues
 
 ---
 
-**Sidst opdateret**: December 2024
+**Last Updated**: October 2025

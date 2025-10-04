@@ -1,0 +1,110 @@
+name: ❓ Support Request
+description: Ask a question or get help with Nostromo UI
+title: "[Support]: "
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! We're here to help. Please provide as much detail as possible so we can assist you effectively.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What type of question do you have?
+      options:
+        - Getting Started
+        - Component Usage
+        - Theming/Customization
+        - Build/Installation
+        - TypeScript
+        - Performance
+        - Accessibility
+        - Migration
+        - Other
+      multiple: false
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question?
+      options:
+        - Low - General question, no rush
+        - Medium - Would like an answer soon
+        - High - Blocking my development
+        - Critical - Production issue
+      multiple: false
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Describe your question or problem...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about your project or use case
+      placeholder: |
+        - What are you trying to build?
+        - What's your current setup?
+        - What have you tried so far?
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Example
+      description: If applicable, share your code or a minimal reproduction
+      placeholder: |
+        ```tsx
+        import { Button } from '@nostromo/ui-core';
+        
+        function MyComponent() {
+          return <Button>My Button</Button>;
+        }
+        ```
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your development environment
+      placeholder: |
+        - OS: [e.g. macOS, Windows, Linux]
+        - Node.js version: [e.g. 18.17.0]
+        - Package manager: [e.g. npm, yarn, pnpm]
+        - Nostromo UI version: [e.g. 0.1.0]
+        - Framework: [e.g. React, Next.js, Vite]
+
+  - type: textarea
+    id: research
+    attributes:
+      label: What I've Tried
+      description: What have you already tried to solve this?
+      placeholder: |
+        - I've checked the documentation
+        - I've searched existing issues
+        - I've tried [specific approach]
+        - I've looked at [specific resource]
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other information that might be helpful
+      placeholder: Screenshots, error messages, or other relevant details...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

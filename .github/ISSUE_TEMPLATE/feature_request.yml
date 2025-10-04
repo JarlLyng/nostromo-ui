@@ -1,0 +1,139 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component/Area
+      description: Which component or area would this feature affect?
+      options:
+        - Button
+        - Input
+        - Card
+        - Dialog
+        - Select
+        - Table
+        - Toast
+        - Tooltip
+        - Theming System
+        - Documentation
+        - Build System
+        - Other
+      multiple: false
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Feature Type
+      description: What type of feature is this?
+      options:
+        - New Component
+        - Component Enhancement
+        - API Improvement
+        - Theming Feature
+        - Documentation
+        - Developer Experience
+        - Performance
+        - Accessibility
+        - Other
+      multiple: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: Describe the problem you're trying to solve...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see
+      placeholder: Describe your proposed solution...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or workarounds you've considered
+      placeholder: What alternatives have you considered?
+
+  - type: textarea
+    id: usecase
+    attributes:
+      label: Use Case
+      description: Describe the specific use case for this feature
+      placeholder: |
+        - Who would use this feature?
+        - When would they use it?
+        - What would they accomplish?
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Example
+      description: If applicable, provide code examples of how this feature might work
+      placeholder: |
+        ```tsx
+        // Example of how the feature might be used
+        import { NewComponent } from '@nostromo/ui-core';
+        
+        function MyComponent() {
+          return <NewComponent prop="value" />;
+        }
+        ```
+
+  - type: textarea
+    id: api
+    attributes:
+      label: API Design
+      description: If this is a component feature, describe the proposed API
+      placeholder: |
+        ```tsx
+        interface NewComponentProps {
+          variant?: 'default' | 'primary' | 'secondary';
+          size?: 'sm' | 'md' | 'lg';
+          disabled?: boolean;
+          // ... other props
+        }
+        ```
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my use case
+        - Critical - Blocking my project
+      multiple: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, mockups, or examples about the feature request
+      placeholder: Any additional information, screenshots, or references...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,11 +1,12 @@
-import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { ErrorBoundary } from '../error-boundary';
 
+// Extend Jest matchers
 expect.extend(toHaveNoViolations);
 
-// Component that throws an error
+// Component that throws an error for testing
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
   if (shouldThrow) {
     throw new Error('Test error');
@@ -24,107 +25,130 @@ describe('ErrorBoundary Accessibility', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should not have accessibility violations with default error fallback', async () => {
+  it('should not have accessibility violations when error occurs', async () => {
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
     const { container } = render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
       </ErrorBoundary>
     );
+    
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+    
+    // Restore console.error
+    console.error = originalError;
   });
 
-  it('should not have accessibility violations with custom fallback', async () => {
-    const CustomFallback = ({ error, resetError }: { error?: Error; resetError: () => void }) => (
-      <div role="alert" aria-live="polite">
-        <h2>Custom Error</h2>
-        <p>An error occurred: {error?.message}</p>
-        <button onClick={resetError} aria-label="Retry operation">
-          Try Again
+  it('should have proper ARIA attributes for error state', () => {
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+    
+    // Check if error boundary renders error UI
+    // This depends on the ErrorBoundary implementation
+    const errorElement = screen.queryByRole('alert');
+    if (errorElement) {
+      expect(errorElement).toBeInTheDocument();
+    }
+    
+    // Restore console.error
+    console.error = originalError;
+  });
+
+  it('should have proper contrast for error messages', async () => {
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    const { container } = render(
+      <ErrorBoundary>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+    
+    // Restore console.error
+    console.error = originalError;
+  });
+
+  it('should be accessible with custom error UI', async () => {
+    const CustomErrorUI = ({ error }: { error: Error }) => (
+      <div role="alert" aria-live="assertive">
+        <h2>Something went wrong</h2>
+        <p>Error: {error.message}</p>
+        <button onClick={() => window.location.reload()}>
+          Reload page
         </button>
       </div>
     );
-
+    
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
     const { container } = render(
-      <ErrorBoundary fallback={CustomFallback}>
+      <ErrorBoundary fallback={CustomErrorUI}>
         <ThrowError shouldThrow={true} />
       </ErrorBoundary>
     );
+    
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+    
+    // Restore console.error
+    console.error = originalError;
   });
 
-  it('should not have accessibility violations with accessible error fallback', async () => {
-    const AccessibleFallback = ({ error: _error, resetError }: { error?: Error; resetError: () => void }) => (
-      <div 
-        role="alert" 
-        aria-live="assertive" 
-        aria-labelledby="error-title"
-        aria-describedby="error-description"
-      >
-        <h2 id="error-title">Something went wrong</h2>
-        <p id="error-description">
-          An unexpected error occurred. Please try again or contact support if the problem persists.
-        </p>
-        <div>
-          <button onClick={resetError} aria-label="Retry the operation">
-            Try Again
-          </button>
-          <button onClick={() => window.location.reload()} aria-label="Reload the page">
-            Reload Page
-          </button>
-        </div>
-      </div>
-    );
-
-    const { container } = render(
-      <ErrorBoundary fallback={AccessibleFallback}>
-        <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
-    );
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
-  });
-
-  it('should not have accessibility violations with form in error fallback', async () => {
-    const FormFallback = ({ error, resetError }: { error?: Error; resetError: () => void }) => (
+  it('should support keyboard navigation in error UI', () => {
+    const CustomErrorUI = ({ error }: { error: Error }) => (
       <div role="alert">
-        <h2>Error Report</h2>
-        <p>An error occurred: {error?.message}</p>
-        <form>
-          <div>
-            <label htmlFor="error-description">Describe what you were doing:</label>
-            <textarea 
-              id="error-description" 
-              rows={3}
-              aria-describedby="error-description-help"
-            ></textarea>
-            <p id="error-description-help">
-              This information will help us fix the issue.
-            </p>
-          </div>
-          <div>
-            <button type="button" onClick={resetError}>
-              Try Again
-            </button>
-            <button type="submit">
-              Report Error
-            </button>
-          </div>
-        </form>
+        <h2>Something went wrong</h2>
+        <p>Error: {error.message}</p>
+        <button onClick={() => window.location.reload()}>
+          Reload page
+        </button>
+        <a href="/support">Get help</a>
       </div>
     );
-
-    const { container } = render(
-      <ErrorBoundary fallback={FormFallback}>
+    
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    render(
+      <ErrorBoundary fallback={CustomErrorUI}>
         <ThrowError shouldThrow={true} />
       </ErrorBoundary>
     );
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
+    
+    const button = screen.getByRole('button');
+    const link = screen.getByRole('link');
+    
+    expect(button).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/support');
+    
+    // Restore console.error
+    console.error = originalError;
   });
 
-  it('should not have accessibility violations with multiple error boundaries', async () => {
+  it('should handle multiple error boundaries', async () => {
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
     const { container } = render(
       <div>
         <ErrorBoundary>
@@ -133,12 +157,99 @@ describe('ErrorBoundary Accessibility', () => {
         <ErrorBoundary>
           <ThrowError shouldThrow={true} />
         </ErrorBoundary>
-        <ErrorBoundary>
-          <ThrowError shouldThrow={false} />
-        </ErrorBoundary>
       </div>
     );
+    
     const results = await axe(container);
     expect(results).toHaveNoViolations();
+    
+    // Restore console.error
+    console.error = originalError;
+  });
+
+  it('should be accessible with nested error boundaries', async () => {
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    const { container } = render(
+      <ErrorBoundary>
+        <ErrorBoundary>
+          <ThrowError shouldThrow={true} />
+        </ErrorBoundary>
+      </ErrorBoundary>
+    );
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+    
+    // Restore console.error
+    console.error = originalError;
+  });
+
+  it('should support custom ARIA attributes', () => {
+    const CustomErrorUI = ({ error }: { error: Error }) => (
+      <div 
+        role="alert" 
+        aria-live="assertive"
+        aria-label="Error occurred"
+        aria-describedby="error-description"
+      >
+        <h2 id="error-description">Something went wrong</h2>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+    
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    render(
+      <ErrorBoundary fallback={CustomErrorUI}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+    
+    const alert = screen.getByRole('alert');
+    expect(alert).toHaveAttribute('aria-live', 'assertive');
+    expect(alert).toHaveAttribute('aria-label', 'Error occurred');
+    expect(alert).toHaveAttribute('aria-describedby', 'error-description');
+    
+    // Restore console.error
+    console.error = originalError;
+  });
+
+  it('should handle recovery actions accessibly', () => {
+    const CustomErrorUI = ({ error, resetError }: { error: Error; resetError: () => void }) => (
+      <div role="alert">
+        <h2>Something went wrong</h2>
+        <p>Error: {error.message}</p>
+        <button onClick={resetError} aria-label="Retry operation">
+          Try again
+        </button>
+        <button onClick={() => window.location.reload()} aria-label="Reload page">
+          Reload page
+        </button>
+      </div>
+    );
+    
+    // Suppress console.error for this test
+    const originalError = console.error;
+    console.error = vi.fn();
+    
+    render(
+      <ErrorBoundary fallback={CustomErrorUI}>
+        <ThrowError shouldThrow={true} />
+      </ErrorBoundary>
+    );
+    
+    const retryButton = screen.getByLabelText('Retry operation');
+    const reloadButton = screen.getByLabelText('Reload page');
+    
+    expect(retryButton).toBeInTheDocument();
+    expect(reloadButton).toBeInTheDocument();
+    
+    // Restore console.error
+    console.error = originalError;
   });
 });

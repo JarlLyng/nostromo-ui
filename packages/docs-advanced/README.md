@@ -2,12 +2,10 @@
 
 ## 🚀 Build System
 
-This documentation site uses a **maintainable template system** to ensure consistency and easy updates.
+This documentation site uses a **template-based system** for consistency and easy maintenance.
 
 ### **Key Features:**
-- ✅ **Single source of truth** for navigation
 - ✅ **Template-based generation** for consistency
-- ✅ **Automatic path resolution** for assets
 - ✅ **Component configuration** in JSON
 - ✅ **Easy maintenance** and updates
 
@@ -29,64 +27,21 @@ packages/docs-advanced/
 
 ### **Build Documentation:**
 ```bash
-cd packages/docs-advanced
-pnpm build
+npm run build:docs
 ```
 
-### **Serve Locally:**
-```bash
-pnpm dev
-# Opens at http://localhost:8080
-```
+### **Add New Component:**
+1. Add component to `build-system/config.json`
+2. Run build script
+3. Component page is automatically generated
 
-## 🔧 Adding New Components
+## 📚 Benefits
 
-### **1. Update Configuration:**
-Edit `build-system/config.json`:
-```json
-{
-  "components": {
-    "core": [
-      { "name": "NewComponent", "file": "new-component.html", "category": "form" }
-    ]
-  }
-}
-```
+- **Consistency**: All pages follow the same structure
+- **Maintainability**: Easy to update navigation and styling
+- **Scalability**: Simple to add new components
+- **Performance**: Optimized for fast loading
 
-### **2. Create Component Page:**
-Create `components/new-component.html` with your content.
+---
 
-### **3. Rebuild:**
-```bash
-pnpm build
-```
-
-## 🎯 Benefits
-
-### **Maintainability:**
-- **Navigation updates** in one place
-- **Template changes** apply to all pages
-- **Path resolution** is automatic
-- **No duplicate code**
-
-### **Consistency:**
-- **Same header/footer** on all pages
-- **Consistent navigation** structure
-- **Unified styling** and behavior
-- **Automatic asset paths**
-
-### **Scalability:**
-- **Easy to add** new components
-- **Configuration-driven** approach
-- **Template inheritance** system
-- **Build automation**
-
-## 🔄 Workflow
-
-1. **Edit configuration** in `config.json`
-2. **Create/update** component pages
-3. **Run build** to generate all pages
-4. **Test locally** with dev server
-5. **Deploy** when ready
-
-This system ensures that navigation, styling, and structure remain consistent across all pages while making it easy to add new components and maintain the documentation site.
+*This advanced documentation system ensures consistency and easy maintenance across all component pages.*

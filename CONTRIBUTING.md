@@ -27,7 +27,7 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
 ### Setup
 ```bash
 # Fork og clone repository
-git clone https://github.com/your-username/nostromo-ui.git
+git clone https://github.com/JarlLyng/nostromo-ui.git
 cd nostromo-ui
 
 # Install dependencies

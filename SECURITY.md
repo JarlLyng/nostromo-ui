@@ -19,7 +19,7 @@ We take security issues seriously. If you discover a security vulnerability, ple
 ### How to Report
 
 1. **DO NOT** create a public GitHub issue
-2. Send an email to: security@nostromo-ui.dev
+2. Create a GitHub issue with the "security" label
 3. Include the following information:
    - Description of the vulnerability
    - Steps to reproduce
@@ -165,7 +165,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 📞 Contact
 
 ### Security Team
-- **Email**: security@nostromo-ui.dev
+- **GitHub Issues**: Use "security" label for security-related reports
 - **Response Time**: 48 hours
 - **Availability**: 24/7 for critical issues
 

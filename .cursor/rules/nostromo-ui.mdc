@@ -20,6 +20,13 @@ alwaysApply: true
 - **ASK for clarification** if there's any uncertainty about requirements
 - **BE ADVISORY** - Provide recommendations and explain trade-offs
 
+### Information Accuracy
+- **NEVER invent emails, URLs, or contact information** - Always ask for real contact details
+- **NEVER create fake domains or email addresses** - Use placeholder text like "your-email@example.com" if needed
+- **ALWAYS verify URLs and links** - Don't assume GitHub Pages URLs or documentation links exist
+- **ASK before adding contact information** - Never add emails, phone numbers, or addresses without permission
+- **USE placeholders for missing information** - Mark clearly as "TODO: Add real contact info"
+
 ## 🎯 PROJECT CONTEXT
 
 ### About Nostromo UI

@@ -217,4 +217,62 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 - **Internationalization**: i18n utilities
 - **Advanced theming**: Design token system
 
+## CSS Variable Structure
+
+We use CSS variables with namespacing, in HSL format to support Tailwind's `hsl(var(--...))` pattern.
+
+```css
+[data-theme="nostromo"] {
+  --color-brand-50: 262 84% 95%;
+  --color-brand-500: 262 84% 52%;
+  --color-brand-900: 262 84% 15%;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --font-heading: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+```
+
+### Theme Implementation
+- **HSL format** for all colors to support Tailwind's `hsl(var(--...))` pattern
+- **Semantic naming** (brand, neutral, success, warning, error)
+- **Consistent scale** (50, 100, 200... 900, 950)
+- **Dark mode support** via `[data-color-scheme="dark"]`
+
+## Component API Design
+
+### Standard Props
+All components support these standard props:
+
+```tsx
+interface BaseComponentProps {
+  // Styling
+  className?: string;
+  
+  // Accessibility
+  id?: string;
+  "aria-label"?: string;
+  "aria-describedby"?: string;
+  
+  // State
+  disabled?: boolean;
+  loading?: boolean;
+}
+```
+
+### Variant System
+```tsx
+// Size variants
+type Size = "sm" | "md" | "lg";
+
+// Color variants  
+type Variant = "primary" | "secondary" | "ghost" | "destructive";
+
+// State variants
+type State = "default" | "loading" | "disabled";
+```
+
 This architecture is designed to scale with the project's growth and support both small and large teams.

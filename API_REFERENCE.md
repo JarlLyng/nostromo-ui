@@ -4,14 +4,35 @@ This document provides a comprehensive API reference for all Nostromo UI compone
 
 ## 📋 Contents
 
+- [API Design Principles](#api-design-principles)
 - [Core Components](#core-components)
 - [Marketing Components](#marketing-components)
 - [Component Props](#component-props)
 - [Variant System](#variant-system)
+- [Composition Patterns](#composition-patterns)
+- [Accessibility](#accessibility)
 - [TypeScript Support](#typescript-support)
 - [Import Patterns](#import-patterns)
+- [Testing](#testing)
 
 ---
+
+## 🎯 API Design Principles
+
+### Consistency
+- **Consistent prop names** across all components
+- **Unified variant system** for all components
+- **Standardized variant systems** (size, variant, state)
+
+### Flexibility
+- **Composable**: Components can be combined and extended
+- **Customizable**: Support for custom styling via className/class
+- **Accessible**: WCAG 2.1 AA compliance out of the box
+
+### Performance
+- **Tree-shakeable**: Individual component imports
+- **Minimal bundle**: No runtime overhead
+- **SSR compatible**: No client-side dependencies
 
 ## 🧩 Core Components
 
@@ -1366,8 +1387,130 @@ import { Testimonials } from "@nostromo/ui-marketing/testimonials"
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: October 2025  
 **Version**: 0.1.0 (Beta)
+
+---
+
+## 🔧 Composition Patterns
+
+### Compound Components
+```tsx
+// Dialog with compound components
+<Dialog>
+  <DialogTrigger>Open</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Title</DialogTitle>
+      <DialogDescription>Description</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="ghost">Cancel</Button>
+      <Button>Confirm</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+### Render Props / Slots
+```tsx
+// React with render props
+<Popover>
+  <PopoverTrigger asChild>
+    <Button>Open</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    {({ close }) => (
+      <div>
+        <p>Popover content</p>
+        <Button onClick={close}>Close</Button>
+      </div>
+    )}
+  </PopoverContent>
+</Popover>
+```
+
+## ♿ Accessibility
+
+### ARIA Patterns
+```tsx
+// Button with loading state
+<Button 
+  loading={isLoading}
+  aria-label={isLoading ? "Loading..." : "Submit form"}
+  disabled={isLoading}
+>
+  {isLoading ? <Spinner size="sm" /> : "Submit"}
+</Button>
+
+// Form with error state
+<FormField>
+  <Label htmlFor="email">Email</Label>
+  <Input
+    id="email"
+    type="email"
+    variant={hasError ? "error" : "default"}
+    aria-invalid={hasError}
+    aria-describedby={hasError ? "email-error" : undefined}
+  />
+  {hasError && (
+    <p id="email-error" className="text-error-500 text-sm">
+      Please enter a valid email
+    </p>
+  )}
+</FormField>
+```
+
+### Keyboard Navigation
+```tsx
+// Tabs with keyboard navigation
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+</Tabs>
+```
+
+## 🧪 Testing
+
+### Unit Tests
+```tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "@nostromo/ui-core";
+
+test("Button renders with correct variant", () => {
+  render(<Button variant="primary">Click me</Button>);
+  
+  const button = screen.getByRole("button");
+  expect(button).toHaveClass("bg-brand-500");
+});
+
+test("Button handles click events", () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>Click me</Button>);
+  
+  fireEvent.click(screen.getByRole("button"));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
+```
+
+### Accessibility Tests
+```tsx
+import { axe, toHaveNoViolations } from "jest-axe";
+import { render } from "@testing-library/react";
+import { Button } from "@nostromo/ui-core";
+
+expect.extend(toHaveNoViolations);
+
+test("Button has no accessibility violations", async () => {
+  const { container } = render(<Button>Click me</Button>);
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
+```
 
 ---
 

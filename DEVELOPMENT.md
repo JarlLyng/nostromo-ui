@@ -25,7 +25,7 @@ This file describes how to set up Nostromo UI for development, including install
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/your-org/nostromo-ui.git
+git clone https://github.com/JarlLyng/nostromo-ui.git
 cd nostromo-ui
 
 # Install dependencies

@@ -919,13 +919,13 @@ npx madge --circular src/
 
 - **GitHub Issues**: [Report bugs and request features](https://github.com/JarlLyng/nostromo-ui/issues)
 - **GitHub Discussions**: [Ask questions and share ideas](https://github.com/JarlLyng/nostromo-ui/discussions)
-- **Discord**: [Join our Discord server](https://discord.gg/nostromo-ui) (Coming soon)
+- **Discord**: Coming soon - Use GitHub Discussions for now
 
 ### Professional Support
 
-- **Enterprise Support**: [Contact us](mailto:support@nostromo-ui.com) for enterprise support
-- **Custom Development**: [Hire us](mailto:dev@nostromo-ui.com) for custom component development
-- **Training**: [Book a training session](mailto:training@nostromo-ui.com) for team training
+- **Enterprise Support**: Create a GitHub issue with "enterprise" label
+- **Custom Development**: Create a GitHub issue with "custom" label  
+- **Training**: Create a GitHub issue with "training" label
 
 ### Reporting Issues
 
@@ -942,13 +942,13 @@ When reporting issues, please include:
 ### Issue Templates
 
 Use our issue templates for:
-- **Bug Reports**: [Bug report template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=bug_report.md)
-- **Feature Requests**: [Feature request template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=feature_request.md)
-- **Questions**: [Question template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=question.md)
+- **Bug Reports**: [Bug report template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=bug_report.yml)
+- **Feature Requests**: [Feature request template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=feature_request.yml)
+- **Questions**: [Support request template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=support_request.yml)
 
 ---
 
-**Last Updated**: December 2024  
+**Last Updated**: October 2025  
 **Version**: 0.1.0 (Beta)
 
 ---

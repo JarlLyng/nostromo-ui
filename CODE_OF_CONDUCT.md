@@ -32,7 +32,7 @@ This Code of Conduct applies both within project spaces and in public spaces whe
 
 ## 🚨 Reporting
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at [security@nostromo-ui.dev](mailto:security@nostromo-ui.dev). All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by creating a GitHub issue with the "conduct" label. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident.
 
 ## ⚖️ Enforcement
 
@@ -40,7 +40,6 @@ Project maintainers who do not follow or enforce the Code of Conduct in good fai
 
 ## 📞 Contact
 
-- **Email**: [security@nostromo-ui.dev](mailto:security@nostromo-ui.dev)
 - **GitHub Issues**: Use "conduct" label for Code of Conduct related questions
 - **GitHub Discussions**: General questions about community standards
 
@@ -53,7 +52,7 @@ Project maintainers who do not follow or enforce the Code of Conduct in good fai
 
 ### **For Users**
 - [Getting Started](README.md)
-- [Component Documentation](https://jarl.l.github.io/nostromo-ui/)
+- [Component Documentation](https://jarllyng.github.io/nostromo-ui/)
 - [Theming Guide](THEMING.md)
 
 ## 🔄 Updates
@@ -72,4 +71,4 @@ This Code of Conduct is adapted from the [Contributor Covenant](https://www.cont
 
 **Thank you for contributing to an inclusive and respectful community!** 🤝
 
-*Last updated: December 2024*
+*Last updated: October 2025*

@@ -1,0 +1,122 @@
+name: 📚 Documentation Issue
+description: Report a documentation problem or suggest improvements
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Please provide details about the documentation issue or improvement.
+
+  - type: dropdown
+    id: doc_type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation is affected?
+      options:
+        - Component Documentation
+        - API Reference
+        - Getting Started Guide
+        - Theming Guide
+        - Migration Guide
+        - Best Practices
+        - Troubleshooting
+        - Storybook
+        - README
+        - Other
+      multiple: false
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What kind of documentation issue is this?
+      options:
+        - Missing Information
+        - Incorrect Information
+        - Outdated Information
+        - Unclear/Confusing
+        - Typo/Grammar
+        - Broken Link
+        - Missing Example
+        - Other
+      multiple: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: Describe the documentation problem or improvement
+      placeholder: What's wrong with the documentation or what should be improved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Where is this documentation issue located?
+      placeholder: |
+        - File: [e.g. README.md, docs/components/button.mdx]
+        - Section: [e.g. "Installation", "API Reference"]
+        - URL: [if applicable]
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Content
+      description: What does the documentation currently say?
+      placeholder: Copy the current text or describe what's there...
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: How should the documentation be improved?
+      placeholder: |
+        - What should it say instead?
+        - What information is missing?
+        - How can it be clearer?
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Code Example
+      description: If applicable, provide a code example that should be added
+      placeholder: |
+        ```tsx
+        // Example code that should be documented
+        import { Button } from '@nostromo/ui-core';
+        
+        function MyComponent() {
+          return <Button variant="primary">Click me</Button>;
+        }
+        ```
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this documentation fix?
+      options:
+        - Low - Minor improvement
+        - Medium - Would be helpful
+        - High - Important for users
+        - Critical - Misleading or incorrect
+      multiple: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context about the documentation issue
+      placeholder: Screenshots, references, or other helpful information...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
