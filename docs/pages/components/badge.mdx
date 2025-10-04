@@ -45,6 +45,33 @@ export default function BadgeWithIcons() {
 }
 ```
 
+## Accessibility
+
+### Semantic HTML
+- **Badge**: Uses semantic `<span>` element for inline badges
+- **Screen reader support**: Badge content is announced by screen readers
+- **Color contrast**: All variants meet WCAG 2.1 AA contrast requirements
+
+### Usage Guidelines
+- **Status indicators**: Use for status, state, or category labels
+- **Short text**: Keep badge text concise and descriptive
+- **Color coding**: Use consistent colors for similar statuses
+
+### Examples
+```jsx
+// Accessible status badges
+<Badge variant="default" aria-label="Status: Active">Active</Badge>
+<Badge variant="destructive" aria-label="Status: Error">Error</Badge>
+<Badge variant="secondary" aria-label="Status: Pending">Pending</Badge>
+
+// With icons for better visual clarity
+<Badge variant="default">
+  <span aria-hidden="true">✓</span>
+  <span className="sr-only">Status: </span>
+  Active
+</Badge>
+```
+
 ## Props
 
 | Prop | Type | Default | Description |

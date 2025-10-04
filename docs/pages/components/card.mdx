@@ -59,6 +59,72 @@ export default function CardWithButtons() {
 }
 ```
 
+## Accessibility
+
+### Semantic HTML
+- **Card**: Uses semantic `<div>` element
+- **CardHeader**: Uses semantic `<div>` element for header content
+- **CardTitle**: Uses semantic `<h3>` element for titles
+- **CardDescription**: Uses semantic `<p>` element for descriptions
+- **CardContent**: Uses semantic `<div>` element for main content
+- **CardFooter**: Uses semantic `<div>` element for footer content
+
+### Screen Reader Support
+- **Title hierarchy**: CardTitle uses proper heading level
+- **Content structure**: Clear content hierarchy for screen readers
+- **Descriptive text**: CardDescription provides context
+
+### Examples
+```jsx
+// Accessible card with proper structure
+<Card>
+  <CardHeader>
+    <CardTitle>Product Information</CardTitle>
+    <CardDescription>Details about this product</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Product description and features.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Learn More</Button>
+  </CardFooter>
+</Card>
+```
+
 ## Props
 
-All Card components accept standard HTML props.
+### Card
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Card content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardHeader
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Header content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardTitle
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Title content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardDescription
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Description content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardContent
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Content |
+| `className` | `string` | - | Additional CSS classes |
+
+### CardFooter
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | - | Footer content |
+| `className` | `string` | - | Additional CSS classes |

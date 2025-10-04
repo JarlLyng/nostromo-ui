@@ -1,0 +1,491 @@
+# API Reference
+
+Complete API documentation for all Nostromo UI components.
+
+## Core Components
+
+### Button
+```tsx
+interface ButtonProps {
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  size?: 'default' | 'sm' | 'lg'
+  disabled?: boolean
+  loading?: boolean
+  children: React.ReactNode
+  className?: string
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+}
+```
+
+### Input
+```tsx
+interface InputProps {
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
+  placeholder?: string
+  disabled?: boolean
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  className?: string
+  id?: string
+  name?: string
+  required?: boolean
+}
+```
+
+### Dialog
+```tsx
+interface DialogProps {
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  children: React.ReactNode
+  className?: string
+}
+
+interface DialogContentProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface DialogHeaderProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface DialogTitleProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface DialogDescriptionProps {
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Card
+```tsx
+interface CardProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface CardHeaderProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface CardTitleProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface CardDescriptionProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface CardContentProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface CardFooterProps {
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Badge
+```tsx
+interface BadgeProps {
+  variant?: 'default' | 'secondary' | 'destructive' | 'outline'
+  size?: 'default' | 'sm' | 'lg'
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Alert
+```tsx
+interface AlertProps {
+  variant?: 'default' | 'destructive'
+  children: React.ReactNode
+  className?: string
+}
+
+interface AlertTitleProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface AlertDescriptionProps {
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Avatar
+```tsx
+interface AvatarProps {
+  src?: string
+  alt?: string
+  fallback?: string
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+}
+```
+
+### Checkbox
+```tsx
+interface CheckboxProps {
+  checked?: boolean
+  onCheckedChange?: (checked: boolean) => void
+  disabled?: boolean
+  required?: boolean
+  id?: string
+  name?: string
+  value?: string
+  className?: string
+}
+```
+
+### Icon
+```tsx
+interface IconProps {
+  name: string
+  size?: 'sm' | 'md' | 'lg'
+  className?: string
+  onClick?: (event: React.MouseEvent<SVGElement>) => void
+}
+```
+
+### Label
+```tsx
+interface LabelProps {
+  htmlFor?: string
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Pagination
+```tsx
+interface PaginationProps {
+  currentPage: number
+  totalPages: number
+  onPageChange: (page: number) => void
+  showFirstLast?: boolean
+  showPrevNext?: boolean
+  className?: string
+}
+```
+
+### Progress
+```tsx
+interface ProgressProps {
+  value?: number
+  max?: number
+  className?: string
+}
+```
+
+### Select
+```tsx
+interface SelectProps {
+  value?: string
+  onValueChange?: (value: string) => void
+  disabled?: boolean
+  children: React.ReactNode
+  className?: string
+}
+
+interface SelectTriggerProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface SelectValueProps {
+  placeholder?: string
+  className?: string
+}
+
+interface SelectContentProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface SelectItemProps {
+  value: string
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Separator
+```tsx
+interface SeparatorProps {
+  orientation?: 'horizontal' | 'vertical'
+  className?: string
+}
+```
+
+### Skeleton
+```tsx
+interface SkeletonProps {
+  className?: string
+}
+```
+
+### Switch
+```tsx
+interface SwitchProps {
+  checked?: boolean
+  onCheckedChange?: (checked: boolean) => void
+  disabled?: boolean
+  required?: boolean
+  id?: string
+  name?: string
+  value?: string
+  className?: string
+}
+```
+
+### Table
+```tsx
+interface TableProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TableHeaderProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TableBodyProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TableRowProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TableHeadProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TableCellProps {
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Tabs
+```tsx
+interface TabsProps {
+  defaultValue?: string
+  value?: string
+  onValueChange?: (value: string) => void
+  children: React.ReactNode
+  className?: string
+}
+
+interface TabsListProps {
+  children: React.ReactNode
+  className?: string
+}
+
+interface TabsTriggerProps {
+  value: string
+  children: React.ReactNode
+  className?: string
+}
+
+interface TabsContentProps {
+  value: string
+  children: React.ReactNode
+  className?: string
+}
+```
+
+### Textarea
+```tsx
+interface TextareaProps {
+  placeholder?: string
+  disabled?: boolean
+  value?: string
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  className?: string
+  id?: string
+  name?: string
+  required?: boolean
+  rows?: number
+}
+```
+
+### Toast
+```tsx
+interface ToastProps {
+  title?: string
+  description?: string
+  variant?: 'default' | 'destructive'
+  action?: React.ReactNode
+  children?: React.ReactNode
+  className?: string
+}
+```
+
+### Tooltip
+```tsx
+interface TooltipProps {
+  children: React.ReactNode
+  content: React.ReactNode
+  side?: 'top' | 'right' | 'bottom' | 'left'
+  align?: 'start' | 'center' | 'end'
+  className?: string
+}
+```
+
+## Marketing Components
+
+### Hero
+```tsx
+interface HeroProps {
+  title: string
+  subtitle?: string
+  cta?: React.ReactNode
+  background?: string
+  className?: string
+}
+```
+
+### Features
+```tsx
+interface FeaturesProps {
+  features: Array<{
+    title: string
+    description: string
+    icon?: React.ReactNode
+  }>
+  className?: string
+}
+```
+
+### Gallery
+```tsx
+interface GalleryProps {
+  images: Array<{
+    src: string
+    alt: string
+    title?: string
+    description?: string
+  }>
+  className?: string
+}
+```
+
+### LogoWall
+```tsx
+interface LogoWallProps {
+  logos: Array<{
+    src: string
+    alt: string
+    href?: string
+  }>
+  className?: string
+}
+```
+
+### Pricing
+```tsx
+interface PricingProps {
+  plans: Array<{
+    name: string
+    price: string
+    description: string
+    features: string[]
+    cta: React.ReactNode
+    popular?: boolean
+  }>
+  className?: string
+}
+```
+
+### Testimonials
+```tsx
+interface TestimonialsProps {
+  testimonials: Array<{
+    content: string
+    author: string
+    role: string
+    avatar?: string
+  }>
+  className?: string
+}
+```
+
+## TypeScript Support
+
+All components are fully typed with TypeScript. Import types directly:
+
+```tsx
+import type { ButtonProps, InputProps } from '@nostromo/ui-core'
+```
+
+## Common Patterns
+
+### Form Integration
+```tsx
+import { useForm } from 'react-hook-form'
+import { Button, Input, Label } from '@nostromo/ui-core'
+
+function ContactForm() {
+  const { register, handleSubmit } = useForm()
+  
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Label htmlFor="email">Email</Label>
+      <Input {...register('email')} id="email" type="email" />
+      <Button type="submit">Submit</Button>
+    </form>
+  )
+}
+```
+
+### State Management
+```tsx
+import { useState } from 'react'
+import { Dialog, DialogContent, DialogTrigger } from '@nostromo/ui-core'
+
+function MyDialog() {
+  const [open, setOpen] = useState(false)
+  
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger>Open</DialogTrigger>
+      <DialogContent>
+        <p>Dialog content</p>
+      </DialogContent>
+    </Dialog>
+  )
+}
+```
+
+## Accessibility
+
+All components follow WCAG 2.1 AA guidelines:
+
+- **Keyboard Navigation** - Full keyboard support
+- **Screen Readers** - Proper ARIA attributes
+- **Focus Management** - Visible focus indicators
+- **Color Contrast** - Meets accessibility standards
+
+## Performance
+
+- **Tree Shaking** - Import only what you need
+- **Bundle Size** - Optimized for minimal impact
+- **SSR Compatible** - Works with Next.js, Remix, etc.
+- **No Runtime Dependencies** - Zero runtime overhead

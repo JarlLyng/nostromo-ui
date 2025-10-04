@@ -3,14 +3,14 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span>Nostromo UI</span>,
   project: {
-    link: 'https://github.com/jarl.l/nostromo-ui',
+    link: 'https://github.com/JarlLyng/nostromo-ui',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://github.com/JarlLyng/nostromo-ui/discussions',
   },
-  docsRepositoryBase: 'https://github.com/jarl.l/nostromo-ui',
+  docsRepositoryBase: 'https://github.com/JarlLyng/nostromo-ui',
   footer: {
-    text: 'MIT © 2024 Nostromo UI.',
+    text: 'MIT © 2025 Nostromo UI.',
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,

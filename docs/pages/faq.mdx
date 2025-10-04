@@ -1,0 +1,282 @@
+# FAQ - Frequently Asked Questions
+
+Common questions and answers about Nostromo UI.
+
+## Installation & Setup
+
+### How do I install Nostromo UI?
+
+```bash
+npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+```
+
+### Do I need to install Tailwind CSS?
+
+Yes, Nostromo UI is built on top of Tailwind CSS. Make sure you have it configured:
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### How do I set up theming?
+
+1. Import the base CSS and theme:
+```tsx
+import "@nostromo/ui-tw/styles/base.css"
+import "@nostromo/ui-tw/themes/nostromo.css"
+```
+
+2. Apply the theme to your HTML:
+```html
+<html data-theme="nostromo" data-color-scheme="light">
+```
+
+## Components
+
+### How do I import components?
+
+**Recommended (tree-shakeable):**
+```tsx
+import { Button } from '@nostromo/ui-core/button'
+import { Input } from '@nostromo/ui-core/input'
+```
+
+**Also works:**
+```tsx
+import { Button, Input } from '@nostromo/ui-core'
+```
+
+### Can I customize component styles?
+
+Yes! All components accept a `className` prop for custom styling:
+
+```tsx
+<Button className="bg-red-500 hover:bg-red-600">
+  Custom Button
+</Button>
+```
+
+### How do I handle form validation?
+
+Use with React Hook Form and Zod:
+
+```tsx
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import { Input, Button } from '@nostromo/ui-core'
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8)
+})
+
+function MyForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema)
+  })
+  
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Input {...register('email')} />
+      {errors.email && <span>{errors.email.message}</span>}
+      <Button type="submit">Submit</Button>
+    </form>
+  )
+}
+```
+
+## Theming
+
+### How do I create a custom theme?
+
+Create a CSS file with your custom variables:
+
+```css
+[data-theme="mybrand"] {
+  --color-brand-500: 220 100% 50%;  /* Your brand color */
+  --color-brand-600: 220 100% 40%;
+  --font-heading: "Poppins", sans-serif;
+  --radius-md: 0.75rem;
+}
+```
+
+Then apply it:
+```html
+<html data-theme="mybrand">
+```
+
+### How do I implement dark mode?
+
+Use the `data-color-scheme` attribute:
+
+```tsx
+function DarkModeToggle() {
+  const [isDark, setIsDark] = useState(false)
+  
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-color-scheme', 
+      isDark ? 'dark' : 'light'
+    )
+  }, [isDark])
+  
+  return (
+    <button onClick={() => setIsDark(!isDark)}>
+      {isDark ? 'Light' : 'Dark'} Mode
+    </button>
+  )
+}
+```
+
+### Can I use my own Tailwind config?
+
+Yes! Extend the Nostromo preset:
+
+```js
+// tailwind.config.js
+const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js")
+
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  presets: [nostromoPreset],
+  theme: {
+    extend: {
+      // Your custom extensions
+    }
+  }
+}
+```
+
+## Framework Support
+
+### Does it work with Next.js?
+
+Yes! Nostromo UI is fully compatible with Next.js:
+
+```tsx
+// pages/_app.tsx
+import "@nostromo/ui-tw/styles/base.css"
+import "@nostromo/ui-tw/themes/nostromo.css"
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+```
+
+### Does it work with Remix?
+
+Yes! Import the CSS in your root file:
+
+```tsx
+// app/root.tsx
+import "@nostromo/ui-tw/styles/base.css"
+import "@nostromo/ui-tw/themes/nostromo.css"
+```
+
+### Does it work with Vite?
+
+Yes! Just import the CSS in your main file:
+
+```tsx
+// main.tsx
+import "@nostromo/ui-tw/styles/base.css"
+import "@nostromo/ui-tw/themes/nostromo.css"
+```
+
+## Performance
+
+### How big is the bundle?
+
+- **Core components**: ~50KB gzipped
+- **Marketing components**: ~30KB gzipped
+- **Themes**: ~5KB gzipped
+- **Total**: ~85KB gzipped
+
+### How do I reduce bundle size?
+
+Use tree-shaking by importing only what you need:
+
+```tsx
+// ✅ Good - only imports Button
+import { Button } from '@nostromo/ui-core/button'
+
+// ❌ Avoid - imports entire library
+import * as Nostromo from '@nostromo/ui-core'
+```
+
+### Is it SSR compatible?
+
+Yes! All components work with server-side rendering. No client-side dependencies.
+
+## Accessibility
+
+### Are components accessible?
+
+Yes! All components follow WCAG 2.1 AA guidelines:
+
+- **Keyboard navigation** - Full keyboard support
+- **Screen readers** - Proper ARIA attributes
+- **Focus management** - Visible focus indicators
+- **Color contrast** - Meets accessibility standards
+
+### How do I test accessibility?
+
+Use tools like axe-core:
+
+```bash
+npm install -D @axe-core/react
+```
+
+```tsx
+import { axe, toHaveNoViolations } from 'jest-axe'
+
+expect.extend(toHaveNoViolations)
+
+test('should not have accessibility violations', async () => {
+  const { container } = render(<Button>Test</Button>)
+  const results = await axe(container)
+  expect(results).toHaveNoViolations()
+})
+```
+
+## Troubleshooting
+
+### Components not styling correctly?
+
+1. Make sure Tailwind CSS is configured
+2. Check that you've imported the base CSS
+3. Verify the theme is applied to your HTML
+
+### TypeScript errors?
+
+Make sure you have the latest version and proper imports:
+
+```tsx
+import type { ButtonProps } from '@nostromo/ui-core'
+```
+
+### Build errors?
+
+Check your Tailwind configuration and make sure all dependencies are installed.
+
+## Support
+
+### Where can I get help?
+
+- **GitHub Issues**: [Report bugs and request features](https://github.com/JarlLyng/nostromo-ui/issues)
+- **GitHub Discussions**: [Ask questions and share ideas](https://github.com/JarlLyng/nostromo-ui/discussions)
+- **Documentation**: Check our comprehensive guides
+
+### How do I contribute?
+
+See our [Contributing Guide](https://github.com/JarlLyng/nostromo-ui/blob/main/CONTRIBUTING.md) for details.
+
+### Can I request new components?
+
+Yes! Create a feature request on GitHub with:
+- Component description
+- Use cases
+- Design mockups (if available)
+- Implementation suggestions
