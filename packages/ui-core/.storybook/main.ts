@@ -21,6 +21,14 @@ const config: StorybookConfig = {
   "framework": {
     "name": getAbsolutePath('@storybook/react-vite'),
     "options": {}
+  },
+  "core": {
+    "builder": "@storybook/builder-vite"
+  },
+  "viteFinal": async (config) => {
+    // Configure base URL for GitHub Pages deployment
+    config.base = '/nostromo-ui/storybook-static/';
+    return config;
   }
 };
 export default config;
