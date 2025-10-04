@@ -94,6 +94,9 @@ jobs:
         pnpm run build
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
+        echo "Fixing vite-inject-mocker-entry.js paths for GitHub Pages subpath..."
+        sed -i 's|src="/vite-inject-mocker-entry.js"|src="/nostromo-ui/storybook-static/vite-inject-mocker-entry.js"|g' out/storybook-static/index.html || true
+        sed -i 's|src="/vite-inject-mocker-entry.js"|src="/nostromo-ui/storybook-static/vite-inject-mocker-entry.js"|g' out/storybook-static/iframe.html || true
         echo "Copying favicon files..."
         cp public/favicon.ico out/
         cp public/favicon.svg out/
