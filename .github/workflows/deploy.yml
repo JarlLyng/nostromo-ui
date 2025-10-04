@@ -97,6 +97,8 @@ jobs:
         echo "Copying favicon files..."
         cp public/favicon.ico out/
         cp public/favicon.svg out/
+        echo "Creating .nojekyll file to disable Jekyll processing..."
+        touch out/.nojekyll
         echo "Checking docs build output..."
         ls -la out/ || echo "docs out directory not found"
         ls -la out/storybook-static/ || echo "storybook-static directory not found"
