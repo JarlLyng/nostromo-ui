@@ -1,11 +1,12 @@
-// Minimal v4 config – tilpas globs til dine mapper
+import nostromoPreset from '@nostromo/ui-tw/tailwind.preset.js'
+
 export default {
   content: [
     './pages/**/*.{js,jsx,ts,tsx,md,mdx}',
     './components/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
-    './node_modules/nextra*/**/*.{js,jsx,ts,tsx}', // så Nextra-komponenter kan styles
+    './node_modules/nextra*/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@nostromo/**/*.{js,jsx,ts,tsx}',
   ],
-  // theme: { ... }  // valgfrit
-  // plugins: []     // v4 plugins går her (ikke i postcss)
+  presets: [nostromoPreset],
 }
