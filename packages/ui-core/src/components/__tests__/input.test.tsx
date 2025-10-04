@@ -10,7 +10,7 @@ describe('Input', () => {
     const input = screen.getByPlaceholderText('Enter text');
     expect(input).toBeInTheDocument();
     expect(input).toHaveClass('flex', 'w-full', 'rounded-md');
-    expect(input).toHaveClass('h-9', 'sm:h-10');
+    expect(input).toHaveClass('h-10');
   });
 
   it('renders with label', () => {
@@ -39,7 +39,7 @@ describe('Input', () => {
     
     expect(input).toHaveClass('border-error-500');
     expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(helperText).toHaveClass('text-destructive');
+    expect(helperText).toHaveClass('text-error-600');
   });
 
   it('handles user input', async () => {

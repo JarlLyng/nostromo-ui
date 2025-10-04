@@ -3,31 +3,71 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  // Base - forbedret med bedre spacing og transitions
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-brand-500 text-white hover:bg-brand-600 shadow-md hover:shadow-lg",
-        destructive:
-          "bg-error-500 text-white hover:bg-error-600 shadow-md hover:shadow-lg",
-        outline:
-          "border border-neutral-300 bg-transparent hover:bg-neutral-100 text-neutral-900 dark:border-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-800",
-        secondary:
-          "bg-neutral-200 text-neutral-900 hover:bg-neutral-300 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700",
-        ghost: "hover:bg-neutral-100 text-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-100",
+        // Forbedret default med bedre depth
+        default: [
+          "bg-brand-500 text-white shadow-md hover:bg-brand-600 hover:shadow-lg",
+          "active:scale-[0.98] active:shadow-sm",
+          "border border-brand-400/20"
+        ],
+        // Forbedret secondary med bedre kontrast
+        secondary: [
+          "bg-neutral-100 text-neutral-900 border border-neutral-200",
+          "hover:bg-neutral-200 hover:border-neutral-300 hover:shadow-sm",
+          "active:scale-[0.98]"
+        ],
+        // Forbedret outline med bedre focus
+        outline: [
+          "border-2 border-neutral-300 bg-transparent text-neutral-900",
+          "hover:bg-neutral-50 hover:border-brand-500 hover:text-brand-600",
+          "focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
+          "active:scale-[0.98]"
+        ],
+        // Forbedret ghost med bedre hover
+        ghost: [
+          "text-neutral-900 hover:bg-neutral-100 hover:text-neutral-900",
+          "active:bg-neutral-200 active:scale-[0.98]"
+        ],
+        // Forbedret destructive med bedre feedback
+        destructive: [
+          "bg-error-500 text-white shadow-md hover:bg-error-600 hover:shadow-lg",
+          "active:scale-[0.98] active:shadow-sm",
+          "border border-error-400/20"
+        ],
+        // Ny: Subtle variant for mindre vigtige actions
+        subtle: [
+          "bg-neutral-50 text-neutral-700 border border-neutral-200",
+          "hover:bg-neutral-100 hover:border-neutral-300",
+          "active:scale-[0.98]"
+        ],
+        // Behold link variant
         link: "text-brand-500 underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 sm:h-10 px-3 sm:px-4 py-2",
-        sm: "h-8 sm:h-9 rounded-md px-2 sm:px-3",
-        lg: "h-10 sm:h-11 rounded-md px-6 sm:px-8",
-        icon: "h-9 w-9 sm:h-10 sm:w-10",
+        // Forbedret spacing - mere konsistent
+        sm: "h-8 px-3 text-xs rounded-sm",
+        default: "h-10 px-4 text-sm rounded-md", 
+        lg: "h-11 px-6 text-base rounded-lg",
+        xl: "h-12 px-8 text-lg rounded-lg",
+        icon: "h-10 w-10 rounded-md"
       },
+      // Ny: State variants for bedre feedback
+      state: {
+        default: "",
+        loading: "cursor-wait",
+        success: "bg-success-500 hover:bg-success-600 text-white",
+        error: "bg-error-500 hover:bg-error-600 text-white"
+      }
     },
     defaultVariants: {
       variant: "default",
       size: "default",
-    },
+      state: "default"
+    }
   }
 );
 
@@ -44,6 +84,11 @@ export interface ButtonProps
    * @default undefined
    */
   loadingText?: string;
+  /**
+   * The visual state of the button
+   * @default "default"
+   */
+  state?: "default" | "loading" | "success" | "error";
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -51,6 +96,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     className, 
     variant, 
     size, 
+    state = "default",
     loading = false, 
     loadingText,
     children, 
@@ -59,9 +105,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }, ref) => {
     const isDisabled = disabled || loading;
     
+    // Determine final state based on loading prop
+    const finalState = loading ? "loading" : state;
+    
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, state: finalState, className }))}
         ref={ref}
         disabled={isDisabled}
         aria-disabled={isDisabled}

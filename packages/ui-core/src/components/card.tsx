@@ -3,27 +3,63 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const cardVariants = cva(
-  "rounded-lg border bg-card text-card-foreground transition-all duration-200",
+  // Base - forbedret med bedre spacing og transitions
+  "rounded-lg border transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "shadow-card hover:shadow-card-hover border-neutral-200 hover:border-neutral-300",
-        elevated: "shadow-lg hover:shadow-xl border-neutral-200 hover:border-neutral-300",
-        outlined: "shadow-none border-2 border-neutral-300 hover:border-brand-500 hover:shadow-card",
-        filled: "shadow-sm bg-neutral-50 border-neutral-100 hover:bg-neutral-100 hover:shadow-card",
-        interactive: "shadow-card hover:shadow-card-hover border-neutral-200 hover:border-brand-500 hover:shadow-lg cursor-pointer",
+        // Forbedret default med bedre depth
+        default: [
+          "border-neutral-200 shadow-sm bg-white text-neutral-900",
+          "hover:shadow-md hover:border-neutral-300",
+          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+        ],
+        // Forbedret elevated med bedre shadow
+        elevated: [
+          "border-neutral-200 shadow-lg bg-white text-neutral-900",
+          "hover:shadow-xl hover:border-neutral-300",
+          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+        ],
+        // Forbedret outlined med bedre focus
+        outlined: [
+          "border-2 border-neutral-300 shadow-none bg-white text-neutral-900",
+          "hover:border-brand-500 hover:shadow-sm",
+          "focus-within:border-brand-500 focus-within:shadow-sm",
+          "dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-100"
+        ],
+        // Forbedret filled med bedre kontrast
+        filled: [
+          "border-neutral-100 bg-neutral-50 text-neutral-900",
+          "hover:bg-neutral-100 hover:shadow-sm",
+          "dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100"
+        ],
+        // Forbedret interactive med bedre feedback
+        interactive: [
+          "border-neutral-200 shadow-sm cursor-pointer bg-white text-neutral-900",
+          "hover:shadow-md hover:border-brand-500 hover:scale-[1.02]",
+          "active:scale-[0.98] active:shadow-sm",
+          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+        ],
+        // Ny: Subtle variant for mindre vigtige cards
+        subtle: [
+          "border-neutral-100 bg-neutral-50/50 text-neutral-700",
+          "hover:bg-neutral-50 hover:border-neutral-200",
+          "dark:bg-neutral-800/50 dark:border-neutral-700 dark:text-neutral-300"
+        ]
       },
       size: {
-        default: "p-4 sm:p-6",
-        sm: "p-3 sm:p-4",
+        // Forbedret spacing - mere konsistent
+        sm: "p-3",
+        default: "p-4 sm:p-6", 
         lg: "p-6 sm:p-8",
-        none: "p-0",
-      },
+        xl: "p-8 sm:p-10",
+        none: "p-0"
+      }
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
-    },
+      size: "default"
+    }
   }
 );
 
@@ -42,13 +78,14 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 );
 Card.displayName = "Card";
 
+// Forbedrede subkomponenter med bedre spacing
 const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-4 sm:p-6", className)}
+    className={cn("flex flex-col space-y-1.5 p-4 sm:p-6 pb-3", className)}
     {...props}
   />
 ));
@@ -85,7 +122,11 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-4 sm:p-6 pt-0", className)} {...props} />
+  <div 
+    ref={ref} 
+    className={cn("p-4 sm:p-6 pt-0", className)} 
+    {...props} 
+  />
 ));
 CardContent.displayName = "CardContent";
 
@@ -95,7 +136,7 @@ const CardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center p-4 sm:p-6 pt-0", className)}
+    className={cn("flex items-center p-4 sm:p-6 pt-3", className)}
     {...props}
   />
 ));

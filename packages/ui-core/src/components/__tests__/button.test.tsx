@@ -16,21 +16,24 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toHaveClass('bg-error-500');
 
     rerender(<Button variant="outline">Outline</Button>);
-    expect(screen.getByRole('button')).toHaveClass('border', 'border-neutral-300');
+    expect(screen.getByRole('button')).toHaveClass('border-2', 'border-neutral-300');
 
     rerender(<Button variant="ghost">Ghost</Button>);
     expect(screen.getByRole('button')).toHaveClass('hover:bg-neutral-100');
+
+    rerender(<Button variant="subtle">Subtle</Button>);
+    expect(screen.getByRole('button')).toHaveClass('bg-neutral-50');
   });
 
   it('renders with different sizes', () => {
     const { rerender } = render(<Button size="sm">Small</Button>);
-    expect(screen.getByRole('button')).toHaveClass('h-8', 'sm:h-9', 'px-2', 'sm:px-3');
+    expect(screen.getByRole('button')).toHaveClass('h-8', 'px-3', 'text-xs');
 
     rerender(<Button size="lg">Large</Button>);
-    expect(screen.getByRole('button')).toHaveClass('h-10', 'sm:h-11', 'px-6', 'sm:px-8');
+    expect(screen.getByRole('button')).toHaveClass('h-11', 'px-6', 'text-base');
 
     rerender(<Button size="icon">Icon</Button>);
-    expect(screen.getByRole('button')).toHaveClass('h-9', 'w-9', 'sm:h-10', 'sm:w-10');
+    expect(screen.getByRole('button')).toHaveClass('h-10', 'w-10');
   });
 
   it('handles click events', async () => {
@@ -98,5 +101,22 @@ describe('Button', () => {
     render(<Button aria-label="Custom label">Button</Button>);
     const button = screen.getByRole('button');
     expect(button).toHaveAttribute('aria-label', 'Custom label');
+  });
+
+  it('renders with different state variants', () => {
+    const { rerender } = render(<Button state="success">Success</Button>);
+    expect(screen.getByRole('button')).toHaveClass('bg-success-500');
+
+    rerender(<Button state="error">Error</Button>);
+    expect(screen.getByRole('button')).toHaveClass('bg-error-500');
+
+    rerender(<Button state="loading">Loading</Button>);
+    expect(screen.getByRole('button')).toHaveClass('cursor-wait');
+  });
+
+  it('applies active scale transform', () => {
+    render(<Button>Active Button</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toHaveClass('active:scale-[0.98]');
   });
 });

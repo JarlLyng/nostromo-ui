@@ -1,29 +1,29 @@
-# Arkitektur
+# Architecture
 
-Denne fil beskriver den tekniske arkitektur for Nostromo UI, inklusive monorepo-struktur, build system og pakke-organisation.
+This file describes the technical architecture for Nostromo UI, including monorepo structure, build system and package organization.
 
-## 📋 Indhold
+## 📋 Contents
 
-- [Monorepo Struktur](#monorepo-struktur)
-- [Pakke Beskrivelser](#pakke-beskrivelser)
+- [Monorepo Structure](#monorepo-structure)
+- [Package Descriptions](#package-descriptions)
 - [Build System](#build-system)
-- [TypeScript Konfiguration](#typescript-konfiguration)
+- [TypeScript Configuration](#typescript-configuration)
 - [Dependencies](#dependencies)
 - [Monorepo Tools](#monorepo-tools)
-- [Performance Overvejelser](#performance-overvejelser)
+- [Performance Considerations](#performance-considerations)
 - [Development Workflow](#development-workflow)
 - [CI/CD Pipeline](#cicd-pipeline)
-- [Skalering](#skalering)
+- [Scaling](#scaling)
 
-## Monorepo Struktur
+## Monorepo Structure
 
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/           # Produkt- og app-komponenter
-│   ├── ui-marketing/      # Marketing-komponenter
-│   └── ui-tw/            # Tailwind preset + temaer
-├── docs/                # Nextra dokumentationssite
+│   ├── ui-core/           # Product and app components
+│   ├── ui-marketing/      # Marketing components
+│   └── ui-tw/            # Tailwind preset + themes
+├── docs/                # Nextra documentation site
 ├── apps/
 │   └── playground/       # Development playground
 ├── tools/
@@ -32,12 +32,12 @@ nostromo-ui/
 └── .github/              # CI/CD workflows
 ```
 
-## Pakke Beskrivelser
+## Package Descriptions
 
 ### @nostromo/ui-core
-**Produkt- og app-komponenter** til interne applikationer og dashboards.
+**Product and app components** for internal applications and dashboards.
 
-**Komponenter:**
+**Components:**
 - **Primitives**: Button, Input, Label, Form, Select, Checkbox, Radio
 - **Navigation**: Tabs, Dropdown, Popover, Dialog, Sheet
 - **Feedback**: Toast, Alert, Skeleton, Spinner, Progress, Tooltip
@@ -47,36 +47,36 @@ nostromo-ui/
 **API:**
 ```tsx
 import { Button } from "@nostromo/ui-core"
-// eller
+// or
 import { Button } from "@nostromo/ui-core/button"
 ```
 
 ### @nostromo/ui-marketing
-**Marketing-komponenter** til landingssider og marketing-sites.
+**Marketing components** for landing pages and marketing sites.
 
-**Komponenter:**
+**Components:**
 - **Hero** (headline, media, CTA)
-- **Features** (grid med ikoner + tekst)
+- **Features** (grid with icons + text)
 - **Testimonials/Quotes**
-- **Gallery** (image grid med lightbox)
+- **Gallery** (image grid with lightbox)
 - **Pricing Table**
-- **Logo Wall** (client logos med hover effects)
+- **Logo Wall** (client logos with hover effects)
 
 **API:**
 ```tsx
 import { Hero } from "@nostromo/ui-marketing"
-// eller
+// or
 import { Hero } from "@nostromo/ui-marketing/hero"
 ```
 
 ### @nostromo/ui-tw
-**Tailwind preset og theming system**.
+**Tailwind preset and theming system**.
 
-**Indhold:**
-- Tailwind preset med Nostromo tokens
-- Base CSS med reset og utility classes
-- Prædefinerede temaer (Nostromo, Mother, LV-426, Sulaco) - 4 komplette themes
-- CSS variabel system for custom theming
+**Contents:**
+- Tailwind preset with Nostromo tokens
+- Base CSS with reset and utility classes
+- Predefined themes (Nostromo, Mother, LV-426, Sulaco) - 4 complete themes
+- CSS variable system for custom theming
 
 **API:**
 ```js
@@ -90,18 +90,18 @@ module.exports = {
 
 ## Build System
 
-### Bibliotekspakker
-- **Build tool**: tsup (esbuild-baseret)
+### Library Packages
+- **Build tool**: tsup (esbuild-based)
 - **Output**: ESM + CJS + .d.ts
 - **Tree shaking**: `sideEffects: false`
 - **TypeScript**: Strict mode, bundler resolution
 
-### Dokumentation
+### Documentation
 - **Framework**: Nextra (Next.js + MDX)
-- **Features**: Storybook integration, live previews, interaktive eksempler
-- **Development**: Lokal server på http://localhost:3000
+- **Features**: Storybook integration, live previews, interactive examples
+- **Development**: Local server at http://localhost:3000
 
-## TypeScript Konfiguration
+## TypeScript Configuration
 
 ### Base Config (`tsconfig.base.json`)
 ```json
@@ -125,16 +125,16 @@ module.exports = {
 }
 ```
 
-### Pakke-specifikke Configs
-Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
+### Package-specific Configs
+Each package has its own `tsconfig.json` that `extends` base config and defines:
 - `outDir` for build output
 - `include`/`exclude` patterns
-- Pakke-specifikke compiler options
+- Package-specific compiler options
 
 ## Dependencies
 
 ### Peer Dependencies
-- **React pakker**: `react`, `react-dom`
+- **React packages**: `react`, `react-dom`
 - **Headless primitives**: `@radix-ui/*` (React)
 
 ### Dev Dependencies (Shared)
@@ -147,9 +147,9 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 ## Monorepo Tools
 
 ### pnpm Workspaces
-- **Hurtig install**: Shared dependencies cached
-- **Hoisting**: Optimal node_modules struktur
-- **Workspace protocol**: Interne pakke-afhængigheder
+- **Fast install**: Shared dependencies cached
+- **Hoisting**: Optimal node_modules structure
+- **Workspace protocol**: Internal package dependencies
 
 ### Turborepo
 - **Build caching**: Incremental builds
@@ -157,16 +157,16 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 - **Remote caching**: Team-wide build cache
 
 ### Changesets
-- **Version management**: Uafhængig versioning per pakke
-- **Changelog**: Automatisk changelog generation
+- **Version management**: Independent versioning per package
+- **Changelog**: Automatic changelog generation
 - **Release**: Semver-compliant releases
 
-## Performance Overvejelser
+## Performance Considerations
 
 ### Bundle Optimization
 - **ESM-first**: Modern bundler support
 - **Tree shaking**: Dead code elimination
-- **Code splitting**: Lazy loading for tunge komponenter
+- **Code splitting**: Lazy loading for heavy components
 - **CSS optimization**: Critical CSS inlining
 
 ### Runtime Performance
@@ -193,7 +193,7 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
-4. **Documentation**: Nextra-baseret dokumentationssite med alle 27 komponenter og Storybook integration
+4. **Documentation**: Nextra-based documentation site with all 27 components and Storybook integration
 
 ## CI/CD Pipeline
 
@@ -209,12 +209,12 @@ Hver pakke har sin egen `tsconfig.json` der `extends` base config og definerer:
 - **Visual regression**: Storybook + Chromatic
 - **Bundle size**: Size limit monitoring
 
-## Skalering
+## Scaling
 
-### Fremtidige Overvejelser
+### Future Considerations
 - **Additional packages**: Charts, Data visualization, Mobile components
 - **Platform support**: React Native, Solid.js
 - **Internationalization**: i18n utilities
 - **Advanced theming**: Design token system
 
-Denne arkitektur er designet til at skale med projektets vækst og understøtte både små og store teams.
+This architecture is designed to scale with the project's growth and support both small and large teams.

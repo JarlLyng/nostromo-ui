@@ -1,12 +1,12 @@
 # Component API Design
 
-Denne fil beskriver API-designet for Nostromo UI komponenter, inklusive variant system, props struktur og konsistente patterns for React komponenter.
+This file describes the API design for Nostromo UI components, including variant system, props structure and consistent patterns for React components.
 
-## 📋 Indhold
+## 📋 Contents
 
-- [API Design Principper](#api-design-principper)
+- [API Design Principles](#api-design-principles)
 - [Variant System](#variant-system)
-- [Komponent Eksempler](#komponent-eksempler)
+- [Component Examples](#component-examples)
 - [Props Interface](#props-interface)
 - [Composition Patterns](#composition-patterns)
 - [Accessibility](#accessibility)
@@ -14,27 +14,27 @@ Denne fil beskriver API-designet for Nostromo UI komponenter, inklusive variant 
 - [TypeScript Support](#typescript-support)
 - [Testing](#testing)
 
-## API Design Principper
+## API Design Principles
 
-### Konsistens
-- **Konsistente prop navne** på tværs af alle komponenter
-- **Ens variant system** for alle komponenter
-- **Standardiserede variant systemer** (size, variant, state)
+### Consistency
+- **Consistent prop names** across all components
+- **Unified variant system** for all components
+- **Standardized variant systems** (size, variant, state)
 
-### Fleksibilitet
-- **Composable**: Komponenter kan kombineres og udvides
-- **Customizable**: Støtte for custom styling via className/class
-- **Accessible**: WCAG 2.1 AA compliance ud af boksen
+### Flexibility
+- **Composable**: Components can be combined and extended
+- **Customizable**: Support for custom styling via className/class
+- **Accessible**: WCAG 2.1 AA compliance out of the box
 
 ### Performance
-- **Tree-shakeable**: Individuelle komponent imports
-- **Minimal bundle**: Ingen runtime overhead
-- **SSR compatible**: Ingen client-side dependencies
+- **Tree-shakeable**: Individual component imports
+- **Minimal bundle**: No runtime overhead
+- **SSR compatible**: No client-side dependencies
 
 ## Variant System
 
 ### Standard Variants
-Alle komponenter følger dette variant system:
+All components follow this variant system:
 
 ```tsx
 // Size variants
@@ -47,7 +47,7 @@ type Variant = "primary" | "secondary" | "ghost" | "destructive";
 type State = "default" | "loading" | "disabled";
 ```
 
-### Implementation med CVA
+### Implementation with CVA
 ```tsx
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -82,7 +82,7 @@ export interface ButtonProps
 }
 ```
 
-## Komponent Eksempler
+## Component Examples
 
 ### Button
 ```tsx
@@ -158,7 +158,7 @@ function ExampleDialog() {
 ## Props Interface
 
 ### Standard Props
-Alle komponenter støtter disse standard props:
+All components support these standard props:
 
 ```tsx
 interface BaseComponentProps {
@@ -181,7 +181,7 @@ interface BaseComponentProps {
 }
 ```
 
-### Komponent-specifikke Props
+### Component-specific Props
 ```tsx
 // Button
 interface ButtonProps extends BaseComponentProps {
@@ -382,4 +382,4 @@ test("Button has no accessibility violations", async () => {
 });
 ```
 
-Dette API design sikrer konsistens, fleksibilitet og en fremragende udvikleroplevelse på tværs af alle Nostromo UI komponenter.
+This API design ensures consistency, flexibility and an excellent developer experience across all Nostromo UI components.

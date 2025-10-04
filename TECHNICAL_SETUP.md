@@ -1,41 +1,41 @@
-Nostromo UI – Technical Setup
+# Nostromo UI – Technical Setup
 
-Denne fil beskriver de dybere tekniske beslutninger for Nostromo UI. Formålet er at give et klart grundlag for implementering i Cursor og sikre konsistens på tværs af pakker.
-
-⸻
-
-Arkitektur & Setup
-
-Monorepo-værktøj
-	•	Valg: pnpm workspaces + Turborepo (fastlagt).
-	•	Begrundelse: Hurtig install, caching og enkel opsætning af build-pipelines. Kendt fra mange moderne UI-libs.
-	•	Alternativer: Nx, Lerna m.fl. fravælges i første omgang for at holde kompleksitet lav.
-
-Build system
-	•	Bibliotekspakker (@nostromo/ui-core, @nostromo/ui-marketing, @nostromo/ui-tw):
-	•	Bygges med tsup (baseret på esbuild).
-	•	Output: ESM + CJS + .d.ts.
-	•	sideEffects: false i package.json for optimal tree-shaking.
-	•	Docs:
-	•	Nextra-baseret dokumentationssite med alle 27 komponenter.
-	•	Nextra-baseret dokumentationssite med Storybook integration.
-
-TypeScript-konfiguration
-	•	Fælles tsconfig.base.json i roden: strict: true, moduleResolution: "bundler".
-	•	Per-pakke tsconfig.json der extends base og definerer specifikke outDir/include.
+This file describes the deeper technical decisions for Nostromo UI. The purpose is to provide a clear foundation for implementation in Cursor and ensure consistency across packages.
 
 ⸻
 
-Radix UI / Ark UI Integration
-	•	React: Wrap Radix UI primitives (fx Dialog, Dropdown) i Nostromo-komponenter.
-→ Radix leverer a11y + logik, Nostromo leverer Tailwind-klasser og API.
-	•	Headless primitives fungerer problemfrit med Tailwind-first tilgang, da styling styres via Nostromo.
+## Architecture & Setup
+
+### Monorepo Tools
+- **Choice**: pnpm workspaces + Turborepo (established).
+- **Rationale**: Fast install, caching and simple setup of build pipelines. Known from many modern UI libraries.
+- **Alternatives**: Nx, Lerna etc. are rejected initially to keep complexity low.
+
+### Build System
+- **Library packages** (@nostromo/ui-core, @nostromo/ui-marketing, @nostromo/ui-tw):
+- **Built with**: tsup (based on esbuild).
+- **Output**: ESM + CJS + .d.ts.
+- **sideEffects**: false in package.json for optimal tree-shaking.
+- **Docs**:
+- **Nextra-based documentation site** with all 27 components.
+- **Nextra-based documentation site** with Storybook integration.
+
+### TypeScript Configuration
+- **Shared tsconfig.base.json** in root: strict: true, moduleResolution: "bundler".
+- **Per-package tsconfig.json** that extends base and defines specific outDir/include.
 
 ⸻
 
-CSS Variabel Struktur
+## Radix UI / Ark UI Integration
+- **React**: Wrap Radix UI primitives (e.g. Dialog, Dropdown) in Nostromo components.
+→ Radix provides a11y + logic, Nostromo provides Tailwind classes and API.
+- **Headless primitives** work seamlessly with Tailwind-first approach, as styling is controlled via Nostromo.
 
-Vi bruger CSS-variabler med navnerum, i HSL-format for at understøtte Tailwinds hsl(var(--...)) pattern.
+⸻
+
+## CSS Variable Structure
+
+We use CSS variables with namespacing, in HSL format to support Tailwind's hsl(var(--...)) pattern.
 
 [data-theme="nostromo"] {
   --color-brand-50: 262 84% 95%;
@@ -50,72 +50,72 @@ Vi bruger CSS-variabler med navnerum, i HSL-format for at understøtte Tailwinds
   --font-body: "Inter", sans-serif;
 }
 
-	•	Prædefinerede temaer: Nostromo, Mother, LV-426, Sulaco.
-	•	Custom temaer: Brugere kan definere egne [data-theme="brand"] selectors og overskrive vars.
-	•	Dark mode: Understøtter både system-baseret (prefers-color-scheme) og manuel toggle via data-theme.
+- **Predefined themes**: Nostromo, Mother, LV-426, Sulaco.
+- **Custom themes**: Users can define their own [data-theme="brand"] selectors and override vars.
+- **Dark mode**: Supports both system-based (prefers-color-scheme) and manual toggle via data-theme.
 
 ⸻
 
-Komponent API & Variants
-	•	Props-struktur:
-	•	variant: primary | secondary | ghost | destructive
-	•	size: sm | md | lg
-	•	state: default | loading | disabled
-	•	Implementation:
-	•	Standard = class-variance-authority (cva) til at definere varianter og kombinere Tailwind-klasser.
-	•	API'et holdes konsistent på tværs af alle komponenter.
-	•	Alle komponenter kan importeres både samlet og pr. komponent:
-	•	import { Button } from "@nostromo/ui-core"
-	•	import { Button } from "@nostromo/ui-core/button"
+## Component API & Variants
+- **Props structure**:
+- variant: primary | secondary | ghost | destructive
+- size: sm | md | lg
+- state: default | loading | disabled
+- **Implementation**:
+- **Standard** = class-variance-authority (cva) to define variants and combine Tailwind classes.
+- **API** is kept consistent across all components.
+- **All components** can be imported both collectively and per component:
+- import { Button } from "@nostromo/ui-core"
+- import { Button } from "@nostromo/ui-core/button"
 
 ⸻
 
-Performance
-	•	SSR-kompatibilitet: Ingen afhængighed af window/document uden guards. Testes i React SSR miljøer.
-	•	Hydration: Konsistente id’er via Radix/Ark patterns. Undgå runtime-randomization.
-	•	CSS-loading: base.css og tema-vars indlæses kritisk i <head>.
-	•	Bundle-optimering: ESM-first output, sideEffects disabled, lazy-load tunge komponenter (fx Charts, Gallery).
+## Performance
+- **SSR compatibility**: No dependency on window/document without guards. Tested in React SSR environments.
+- **Hydration**: Consistent IDs via Radix/Ark patterns. Avoid runtime randomization.
+- **CSS loading**: base.css and theme vars loaded critically in <head>.
+- **Bundle optimization**: ESM-first output, sideEffects disabled, lazy-load heavy components (e.g. Charts, Gallery).
 
 ⸻
 
-Development Workflow
-	•	Hot reload: Turborepo + pnpm workspaces muliggør øjeblikkelig opdatering af core/marketing i docs.
-	•	Shared devDependencies i roden (tsup, eslint, prettier, vitest, playwright, storybook).
-	•	Playground: docs-appen fungerer som central udviklings- og testmiljø (Nextra-baseret dokumentationssite med live komponenter).
+## Development Workflow
+- **Hot reload**: Turborepo + pnpm workspaces enables instant updates of core/marketing in docs.
+- **Shared devDependencies** in root (tsup, eslint, prettier, vitest, playwright, storybook).
+- **Playground**: docs app functions as central development and test environment (Nextra-based documentation site with live components).
 
 ⸻
 
-Breaking Changes-strategi
-	•	Uafhængig versionering pr. pakke via Changesets.
-	•	Hvis @nostromo/ui-tw ændrer tokens der påvirker ui-core, bumpes version i begge pakker.
-	•	Release-notes dokumenterer altid breaking changes tydeligt.
+## Breaking Changes Strategy
+- **Independent versioning** per package via Changesets.
+- **If @nostromo/ui-tw** changes tokens that affect ui-core, version is bumped in both packages.
+- **Release notes** always document breaking changes clearly.
 
 ⸻
 
-Release & Distribution
-	•	Public npm-pakker fra start (access: public).
-	•	Eksporterer ESM + CJS + types.
-	•	sideEffects:false i package.json.
-	•	CI/CD: GitHub Actions til lint, test, build, release.
-	•	Changesets til semver og changelog.
+## Release & Distribution
+- **Public npm packages** from start (access: public).
+- **Exports** ESM + CJS + types.
+- **sideEffects**: false in package.json.
+- **CI/CD**: GitHub Actions for lint, test, build, release.
+- **Changesets** for semver and changelog.
 
 ⸻
 
-Bootstrap / Setup
+## Bootstrap / Setup
 
-# Krav: Node >= 20, pnpm >= 9
+# Requirements: Node >= 20, pnpm >= 9
 
-# Opret nyt repo
+# Create new repo
 mkdir nostromo-ui && cd nostromo-ui
 
-# Initier pnpm workspace + Turborepo
+# Initialize pnpm workspace + Turborepo
 pnpm init -y
 pnpm dlx create-turbo@latest .
 
-# Opret pakker
+# Create packages
 mkdir -p packages/ui-core packages/ui-marketing packages/ui-tw docs
 
-# Tilføj build tooling
+# Add build tooling
 pnpm add -D typescript tsup vite @vitejs/plugin-react tailwindcss postcss autoprefixer \
   eslint prettier vitest @testing-library/react @playwright/test @changesets/cli
 

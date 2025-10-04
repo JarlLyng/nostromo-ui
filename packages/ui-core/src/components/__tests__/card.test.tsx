@@ -8,7 +8,7 @@ describe('Card Components', () => {
       render(<Card>Card content</Card>);
       const card = screen.getByText('Card content');
       expect(card).toBeInTheDocument();
-      expect(card).toHaveClass('rounded-lg', 'border', 'bg-card');
+      expect(card).toHaveClass('rounded-lg', 'border', 'bg-white/80', 'backdrop-blur-sm');
     });
 
     it('applies custom className', () => {
@@ -81,7 +81,7 @@ describe('Card Components', () => {
         </Card>
       );
       const footer = screen.getByText('Footer content');
-      expect(footer).toHaveClass('flex', 'items-center', 'p-4', 'sm:p-6', 'pt-0');
+      expect(footer).toHaveClass('flex', 'items-center', 'p-4', 'sm:p-6', 'pt-3');
     });
   });
 
