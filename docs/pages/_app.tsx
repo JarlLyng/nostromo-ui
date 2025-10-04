@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import '@nostromo/ui-tw/styles/base.css'
+import '@nostromo/ui-tw/base.css'
 import '@nostromo/ui-tw/themes/nostromo.css'
 import '../styles/globals.css'
 import '../styles/themes.css'
