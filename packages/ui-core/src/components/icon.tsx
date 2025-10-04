@@ -491,7 +491,7 @@ const iconVariants = cva('', {
 });
 
 export interface IconProps
-  extends Omit<React.ComponentProps<'svg'>, 'color'>,
+  extends Omit<React.HTMLAttributes<SVGSVGElement>, 'color'>,
     VariantProps<typeof iconVariants> {
   name: IconName;
   className?: string;
