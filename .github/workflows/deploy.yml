@@ -100,6 +100,8 @@ jobs:
         echo "Checking docs build output..."
         ls -la out/ || echo "docs out directory not found"
         ls -la out/storybook-static/ || echo "storybook-static directory not found"
+        echo "Checking for vite-inject-mocker-entry.js..."
+        ls -la out/storybook-static/vite-inject-mocker-entry.js || echo "vite-inject-mocker-entry.js not found"
         echo "Documentation build completed!"
         
     - name: Setup Pages
