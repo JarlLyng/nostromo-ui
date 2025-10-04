@@ -79,7 +79,7 @@ dist
 
 # Gatsby files
 .cache/
-public
+# public (commented out to allow docs/public favicons)
 
 # Storybook build outputs
 storybook-static
