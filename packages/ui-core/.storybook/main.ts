@@ -30,17 +30,16 @@ const config: StorybookConfig = {
     config.base = '/nostromo-ui/storybook-static/';
     
     // Add Tailwind CSS support
-    const { mergeConfig } = await import('vite');
-    return mergeConfig(config, {
-      css: {
-        postcss: {
-          plugins: [
-            require('tailwindcss'),
-            require('autoprefixer'),
-          ],
-        },
+    config.css = {
+      postcss: {
+        plugins: [
+          require('tailwindcss'),
+          require('autoprefixer'),
+        ],
       },
-    });
+    };
+    
+    return config;
   }
 };
 export default config;
