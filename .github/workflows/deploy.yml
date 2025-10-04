@@ -91,9 +91,9 @@ jobs:
         echo "Building documentation..."
         cd docs
         echo "Installing docs dependencies..."
-        npm ci
+        pnpm install
         echo "Building docs..."
-        npm run build
+        pnpm run build
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
         echo "Checking docs build output..."
