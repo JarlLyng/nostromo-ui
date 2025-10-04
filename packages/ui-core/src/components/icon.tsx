@@ -228,7 +228,7 @@ import {
 } from 'phosphor-react';
 
 // Create a mapping of icon names to components
-const iconMap = {
+const iconMap: Record<string, React.ComponentType<any>> = {
   // Navigation
   house: House,
   user: User,
@@ -491,7 +491,7 @@ const iconVariants = cva('', {
 });
 
 export interface IconProps
-  extends Omit<React.SVGProps<SVGSVGElement>, 'color'>,
+  extends Omit<React.ComponentProps<'svg'>, 'color'>,
     VariantProps<typeof iconVariants> {
   name: IconName;
   className?: string;
