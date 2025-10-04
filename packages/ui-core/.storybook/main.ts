@@ -28,7 +28,19 @@ const config: StorybookConfig = {
   "viteFinal": async (config) => {
     // Configure base URL for GitHub Pages deployment
     config.base = '/nostromo-ui/storybook-static/';
-    return config;
+    
+    // Add Tailwind CSS support
+    const { mergeConfig } = await import('vite');
+    return mergeConfig(config, {
+      css: {
+        postcss: {
+          plugins: [
+            require('tailwindcss'),
+            require('autoprefixer'),
+          ],
+        },
+      },
+    });
   }
 };
 export default config;
