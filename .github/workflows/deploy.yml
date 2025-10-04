@@ -94,6 +94,9 @@ jobs:
         pnpm run build
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
+        echo "Copying favicon files..."
+        cp docs/public/favicon.ico out/
+        cp docs/public/favicon.svg out/
         echo "Checking docs build output..."
         ls -la out/ || echo "docs out directory not found"
         ls -la out/storybook-static/ || echo "storybook-static directory not found"
