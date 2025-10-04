@@ -33,7 +33,7 @@ const config: StorybookConfig = {
     config.css = {
       postcss: {
         plugins: [
-          require('tailwindcss'),
+          require('@tailwindcss/postcss'),
           require('autoprefixer'),
         ],
       },
