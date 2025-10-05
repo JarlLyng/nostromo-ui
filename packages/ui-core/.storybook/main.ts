@@ -1,4 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import autoprefixer from 'autoprefixer';
+import tailwindPostcss from '@tailwindcss/postcss';
 
 import { join, dirname } from "path"
 
@@ -28,17 +30,26 @@ const config: StorybookConfig = {
   "viteFinal": async (config) => {
     // Configure base URL for GitHub Pages deployment
     config.base = '/nostromo-ui/storybook-static/';
-    
-    // Add Tailwind CSS support
-    config.css = {
-      postcss: {
-        plugins: [
-          require('@tailwindcss/postcss'),
-          require('autoprefixer'),
-        ],
-      },
+
+    // Ensure Tailwind v4 runs inside Storybook's Vite pipeline
+    // Create/merge css.postcss config so utilities get generated for stories
+    // @ts-ignore - config.css may be undefined on incoming type
+    config.css = config.css || {};
+    // @ts-ignore
+    const existingPostcss = (config.css as any).postcss || {};
+    const existingPlugins = Array.isArray((existingPostcss as any).plugins)
+      ? (existingPostcss as any).plugins
+      : [];
+    // @ts-ignore
+    (config.css as any).postcss = {
+      ...(existingPostcss as any),
+      plugins: [
+        ...existingPlugins,
+        tailwindPostcss(),
+        autoprefixer(),
+      ],
     };
-    
+
     return config;
   }
 };

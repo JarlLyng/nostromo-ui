@@ -1,5 +1,9 @@
 /* Nostromo UI - Base Styles */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* CSS Reset */
 *,
 *::before,

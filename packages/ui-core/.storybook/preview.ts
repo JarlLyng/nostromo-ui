@@ -1,8 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import { configure } from '@testing-library/react';
 import React from 'react';
-import '@nostromo/ui-tw/base.css';
-import '@nostromo/ui-tw/themes/nostromo.css';
+import './preview.css';
 
 // Configure React Testing Library to suppress act warnings
 configure({
