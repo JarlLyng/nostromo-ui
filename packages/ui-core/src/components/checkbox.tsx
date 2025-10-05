@@ -68,7 +68,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <div className="space-y-2">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <input
             type="checkbox"
             className={cn(
