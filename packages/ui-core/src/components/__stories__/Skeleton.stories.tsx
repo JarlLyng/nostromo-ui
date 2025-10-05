@@ -84,7 +84,6 @@ export const Success: Story = {
 };
 
 export const Warning: Story = {
-  args: 'warning',
   args: {
     variant: 'warning',
     className: 'w-64 h-4'
