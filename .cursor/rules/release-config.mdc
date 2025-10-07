@@ -1,0 +1,187 @@
+---
+description: Release and version management configuration
+globs: ["**/changeset.config.js", "**/.changeset/**/*", "**/CHANGELOG.md"]
+alwaysApply: false
+---
+
+# Release Configuration Rules
+
+## 📦 Release Configuration
+
+### Changesets Configuration
+```js
+// changeset.config.js
+module.exports = {
+  changelog: '@changesets/cli/changelog',
+  commit: false,
+  fixed: [],
+  linked: [],
+  access: 'public',
+  baseBranch: 'main',
+  updateInternalDependencies: 'patch',
+  ignore: [],
+};
+```
+
+### Release Scripts
+```json
+{
+  "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  }
+}
+```
+
+## 🚀 Release Workflow
+
+### Creating Changesets
+```bash
+# Create a changeset
+pnpm changeset
+
+# Follow prompts to describe changes
+# Select packages to include
+# Write a summary of changes
+```
+
+### Version Management
+```bash
+# Version packages based on changesets
+pnpm version-packages
+
+# This will:
+# - Update package.json versions
+# - Update CHANGELOG.md
+# - Create version commit
+```
+
+### Publishing
+```bash
+# Publish to npm
+pnpm release
+
+# This will:
+# - Publish packages to npm
+# - Create git tags
+# - Push to repository
+```
+
+## 📝 Changelog Management
+
+### Changelog Format
+```markdown
+# Changelog
+
+## [Unreleased]
+
+### Added
+- New feature description
+
+### Changed
+- Change description
+
+### Fixed
+- Bug fix description
+
+### Removed
+- Removed feature description
+```
+
+### Changeset Format
+```markdown
+---
+"@nostromo/ui-core": patch
+"@nostromo/ui-marketing": minor
+"@nostromo/ui-tw": patch
+---
+
+Add new Button component with loading state
+
+- Add loading prop to Button component
+- Add loading spinner animation
+- Update Button stories with loading examples
+```
+
+## 🏷️ Version Strategy
+
+### Semantic Versioning
+- **MAJOR** (1.0.0): Breaking changes
+- **MINOR** (0.1.0): New features (backward compatible)
+- **PATCH** (0.0.1): Bug fixes (backward compatible)
+
+### Package Versioning
+```json
+{
+  "name": "@nostromo/ui-core",
+  "version": "0.1.0",
+  "dependencies": {
+    "@nostromo/ui-tw": "workspace:^"
+  }
+}
+```
+
+## 🔄 Release Process
+
+### Pre-Release Checklist
+- [ ] All tests pass
+- [ ] No linting errors
+- [ ] TypeScript compilation succeeds
+- [ ] Documentation updated
+- [ ] Changeset created
+- [ ] Version bumped
+- [ ] Changelog updated
+
+### Release Steps
+1. **Create changeset**: `pnpm changeset`
+2. **Version packages**: `pnpm version-packages`
+3. **Review changes**: Check CHANGELOG.md
+4. **Publish**: `pnpm release`
+5. **Verify**: Check npm packages
+
+## 🚫 Release Anti-Patterns
+
+### ❌ Don't Do This
+```bash
+# Wrong - manual version bumping
+npm version patch
+
+# Wrong - publishing without changeset
+npm publish
+
+# Wrong - skipping changelog
+git commit -m "fix: button bug"
+```
+
+### ✅ Do This Instead
+```bash
+# Correct - use changesets
+pnpm changeset
+
+# Correct - follow release process
+pnpm version-packages
+pnpm release
+
+# Correct - descriptive changeset
+pnpm changeset
+# Write: "Fix Button component loading state"
+```
+
+## 📊 Release Monitoring
+
+### Package Health
+- **Bundle size**: Monitor package sizes
+- **Dependencies**: Keep dependencies minimal
+- **Security**: Regular security audits
+- **Performance**: Monitor build times
+
+### Release Notes
+- **Clear descriptions**: What changed and why
+- **Migration guides**: For breaking changes
+- **Examples**: Show how to use new features
+- **Links**: Link to documentation
+
+---
+
+**Remember**: Always test releases locally before publishing. Use changesets for consistent versioning and changelog generation.

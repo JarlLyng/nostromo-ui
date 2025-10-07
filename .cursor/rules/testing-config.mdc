@@ -1,0 +1,233 @@
+---
+description: Testing configuration and standards
+globs: ["**/vitest.config.*", "**/test/**/*", "**/*.test.*", "**/*.spec.*"]
+alwaysApply: false
+---
+
+# Testing Configuration Rules
+
+## 🧪 Testing Setup
+
+### Vitest Configuration
+```ts
+// vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    globals: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        'node_modules/',
+        'src/test/',
+        '**/*.d.ts',
+        '**/*.stories.*',
+        '**/*.test.*'
+      ]
+    }
+  }
+});
+```
+
+### Test Setup
+```ts
+// src/test/setup.ts
+import '@testing-library/jest-dom';
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import * as matchers from '@testing-library/jest-dom/matchers';
+
+expect.extend(matchers);
+
+afterEach(() => {
+  cleanup();
+});
+```
+
+## 🧪 Testing Standards
+
+### Unit Tests
+```tsx
+// button.test.tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "./button";
+
+describe("Button", () => {
+  it("renders with correct text", () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByRole("button")).toHaveTextContent("Click me");
+  });
+
+  it("handles click events", () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={handleClick}>Click me</Button>);
+    
+    fireEvent.click(screen.getByRole("button"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("applies correct variant classes", () => {
+    render(<Button variant="primary">Primary</Button>);
+    expect(screen.getByRole("button")).toHaveClass("bg-brand-500");
+  });
+});
+```
+
+### Accessibility Tests
+```tsx
+// button.a11y.test.tsx
+import { render } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+import { Button } from "./button";
+
+expect.extend(toHaveNoViolations);
+
+describe("Button Accessibility", () => {
+  it("has no accessibility violations", async () => {
+    const { container } = render(<Button>Click me</Button>);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
+```
+
+## 🔍 Linting Configuration
+
+### ESLint Configuration
+```js
+// tools/eslint-config/index.js
+module.exports = {
+  extends: [
+    '@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:jsx-a11y/recommended',
+  ],
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+};
+```
+
+### Prettier Configuration
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf"
+}
+```
+
+## 🚀 Testing Commands
+
+### Running Tests
+```bash
+# Run all tests
+pnpm test
+
+# Run tests for specific package
+pnpm --filter @nostromo/ui-core test
+
+# Run tests with coverage
+pnpm test --coverage
+
+# Run tests in watch mode
+pnpm test --watch
+```
+
+### Linting
+```bash
+# Lint all packages
+pnpm lint
+
+# Lint specific package
+pnpm --filter @nostromo/ui-core lint
+
+# Fix linting issues
+pnpm lint --fix
+```
+
+## 🎯 Test Requirements
+
+### Coverage Standards
+- **Minimum 80% code coverage**
+- **All components must have accessibility tests**
+- **Test edge cases and error states**
+- **Test keyboard navigation**
+- **Test screen reader compatibility**
+
+### Test Organization
+```
+src/
+├── components/
+│   ├── button/
+│   │   ├── button.tsx
+│   │   ├── button.test.tsx
+│   │   └── button.a11y.test.tsx
+│   └── input/
+│       ├── input.tsx
+│       ├── input.test.tsx
+│       └── input.a11y.test.tsx
+└── test/
+    ├── setup.ts
+    └── utils.ts
+```
+
+## 🚫 Testing Anti-Patterns
+
+### ❌ Don't Do This
+```tsx
+// Wrong - testing implementation details
+expect(component.state.isLoading).toBe(true);
+
+// Wrong - not testing accessibility
+render(<Button>Click me</Button>);
+expect(screen.getByText("Click me")).toBeInTheDocument();
+
+// Wrong - missing error cases
+it("handles click", () => {
+  render(<Button onClick={handleClick}>Click</Button>);
+  fireEvent.click(screen.getByRole("button"));
+  expect(handleClick).toHaveBeenCalled();
+});
+```
+
+### ✅ Do This Instead
+```tsx
+// Correct - testing behavior
+expect(screen.getByRole("button")).toBeDisabled();
+
+// Correct - testing accessibility
+const { container } = render(<Button>Click me</Button>);
+const results = await axe(container);
+expect(results).toHaveNoViolations();
+
+// Correct - testing error cases
+it("handles click when disabled", () => {
+  render(<Button disabled onClick={handleClick}>Click</Button>);
+  fireEvent.click(screen.getByRole("button"));
+  expect(handleClick).not.toHaveBeenCalled();
+});
+```
+
+---
+
+**Remember**: Tests should focus on behavior, not implementation. Always test accessibility and edge cases.

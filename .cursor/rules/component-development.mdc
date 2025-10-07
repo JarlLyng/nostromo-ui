@@ -17,11 +17,6 @@ packages/ui-core/src/
 │   │   ├── button.test.tsx     # Unit tests
 │   │   ├── button.stories.tsx  # Storybook stories
 │   │   └── index.ts           # Exports
-│   └── vue/
-│       ├── button/
-│       │   ├── button.vue     # Vue component
-│       │   ├── button.test.ts # Vue tests
-│       │   └── index.ts       # Exports
 ```
 
 ### Component Template
@@ -284,55 +279,6 @@ export const Loading: Story = {
     children: "Loading...",
   },
 };
-```
-
-## 🔄 Vue Component Equivalents
-
-### Vue Component Structure
-```vue
-<!-- button.vue -->
-<template>
-  <button
-    :class="cn(buttonVariants({ variant, size }), className)"
-    :disabled="disabled || loading"
-    v-bind="$attrs"
-    @click="handleClick"
-  >
-    <slot v-if="!loading" />
-    <Spinner v-else size="sm" />
-  </button>
-</template>
-
-<script setup lang="ts">
-import { computed } from "vue";
-import { buttonVariants } from "./button-variants";
-import { cn } from "@/lib/utils";
-
-interface Props {
-  variant?: "primary" | "secondary" | "ghost" | "destructive";
-  size?: "sm" | "md" | "lg";
-  disabled?: boolean;
-  loading?: boolean;
-  class?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  variant: "primary",
-  size: "md",
-  disabled: false,
-  loading: false,
-});
-
-const emit = defineEmits<{
-  click: [event: MouseEvent];
-}>();
-
-const handleClick = (event: MouseEvent) => {
-  if (!props.disabled && !props.loading) {
-    emit("click", event);
-  }
-};
-</script>
 ```
 
 ## 📦 Export Patterns
