@@ -350,9 +350,54 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
-  typescript: {
-    check: false,
-    reactDocgen: 'react-docgen-typescript',
+  viteFinal: async (config) => {
+    // 1) React dedupe og ESM/browser bias + symlink strategy
+    config.resolve = {
+      ...config.resolve,
+      dedupe: ['react', 'react-dom'],
+      conditions: ['browser', 'module', 'import', 'default'],
+      preserveSymlinks: false
+    };
+
+    // 2) Tailwind v4 Vite plugin
+    const tailwindVite = (await import('@tailwindcss/vite')).default;
+    config.plugins = [...(config.plugins ?? []), tailwindVite()];
+
+    // 3) optimizeDeps: workspace packages are included (force prebundle)
+    config.optimizeDeps = {
+      ...(config.optimizeDeps ?? {}),
+      force: true,
+      include: [
+        'react', 'react-dom',
+        'react-dom/client',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        'aria-hidden', 'react-remove-scroll',
+        '@floating-ui/core', '@floating-ui/dom', '@floating-ui/react-dom',
+        'phosphor-react',
+        'tailwind-merge',
+        'class-variance-authority', 'clsx',
+        // Radix packages used in stories
+        '@radix-ui/react-accordion',
+        '@radix-ui/react-avatar',
+        '@radix-ui/react-checkbox',
+        '@radix-ui/react-label',
+        '@radix-ui/react-radio-group',
+        '@radix-ui/react-select',
+        '@radix-ui/react-switch',
+        '@radix-ui/react-toggle'
+      ],
+      entries: [
+        '../src/**/*.stories.{ts,tsx,mdx}',
+        '../src/**/*.tsx',
+      ],
+      esbuildOptions: {
+        mainFields: ['module', 'browser', 'exports', 'main'],
+        platform: 'browser',
+      },
+    };
+
+    return config;
   },
 };
 ```

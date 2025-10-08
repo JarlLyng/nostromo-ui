@@ -836,6 +836,89 @@ Dialog backdrop not preventing clicks
 
 ---
 
+## 📚 Storybook Issues
+
+### Common Storybook Problems
+
+#### Issue: `ReferenceError: require is not defined`
+```
+ReferenceError: require is not defined at client.js:2:9
+```
+
+**Solution:**
+This error occurs when CommonJS code is served to the browser. Add React dependencies to `optimizeDeps.include` in Storybook config:
+
+```ts
+// packages/ui-core/.storybook/main.ts
+config.optimizeDeps = {
+  ...(config.optimizeDeps ?? {}),
+  force: true,
+  include: [
+    'react', 'react-dom',
+    'react-dom/client',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'aria-hidden', 'react-remove-scroll',
+    '@floating-ui/core', '@floating-ui/dom', '@floating-ui/react-dom',
+    'phosphor-react',
+    'tailwind-merge',
+    'class-variance-authority', 'clsx',
+    // Radix packages used in stories
+    '@radix-ui/react-accordion',
+    '@radix-ui/react-avatar',
+    '@radix-ui/react-checkbox',
+    '@radix-ui/react-label',
+    '@radix-ui/react-radio-group',
+    '@radix-ui/react-select',
+    '@radix-ui/react-switch',
+    '@radix-ui/react-toggle'
+  ],
+};
+```
+
+#### Issue: Components not styled in Storybook
+```
+Components render but without Tailwind CSS styling
+```
+
+**Solution:**
+Ensure Tailwind CSS v4 Vite plugin is configured:
+
+```ts
+// packages/ui-core/.storybook/main.ts
+const tailwindVite = (await import('@tailwindcss/vite')).default;
+config.plugins = [...(config.plugins ?? []), tailwindVite()];
+```
+
+And import CSS in `preview.css`:
+```css
+@import '@nostromo/ui-tw/themes/nostromo.css';
+@import '@nostromo/ui-tw/base.css';
+@import "tailwindcss";
+```
+
+#### Issue: Storybook cache problems
+```bash
+# Clear Storybook cache
+rm -rf .storybook/cache
+rm -rf node_modules/.cache/storybook
+rm -rf storybook-static
+pnpm storybook
+```
+
+#### Issue: Missing dependencies in Storybook
+```
+Module not found: Can't resolve 'aria-hidden'
+```
+
+**Solution:**
+Install missing dependencies:
+```bash
+pnpm add aria-hidden react-remove-scroll @floating-ui/core @floating-ui/dom @floating-ui/react-dom
+```
+
+---
+
 ## 🔍 Debugging Tips
 
 ### Console Debugging

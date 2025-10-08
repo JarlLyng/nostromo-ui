@@ -7,104 +7,105 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     },
     "./button": {
+      "types": "./dist/components/button.d.ts",
       "import": "./dist/components/button.js",
-      "require": "./dist/components/button.cjs",
-      "types": "./dist/components/button.d.ts"
+      "require": "./dist/components/button.cjs"
     },
     "./badge": {
+      "types": "./dist/components/badge.d.ts",
       "import": "./dist/components/badge.js",
-      "require": "./dist/components/badge.cjs",
-      "types": "./dist/components/badge.d.ts"
+      "require": "./dist/components/badge.cjs"
     },
     "./card": {
+      "types": "./dist/components/card.d.ts",
       "import": "./dist/components/card.js",
-      "require": "./dist/components/card.cjs",
-      "types": "./dist/components/card.d.ts"
+      "require": "./dist/components/card.cjs"
     },
     "./avatar": {
+      "types": "./dist/components/avatar.d.ts",
       "import": "./dist/components/avatar.js",
-      "require": "./dist/components/avatar.cjs",
-      "types": "./dist/components/avatar.d.ts"
+      "require": "./dist/components/avatar.cjs"
     },
     "./input": {
+      "types": "./dist/components/input.d.ts",
       "import": "./dist/components/input.js",
-      "require": "./dist/components/input.cjs",
-      "types": "./dist/components/input.d.ts"
+      "require": "./dist/components/input.cjs"
     },
     "./checkbox": {
+      "types": "./dist/components/checkbox.d.ts",
       "import": "./dist/components/checkbox.js",
-      "require": "./dist/components/checkbox.cjs",
-      "types": "./dist/components/checkbox.d.ts"
+      "require": "./dist/components/checkbox.cjs"
     },
     "./radio-group": {
+      "types": "./dist/components/radio-group.d.ts",
       "import": "./dist/components/radio-group.js",
-      "require": "./dist/components/radio-group.cjs",
-      "types": "./dist/components/radio-group.d.ts"
+      "require": "./dist/components/radio-group.cjs"
     },
     "./switch": {
+      "types": "./dist/components/switch.d.ts",
       "import": "./dist/components/switch.js",
-      "require": "./dist/components/switch.cjs",
-      "types": "./dist/components/switch.d.ts"
+      "require": "./dist/components/switch.cjs"
     },
     "./textarea": {
+      "types": "./dist/components/textarea.d.ts",
       "import": "./dist/components/textarea.js",
-      "require": "./dist/components/textarea.cjs",
-      "types": "./dist/components/textarea.d.ts"
+      "require": "./dist/components/textarea.cjs"
     },
     "./alert": {
+      "types": "./dist/components/alert.d.ts",
       "import": "./dist/components/alert.js",
-      "require": "./dist/components/alert.cjs",
-      "types": "./dist/components/alert.d.ts"
+      "require": "./dist/components/alert.cjs"
     },
     "./breadcrumb": {
+      "types": "./dist/components/breadcrumb.d.ts",
       "import": "./dist/components/breadcrumb.js",
-      "require": "./dist/components/breadcrumb.cjs",
-      "types": "./dist/components/breadcrumb.d.ts"
+      "require": "./dist/components/breadcrumb.cjs"
     },
     "./pagination": {
+      "types": "./dist/components/pagination.d.ts",
       "import": "./dist/components/pagination.js",
-      "require": "./dist/components/pagination.cjs",
-      "types": "./dist/components/pagination.d.ts"
+      "require": "./dist/components/pagination.cjs"
     },
     "./separator": {
+      "types": "./dist/components/separator.d.ts",
       "import": "./dist/components/separator.js",
-      "require": "./dist/components/separator.cjs",
-      "types": "./dist/components/separator.d.ts"
+      "require": "./dist/components/separator.cjs"
     },
     "./dialog": {
+      "types": "./dist/components/dialog.d.ts",
       "import": "./dist/components/dialog.js",
-      "require": "./dist/components/dialog.cjs",
-      "types": "./dist/components/dialog.d.ts"
+      "require": "./dist/components/dialog.cjs"
     },
     "./tabs": {
+      "types": "./dist/components/tabs.d.ts",
       "import": "./dist/components/tabs.js",
-      "require": "./dist/components/tabs.cjs",
-      "types": "./dist/components/tabs.d.ts"
+      "require": "./dist/components/tabs.cjs"
     },
     "./select": {
+      "types": "./dist/components/select.d.ts",
       "import": "./dist/components/select.js",
-      "require": "./dist/components/select.cjs",
-      "types": "./dist/components/select.d.ts"
+      "require": "./dist/components/select.cjs"
     },
     "./label": {
+      "types": "./dist/components/label.d.ts",
       "import": "./dist/components/label.js",
-      "require": "./dist/components/label.cjs",
-      "types": "./dist/components/label.d.ts"
+      "require": "./dist/components/label.cjs"
     },
     "./helper-text": {
+      "types": "./dist/components/helper-text.d.ts",
       "import": "./dist/components/helper-text.js",
-      "require": "./dist/components/helper-text.cjs",
-      "types": "./dist/components/helper-text.d.ts"
+      "require": "./dist/components/helper-text.cjs"
     },
     "./error-message": {
+      "types": "./dist/components/error-message.d.ts",
       "import": "./dist/components/error-message.js",
-      "require": "./dist/components/error-message.cjs",
-      "types": "./dist/components/error-message.d.ts"
+      "require": "./dist/components/error-message.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -141,11 +142,12 @@
   "devDependencies": {
     "@eslint/js": "^9.35.0",
     "@nostromo/ui-tw": "workspace:^",
-    "@storybook/addon-a11y": "^9.1.5",
-    "@storybook/addon-docs": "^9.1.5",
-    "@storybook/addon-onboarding": "^9.1.8",
+    "@storybook/addon-a11y": "^9.1.10",
+    "@storybook/addon-docs": "^9.1.10",
+    "@storybook/addon-onboarding": "^9.1.10",
+    "@storybook/icons": "^1.2.5",
     "@storybook/manager-api": "9.0.0-alpha.1",
-    "@storybook/react-vite": "^9.1.5",
+    "@storybook/react-vite": "^9.1.10",
     "@storybook/test": "9.0.0-alpha.2",
     "@storybook/theming": "9.0.0-alpha.1",
     "@tailwindcss/postcss": "^4.1.13",
@@ -162,25 +164,73 @@
     "@vitest/coverage-v8": "^1.6.1",
     "autoprefixer": "^10.4.21",
     "axe-core": "^4.10.3",
+    "esbuild-register": "^3.6.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-storybook": "9.1.5",
+    "eslint-plugin-storybook": "9.1.10",
     "jest-axe": "^10.0.0",
     "jsdom": "^27.0.0",
     "postcss": "^8.5.6",
-    "storybook": "^9.1.5",
+    "storybook": "^9.1.10",
     "tailwindcss": "^4.1.13",
+    "ts-dedent": "^2.2.0",
     "tsup": "^7.2.0",
     "typescript": "^5.0.0",
+    "vite": "^5.4.0",
     "vitest": "^1.6.1"
   },
   "dependencies": {
+    "@floating-ui/core": "^1.7.3",
+    "@floating-ui/dom": "^1.7.4",
+    "@floating-ui/react-dom": "^2.0.0",
+    "@radix-ui/number": "^1.0.0",
+    "@radix-ui/react-accordion": "^1.2.2",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-collection": "^1.0.0",
+    "@radix-ui/react-compose-refs": "^1.0.0",
+    "@radix-ui/react-context": "^1.0.0",
+    "@radix-ui/react-dialog": "^1.1.4",
+    "@radix-ui/react-direction": "^1.0.0",
+    "@radix-ui/react-dismissable-layer": "^1.0.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.4",
+    "@radix-ui/react-focus-guards": "^1.0.0",
+    "@radix-ui/react-focus-scope": "^1.0.0",
+    "@radix-ui/react-id": "^1.0.0",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-popover": "^1.1.4",
+    "@radix-ui/react-popper": "^1.0.0",
+    "@radix-ui/react-portal": "^1.0.0",
+    "@radix-ui/react-primitive": "^1.0.0",
+    "@radix-ui/react-progress": "^1.1.2",
+    "@radix-ui/react-radio-group": "^1.2.2",
     "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-separator": "^1.1.1",
+    "@radix-ui/react-slider": "^1.2.2",
+    "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-toast": "^1.2.2",
+    "@radix-ui/react-toggle": "^1.1.1",
+    "@radix-ui/react-toggle-group": "^1.1.1",
+    "@radix-ui/react-tooltip": "^1.1.4",
+    "@radix-ui/react-use-callback-ref": "^1.0.0",
+    "@radix-ui/react-use-controllable-state": "^1.0.0",
+    "@radix-ui/react-use-layout-effect": "^1.0.0",
+    "@radix-ui/react-use-previous": "^1.0.0",
+    "@radix-ui/react-visually-hidden": "^1.0.0",
+    "ansi-styles": "^6.2.3",
+    "aria-hidden": "^1.2.6",
+    "aria-query": "^5.3.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dom-accessibility-api": "^0.7.0",
     "phosphor-react": "^1.4.1",
-    "tailwind-merge": "^3.3.1"
+    "pretty-format": "^30.2.0",
+    "react-is": "^19.2.0",
+    "react-remove-scroll": "^2.7.1",
+    "scheduler": "^0.27.0",
+    "tailwind-merge": "^3.3.1",
+    "use-sync-external-store": "^1.2.0"
   }
 }

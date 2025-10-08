@@ -1,3 +1,6 @@
-@import "tailwindcss";
-@import '@nostromo/ui-tw/base.css';
+/* 1) Variabler (og evt. base reset) først */
 @import '@nostromo/ui-tw/themes/nostromo.css';
+@import '@nostromo/ui-tw/base.css';
+
+/* 2) Tailwind v4 entry (genererer base/components/utilities) */
+@import "tailwindcss";

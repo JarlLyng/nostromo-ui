@@ -7,16 +7,20 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.mjs"
     },
     "./tailwind.preset.js": {
       "import": "./dist/tailwind.preset.mjs",
       "require": "./dist/tailwind.preset.js"
     },
     "./base.css": "./dist/base.css",
-    "./themes/*": "./dist/themes/*"
+    "./themes/nostromo.css": "./dist/themes/nostromo.css",
+    "./themes/mother.css": "./dist/themes/mother.css",
+    "./themes/lv-426.css": "./dist/themes/lv-426.css",
+    "./themes/sulaco.css": "./dist/themes/sulaco.css"
   },
   "files": [
     "dist"

@@ -14,6 +14,8 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - **Community Feedback** - Actively seeking feedback via GitHub Issues and Discussions
 
 ### Fixed
+- **Storybook `require is not defined` Error** - Fixed CommonJS module resolution in Storybook by adding React dependencies to `optimizeDeps.include`
+- **Storybook Styling Issues** - Fixed unstyled components by properly configuring Tailwind CSS v4 Vite plugin
 - **TypeScript Build Errors** - Fixed separator.tsx aria-orientation type error
 - **Linting Issues** - Reduced linting errors from 86 to ~60 across all packages
 - **Marketing Package** - Achieved 0 linting errors (100% clean)
