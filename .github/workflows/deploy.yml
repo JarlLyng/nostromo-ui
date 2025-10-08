@@ -76,7 +76,12 @@ jobs:
     - name: Build Storybook
       run: |
         echo "Building Storybook..."
+        echo "Checking @tailwindcss/vite availability..."
+        pnpm list @tailwindcss/vite || echo "@tailwindcss/vite not found"
+        echo "Installing @tailwindcss/vite in ui-core if needed..."
         cd packages/ui-core
+        pnpm add -D @tailwindcss/vite || echo "Plugin already installed"
+        echo "Building Storybook..."
         pnpm run build-storybook
         echo "Storybook build completed!"
         echo "Checking Storybook output..."
@@ -85,6 +90,8 @@ jobs:
         find storybook-static -name "*vite*" -o -name "*inject*" -o -name "*mocker*" || echo "vite files not found"
         echo "Checking storybook-static structure..."
         ls -la storybook-static/ | head -20
+        echo "Checking CSS files for theme variables..."
+        grep -o "data-theme=nostromo\|--color-brand-500" storybook-static/assets/*.css | head -5 || echo "Theme variables not found"
       
     - name: Build documentation
       run: |
