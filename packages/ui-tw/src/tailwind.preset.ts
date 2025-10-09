@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
 
-export const nostromoPreset: Partial<Config> = {
+const nostromoPreset: Partial<Config> = {
   theme: {
     extend: {
       colors: {
@@ -205,3 +205,5 @@ export const nostromoPreset: Partial<Config> = {
     },
   ],
 };
+
+export default nostromoPreset;

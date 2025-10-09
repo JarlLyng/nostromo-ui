@@ -6,97 +6,66 @@ alwaysApply: true
 
 # Nostromo UI - Project Rules
 
-## 🚨 CRITICAL SAFETY RULES
+## 🚨 SAFETY & PROCESS
 
 ### Deployment & Git Safety
-- **NEVER deploy to GitHub without explicit permission** - Always ask before pushing commits, creating PRs, or making any changes to the repository
-- **NEVER force push** or rewrite git history without permission
-- **ALWAYS ask before creating new branches** or making structural changes to the project
-- **Confirm before deleting files** or making destructive changes
+- Do not deploy to GitHub, force push, rewrite history, create branches, or delete files without explicit permission.
+- Confirm before making structural or destructive changes.
 
 ### Feature Development
-- **DO NOT invent features** - Only implement what is explicitly requested
-- **DO suggest improvements** and alternatives when you see opportunities
-- **ASK for clarification** if there's any uncertainty about requirements
-- **BE ADVISORY** - Provide recommendations and explain trade-offs
+- Implement only explicitly requested features.
+- Suggest improvements and ask for clarification when needed.
+- Provide recommendations and explain trade-offs.
 
 ### Information Accuracy
-- **NEVER invent emails, URLs, or contact information** - Always ask for real contact details
-- **NEVER create fake domains or email addresses** - Use placeholder text like "your-email@example.com" if needed
-- **ALWAYS verify URLs and links** - Don't assume GitHub Pages URLs or documentation links exist
-- **ASK before adding contact information** - Never add emails, phone numbers, or addresses without permission
-- **USE placeholders for missing information** - Mark clearly as "TODO: Add real contact info"
-
-## 🎯 PROJECT CONTEXT
-
-### About Nostromo UI
-- Open source UI library built with React, TypeScript, and **Tailwind CSS v4**
-- Inspired by the USCSS Nostromo from Alien (1979)
-- Monorepo structure with pnpm + Turborepo
-- Two main areas: Core (product/app components) and Marketing (landing page blocks)
-- CSS variable-based theming system with HSL colors
-- **CRITICAL: Always use Tailwind CSS v4 syntax and configuration**
-
-### Architecture Principles
-- **Tailwind-first** approach with utility classes
-- **CSS variables** for theming (no CSS-in-JS runtime)
-- **Headless primitives** (Radix UI for React, Ark UI for Vue)
-- **Accessibility-first** (WCAG 2.1 AA compliance)
-- **Tree-shakeable** components with individual imports
-- **SSR compatible** with no client-side dependencies
+- Do not invent emails, URLs, or contact information; use placeholders like "your-email@example.com" if necessary.
+- Verify URLs and links before adding.
+- Ask before adding any real contact information.
 
 ## 🛠️ DEVELOPMENT STANDARDS
 
-### Language & Documentation Standards
-- **ALL documentation must be in English** - README.md, .md files, comments, JSDoc
-- **ALL code comments must be in English** - Inline comments, function descriptions, API docs
-- **ALL commit messages must be in English** - For consistency and global accessibility
-- **ALL variable names and function names** - Use English (already standard)
-- **ALL user-facing text** - Error messages, console logs, UI text in English
+### Language & Documentation
+- Use English exclusively for all documentation, code comments, commit messages, variable/function names, and user-facing text.
 
-### Why English Standard?
-- **Global accessibility** - More developers can understand and contribute
-- **Open source standard** - Most UI libraries use English documentation
-- **GitHub community** - Easier to get contributions and feedback
-- **Professional appearance** - Looks more professional and production-ready
-- **SEO benefits** - Better search optimization for discoverability
+### Code Quality & Tools
+- Use TypeScript strict mode; avoid `any`.
+- Apply ESLint + Prettier for formatting.
+- Use Vitest for unit testing (80%+ coverage), Playwright for E2E, and Storybook for component docs.
 
-### Code Quality
-- **TypeScript strict mode** - No `any` types allowed
-- **ESLint + Prettier** for consistent formatting
-- **Vitest** for unit testing with 80%+ coverage
-- **Playwright** for E2E testing
-- **Storybook** for component documentation
+### Architecture & Styling
+- Tailwind-first with utility classes.
+- CSS variables for theming (HSL colors).
+- Headless primitives (Radix UI for React, Ark UI for Vue).
+- Accessibility-first (WCAG 2.1 AA).
+- Tree-shakeable components with individual imports.
+- SSR compatible, no client-side dependencies.
 
 ### Tailwind CSS v4 Requirements
-- **ALWAYS use Tailwind CSS v4 syntax** - Never use v3 patterns
-- **PostCSS configuration** uses `@tailwindcss/postcss` plugin
-- **No `tailwindcss` as PostCSS plugin** - Use `@tailwindcss/postcss` instead
-- **CSS imports** must include `@tailwind base; @tailwind components; @tailwind utilities;`
-- **Configuration** uses `tailwind.config.js` with presets, not PostCSS plugins
+- Use Tailwind CSS v4 syntax and configuration.
+- Use `@tailwindcss/postcss` plugin, not `tailwindcss`.
+- Include `@tailwind base; @tailwind components; @tailwind utilities;`.
+- Configure via `tailwind.config.js` with presets.
 
 ### Component Development
-- **Use CVA (class-variance-authority)** for variant management
-- **Follow compound component patterns** for complex components
-- **Implement proper ARIA attributes** and keyboard navigation
-- **Support both React and Vue** with consistent APIs
-- **Use semantic HTML** and proper accessibility roles
+- Use CVA for variant management.
+- Follow compound component patterns.
+- Implement ARIA attributes and keyboard navigation.
+- Support React and Vue with consistent APIs.
+- Use semantic HTML and proper accessibility roles.
 
-### File Organization
+### File Organization & Naming
 ```
 packages/
 ├── ui-core/           # Product/app components
 ├── ui-marketing/      # Marketing components  
-└── ui-tw/            # Tailwind preset & themes
+└── ui-tw/             # Tailwind preset & themes
 ```
+- Components: PascalCase (Button, Input).
+- Files: kebab-case (button.tsx).
+- CSS variables: kebab-case (--color-brand-500).
+- Vue components: N-prefix (NButton).
 
-### Naming Conventions
-- **Components**: PascalCase (Button, Input, Dialog)
-- **Files**: kebab-case (button.tsx, input-field.tsx)
-- **CSS variables**: kebab-case (--color-brand-500)
-- **Vue components**: N-prefix (NButton, NInput)
-
-## 🎨 THEMING GUIDELINES
+## 🎨 THEMING & COMPONENTS
 
 ### CSS Variables Structure
 ```css
@@ -108,109 +77,58 @@ packages/
 ```
 
 ### Theme Implementation
-- **HSL format** for all colors to support Tailwind's `hsl(var(--...))` pattern
-- **Semantic naming** (brand, neutral, success, warning, error)
-- **Consistent scale** (50, 100, 200... 900, 950)
-- **Dark mode support** via `[data-color-scheme="dark"]`
+- Use HSL format for colors to support Tailwind’s `hsl(var(--...))`.
+- Semantic naming (brand, neutral, success, warning, error).
+- Consistent scale (50, 100, 200... 900, 950).
+- Dark mode support via `[data-color-scheme="dark"]`.
 
-## 📝 DOCUMENTATION REQUIREMENTS
+## 📝 DOCUMENTATION & WORKFLOW
 
-### Code Documentation
-- **JSDoc comments** for all public APIs
-- **TypeScript interfaces** with clear prop descriptions
-- **Storybook stories** for all components
-- **Accessibility notes** in component documentation
+### Documentation Requirements
+- JSDoc for all public APIs.
+- Clear TypeScript interfaces.
+- Storybook stories for all components.
+- Accessibility notes in docs.
+- Maintain README.md, ARCHITECTURE.md, THEMING.md, COMPONENT_API.md, DEVELOPMENT.md, ROADMAP.md.
+- Update documentation with every change; keep it current and cross-referenced.
 
-### File Documentation
-- **README.md** is the main documentation hub
-- **ARCHITECTURE.md** for technical details
-- **THEMING.md** for theming guide
-- **COMPONENT_API.md** for API reference
-- **DEVELOPMENT.md** for setup and contribution
-- **ROADMAP.md** for project planning and progress tracking
+### Workflow Guidelines
+- Read relevant docs and existing patterns before changes.
+- Ask for clarification and suggest improvements.
+- Follow established patterns; write tests first.
+- Update documentation and check accessibility with axe-core.
+- Run all tests; update Storybook, ROADMAP.md, and CHANGELOG.md.
+- Request code review before completion.
 
-### Documentation Maintenance
-- **ALWAYS update documentation** when making changes
-- **Keep documentation current** - outdated docs are worse than no docs
-- **Update relevant sections** when adding features or fixing bugs
-- **Cross-reference updates** between related documentation files
-- **Version documentation** changes in CHANGELOG.md
-- **Review documentation** as part of code review process
-
-## 🔄 WORKFLOW GUIDELINES
-
-### Before Making Changes
-1. **Read relevant documentation** (ARCHITECTURE.md, THEMING.md, etc.)
-2. **Check existing patterns** in similar components
-3. **Ask for clarification** if requirements are unclear
-4. **Suggest improvements** if you see better approaches
-
-### During Development
-1. **Follow established patterns** from existing components
-2. **Write tests first** (TDD approach when possible)
-3. **Update documentation** as you develop
-4. **Check accessibility** with axe-core
-
-### After Development
-1. **Run all tests** and ensure they pass
-2. **Update Storybook stories** if needed
-3. **Update relevant documentation** (MANDATORY)
-4. **Update ROADMAP.md** if milestones are reached
-5. **Update CHANGELOG.md** for significant changes
-6. **Ask for review** before considering work complete
-
-## 🚫 COMMON PITFALLS TO AVOID
-
-### Technical Mistakes
-- **Don't use CSS-in-JS** - Stick to CSS variables and Tailwind
-- **Don't add runtime dependencies** - Keep components lightweight
-- **Don't break SSR compatibility** - No window/document without guards
-- **Don't ignore accessibility** - Always implement proper ARIA
-
-### Process Mistakes
-- **Don't assume requirements** - Always ask for clarification
-- **Don't skip documentation** - Update docs as you develop (MANDATORY)
-- **Don't ignore existing patterns** - Follow established conventions
-- **Don't rush to implement** - Think through the design first
-- **Don't leave outdated documentation** - Always keep docs current
-
-## 💡 COMMUNICATION STYLE
-
-### When Responding
-- **Be concise but thorough** - Provide complete information
-- **Use Danish** as requested by the user (for AI responses only)
-- **Explain your reasoning** - Help the user understand decisions
-- **Ask follow-up questions** - Ensure you understand correctly
-- **Suggest alternatives** - Offer different approaches when relevant
-- **Remember: All code and documentation must be in English** - Even when responding in Danish
-
-### When Asking Questions
-- **Be specific** - Ask about particular aspects, not general concepts
-- **Provide context** - Explain why you need the information
-- **Offer options** - Present different approaches for consideration
-- **Show examples** - Use code snippets to illustrate questions
+### Common Pitfalls to Avoid
+- Avoid CSS-in-JS; use CSS variables and Tailwind.
+- Do not add runtime dependencies.
+- Maintain SSR compatibility.
+- Implement proper ARIA attributes.
+- Do not skip documentation or ignore existing patterns.
+- Avoid rushing implementation; keep docs current.
 
 ## 🎯 SUCCESS CRITERIA
 
 ### Code Quality
-- ✅ All tests pass
-- ✅ No linting errors
-- ✅ TypeScript compilation succeeds
-- ✅ Accessibility tests pass
-- ✅ Documentation is updated
+- All tests pass.
+- No linting errors.
+- TypeScript compiles without errors.
+- Accessibility tests pass.
+- Documentation is updated.
 
 ### User Experience
-- ✅ Components work as expected
-- ✅ APIs are intuitive and consistent
-- ✅ Documentation is clear and helpful
-- ✅ Examples are practical and relevant
+- Components function as expected.
+- APIs are intuitive and consistent.
+- Documentation is clear and helpful.
+- Examples are practical.
 
 ### Project Health
-- ✅ No breaking changes without discussion
-- ✅ Performance is maintained or improved
-- ✅ Bundle size is optimized
-- ✅ Dependencies are kept minimal
+- No breaking changes without discussion.
+- Performance maintained or improved.
+- Bundle size optimized.
+- Dependencies minimal.
 
 ---
 
-**Remember**: This is a collaborative project. Always communicate clearly, ask questions when uncertain, and prioritize code quality and user experience over speed.
+**Remember**: This is a collaborative project. Communicate clearly, ask questions when uncertain, and prioritize code quality and user experience.

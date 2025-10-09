@@ -13,8 +13,9 @@
       "default": "./dist/index.mjs"
     },
     "./tailwind.preset.js": {
-      "import": "./dist/tailwind.preset.mjs",
-      "require": "./dist/tailwind.preset.js"
+      "import": "./dist/tailwind.preset.js",
+      "require": "./dist/tailwind.preset.cjs",
+      "default": "./dist/tailwind.preset.js"
     },
     "./base.css": "./dist/base.css",
     "./themes/nostromo.css": "./dist/themes/nostromo.css",

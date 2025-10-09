@@ -1,6 +1,12 @@
-module.exports = {
+// .storybook/postcss.config.js
+console.log('🔧 PostCSS config loading...');
+
+export default {
   plugins: {
-    '@tailwindcss/postcss': {},
+    'postcss-import': {},
+    '@tailwindcss/postcss': {
+      config: './tailwind-test.config.js'
+    },
     autoprefixer: {},
   },
-}
+};

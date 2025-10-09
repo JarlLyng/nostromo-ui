@@ -1,4 +1,3 @@
-/* PostCSS direkte i Storybook */
 @import '@nostromo/ui-tw/themes/nostromo.css';
 @import '@nostromo/ui-tw/base.css';
 @import "tailwindcss";

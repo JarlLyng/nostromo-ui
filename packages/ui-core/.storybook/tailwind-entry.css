@@ -1,0 +1,2 @@
+/* Solution 4: Explicit config loading */
+@import "tailwindcss" theme("../tailwind.config.ts");
