@@ -1,5 +1,7 @@
 /* Storybook CSS imports */
 /* Import theme first (CSS variables) */
 @import '@nostromo/ui-tw/themes/nostromo.css';
-/* Import base.css which includes Tailwind directives */
+/* Import Tailwind CSS v4 - this generates all utility classes */
+@import "tailwindcss" theme("../tailwind.config.js");
+/* Import base.css which includes CSS reset and other base styles */
 @import '@nostromo/ui-tw/base.css';
