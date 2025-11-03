@@ -61,13 +61,15 @@ jobs:
       continue-on-error: true
       run: |
         cd packages/ui-core
-        pnpm size 2>&1 | tee size-output.txt
+        pnpm size 2>&1 | tee size-output.txt || true
         exit ${PIPESTATUS[0]}
       id: size
+      working-directory: packages/ui-core
       
     - name: Upload error logs
-      if: failure()
+      if: always()
       uses: actions/upload-artifact@v4
+      continue-on-error: true
       with:
         name: ci-error-logs
         path: |
@@ -75,7 +77,8 @@ jobs:
           typecheck-output.txt
           test-output.txt
           build-output.txt
-          size-output.txt
+          packages/ui-core/size-output.txt
+        if-no-files-found: ignore
         retention-days: 7
       
     - name: Fail if any step failed
@@ -107,16 +110,19 @@ jobs:
       continue-on-error: true
       run: |
         cd packages/ui-core
-        pnpm test:a11y 2>&1 | tee a11y-output.txt
+        pnpm test:a11y 2>&1 | tee a11y-output.txt || true
         exit ${PIPESTATUS[0]}
       id: a11y
+      working-directory: packages/ui-core
       
     - name: Upload error logs
-      if: failure()
+      if: always()
       uses: actions/upload-artifact@v4
+      continue-on-error: true
       with:
         name: a11y-error-logs
-        path: a11y-output.txt
+        path: packages/ui-core/a11y-output.txt
+        if-no-files-found: ignore
         retention-days: 7
       
     - name: Fail if step failed
