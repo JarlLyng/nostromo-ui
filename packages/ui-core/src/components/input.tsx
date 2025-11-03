@@ -3,33 +3,33 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const inputVariants = cva(
-  // Base - forbedret med bedre spacing og transitions
+  // Base styles with improved spacing and transitions
   "flex w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200",
   {
     variants: {
       variant: {
-        // Forbedret default med bedre focus
+        // Enhanced default with better focus
         default: [
           "border-neutral-300 shadow-sm",
           "hover:border-neutral-400 hover:shadow-sm",
           "focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
           "focus-visible:shadow-md"
         ],
-        // Forbedret error med bedre feedback
+        // Enhanced error with better feedback
         error: [
           "border-error-500 shadow-sm",
           "hover:border-error-600 hover:shadow-sm",
           "focus-visible:ring-error-500/20 focus-visible:border-error-500",
           "focus-visible:shadow-md"
         ],
-        // Forbedret success med bedre feedback
+        // Enhanced success with better feedback
         success: [
           "border-success-500 shadow-sm",
           "hover:border-success-600 hover:shadow-sm",
           "focus-visible:ring-success-500/20 focus-visible:border-success-500",
           "focus-visible:shadow-md"
         ],
-        // Ny: Subtle variant for mindre vigtige inputs
+        // Subtle variant for less prominent inputs
         subtle: [
           "border-neutral-200 bg-neutral-50/50",
           "hover:border-neutral-300 hover:bg-neutral-50/80",
@@ -38,7 +38,7 @@ const inputVariants = cva(
         ]
       },
       inputSize: {
-        // Forbedret spacing - mere konsistent
+        // Improved spacing for consistency
         sm: "h-8 px-2.5 text-xs",
         default: "h-10 px-3 text-sm",
         lg: "h-11 px-4 text-base"
@@ -66,7 +66,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
 
-    // Bestem variant baseret på state
+    // Determine variant based on state
     const inputVariant = error ? "error" : success ? "success" : variant || "default";
 
     return (

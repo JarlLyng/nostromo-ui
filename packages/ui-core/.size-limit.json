@@ -1,0 +1,23 @@
+[
+  {
+    "path": "dist/components/button.js",
+    "limit": "10 KB"
+  },
+  {
+    "path": "dist/components/input.js",
+    "limit": "10 KB"
+  },
+  {
+    "path": "dist/components/dialog.js",
+    "limit": "12 KB"
+  },
+  {
+    "path": "dist/components/select.js",
+    "limit": "35 KB"
+  },
+  {
+    "path": "dist/index.js",
+    "limit": "320 KB"
+  }
+]
+

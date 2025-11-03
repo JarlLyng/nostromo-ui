@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Toast, ToastProvider, useToastNotification } from '../toast';
 import { Button } from '../button';
 
-// Wrapper component for stories
-const _ToastWrapper = ({ children }: { children: React.ReactNode }) => (
-  <ToastProvider>{children}</ToastProvider>
-);
+// Wrapper component for stories (unused but kept for reference)
+// const _ToastWrapper = ({ children }: { children: React.ReactNode }) => (
+//   <ToastProvider>{children}</ToastProvider>
+// );
 
 const ToastDemo = () => {
   const toast = useToastNotification();

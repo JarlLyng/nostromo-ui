@@ -3,44 +3,44 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const cardVariants = cva(
-  // Base - forbedret med bedre spacing og transitions
+  // Base styles with improved spacing and transitions
   "rounded-lg border transition-all duration-200",
   {
     variants: {
       variant: {
-        // Forbedret default med bedre depth
+        // Enhanced default with better depth
         default: [
           "border-neutral-200 shadow-sm bg-white text-neutral-900",
           "hover:shadow-md hover:border-neutral-300",
           "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
         ],
-        // Forbedret elevated med bedre shadow
+        // Enhanced elevated with better shadow
         elevated: [
           "border-neutral-200 shadow-lg bg-white text-neutral-900",
           "hover:shadow-xl hover:border-neutral-300",
           "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
         ],
-        // Forbedret outlined med bedre focus
+        // Enhanced outlined with better focus
         outlined: [
           "border-2 border-neutral-300 shadow-none bg-white text-neutral-900",
           "hover:border-brand-500 hover:shadow-sm",
           "focus-within:border-brand-500 focus-within:shadow-sm",
           "dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-100"
         ],
-        // Forbedret filled med bedre kontrast
+        // Enhanced filled with better contrast
         filled: [
           "border-neutral-100 bg-neutral-50 text-neutral-900",
           "hover:bg-neutral-100 hover:shadow-sm",
           "dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100"
         ],
-        // Forbedret interactive med bedre feedback
+        // Enhanced interactive with better feedback
         interactive: [
           "border-neutral-200 shadow-sm cursor-pointer bg-white text-neutral-900",
           "hover:shadow-md hover:border-brand-500 hover:scale-[1.02]",
           "active:scale-[0.98] active:shadow-sm",
           "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
         ],
-        // Ny: Subtle variant for mindre vigtige cards
+        // Subtle variant for less prominent cards
         subtle: [
           "border-neutral-100 bg-neutral-50/50 text-neutral-700",
           "hover:bg-neutral-50 hover:border-neutral-200",
@@ -48,7 +48,7 @@ const cardVariants = cva(
         ]
       },
       size: {
-        // Forbedret spacing - mere konsistent
+        // Improved spacing for consistency
         sm: "p-3",
         default: "p-4 sm:p-6", 
         lg: "p-6 sm:p-8",
@@ -78,7 +78,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 );
 Card.displayName = "Card";
 
-// Forbedrede subkomponenter med bedre spacing
+// Enhanced subcomponents with improved spacing
 const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

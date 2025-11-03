@@ -307,13 +307,11 @@ Tooltip.displayName = 'Tooltip';
 export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>(
   ({ children, asChild = true, className, ...props }, ref) => {
     const {
-      open,
       trigger,
       openNow,
       closeNow,
       openWithDelay,
       closeWithDelay,
-      toggleWithDelay,
       toggleNow,
       closeOnBlur,
     } = useTooltipContext();
@@ -325,8 +323,7 @@ export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>
         if (typeof ref === 'function') {
           ref(node);
         } else if (ref) {
-          // @ts-ignore – compatible refs
-          ref.current = node;
+          (ref as React.MutableRefObject<HTMLElement>).current = node;
         }
       },
       className: cn(className),
@@ -343,32 +340,32 @@ export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>
         if (trigger === 'hover') closeWithDelay();
       },
       onPointerEnter: (e: React.PointerEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onPointerEnter?.(e);
         if (trigger === 'hover') openWithDelay();
       },
       onPointerLeave: (e: React.PointerEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onPointerLeave?.(e);
         if (trigger === 'hover') closeWithDelay();
       },
       onClick: (e: React.MouseEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onClick?.(e);
         if (trigger === 'click') toggleNow();
       },
       onFocus: (e: React.FocusEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onFocus?.(e);
         if (trigger === 'focus') openNow();
       },
       onBlur: (e: React.FocusEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onBlur?.(e);
         if (closeOnBlur) closeNow();
       },
       onKeyDown: (e: React.KeyboardEvent) => {
-        // @ts-ignore
+        // @ts-expect-error - Event handler type compatibility
         props.onKeyDown?.(e);
         if (e.key === 'Escape') closeNow();
       }
@@ -404,12 +401,12 @@ export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentPro
     placement = 'top',
     className,
     sideOffset = 4,
-    alignOffset = 0,
+    alignOffset: _alignOffset = 0,
     avoidCollisions = true,
-    collisionBoundary,
+    collisionBoundary: _collisionBoundary,
     collisionPadding = 8,
-    hideWhenDetached = false,
-    sticky = 'partial',
+    hideWhenDetached: _hideWhenDetached = false,
+    sticky: _sticky = 'partial',
     updatePositionDeps,
     ...props
   }, ref) => {
@@ -566,9 +563,9 @@ export interface TooltipProviderProps {
 
 export const TooltipProvider: React.FC<TooltipProviderProps> = ({
   children,
-  delayDuration = 700,
-  skipDelayDuration = 300,
-  defaultOpen = false
+  delayDuration: _delayDuration = 700,
+  skipDelayDuration: _skipDelayDuration = 300,
+  defaultOpen: _defaultOpen = false
 }) => {
   return (
     <div data-tooltip-provider>
