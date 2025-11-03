@@ -1,5 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* dine custom styles herunder */
+/* Custom documentation styles */
+/* Note: Tailwind directives are already included in @nostromo/ui-tw/base.css */
