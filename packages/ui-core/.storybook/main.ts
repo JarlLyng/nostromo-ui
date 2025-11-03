@@ -19,20 +19,9 @@ const config: StorybookConfig = {
       dedupe: ['react', 'react-dom'],
     };
 
-    // 2) PostCSS configuration - direct configuration without Vite plugin
-    config.css = {
-      ...(config.css ?? {}),
-      postcss: {
-        plugins: [
-          require('postcss-import'),
-          require('@tailwindcss/postcss')({
-            // Explicitly point to our Tailwind config
-            config: join(__dirname, 'tailwind.config.js'),
-          }),
-          require('autoprefixer'),
-        ],
-      },
-    };
+    // 2) Tailwind CSS v4 Vite plugin (required for Tailwind v4)
+    const tailwindVite = (await import('@tailwindcss/vite')).default;
+    config.plugins = [...(config.plugins ?? []), tailwindVite()];
 
     // 3) Optimize dependencies for faster builds
     config.optimizeDeps = {

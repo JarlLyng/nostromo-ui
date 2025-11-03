@@ -1,4 +1,4 @@
-/* PostCSS direkte i Storybook */
+/* Storybook CSS imports */
 /* Import theme first (CSS variables) */
 @import '@nostromo/ui-tw/themes/nostromo.css';
 /* Import base.css which includes Tailwind directives */
