@@ -1,7 +1,5 @@
 /* PostCSS direkte i Storybook */
 /* Import theme first (CSS variables) */
 @import '@nostromo/ui-tw/themes/nostromo.css';
-/* Then Tailwind - this will generate all utility classes */
-@import "tailwindcss";
-/* Finally base styles (includes Tailwind directives, but we already processed them above) */
+/* Import base.css which includes Tailwind directives */
 @import '@nostromo/ui-tw/base.css';
