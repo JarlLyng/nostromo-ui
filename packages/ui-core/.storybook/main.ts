@@ -25,7 +25,10 @@ const config: StorybookConfig = {
       postcss: {
         plugins: [
           require('postcss-import'),
-          require('@tailwindcss/postcss'),
+          require('@tailwindcss/postcss')({
+            // Explicitly point to our Tailwind config
+            config: join(__dirname, 'tailwind.config.js'),
+          }),
           require('autoprefixer'),
         ],
       },
