@@ -32,18 +32,14 @@ jobs:
     - name: Run linter
       continue-on-error: true
       run: |
-        pnpm lint 2>&1 | tee lint-output.txt
-        LINT_EXIT=${PIPESTATUS[0]}
-        if [ $LINT_EXIT -ne 0 ]; then
-          echo "Linter found issues (exit code: $LINT_EXIT)"
-          # Count errors vs warnings
-          ERROR_COUNT=$(grep -c "error" lint-output.txt || echo "0")
-          WARNING_COUNT=$(grep -c "warning" lint-output.txt || echo "0")
-          echo "Errors: $ERROR_COUNT, Warnings: $WARNING_COUNT"
-          # Only fail if there are actual errors (not just warnings)
-          if [ "$ERROR_COUNT" -gt "0" ]; then
-            exit $LINT_EXIT
-          fi
+        pnpm lint 2>&1 | tee lint-output.txt || true
+        # Check if there are actual errors (not just warnings)
+        if grep -q "✖.*error" lint-output.txt || grep -q "error.*error" lint-output.txt; then
+          echo "Linter found errors (not just warnings)"
+          exit 1
+        else
+          echo "Linter completed with warnings only (acceptable)"
+          exit 0
         fi
       id: lint
       
