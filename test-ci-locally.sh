@@ -53,8 +53,10 @@ print_status "Type check passed"
 
 echo ""
 echo "🧪 Step 4: Running tests..."
+cd packages/ui-core
 pnpm test:run
 print_status "Tests passed"
+cd ../..
 
 echo ""
 echo "🏗️  Step 5: Building packages..."
@@ -66,11 +68,14 @@ echo "📊 Step 6: Checking bundle sizes..."
 cd packages/ui-core
 pnpm size
 print_status "Bundle size checks passed"
+cd ../..
 
 echo ""
 echo "♿ Step 7: Running accessibility tests..."
+cd packages/ui-core
 pnpm test:a11y
 print_status "Accessibility tests passed"
+cd ../..
 
 echo ""
 echo -e "${GREEN}✅ All CI checks passed! Your code is ready.${NC}"
