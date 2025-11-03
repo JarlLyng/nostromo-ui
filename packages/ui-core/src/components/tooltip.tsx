@@ -340,32 +340,32 @@ export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>
         if (trigger === 'hover') closeWithDelay();
       },
       onPointerEnter: (e: React.PointerEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onPointerEnter?.(e);
         if (trigger === 'hover') openWithDelay();
       },
       onPointerLeave: (e: React.PointerEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onPointerLeave?.(e);
         if (trigger === 'hover') closeWithDelay();
       },
       onClick: (e: React.MouseEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onClick?.(e);
         if (trigger === 'click') toggleNow();
       },
       onFocus: (e: React.FocusEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onFocus?.(e);
         if (trigger === 'focus') openNow();
       },
       onBlur: (e: React.FocusEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onBlur?.(e);
         if (closeOnBlur) closeNow();
       },
       onKeyDown: (e: React.KeyboardEvent) => {
-        // @ts-expect-error
+        // @ts-expect-error - Event handler type compatibility
         props.onKeyDown?.(e);
         if (e.key === 'Escape') closeNow();
       }
