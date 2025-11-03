@@ -61,12 +61,19 @@ export default function StorybookEmbed({
           </div>
         </div>
         <div 
-          className="bg-gray-100 flex items-center justify-center text-gray-500"
+          className="bg-gray-100 flex items-center justify-center text-gray-500 p-8"
           style={{ height, width }}
         >
-          <div className="text-center">
-            <p className="text-sm">Storybook ikke tilgængelig</p>
-            <p className="text-xs mt-1">Kør lokalt for at se interaktive eksempler</p>
+          <div className="text-center max-w-md">
+            <p className="text-sm font-medium mb-2">Storybook ikke tilgængelig</p>
+            <p className="text-xs mb-4">For at se interaktive eksempler, start Storybook lokalt:</p>
+            <div className="bg-gray-200 rounded p-3 text-left font-mono text-xs">
+              <code className="block mb-1">cd packages/ui-core</code>
+              <code className="block">pnpm storybook</code>
+            </div>
+            <p className="text-xs mt-4 text-gray-400">
+              Storybook vil køre på http://localhost:6006
+            </p>
           </div>
         </div>
       </div>
