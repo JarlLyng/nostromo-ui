@@ -273,7 +273,7 @@ export const RichContent: Story = {
         <AccordionTrigger>Code Example</AccordionTrigger>
         <AccordionContent>
           <div className="space-y-3">
-            <p className="text-sm text-gray-600">Here's how to use the Accordion component:</p>
+            <p className="text-sm text-gray-600">Here&apos;s how to use the Accordion component:</p>
             <pre className="bg-gray-900 text-gray-100 p-4 rounded text-sm overflow-x-auto">
 {`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nostromo/ui-core';
 

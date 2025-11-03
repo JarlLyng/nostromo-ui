@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { Toast, ToastProvider, useToastNotification } from '../toast';
+import { ToastProvider, useToastNotification } from '../toast';
 
 // Extend Jest matchers
 expect.extend(toHaveNoViolations);

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "../breadcrumb";
 
 const meta: Meta<typeof Breadcrumb> = {

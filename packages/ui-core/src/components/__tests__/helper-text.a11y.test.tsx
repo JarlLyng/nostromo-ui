@@ -33,7 +33,7 @@ describe('HelperText Accessibility', () => {
         <label htmlFor="test-input">Email</label>
         <input id="test-input" aria-describedby="helper-text" />
         <HelperText id="helper-text">
-          We'll never share your email
+          We&apos;ll never share your email
         </HelperText>
       </div>
     );
