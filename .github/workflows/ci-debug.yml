@@ -1,0 +1,110 @@
+name: CI Debug
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'pnpm'
+      
+    - name: Debug environment
+      run: |
+        echo "=== Environment Debug ==="
+        echo "Node version: $(node --version)"
+        echo "pnpm version: $(pnpm --version)"
+        echo "npm version: $(npm --version)"
+        echo "PATH: $PATH"
+        echo "Working directory: $(pwd)"
+        echo "Files in root:"
+        ls -la
+        echo ""
+        echo "=== Package.json ==="
+        cat package.json | grep -A 5 "packageManager"
+        echo ""
+        echo "=== pnpm store ==="
+        pnpm store path || echo "pnpm store path failed"
+      
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
+        pnpm install --frozen-lockfile || {
+          echo "Install failed!"
+          pnpm --version || echo "pnpm not found after install"
+          which pnpm || echo "pnpm not in PATH"
+          exit 1
+        }
+      
+    - name: Run linter
+      continue-on-error: true
+      run: |
+        echo "Running linter..."
+        pnpm lint 2>&1 | tee lint-output.txt || {
+          echo "Linter failed!"
+          cat lint-output.txt
+          exit 1
+        }
+      
+    - name: Run type check
+      continue-on-error: true
+      run: |
+        echo "Running type check..."
+        pnpm type-check 2>&1 | tee typecheck-output.txt || {
+          echo "Type check failed!"
+          cat typecheck-output.txt
+          exit 1
+        }
+      
+    - name: Run tests
+      continue-on-error: true
+      run: |
+        echo "Running tests..."
+        pnpm test:run 2>&1 | tee test-output.txt || {
+          echo "Tests failed!"
+          tail -100 test-output.txt
+          exit 1
+        }
+      
+    - name: Build packages
+      continue-on-error: true
+      run: |
+        echo "Building packages..."
+        pnpm build 2>&1 | tee build-output.txt || {
+          echo "Build failed!"
+          cat build-output.txt
+          exit 1
+        }
+      
+    - name: Upload debug artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-outputs
+        path: |
+          lint-output.txt
+          typecheck-output.txt
+          test-output.txt
+          build-output.txt
+        retention-days: 1
+

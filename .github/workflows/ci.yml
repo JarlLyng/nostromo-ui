@@ -32,21 +32,59 @@ jobs:
       run: pnpm install --frozen-lockfile
       
     - name: Run linter
-      run: pnpm lint
+      continue-on-error: true
+      run: |
+        pnpm lint 2>&1 | tee lint-output.txt
+        exit ${PIPESTATUS[0]}
+      id: lint
       
     - name: Run type check
-      run: pnpm type-check
+      continue-on-error: true
+      run: |
+        pnpm type-check 2>&1 | tee typecheck-output.txt
+        exit ${PIPESTATUS[0]}
+      id: typecheck
       
     - name: Run tests
-      run: pnpm test:run
+      continue-on-error: true
+      run: |
+        pnpm test:run 2>&1 | tee test-output.txt
+        exit ${PIPESTATUS[0]}
+      id: tests
       
     - name: Build packages
-      run: pnpm build
+      continue-on-error: true
+      run: |
+        pnpm build 2>&1 | tee build-output.txt
+        exit ${PIPESTATUS[0]}
+      id: build
       
     - name: Check bundle sizes
+      continue-on-error: true
       run: |
         cd packages/ui-core
-        pnpm size
+        pnpm size 2>&1 | tee size-output.txt
+        exit ${PIPESTATUS[0]}
+      id: size
+      
+    - name: Upload error logs
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ci-error-logs
+        path: |
+          lint-output.txt
+          typecheck-output.txt
+          test-output.txt
+          build-output.txt
+          size-output.txt
+        retention-days: 7
+      
+    - name: Fail if any step failed
+      if: steps.lint.outcome == 'failure' || steps.typecheck.outcome == 'failure' || steps.tests.outcome == 'failure' || steps.build.outcome == 'failure' || steps.size.outcome == 'failure'
+      run: |
+        echo "One or more checks failed. See artifacts for details."
+        exit 1
 
   accessibility:
     runs-on: ubuntu-latest
@@ -70,7 +108,24 @@ jobs:
       run: pnpm install --frozen-lockfile
       
     - name: Run accessibility tests
+      continue-on-error: true
       run: |
         cd packages/ui-core
-        pnpm test:a11y
+        pnpm test:a11y 2>&1 | tee a11y-output.txt
+        exit ${PIPESTATUS[0]}
+      id: a11y
+      
+    - name: Upload error logs
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: a11y-error-logs
+        path: a11y-output.txt
+        retention-days: 7
+      
+    - name: Fail if step failed
+      if: steps.a11y.outcome == 'failure'
+      run: |
+        echo "Accessibility tests failed. See artifacts for details."
+        exit 1
 
