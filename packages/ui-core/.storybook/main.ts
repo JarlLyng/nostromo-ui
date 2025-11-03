@@ -20,8 +20,11 @@ const config: StorybookConfig = {
     };
 
     // 2) Tailwind CSS v4 Vite plugin (required for Tailwind v4)
+    // Explicitly point to the tailwind config file
     const tailwindVite = (await import('@tailwindcss/vite')).default;
-    config.plugins = [...(config.plugins ?? []), tailwindVite()];
+    config.plugins = [...(config.plugins ?? []), tailwindVite({
+      config: join(__dirname, '../tailwind.config.js'),
+    })];
 
     // 3) Optimize dependencies for faster builds
     config.optimizeDeps = {
