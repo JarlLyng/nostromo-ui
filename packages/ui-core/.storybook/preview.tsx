@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import React from 'react';
 
 // Import CSS - this triggers Tailwind processing
 import './preview.css';
@@ -18,7 +19,7 @@ const preview: Preview = {
         document.documentElement.setAttribute('data-theme', 'nostromo');
         document.documentElement.setAttribute('data-color-scheme', 'light');
       }
-      return <Story />;
+      return React.createElement(Story);
     },
   ],
 };
