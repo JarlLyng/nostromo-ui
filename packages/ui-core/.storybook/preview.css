@@ -5,3 +5,26 @@
 @import '@nostromo/ui-tw/base.css';
 /* Import Tailwind CSS v4 - this generates all utility classes */
 @import "tailwindcss";
+
+/* Workaround: Tailwind CSS v4 may not be generating brand color classes correctly */
+/* Add explicit CSS rules to ensure brand colors work in Storybook */
+[data-theme="nostromo"] .bg-brand-50 { background-color: hsl(262 84% 95%); }
+[data-theme="nostromo"] .bg-brand-100 { background-color: hsl(262 84% 90%); }
+[data-theme="nostromo"] .bg-brand-200 { background-color: hsl(262 84% 80%); }
+[data-theme="nostromo"] .bg-brand-300 { background-color: hsl(262 84% 70%); }
+[data-theme="nostromo"] .bg-brand-400 { background-color: hsl(262 84% 60%); }
+[data-theme="nostromo"] .bg-brand-500 { background-color: hsl(262 84% 52%); }
+[data-theme="nostromo"] .bg-brand-600 { background-color: hsl(262 84% 45%); }
+[data-theme="nostromo"] .bg-brand-700 { background-color: hsl(262 84% 35%); }
+[data-theme="nostromo"] .bg-brand-800 { background-color: hsl(262 84% 25%); }
+[data-theme="nostromo"] .bg-brand-900 { background-color: hsl(262 84% 15%); }
+[data-theme="nostromo"] .bg-brand-950 { background-color: hsl(262 84% 8%); }
+
+[data-theme="nostromo"] .text-brand-500 { color: hsl(262 84% 52%); }
+[data-theme="nostromo"] .text-brand-600 { color: hsl(262 84% 45%); }
+
+[data-theme="nostromo"] .border-brand-400\/20 { border-color: hsl(262 84% 60% / 0.2); }
+[data-theme="nostromo"] .border-brand-500 { border-color: hsl(262 84% 52%); }
+
+[data-theme="nostromo"] .hover\:bg-brand-600:hover { background-color: hsl(262 84% 45%); }
+[data-theme="nostromo"] .ring-brand-500 { --tw-ring-color: hsl(262 84% 52%); }
