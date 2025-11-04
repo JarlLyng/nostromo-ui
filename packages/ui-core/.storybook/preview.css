@@ -197,3 +197,8 @@
 [data-theme="nostromo"] .gap-2 { gap: 0.5rem; }
 [data-theme="nostromo"] .gap-3 { gap: 0.75rem; }
 [data-theme="nostromo"] .gap-4 { gap: 1rem; }
+
+/* Diagnostic utility - indicates Tailwind config is loaded */
+.__tw-config-loaded {
+  outline: 3px solid lime !important;
+}
