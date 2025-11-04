@@ -3,3 +3,5 @@
 @import '@nostromo/ui-tw/themes/nostromo.css';
 /* Import base.css which includes Tailwind directives and CSS reset */
 @import '@nostromo/ui-tw/base.css';
+/* Import Tailwind CSS v4 - this generates all utility classes */
+@import "tailwindcss";
