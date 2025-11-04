@@ -32,17 +32,17 @@ export const ConfigLoaded: Story = {
     <div className="space-y-4">
       <div className="__tw-config-loaded p-4 border">
         <h3 className="text-lg font-semibold">Config Test</h3>
-        <p>Hvis du ser lime-grøn outline, er Tailwind config aktiv</p>
+        <p>If you see a lime-green outline, the Tailwind config is active</p>
       </div>
       
       <div className="bg-brand-500 text-white p-4 rounded">
         <h3 className="text-lg font-semibold">Brand Color Test</h3>
-        <p>Hvis du ser lilla baggrund, virker preset og brand farver</p>
+        <p>If you see a purple background, the preset and brand colors are working</p>
       </div>
       
       <div className="bg-[hsl(var(--color-brand-500))] text-white p-4 rounded">
         <h3 className="text-lg font-semibold">CSS Variable Test</h3>
-        <p>Hvis du ser lilla baggrund, virker CSS variabler</p>
+        <p>If you see a purple background, CSS variables are working</p>
       </div>
     </div>
   ),
