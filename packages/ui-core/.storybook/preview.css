@@ -6,8 +6,10 @@
 /* Import Tailwind CSS v4 - this generates all utility classes */
 @import "tailwindcss";
 
-/* Workaround: Tailwind CSS v4 may not be generating brand color classes correctly */
-/* Add explicit CSS rules to ensure brand colors work in Storybook */
+/* Fallback: Explicit CSS rules as backup if safelist patterns don't work
+ * These rules ensure styling works even if Tailwind's JIT compiler misses some classes
+ * Ideally, safelist patterns in tailwind.config.js should handle this, but we keep these as safety net
+ */
 [data-theme="nostromo"] .bg-brand-50 { background-color: hsl(262 84% 95%); }
 [data-theme="nostromo"] .bg-brand-100 { background-color: hsl(262 84% 90%); }
 [data-theme="nostromo"] .bg-brand-200 { background-color: hsl(262 84% 80%); }
