@@ -28,3 +28,30 @@
 
 [data-theme="nostromo"] .hover\:bg-brand-600:hover { background-color: hsl(262 84% 45%); }
 [data-theme="nostromo"] .ring-brand-500 { --tw-ring-color: hsl(262 84% 52%); }
+
+/* Error colors for destructive buttons */
+[data-theme="nostromo"] .bg-error-500 { background-color: hsl(0 84% 60%); }
+[data-theme="nostromo"] .bg-error-600 { background-color: hsl(0 84% 50%); }
+[data-theme="nostromo"] .border-error-400\/20 { border-color: hsl(0 84% 60% / 0.2); }
+[data-theme="nostromo"] .hover\:bg-error-600:hover { background-color: hsl(0 84% 50%); }
+
+/* Neutral colors (used in secondary, subtle, outline variants) */
+[data-theme="nostromo"] .bg-neutral-50 { background-color: hsl(0 0% 98%); }
+[data-theme="nostromo"] .bg-neutral-100 { background-color: hsl(0 0% 96%); }
+[data-theme="nostromo"] .bg-neutral-200 { background-color: hsl(0 0% 90%); }
+[data-theme="nostromo"] .bg-neutral-300 { background-color: hsl(0 0% 83%); }
+[data-theme="nostromo"] .text-neutral-700 { color: hsl(0 0% 45%); }
+[data-theme="nostromo"] .text-neutral-900 { color: hsl(0 0% 9%); }
+[data-theme="nostromo"] .border-neutral-200 { border-color: hsl(0 0% 90%); }
+[data-theme="nostromo"] .border-neutral-300 { border-color: hsl(0 0% 83%); }
+[data-theme="nostromo"] .hover\:bg-neutral-50:hover { background-color: hsl(0 0% 98%); }
+[data-theme="nostromo"] .hover\:bg-neutral-100:hover { background-color: hsl(0 0% 96%); }
+[data-theme="nostromo"] .hover\:bg-neutral-200:hover { background-color: hsl(0 0% 90%); }
+[data-theme="nostromo"] .hover\:border-neutral-300:hover { border-color: hsl(0 0% 83%); }
+[data-theme="nostromo"] .hover\:border-brand-500:hover { border-color: hsl(262 84% 52%); }
+[data-theme="nostromo"] .hover\:text-brand-600:hover { color: hsl(262 84% 45%); }
+
+/* Success colors */
+[data-theme="nostromo"] .bg-success-500 { background-color: hsl(142 76% 36%); }
+[data-theme="nostromo"] .bg-success-600 { background-color: hsl(142 76% 30%); }
+[data-theme="nostromo"] .hover\:bg-success-600:hover { background-color: hsl(142 76% 30%); }
