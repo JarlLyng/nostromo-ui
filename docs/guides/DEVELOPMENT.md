@@ -23,6 +23,18 @@ This file describes how to set up Nostromo UI for development, including install
 - **Git**: Latest version
 
 ### Installation
+
+#### For Using Nostromo UI in Your Project
+```bash
+# Install packages
+pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+
+# Or with npm/yarn
+npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+```
+
+#### For Developing Nostromo UI
 ```bash
 # Clone repository
 git clone https://github.com/JarlLyng/nostromo-ui.git
@@ -34,6 +46,39 @@ pnpm install
 # Start development server
 pnpm dev
 ```
+
+### Setup in Your Project
+
+1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`:
+```js
+const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+  ],
+  presets: [nostromoPreset],
+};
+```
+
+2. **Import CSS** - Add base styles and theme in your entry file:
+```ts
+// In your entry file (e.g. main.tsx or _app.tsx)
+import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
+```
+
+3. **Use Components**:
+```tsx
+import { Button } from "@nostromo/ui-core";
+
+export default function App() {
+  return <Button variant="default">Click me</Button>;
+}
+```
+
+> 🎨 **For theming customization, see [Theming Guide](THEMING.md)**
 
 ## Project Structure
 

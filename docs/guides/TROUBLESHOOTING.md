@@ -25,17 +25,19 @@ Error: Cannot resolve module '@nostromo/ui-core'
 ```
 
 **Solution:**
+> 📖 **For complete installation instructions, see [Development Guide](DEVELOPMENT.md#installation)**
+
 ```bash
 # Check if packages are installed
-npm list @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm list @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
 # Reinstall if missing
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
 # Clear cache and reinstall
-npm cache clean --force
-rm -rf node_modules package-lock.json
-npm install
+pnpm store prune
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 ```
 
 #### Issue: Version conflicts

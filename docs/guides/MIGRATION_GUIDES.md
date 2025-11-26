@@ -38,12 +38,14 @@ This document provides comprehensive migration guides for developers switching f
 
 ### Installation
 
+> 📖 **For complete installation instructions, see [Development Guide](DEVELOPMENT.md#installation)**
+
 ```bash
 # Remove Material-UI
 npm uninstall @mui/material @emotion/react @emotion/styled
 
 # Install Nostromo UI
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
 
 ### Component Mappings

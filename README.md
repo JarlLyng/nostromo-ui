@@ -35,77 +35,32 @@ The documentation is built with Next.js and Nextra for optimal performance and d
 
 ### Installation
 ```bash
-# React project
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
-# or
-yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
-# or
 pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
 
-> **Note**: We recommend using `pnpm` for best performance in our monorepo setup.
+### Setup
+1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`
+2. **Import CSS** - Add base styles and theme in your entry file
+3. **Start using components** - Import and use components
 
-### Tailwind Setup
-```js
+```tsx
 // tailwind.config.js
 const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
-
 module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
-  ],
   presets: [nostromoPreset],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"]
 };
-```
 
-### Import Base CSS
-```ts
-// In your entry file (e.g. main.tsx)
+// main.tsx
 import "@nostromo/ui-tw/styles/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
+import "@nostromo/ui-tw/themes/nostromo.css";
+
+// Component usage
+import { Button } from "@nostromo/ui-core";
+<Button variant="default">Click me</Button>
 ```
 
-### Bundle Size & Performance
-```tsx
-// ✅ Recommended: Per-component imports (smallest bundle)
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
-
-// ✅ Also OK: Barrel imports
-import { Button, Input } from '@nostromo/ui-core';
-
-// ❌ Avoid: Full library import
-import * as Nostromo from '@nostromo/ui-core';
-```
-
-**Performance Benefits:**
-- **Zero runtime overhead** - CSS variables only, no JavaScript
-- **Tree shaking** - Only used components included
-- **CSS-only theming** - No runtime theme switching
-- **Optimized bundle** - Minimal JavaScript footprint
-
-### Using in React
-```tsx
-import { Button, Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core";
-
-export default function Example() {
-  return (
-    <div className="flex items-center gap-4">
-      <Button variant="default">Start mission</Button>
-      
-      {/* Compound Component API (recommended) */}
-      <Avatar size="lg">
-        <AvatarImage src="/user.jpg" alt="User avatar" />
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-      
-      {/* Or simple prop API */}
-      <Avatar src="/user.jpg" alt="User avatar" fallback="JD" size="md" />
-    </div>
-  );
-}
-```
+> 📖 **Read more**: [Complete setup guide](docs/guides/DEVELOPMENT.md)
 
 ## 🧩 Available Components
 
@@ -212,9 +167,8 @@ We're actively seeking feedback from the community! Please help us by:
 ### 📖 **Main Documents**
 - **[Architecture](docs/guides/ARCHITECTURE.md)** - Monorepo structure, build system and package organization
 - **[Theming](docs/guides/THEMING.md)** - Complete theming guide with CSS variables and custom themes
-- **[Component API](COMPONENT_API.md)** - API design, variant system and component patterns
+- **[API Reference](docs/guides/API_REFERENCE.md)** - Complete API reference for all components
 - **[Development](docs/guides/DEVELOPMENT.md)** - Setup, build process, testing and contribution guidelines
-- **[Technical Setup](TECHNICAL_SETUP.md)** - Deeper technical decisions and implementation details
 - **[Deployment](docs/guides/DEPLOYMENT.md)** - Deployment guide for GitHub Pages
 
 ### 📋 **Project Management**
@@ -235,125 +189,47 @@ We're actively seeking feedback from the community! Please help us by:
 
 ---
 
-## 🏗️ Architecture (Overview)
+## 🏗️ Architecture
 
-The project is organized as a **monorepo** (pnpm + Turborepo):
+The project is organized as a **monorepo** (pnpm + Turborepo) with three main packages:
 
-- **`@nostromo/ui-core`**\
-  Product and app components: Button, Input, Form, Dialog, Popover, Tabs, Table etc.
-
-- **`@nostromo/ui-marketing`**\
-  Marketing components: Hero, Feature section, Testimonial, Gallery, CTA sections, Pricing, FAQ.
-
-- **`@nostromo/ui-tw`**\
-  Tailwind preset + `base.css` + theme variables (CSS vars).
-
-- **`docs/`**\
-  Modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. Runs locally on http://localhost:3000.
+- **`@nostromo/ui-core`** - Product and app components (Button, Input, Dialog, etc.)
+- **`@nostromo/ui-marketing`** - Marketing components (Hero, Features, Pricing, etc.)
+- **`@nostromo/ui-tw`** - Tailwind preset and theme system
 
 > 📖 **Read more**: [Architecture documentation](docs/guides/ARCHITECTURE.md)
 
 ---
 
-## 🎨 Theming & Design Tokens
+## 🎨 Theming
 
-Theming is based on **CSS variables in HSL**, which integrate directly into the Tailwind configuration. This gives you maximum flexibility without runtime overhead.
-
-### **Design Tokens**
-- **Colors**: HSL-based with semantic naming (`--color-brand-500`, `--color-neutral-900`)
-- **Spacing**: Consistent scale (`--spacing-sm`, `--spacing-md`, `--spacing-lg`)
-- **Typography**: Font families and sizes (`--font-heading`, `--text-lg`)
-- **Shadows**: Layered shadow system (`--shadow-sm`, `--shadow-lg`)
-- **Radius**: Border radius tokens (`--radius-md`, `--radius-lg`)
-
-### **Predefined Themes**
-- **Nostromo** (Default) - Purple brand, dark aesthetic
-- **Mother** - Cyan brand, clinical dashboard style  
-- **LV-426** - Orange brand, warm marketing feel
-- **Sulaco** - Blue brand, professional military look
-
-### **Custom Theming**
-```css
-[data-theme="mybrand"] {
-  /* Brand colors - only change what you need */
-  --color-brand-500: 220 100% 50%;  /* Your brand blue */
-  --color-brand-600: 220 100% 40%;  /* Darker variant */
-  
-  /* Typography */
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "Inter", sans-serif;
-  
-  /* Styling */
-  --radius-md: 0.75rem;
-}
-```
-
-### **Dark Mode Support**
-```css
-[data-theme="nostromo"][data-color-scheme="dark"] {
-  --color-neutral-50: 0 0% 9%;     /* Dark background */
-  --color-neutral-900: 0 0% 98%;   /* Light text */
-  --color-brand-500: 262 84% 60%;  /* Lighter brand for contrast */
-}
-```
-
-### **Accessibility**
-- **WCAG 2.1 AA compliance** - All colors tested for contrast ratios
-- **Focus states** - Automatic focus indicators
-- **Keyboard navigation** - Full keyboard support
+Nostromo UI uses **CSS variables in HSL format** for theming, providing maximum flexibility without runtime overhead. Includes 4 predefined themes (Nostromo, Mother, LV-426, Sulaco) and full support for custom themes and dark mode.
 
 > 🎨 **Read more**: [Complete theming guide](docs/guides/THEMING.md)
 
 ---
 
-## 🧩 Component Areas
+## 🧩 Components
 
-### Core
-- **Primitives**: Button, Input, Label, Form, Select, Checkbox, Radio.
-- **Navigation**: Tabs, Dropdown, Popover, Dialog, Sheet.
-- **Feedback**: Toast, Alert, Skeleton, Spinner.
-- **Data**: Table, Badge, Card, List, Avatar.
+**27 Core Components**: Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator, ErrorBoundary
 
-### Marketing
-- **Hero** (headline, media, CTA).
-- **Features** (grid med ikoner + tekst).
-- **Testimonials/Quotes**.
-- **Image Gallery**.
-- **Pricing Table**.
-- **Logo Wall**.
-- **FAQ Section**.
-- **CTA/Signup Block**.
+**6 Marketing Components**: Hero, Testimonials, Features, Pricing, Gallery, Logo Wall
 
-> 🔧 **Read more**: [Component API documentation](COMPONENT_API.md)
+> 🔧 **Read more**: [Complete API Reference](docs/guides/API_REFERENCE.md)
 
 ---
 
 ## 🗺️ Roadmap
 
-### **MVP (0.1.0)** ✅ **90% Complete**
-- ✅ Monorepo setup (pnpm + Turborepo).
-- ✅ `@nostromo/ui-tw`: Tailwind preset, base.css, Nostromo theme.
-- ✅ `@nostromo/ui-core`: Button, Input, Dialog, Card, Badge, Avatar.
-- ✅ `@nostromo/docs`: Modern Nextra-based documentation site with all 27 components and interactive features.
-- 🚧 `@nostromo/ui-marketing`: Hero, Features, Testimonial.
+**Current Status**: Beta (0.1.0) - Production Ready! 🎉
 
-### **0.2.0 – More Core Components**
-- Form primitives (Label, HelperText, Error).
-- Table, Skeleton, Toast.
-- Dark mode support.
+- ✅ **27 Core Components** - Complete set of product components
+- ✅ **6 Marketing Components** - Hero, Features, Testimonials, Pricing, Gallery, Logo Wall
+- ✅ **4 Predefined Themes** - Nostromo, Mother, LV-426, Sulaco
+- ✅ **Full Documentation** - Nextra-based site with live examples
+- ✅ **100% Test Coverage** - 691 tests including accessibility
 
-### **0.3.0 – More Marketing Blocks**
-- Gallery, Pricing Table, Logo Wall.
-- More predefined themes (*Mother*, *LV-426*, *Sulaco*).
-
-### **0.4.0 – Playground & Theming Tool**
-- Live theme editor (choose colors/typography → generate CSS variables).
-- Download/export custom theme.
-
-### **1.0.0 – Stable Release**
-- Complete documentation coverage.
-- A11y audit.
-- Semver stability and changelog.
+> 📋 **Read more**: [Detailed roadmap](docs/guides/ROADMAP.md)
 
 ---
 
@@ -377,9 +253,9 @@ Theming is based on **CSS variables in HSL**, which integrate directly into the 
 ### 📚 **Complete Documentation**
 - **[Architecture](docs/guides/ARCHITECTURE.md)** - Detailed monorepo and package structure
 - **[Theming](docs/guides/THEMING.md)** - Complete theming guide and examples  
-- **[Component API](COMPONENT_API.md)** - API design and variant system
+- **[API Reference](docs/guides/API_REFERENCE.md)** - Complete API reference for all components
+- **[Best Practices](docs/guides/BEST_PRACTICES.md)** - Component composition and usage patterns
 - **[Development](docs/guides/DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
-- **[Technical Setup](TECHNICAL_SETUP.md)** - Technical decisions and implementation details
 - **[Deployment](docs/guides/DEPLOYMENT.md)** - GitHub Pages deployment guide
 
 ### 📋 **Project Information**
