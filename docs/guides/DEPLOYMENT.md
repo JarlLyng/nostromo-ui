@@ -4,7 +4,14 @@ This guide describes how the Nostromo UI documentation site is deployed and main
 
 ## 📋 Overview
 
-Nostromo UI uses a **Nextra-based documentation site** with all 27 components, Storybook integration and live previews. It runs locally on **http://localhost:3000** and is optimized for development and testing.
+Nostromo UI uses a **Nextra-based documentation site** with all 27 components, Storybook integration, live code examples, and search functionality. It runs locally on **http://localhost:3000** and is optimized for development and testing.
+
+**Features:**
+- 🔍 **Search functionality** - Quick search across all documentation
+- 📝 **Live code examples** - Interactive examples with react-live
+- 📚 **Categorized navigation** - Components organized by category
+- 🎨 **Storybook integration** - Embedded Storybook examples
+- 🌙 **Dark mode support** - Automatic dark mode detection
 
 ## 🌐 Deployment Targets
 

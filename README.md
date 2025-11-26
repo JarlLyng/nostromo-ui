@@ -16,7 +16,16 @@ The name is inspired by the spaceship *USCSS Nostromo* from the movie **Alien** 
 
 **Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) (GitHub Pages)
 
-We have a modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. The documentation is built with Next.js and Nextra for optimal performance and developer experience.
+We have a modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live code previews, and complete API documentation. The documentation features:
+
+- **🔍 Search functionality** - Quick search across all documentation
+- **📝 Live code examples** - Interactive examples with react-live
+- **📚 Categorized navigation** - Components organized by category (Primitives, Forms, Navigation, Feedback, Data Display, Marketing)
+- **🎨 Storybook integration** - Embedded Storybook examples directly in docs
+- **🌙 Dark mode support** - Automatic dark mode detection
+- **📱 Responsive design** - Works perfectly on all devices
+
+The documentation is built with Next.js and Nextra for optimal performance and developer experience.
 
 > **Note**: Documentation is automatically deployed via GitHub Pages when changes are pushed to the main branch.
 
