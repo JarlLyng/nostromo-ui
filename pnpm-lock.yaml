@@ -228,6 +228,9 @@ importers:
       '@nostromo/ui-core':
         specifier: workspace:*
         version: link:../packages/ui-core
+      '@nostromo/ui-marketing':
+        specifier: workspace:*
+        version: link:../packages/ui-marketing
       '@nostromo/ui-tw':
         specifier: workspace:*
         version: link:../packages/ui-tw
