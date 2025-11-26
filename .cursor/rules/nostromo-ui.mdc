@@ -42,9 +42,10 @@ alwaysApply: true
 
 ### Tailwind CSS v4 Requirements
 - Use Tailwind CSS v4 syntax and configuration.
-- Use `@tailwindcss/postcss` plugin, not `tailwindcss`.
-- Include `@tailwind base; @tailwind components; @tailwind utilities;`.
-- Configure via `tailwind.config.js` with presets.
+- Use `@tailwindcss/vite` plugin for Vite projects (Storybook, docs).
+- Use `@tailwindcss/postcss` plugin for PostCSS-based builds.
+- Include `@tailwind base; @tailwind components; @tailwind utilities;` in CSS entry files.
+- Configure via `tailwind.config.js` or `tailwind.config.ts` with presets.
 
 ### Component Development
 - Use CVA for variant management.
@@ -89,7 +90,7 @@ packages/
 - Clear TypeScript interfaces.
 - Storybook stories for all components.
 - Accessibility notes in docs.
-- Maintain README.md, ARCHITECTURE.md, THEMING.md, COMPONENT_API.md, DEVELOPMENT.md, ROADMAP.md.
+- Maintain README.md, docs/guides/ARCHITECTURE.md, docs/guides/THEMING.md, docs/guides/API_REFERENCE.md, docs/guides/DEVELOPMENT.md, docs/guides/ROADMAP.md.
 - Update documentation with every change; keep it current and cross-referenced.
 
 ### Workflow Guidelines

@@ -12,11 +12,15 @@ alwaysApply: false
 ```
 packages/ui-core/src/
 ├── components/
-│   ├── button/
-│   │   ├── button.tsx          # React component
-│   │   ├── button.test.tsx     # Unit tests
-│   │   ├── button.stories.tsx  # Storybook stories
-│   │   └── index.ts           # Exports
+│   ├── button.tsx                    # React component
+│   ├── __tests__/
+│   │   ├── button.test.tsx          # Unit tests
+│   │   └── button.a11y.test.tsx     # Accessibility tests
+│   └── __stories__/
+│       └── Button.stories.tsx       # Storybook stories
+├── lib/
+│   └── utils.ts                      # Utility functions
+└── index.ts                          # Package exports
 ```
 
 ### Component Template
@@ -186,9 +190,9 @@ const buttonVariants = cva(
 
 ### Unit Tests
 ```tsx
-// button.test.tsx
+// src/components/__tests__/button.test.tsx
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Button } from "./button";
+import { Button } from "../button";
 
 describe("Button", () => {
   it("renders with correct text", () => {
@@ -213,10 +217,10 @@ describe("Button", () => {
 
 ### Accessibility Tests
 ```tsx
-// button.a11y.test.tsx
+// src/components/__tests__/button.a11y.test.tsx
 import { render } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Button } from "./button";
+import { Button } from "../button";
 
 expect.extend(toHaveNoViolations);
 
@@ -231,27 +235,48 @@ describe("Button Accessibility", () => {
 
 ## 📚 Storybook Stories
 
+### Story Location
+- **All stories** must be placed in `src/components/__stories__/` folder
+- **Naming**: Use PascalCase matching component name (e.g., `Button.stories.tsx`)
+- **Title**: Use `Components/[ComponentName]` or `Components/[Category]/[ComponentName]` format
+
 ### Story Template
 ```tsx
-// button.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./button";
+// src/components/__stories__/Button.stories.tsx
+import React from 'react';
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Button } from "../button";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: 'A versatile button component with multiple variants and sizes.',
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {
     variant: {
       control: { type: "select" },
-      options: ["primary", "secondary", "ghost", "destructive"],
+      options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+      description: 'Visual variant of the button',
     },
     size: {
       control: { type: "select" },
-      options: ["sm", "md", "lg"],
+      options: ["sm", "default", "lg", "icon"],
+      description: 'Size of the button',
+    },
+    loading: {
+      control: { type: "boolean" },
+      description: 'Show loading spinner',
+    },
+    disabled: {
+      control: { type: "boolean" },
+      description: 'Disable the button',
     },
   },
 };
@@ -259,17 +284,17 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    variant: "primary",
+    variant: "default",
     children: "Button",
   },
 };
 
-export const Secondary: Story = {
+export const Destructive: Story = {
   args: {
-    variant: "secondary",
-    children: "Button",
+    variant: "destructive",
+    children: "Delete",
   },
 };
 
@@ -283,33 +308,72 @@ export const Loading: Story = {
 
 ## 📦 Export Patterns
 
-### Index File
+### Package Exports (src/index.ts)
 ```ts
-// index.ts
-export { Button } from "./button";
-export type { ButtonProps } from "./button";
+// src/index.ts - Main package exports
+export { Button, buttonVariants } from './components/button';
+export type { ButtonProps } from './components/button';
 
-// Individual exports for tree-shaking
-export { Button as ButtonComponent } from "./button";
+// Individual component exports for tree-shaking
+// These are configured in package.json exports field
 ```
 
-### Package.json Exports
+### Package.json Exports Configuration
 ```json
 {
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
     "./button": {
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js",
-      "types": "./dist/button.d.ts"
+      "types": "./dist/components/button.d.ts",
+      "import": "./dist/components/button.js",
+      "require": "./dist/components/button.cjs"
     }
   }
 }
 ```
+
+### Monorepo Workspace Dependencies
+```json
+{
+  "dependencies": {
+    "@nostromo/ui-tw": "workspace:^"
+  },
+  "devDependencies": {
+    "@nostromo/ui-core": "workspace:*"
+  }
+}
+```
+
+**Note**: Use `workspace:^` for dependencies and `workspace:*` for devDependencies in monorepo setup.
+
+## 📦 Monorepo Patterns
+
+### Workspace Protocol
+```json
+{
+  "dependencies": {
+    "@nostromo/ui-tw": "workspace:^"
+  }
+}
+```
+
+### Internal Package Imports
+```tsx
+// In ui-core components
+import { cn } from '../lib/utils';
+import { buttonVariants } from './button';
+
+// In tests/stories
+import { Button } from '../button';
+```
+
+### Storybook Configuration
+Stories are automatically discovered from `src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)` pattern. The Storybook config uses `@tailwindcss/vite` plugin for Tailwind v4 support.
 
 ## 🚫 Common Mistakes to Avoid
 
@@ -333,4 +397,5 @@ export { Button as ButtonComponent } from "./button";
 
 ---
 
+**Remember**: Every component should be accessible, performant, and follow established patterns. When in doubt, check existing components for reference.
 **Remember**: Every component should be accessible, performant, and follow established patterns. When in doubt, check existing components for reference.

@@ -81,10 +81,10 @@ describe("Button", () => {
 
 ### Accessibility Tests
 ```tsx
-// button.a11y.test.tsx
+// src/components/__tests__/button.a11y.test.tsx
 import { render } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
-import { Button } from "./button";
+import { Button } from "../button";
 
 expect.extend(toHaveNoViolations);
 
@@ -96,6 +96,8 @@ describe("Button Accessibility", () => {
   });
 });
 ```
+
+**Note**: We use `jest-axe` which wraps `axe-core` for Vitest compatibility. The `axe` function and `toHaveNoViolations` matcher are provided by `jest-axe`.
 
 ## 🔍 Linting Configuration
 
@@ -178,17 +180,14 @@ pnpm lint --fix
 ```
 src/
 ├── components/
-│   ├── button/
-│   │   ├── button.tsx
-│   │   ├── button.test.tsx
-│   │   └── button.a11y.test.tsx
-│   └── input/
-│       ├── input.tsx
-│       ├── input.test.tsx
-│       └── input.a11y.test.tsx
+│   ├── button.tsx
+│   └── __tests__/
+│       ├── button.test.tsx          # Unit tests
+│       └── button.a11y.test.tsx     # Accessibility tests
+├── __stories__/
+│   └── Button.stories.tsx          # Storybook stories
 └── test/
-    ├── setup.ts
-    └── utils.ts
+    └── setup.ts                     # Test setup and mocks
 ```
 
 ## 🚫 Testing Anti-Patterns
@@ -215,7 +214,7 @@ it("handles click", () => {
 // Correct - testing behavior
 expect(screen.getByRole("button")).toBeDisabled();
 
-// Correct - testing accessibility
+// Correct - testing accessibility with jest-axe
 const { container } = render(<Button>Click me</Button>);
 const results = await axe(container);
 expect(results).toHaveNoViolations();
