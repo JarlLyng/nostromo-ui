@@ -470,68 +470,8 @@ const Button = ({ className, ...props }) => (
 );
 ```
 
-## Live Sandboxes & Eksempler
+## Theme Playground
 
-### Codesandbox Integration
-Hver komponent har et live eksempel du kan forke:
-
-```tsx
-// Button eksempel - forke direkte fra docs
-import { Button } from '@nostromo/ui-core';
-
-export default function ButtonExample() {
-  return (
-    <div className="space-x-2">
-      <Button variant="default">Default</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-    </div>
-  );
-}
-```
-
-### StackBlitz Integration
-```tsx
-// Komplet Next.js setup - klik for at åbne i StackBlitz
-import { Button, Card, Input } from '@nostromo/ui-core';
-
-export default function App() {
-  return (
-    <Card className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Nostromo UI Demo</h1>
-      <Input placeholder="Enter your name" className="mb-4" />
-      <Button>Get Started</Button>
-    </Card>
-  );
-}
-```
-
-### Theme Playground
-```tsx
-// Live theme switcher - prøv forskellige temaer
-function ThemePlayground() {
-  const themes = ['nostromo', 'mother', 'lv-426', 'sulaco'];
-  const [currentTheme, setCurrentTheme] = useState('nostromo');
-  
-  return (
-    <div className="space-y-4">
-      <select 
-        value={currentTheme} 
-        onChange={(e) => setCurrentTheme(e.target.value)}
-        className="px-3 py-2 border rounded-md"
-      >
-        {themes.map(theme => (
-          <option key={theme} value={theme}>{theme}</option>
-        ))}
-      </select>
-      
-      <div data-theme={currentTheme} className="p-4 border rounded-lg">
-        <Button>Test Button</Button>
-        <Input placeholder="Test Input" />
-      </div>
-    </div>
-  );
-}
-```
+Du kan se live eksempler af alle temaer i vores [dokumentationssite](/theming) og [Storybook](/storybook).
 
 Dette theming system giver dig maksimal fleksibilitet til at skabe konsistente, performante og smukke brugergrænseflader.

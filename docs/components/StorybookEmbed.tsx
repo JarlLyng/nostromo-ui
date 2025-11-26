@@ -18,11 +18,22 @@ export default function StorybookEmbed({
     const iframe = iframeRef.current
     if (!iframe) return
 
-          // Storybook URL - tilpas til din Storybook port
-          const storybookUrl = process.env.NODE_ENV === 'development' 
-            ? 'http://localhost:6006' 
-            : 'https://jarllyng.github.io/nostromo-ui/storybook-static'
+    // Storybook URL configuration
+    // Uses environment variables or defaults
+    const getStorybookUrl = () => {
+      if (typeof window !== 'undefined') {
+        // Client-side: check for environment variable or use production URL
+        return process.env.NEXT_PUBLIC_STORYBOOK_URL || 
+               (process.env.NODE_ENV === 'development' 
+                 ? 'http://localhost:6006' 
+                 : 'https://jarllyng.github.io/nostromo-ui/storybook-static')
+      }
+      // Server-side: use production URL
+      return process.env.NEXT_PUBLIC_STORYBOOK_URL || 
+             'https://jarllyng.github.io/nostromo-ui/storybook-static'
+    }
     
+    const storybookUrl = getStorybookUrl()
     const storyUrl = `${storybookUrl}/iframe.html?id=${encodeURIComponent(story)}&viewMode=story`
     
     iframe.src = storyUrl

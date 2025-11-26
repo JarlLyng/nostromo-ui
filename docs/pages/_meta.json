@@ -1,0 +1,39 @@
+{
+  "index": "Home",
+  "getting-started": "Getting Started",
+  "theming": "Theming",
+  "api": "API Reference",
+  "components": {
+    "title": "Components",
+    "type": "page",
+    "items": {
+      "primitives": {
+        "title": "Primitives",
+        "type": "page"
+      },
+      "forms": {
+        "title": "Forms",
+        "type": "page"
+      },
+      "navigation": {
+        "title": "Navigation",
+        "type": "page"
+      },
+      "feedback": {
+        "title": "Feedback",
+        "type": "page"
+      },
+      "data-display": {
+        "title": "Data Display",
+        "type": "page"
+      },
+      "marketing": {
+        "title": "Marketing",
+        "type": "page"
+      }
+    }
+  },
+  "faq": "FAQ",
+  "storybook": "Storybook"
+}
+

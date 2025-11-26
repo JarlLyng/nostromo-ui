@@ -1,0 +1,60 @@
+{
+  "primitives": {
+    "title": "Primitives",
+    "type": "separator"
+  },
+  "button": "Button",
+  "badge": "Badge",
+  "icon": "Icon",
+  "separator": "Separator",
+  "forms": {
+    "title": "Forms",
+    "type": "separator"
+  },
+  "input": "Input",
+  "textarea": "Textarea",
+  "checkbox": "Checkbox",
+  "radio-group": "RadioGroup",
+  "switch": "Switch",
+  "select": "Select",
+  "label": "Label",
+  "helper-text": "HelperText",
+  "error-message": "ErrorMessage",
+  "navigation": {
+    "title": "Navigation",
+    "type": "separator"
+  },
+  "tabs": "Tabs",
+  "breadcrumb": "Breadcrumb",
+  "pagination": "Pagination",
+  "feedback": {
+    "title": "Feedback",
+    "type": "separator"
+  },
+  "alert": "Alert",
+  "toast": "Toast",
+  "tooltip": "Tooltip",
+  "progress": "Progress",
+  "skeleton": "Skeleton",
+  "data-display": {
+    "title": "Data Display",
+    "type": "separator"
+  },
+  "card": "Card",
+  "table": "Table",
+  "avatar": "Avatar",
+  "accordion": "Accordion",
+  "dialog": "Dialog",
+  "error-boundary": "ErrorBoundary",
+  "marketing": {
+    "title": "Marketing",
+    "type": "separator"
+  },
+  "hero": "Hero",
+  "features": "Features",
+  "testimonials": "Testimonials",
+  "pricing": "Pricing",
+  "gallery": "Gallery",
+  "logo-wall": "LogoWall"
+}
+
