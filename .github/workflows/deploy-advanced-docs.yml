@@ -18,6 +18,11 @@ on:
       - 'packages/ui-marketing/**'
       - '.github/workflows/deploy-advanced-docs.yml'
 
+# Prevent concurrent deployments to avoid conflicts
+concurrency:
+  group: deploy-advanced-docs
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest

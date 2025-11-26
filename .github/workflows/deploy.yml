@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
+# Prevent concurrent deployments to avoid conflicts
+concurrency:
+  group: deploy-documentation
+  cancel-in-progress: true
+
 permissions:
   contents: read
   pages: write
