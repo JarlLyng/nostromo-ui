@@ -22,9 +22,9 @@ addons.setConfig({
     inputTextColor: '#fafafa',
     inputBorderRadius: 6,
     brandTitle: 'Nostromo UI',
-    brandUrl: 'https://github.com/nostromo-ui/nostromo-ui',
+    brandUrl: 'https://jarllyng.github.io/nostromo-ui/',
     brandImage: undefined,
-    brandTarget: '_self',
+    brandTarget: '_blank',
   },
   toolbar: {
     'storybook/theme': { showName: true },
