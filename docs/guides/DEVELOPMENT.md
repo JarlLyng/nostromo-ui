@@ -593,7 +593,7 @@ cd packages/ui-core && pnpm test:a11y
 
 ### Debugging CI Failures
 
-If CI fails, error logs are automatically uploaded as artifacts. See [SHARE_ERRORS.md](SHARE_ERRORS.md) for detailed instructions on sharing error information.
+If CI fails, error logs are automatically uploaded as artifacts. See [SHARE_ERRORS.md](../../.docs/SHARE_ERRORS.md) for detailed instructions on sharing error information.
 
 ## Contribution Guidelines
 

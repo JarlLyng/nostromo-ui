@@ -47,13 +47,13 @@ Project maintainers who do not follow or enforce the Code of Conduct in good fai
 
 ### **For Developers**
 - [Contributing Guidelines](CONTRIBUTING.md)
-- [Development Guide](DEVELOPMENT.md)
+- [Development Guide](docs/guides/DEVELOPMENT.md)
 - [Security Policy](SECURITY.md)
 
 ### **For Users**
 - [Getting Started](README.md)
 - [Component Documentation](https://jarllyng.github.io/nostromo-ui/)
-- [Theming Guide](THEMING.md)
+- [Theming Guide](docs/guides/THEMING.md)
 
 ## 🔄 Updates
 

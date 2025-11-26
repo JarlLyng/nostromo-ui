@@ -201,15 +201,15 @@ We're actively seeking feedback from the community! Please help us by:
 - **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
 
 ### 📖 **Main Documents**
-- **[Architecture](ARCHITECTURE.md)** - Monorepo structure, build system and package organization
-- **[Theming](THEMING.md)** - Complete theming guide with CSS variables and custom themes
+- **[Architecture](docs/guides/ARCHITECTURE.md)** - Monorepo structure, build system and package organization
+- **[Theming](docs/guides/THEMING.md)** - Complete theming guide with CSS variables and custom themes
 - **[Component API](COMPONENT_API.md)** - API design, variant system and component patterns
-- **[Development](DEVELOPMENT.md)** - Setup, build process, testing and contribution guidelines
+- **[Development](docs/guides/DEVELOPMENT.md)** - Setup, build process, testing and contribution guidelines
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Deeper technical decisions and implementation details
-- **[Deployment](DEPLOYMENT.md)** - Deployment guide for GitHub Pages
+- **[Deployment](docs/guides/DEPLOYMENT.md)** - Deployment guide for GitHub Pages
 
 ### 📋 **Project Management**
-- **[Roadmap](ROADMAP.md)** - Detailed project plan and milestones
+- **[Roadmap](docs/guides/ROADMAP.md)** - Detailed project plan and milestones
 - **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
 - **[Security](SECURITY.md)** - Security policy and vulnerability reporting
 - **[Changelog](CHANGELOG.md)** - History of all changes
@@ -242,7 +242,7 @@ The project is organized as a **monorepo** (pnpm + Turborepo):
 - **`docs/`**\
   Modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live previews and complete API documentation. Runs locally on http://localhost:3000.
 
-> 📖 **Read more**: [Architecture documentation](ARCHITECTURE.md)
+> 📖 **Read more**: [Architecture documentation](docs/guides/ARCHITECTURE.md)
 
 ---
 
@@ -293,7 +293,7 @@ Theming is based on **CSS variables in HSL**, which integrate directly into the 
 - **Focus states** - Automatic focus indicators
 - **Keyboard navigation** - Full keyboard support
 
-> 🎨 **Read more**: [Complete theming guide](THEMING.md)
+> 🎨 **Read more**: [Complete theming guide](docs/guides/THEMING.md)
 
 ---
 
@@ -355,7 +355,7 @@ Theming is based on **CSS variables in HSL**, which integrate directly into the 
 - **Release**: Changesets til semver.
 - **Tests**: Vitest + RTL for core, Playwright/Storybook for visuelle regressioner.
 
-> 🛠️ **Read more**: [Development guide](DEVELOPMENT.md)
+> 🛠️ **Read more**: [Development guide](docs/guides/DEVELOPMENT.md)
 
 ---
 
@@ -366,15 +366,15 @@ Theming is based on **CSS variables in HSL**, which integrate directly into the 
 - **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
 
 ### 📚 **Complete Documentation**
-- **[Architecture](ARCHITECTURE.md)** - Detailed monorepo and package structure
-- **[Theming](THEMING.md)** - Complete theming guide and examples  
+- **[Architecture](docs/guides/ARCHITECTURE.md)** - Detailed monorepo and package structure
+- **[Theming](docs/guides/THEMING.md)** - Complete theming guide and examples  
 - **[Component API](COMPONENT_API.md)** - API design and variant system
-- **[Development](DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
+- **[Development](docs/guides/DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
 - **[Technical Setup](TECHNICAL_SETUP.md)** - Technical decisions and implementation details
-- **[Deployment](DEPLOYMENT.md)** - GitHub Pages deployment guide
+- **[Deployment](docs/guides/DEPLOYMENT.md)** - GitHub Pages deployment guide
 
 ### 📋 **Project Information**
-- **[Roadmap](ROADMAP.md)** - Detailed project plan and milestones
+- **[Roadmap](docs/guides/ROADMAP.md)** - Detailed project plan and milestones
 - **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
 - **[Security](SECURITY.md)** - Security policy and vulnerability reporting
 - **[Changelog](CHANGELOG.md)** - History of all changes
