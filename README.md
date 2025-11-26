@@ -2,6 +2,8 @@
 
 > **🚧 BETA VERSION** - This library is currently in beta testing phase. We're actively seeking feedback and testing from the community. Please report any issues or suggestions!
 
+![Human in the Loop](https://jarllyng.github.io/madebyhuman/badges/loop-white.svg)
+
 An open source UI library built with **React**, **TypeScript** and **Tailwind CSS**.\
 The goal is to deliver a set of components that **work out of the box**, but are also easy to customize via themes (colors, typography, radius).
 

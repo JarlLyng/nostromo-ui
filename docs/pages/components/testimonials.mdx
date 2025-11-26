@@ -1,4 +1,4 @@
-import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Testimonials
 
@@ -6,12 +6,7 @@ The Testimonials component provides you with customer testimonials and reviews.
 
 ## Live Examples
 
-*Note: Storybook examples for marketing components are not yet available. These components are fully functional and can be imported directly from `@nostromo/ui-marketing`.*
-
-## Code Examples
-
-```jsx
-import { Testimonials } from '@nostromo/ui-marketing'
+<LiveCode code={`import { Testimonials } from '@nostromo/ui-marketing'
 
 export default function TestimonialsExample() {
   return (
@@ -22,22 +17,21 @@ export default function TestimonialsExample() {
           content: "Nostromo UI has transformed our development workflow. The components are beautiful and easy to use.",
           author: "Sarah Johnson",
           role: "Frontend Developer",
-          company: "TechCorp",
-          avatar: "/avatar1.jpg"
+          company: "TechCorp"
         },
         {
           content: "The accessibility features are outstanding. Our users love the improved experience.",
           author: "Mike Chen",
           role: "Product Manager",
-          company: "StartupXYZ",
-          avatar: "/avatar2.jpg"
+          company: "StartupXYZ"
         }
       ]}
-      variant="carousel"
+      variant="grid"
     />
   )
-}
-```
+}`} />
+
+## Code Examples
 
 ## Props
 

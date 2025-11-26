@@ -2,12 +2,14 @@
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@nostromo/ui-core'
+import * as NostromoMarketing from '@nostromo/ui-marketing'
 import React from 'react'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
   React,
   ...Nostromo,
+  ...NostromoMarketing,
   useState: React.useState,
   useEffect: React.useEffect,
   useRef: React.useRef,
