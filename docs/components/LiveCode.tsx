@@ -21,9 +21,12 @@ interface LiveCodeProps {
 }
 
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
+  // Auto-detect if code needs noInline (has export default or complex JSX)
+  const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
+  
   return (
     <div className="my-6">
-      <LiveProvider code={code} scope={scope} noInline={noInline}>
+      <LiveProvider code={code} scope={scope} noInline={needsNoInline}>
         <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
           <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
             <span className="text-sm text-gray-600 dark:text-gray-400">Live Example</span>
