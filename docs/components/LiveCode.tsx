@@ -23,20 +23,30 @@ interface LiveCodeProps {
 
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   // Transform code to work with react-live
-  // If code has "export default", wrap it in render() call
+  // Remove import statements since components are already in scope
   let transformedCode = code.trim()
+  
+  // Remove all import statements (they're not needed since components are in scope)
+  // Split by lines and filter out import lines
+  const lines = transformedCode.split('\n')
+  const filteredLines = lines.filter(line => {
+    const trimmed = line.trim()
+    // Remove lines that start with "import" (handles both single and multi-line)
+    return !trimmed.startsWith('import ') && !trimmed.startsWith('import\t')
+  })
+  transformedCode = filteredLines.join('\n').trim()
   
   // Auto-detect if code needs noInline (has export default or complex JSX)
   const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
   
-  if (needsNoInline && code.includes('export default')) {
+  if (needsNoInline && transformedCode.includes('export default')) {
     // Extract component name from "export default function ComponentName() { ... }"
-    const functionMatch = code.match(/export\s+default\s+function\s+(\w+)\s*\([^)]*\)\s*{/);
+    const functionMatch = transformedCode.match(/export\s+default\s+function\s+(\w+)\s*\([^)]*\)\s*{/);
     
     if (functionMatch) {
       const componentName = functionMatch[1];
       // Remove "export default" and keep the function
-      transformedCode = code
+      transformedCode = transformedCode
         .replace(/export\s+default\s+function\s+(\w+)/g, 'function $1')
         .trim();
       
@@ -44,7 +54,7 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
       transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
     } else {
       // Fallback: try to extract any default export
-      transformedCode = code
+      transformedCode = transformedCode
         .replace(/export\s+default\s+/g, '')
         .trim();
       
