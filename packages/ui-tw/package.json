@@ -26,7 +26,10 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css",
+    "./dist/**/*.css"
+  ],
   "scripts": {
     "build": "tsup && npm run copy-css",
     "copy-css": "mkdir -p dist/themes && cp src/themes/*.css dist/themes/ && cp src/styles/*.css dist/",

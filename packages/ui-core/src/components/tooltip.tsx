@@ -115,7 +115,7 @@ export interface TooltipContentProps extends VariantProps<typeof tooltipVariants
   updatePositionDeps?: React.DependencyList;
 }
 
-export interface TooltipTriggerProps {
+export interface TooltipTriggerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   asChild?: boolean;
   className?: string;
@@ -192,11 +192,11 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     // --- Tooltip open/close/toggle helpers ---
     const clearTimers = useCallback(() => {
       if (delayTimerRef.current != null) {
-        clearTimeout(delayTimerRef.current as any);
+        clearTimeout(delayTimerRef.current);
         delayTimerRef.current = null;
       }
       if (skipDelayTimerRef.current != null) {
-        clearTimeout(skipDelayTimerRef.current as any);
+        clearTimeout(skipDelayTimerRef.current);
         skipDelayTimerRef.current = null;
       }
     }, []);
@@ -217,7 +217,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       if (delayDuration > 0) {
         delayTimerRef.current = window.setTimeout(() => {
           setOpen(true);
-        }, delayDuration) as any;
+        }, delayDuration);
       } else {
         setOpen(true);
       }
@@ -228,7 +228,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       if (skipDelayDuration > 0) {
         skipDelayTimerRef.current = window.setTimeout(() => {
           setOpen(false);
-        }, skipDelayDuration) as any;
+        }, skipDelayDuration);
       } else {
         setOpen(false);
       }
@@ -330,13 +330,13 @@ export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>
       'data-tooltip-trigger': true,
       onMouseEnter: (e: React.MouseEvent) => {
         // Call external handler first
-        (props as any).onMouseEnter?.(e);
+        props.onMouseEnter?.(e);
         if (trigger === 'hover') {
           openWithDelay();
         }
       },
       onMouseLeave: (e: React.MouseEvent) => {
-        (props as any).onMouseLeave?.(e);
+        props.onMouseLeave?.(e);
         if (trigger === 'hover') closeWithDelay();
       },
       onPointerEnter: (e: React.PointerEvent) => {

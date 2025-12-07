@@ -32,6 +32,16 @@
       "require": "./dist/components/pricing.cjs",
       "types": "./dist/components/pricing.d.ts"
     },
+    "./gallery": {
+      "import": "./dist/components/gallery.js",
+      "require": "./dist/components/gallery.cjs",
+      "types": "./dist/components/gallery.d.ts"
+    },
+    "./logo-wall": {
+      "import": "./dist/components/logo-wall.js",
+      "require": "./dist/components/logo-wall.cjs",
+      "types": "./dist/components/logo-wall.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [

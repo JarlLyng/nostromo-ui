@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
@@ -94,6 +94,10 @@ export const useToast = () => {
 // Toast Provider
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
+  const timeoutRefs = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
+
+  const removeToastRef = useRef(removeToast);
+  removeToastRef.current = removeToast;
 
   const addToast = useCallback((toast: Omit<ToastProps, 'id'>) => {
     const id = Math.random().toString(36).substr(2, 9);
@@ -103,20 +107,39 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     
     // Auto remove toast after duration
     if (toast.duration !== 0) {
-      setTimeout(() => {
-        removeToast(id);
+      const timeoutId = setTimeout(() => {
+        removeToastRef.current(id);
+        timeoutRefs.current.delete(id);
       }, toast.duration || 5000);
+      timeoutRefs.current.set(id, timeoutId);
     }
     
     return id;
   }, []);
 
   const removeToast = useCallback((id: string) => {
+    // Clear timeout if it exists
+    const timeoutId = timeoutRefs.current.get(id);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutRefs.current.delete(id);
+    }
     setToasts(prev => prev.filter(toast => toast.id !== id));
   }, []);
 
   const clearToasts = useCallback(() => {
+    // Clear all timeouts
+    timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
+    timeoutRefs.current.clear();
     setToasts([]);
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
+      timeoutRefs.current.clear();
+    };
   }, []);
 
   return (
@@ -131,10 +154,33 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 const ToastContainer: React.FC<{ toasts: ToastProps[] }> = ({ toasts }) => {
   if (toasts.length === 0) return null;
 
+  // Group toasts by position for stacking
+  const toastsByPosition = toasts.reduce((acc, toast) => {
+    const position = toast.position || 'top-right';
+    if (!acc[position]) {
+      acc[position] = [];
+    }
+    acc[position].push(toast);
+    return acc;
+  }, {} as Record<string, ToastProps[]>);
+
   return (
     <div className="fixed inset-0 z-50 pointer-events-none">
-      {toasts.map((toast) => (
-        <Toast key={toast.id} {...toast} />
+      {Object.entries(toastsByPosition).map(([position, positionToasts]) => (
+        <div key={position} className="pointer-events-none">
+          {positionToasts.map((toast, index) => (
+            <Toast 
+              key={toast.id} 
+              {...toast} 
+              style={{
+                ...toast.style,
+                // Stack toasts with offset
+                transform: `translateY(${index * 8}px) ${toast.style?.transform || ''}`,
+                marginBottom: index < positionToasts.length - 1 ? '8px' : '0',
+              }}
+            />
+          ))}
+        </div>
       ))}
     </div>
   );
@@ -234,7 +280,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         data-leaving={isLeaving ? 'true' : 'false'}
         style={{
           transition: `all ${animationMs}ms ease-in-out`,
-          transform: isLeaving ? 'translateX(100%)' : 'translateX(0)',
+          transform: isLeaving ? 'translateX(100%)' : (props.style?.transform || 'translateX(0)'),
+          ...props.style,
         }}
         {...props}
       >

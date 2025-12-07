@@ -107,6 +107,46 @@
       "import": "./dist/components/error-message.js",
       "require": "./dist/components/error-message.cjs"
     },
+    "./icon": {
+      "types": "./dist/components/icon.d.ts",
+      "import": "./dist/components/icon.js",
+      "require": "./dist/components/icon.cjs"
+    },
+    "./progress": {
+      "types": "./dist/components/progress.d.ts",
+      "import": "./dist/components/progress.js",
+      "require": "./dist/components/progress.cjs"
+    },
+    "./table": {
+      "types": "./dist/components/table.d.ts",
+      "import": "./dist/components/table.js",
+      "require": "./dist/components/table.cjs"
+    },
+    "./toast": {
+      "types": "./dist/components/toast.d.ts",
+      "import": "./dist/components/toast.js",
+      "require": "./dist/components/toast.cjs"
+    },
+    "./tooltip": {
+      "types": "./dist/components/tooltip.d.ts",
+      "import": "./dist/components/tooltip.js",
+      "require": "./dist/components/tooltip.cjs"
+    },
+    "./accordion": {
+      "types": "./dist/components/accordion.d.ts",
+      "import": "./dist/components/accordion.js",
+      "require": "./dist/components/accordion.cjs"
+    },
+    "./skeleton": {
+      "types": "./dist/components/skeleton.d.ts",
+      "import": "./dist/components/skeleton.js",
+      "require": "./dist/components/skeleton.cjs"
+    },
+    "./error-boundary": {
+      "types": "./dist/components/error-boundary.d.ts",
+      "import": "./dist/components/error-boundary.js",
+      "require": "./dist/components/error-boundary.cjs"
+    },
     "./package.json": "./package.json"
   },
   "files": [

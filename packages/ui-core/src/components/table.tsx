@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
@@ -79,18 +79,18 @@ const tableCellVariants = cva(
 );
 
 // Types
-export interface TableColumn<T = any> {
+export interface TableColumn<T = Record<string, unknown>> {
   key: string;
   title: string;
   dataIndex?: keyof T;
-  render?: (value: any, record: T, index: number) => React.ReactNode;
+  render?: (value: unknown, record: T, index: number) => React.ReactNode;
   sortable?: boolean;
   width?: string | number;
   align?: 'left' | 'center' | 'right';
   className?: string;
 }
 
-export interface TableProps<T = any> extends VariantProps<typeof tableVariants> {
+export interface TableProps<T = Record<string, unknown>> extends VariantProps<typeof tableVariants> {
   data: T[];
   columns: TableColumn<T>[];
   loading?: boolean;
@@ -154,17 +154,32 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     rowKey = 'id',
     onRowClick,
     onSort,
-    sortColumn: _sortColumn,
-    sortDirection: _sortDirection,
+    sortColumn: controlledSortColumn,
+    sortDirection: controlledSortDirection,
     pagination,
     selection,
     caption,
     ...props
   }, ref) => {
-    const [sortState, setSortState] = useState<{
+    // Use controlled props if provided, otherwise use internal state
+    const [internalSortState, setInternalSortState] = useState<{
       column: string;
       direction: 'asc' | 'desc';
     } | null>(null);
+
+    // Determine current sort state (controlled takes precedence)
+    const isControlled = controlledSortColumn !== undefined;
+    const sortState = isControlled && controlledSortColumn
+      ? { column: controlledSortColumn, direction: controlledSortDirection || 'asc' }
+      : internalSortState;
+
+    // Sync internal state with controlled props when they change
+    useEffect(() => {
+      if (isControlled && controlledSortColumn) {
+        // Reset internal state when controlled props are provided
+        setInternalSortState(null);
+      }
+    }, [isControlled, controlledSortColumn]);
 
     const handleSort = (column: TableColumn) => {
       if (!column.sortable) return;
@@ -174,24 +189,29 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           ? 'desc' 
           : 'asc';
       
-      setSortState({ column: column.key, direction: newDirection });
+      // Only update internal state if not controlled
+      if (!isControlled) {
+        setInternalSortState({ column: column.key, direction: newDirection });
+      }
+      
+      // Always call onSort callback for controlled usage
       onSort?.(column, newDirection);
     };
 
-    const getRowKey = (record: any, index: number) => {
+    const getRowKey = (record: T, index: number): string | number => {
       if (typeof rowKey === 'function') {
         return rowKey(record);
       }
-      return record[rowKey] || index;
+      return (record[rowKey] as string | number) || index;
     };
 
-    const isRowSelected = (record: any, index: number) => {
+    const isRowSelected = (record: T, index: number): boolean => {
       if (!selection) return false;
       const key = getRowKey(record, index);
       return selection.selectedRowKeys.includes(key);
     };
 
-    const handleRowSelection = (record: any, index: number, checked: boolean) => {
+    const handleRowSelection = (record: T, index: number, checked: boolean) => {
       if (!selection) return;
       
       const key = getRowKey(record, index);

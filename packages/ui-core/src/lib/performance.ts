@@ -15,6 +15,7 @@ interface PerformanceOptions {
 
 /**
  * Hook for monitoring component render performance
+ * Measures actual render/commit time using React's performance API
  */
 export function usePerformanceMonitor(
   componentName: string,
@@ -27,30 +28,56 @@ export function usePerformanceMonitor(
     threshold = 0,
   } = options;
 
-  const renderStartTime = React.useRef<number>(0);
   const renderCount = React.useRef<number>(0);
+  const markName = React.useRef<string>(`${componentName}-render-${Date.now()}`);
 
-  React.useEffect(() => {
-    if (!enabled) return;
+  React.useLayoutEffect(() => {
+    if (!enabled || typeof window === 'undefined' || !window.performance) return;
 
-    renderStartTime.current = performance.now();
     renderCount.current += 1;
+    const currentMark = `${markName.current}-${renderCount.current}`;
+    
+    // Mark start of render
+    performance.mark(`${currentMark}-start`);
 
     return () => {
-      const renderTime = performance.now() - renderStartTime.current;
+      // Mark end of render
+      performance.mark(`${currentMark}-end`);
       
-      if (renderTime > threshold) {
-        const metric: PerformanceMetrics = {
-          renderTime,
-          componentName,
-          timestamp: Date.now(),
-        };
+      try {
+        // Measure the time between marks
+        performance.measure(
+          `${currentMark}-measure`,
+          `${currentMark}-start`,
+          `${currentMark}-end`
+        );
 
-        if (logToConsole) {
-          console.log(`[Performance] ${componentName}: ${renderTime.toFixed(2)}ms (render #${renderCount.current})`);
+        const measure = performance.getEntriesByName(`${currentMark}-measure`)[0];
+        const renderTime = measure ? measure.duration : 0;
+
+        // Clean up marks and measures
+        performance.clearMarks(`${currentMark}-start`);
+        performance.clearMarks(`${currentMark}-end`);
+        performance.clearMeasures(`${currentMark}-measure`);
+        
+        if (renderTime > threshold) {
+          const metric: PerformanceMetrics = {
+            renderTime,
+            componentName,
+            timestamp: Date.now(),
+          };
+
+          if (logToConsole) {
+            console.log(`[Performance] ${componentName}: ${renderTime.toFixed(2)}ms (render #${renderCount.current})`);
+          }
+
+          onMetric?.(metric);
         }
-
-        onMetric?.(metric);
+      } catch (error) {
+        // Silently fail if performance API is not available
+        if (logToConsole && enabled) {
+          console.warn(`[Performance] Failed to measure ${componentName}:`, error);
+        }
       }
     };
   });
