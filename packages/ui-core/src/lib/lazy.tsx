@@ -50,7 +50,7 @@ export function withLazyLoading<P extends object>(
     errorFallback?: React.ComponentType<{ error: Error; retry: () => void }>;
   }
 ) {
-  const WrappedComponent = React.forwardRef<unknown, P>((props, ref) => (
+  const WrappedComponent = React.forwardRef<unknown, P>((props, _ref) => (
     <LazyComponent
       fallback={options?.fallback}
       errorFallback={options?.errorFallback}
