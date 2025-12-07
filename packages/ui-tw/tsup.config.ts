@@ -1,4 +1,23 @@
 import { defineConfig } from 'tsup';
+import { copyFileSync, mkdirSync, readdirSync, statSync } from 'fs';
+import { join } from 'path';
+
+// Cross-platform copy function
+function copyDir(src: string, dest: string) {
+  mkdirSync(dest, { recursive: true });
+  const entries = readdirSync(src, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const srcPath = join(src, entry.name);
+    const destPath = join(dest, entry.name);
+    
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      copyFileSync(srcPath, destPath);
+    }
+  }
+}
 
 export default defineConfig({
   entry: ['src/index.ts', 'src/tailwind.preset.ts'],
@@ -12,23 +31,32 @@ export default defineConfig({
   minify: true,
   target: 'es2022',
   outDir: 'dist',
-  // Copy CSS files to dist
-  publicDir: 'src/styles',
-  // Copy themes directory
-  copy: [
-    'src/themes/**/*',
-    'src/styles/**/*',
-  ],
-  // Ensure CSS files are included
-  loader: {
-    '.css': 'copy',
-  },
-  // Plugin to copy files after build
+  // Plugin to copy CSS files after build (cross-platform)
   plugins: [
     {
-      name: 'copy-themes',
+      name: 'copy-css-files',
       buildEnd() {
-        // This will be handled by the copy option above
+        try {
+          // Copy themes directory
+          const themesSrc = join(process.cwd(), 'src/themes');
+          const themesDest = join(process.cwd(), 'dist/themes');
+          copyDir(themesSrc, themesDest);
+          
+          // Copy styles directory
+          const stylesSrc = join(process.cwd(), 'src/styles');
+          const stylesDest = join(process.cwd(), 'dist');
+          const stylesEntries = readdirSync(stylesSrc, { withFileTypes: true });
+          for (const entry of stylesEntries) {
+            if (entry.isFile()) {
+              copyFileSync(
+                join(stylesSrc, entry.name),
+                join(stylesDest, entry.name)
+              );
+            }
+          }
+        } catch (error) {
+          console.error('Error copying CSS files:', error);
+        }
       },
     },
   ],

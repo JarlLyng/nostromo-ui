@@ -31,8 +31,7 @@
     "./dist/**/*.css"
   ],
   "scripts": {
-    "build": "tsup && npm run copy-css",
-    "copy-css": "mkdir -p dist/themes && cp src/themes/*.css dist/themes/ && cp src/styles/*.css dist/",
+    "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest --passWithNoTests",
     "lint": "eslint src --ext .ts,.tsx",

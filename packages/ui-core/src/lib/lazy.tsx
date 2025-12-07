@@ -17,9 +17,10 @@ export function LazyComponent({
 }: LazyComponentProps) {
   return (
     <ErrorBoundary
-      fallback={ErrorFallback ? ({ error, resetError }) => (
-        <ErrorFallback error={error!} retry={resetError} />
-      ) : undefined}
+      fallback={ErrorFallback ? ({ error, resetError }) => {
+        if (!error) return null;
+        return <ErrorFallback error={error} retry={resetError} />;
+      } : undefined}
     >
       <React.Suspense fallback={Fallback ? <Fallback /> : <DefaultLoadingFallback />}>
         {children}
@@ -49,12 +50,12 @@ export function withLazyLoading<P extends object>(
     errorFallback?: React.ComponentType<{ error: Error; retry: () => void }>;
   }
 ) {
-  const WrappedComponent = React.forwardRef<any, P>((props, ref) => (
+  const WrappedComponent = React.forwardRef<unknown, P>((props, ref) => (
     <LazyComponent
       fallback={options?.fallback}
       errorFallback={options?.errorFallback}
     >
-      <Component {...(props as any)} ref={ref} />
+      <Component {...props} ref={ref as React.Ref<unknown>} />
     </LazyComponent>
   ));
   
