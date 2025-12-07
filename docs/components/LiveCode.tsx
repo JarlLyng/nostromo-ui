@@ -24,7 +24,7 @@ interface LiveCodeProps {
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   // Transform code to work with react-live
   // If code has "export default", wrap it in render() call
-  let transformedCode = code
+  let transformedCode = code.trim()
   
   // Auto-detect if code needs noInline (has export default or complex JSX)
   const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
@@ -40,7 +40,7 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
         .replace(/export\s+default\s+function\s+(\w+)/g, 'function $1')
         .trim();
       
-      // Add render() call at the end
+      // Add render() call at the end - this is required for noInline mode
       transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
     } else {
       // Fallback: try to extract any default export
@@ -53,8 +53,15 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
       if (fallbackMatch) {
         transformedCode = `${transformedCode}\n\nrender(<${fallbackMatch[1]} />)`;
       } else {
-        // Last resort: wrap in render()
-        transformedCode = `const Component = () => {\n${transformedCode}\n}\n\nrender(<Component />)`;
+        // Last resort: wrap in render() - create a component and render it
+        const lastBraceIndex = transformedCode.lastIndexOf('}');
+        if (lastBraceIndex > 0) {
+          // Extract the return statement or component body
+          transformedCode = `const Component = () => ${transformedCode}\n\nrender(<Component />)`;
+        } else {
+          // If no braces, assume it's JSX
+          transformedCode = `const Component = () => (${transformedCode})\n\nrender(<Component />)`;
+        }
       }
     }
   }
