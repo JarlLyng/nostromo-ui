@@ -642,6 +642,8 @@ If CI fails, error logs are automatically uploaded as artifacts. See [SHARE_ERRO
 
 ## Contribution Guidelines
 
+> 📖 **For reviewers**: See [Code Review Guide](CODE_REVIEW.md) for detailed instructions on how to review code in this project.
+
 ### Development Workflow
 1. **Fork repository**
 2. **Create feature branch**: `git checkout -b feature/button-component`

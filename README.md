@@ -176,6 +176,7 @@ We're actively seeking feedback from the community! Please help us by:
 ### 📋 **Project Management**
 - **[Roadmap](docs/guides/ROADMAP.md)** - Detailed project plan and milestones
 - **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
+- **[Code Review Guide](docs/guides/CODE_REVIEW.md)** - Guide for reviewing code
 - **[Security](SECURITY.md)** - Security policy and vulnerability reporting
 - **[Changelog](CHANGELOG.md)** - History of all changes
 
@@ -258,6 +259,7 @@ Nostromo UI uses **CSS variables in HSL format** for theming, providing maximum 
 - **[API Reference](docs/guides/API_REFERENCE.md)** - Complete API reference for all components
 - **[Best Practices](docs/guides/BEST_PRACTICES.md)** - Component composition and usage patterns
 - **[Development](docs/guides/DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
+- **[Code Review](docs/guides/CODE_REVIEW.md)** - Guide for reviewing code
 - **[Deployment](docs/guides/DEPLOYMENT.md)** - GitHub Pages deployment guide
 
 ### 📋 **Project Information**

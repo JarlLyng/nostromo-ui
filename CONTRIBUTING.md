@@ -242,6 +242,8 @@ Beskriv dine ændringer...
 3. **Testing**: Manual testing af ændringer
 4. **Documentation**: Verificer at dokumentation er opdateret
 
+> 📖 **For reviewers**: Se [Code Review Guide](docs/guides/CODE_REVIEW.md) for detaljerede instruktioner om hvordan man reviewer kode i dette projekt.
+
 ## Release Process
 
 ### Versioning
