@@ -142,8 +142,8 @@ export interface TableCellProps extends VariantProps<typeof tableCellVariants> {
 }
 
 // Table Components
-export const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({
+function TableComponent<T extends Record<string, unknown> = Record<string, unknown>>(
+  {
     data,
     columns,
     loading = false,
@@ -160,7 +160,9 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     selection,
     caption,
     ...props
-  }, ref) => {
+  }: TableProps<T>,
+  ref: React.Ref<HTMLTableElement>
+) {
     // Use controlled props if provided, otherwise use internal state
     const [internalSortState, setInternalSortState] = useState<{
       column: string;
@@ -181,7 +183,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       }
     }, [isControlled, controlledSortColumn]);
 
-    const handleSort = (column: TableColumn) => {
+    const handleSort = (column: TableColumn<T>) => {
       if (!column.sortable) return;
       
       const newDirection = 
@@ -211,7 +213,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       return selection.selectedRowKeys.includes(key);
     };
 
-    const handleRowSelection = (record: T, index: number, checked: boolean) => {
+    const handleRowSelection = (record: T, index: number, checked: boolean): void => {
       if (!selection) return;
       
       const key = getRowKey(record, index);
@@ -395,8 +397,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
                             index
                           )
                         : column.dataIndex
-                        ? record[column.dataIndex]
-                        : record[column.key]}
+                        ? (record[column.dataIndex] as React.ReactNode)
+                        : ((record as Record<string, unknown>)[column.key] as React.ReactNode)}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -461,10 +463,15 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         )}
       </div>
     );
-  }
-);
+}
 
-Table.displayName = 'Table';
+const TableForwardRef = React.forwardRef(TableComponent) as <T extends Record<string, unknown> = Record<string, unknown>>(
+  props: TableProps<T> & { ref?: React.Ref<HTMLTableElement> }
+) => React.ReactElement;
+
+(TableForwardRef as any).displayName = 'Table';
+
+export const Table = TableForwardRef;
 
 export const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeaderProps>(
   ({ className, variant, size, children, ...props }, ref) => (

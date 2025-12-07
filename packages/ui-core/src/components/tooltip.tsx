@@ -328,15 +328,15 @@ export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>
       },
       className: cn(className),
       'data-tooltip-trigger': true,
-      onMouseEnter: (e: React.MouseEvent) => {
+      onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
         // Call external handler first
-        props.onMouseEnter?.(e);
+        props.onMouseEnter?.(e as React.MouseEvent<HTMLElement>);
         if (trigger === 'hover') {
           openWithDelay();
         }
       },
-      onMouseLeave: (e: React.MouseEvent) => {
-        props.onMouseLeave?.(e);
+      onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
+        props.onMouseLeave?.(e as React.MouseEvent<HTMLElement>);
         if (trigger === 'hover') closeWithDelay();
       },
       onPointerEnter: (e: React.PointerEvent) => {

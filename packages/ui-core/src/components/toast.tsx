@@ -57,7 +57,7 @@ const toastIconVariants = cva(
 );
 
 // Types
-export interface ToastProps extends VariantProps<typeof toastVariants> {
+export interface ToastProps extends VariantProps<typeof toastVariants>, React.HTMLAttributes<HTMLDivElement> {
   id?: string;
   title?: string;
   description?: string;
@@ -96,6 +96,16 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [toasts, setToasts] = useState<ToastProps[]>([]);
   const timeoutRefs = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
+  const removeToast = useCallback((id: string) => {
+    // Clear timeout if it exists
+    const timeoutId = timeoutRefs.current.get(id);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      timeoutRefs.current.delete(id);
+    }
+    setToasts(prev => prev.filter(toast => toast.id !== id));
+  }, []);
+
   const removeToastRef = useRef(removeToast);
   removeToastRef.current = removeToast;
 
@@ -115,16 +125,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
     
     return id;
-  }, []);
-
-  const removeToast = useCallback((id: string) => {
-    // Clear timeout if it exists
-    const timeoutId = timeoutRefs.current.get(id);
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-      timeoutRefs.current.delete(id);
-    }
-    setToasts(prev => prev.filter(toast => toast.id !== id));
   }, []);
 
   const clearToasts = useCallback(() => {
@@ -168,18 +168,21 @@ const ToastContainer: React.FC<{ toasts: ToastProps[] }> = ({ toasts }) => {
     <div className="fixed inset-0 z-50 pointer-events-none">
       {Object.entries(toastsByPosition).map(([position, positionToasts]) => (
         <div key={position} className="pointer-events-none">
-          {positionToasts.map((toast, index) => (
-            <Toast 
-              key={toast.id} 
-              {...toast} 
-              style={{
-                ...toast.style,
-                // Stack toasts with offset
-                transform: `translateY(${index * 8}px) ${toast.style?.transform || ''}`,
-                marginBottom: index < positionToasts.length - 1 ? '8px' : '0',
-              }}
-            />
-          ))}
+          {positionToasts.map((toast, index) => {
+            const { style: toastStyle, ...toastProps } = toast;
+            return (
+              <Toast 
+                key={toast.id} 
+                {...toastProps}
+                style={{
+                  ...toastStyle,
+                  // Stack toasts with offset
+                  transform: `translateY(${index * 8}px) ${toastStyle?.transform || ''}`,
+                  marginBottom: index < positionToasts.length - 1 ? '8px' : '0',
+                }}
+              />
+            );
+          })}
         </div>
       ))}
     </div>

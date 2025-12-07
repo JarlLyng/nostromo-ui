@@ -55,7 +55,7 @@ export function withLazyLoading<P extends object>(
       fallback={options?.fallback}
       errorFallback={options?.errorFallback}
     >
-      <Component {...props} ref={ref as React.Ref<unknown>} />
+      {React.createElement(Component, props as P & { ref?: React.Ref<unknown> })}
     </LazyComponent>
   ));
   
