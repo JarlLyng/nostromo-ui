@@ -1,63 +1,63 @@
 # Nostromo UI
 
-Welcome to Nostromo UI - a comprehensive UI library built with React, TypeScript and Tailwind CSS.
+A modern, accessible UI library built with **React**, **TypeScript**, and **Tailwind CSS**. Featuring 27 core components, 6 marketing components, and 4 predefined themes with full dark mode support.
 
-## 🎨 Theming & Design Tokens
+## Quick Install
 
-Nostromo UI features a powerful theming system built around CSS variables in HSL format:
+```bash
+# npm
+npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
-- **4 Predefined Themes** - Nostromo, Mother, LV-426, Sulaco
-- **Custom Brand Colors** - Easy brand customization
-- **Dark Mode Support** - System and manual dark mode
-- **Accessibility** - WCAG 2.1 AA compliant colors
-- **Performance** - Zero runtime overhead
+# pnpm
+pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
-[**Explore Theming Guide →**](/theming)
+# yarn
+yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+```
+
+[**Get Started →**](/getting-started) | [**View Storybook →**](https://jarllyng.github.io/nostromo-ui/storybook-static/)
+
+## Why Nostromo UI?
+
+- **🎨 4 Predefined Themes** - Nostromo, Mother, LV-426, Sulaco with easy customization
+- **♿ WCAG 2.1 AA Compliant** - Accessible out of the box
+- **⚡ Zero Runtime Overhead** - CSS variables, no JavaScript theming
+- **📦 Tree-shakeable** - Import only what you need
+- **🎯 TypeScript First** - Full type safety and IntelliSense
+- **🌙 Dark Mode** - System and manual dark mode support
 
 ## Components
 
-Explore our collection of components:
+### Core Components (27)
 
-- **Button** - Buttons with various variants
-- **Input** - Input fields with validation
-- **Dialog** - Modals and dialogs
-- **Badge** - Status badges and labels
-- **Accordion** - Expandable sections
-- **Alert** - Notifications and warnings
-- **Avatar** - User avatars
-- **Card** - Content cards
-- **Checkbox** - Checkbox components
-- **Icon** - Icons and symbols
-- **Label** - Form labels
-- **Pagination** - Page navigation
-- **Progress** - Progress indicators
-- **Select** - Dropdown menus
-- **Separator** - Divider lines
-- **Skeleton** - Loading placeholders
-- **Switch** - Toggle switches
-- **Table** - Data tables
-- **Tabs** - Tab navigation
-- **Textarea** - Multi-line text fields
-- **Toast** - Popup notifications
-- **Tooltip** - Help text
+**Primitives:** [Button](/components/button), [Badge](/components/badge), [Avatar](/components/avatar), [Icon](/components/icon), [Separator](/components/separator)
 
-## Get Started
+**Forms:** [Input](/components/input), [Textarea](/components/textarea), [Select](/components/select), [Checkbox](/components/checkbox), [RadioGroup](/components/radio-group), [Switch](/components/switch), [Label](/components/label), [HelperText](/components/helper-text), [ErrorMessage](/components/error-message)
 
-See [Getting Started](/getting-started) to get started with Nostromo UI.
+**Navigation:** [Tabs](/components/tabs), [Breadcrumb](/components/breadcrumb), [Pagination](/components/pagination)
+
+**Feedback:** [Alert](/components/alert), [Toast](/components/toast), [Tooltip](/components/tooltip), [Progress](/components/progress), [Skeleton](/components/skeleton)
+
+**Data Display:** [Table](/components/table), [Card](/components/card), [Accordion](/components/accordion)
+
+**Overlays:** [Dialog](/components/dialog), [ErrorBoundary](/components/error-boundary)
+
+### Marketing Components (6)
+
+[Hero](/components/hero), [Features](/components/features), [Testimonials](/components/testimonials), [Pricing](/components/pricing), [Gallery](/components/gallery), [Logo Wall](/components/logo-wall)
+
+## Quick Start
+
+1. **Install packages** (see above)
+2. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`
+3. **Import CSS** - Add base styles and theme
+4. **Start using components**
+
+[**Complete Setup Guide →**](/getting-started)
 
 ## Documentation
 
 - **[API Reference](/api)** - Complete component API documentation
-- **[FAQ](/faq)** - Frequently asked questions
 - **[Theming Guide](/theming)** - Customize themes and design tokens
-- **[Storybook](/storybook)** - Interactive component playground
-
-## Storybook
-
-All components have interactive examples in Storybook. Start Storybook to see live examples:
-
-```bash
-npm run storybook
-```
-
-**Live Storybook:** [http://localhost:6007](http://localhost:6007) (when Storybook is running)
+- **[Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component playground
+- **[FAQ](/faq)** - Frequently asked questions

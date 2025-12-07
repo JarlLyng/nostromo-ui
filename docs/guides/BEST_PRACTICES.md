@@ -341,232 +341,26 @@ Use CSS variables for theming instead of runtime calculations:
 
 ## ♿ Accessibility Guidelines
 
-### Semantic HTML
+For detailed accessibility information, see [ACCESSIBILITY_GUIDE.md](./ACCESSIBILITY_GUIDE.md).
 
-Use semantic HTML elements:
-
-```tsx
-// ✅ Good: Semantic HTML
-<main>
-  <header>
-    <h1>Page Title</h1>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <section aria-labelledby="content-heading">
-    <h2 id="content-heading">Content</h2>
-    <p>Content goes here</p>
-  </section>
-</main>
-
-// ❌ Avoid: Non-semantic HTML
-<div>
-  <div>
-    <div>Page Title</div>
-    <div>
-      <div><a href="/">Home</a></div>
-      <div><a href="/about">About</a></div>
-    </div>
-  </div>
-</div>
-```
-
-### ARIA Attributes
-
-Use ARIA attributes for complex interactions:
-
-```tsx
-// ✅ Good: ARIA attributes
-<Button
-  aria-expanded={isOpen}
-  aria-controls="menu"
-  aria-haspopup="true"
-  onClick={toggleMenu}
->
-  Menu
-</Button>
-
-<div
-  id="menu"
-  role="menu"
-  aria-hidden={!isOpen}
-  className={cn("menu", isOpen && "open")}
->
-  <div role="menuitem" tabIndex={0}>Item 1</div>
-  <div role="menuitem" tabIndex={0}>Item 2</div>
-</div>
-```
-
-### Focus Management
-
-Implement proper focus management:
-
-```tsx
-// ✅ Good: Focus management
-function Modal({ isOpen, onClose, children }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (isOpen && modalRef.current) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstElement = focusableElements[0] as HTMLElement;
-      firstElement?.focus();
-    }
-  }, [isOpen]);
-  
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent ref={modalRef}>
-        {children}
-      </DialogContent>
-    </Dialog>
-  );
-}
-```
-
-### Color Contrast
-
-Ensure proper color contrast:
-
-```tsx
-// ✅ Good: High contrast colors
-<Button className="bg-brand-600 text-white hover:bg-brand-700">
-  Primary Action
-</Button>
-
-<Button variant="outline" className="border-brand-600 text-brand-600 hover:bg-brand-50">
-  Secondary Action
-</Button>
-
-// ❌ Avoid: Low contrast
-<Button className="bg-brand-300 text-brand-400">
-  Low Contrast
-</Button>
-```
-
-### Screen Reader Support
-
-Provide screen reader support:
-
-```tsx
-// ✅ Good: Screen reader support
-<Button
-  aria-label="Close dialog"
-  onClick={onClose}
->
-  <Icon name="x" aria-hidden="true" />
-</Button>
-
-<Input
-  label="Email"
-  aria-describedby="email-help"
-  helperText="We'll never share your email"
-  id="email-help"
-/>
-```
+**Key Points:**
+- Use semantic HTML elements
+- Add ARIA attributes for complex interactions
+- Implement proper focus management
+- Ensure WCAG 2.1 AA color contrast
+- Provide screen reader support
 
 ---
 
 ## 🎨 Theming Best Practices
 
-### CSS Variables
+For detailed theming information, see [THEMING.md](./THEMING.md).
 
-Use CSS variables for consistent theming:
-
-```css
-/* ✅ Good: CSS variables */
-[data-theme="nostromo"] {
-  --color-brand-50: 262 84% 95%;
-  --color-brand-100: 262 84% 90%;
-  --color-brand-500: 262 84% 52%;
-  --color-brand-600: 262 84% 42%;
-  --color-brand-900: 262 84% 15%;
-  
-  --color-success-500: 142 76% 36%;
-  --color-warning-500: 38 92% 50%;
-  --color-error-500: 0 84% 60%;
-  
-  --font-heading: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
-  
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-}
-```
-
-### Theme Switching
-
-Implement theme switching:
-
-```tsx
-// ✅ Good: Theme switching
-function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
-  
-  useEffect(() => {
-    const root = document.documentElement;
-    
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-color-scheme', systemTheme);
-    } else {
-      root.setAttribute('data-color-scheme', theme);
-    }
-  }, [theme]);
-  
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-```
-
-### Custom Themes
-
-Create custom themes:
-
-```css
-/* ✅ Good: Custom theme */
-[data-theme="custom"] {
-  --color-brand-500: 200 100% 50%;
-  --color-brand-600: 200 100% 40%;
-  --color-brand-700: 200 100% 30%;
-  
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "Poppins", sans-serif;
-  
-  --radius-sm: 0.125rem;
-  --radius-md: 0.25rem;
-  --radius-lg: 0.5rem;
-}
-```
-
-### Dark Mode
-
-Implement dark mode support:
-
-```css
-/* ✅ Good: Dark mode */
-[data-color-scheme="dark"] {
-  --color-background: 0 0% 3%;
-  --color-foreground: 0 0% 98%;
-  --color-muted: 0 0% 14%;
-  --color-muted-foreground: 0 0% 63%;
-  
-  --color-brand-500: 262 84% 52%;
-  --color-brand-600: 262 84% 42%;
-  --color-brand-700: 262 84% 32%;
-}
-```
+**Key Points:**
+- Use CSS variables for consistent theming
+- Implement theme switching with `data-theme` attribute
+- Support dark mode with `data-color-scheme` attribute
+- Create custom themes by extending base theme variables
 
 ---
 
@@ -652,90 +446,13 @@ function Form({ onSubmit, onCancel }: FormProps) {
 
 ## 🧪 Testing Strategies
 
-### Component Testing
+For detailed testing examples, see [DEVELOPMENT.md](./DEVELOPMENT.md#testing).
 
-Test components in isolation:
-
-```tsx
-// ✅ Good: Component testing
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from '@nostromo/ui-core/button';
-
-describe('Button', () => {
-  it('renders with correct text', () => {
-    render(<Button>Click me</Button>);
-    expect(screen.getByRole('button')).toHaveTextContent('Click me');
-  });
-  
-  it('calls onClick when clicked', () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
-    
-    fireEvent.click(screen.getByRole('button'));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-  
-  it('is disabled when disabled prop is true', () => {
-    render(<Button disabled>Click me</Button>);
-    expect(screen.getByRole('button')).toBeDisabled();
-  });
-});
-```
-
-### Accessibility Testing
-
-Test accessibility features:
-
-```tsx
-// ✅ Good: Accessibility testing
-import { render } from '@testing-library/react';
-import { axe, toHaveNoViolations } from 'jest-axe';
-import { Button } from '@nostromo/ui-core/button';
-
-expect.extend(toHaveNoViolations);
-
-describe('Button Accessibility', () => {
-  it('should not have accessibility violations', async () => {
-    const { container } = render(<Button>Click me</Button>);
-    const results = await axe(container);
-    expect(results).toHaveNoViolations();
-  });
-});
-```
-
-### Integration Testing
-
-Test component interactions:
-
-```tsx
-// ✅ Good: Integration testing
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Dialog, DialogContent, DialogTrigger } from '@nostromo/ui-core/dialog';
-import { Button } from '@nostromo/ui-core/button';
-
-describe('Dialog Integration', () => {
-  it('opens and closes dialog', () => {
-    render(
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <p>Dialog content</p>
-        </DialogContent>
-      </Dialog>
-    );
-    
-    // Open dialog
-    fireEvent.click(screen.getByRole('button'));
-    expect(screen.getByText('Dialog content')).toBeInTheDocument();
-    
-    // Close dialog
-    fireEvent.click(screen.getByRole('button', { name: /close/i }));
-    expect(screen.queryByText('Dialog content')).not.toBeInTheDocument();
-  });
-});
-```
+**Key Points:**
+- Test components in isolation with Vitest + Testing Library
+- Test accessibility with axe-core
+- Test component interactions with integration tests
+- Aim for 80%+ code coverage
 
 ---
 

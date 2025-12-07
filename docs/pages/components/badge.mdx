@@ -1,8 +1,29 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Badge
 
 The Badge component provides you with status badges and labels for your application.
+
+## Import
+
+```tsx
+import { Badge } from '@nostromo/ui-core'
+// or
+import { Badge } from '@nostromo/ui-core/badge'
+```
+
+## Usage
+
+```tsx
+import { Badge } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Badge variant="default">Active</Badge>
+  )
+}
+```
 
 ## Live Examples
 
@@ -74,7 +95,13 @@ export default function BadgeWithIcons() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "secondary" \| "destructive" \| "outline"` | `"default"` | Badge variant |
-| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Badge size |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "success" \| "warning" \| "info"` | `"default"` | No | Visual variant of the badge |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the badge |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Badge content |
+
+### Standard HTML Props
+
+The Badge component extends `React.HTMLAttributes<HTMLDivElement>`, so it accepts all standard HTML div attributes (e.g., `id`, `data-*`, `aria-*`).

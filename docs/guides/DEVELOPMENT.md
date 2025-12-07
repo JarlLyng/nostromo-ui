@@ -82,47 +82,17 @@ export default function App() {
 
 ## Project Structure
 
+For detailed architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/              # Core components
-│   │   ├── src/
-│   │   │   ├── components/   # React components
-│   │   │   └── index.ts     # Exports
-│   │   ├── package.json
-│   │   └── tsconfig.json
-│   ├── ui-marketing/         # Marketing components
-│   │   ├── src/
-│   │   │   ├── components/
-│   │   │   └── index.ts
-│   │   ├── package.json
-│   │   └── tsconfig.json
-│   └── ui-tw/               # Tailwind preset & themes
-│       ├── src/
-│       │   ├── preset.ts    # Tailwind preset
-│       │   ├── base.css     # Base styles
-│       │   └── themes/      # Theme files
-│       ├── package.json
-│       └── tsconfig.json
-├── docs/                   # Nextra documentation site
-│   ├── pages/             # Next.js Pages Router
-│   ├── components/        # React components
-│   ├── styles/           # CSS files
-│   └── package.json
-├── apps/
-│   └── playground/         # Development playground
-│       ├── src/
-│       ├── package.json
-│       └── vite.config.ts
-├── tools/
-│   ├── eslint-config/      # Shared ESLint config
-│   └── tsconfig/          # Shared TypeScript configs
-├── .github/
-│   └── workflows/         # CI/CD
-├── package.json           # Root package.json
-├── pnpm-workspace.yaml    # pnpm workspace config
-├── turbo.json            # Turborepo config
-└── changeset.config.js   # Changesets config
+│   ├── ui-core/          # Core components
+│   ├── ui-marketing/     # Marketing components
+│   └── ui-tw/            # Tailwind preset & themes
+├── docs/                 # Nextra documentation site
+├── tools/                # Shared configs
+└── .github/              # CI/CD workflows
 ```
 
 ## Development Commands
@@ -168,52 +138,9 @@ pnpm --filter playground dev
 
 ## Build System
 
-### tsup Konfiguration
-```ts
-// packages/ui-core/tsup.config.ts
-import { defineConfig } from 'tsup';
+For detailed build system information, see [ARCHITECTURE.md](./ARCHITECTURE.md#build-system).
 
-export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
-  dts: true,
-  splitting: false,
-  sourcemap: true,
-  clean: true,
-  external: ['react', 'react-dom'],
-  treeshake: true,
-});
-```
-
-### Package.json Setup
-```json
-{
-  "name": "@nostromo/ui-core",
-  "version": "0.1.0",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./button": {
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js",
-      "types": "./dist/button.d.ts"
-    }
-  },
-  "sideEffects": false,
-  "files": ["dist"],
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  }
-}
-```
+Packages use **tsup** for building with ESM + CJS output and TypeScript definitions. All packages are tree-shakeable with `sideEffects: false`.
 
 ## Testing
 
@@ -252,117 +179,19 @@ pnpm test:run
 pnpm test:coverage
 ```
 
-### Unit Tests
-```tsx
-// src/components/Button.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+### Test Examples
 
-describe('Button', () => {
-  it('renders with correct text', () => {
-    render(<Button>Click me</Button>);
-    expect(screen.getByRole('button')).toHaveTextContent('Click me');
-  });
+For detailed testing examples and strategies, see [BEST_PRACTICES.md](./BEST_PRACTICES.md#testing-strategies).
 
-  it('handles click events', () => {
-    const handleClick = jest.fn();
-    render(<Button onClick={handleClick}>Click me</Button>);
-    
-    fireEvent.click(screen.getByRole('button'));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('applies correct variant classes', () => {
-    render(<Button variant="primary">Primary</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-brand-500');
-  });
-});
-```
-
-### Accessibility Tests
-```tsx
-// src/components/Button.a11y.test.tsx
-import { render } from '@testing-library/react';
-import { Button } from './Button';
-
-// Custom axe helper
-const runAxe = async (container: HTMLElement) => {
-  const axe = require('axe-core');
-  return new Promise((resolve) => {
-    axe.run(container, (err: any, results: any) => {
-      if (err) throw err;
-      resolve(results);
-    });
-  });
-};
-
-describe('Button Accessibility', () => {
-  it('has no accessibility violations', async () => {
-    const { container } = render(<Button>Click me</Button>);
-    const results = await runAxe(container);
-    expect(results.violations).toHaveLength(0);
-  });
-
-  it('supports keyboard navigation', () => {
-    render(<Button>Click me</Button>);
-    const button = screen.getByRole('button');
-    expect(button).toHaveAttribute('tabindex', '0');
-  });
-});
-```
-
-### E2E Tests
-```ts
-// tests/e2e/button.spec.ts
-import { test, expect } from '@playwright/test';
-
-test('Button component works correctly', async ({ page }) => {
-  await page.goto('/playground');
-  
-  const button = page.getByRole('button', { name: 'Click me' });
-  await expect(button).toBeVisible();
-  
-  await button.click();
-  await expect(page.getByText('Button clicked!')).toBeVisible();
-});
-```
+**Unit Tests**: Use Vitest + Testing Library for component testing  
+**Accessibility Tests**: Use axe-core for automated a11y testing  
+**E2E Tests**: Use Playwright for end-to-end testing
 
 ## Linting & Formatting
 
-### ESLint Konfiguration
-```js
-// tools/eslint-config/index.js
-module.exports = {
-  extends: [
-    '@typescript-eslint/recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:jsx-a11y/recommended',
-  ],
-  rules: {
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
-};
-```
+We use **ESLint** for linting and **Prettier** for formatting. Configuration is shared via `tools/eslint-config/`.
 
-### Prettier Konfiguration
-```json
-{
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": true,
-  "printWidth": 80,
-  "tabWidth": 2,
-  "useTabs": false
-}
-```
+Run `pnpm lint` to check code quality and `pnpm lint:fix` to auto-fix issues.
 
 ## Storybook
 
@@ -379,124 +208,11 @@ pnpm storybook
 ```
 
 
-### Storybook Konfiguration
+### Storybook Configuration
 
-#### React Storybook (.storybook/main.ts)
-```ts
-import type { StorybookConfig } from '@storybook/react-vite';
+Storybook uses React + Vite with Tailwind CSS v4. Configuration is in `packages/ui-core/.storybook/`.
 
-const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-a11y',
-  ],
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
-  },
-  viteFinal: async (config) => {
-    // 1) React dedupe og ESM/browser bias + symlink strategy
-    config.resolve = {
-      ...config.resolve,
-      dedupe: ['react', 'react-dom'],
-      conditions: ['browser', 'module', 'import', 'default'],
-      preserveSymlinks: false
-    };
-
-    // 2) Tailwind v4 Vite plugin
-    const tailwindVite = (await import('@tailwindcss/vite')).default;
-    config.plugins = [...(config.plugins ?? []), tailwindVite()];
-
-    // 3) optimizeDeps: workspace packages are included (force prebundle)
-    config.optimizeDeps = {
-      ...(config.optimizeDeps ?? {}),
-      force: true,
-      include: [
-        'react', 'react-dom',
-        'react-dom/client',
-        'react/jsx-runtime',
-        'react/jsx-dev-runtime',
-        'aria-hidden', 'react-remove-scroll',
-        '@floating-ui/core', '@floating-ui/dom', '@floating-ui/react-dom',
-        'phosphor-react',
-        'tailwind-merge',
-        'class-variance-authority', 'clsx',
-        // Radix packages used in stories
-        '@radix-ui/react-accordion',
-        '@radix-ui/react-avatar',
-        '@radix-ui/react-checkbox',
-        '@radix-ui/react-label',
-        '@radix-ui/react-radio-group',
-        '@radix-ui/react-select',
-        '@radix-ui/react-switch',
-        '@radix-ui/react-toggle'
-      ],
-      entries: [
-        '../src/**/*.stories.{ts,tsx,mdx}',
-        '../src/**/*.tsx',
-      ],
-      esbuildOptions: {
-        mainFields: ['module', 'browser', 'exports', 'main'],
-        platform: 'browser',
-      },
-    };
-
-    return config;
-  },
-};
-```
-
-
-### Story Eksempel
-```tsx
-// src/components/Button.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
-
-const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
-  component: Button,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary', 'ghost', 'destructive'],
-    },
-    size: {
-      control: { type: 'select' },
-      options: ['sm', 'md', 'lg'],
-    },
-  },
-};
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {
-    variant: 'primary',
-    children: 'Button',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Button',
-  },
-};
-
-export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Loading...',
-  },
-};
-```
+For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-issues).
 
 ## CI/CD Pipeline
 
@@ -620,134 +336,34 @@ jobs:
 
 ### Testing CI Locally
 
-You can simulate the CI workflow locally using the provided script:
+Run `./test-ci-locally.sh` to simulate the CI workflow locally.
 
-```bash
-# Run all CI checks locally
-./test-ci-locally.sh
-
-# Or test individual steps
-pnpm install --frozen-lockfile
-pnpm lint
-pnpm type-check
-cd packages/ui-core && pnpm test:run
-pnpm build
-cd packages/ui-core && pnpm size
-cd packages/ui-core && pnpm test:a11y
-```
-
-### Debugging CI Failures
-
-If CI fails, error logs are automatically uploaded as artifacts. See [SHARE_ERRORS.md](../../.docs/SHARE_ERRORS.md) for detailed instructions on sharing error information.
+For debugging CI failures, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
 
 ## Contribution Guidelines
 
-> 📖 **For reviewers**: See [Code Review Guide](CODE_REVIEW.md) for detailed instructions on how to review code in this project.
+For detailed contribution guidelines, see [CONTRIBUTING.md](../../CONTRIBUTING.md) and [CODE_REVIEW.md](./CODE_REVIEW.md).
 
-### Development Workflow
-1. **Fork repository**
-2. **Create feature branch**: `git checkout -b feature/button-component`
-3. **Make changes**: Implement feature/fix
-4. **Add tests**: Unit tests + accessibility tests
-5. **Update documentation**: Update relevant .md files
-6. **Create changeset**: `pnpm changeset`
-7. **Submit PR**: GitHub pull request
-
-### Code Standards
-- **TypeScript**: Strict mode, no `any` types
-- **Accessibility**: WCAG 2.1 AA compliance
-- **Testing**: Minimum 80% code coverage
-- **Documentation**: JSDoc for all public APIs
-- **Performance**: No runtime overhead
-
-### PR Requirements
-- [ ] All tests pass
-- [ ] No linting errors
-- [ ] TypeScript compilation succeeds
-- [ ] Accessibility tests pass
-- [ ] Documentation updated
-- [ ] Changeset created
-- [ ] Storybook stories added
-
-### Commit Convention
-```
-type(scope): description
-
-feat(button): add loading state
-fix(dialog): resolve focus trap issue
-docs(readme): update installation guide
-```
+### Quick Workflow
+1. Fork repository and create feature branch
+2. Make changes with tests and documentation
+3. Create changeset: `pnpm changeset`
+4. Submit PR with all checks passing
 
 ## Troubleshooting
 
-### Common Issues
+For detailed troubleshooting, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
 
-#### Build Errors
+### Quick Fixes
 ```bash
 # Clear cache and reinstall
-pnpm clean
-rm -rf node_modules
-pnpm install
-```
+pnpm clean && rm -rf node_modules && pnpm install
 
-#### TypeScript Errors
-```bash
 # Regenerate types
-pnpm type-check
-pnpm build
-```
+pnpm type-check && pnpm build
 
-#### Test Failures
-```bash
-# Run tests with verbose output
-pnpm test --verbose
-```
-
-#### Storybook Issues
-```bash
 # Clear Storybook cache
-rm -rf .storybook/cache
-pnpm storybook
+rm -rf .storybook/cache && pnpm storybook
 ```
 
-### Performance Issues
-- **Bundle size**: Check bundle analyzer output
-- **Build time**: Use Turborepo caching
-- **Test time**: Run tests in parallel
-
-### Getting Help
-- **GitHub Issues**: Bug reports and feature requests
-- **Discussions**: General questions and discussions
-- **Discord**: Real-time community support
-
-## 📚 Nextra Dokumentation
-
-### Development Server
-```bash
-# Start Nextra development server
-cd docs
-npm run dev
-
-# Build statiske sider
-npm run build
-
-# Preview build
-npm run start
-```
-
-### Struktur
-- **`pages/`** - Next.js Pages Router med MDX filer
-- **`components/`** - React komponenter til dokumentation (StorybookEmbed)
-- **`styles/`** - CSS filer (globals.css, Tailwind config)
-
-### Tilføj Ny Komponent Dokumentation
-1. Opret `pages/components/[component].mdx`
-2. Tilføj StorybookEmbed hvis nødvendigt
-3. Test med `npm run dev`
-
-### Storybook Integration
-- **Storybook**: Kører på http://localhost:6006
-- **Embed**: Brug `<StorybookEmbed story="components-[name]--[story]" />`
-- **Port**: Konfigureret til port 6006 i StorybookEmbed komponenten
-
-Denne guide giver dig alt du behøver for at udvikle med Nostromo UI effektivt og bidrage til projektet.
+For more help, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) or open a [GitHub Issue](https://github.com/JarlLyng/nostromo-ui/issues).

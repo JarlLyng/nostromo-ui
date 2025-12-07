@@ -1,8 +1,36 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Tooltip
 
 The Tooltip component provides you with help text when the user hovers over an element.
+
+## Import
+
+```tsx
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@nostromo/ui-core'
+// or
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@nostromo/ui-core/tooltip'
+```
+
+## Usage
+
+```tsx
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>
+          <p>This is a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
 
 ## Live Examples
 
@@ -54,8 +82,50 @@ export default function TooltipWithButton() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `delayDuration` | `number` | `700` | Delay before tooltip shows (ms) |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Tooltip position |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Tooltip alignment |
+### Tooltip
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `content` | `React.ReactNode` | - | **Yes** | Tooltip content |
+| `trigger` | `"hover" \| "click" \| "focus" \| "manual"` | `"hover"` | No | How tooltip is triggered |
+| `open` | `boolean` | `undefined` | No | Whether tooltip is open (controlled) |
+| `onOpenChange` | `(open: boolean) => void` | `undefined` | No | Callback when open state changes |
+| `delayDuration` | `number` | `700` | No | Delay before tooltip shows (ms) |
+| `skipDelayDuration` | `number` | `300` | No | Delay before tooltip shows when moving between triggers (ms) |
+| `disabled` | `boolean` | `false` | No | Whether tooltip is disabled |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | No | Side of trigger to align to |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | No | Alignment relative to trigger |
+| `sideOffset` | `number` | `4` | No | Distance from trigger (px) |
+| `alignOffset` | `number` | `0` | No | Offset from alignment (px) |
+| `avoidCollisions` | `boolean` | `true` | No | Whether to adjust position to avoid collisions |
+| `collisionBoundary` | `Element \| null` | `null` | No | Boundary element for collision detection |
+| `collisionPadding` | `number` | `0` | No | Padding for collision detection (px) |
+| `hideWhenDetached` | `boolean` | `false` | No | Whether to hide when trigger is detached |
+| `sticky` | `"partial" \| "always"` | `"partial"` | No | Sticky behavior |
+| `closeOnBlur` | `boolean` | `true` | No | Whether to close on blur |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `contentClassName` | `string` | `undefined` | No | Additional CSS classes for content |
+| `children` | `React.ReactNode` | `undefined` | No | Tooltip trigger element |
+
+### TooltipProvider
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `delayDuration` | `number` | `700` | No | Default delay for all tooltips (ms) |
+| `skipDelayDuration` | `number` | `300` | No | Default skip delay for all tooltips (ms) |
+| `children` | `React.ReactNode` | - | **Yes** | App content |
+
+### TooltipTrigger
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `asChild` | `boolean` | `false` | No | Render as child element |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Trigger element |
+
+### TooltipContent
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Tooltip content |

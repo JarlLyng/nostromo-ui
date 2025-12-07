@@ -5,6 +5,28 @@ import LiveCode from '../../components/LiveCode'
 
 The Button component provides you with different button variants and sizes.
 
+## Import
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+// or
+import { Button } from '@nostromo/ui-core/button'
+```
+
+## Usage
+
+```tsx
+import { Button } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Button variant="default" size="default">
+      Click me
+    </Button>
+  )
+}
+```
+
 ## Live Examples
 
 <StorybookEmbed story="components-button--default" />
@@ -80,12 +102,51 @@ export default function ButtonSizes() {
 <div id="loading-text" className="sr-only">
   Please wait while your changes are saved
 </div>
+
+// Button in form - use type="button" to prevent form submission
+<Button type="button" onClick={handleCancel}>
+  Cancel
+</Button>
+<Button type="submit">
+  Submit
+</Button>
 ```
+
+## Best Practices
+
+### Do ✅
+- Use `type="button"` for buttons that don't submit forms
+- Use `type="submit"` for form submission buttons
+- Provide `aria-label` for icon-only buttons
+- Use `loading` prop for async operations
+- Use `disabled` prop to prevent interactions
+
+### Don't ❌
+- Don't use buttons for navigation (use links instead)
+- Don't disable buttons without providing feedback
+- Don't forget to handle loading states in forms
+- Don't use buttons without accessible labels
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | Button variant |
-| `size` | `"default" \| "sm" \| "lg"` | `"default"` | Button size |
-| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "subtle"` | `"default"` | No | Visual variant of the button |
+| `size` | `"sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | No | Size of the button |
+| `state` | `"default" \| "loading" \| "success" \| "error"` | `"default"` | No | Visual state of the button |
+| `loading` | `boolean` | `false` | No | Whether the button is in a loading state |
+| `loadingText` | `string` | `undefined` | No | Text to display when loading is true |
+| `disabled` | `boolean` | `false` | No | Whether the button is disabled |
+| `type` | `"button" \| "submit" \| "reset"` | `"button"` | No | HTML button type attribute |
+| `onClick` | `(event: React.MouseEvent<HTMLButtonElement>) => void` | `undefined` | No | Click event handler |
+| `asChild` | `boolean` | `false` | No | Render as child element (for composition) |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Button content |
+
+### Standard HTML Button Props
+
+The Button component extends all standard HTML button attributes, including:
+- `id`, `name`, `value`, `form`, `formAction`, `formEncType`, `formMethod`, `formNoValidate`, `formTarget`
+- `aria-*` attributes for accessibility
+- `data-*` attributes for custom data
+- All other standard HTML button attributes

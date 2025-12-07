@@ -1,8 +1,40 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Radio Group
 
 The Radio Group component provides you with radio button groups and selections.
+
+## Import
+
+```tsx
+import { RadioGroup, RadioGroupItem } from '@nostromo/ui-core'
+// or
+import { RadioGroup, RadioGroupItem } from '@nostromo/ui-core/radio-group'
+```
+
+## Usage
+
+```tsx
+import { RadioGroup, RadioGroupItem, Label } from '@nostromo/ui-core'
+
+export default function Example() {
+  const [value, setValue] = React.useState('option1')
+  
+  return (
+    <RadioGroup value={value} onValueChange={setValue}>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option1" id="r1" />
+        <Label htmlFor="r1">Option 1</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="option2" id="r2" />
+        <Label htmlFor="r2">Option 2</Label>
+      </div>
+    </RadioGroup>
+  )
+}
+```
 
 ## Live Examples
 
@@ -35,9 +67,34 @@ export default function RadioGroupExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | - | Selected value |
-| `defaultValue` | `string` | - | Default selected value |
-| `onValueChange` | `function` | - | Change handler |
-| `disabled` | `boolean` | `false` | Whether radio group is disabled |
+### RadioGroup
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | `undefined` | No | Selected value (controlled) |
+| `defaultValue` | `string` | `undefined` | No | Default selected value (uncontrolled) |
+| `onValueChange` | `(value: string) => void` | `undefined` | No | Callback when value changes |
+| `disabled` | `boolean` | `false` | No | Whether the radio group is disabled |
+| `error` | `boolean` | `false` | No | Whether the radio group is in an error state |
+| `label` | `string` | `undefined` | No | Label text (alternative to Label component) |
+| `helperText` | `string` | `undefined` | No | Helper text displayed below radio group |
+| `required` | `boolean` | `false` | No | Whether the radio group is required |
+| `name` | `string` | `undefined` | No | Name for form submission |
+| `orientation` | `"horizontal" \| "vertical"` | `"vertical"` | No | Layout orientation |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Radio items |
+
+### RadioGroupItem
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | - | **Yes** | Value for this radio item |
+| `disabled` | `boolean` | `false` | No | Whether the radio item is disabled |
+| `id` | `string` | `undefined` | No | Radio item ID (auto-generated if not provided) |
+| `name` | `string` | `undefined` | No | Name for form submission |
+| `required` | `boolean` | `false` | No | Whether the radio item is required |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### Standard HTML Props
+
+The RadioGroup component extends `React.HTMLAttributes<HTMLDivElement>`, and RadioGroupItem extends standard HTML input attributes (e.g., `id`, `data-*`, `aria-*`).

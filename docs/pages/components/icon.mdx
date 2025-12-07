@@ -1,8 +1,29 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Icon
 
 The Icon component provides you with icons and symbols for your application.
+
+## Import
+
+```tsx
+import { Icon } from '@nostromo/ui-core'
+// or
+import { Icon } from '@nostromo/ui-core/icon'
+```
+
+## Usage
+
+```tsx
+import { Icon } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Icon name="home" size="default" />
+  )
+}
+```
 
 ## Live Examples
 
@@ -47,7 +68,18 @@ export default function IconSizes() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | - | Icon name |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Icon size |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `name` | `IconName` | - | **Yes** | Name of the icon (see available icons below) |
+| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `"default"` | No | Size of the icon |
+| `weight` | `"thin" \| "light" \| "regular" \| "medium" \| "bold"` | `"regular"` | No | Stroke weight of the icon |
+| `color` | `string` | `undefined` | No | Color of the icon (CSS color value) |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### Standard HTML SVG Props
+
+The Icon component extends `React.HTMLAttributes<SVGSVGElement>`, so it accepts all standard HTML SVG attributes (e.g., `id`, `data-*`, `aria-*`).
+
+### Available Icons
+
+The Icon component supports a wide range of icons. Common icons include: `home`, `user`, `settings`, `search`, `star`, `heart`, `bell`, `mail`, `phone`, `calendar`, `clock`, `arrow-left`, `arrow-right`, `arrow-up`, `arrow-down`, `check`, `x`, `plus`, `minus`, `edit`, `trash`, `download`, `upload`, `share`, `menu`, `close`, and many more.

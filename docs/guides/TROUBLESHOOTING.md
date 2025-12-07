@@ -25,7 +25,7 @@ Error: Cannot resolve module '@nostromo/ui-core'
 ```
 
 **Solution:**
-> 📖 **For complete installation instructions, see [Development Guide](DEVELOPMENT.md#installation)**
+> 📖 **For complete installation instructions, see [Development Guide](DEVELOPMENT.md#quick-start)**
 
 ```bash
 # Check if packages are installed
@@ -559,113 +559,14 @@ function App() {
 
 ## ♿ Accessibility Issues
 
-### Screen Reader Issues
+For detailed accessibility troubleshooting, see [ACCESSIBILITY_GUIDE.md](./ACCESSIBILITY_GUIDE.md).
 
-#### Issue: Screen reader not announcing content
-```
-Screen reader not reading component content
-```
+### Common Issues
 
-**Solution:**
-```tsx
-// Add proper ARIA attributes
-<Button
-  aria-label="Close dialog"
-  onClick={onClose}
->
-  <Icon name="x" aria-hidden="true" />
-</Button>
-
-// Use semantic HTML
-<main>
-  <h1>Page Title</h1>
-  <section aria-labelledby="content-heading">
-    <h2 id="content-heading">Content</h2>
-    <p>Content goes here</p>
-  </section>
-</main>
-```
-
-#### Issue: Focus management problems
-```
-Focus not moving to modal when opened
-```
-
-**Solution:**
-```tsx
-// Implement proper focus management
-function Modal({ isOpen, onClose, children }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (isOpen && modalRef.current) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstElement = focusableElements[0] as HTMLElement;
-      firstElement?.focus();
-    }
-  }, [isOpen]);
-  
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent ref={modalRef}>
-        {children}
-      </DialogContent>
-    </Dialog>
-  );
-}
-```
-
-### Keyboard Navigation Issues
-
-#### Issue: Keyboard navigation not working
-```
-Components not responding to keyboard input
-```
-
-**Solution:**
-```tsx
-// Add keyboard event handlers
-function CustomButton({ onClick, children }: ButtonProps) {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      onClick();
-    }
-  };
-  
-  return (
-    <button
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-    >
-      {children}
-    </button>
-  );
-}
-```
-
-### Color Contrast Issues
-
-#### Issue: Text not readable
-```
-Text color not meeting contrast requirements
-```
-
-**Solution:**
-```tsx
-// Use high contrast colors
-<Button className="bg-brand-600 text-white hover:bg-brand-700">
-  High Contrast Button
-</Button>
-
-// Check contrast ratios
-// Use tools like WebAIM Contrast Checker
-// Ensure 4.5:1 ratio for normal text
-// Ensure 3:1 ratio for large text
-```
+- **Screen reader not announcing content**: Add proper ARIA attributes and semantic HTML
+- **Focus management problems**: Implement proper focus trapping for modals
+- **Keyboard navigation not working**: Add keyboard event handlers
+- **Color contrast issues**: Use high contrast colors (WCAG 2.1 AA)
 
 ---
 
@@ -996,7 +897,6 @@ npx madge --circular src/
 ### Documentation
 
 - **API Reference**: [API_REFERENCE.md](./API_REFERENCE.md)
-- **Migration Guides**: [MIGRATION_GUIDES.md](./MIGRATION_GUIDES.md)
 - **Best Practices**: [BEST_PRACTICES.md](./BEST_PRACTICES.md)
 - **Component Examples**: [Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)
 

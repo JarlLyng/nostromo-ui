@@ -1,8 +1,29 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Skeleton
 
 The Skeleton component provides you with loading placeholders.
+
+## Import
+
+```tsx
+import { Skeleton } from '@nostromo/ui-core'
+// or
+import { Skeleton } from '@nostromo/ui-core/skeleton'
+```
+
+## Usage
+
+```tsx
+import { Skeleton } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Skeleton className="h-4 w-[250px]" />
+  )
+}
+```
 
 ## Live Examples
 
@@ -47,6 +68,18 @@ export default function CardSkeleton() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | - | Custom CSS classes |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `shape` | `"default" \| "circle" \| "square"` | `"default"` | No | Shape of the skeleton |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the skeleton |
+| `width` | `string \| number` | `undefined` | No | Width of the skeleton |
+| `height` | `string \| number` | `undefined` | No | Height of the skeleton |
+| `lines` | `number` | `undefined` | No | Number of lines (for text skeleton) |
+| `spacing` | `"none" \| "sm" \| "md" \| "lg"` | `"md"` | No | Spacing between lines |
+| `loading` | `boolean` | `true` | No | Whether skeleton is in loading state |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Skeleton content |
+
+### Standard HTML Props
+
+The Skeleton component extends standard HTML div attributes (e.g., `id`, `data-*`, `aria-*`).

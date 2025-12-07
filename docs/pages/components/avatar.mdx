@@ -1,8 +1,32 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Avatar
 
 The Avatar component provides you with user avatars and profile pictures.
+
+## Import
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core'
+// or
+import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core/avatar'
+```
+
+## Usage
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Avatar>
+      <AvatarImage src="/avatar.jpg" alt="User" />
+      <AvatarFallback>JD</AvatarFallback>
+    </Avatar>
+  )
+}
+```
 
 ## Live Examples
 
@@ -57,6 +81,29 @@ export default function AvatarSizes() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Avatar size |
+### Avatar
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the avatar |
+| `variant` | `"default" \| "rounded" \| "square"` | `"default"` | No | Shape variant |
+| `src` | `string` | `undefined` | No | Image source URL |
+| `alt` | `string` | `undefined` | No | Alt text for the image |
+| `fallback` | `string` | `undefined` | No | Fallback text when image fails to load |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Avatar content (AvatarImage, AvatarFallback) |
+
+### AvatarImage
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `src` | `string` | - | **Yes** | Image source URL |
+| `alt` | `string` | `undefined` | No | Alt text for the image |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### AvatarFallback
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Fallback content (usually initials) |

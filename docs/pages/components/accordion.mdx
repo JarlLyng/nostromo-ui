@@ -1,8 +1,36 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Accordion
 
 The Accordion component provides you with expandable sections for FAQ and content organization.
+
+## Import
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nostromo/ui-core'
+// or
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nostromo/ui-core/accordion'
+```
+
+## Usage
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Nostromo UI?</AccordionTrigger>
+        <AccordionContent>
+          Nostromo UI is a comprehensive UI library.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}
+```
 
 ## Live Examples
 
@@ -60,7 +88,38 @@ export default function MultipleAccordion() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `"single" \| "multiple"` | `"single"` | Accordion type |
-| `collapsible` | `boolean` | `false` | Whether items can be closed |
+### Accordion
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `type` | `"single" \| "multiple"` | `"single"` | No | Whether single or multiple items can be open |
+| `collapsible` | `boolean` | `false` | No | Whether items can be closed (only for single type) |
+| `value` | `string \| string[]` | `undefined` | No | Active item value(s) (controlled) |
+| `defaultValue` | `string \| string[]` | `undefined` | No | Default active item value(s) (uncontrolled) |
+| `onValueChange` | `(value: string \| string[]) => void` | `undefined` | No | Callback when active item changes |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Accordion items |
+
+### AccordionItem
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | - | **Yes** | Unique value for this item |
+| `disabled` | `boolean` | `false` | No | Whether the item is disabled |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Item content (AccordionTrigger, AccordionContent) |
+
+### AccordionTrigger
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `disabled` | `boolean` | `false` | No | Whether the trigger is disabled |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Trigger content |
+
+### AccordionContent
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Content to display when expanded |

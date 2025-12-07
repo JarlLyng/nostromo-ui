@@ -1,8 +1,33 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Separator
 
 The Separator component provides you with divider lines and separators.
+
+## Import
+
+```tsx
+import { Separator } from '@nostromo/ui-core'
+// or
+import { Separator } from '@nostromo/ui-core/separator'
+```
+
+## Usage
+
+```tsx
+import { Separator } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <div>
+      <p>Content above</p>
+      <Separator />
+      <p>Content below</p>
+    </div>
+  )
+}
+```
 
 ## Live Examples
 
@@ -46,6 +71,13 @@ export default function VerticalSeparator() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Separator orientation |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | No | Separator orientation |
+| `decorative` | `boolean` | `false` | No | Whether separator is decorative (hidden from screen readers) |
+| `variant` | `"default" \| "subtle" \| "strong"` | `"default"` | No | Visual variant |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### Standard HTML Props
+
+The Separator component extends `React.HTMLAttributes<HTMLDivElement>`, so it accepts all standard HTML div attributes (e.g., `id`, `data-*`, `aria-*`).

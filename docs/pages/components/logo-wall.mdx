@@ -4,6 +4,32 @@ import LiveCode from '../../components/LiveCode'
 
 The Logo Wall component provides you with client/partner logo displays.
 
+## Import
+
+```tsx
+import { LogoWall } from '@nostromo/ui-marketing'
+// or
+import { LogoWall } from '@nostromo/ui-marketing/logo-wall'
+```
+
+## Usage
+
+```tsx
+import { LogoWall } from '@nostromo/ui-marketing'
+
+export default function Example() {
+  return (
+    <LogoWall
+      title="Trusted by leading companies"
+      logos={[
+        { src: "/logo1.png", alt: "Company 1" },
+        { src: "/logo2.png", alt: "Company 2" }
+      ]}
+    />
+  )
+}
+```
+
 ## Live Examples
 
 <LiveCode code={`import { LogoWall } from '@nostromo/ui-marketing'
@@ -30,10 +56,30 @@ export default function LogoWallExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Section title |
-| `logos` | `Logo[]` | - | Array of logo objects |
-| `variant` | `"grid" \| "carousel"` | `"grid"` | Display variant |
-| `columns` | `number` | `4` | Number of columns (grid) |
-| `autoplay` | `boolean` | `true` | Auto-play (carousel) |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `logos` | `LogoItem[]` | - | **Yes** | Array of logo objects (see LogoItem interface below) |
+| `title` | `string` | `undefined` | No | Section title |
+| `subtitle` | `string` | `undefined` | No | Section subtitle |
+| `variant` | `"default" \| "grid" \| "carousel"` | `"default"` | No | Display variant |
+| `itemVariant` | `"default" \| "outline" \| "filled"` | `"default"` | No | Visual variant for logo items |
+| `itemHover` | `"none" \| "scale" \| "opacity"` | `"scale"` | No | Hover effect for items |
+| `itemSize` | `"sm" \| "md" \| "lg"` | `"md"` | No | Size of logo items |
+| `imageFilter` | `"none" \| "grayscale" \| "sepia"` | `"none"` | No | Image filter effect |
+| `showTitle` | `boolean` | `true` | No | Whether to show section title |
+| `showCount` | `boolean` | `false` | No | Whether to show logo count |
+| `maxLogos` | `number` | `undefined` | No | Maximum number of logos to display |
+| `onLogoClick` | `(logo: LogoItem) => void` | `undefined` | No | Callback when logo is clicked |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `itemClassName` | `string` | `undefined` | No | Additional CSS classes for items |
+
+### LogoItem Interface
+
+```tsx
+interface LogoItem {
+  src: string;
+  alt: string;
+  href?: string;
+  name?: string;
+}
+```

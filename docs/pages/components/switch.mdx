@@ -1,8 +1,38 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Switch
 
-The Switch component provides you with toggle switches and checkboxes.
+The Switch component provides you with toggle switches.
+
+## Import
+
+```tsx
+import { Switch } from '@nostromo/ui-core'
+// or
+import { Switch } from '@nostromo/ui-core/switch'
+```
+
+## Usage
+
+```tsx
+import { Switch, Label } from '@nostromo/ui-core'
+
+export default function Example() {
+  const [enabled, setEnabled] = React.useState(false)
+  
+  return (
+    <div className="flex items-center space-x-2">
+      <Switch 
+        id="notifications"
+        checked={enabled}
+        onCheckedChange={setEnabled}
+      />
+      <Label htmlFor="notifications">Enable notifications</Label>
+    </div>
+  )
+}
+```
 
 ## Live Examples
 
@@ -57,8 +87,24 @@ export default function SwitchWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Whether switch is on |
-| `disabled` | `boolean` | `false` | Whether switch is disabled |
-| `onCheckedChange` | `function` | - | Change handler |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `checked` | `boolean` | `false` | No | Whether the switch is on (controlled) |
+| `defaultChecked` | `boolean` | `false` | No | Default checked state (uncontrolled) |
+| `onCheckedChange` | `(checked: boolean) => void` | `undefined` | No | Callback when checked state changes |
+| `disabled` | `boolean` | `false` | No | Whether the switch is disabled |
+| `required` | `boolean` | `false` | No | Whether the switch is required |
+| `error` | `boolean` | `false` | No | Whether the switch is in an error state |
+| `label` | `string` | `undefined` | No | Label text (alternative to Label component) |
+| `helperText` | `string` | `undefined` | No | Helper text displayed below switch |
+| `id` | `string` | `undefined` | No | Switch ID (auto-generated if not provided) |
+| `name` | `string` | `undefined` | No | Name for form submission |
+| `value` | `string` | `undefined` | No | Value for form submission |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `asChild` | `boolean` | `false` | No | Render as child element |
+
+### Standard HTML Props
+
+The Switch component extends standard HTML button attributes, including:
+- `aria-*` attributes for accessibility
+- `data-*` attributes for custom data

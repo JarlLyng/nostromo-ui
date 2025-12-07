@@ -14,23 +14,6 @@ The library is divided into two areas:
 
 The name is inspired by the spaceship *USCSS Nostromo* from the movie **Alien** (1979).
 
-## 📚 Documentation
-
-**Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) (GitHub Pages)
-
-We have a modern Nextra-based documentation site with all 27 components, interactive Storybook examples, live code previews, and complete API documentation. The documentation features:
-
-- **🔍 Search functionality** - Quick search across all documentation
-- **📝 Live code examples** - Interactive examples with react-live
-- **📚 Categorized navigation** - Components organized by category (Primitives, Forms, Navigation, Feedback, Data Display, Marketing)
-- **🎨 Storybook integration** - Embedded Storybook examples directly in docs
-- **🌙 Dark mode support** - Automatic dark mode detection
-- **📱 Responsive design** - Works perfectly on all devices
-
-The documentation is built with Next.js and Nextra for optimal performance and developer experience.
-
-> **Note**: Documentation is automatically deployed via GitHub Pages when changes are pushed to the main branch.
-
 ---
 
 ## 🚀 Quick Start
@@ -162,111 +145,22 @@ We're actively seeking feedback from the community! Please help us by:
 
 ## 📚 Documentation
 
-### 🚀 **Start Here**
-- **[📚 Live Documentation](https://jarllyng.github.io/nostromo-ui/)** - **START HERE** - Live documentation site with all 27 components
-- **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
+**Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) | **Storybook**: [https://jarllyng.github.io/nostromo-ui/storybook-static/](https://jarllyng.github.io/nostromo-ui/storybook-static/)
 
-### 📖 **Main Documents**
-- **[Architecture](docs/guides/ARCHITECTURE.md)** - Monorepo structure, build system and package organization
-- **[Theming](docs/guides/THEMING.md)** - Complete theming guide with CSS variables and custom themes
-- **[API Reference](docs/guides/API_REFERENCE.md)** - Complete API reference for all components
-- **[Development](docs/guides/DEVELOPMENT.md)** - Setup, build process, testing and contribution guidelines
-- **[Deployment](docs/guides/DEPLOYMENT.md)** - Deployment guide for GitHub Pages
+### Main Guides
+- **[Architecture](docs/guides/ARCHITECTURE.md)** - Monorepo structure and build system
+- **[Theming](docs/guides/THEMING.md)** - CSS variables and custom themes
+- **[API Reference](docs/guides/API_REFERENCE.md)** - Complete component API
+- **[Development](docs/guides/DEVELOPMENT.md)** - Setup and contribution guidelines
+- **[Best Practices](docs/guides/BEST_PRACTICES.md)** - Component patterns and optimization
+- **[Troubleshooting](docs/guides/TROUBLESHOOTING.md)** - Common issues and solutions
 
-### 📋 **Project Management**
-- **[Roadmap](docs/guides/ROADMAP.md)** - Detailed project plan and milestones
-- **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
-- **[Code Review Guide](docs/guides/CODE_REVIEW.md)** - Guide for reviewing code
-- **[Security](SECURITY.md)** - Security policy and vulnerability reporting
-- **[Changelog](CHANGELOG.md)** - History of all changes
-
----
-
-## 🎯 Vision
-
-- Give developers a **modern, accessible and Tailwind-first** component library.
-- Make it **easy to choose a theme** (or define your own).
-- Deliver both **small primitives** and **large blocks**, so you can build everything from SaaS dashboards to landing pages.
-- Inspired by shadcn/ui, but with a **clear division** (product vs marketing).
-- Focuses on **React** for optimal performance and developer experience.
-
----
-
-## 🏗️ Architecture
-
-The project is organized as a **monorepo** (pnpm + Turborepo) with three main packages:
-
-- **`@nostromo/ui-core`** - Product and app components (Button, Input, Dialog, etc.)
-- **`@nostromo/ui-marketing`** - Marketing components (Hero, Features, Pricing, etc.)
-- **`@nostromo/ui-tw`** - Tailwind preset and theme system
-
-> 📖 **Read more**: [Architecture documentation](docs/guides/ARCHITECTURE.md)
-
----
-
-## 🎨 Theming
-
-Nostromo UI uses **CSS variables in HSL format** for theming, providing maximum flexibility without runtime overhead. Includes 4 predefined themes (Nostromo, Mother, LV-426, Sulaco) and full support for custom themes and dark mode.
-
-> 🎨 **Read more**: [Complete theming guide](docs/guides/THEMING.md)
-
----
-
-## 🧩 Components
-
-**27 Core Components**: Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator, ErrorBoundary
-
-**6 Marketing Components**: Hero, Testimonials, Features, Pricing, Gallery, Logo Wall
-
-> 🔧 **Read more**: [Complete API Reference](docs/guides/API_REFERENCE.md)
-
----
-
-## 🗺️ Roadmap
-
-**Current Status**: Beta (0.1.0) - Production Ready! 🎉
-
-- ✅ **27 Core Components** - Complete set of product components
-- ✅ **6 Marketing Components** - Hero, Features, Testimonials, Pricing, Gallery, Logo Wall
-- ✅ **4 Predefined Themes** - Nostromo, Mother, LV-426, Sulaco
-- ✅ **Full Documentation** - Nextra-based site with live examples
-- ✅ **100% Test Coverage** - 691 tests including accessibility
-
-> 📋 **Read more**: [Detailed roadmap](docs/guides/ROADMAP.md)
-
----
-
-## 🤝 Contributing & Release
-
-- **Repo**: GitHub (MIT-licens).
-- **CI**: GitHub Actions (lint, test, build, release).
-- **Release**: Changesets til semver.
-- **Tests**: Vitest + RTL for core, Playwright/Storybook for visuelle regressioner.
-
-> 🛠️ **Read more**: [Development guide](docs/guides/DEVELOPMENT.md)
-
----
-
-## 📖 Read More
-
-### 🚀 **Quick Start**
-- **[📚 Live Documentation](https://jarllyng.github.io/nostromo-ui/)** - **START HERE** - Live documentation site with all 27 components
-- **[🎨 Live Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/)** - Interactive component examples
-
-### 📚 **Complete Documentation**
-- **[Architecture](docs/guides/ARCHITECTURE.md)** - Detailed monorepo and package structure
-- **[Theming](docs/guides/THEMING.md)** - Complete theming guide and examples  
-- **[API Reference](docs/guides/API_REFERENCE.md)** - Complete API reference for all components
-- **[Best Practices](docs/guides/BEST_PRACTICES.md)** - Component composition and usage patterns
-- **[Development](docs/guides/DEVELOPMENT.md)** - Setup, workflow and contribution guidelines
-- **[Code Review](docs/guides/CODE_REVIEW.md)** - Guide for reviewing code
-- **[Deployment](docs/guides/DEPLOYMENT.md)** - GitHub Pages deployment guide
-
-### 📋 **Project Information**
-- **[Roadmap](docs/guides/ROADMAP.md)** - Detailed project plan and milestones
-- **[Contributing](CONTRIBUTING.md)** - How to contribute to the project
-- **[Security](SECURITY.md)** - Security policy and vulnerability reporting
-- **[Changelog](CHANGELOG.md)** - History of all changes
+### Project Info
+- **[Roadmap](docs/guides/ROADMAP.md)** - Project milestones and plans
+- **[Contributing](CONTRIBUTING.md)** - How to contribute
+- **[Code Review](docs/guides/CODE_REVIEW.md)** - Review guidelines
+- **[Security](SECURITY.md)** - Security policy
+- **[Changelog](CHANGELOG.md)** - Version history
 
 ---
 

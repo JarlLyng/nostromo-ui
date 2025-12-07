@@ -2,12 +2,35 @@
 
 Welcome to Nostromo UI! This guide helps you get started with our UI library.
 
+## Prerequisites
+
+- **Node.js**: >= 20.0.0
+- **React**: >= 18.0.0
+- **TypeScript**: >= 5.0.0 (recommended)
+- **Tailwind CSS**: >= 3.0.0 or >= 4.0.0
+
 ## Installation
 
 Install Nostromo UI in your project:
 
 ```bash
+# npm
 npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+
+# pnpm
+pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+
+# yarn
+yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+```
+
+### Peer Dependencies
+
+Nostromo UI requires the following peer dependencies:
+
+```bash
+npm install react react-dom
+npm install -D tailwindcss
 ```
 
 ## Theming Setup
@@ -46,13 +69,75 @@ export default function MyComponent() {
 }
 ```
 
-## Tailwind CSS
+## Tailwind CSS Configuration
 
-Nostromo UI uses Tailwind CSS. Make sure to have Tailwind configured in your project:
+Nostromo UI uses Tailwind CSS. Configure Tailwind in your project:
 
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+```js
+// tailwind.config.js
+const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+  ],
+  presets: [nostromoPreset],
+};
+```
+
+### Project Setup Examples
+
+**Next.js (App Router):**
+```tsx
+// app/layout.tsx
+import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/themes/nostromo.css";
+
+export default function RootLayout({ children }) {
+  return (
+    <html data-theme="nostromo" data-color-scheme="light">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+**Vite:**
+```tsx
+// main.tsx
+import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/themes/nostromo.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+**Dark Mode Toggle:**
+```tsx
+// Theme toggle example
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-color-scheme', 
+      isDark ? 'dark' : 'light'
+    );
+  }, [isDark]);
+  
+  return (
+    <button onClick={() => setIsDark(!isDark)}>
+      {isDark ? 'Light' : 'Dark'} Mode
+    </button>
+  );
+}
 ```
 
 ## Next Steps

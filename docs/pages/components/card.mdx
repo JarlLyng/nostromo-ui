@@ -1,8 +1,36 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Card
 
 The Card component provides you with content cards and layout components.
+
+## Import
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@nostromo/ui-core'
+// or
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@nostromo/ui-core/card'
+```
+
+## Usage
+
+```tsx
+import { Card, CardHeader, CardTitle, CardContent } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Card content goes here</p>
+      </CardContent>
+    </Card>
+  )
+}
+```
 
 ## Live Examples
 
@@ -91,40 +119,37 @@ export default function CardWithButtons() {
 </Card>
 ```
 
+## Best Practices
+
+### Do ✅
+- Use `CardTitle` for semantic heading structure
+- Provide `CardDescription` for context
+- Use `CardFooter` for actions and metadata
+- Keep card content focused and scannable
+- Use proper heading hierarchy (CardTitle should be h3 if inside a section with h2)
+
+### Don't ❌
+- Don't skip `CardTitle` - always provide a title
+- Don't nest cards unnecessarily
+- Don't use cards for simple containers (use divs instead)
+- Don't forget responsive design for card grids
+
 ## Props
 
-### Card
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Card content |
-| `className` | `string` | - | Additional CSS classes |
+All Card components extend standard HTML attributes and accept:
 
-### CardHeader
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Header content |
-| `className` | `string` | - | Additional CSS classes |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Component content |
 
-### CardTitle
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Title content |
-| `className` | `string` | - | Additional CSS classes |
+### Component-Specific Props
 
-### CardDescription
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Description content |
-| `className` | `string` | - | Additional CSS classes |
+**Card**: Extends `React.HTMLAttributes<HTMLDivElement>`  
+**CardHeader**: Extends `React.HTMLAttributes<HTMLDivElement>`  
+**CardTitle**: Extends `React.HTMLAttributes<HTMLHeadingElement>` (renders as `<h3>`)  
+**CardDescription**: Extends `React.HTMLAttributes<HTMLParagraphElement>` (renders as `<p>`)  
+**CardContent**: Extends `React.HTMLAttributes<HTMLDivElement>`  
+**CardFooter**: Extends `React.HTMLAttributes<HTMLDivElement>`
 
-### CardContent
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Content |
-| `className` | `string` | - | Additional CSS classes |
-
-### CardFooter
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | - | Footer content |
-| `className` | `string` | - | Additional CSS classes |
+All components accept standard HTML attributes for their respective elements (e.g., `id`, `data-*`, `aria-*`).

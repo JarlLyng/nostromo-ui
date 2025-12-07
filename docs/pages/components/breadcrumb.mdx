@@ -1,8 +1,39 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Breadcrumb
 
 The Breadcrumb component provides you with navigation breadcrumbs for your application.
+
+## Import
+
+```tsx
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@nostromo/ui-core'
+// or
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@nostromo/ui-core/breadcrumb'
+```
+
+## Usage
+
+```tsx
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Current Page</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}
+```
 
 ## Live Examples
 
@@ -40,4 +71,20 @@ export default function BreadcrumbExample() {
 
 ## Props
 
-All Breadcrumb components accept standard HTML props.
+All Breadcrumb components extend standard HTML attributes and accept:
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Component content |
+
+### Component-Specific Props
+
+**Breadcrumb**: Extends `React.HTMLAttributes<HTMLElement>`  
+**BreadcrumbList**: Extends `React.HTMLAttributes<HTMLOListElement>` (renders as `<ol>`)  
+**BreadcrumbItem**: Extends `React.HTMLAttributes<HTMLLIElement>` (renders as `<li>`)  
+**BreadcrumbLink**: Extends `React.AnchorHTMLAttributes<HTMLAnchorElement>` (renders as `<a>`) - accepts `href`, `target`, etc.  
+**BreadcrumbPage**: Extends `React.HTMLAttributes<HTMLSpanElement>` (renders as `<span>`)  
+**BreadcrumbSeparator**: Extends `React.HTMLAttributes<HTMLLIElement>` (renders as `<li>`)
+
+All components accept standard HTML attributes for their respective elements (e.g., `id`, `data-*`, `aria-*`).

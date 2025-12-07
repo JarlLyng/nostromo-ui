@@ -261,6 +261,68 @@ import type { ButtonProps } from '@nostromo/ui-core'
 
 Check your Tailwind configuration and make sure all dependencies are installed.
 
+## License & Browser Support
+
+### What license does Nostromo UI use?
+
+MIT License - see [LICENSE](https://github.com/JarlLyng/nostromo-ui/blob/main/LICENSE) for details.
+
+### What browsers are supported?
+
+Nostromo UI supports all modern browsers:
+- **Chrome/Edge**: Latest 2 versions
+- **Firefox**: Latest 2 versions
+- **Safari**: Latest 2 versions
+- **Mobile browsers**: iOS Safari, Chrome Mobile
+
+### Is it SSR or CSR compatible?
+
+Both! Nostromo UI works with:
+- **SSR (Server-Side Rendering)**: Next.js, Remix, SvelteKit
+- **CSR (Client-Side Rendering)**: Vite, Create React App
+- **Static Site Generation**: Next.js, Astro
+
+All components are SSR-compatible with no client-side dependencies.
+
+## Common Issues
+
+### What if I forget to set `data-theme`?
+
+If you forget to set `data-theme` on your HTML element, components will use default browser styles. Always set:
+
+```html
+<html data-theme="nostromo" data-color-scheme="light">
+```
+
+Or in your root component:
+```tsx
+useEffect(() => {
+  document.documentElement.setAttribute('data-theme', 'nostromo')
+}, [])
+```
+
+### Why aren't my theme colors applying?
+
+1. Check that you've imported the theme CSS:
+```tsx
+import "@nostromo/ui-tw/themes/nostromo.css"
+```
+
+2. Verify `data-theme` is set on the HTML element
+3. Ensure Tailwind is configured with the Nostromo preset
+4. Check browser DevTools to see if CSS variables are loaded
+
+### Tree-shaking not working?
+
+Make sure you're using individual imports:
+```tsx
+// ✅ Tree-shakeable
+import { Button } from '@nostromo/ui-core/button'
+
+// ❌ Not tree-shakeable
+import * as Nostromo from '@nostromo/ui-core'
+```
+
 ## Support
 
 ### Where can I get help?
@@ -268,6 +330,16 @@ Check your Tailwind configuration and make sure all dependencies are installed.
 - **GitHub Issues**: [Report bugs and request features](https://github.com/JarlLyng/nostromo-ui/issues)
 - **GitHub Discussions**: [Ask questions and share ideas](https://github.com/JarlLyng/nostromo-ui/discussions)
 - **Documentation**: Check our comprehensive guides
+
+### How do I report a bug?
+
+Create a GitHub issue with:
+- **Description**: Clear description of the bug
+- **Steps to reproduce**: How to reproduce the issue
+- **Expected behavior**: What should happen
+- **Actual behavior**: What actually happens
+- **Environment**: Node.js version, package manager, framework
+- **Code example**: Minimal code example (if applicable)
 
 ### How do I contribute?
 

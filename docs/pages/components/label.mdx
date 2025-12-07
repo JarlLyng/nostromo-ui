@@ -1,8 +1,32 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Label
 
 The Label component provides you with form labels and descriptions.
+
+## Import
+
+```tsx
+import { Label } from '@nostromo/ui-core'
+// or
+import { Label } from '@nostromo/ui-core/label'
+```
+
+## Usage
+
+```tsx
+import { Label, Input } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" />
+    </div>
+  )
+}
+```
 
 ## Live Examples
 
@@ -51,6 +75,15 @@ export default function LabelWithCheckbox() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `htmlFor` | `string` | - | HTML for attribute |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `htmlFor` | `string` | `undefined` | No | ID of the form control this label is for |
+| `variant` | `"default" \| "muted" \| "error"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the label |
+| `weight` | `"normal" \| "medium" \| "semibold" \| "bold"` | `"medium"` | No | Font weight |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Label content |
+
+### Standard HTML Label Props
+
+The Label component extends `React.LabelHTMLAttributes<HTMLLabelElement>`, so it accepts all standard HTML label attributes (e.g., `id`, `data-*`, `aria-*`).

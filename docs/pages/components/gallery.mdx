@@ -4,6 +4,31 @@ import LiveCode from '../../components/LiveCode'
 
 The Gallery component provides you with image galleries and media showcases.
 
+## Import
+
+```tsx
+import { Gallery } from '@nostromo/ui-marketing'
+// or
+import { Gallery } from '@nostromo/ui-marketing/gallery'
+```
+
+## Usage
+
+```tsx
+import { Gallery } from '@nostromo/ui-marketing'
+
+export default function Example() {
+  return (
+    <Gallery
+      images={[
+        { src: "/image1.jpg", alt: "Image 1" },
+        { src: "/image2.jpg", alt: "Image 2" }
+      ]}
+    />
+  )
+}
+```
+
 ## Live Examples
 
 <LiveCode code={`import { Gallery } from '@nostromo/ui-marketing'
@@ -29,10 +54,28 @@ export default function GalleryExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `images` | `Image[]` | - | Array of image objects |
-| `columns` | `number` | `3` | Number of columns |
-| `aspectRatio` | `string` | `"auto"` | Image aspect ratio |
-| `spacing` | `string` | `"md"` | Grid spacing |
-| `lightbox` | `boolean` | `true` | Enable lightbox |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `images` | `GalleryImage[]` | - | **Yes** | Array of image objects (see GalleryImage interface below) |
+| `variant` | `"default" \| "masonry" \| "grid"` | `"default"` | No | Visual variant |
+| `itemAspectRatio` | `"square" \| "landscape" \| "portrait" \| "auto"` | `"auto"` | No | Aspect ratio for gallery items |
+| `itemHover` | `"none" \| "zoom" \| "overlay"` | `"zoom"` | No | Hover effect for items |
+| `showLightbox` | `boolean` | `true` | No | Whether to enable lightbox on click |
+| `lightboxAnimation` | `"fade" \| "slide" \| "zoom"` | `"fade"` | No | Lightbox animation type |
+| `showThumbnails` | `boolean` | `false` | No | Whether to show thumbnails in lightbox |
+| `thumbnailSize` | `"sm" \| "md" \| "lg"` | `"md"` | No | Size of thumbnails |
+| `onImageClick` | `(image: GalleryImage, index: number) => void` | `undefined` | No | Callback when image is clicked |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `itemClassName` | `string` | `undefined` | No | Additional CSS classes for items |
+
+### GalleryImage Interface
+
+```tsx
+interface GalleryImage {
+  src: string;
+  alt: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+}
+```

@@ -4,6 +4,31 @@ import LiveCode from '../../components/LiveCode'
 
 The Hero component provides you with landing page hero sections and banners.
 
+## Import
+
+```tsx
+import { Hero } from '@nostromo/ui-marketing'
+// or
+import { Hero } from '@nostromo/ui-marketing/hero'
+```
+
+## Usage
+
+```tsx
+import { Hero } from '@nostromo/ui-marketing'
+import { Button } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Hero
+      title="Welcome to Nostromo UI"
+      subtitle="A comprehensive UI library"
+      cta={<Button>Get Started</Button>}
+    />
+  )
+}
+```
+
 ## Live Examples
 
 <LiveCode code={`import { Hero } from '@nostromo/ui-marketing'
@@ -53,13 +78,16 @@ export default function HeroVariants() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | - | Hero title |
-| `subtitle` | `string` | - | Hero subtitle |
-| `cta` | `ReactNode` | - | Call-to-action content |
-| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | Hero size |
-| `variant` | `"default" \| "muted" \| "accent"` | `"default"` | Hero variant |
-| `contentAlign` | `"left" \| "center" \| "right"` | `"center"` | Content alignment |
-| `backgroundImage` | `string` | - | Background image URL |
-| `overlay` | `boolean` | `false` | Add overlay effect |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `title` | `string` | - | **Yes** | Hero title text |
+| `subtitle` | `string` | `undefined` | No | Hero subtitle text |
+| `cta` | `React.ReactNode` | `undefined` | No | Call-to-action content (buttons, links, etc.) |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | No | Size of the hero section |
+| `variant` | `"default" \| "muted" \| "accent"` | `"default"` | No | Visual variant |
+| `contentAlign` | `"left" \| "center" \| "right"` | `"center"` | No | Content alignment |
+| `titleSize` | `"sm" \| "md" \| "lg" \| "xl" \| "2xl"` | `undefined` | No | Size of the title text |
+| `subtitleSize` | `"sm" \| "md" \| "lg"` | `undefined` | No | Size of the subtitle text |
+| `backgroundImage` | `string` | `undefined` | No | Background image URL |
+| `overlay` | `boolean` | `false` | No | Whether to add overlay effect over background image |
+| `className` | `string` | `undefined` | No | Additional CSS classes |

@@ -1,8 +1,40 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Tabs
 
 The Tabs component provides you with tab navigation and sections.
+
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core'
+// or
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core/tabs'
+```
+
+## Usage
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Tabs defaultValue="account">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <p>Account settings</p>
+      </TabsContent>
+      <TabsContent value="password">
+        <p>Password settings</p>
+      </TabsContent>
+    </Tabs>
+  )
+}
+```
 
 ## Live Examples
 
@@ -83,8 +115,42 @@ export default function TabsExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `defaultValue` | `string` | - | Default active tab |
-| `value` | `string` | - | Active tab value |
-| `onValueChange` | `function` | - | Change handler |
+### Tabs
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `defaultValue` | `string` | `undefined` | No | Default active tab value (uncontrolled) |
+| `value` | `string` | `undefined` | No | Active tab value (controlled) |
+| `onValueChange` | `(value: string) => void` | `undefined` | No | Callback when active tab changes |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | No | Tab orientation |
+| `dir` | `"ltr" \| "rtl"` | `"ltr"` | No | Text direction |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Tab content (TabsList, TabsContent) |
+
+### TabsList
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "pills" \| "underline"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of tabs |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Tab triggers |
+
+### TabsTrigger
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | - | **Yes** | Unique value for this tab |
+| `disabled` | `boolean` | `false` | No | Whether the tab is disabled |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Tab label content |
+| `asChild` | `boolean` | `false` | No | Render as child element |
+
+### TabsContent
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | - | **Yes** | Value matching the corresponding TabsTrigger |
+| `forceMount` | `boolean` | `false` | No | Force mount content even when inactive |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Tab panel content |

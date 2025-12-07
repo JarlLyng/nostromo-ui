@@ -1,8 +1,39 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Select
 
 The Select component provides you with dropdown menus and choices.
+
+## Import
+
+```tsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+// or
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core/select'
+```
+
+## Usage
+
+```tsx
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@nostromo/ui-core'
+
+export default function Example() {
+  const [value, setValue] = React.useState('')
+  
+  return (
+    <Select value={value} onValueChange={setValue}>
+      <SelectTrigger>
+        <SelectValue placeholder="Select an option" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2">Option 2</SelectItem>
+      </SelectContent>
+    </Select>
+  )
+}
+```
 
 ## Live Examples
 
@@ -104,10 +135,67 @@ export default function SelectWithLabel() {
 </label>
 ```
 
+## Best Practices
+
+### Do ✅
+- Always provide a `SelectValue` with placeholder
+- Use `Label` component for form integration
+- Provide unique `value` props for each `SelectItem`
+- Use controlled mode (`value` + `onValueChange`) for form libraries
+- Handle disabled states appropriately
+
+### Don't ❌
+- Don't forget to handle form submission with `name` prop
+- Don't use Select for navigation (use links instead)
+- Don't create too many options (consider search/filtering)
+- Don't forget keyboard navigation support
+
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | - | Selected value |
-| `onValueChange` | `function` | - | Change handler |
-| `disabled` | `boolean` | `false` | Whether select is disabled |
+### Select
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | `undefined` | No | Selected value (controlled) |
+| `defaultValue` | `string` | `undefined` | No | Default selected value (uncontrolled) |
+| `onValueChange` | `(value: string) => void` | `undefined` | No | Callback when value changes |
+| `disabled` | `boolean` | `false` | No | Whether the select is disabled |
+| `name` | `string` | `undefined` | No | Name for form submission |
+| `required` | `boolean` | `false` | No | Whether the select is required |
+| `children` | `React.ReactNode` | `undefined` | No | Select content (SelectTrigger, SelectContent) |
+
+### SelectTrigger
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the trigger |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Trigger content (usually SelectValue) |
+| `asChild` | `boolean` | `false` | No | Render as child element |
+
+### SelectValue
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `placeholder` | `string` | `undefined` | No | Placeholder text when no value selected |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### SelectContent
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `position` | `"popper" \| "item-aligned"` | `"popper"` | No | Positioning strategy |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | No | Side of trigger to align to |
+| `align` | `"start" \| "center" \| "end"` | `"start"` | No | Alignment relative to trigger |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Select items |
+
+### SelectItem
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `value` | `string` | - | **Yes** | Item value (must be unique) |
+| `disabled` | `boolean` | `false` | No | Whether the item is disabled |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Item content |

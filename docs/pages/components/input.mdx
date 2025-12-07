@@ -5,6 +5,30 @@ import LiveCode from '../../components/LiveCode'
 
 The Input component provides you with form input fields with validation and error handling.
 
+## Import
+
+```tsx
+import { Input } from '@nostromo/ui-core'
+// or
+import { Input } from '@nostromo/ui-core/input'
+```
+
+## Usage
+
+```tsx
+import { Input } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Input 
+      type="email" 
+      placeholder="Enter your email"
+      label="Email"
+    />
+  )
+}
+```
+
 ## Live Examples
 
 <StorybookEmbed story="components-input--default" />
@@ -45,10 +69,28 @@ export default function InputWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `string` | `"text"` | Input type |
-| `placeholder` | `string` | - | Placeholder text |
-| `disabled` | `boolean` | `false` | Whether input is disabled |
-| `value` | `string` | - | Input value |
-| `onChange` | `function` | - | Change handler |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `type` | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search"` | `"text"` | No | HTML input type |
+| `variant` | `"default" \| "error" \| "success"` | `"default"` | No | Visual variant (auto-set based on error/success) |
+| `inputSize` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the input |
+| `label` | `string` | `undefined` | No | Label text displayed above input |
+| `helperText` | `string` | `undefined` | No | Helper text displayed below input |
+| `error` | `boolean` | `false` | No | Whether the input has an error state |
+| `success` | `boolean` | `false` | No | Whether the input has a success state |
+| `placeholder` | `string` | `undefined` | No | Placeholder text |
+| `disabled` | `boolean` | `false` | No | Whether the input is disabled |
+| `value` | `string` | `undefined` | No | Controlled input value |
+| `onChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | `undefined` | No | Change event handler |
+| `id` | `string` | `undefined` | No | Input ID (auto-generated if not provided) |
+| `name` | `string` | `undefined` | No | Input name for form submission |
+| `required` | `boolean` | `false` | No | Whether the input is required |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### Standard HTML Input Props
+
+The Input component extends all standard HTML input attributes, including:
+- `autoComplete`, `autoFocus`, `maxLength`, `minLength`, `pattern`, `readOnly`
+- `aria-*` attributes for accessibility
+- `data-*` attributes for custom data
+- All other standard HTML input attributes

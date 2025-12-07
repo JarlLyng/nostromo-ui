@@ -1,8 +1,35 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Pagination
 
 The Pagination component provides you with page navigation and pagination.
+
+## Import
+
+```tsx
+import { Pagination } from '@nostromo/ui-core'
+// or
+import { Pagination } from '@nostromo/ui-core/pagination'
+```
+
+## Usage
+
+```tsx
+import { Pagination } from '@nostromo/ui-core'
+
+export default function Example() {
+  const [currentPage, setCurrentPage] = React.useState(1)
+  
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={10}
+      onPageChange={setCurrentPage}
+    />
+  )
+}
+```
 
 ## Live Examples
 
@@ -44,7 +71,19 @@ export default function PaginationExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isActive` | `boolean` | `false` | Whether link is active |
-| `href` | `string` | - | Link URL |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `currentPage` | `number` | - | **Yes** | Current active page (1-indexed) |
+| `totalPages` | `number` | - | **Yes** | Total number of pages |
+| `onPageChange` | `(page: number) => void` | - | **Yes** | Callback when page changes |
+| `showFirstLast` | `boolean` | `true` | No | Whether to show first/last page buttons |
+| `showPrevNext` | `boolean` | `true` | No | Whether to show previous/next buttons |
+| `maxVisiblePages` | `number` | `5` | No | Maximum number of visible page buttons |
+| `disabled` | `boolean` | `false` | No | Whether pagination is disabled |
+| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of pagination buttons |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### Standard HTML Props
+
+The Pagination component extends `React.HTMLAttributes<HTMLElement>`, so it accepts all standard HTML attributes (e.g., `id`, `data-*`, `aria-*`).

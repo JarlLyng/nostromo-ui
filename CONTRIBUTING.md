@@ -26,7 +26,7 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
 
 ### Setup
 ```bash
-# Fork og clone repository
+# Fork and clone repository
 git clone https://github.com/JarlLyng/nostromo-ui.git
 cd nostromo-ui
 
@@ -37,6 +37,8 @@ pnpm install
 pnpm dev
 ```
 
+For detailed setup instructions, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md#quick-start).
+
 ## Development Workflow
 
 ### 1. Create Feature Branch
@@ -45,10 +47,10 @@ git checkout -b feature/your-feature-name
 ```
 
 ### 2. Make Changes
-- Implement din feature eller fix
-- Følg vores [code standards](#code-standards)
-- Skriv tests for din kode
-- Opdater dokumentation
+- Implement your feature or fix
+- Follow our [code standards](#code-standards)
+- Write tests for your code
+- Update documentation
 
 ### 3. Test Your Changes
 ```bash
@@ -71,16 +73,16 @@ pnpm changeset
 ```
 
 ### 5. Submit Pull Request
-- Opret en pull request mod `main` branch
-- Beskriv dine ændringer tydeligt
-- Link til relevante issues
+- Create a pull request against `main` branch
+- Describe your changes clearly
+- Link to relevant issues
 
 ## Code Standards
 
 ### TypeScript
-- **Strict mode**: Altid brug strict TypeScript
-- **No any**: Undgå `any` types
-- **Proper typing**: Definer typer for alle props og funktioner
+- **Strict mode**: Always use strict TypeScript
+- **No any**: Avoid `any` types
+- **Proper typing**: Define types for all props and functions
 
 ### React Components
 ```tsx
@@ -105,10 +107,10 @@ export const Button = ({ variant = 'default', size = 'md', children, ...props }:
 
 
 ### Accessibility
-- **WCAG 2.1 AA**: Alle komponenter skal være tilgængelige
-- **ARIA attributes**: Brug korrekte ARIA attributes
-- **Keyboard navigation**: Understøt keyboard navigation
-- **Screen readers**: Test med screen readers
+- **WCAG 2.1 AA**: All components must be accessible
+- **ARIA attributes**: Use correct ARIA attributes
+- **Keyboard navigation**: Support keyboard navigation
+- **Screen readers**: Test with screen readers
 
 ### Performance
 - **Tree shaking**: Komponenter skal være tree-shakeable
@@ -156,15 +158,17 @@ describe('Button Accessibility', () => {
 
 ### Test Requirements
 - **Coverage**: Minimum 80% code coverage
-- **Accessibility**: Alle komponenter skal have a11y tests
-- **Edge cases**: Test edge cases og error states
+- **Accessibility**: All components must have a11y tests
+- **Edge cases**: Test edge cases and error states
+
+For detailed testing examples, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md#testing) and [BEST_PRACTICES.md](docs/guides/BEST_PRACTICES.md#testing-strategies).
 
 ## Documentation
 
 ### Component Documentation
-- **JSDoc**: Dokumenter alle public APIs
-- **Examples**: Inkluder praktiske eksempler
-- **Props table**: Auto-genereret fra TypeScript
+- **JSDoc**: Document all public APIs
+- **Examples**: Include practical examples
+- **Props table**: Auto-generated from TypeScript
 
 ### Storybook Stories
 ```tsx
@@ -198,9 +202,9 @@ export const Default: Story = {
 ```
 
 ### README Updates
-- Opdater README.md hvis du tilføjer nye features
-- Opdater installation instruktioner
-- Opdater eksempler
+- Update README.md if you add new features
+- Update installation instructions
+- Update examples
 
 ## Pull Request Process
 
@@ -214,40 +218,20 @@ export const Default: Story = {
 - [ ] Storybook stories added
 
 ### PR Template
-```markdown
-## Description
-Beskriv dine ændringer...
-
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Documentation update
-
-## Testing
-- [ ] Unit tests added/updated
-- [ ] Accessibility tests added/updated
-- [ ] Manual testing completed
-
-## Checklist
-- [ ] Code follows project standards
-- [ ] Self-review completed
-- [ ] Documentation updated
-- [ ] Changeset created
-```
+Use the [PR template](.github/pull_request_template.md) when creating your pull request.
 
 ### Review Process
-1. **Automated checks**: CI/CD pipeline kører automatisk
-2. **Code review**: Mindst én approver kræves
-3. **Testing**: Manual testing af ændringer
-4. **Documentation**: Verificer at dokumentation er opdateret
+1. **Automated checks**: CI/CD pipeline runs automatically
+2. **Code review**: At least one approver required
+3. **Testing**: Manual testing of changes
+4. **Documentation**: Verify documentation is updated
 
-> 📖 **For reviewers**: Se [Code Review Guide](docs/guides/CODE_REVIEW.md) for detaljerede instruktioner om hvordan man reviewer kode i dette projekt.
+> 📖 **For reviewers**: See [Code Review Guide](docs/guides/CODE_REVIEW.md) for detailed instructions on how to review code in this project.
 
 ## Release Process
 
 ### Versioning
-Vi følger [Semantic Versioning](https://semver.org/):
+We follow [Semantic Versioning](https://semver.org/):
 - **MAJOR**: Breaking changes
 - **MINOR**: New features (backward compatible)
 - **PATCH**: Bug fixes (backward compatible)
@@ -274,18 +258,18 @@ pnpm changeset
 - **Discord**: Real-time community support
 
 ### Questions?
-Hvis du har spørgsmål, er du velkommen til at:
-- Oprette en GitHub issue
-- Deltage i GitHub discussions
-- Kontakte maintainers direkte
+If you have questions, feel free to:
+- Open a GitHub issue
+- Participate in GitHub discussions
+- Contact maintainers directly
 
 ## Recognition
 
-Tak til alle bidragydere! Vi anerkender bidrag i:
+Thank you to all contributors! We acknowledge contributions in:
 - Release notes
 - Contributors list
 - Special mentions for significant contributions
 
 ---
 
-**Tak for at bidrage til Nostromo UI!** 🚀
+**Thank you for contributing to Nostromo UI!** 🚀

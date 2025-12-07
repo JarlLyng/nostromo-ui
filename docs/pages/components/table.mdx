@@ -1,8 +1,43 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Table
 
-The Table component provides you with data tables and lists.
+The Table component provides you with data tables with sorting, pagination, and selection.
+
+## Import
+
+```tsx
+import { Table } from '@nostromo/ui-core'
+// or
+import { Table } from '@nostromo/ui-core/table'
+```
+
+## Usage
+
+```tsx
+import { Table } from '@nostromo/ui-core'
+
+interface User {
+  id: string
+  name: string
+  email: string
+}
+
+export default function Example() {
+  const data: User[] = [
+    { id: '1', name: 'John Doe', email: 'john@example.com' },
+    { id: '2', name: 'Jane Smith', email: 'jane@example.com' }
+  ]
+  
+  const columns = [
+    { key: 'name', title: 'Name', dataIndex: 'name' },
+    { key: 'email', title: 'Email', dataIndex: 'email' }
+  ]
+  
+  return <Table data={data} columns={columns} />
+}
+```
 
 ## Live Examples
 
@@ -12,38 +47,146 @@ The Table component provides you with data tables and lists.
 
 <StorybookEmbed story="components-table--bordered" />
 
-## Code Examples
+## Advanced Examples
 
-```jsx
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@nostromo/ui-core'
+### With Sorting
 
-export default function TableExample() {
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Status</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        <TableRow>
-          <TableCell>John Doe</TableCell>
-          <TableCell>john@example.com</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Jane Smith</TableCell>
-          <TableCell>jane@example.com</TableCell>
-          <TableCell>Active</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  )
+<LiveCode code={`import { Table } from '@nostromo/ui-core'
+
+interface User {
+  id: string
+  name: string
+  email: string
 }
-```
+
+export default function SortableTable() {
+  const [sortColumn, setSortColumn] = React.useState<string>()
+  const [sortDirection, setSortDirection] = React.useState<'asc' | 'desc'>()
+  
+  const data: User[] = [
+    { id: '1', name: 'John Doe', email: 'john@example.com' },
+    { id: '2', name: 'Jane Smith', email: 'jane@example.com' }
+  ]
+  
+  const columns = [
+    { 
+      key: 'name', 
+      title: 'Name', 
+      dataIndex: 'name',
+      sortable: true 
+    },
+    { 
+      key: 'email', 
+      title: 'Email', 
+      dataIndex: 'email',
+      sortable: true 
+    }
+  ]
+  
+  const handleSort = (column: any, direction: 'asc' | 'desc') => {
+    setSortColumn(column.key)
+    setSortDirection(direction)
+    // Implement your sorting logic
+  }
+  
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      sortColumn={sortColumn}
+      sortDirection={sortDirection}
+      onSort={handleSort}
+    />
+  )
+}`} />
+
+### With Pagination
+
+<LiveCode code={`import { Table } from '@nostromo/ui-core'
+
+export default function PaginatedTable() {
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [pageSize, setPageSize] = React.useState(10)
+  
+  const data = Array.from({ length: 100 }, (_, i) => ({
+    id: i + 1,
+    name: \`User \${i + 1}\`,
+    email: \`user\${i + 1}@example.com\`
+  }))
+  
+  const columns = [
+    { key: 'name', title: 'Name', dataIndex: 'name' },
+    { key: 'email', title: 'Email', dataIndex: 'email' }
+  ]
+  
+  return (
+    <Table
+      data={data}
+      columns={columns}
+      pagination={{
+        current: currentPage,
+        pageSize: pageSize,
+        total: data.length,
+        onChange: (page, size) => {
+          setCurrentPage(page)
+          setPageSize(size)
+        },
+        showSizeChanger: true
+      }}
+    />
+  )
+}`} />
 
 ## Props
 
-All Table components accept standard HTML props.
+### Table
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `data` | `T[]` | - | **Yes** | Array of data objects |
+| `columns` | `TableColumn<T>[]` | - | **Yes** | Column definitions |
+| `variant` | `"default" \| "striped" \| "bordered" \| "hover" \| "elevated" \| "interactive"` | `"default"` | No | Visual variant of the table |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | No | Size of table cells |
+| `loading` | `boolean` | `false` | No | Whether the table is loading |
+| `emptyText` | `string` | `"No data"` | No | Text to show when no data |
+| `caption` | `string` | `undefined` | No | Table caption (for accessibility) |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `rowKey` | `keyof T \| ((record: T) => string \| number)` | `"id"` | No | Unique key for each row |
+| `onRowClick` | `(record: T, index: number) => void` | `undefined` | No | Callback when row is clicked |
+| `onSort` | `(column: TableColumn<T>, direction: 'asc' \| 'desc') => void` | `undefined` | No | Callback when column is sorted |
+| `sortColumn` | `string` | `undefined` | No | Currently sorted column (controlled) |
+| `sortDirection` | `'asc' \| 'desc'` | `undefined` | No | Sort direction (controlled) |
+| `pagination` | `PaginationProps` | `undefined` | No | Pagination configuration |
+| `selection` | `SelectionProps` | `undefined` | No | Row selection configuration |
+
+### TableColumn
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `key` | `string` | - | **Yes** | Unique column key |
+| `title` | `string` | - | **Yes** | Column header text |
+| `dataIndex` | `keyof T` | `undefined` | No | Property name in data object |
+| `render` | `(value: unknown, record: T, index: number) => React.ReactNode` | `undefined` | No | Custom render function |
+| `sortable` | `boolean` | `false` | No | Whether column is sortable |
+| `width` | `string \| number` | `undefined` | No | Column width |
+| `align` | `'left' \| 'center' \| 'right'` | `'left'` | No | Text alignment |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+
+### PaginationProps
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `current` | `number` | - | **Yes** | Current page number |
+| `pageSize` | `number` | - | **Yes** | Number of items per page |
+| `total` | `number` | - | **Yes** | Total number of items |
+| `onChange` | `(page: number, pageSize: number) => void` | - | **Yes** | Callback when page changes |
+| `showSizeChanger` | `boolean` | `false` | No | Whether to show page size changer |
+| `showQuickJumper` | `boolean` | `false` | No | Whether to show quick jumper |
+
+### SelectionProps
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `selectedRowKeys` | `(string \| number)[]` | - | **Yes** | Array of selected row keys |
+| `onChange` | `(selectedRowKeys: (string \| number)[], selectedRows: T[]) => void` | - | **Yes** | Callback when selection changes |
+| `getCheckboxProps` | `(record: T) => { disabled?: boolean }` | `undefined` | No | Function to get checkbox props for each row |

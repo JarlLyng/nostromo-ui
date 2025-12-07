@@ -1,8 +1,32 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Helper Text
 
 The Helper Text component provides you with form helper text and descriptions.
+
+## Import
+
+```tsx
+import { HelperText } from '@nostromo/ui-core'
+// or
+import { HelperText } from '@nostromo/ui-core/helper-text'
+```
+
+## Usage
+
+```tsx
+import { HelperText, Input } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <div className="space-y-2">
+      <Input type="password" />
+      <HelperText>Password must be at least 8 characters long</HelperText>
+    </div>
+  )
+}
+```
 
 ## Live Examples
 
@@ -29,7 +53,13 @@ export default function HelperTextExample() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Helper text content |
-| `className` | `string` | - | Additional CSS classes |
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "muted" \| "error"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the helper text |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Helper text content |
+
+### Standard HTML Props
+
+The HelperText component extends `React.HTMLAttributes<HTMLDivElement>`, so it accepts all standard HTML div attributes (e.g., `id`, `data-*`, `aria-*`).

@@ -1,8 +1,34 @@
 import StorybookEmbed from '../../components/StorybookEmbed'
+import LiveCode from '../../components/LiveCode'
 
 # Alert
 
 The Alert component provides you with notifications and warnings for your application.
+
+## Import
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from '@nostromo/ui-core'
+// or
+import { Alert, AlertTitle, AlertDescription } from '@nostromo/ui-core/alert'
+```
+
+## Usage
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Alert variant="default">
+      <AlertTitle>Information</AlertTitle>
+      <AlertDescription>
+        This is an informative message.
+      </AlertDescription>
+    </Alert>
+  )
+}
+```
 
 ## Live Examples
 
@@ -40,6 +66,30 @@ export default function AlertExamples() {
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "destructive"` | `"default"` | Alert variant |
+### Alert
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `variant` | `"default" \| "destructive" \| "success" \| "warning" \| "info"` | `"default"` | No | Visual variant of the alert |
+| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the alert |
+| `title` | `string` | `undefined` | No | Alert title (alternative to AlertTitle component) |
+| `description` | `string` | `undefined` | No | Alert description (alternative to AlertDescription component) |
+| `dismissible` | `boolean` | `false` | No | Whether the alert can be dismissed |
+| `onDismiss` | `() => void` | `undefined` | No | Callback when alert is dismissed |
+| `icon` | `React.ReactNode` | `undefined` | No | Custom icon to display |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Alert content (AlertTitle, AlertDescription) |
+
+### AlertTitle
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Title content |
+
+### AlertDescription
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `children` | `React.ReactNode` | `undefined` | No | Description content |
