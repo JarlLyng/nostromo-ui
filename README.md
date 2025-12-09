@@ -160,6 +160,7 @@ We're actively seeking feedback from the community! Please help us by:
 - **[Contributing](CONTRIBUTING.md)** - How to contribute
 - **[Code Review](docs/guides/CODE_REVIEW.md)** - Review guidelines
 - **[Security](SECURITY.md)** - Security policy
+- **[Stability Test Plan](STABILITY_TEST_PLAN.md)** - Comprehensive testing strategy for releases
 - **[Changelog](CHANGELOG.md)** - Version history
 
 ---
