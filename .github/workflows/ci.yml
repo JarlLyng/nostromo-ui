@@ -32,56 +32,49 @@ jobs:
       run: pnpm install --frozen-lockfile
       
     - name: Run linter
-      continue-on-error: true
       run: |
-        set +e
         pnpm lint 2>&1 | tee lint-output.txt
         LINT_EXIT=${PIPESTATUS[0]}
-        echo ""
-        echo "=== Lint Exit Code: $LINT_EXIT ==="
-        echo ""
-        # Check output for actual errors (not just warnings)
-        # ESLint output format: "✖ 46 problems (0 errors, 46 warnings)"
-        if grep -q "(0 errors" lint-output.txt || grep -q "0 errors" lint-output.txt; then
-          echo "✅ Linter completed with warnings only (acceptable)"
-          echo "Found '0 errors' in output - allowing warnings"
-          exit 0
-        elif [ $LINT_EXIT -eq 0 ]; then
-          echo "✅ Linter passed (no issues)"
-          exit 0
-        else
-          # Check if there are actual errors (not just warnings)
-          ERROR_COUNT=$(grep -o "[0-9]\+ errors" lint-output.txt | grep -o "[0-9]\+" | head -1 || echo "0")
-          if [ "$ERROR_COUNT" = "0" ] || [ -z "$ERROR_COUNT" ]; then
-            echo "✅ Linter completed with warnings only (exit code was $LINT_EXIT but found 0 errors)"
-            exit 0
-          else
-            echo "❌ Linter found $ERROR_COUNT errors"
-            exit 1
-          fi
+        if [ $LINT_EXIT -ne 0 ]; then
+          echo "❌ Linter failed with exit code $LINT_EXIT"
+          echo "Please fix all linting issues before merging"
+          exit 1
         fi
+        echo "✅ Linter passed (no errors or warnings)"
       id: lint
       
     - name: Run type check
-      continue-on-error: true
       run: |
         pnpm type-check 2>&1 | tee typecheck-output.txt
-        exit ${PIPESTATUS[0]}
+        TYPE_CHECK_EXIT=${PIPESTATUS[0]}
+        if [ $TYPE_CHECK_EXIT -ne 0 ]; then
+          echo "❌ Type check failed"
+          exit 1
+        fi
+        echo "✅ Type check passed"
       id: typecheck
       
     - name: Run tests
-      continue-on-error: true
       run: |
         cd packages/ui-core
         pnpm test:run 2>&1 | tee ../../test-output.txt
-        exit ${PIPESTATUS[0]}
+        TEST_EXIT=${PIPESTATUS[0]}
+        if [ $TEST_EXIT -ne 0 ]; then
+          echo "❌ Tests failed"
+          exit 1
+        fi
+        echo "✅ All tests passed"
       id: tests
       
     - name: Build packages
-      continue-on-error: true
       run: |
         pnpm build 2>&1 | tee build-output.txt
-        exit ${PIPESTATUS[0]}
+        BUILD_EXIT=${PIPESTATUS[0]}
+        if [ $BUILD_EXIT -ne 0 ]; then
+          echo "❌ Build failed"
+          exit 1
+        fi
+        echo "✅ Build succeeded"
       id: build
       
     - name: Check bundle sizes
