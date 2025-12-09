@@ -34,16 +34,11 @@ export interface DataTableProps<T = Record<string, unknown>>
   // Sorting (enhanced)
   defaultSortColumn?: string;
   defaultSortDirection?: 'asc' | 'desc';
-  multiSort?: boolean;
   
   // Pagination (enhanced)
   defaultPageSize?: number;
   pageSizeOptions?: number[];
   showPagination?: boolean;
-  
-  // Performance
-  virtualized?: boolean;
-  rowHeight?: number;
   
   // UI
   showSearch?: boolean;
@@ -81,7 +76,6 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   onFilter,
   defaultSortColumn,
   defaultSortDirection = 'asc',
-  multiSort = false,
   defaultPageSize = 10,
   pageSizeOptions = [10, 20, 50, 100],
   showPagination = true,

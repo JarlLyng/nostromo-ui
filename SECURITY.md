@@ -18,9 +18,16 @@ We take security issues seriously. If you discover a security vulnerability, ple
 
 ### How to Report
 
-1. **DO NOT** create a public GitHub issue
-2. Create a GitHub issue with the "security" label
-3. Include the following information:
+**IMPORTANT**: For security vulnerabilities, **DO NOT** create a public GitHub issue.
+
+Instead, please email security concerns to: **security@nostromo-ui.dev** (or use GitHub Security Advisory if available)
+
+If you must use GitHub, create a **private** security advisory through:
+1. Go to the repository's Security tab
+2. Click "Report a vulnerability"
+3. Fill out the security advisory form
+
+Include the following information:
    - Description of the vulnerability
    - Steps to reproduce
    - Potential impact

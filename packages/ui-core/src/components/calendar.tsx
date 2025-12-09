@@ -612,9 +612,18 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                           }
                         }}
                         type="button"
-                        onClick={() => handleDateClick(day.date)}
+                        onClick={() => {
+                          if (showOutsideDays && !day.isCurrentMonth) {
+                            // Navigate to the month of the clicked date
+                            setCurrentMonth(new Date(day.date.getFullYear(), day.date.getMonth(), 1));
+                            // Then select the date
+                            setTimeout(() => handleDateClick(day.date), 0);
+                          } else {
+                            handleDateClick(day.date);
+                          }
+                        }}
                         onKeyDown={(e) => handleKeyDown(e, day.date)}
-                        disabled={isDisabled || !day.isCurrentMonth}
+                        disabled={isDisabled || (showOutsideDays ? false : !day.isCurrentMonth)}
                         className={cn(
                           calendarDayVariants({
                             variant: isSelected

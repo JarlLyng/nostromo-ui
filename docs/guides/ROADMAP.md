@@ -58,14 +58,14 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Color contrast verification
 
 - [x] **Performance Audit** ✅ **COMPLETED**
-  - [x] Bundle size optimization (PERFORMANCE_AUDIT.md)
+  - [x] Bundle size optimization
   - [x] Runtime performance
   - [x] Memory usage
   - [x] Loading times
 
 #### **Stability & Support** ✅ **COMPLETED**
 - [x] **Semver Stability** ✅ **COMPLETED**
-  - [x] API stability guarantees (SEMVER_STABILITY.md)
+  - [x] API stability guarantees
   - [x] Breaking change policy
   - [x] Migration guides
 
