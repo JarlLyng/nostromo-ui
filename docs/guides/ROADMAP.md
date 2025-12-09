@@ -99,22 +99,38 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Blog post or article
   - [ ] Community engagement
 
-#### **Advanced Components**
-- [ ] **Data Table Component**
-  - [ ] Advanced table with sorting/filtering
-  - [ ] Pagination integration
-  - [ ] Accessibility features
-  - [ ] Responsive design
+#### **Advanced Components** ✅ **COMPLETED**
+- [x] **Data Table Component** ✅ **COMPLETED**
+  - [x] Advanced table with sorting/filtering
+  - [x] Pagination integration
+  - [x] Accessibility features
+  - [x] Responsive design
+  - [x] Global search functionality
+  - [x] Column filtering (text, select, number, date, boolean)
+  - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
+  - [x] Storybook stories and documentation
 
-- [ ] **Calendar Component**
-  - [ ] Date picker functionality
-  - [ ] Accessibility features
-  - [ ] Variants (single, range, multiple)
+- [x] **Calendar Component** ✅ **COMPLETED**
+  - [x] Date picker functionality
+  - [x] Accessibility features (keyboard navigation, ARIA labels)
+  - [x] Variants (single, range, multiple)
+  - [x] Date constraints (min/max dates, disabled dates/days)
+  - [x] Locale support and customization
+  - [x] Comprehensive tests (15 unit tests, 5 accessibility tests)
+  - [x] Storybook stories and documentation
 
-- [ ] **Charts Component**
-  - [ ] Data visualization
-  - [ ] Accessibility features
-  - [ ] Variants (line, bar, pie, area)
+- [x] **Charts Component** ✅ **COMPLETED**
+  - [x] Data visualization
+  - [x] Accessibility features (ARIA labels, role attributes)
+  - [x] Variants (line, bar, pie, area)
+  - [x] Multiple data series support
+  - [x] Custom colors and styling
+  - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
+  - [x] Storybook stories and documentation
+
+### **Phase 3: Performance & Optimization (1.2.0)**
+**Target**: 🎯 **CURRENT FOCUS**  
+**Goal**: Performance optimization and bundle size reduction
 
 #### **Performance Optimization**
 - [ ] **Bundle Analysis**
