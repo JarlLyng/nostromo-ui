@@ -1,6 +1,6 @@
 # Nostromo UI
 
-> **🎉 STABLE RELEASE** - Version 1.0.0 is now available! Production-ready component library with 27 core components, 6 marketing components, and 4 complete themes.
+> **🎉 STABLE RELEASE** - Version 1.0.0 is now available! Production-ready component library with 30 core components, 6 marketing components, and 4 complete themes.
 
 ![Human in the Loop](https://jarllyng.github.io/madebyhuman/badges/loop-white.svg)
 
