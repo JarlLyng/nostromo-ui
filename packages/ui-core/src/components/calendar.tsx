@@ -2,7 +2,6 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { Input } from './input';
 import { Button } from './button';
 
 // Calendar variants
@@ -73,7 +72,6 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
   inputClassName?: string;
   calendarClassName?: string;
   showOutsideDays?: boolean;
-  numberOfMonths?: number;
   firstDayOfWeek?: 0 | 1; // 0 = Sunday, 1 = Monday
 }
 
@@ -167,7 +165,6 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       variant,
       size,
       showOutsideDays = true,
-      numberOfMonths = 1,
       firstDayOfWeek = 1,
       ...props
     },

@@ -245,7 +245,7 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
             </AreaChart>
           );
 
-        case 'pie':
+        case 'pie': {
           const pieDataKey = dataKeys[0] || 'value';
           return (
             <PieChart>
@@ -269,6 +269,7 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
               {showLegend && <Legend content={<CustomLegend />} />}
             </PieChart>
           );
+        }
 
         default:
           return null;

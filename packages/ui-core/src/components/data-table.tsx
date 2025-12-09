@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 import { Table, TableColumn, TableProps } from './table';
 import { Input } from './input';
@@ -37,7 +37,6 @@ export interface DataTableProps<T = Record<string, unknown>>
   
   // Pagination (enhanced)
   defaultPageSize?: number;
-  pageSizeOptions?: number[];
   showPagination?: boolean;
   
   // UI
@@ -77,7 +76,6 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   defaultSortColumn,
   defaultSortDirection = 'asc',
   defaultPageSize = 10,
-  pageSizeOptions = [10, 20, 50, 100],
   showPagination = true,
   showSearch = true,
   showFilters = true,
@@ -212,9 +210,6 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, currentPage, pageSize, showPagination]);
-  
-  // Total pages
-  const totalPages = Math.ceil(sortedData.length / pageSize);
   
   // Callbacks
   const handleSearch = useCallback((value: string) => {
