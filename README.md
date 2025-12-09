@@ -167,7 +167,6 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **[Contributing](CONTRIBUTING.md)** - How to contribute
 - **[Code Review](docs/guides/CODE_REVIEW.md)** - Review guidelines
 - **[Security](SECURITY.md)** - Security policy
-- **[Stability Test Plan](STABILITY_TEST_PLAN.md)** - Comprehensive testing strategy for releases
 - **[Changelog](CHANGELOG.md)** - Version history
 
 ---
