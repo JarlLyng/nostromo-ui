@@ -49,7 +49,7 @@ import { Button } from "@nostromo/ui-core";
 
 ## 🧩 Available Components
 
-### Core Components (27 components)
+### Core Components (30 components)
 - **Button** - Interactive buttons with loading states and variants
 - **Input** - Text input fields with validation and form integration
 - **Dialog** - Modal dialogs with accessibility and focus management
@@ -63,6 +63,7 @@ import { Button } from "@nostromo/ui-core";
 - **ErrorMessage** - Error messages for validation
 - **Icon** - SVG icons with customizable styling
 - **Table** - Data tables with sortable columns, pagination and responsive design
+- **DataTable** - Advanced tables with search, filtering, sorting, and pagination
 - **Toast** - Notification system with auto-dismiss and positioning
 - **Tooltip** - Contextual information with positioning and triggers
 - **Accordion** - Collapsible sections with keyboard navigation
@@ -76,6 +77,8 @@ import { Button } from "@nostromo/ui-core";
 - **Breadcrumb** - Navigation breadcrumbs with accessibility
 - **Pagination** - Page navigation with keyboard accessibility
 - **Separator** - Visual separators with horizontal and vertical variants
+- **Calendar** - Date picker with single, range, and multiple selection modes
+- **Charts** - Data visualization with line, bar, area, and pie charts
 
 ### Marketing Components (6 components)
 - **Hero** - Hero sections with customizable layouts and call-to-action buttons
@@ -107,7 +110,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 **What's New in 1.0.0:**
 - ✅ **Stable API** - No breaking changes planned
 - ✅ **Production Ready** - Fully tested and documented
-- ✅ **Complete Component Set** - 27 core + 6 marketing components
+- ✅ **Complete Component Set** - 30 core + 6 marketing components
 - ✅ **100% Test Coverage** - 691/691 tests passing
 - ✅ **WCAG 2.1 AA Compliant** - Full accessibility support
 
