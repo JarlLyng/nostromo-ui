@@ -1,0 +1,228 @@
+import LiveCode from '../../components/LiveCode'
+
+# Calendar
+
+The Calendar component provides a flexible date picker with support for single date selection, date ranges, and multiple date selection. Built with accessibility in mind and full keyboard navigation support.
+
+## Import
+
+```tsx
+import { Calendar } from '@nostromo/ui-core'
+// or
+import { Calendar } from '@nostromo/ui-core/calendar'
+```
+
+## Usage
+
+```tsx
+import { Calendar } from '@nostromo/ui-core'
+
+export default function Example() {
+  return (
+    <Calendar
+      mode="single"
+      label="Select Date"
+      placeholder="Choose a date"
+    />
+  )
+}
+```
+
+## Live Examples
+
+<LiveCode code={`import { Calendar } from '@nostromo/ui-core'
+
+export default function CalendarExample() {
+  return (
+    <Calendar
+      mode="single"
+      label="Select Date"
+      placeholder="Choose a date"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Calendar } from '@nostromo/ui-core'
+
+export default function CalendarRangeExample() {
+  return (
+    <Calendar
+      mode="range"
+      label="Select Date Range"
+      placeholder="Choose start and end date"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Calendar } from '@nostromo/ui-core'
+
+export default function CalendarMultipleExample() {
+  return (
+    <Calendar
+      mode="multiple"
+      label="Select Multiple Dates"
+      placeholder="Choose multiple dates"
+    />
+  )
+}`} noInline={true} />
+
+## Features
+
+### Selection Modes
+- **Single** - Select one date
+- **Range** - Select a date range (from/to)
+- **Multiple** - Select multiple individual dates
+
+### Date Constraints
+- **Min/Max dates** - Restrict selectable date range
+- **Disabled dates** - Disable specific dates
+- **Disabled days** - Disable specific weekdays (e.g., weekends)
+
+### Customization
+- **Locale support** - Customize date formatting
+- **First day of week** - Sunday or Monday
+- **Show outside days** - Display days from previous/next month
+- **Multiple months** - Display multiple months side-by-side
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `mode` | `"single" \| "range" \| "multiple"` | `"single"` | No | Selection mode |
+| `value` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | No | Controlled value |
+| `defaultValue` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | No | Uncontrolled default value |
+| `onChange` | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined` | No | Callback when value changes |
+| `minDate` | `Date` | `undefined` | No | Minimum selectable date |
+| `maxDate` | `Date` | `undefined` | No | Maximum selectable date |
+| `disabledDates` | `Date[]` | `undefined` | No | Array of disabled dates |
+| `disabledDays` | `number[]` | `undefined` | No | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
+| `locale` | `string` | `"en-US"` | No | Locale for date formatting |
+| `placeholder` | `string` | `"Select date..."` | No | Input placeholder text |
+| `label` | `string` | `undefined` | No | Input label |
+| `error` | `boolean` | `false` | No | Error state |
+| `helperText` | `string` | `undefined` | No | Helper text below input |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `inputClassName` | `string` | `undefined` | No | Additional CSS classes for input |
+| `calendarClassName` | `string` | `undefined` | No | Additional CSS classes for calendar popover |
+| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Calendar visual variant |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | No | Calendar size |
+| `showOutsideDays` | `boolean` | `true` | No | Show days from previous/next month |
+| `numberOfMonths` | `number` | `1` | No | Number of months to display |
+| `firstDayOfWeek` | `0 \| 1` | `1` | No | First day of week (0=Sunday, 1=Monday) |
+
+## Examples
+
+### Single Date Selection
+
+```tsx
+<Calendar
+  mode="single"
+  label="Select Date"
+  placeholder="Choose a date"
+  onChange={(date) => console.log('Selected:', date)}
+/>
+```
+
+### Date Range Selection
+
+```tsx
+<Calendar
+  mode="range"
+  label="Select Date Range"
+  placeholder="Choose start and end date"
+  onChange={(range) => console.log('Range:', range)}
+/>
+```
+
+### Multiple Date Selection
+
+```tsx
+<Calendar
+  mode="multiple"
+  label="Select Multiple Dates"
+  placeholder="Choose multiple dates"
+  onChange={(dates) => console.log('Selected dates:', dates)}
+/>
+```
+
+### With Date Constraints
+
+```tsx
+<Calendar
+  mode="single"
+  label="Select Future Date"
+  minDate={new Date()}
+  maxDate={new Date(2025, 11, 31)}
+  disabledDays={[0, 6]} // Disable weekends
+/>
+```
+
+### With Disabled Dates
+
+```tsx
+const holidays = [
+  new Date(2025, 0, 1),  // New Year's Day
+  new Date(2025, 6, 4),  // Independence Day
+  new Date(2025, 11, 25) // Christmas
+]
+
+<Calendar
+  mode="single"
+  label="Select Date"
+  disabledDates={holidays}
+/>
+```
+
+### Controlled Component
+
+```tsx
+const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+
+<Calendar
+  mode="single"
+  value={selectedDate}
+  onChange={setSelectedDate}
+  label="Controlled Calendar"
+/>
+```
+
+## Accessibility
+
+- ✅ **WCAG 2.1 AA compliant**
+- ✅ **Keyboard navigation** - Full keyboard support
+- ✅ **ARIA labels** - Proper labels for all interactive elements
+- ✅ **Screen reader support** - Announcements for date selection
+- ✅ **Focus management** - Proper focus handling in popover
+- ✅ **Date announcements** - Clear date format announcements
+
+## Keyboard Navigation
+
+- **Arrow keys** - Navigate between dates
+- **Enter/Space** - Select date
+- **Escape** - Close calendar
+- **Tab** - Navigate between controls
+- **Home/End** - Navigate to start/end of week
+- **Page Up/Down** - Navigate to previous/next month
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use appropriate mode for your use case
+- Provide clear labels and helper text
+- Set min/max dates when applicable
+- Use disabledDays for business rules (e.g., weekends)
+- Provide error feedback when validation fails
+
+### ❌ Don't
+- Use range mode for single date selection
+- Forget to handle empty states
+- Use without labels for accessibility
+- Disable too many dates (hurts UX)
+- Use multiple mode for date ranges
+
+## Related Components
+
+- **[Input](/components/input)** - Used for the date input field
+- **[Popover](/components/popover)** - Used for calendar popover (Radix UI)
+- **[Button](/components/button)** - Used for navigation buttons
+
