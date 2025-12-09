@@ -13,34 +13,34 @@
       "default": "./dist/index.js"
     },
     "./hero": {
+      "types": "./dist/components/hero.d.ts",
       "import": "./dist/components/hero.js",
-      "require": "./dist/components/hero.cjs",
-      "types": "./dist/components/hero.d.ts"
+      "require": "./dist/components/hero.cjs"
     },
     "./testimonials": {
+      "types": "./dist/components/testimonials.d.ts",
       "import": "./dist/components/testimonials.js",
-      "require": "./dist/components/testimonials.cjs",
-      "types": "./dist/components/testimonials.d.ts"
+      "require": "./dist/components/testimonials.cjs"
     },
     "./features": {
+      "types": "./dist/components/features.d.ts",
       "import": "./dist/components/features.js",
-      "require": "./dist/components/features.cjs",
-      "types": "./dist/components/features.d.ts"
+      "require": "./dist/components/features.cjs"
     },
     "./pricing": {
+      "types": "./dist/components/pricing.d.ts",
       "import": "./dist/components/pricing.js",
-      "require": "./dist/components/pricing.cjs",
-      "types": "./dist/components/pricing.d.ts"
+      "require": "./dist/components/pricing.cjs"
     },
     "./gallery": {
+      "types": "./dist/components/gallery.d.ts",
       "import": "./dist/components/gallery.js",
-      "require": "./dist/components/gallery.cjs",
-      "types": "./dist/components/gallery.d.ts"
+      "require": "./dist/components/gallery.cjs"
     },
     "./logo-wall": {
+      "types": "./dist/components/logo-wall.d.ts",
       "import": "./dist/components/logo-wall.js",
-      "require": "./dist/components/logo-wall.cjs",
-      "types": "./dist/components/logo-wall.d.ts"
+      "require": "./dist/components/logo-wall.cjs"
     },
     "./package.json": "./package.json"
   },
