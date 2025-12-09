@@ -41,10 +41,20 @@ For detailed setup instructions, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md
 
 ## Development Workflow
 
-### 1. Create Feature Branch
+### Branching Strategy
+
+We use a **hybrid workflow**:
+- **Feature branches** for new features and significant changes
+- **Direct to main** for small fixes, documentation, and non-breaking changes
+
+See [WORKFLOW.md](docs/guides/WORKFLOW.md) for detailed guidelines.
+
+### 1. Create Feature Branch (for new features)
 ```bash
 git checkout -b feature/your-feature-name
 ```
+
+**Or push directly to main** (for small fixes and documentation)
 
 ### 2. Make Changes
 - Implement your feature or fix

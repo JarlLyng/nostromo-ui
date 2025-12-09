@@ -155,6 +155,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **[Theming](docs/guides/THEMING.md)** - CSS variables and custom themes
 - **[API Reference](docs/guides/API_REFERENCE.md)** - Complete component API
 - **[Development](docs/guides/DEVELOPMENT.md)** - Setup and contribution guidelines
+- **[Workflow](docs/guides/WORKFLOW.md)** - Development workflow and branching strategy
 - **[Best Practices](docs/guides/BEST_PRACTICES.md)** - Component patterns and optimization
 - **[Troubleshooting](docs/guides/TROUBLESHOOTING.md)** - Common issues and solutions
 
