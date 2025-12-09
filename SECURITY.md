@@ -172,7 +172,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 📞 Contact
 
 ### Security Team
-- **GitHub Issues**: Use "security" label for security-related reports
+- **Security Reports**: Use private email (security@nostromo-ui.dev) or GitHub Security Advisory only
 - **Response Time**: 48 hours
 - **Availability**: 24/7 for critical issues
 
