@@ -93,6 +93,9 @@ export type { ProgressProps, CircularProgressProps } from './components/progress
 export { Table, TableHeader, TableBody, TableRow, TableCell, TableHead, tableVariants, tableHeaderVariants, tableCellVariants } from './components/table';
 export type { TableProps, TableColumn, TableHeaderProps, TableBodyProps, TableRowProps, TableCellProps } from './components/table';
 
+export { DataTable } from './components/data-table';
+export type { DataTableProps, ColumnFilter, FilterType } from './components/data-table';
+
 export { Toast, ToastProvider, useToastNotification, toastVariants, toastIconVariants } from './components/toast';
 export type { ToastProps, ToastContextType } from './components/toast';
 

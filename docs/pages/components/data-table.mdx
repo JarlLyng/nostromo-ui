@@ -1,0 +1,299 @@
+import LiveCode from '../../components/LiveCode'
+
+# DataTable
+
+The DataTable component is an advanced table with built-in search, filtering, sorting, and pagination. It's built on top of the Table component and provides enhanced data management capabilities.
+
+## Import
+
+```tsx
+import { DataTable } from '@nostromo/ui-core'
+// or
+import { DataTable } from '@nostromo/ui-core/data-table'
+```
+
+## Usage
+
+```tsx
+import { DataTable } from '@nostromo/ui-core'
+
+const data = [
+  { id: 1, name: 'John Doe', email: 'john@example.com', department: 'Engineering' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', department: 'Marketing' }
+]
+
+const columns = [
+  { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
+  { key: 'email', title: 'Email', dataIndex: 'email' },
+  { key: 'department', title: 'Department', dataIndex: 'department', sortable: true }
+]
+
+export default function Example() {
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchable={true}
+      showPagination={true}
+    />
+  )
+}
+```
+
+## Live Examples
+
+<LiveCode code={`import { DataTable } from '@nostromo/ui-core'
+
+const data = [
+  { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, department: 'Engineering', status: 'Active' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 32, department: 'Marketing', status: 'Active' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', age: 45, department: 'Sales', status: 'Inactive' },
+  { id: 4, name: 'Alice Brown', email: 'alice@example.com', age: 29, department: 'Engineering', status: 'Active' }
+]
+
+const columns = [
+  { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
+  { key: 'email', title: 'Email', dataIndex: 'email' },
+  { key: 'age', title: 'Age', dataIndex: 'age', sortable: true, align: 'center' },
+  { key: 'department', title: 'Department', dataIndex: 'department', sortable: true },
+  { key: 'status', title: 'Status', dataIndex: 'status' }
+]
+
+export default function DataTableExample() {
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchable={true}
+      showPagination={true}
+      defaultPageSize={10}
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { DataTable } from '@nostromo/ui-core'
+
+const data = [
+  { id: 1, name: 'John Doe', email: 'john@example.com', department: 'Engineering', status: 'Active' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', department: 'Marketing', status: 'Active' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', department: 'Sales', status: 'Inactive' },
+  { id: 4, name: 'Alice Brown', email: 'alice@example.com', department: 'Engineering', status: 'Active' }
+]
+
+const columns = [
+  { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
+  { key: 'email', title: 'Email', dataIndex: 'email' },
+  { key: 'department', title: 'Department', dataIndex: 'department', sortable: true },
+  { key: 'status', title: 'Status', dataIndex: 'status' }
+]
+
+export default function DataTableWithFilters() {
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchable={true}
+      filterable={true}
+      filters={[
+        {
+          key: 'department',
+          type: 'select',
+          options: [
+            { label: 'Engineering', value: 'Engineering' },
+            { label: 'Marketing', value: 'Marketing' },
+            { label: 'Sales', value: 'Sales' }
+          ]
+        },
+        {
+          key: 'status',
+          type: 'select',
+          options: [
+            { label: 'Active', value: 'Active' },
+            { label: 'Inactive', value: 'Inactive' }
+          ]
+        }
+      ]}
+      showPagination={true}
+      defaultPageSize={10}
+    />
+  )
+}`} noInline={true} />
+
+## Features
+
+### Search
+- **Global search** across multiple columns
+- **Custom search keys** to specify which columns to search
+- **Real-time filtering** as you type
+- **Search callback** for custom handling
+
+### Filtering
+- **Column filters** with multiple filter types (text, select, number, date, boolean)
+- **Multiple filters** can be applied simultaneously
+- **Custom filter functions** for advanced filtering logic
+- **Clear filters** button to reset all filters
+
+### Sorting
+- **Column sorting** with ascending/descending order
+- **Default sort** column and direction
+- **Multi-sort** support (planned)
+- **Sort indicators** in column headers
+
+### Pagination
+- **Automatic pagination** with configurable page sizes
+- **Page size options** (10, 20, 50, 100 by default)
+- **Results summary** showing current range and total
+- **Can be disabled** for small datasets
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `data` | `T[]` | - | **Yes** | Array of data objects to display |
+| `columns` | `TableColumn<T>[]` | - | **Yes** | Column definitions (see TableColumn interface) |
+| `searchable` | `boolean` | `true` | No | Enable global search functionality |
+| `searchPlaceholder` | `string` | `"Search..."` | No | Placeholder text for search input |
+| `searchKeys` | `Array<keyof T \| string>` | `undefined` | No | Specific columns to search (defaults to all columns) |
+| `onSearch` | `(searchTerm: string, filteredData: T[]) => void` | `undefined` | No | Callback when search term changes |
+| `filterable` | `boolean` | `false` | No | Enable column filtering |
+| `filters` | `ColumnFilter<T>[]` | `[]` | No | Filter definitions (see ColumnFilter interface) |
+| `onFilter` | `(filters: Record<string, unknown>, filteredData: T[]) => void` | `undefined` | No | Callback when filters change |
+| `defaultSortColumn` | `string` | `undefined` | No | Default column to sort by |
+| `defaultSortDirection` | `"asc" \| "desc"` | `"asc"` | No | Default sort direction |
+| `defaultPageSize` | `number` | `10` | No | Default number of items per page |
+| `pageSizeOptions` | `number[]` | `[10, 20, 50, 100]` | No | Available page size options |
+| `showPagination` | `boolean` | `true` | No | Show pagination controls |
+| `showSearch` | `boolean` | `true` | No | Show search bar |
+| `showFilters` | `boolean` | `true` | No | Show filter controls |
+| `rowKey` | `keyof T \| ((record: T) => string \| number)` | `"id"` | No | Key to identify rows |
+| `emptyText` | `string` | `"No data found"` | No | Text to show when no data |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `variant` | `"default" \| "striped" \| "bordered" \| "hover" \| "elevated" \| "interactive"` | `"default"` | No | Table visual variant |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | No | Table size |
+| `loading` | `boolean` | `false` | No | Show loading state |
+| `caption` | `string` | `undefined` | No | Table caption (for accessibility) |
+| `onRowClick` | `(record: T, index: number) => void` | `undefined` | No | Callback when row is clicked |
+| `selection` | `SelectionConfig<T>` | `undefined` | No | Row selection configuration (see Table component) |
+
+### ColumnFilter Interface
+
+```tsx
+interface ColumnFilter<T = Record<string, unknown>> {
+  key: string;                    // Column key to filter
+  type: 'text' | 'select' | 'number' | 'date' | 'boolean';
+  options?: Array<{                // For 'select' type
+    label: string;
+    value: string | number;
+  }>;
+  placeholder?: string;            // Placeholder for filter input
+  filterFn?: (value: unknown, record: T) => boolean;  // Custom filter function
+}
+```
+
+## Examples
+
+### Basic DataTable with Search
+
+```tsx
+<DataTable
+  data={employees}
+  columns={columns}
+  searchable={true}
+  searchPlaceholder="Search employees..."
+/>
+```
+
+### DataTable with Filters
+
+```tsx
+<DataTable
+  data={employees}
+  columns={columns}
+  searchable={true}
+  filterable={true}
+  filters={[
+    {
+      key: 'department',
+      type: 'select',
+      options: [
+        { label: 'Engineering', value: 'Engineering' },
+        { label: 'Marketing', value: 'Marketing' }
+      ]
+    },
+    {
+      key: 'status',
+      type: 'select',
+      options: [
+        { label: 'Active', value: 'Active' },
+        { label: 'Inactive', value: 'Inactive' }
+      ]
+    }
+  ]}
+/>
+```
+
+### DataTable with Custom Search Keys
+
+```tsx
+<DataTable
+  data={employees}
+  columns={columns}
+  searchable={true}
+  searchKeys={['name', 'email']}  // Only search in name and email columns
+  searchPlaceholder="Search by name or email..."
+/>
+```
+
+### DataTable with Default Sort
+
+```tsx
+<DataTable
+  data={employees}
+  columns={columns}
+  defaultSortColumn="name"
+  defaultSortDirection="asc"
+/>
+```
+
+### DataTable without Pagination
+
+```tsx
+<DataTable
+  data={employees}
+  columns={columns}
+  searchable={true}
+  showPagination={false}  // Show all results
+/>
+```
+
+## Accessibility
+
+- ✅ **WCAG 2.1 AA compliant**
+- ✅ **Keyboard navigation** for all interactive elements
+- ✅ **ARIA labels** for search and filter inputs
+- ✅ **Screen reader support** with proper table structure
+- ✅ **Focus management** for pagination controls
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use DataTable for large datasets that need search/filter
+- Provide meaningful column titles
+- Use appropriate filter types for each column
+- Set reasonable default page sizes
+- Include `rowKey` for proper row identification
+
+### ❌ Don't
+- Use DataTable for simple static tables (use Table instead)
+- Overload with too many filters
+- Use very large page sizes (>100)
+- Forget to handle empty states
+- Use without pagination for large datasets
+
+## Related Components
+
+- **[Table](/components/table)** - Basic table component
+- **[Input](/components/input)** - Used for search input
+- **[Select](/components/select)** - Used for filter dropdowns
+- **[Pagination](/components/pagination)** - Used for pagination controls
+
