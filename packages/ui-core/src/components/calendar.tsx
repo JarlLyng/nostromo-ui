@@ -325,22 +325,44 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     return (
       <div ref={ref} className={cn('w-full', className)} {...props}>
         <Popover.Root open={open} onOpenChange={setOpen}>
-          <Popover.Trigger asChild>
-            <div>
-              <Input
-                type="text"
-                readOnly
-                value={displayValue}
-                placeholder={placeholder || 'Select date...'}
-                {...(label && { label })}
-                {...(error !== undefined && { error })}
-                {...(helperText && { helperText })}
-                className={inputClassName}
+          <div className="space-y-2">
+            {label && (
+              <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                {label}
+              </label>
+            )}
+            <Popover.Trigger asChild>
+              <button
+                type="button"
+                className={cn(
+                  "flex w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background",
+                  "placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 text-left",
+                  error
+                    ? "border-error-500 shadow-sm hover:border-error-600 focus-visible:ring-error-500/20 focus-visible:border-error-500"
+                    : "border-neutral-300 shadow-sm hover:border-neutral-400 focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
+                  "h-10",
+                  inputClassName
+                )}
                 onClick={() => setOpen(true)}
                 onFocus={() => setOpen(true)}
-              />
-            </div>
-          </Popover.Trigger>
+                aria-label={label || "Open calendar"}
+                aria-invalid={error}
+              >
+                {displayValue || <span className="text-muted-foreground">{placeholder || 'Select date...'}</span>}
+              </button>
+            </Popover.Trigger>
+            {helperText && (
+              <p
+                className={cn(
+                  "text-sm text-muted-foreground",
+                  error && "text-error-600"
+                )}
+              >
+                {helperText}
+              </p>
+            )}
+          </div>
           
           <Popover.Portal>
             <Popover.Content

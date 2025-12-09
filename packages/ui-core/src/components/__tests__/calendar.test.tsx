@@ -4,18 +4,18 @@ import { vi } from 'vitest';
 import { Calendar } from '../calendar';
 
 describe('Calendar', () => {
-  it('renders calendar input', () => {
+  it('renders calendar button', () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    expect(input).toBeInTheDocument();
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    expect(button).toBeInTheDocument();
   });
 
-  it('opens calendar popover when input is clicked', async () => {
+  it('opens calendar popover when button is clicked', async () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /previous month/i })).toBeInTheDocument();
@@ -25,8 +25,8 @@ describe('Calendar', () => {
   it('displays current month and year', async () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const today = new Date();
@@ -42,8 +42,8 @@ describe('Calendar', () => {
     const onChange = vi.fn();
     render(<Calendar mode="single" onChange={onChange} />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       // Find today's date button
@@ -61,8 +61,8 @@ describe('Calendar', () => {
     const onChange = vi.fn();
     render(<Calendar mode="range" onChange={onChange} />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const today = new Date();
@@ -81,8 +81,8 @@ describe('Calendar', () => {
     const onChange = vi.fn();
     render(<Calendar mode="multiple" onChange={onChange} />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const today = new Date();
@@ -98,8 +98,8 @@ describe('Calendar', () => {
   it('navigates to previous month', async () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const prevButton = screen.getByRole('button', { name: /previous month/i });
@@ -121,8 +121,8 @@ describe('Calendar', () => {
   it('navigates to next month', async () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const nextButton = screen.getByRole('button', { name: /next month/i });
@@ -144,8 +144,8 @@ describe('Calendar', () => {
   it('navigates to today when Today button is clicked', async () => {
     render(<Calendar />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     // Navigate away from current month
     await waitFor(() => {
@@ -176,8 +176,8 @@ describe('Calendar', () => {
     
     render(<Calendar minDate={minDate} />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const today = new Date();
@@ -192,8 +192,8 @@ describe('Calendar', () => {
     
     render(<Calendar maxDate={maxDate} />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    fireEvent.click(input);
+    const button = screen.getByRole('button', { name: /open calendar|select date/i });
+    fireEvent.click(button);
     
     await waitFor(() => {
       const today = new Date();
@@ -205,7 +205,7 @@ describe('Calendar', () => {
   it('displays custom placeholder', () => {
     render(<Calendar placeholder="Choose a date" />);
     
-    expect(screen.getByPlaceholderText('Choose a date')).toBeInTheDocument();
+    expect(screen.getByText('Choose a date')).toBeInTheDocument();
   });
 
   it('displays label when provided', () => {
@@ -223,8 +223,8 @@ describe('Calendar', () => {
   it('shows error state', () => {
     render(<Calendar error={true} helperText="Date is required" />);
     
-    const input = screen.getByPlaceholderText('Select date...');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('aria-invalid', 'true');
   });
 });
 

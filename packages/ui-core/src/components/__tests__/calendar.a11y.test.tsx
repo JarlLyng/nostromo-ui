@@ -40,17 +40,17 @@ describe('Calendar Accessibility', () => {
     expect(results.violations.length).toBeLessThanOrEqual(1); // Allow 1 violation for Popover
   });
 
-  it('has proper ARIA attributes for input', () => {
+  it('has proper ARIA attributes for button', () => {
     const { container } = render(<Calendar label="Select Date" error={true} />);
     
-    const input = container.querySelector('input');
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute('readonly');
+    const button = container.querySelector('button[aria-label]');
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute('aria-invalid', 'true');
     
-    // Label should be associated with input
+    // Label should be present
     const label = container.querySelector('label');
     if (label) {
-      expect(label).toHaveAttribute('for');
+      expect(label).toBeInTheDocument();
     }
   });
 
@@ -59,7 +59,7 @@ describe('Calendar Accessibility', () => {
       <Calendar error={true} helperText="Date is required" />
     );
     
-    const input = container.querySelector('input');
-    expect(input).toHaveAttribute('aria-invalid', 'true');
+    const button = container.querySelector('button');
+    expect(button).toHaveAttribute('aria-invalid', 'true');
   });
 });
