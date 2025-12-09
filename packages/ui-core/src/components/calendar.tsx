@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
@@ -175,6 +175,9 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
   ) => {
     const [open, setOpen] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(new Date());
+    const [focusedDate, setFocusedDate] = useState<Date | null>(null);
+    const calendarRef = useRef<HTMLDivElement>(null);
+    const dayButtonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
     
     // Controlled vs uncontrolled
     const [internalValue, setInternalValue] = useState<
@@ -183,6 +186,15 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     
     const isControlled = value !== undefined;
     const calendarValue = isControlled ? value : internalValue;
+    
+    // Set focused date when calendar opens
+    useEffect(() => {
+      if (open && !focusedDate) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        setFocusedDate(today);
+      }
+    }, [open, focusedDate]);
     
     // Handle value changes
     const handleValueChange = (newValue: Date | Date[] | { from?: Date; to?: Date } | undefined) => {
@@ -304,8 +316,114 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     };
     
     const goToToday = () => {
-      setCurrentMonth(new Date());
+      const today = new Date();
+      setCurrentMonth(today);
+      setFocusedDate(today);
     };
+    
+    // Keyboard navigation
+    const handleKeyDown = (e: React.KeyboardEvent, date: Date) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleDateClick(date);
+        return;
+      }
+      
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const nextDate = new Date(date);
+        nextDate.setDate(nextDate.getDate() + 1);
+        setFocusedDate(nextDate);
+        // Update month if needed
+        if (nextDate.getMonth() !== currentMonth.getMonth()) {
+          setCurrentMonth(new Date(nextDate.getFullYear(), nextDate.getMonth(), 1));
+        }
+        return;
+      }
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prevDate = new Date(date);
+        prevDate.setDate(prevDate.getDate() - 1);
+        setFocusedDate(prevDate);
+        // Update month if needed
+        if (prevDate.getMonth() !== currentMonth.getMonth()) {
+          setCurrentMonth(new Date(prevDate.getFullYear(), prevDate.getMonth(), 1));
+        }
+        return;
+      }
+      
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextDate = new Date(date);
+        nextDate.setDate(nextDate.getDate() + 7);
+        setFocusedDate(nextDate);
+        // Update month if needed
+        if (nextDate.getMonth() !== currentMonth.getMonth()) {
+          setCurrentMonth(new Date(nextDate.getFullYear(), nextDate.getMonth(), 1));
+        }
+        return;
+      }
+      
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevDate = new Date(date);
+        prevDate.setDate(prevDate.getDate() - 7);
+        setFocusedDate(prevDate);
+        // Update month if needed
+        if (prevDate.getMonth() !== currentMonth.getMonth()) {
+          setCurrentMonth(new Date(prevDate.getFullYear(), prevDate.getMonth(), 1));
+        }
+        return;
+      }
+      
+      if (e.key === 'Home') {
+        e.preventDefault();
+        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        setFocusedDate(firstDay);
+        return;
+      }
+      
+      if (e.key === 'End') {
+        e.preventDefault();
+        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        setFocusedDate(lastDay);
+        return;
+      }
+      
+      if (e.key === 'PageUp') {
+        e.preventDefault();
+        const prevMonth = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
+        setFocusedDate(prevMonth);
+        setCurrentMonth(new Date(prevMonth.getFullYear(), prevMonth.getMonth(), 1));
+        return;
+      }
+      
+      if (e.key === 'PageDown') {
+        e.preventDefault();
+        const nextMonth = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
+        setFocusedDate(nextMonth);
+        setCurrentMonth(new Date(nextMonth.getFullYear(), nextMonth.getMonth(), 1));
+        return;
+      }
+      
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        setOpen(false);
+        return;
+      }
+    };
+    
+    // Focus management
+    useEffect(() => {
+      if (focusedDate && open) {
+        const dateKey = `${focusedDate.getFullYear()}-${focusedDate.getMonth()}-${focusedDate.getDate()}`;
+        const button = dayButtonRefs.current.get(dateKey);
+        if (button) {
+          button.focus();
+        }
+      }
+    }, [focusedDate, open]);
     
     // Day names
     const dayNames = useMemo(() => {
@@ -377,7 +495,12 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
               sideOffset={5}
               align="start"
             >
-              <div className={cn(calendarVariants({ variant, size }), calendarClassName)}>
+              <div 
+                ref={calendarRef}
+                className={cn(calendarVariants({ variant, size }), calendarClassName)}
+                role="application"
+                aria-label="Calendar"
+              >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
@@ -475,11 +598,22 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       !(calendarValue as { from?: Date; to?: Date })?.to &&
                       day.date >= (calendarValue as { from?: Date; to?: Date }).from!;
                     
+                    const dateKey = `${day.date.getFullYear()}-${day.date.getMonth()}-${day.date.getDate()}`;
+                    const isFocused = focusedDate && isSameDay(day.date, focusedDate);
+                    
                     return (
                       <button
                         key={`${day.date.getTime()}-${index}`}
+                        ref={(el) => {
+                          if (el) {
+                            dayButtonRefs.current.set(dateKey, el);
+                          } else {
+                            dayButtonRefs.current.delete(dateKey);
+                          }
+                        }}
                         type="button"
                         onClick={() => handleDateClick(day.date)}
+                        onKeyDown={(e) => handleKeyDown(e, day.date)}
                         disabled={isDisabled || !day.isCurrentMonth}
                         className={cn(
                           calendarDayVariants({
@@ -496,11 +630,18 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                               : 'default',
                             size
                           }),
-                          !day.isCurrentMonth && 'opacity-30'
+                          !day.isCurrentMonth && 'opacity-30',
+                          isFocused && 'ring-2 ring-brand-500 ring-offset-2'
                         )}
-                        aria-label={day.date.toLocaleDateString(locale)}
+                        aria-label={day.date.toLocaleDateString(locale, {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
                         aria-selected={isSelected}
                         aria-disabled={isDisabled}
+                        tabIndex={isFocused ? 0 : -1}
                       >
                         {day.date.getDate()}
                       </button>

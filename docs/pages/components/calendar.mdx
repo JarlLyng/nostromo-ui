@@ -189,20 +189,25 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 ## Accessibility
 
 - ✅ **WCAG 2.1 AA compliant**
-- ✅ **Keyboard navigation** - Full keyboard support
+- ✅ **Keyboard navigation** - Full keyboard support with arrow keys
 - ✅ **ARIA labels** - Proper labels for all interactive elements
-- ✅ **Screen reader support** - Announcements for date selection
-- ✅ **Focus management** - Proper focus handling in popover
-- ✅ **Date announcements** - Clear date format announcements
+- ✅ **Screen reader support** - Announcements for date selection with full date format
+- ✅ **Focus management** - Proper focus handling in popover with visual focus indicators
+- ✅ **Date announcements** - Clear date format announcements (weekday, year, month, day)
+- ✅ **Role attributes** - Proper ARIA roles (application, button, selected states)
+- ✅ **Disabled state** - Proper aria-disabled attributes for disabled dates
 
 ## Keyboard Navigation
 
-- **Arrow keys** - Navigate between dates
-- **Enter/Space** - Select date
-- **Escape** - Close calendar
+- **Arrow Right/Left** - Navigate to next/previous day
+- **Arrow Up/Down** - Navigate to same day next/previous week
+- **Enter/Space** - Select focused date
+- **Escape** - Close calendar popover
 - **Tab** - Navigate between controls
-- **Home/End** - Navigate to start/end of week
-- **Page Up/Down** - Navigate to previous/next month
+- **Home** - Navigate to first day of month
+- **End** - Navigate to last day of month
+- **Page Up** - Navigate to previous month (same day)
+- **Page Down** - Navigate to next month (same day)
 
 ## Do's and Don'ts
 
