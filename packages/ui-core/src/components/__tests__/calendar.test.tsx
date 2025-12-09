@@ -48,7 +48,13 @@ describe('Calendar', () => {
     await waitFor(() => {
       // Find today's date button
       const today = new Date();
-      const todayButton = screen.getByLabelText(today.toLocaleDateString('en-US'));
+      const todayLabel = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const todayButton = screen.getByLabelText(todayLabel);
       fireEvent.click(todayButton);
     });
     
@@ -66,7 +72,13 @@ describe('Calendar', () => {
     
     await waitFor(() => {
       const today = new Date();
-      const todayButton = screen.getByLabelText(today.toLocaleDateString('en-US'));
+      const todayLabel = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const todayButton = screen.getByLabelText(todayLabel);
       fireEvent.click(todayButton);
     });
     
@@ -86,7 +98,13 @@ describe('Calendar', () => {
     
     await waitFor(() => {
       const today = new Date();
-      const todayButton = screen.getByLabelText(today.toLocaleDateString('en-US'));
+      const todayLabel = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const todayButton = screen.getByLabelText(todayLabel);
       fireEvent.click(todayButton);
     });
     
@@ -181,7 +199,13 @@ describe('Calendar', () => {
     
     await waitFor(() => {
       const today = new Date();
-      const todayButton = screen.getByLabelText(today.toLocaleDateString('en-US'));
+      const todayLabel = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const todayButton = screen.getByLabelText(todayLabel);
       expect(todayButton).toBeDisabled();
     });
   });
@@ -197,7 +221,13 @@ describe('Calendar', () => {
     
     await waitFor(() => {
       const today = new Date();
-      const todayButton = screen.getByLabelText(today.toLocaleDateString('en-US'));
+      const todayLabel = today.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const todayButton = screen.getByLabelText(todayLabel);
       expect(todayButton).toBeDisabled();
     });
   });
