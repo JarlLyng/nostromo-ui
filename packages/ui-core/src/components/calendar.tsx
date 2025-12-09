@@ -29,15 +29,15 @@ const calendarVariants = cva(
 );
 
 const calendarDayVariants = cva(
-  'flex items-center justify-center rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'hover:bg-neutral-100',
-        selected: 'bg-brand-500 text-white hover:bg-brand-600',
-        range: 'bg-brand-100 text-brand-900 hover:bg-brand-200',
-        today: 'border-2 border-brand-500',
-        outside: 'text-neutral-400',
+        default: 'hover:bg-neutral-100 text-neutral-900',
+        selected: 'bg-brand-600 text-white hover:bg-brand-700 font-semibold',
+        range: 'bg-brand-100 text-brand-900 hover:bg-brand-200 font-medium',
+        today: 'border-2 border-brand-500 text-neutral-900 font-semibold',
+        outside: 'text-neutral-500',
         disabled: 'text-neutral-300 cursor-not-allowed'
       },
       size: {
@@ -525,7 +525,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       </svg>
                     </Button>
                     
-                    <h3 className="text-sm font-semibold">{monthYearDisplay}</h3>
+                    <h3 className="text-sm font-semibold text-neutral-900">{monthYearDisplay}</h3>
                     
                     <Button
                       variant="ghost"
@@ -630,8 +630,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                               : 'default',
                             size
                           }),
-                          !day.isCurrentMonth && 'opacity-30',
-                          isFocused && 'ring-2 ring-brand-500 ring-offset-2'
+                          !day.isCurrentMonth && 'opacity-50',
+                          isFocused && 'ring-2 ring-brand-500 ring-offset-2 z-10'
                         )}
                         aria-label={day.date.toLocaleDateString(locale, {
                           weekday: 'long',
