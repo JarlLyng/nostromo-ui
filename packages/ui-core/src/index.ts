@@ -99,6 +99,9 @@ export type { DataTableProps, ColumnFilter, FilterType } from './components/data
 export { Calendar, calendarVariants, calendarDayVariants } from './components/calendar';
 export type { CalendarProps, CalendarMode } from './components/calendar';
 
+export { Chart, chartContainerVariants } from './components/charts';
+export type { ChartProps, ChartType, ChartDataPoint } from './components/charts';
+
 export { Toast, ToastProvider, useToastNotification, toastVariants, toastIconVariants } from './components/toast';
 export type { ToastProps, ToastContextType } from './components/toast';
 

@@ -1,0 +1,292 @@
+import LiveCode from '../../components/LiveCode'
+
+# Charts
+
+The Charts component provides flexible data visualization with support for line, bar, area, and pie charts. Built on Recharts with full accessibility and customization options.
+
+## Import
+
+```tsx
+import { Chart } from '@nostromo/ui-core'
+// or
+import { Chart } from '@nostromo/ui-core/charts'
+```
+
+## Usage
+
+```tsx
+import { Chart } from '@nostromo/ui-core'
+
+const data = [
+  { name: 'Jan', sales: 4000 },
+  { name: 'Feb', sales: 3000 },
+  { name: 'Mar', sales: 2000 }
+]
+
+export default function Example() {
+  return (
+    <Chart
+      type="line"
+      data={data}
+      dataKeys={['sales']}
+      title="Monthly Sales"
+    />
+  )
+}
+```
+
+## Live Examples
+
+<LiveCode code={`import { Chart } from '@nostromo/ui-core'
+
+const data = [
+  { name: 'Jan', sales: 4000, revenue: 2400 },
+  { name: 'Feb', sales: 3000, revenue: 1398 },
+  { name: 'Mar', sales: 2000, revenue: 9800 },
+  { name: 'Apr', sales: 2780, revenue: 3908 }
+]
+
+export default function LineChartExample() {
+  return (
+    <Chart
+      type="line"
+      data={data}
+      dataKeys={['sales']}
+      title="Monthly Sales"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Chart } from '@nostromo/ui-core'
+
+const data = [
+  { name: 'Jan', sales: 4000, revenue: 2400 },
+  { name: 'Feb', sales: 3000, revenue: 1398 },
+  { name: 'Mar', sales: 2000, revenue: 9800 }
+]
+
+export default function BarChartExample() {
+  return (
+    <Chart
+      type="bar"
+      data={data}
+      dataKeys={['sales', 'revenue']}
+      title="Sales & Revenue"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Chart } from '@nostromo/ui-core'
+
+const data = [
+  { name: 'Electronics', value: 400 },
+  { name: 'Clothing', value: 300 },
+  { name: 'Food', value: 200 }
+]
+
+export default function PieChartExample() {
+  return (
+    <Chart
+      type="pie"
+      data={data}
+      dataKeys={['value']}
+      title="Category Distribution"
+    />
+  )
+}`} noInline={true} />
+
+## Chart Types
+
+### Line Chart
+Best for showing trends over time or continuous data.
+
+```tsx
+<Chart
+  type="line"
+  data={data}
+  dataKeys={['sales']}
+  title="Sales Trend"
+/>
+```
+
+### Bar Chart
+Best for comparing categories or discrete data points.
+
+```tsx
+<Chart
+  type="bar"
+  data={data}
+  dataKeys={['sales', 'revenue']}
+  title="Sales Comparison"
+/>
+```
+
+### Area Chart
+Best for showing cumulative values or stacked data over time.
+
+```tsx
+<Chart
+  type="area"
+  data={data}
+  dataKeys={['sales']}
+  title="Sales Area"
+/>
+```
+
+### Pie Chart
+Best for showing proportions or percentages of a whole.
+
+```tsx
+<Chart
+  type="pie"
+  data={data}
+  dataKeys={['value']}
+  title="Distribution"
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `type` | `"line" \| "bar" \| "pie" \| "area"` | - | **Yes** | Chart type |
+| `data` | `ChartDataPoint[]` | - | **Yes** | Array of data points |
+| `dataKeys` | `string[]` | - | **Yes** | Keys to plot from data |
+| `xAxisKey` | `string` | `"name"` | No | Key for X-axis labels |
+| `colors` | `(string \| undefined)[]` | `defaultColors` | No | Custom color palette |
+| `showGrid` | `boolean` | `true` | No | Show grid lines |
+| `showLegend` | `boolean` | `true` | No | Show legend |
+| `showTooltip` | `boolean` | `true` | No | Show tooltip on hover |
+| `title` | `string` | `undefined` | No | Chart title |
+| `description` | `string` | `undefined` | No | Chart description |
+| `className` | `string` | `undefined` | No | Additional CSS classes |
+| `variant` | `"default" \| "minimal" \| "detailed"` | `"default"` | No | Visual variant |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | No | Chart size |
+| `height` | `number` | `undefined` | No | Custom height (overrides size) |
+| `ariaLabel` | `string` | `undefined` | No | ARIA label for accessibility |
+| `ariaLabelledBy` | `string` | `undefined` | No | ARIA labelledby reference |
+| `strokeWidth` | `number` | `2` | No | Line/area stroke width |
+| `fillOpacity` | `number` | `0.6` | No | Area fill opacity |
+
+### ChartDataPoint Interface
+
+```tsx
+interface ChartDataPoint {
+  name: string;
+  [key: string]: string | number;
+}
+```
+
+## Examples
+
+### Multiple Data Series
+
+```tsx
+<Chart
+  type="line"
+  data={monthlyData}
+  dataKeys={['sales', 'revenue', 'profit']}
+  title="Multiple Metrics"
+/>
+```
+
+### Custom Colors
+
+```tsx
+<Chart
+  type="bar"
+  data={data}
+  dataKeys={['sales', 'revenue']}
+  colors={['#ef4444', '#10b981']}
+  title="Custom Colors"
+/>
+```
+
+### Minimal Chart
+
+```tsx
+<Chart
+  type="line"
+  data={data}
+  dataKeys={['sales']}
+  showGrid={false}
+  showLegend={false}
+  showTooltip={false}
+  variant="minimal"
+/>
+```
+
+### Custom Size
+
+```tsx
+<Chart
+  type="line"
+  data={data}
+  dataKeys={['sales']}
+  size="lg"
+  title="Large Chart"
+/>
+```
+
+### With Description
+
+```tsx
+<Chart
+  type="line"
+  data={data}
+  dataKeys={['sales']}
+  title="Monthly Sales"
+  description="Sales data for the first quarter of 2025"
+/>
+```
+
+## Accessibility
+
+- ✅ **WCAG 2.1 AA compliant**
+- ✅ **ARIA labels** - Proper role="img" and aria-label attributes
+- ✅ **Screen reader support** - Chart data is accessible
+- ✅ **Keyboard navigation** - Tooltips accessible via keyboard
+- ✅ **Color contrast** - Meets contrast requirements
+- ✅ **Descriptive text** - Title and description support
+
+## Styling
+
+Charts automatically use your theme's color palette:
+- Brand colors for primary data series
+- Semantic colors (success, warning, error, info) for additional series
+- Neutral colors for axes and grid
+- Dark mode support via CSS variables
+
+## Do's and Don'ts
+
+### ✅ Do
+- Use appropriate chart type for your data
+- Provide meaningful titles and descriptions
+- Use custom colors that match your brand
+- Include aria-label for screen readers
+- Use multiple data keys for comparisons
+
+### ❌ Don't
+- Use pie charts for more than 5-6 categories
+- Use line charts for discrete categories
+- Forget to provide titles for accessibility
+- Use too many data series (max 3-4 recommended)
+- Use colors that don't meet contrast requirements
+
+## Related Components
+
+- **[Table](/components/table)** - For tabular data display
+- **[DataTable](/components/data-table)** - For advanced data tables with filtering
+
+## Technical Details
+
+Charts component is built on [Recharts](https://recharts.org/), a composable charting library built on React and D3. The component provides a simplified API while maintaining full customization options.
+
+**Dependencies:**
+- `recharts` - Chart rendering library
+
+**Bundle Impact:**
+- Charts add ~150KB to bundle size (gzipped)
+- Tree-shakeable - only import what you use
+- Consider lazy loading for charts-heavy pages
+
