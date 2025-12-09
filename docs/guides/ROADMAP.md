@@ -14,11 +14,11 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 
 ## 🎯 Current Status
 
-**Current Phase**: Stable Release (1.0.0) 🎉  
-**Next Milestone**: Advanced Features (1.1.0)  
+**Current Phase**: Advanced Features (1.1.0) ✅  
+**Next Milestone**: Performance & Optimization (1.2.0)  
 **Last Updated**: January 2025  
-**Progress**: 1.0.0 Released - Production Ready! ✅  
-**Current Focus**: Community growth and advanced features
+**Progress**: Phase 2 Completed - All Advanced Components Implemented! ✅  
+**Current Focus**: Performance optimization and bundle size reduction
 
 ### 🧪 **Beta Testing Phase (0.1.0)** ✅ **COMPLETED**
 - **Status**: ✅ **COMPLETED**
@@ -148,10 +148,11 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## 📊 Key Metrics
 
 ### **Current Status**
-- **Components**: ✅ **27/27 Core Components** + **6/6 Marketing Components** completed
+- **Components**: ✅ **30/30 Core Components** + **6/6 Marketing Components** completed
+  - 27 base components + 3 advanced components (DataTable, Calendar, Charts)
 - **Themes**: ✅ **4/4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
 - **Documentation**: ✅ **100% complete** (Nextra-based documentation site)
-- **Tests**: ✅ **100% complete** (456/456 tests passing)
+- **Tests**: ✅ **100% complete** (803+ tests passing)
 - **Accessibility**: ✅ **100% complete** (all accessibility tests passing)
 - **Storybook**: ✅ **100% complete** (React with comprehensive stories)
 - **Build System**: ✅ **100% complete** (ESM/CJS output with type definitions)
@@ -162,7 +163,8 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 - **Phase 3 (0.3.0)**: ✅ **100% Complete**
 - **Phase 4 (0.4.0)**: ✅ **100% Complete**
 - **Phase 5 (1.0.0)**: ✅ **Released** (January 2025)
-- **Phase 6 (1.1.0)**: 🎯 **Current Focus**
+- **Phase 6 (1.1.0 - Advanced Components)**: ✅ **Completed** (January 2025)
+- **Phase 7 (1.2.0 - Performance)**: 🎯 **Current Focus**
 
 ---
 
@@ -174,9 +176,9 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Solid.js support
   - [ ] Svelte support
 
-- [ ] **Advanced Components**
-  - [ ] Data visualization
-  - [ ] Chart components
+- [ ] **Additional Advanced Components**
+  - [x] Data visualization ✅ (Charts component completed)
+  - [x] Chart components ✅ (Line, Bar, Area, Pie charts completed)
   - [ ] Advanced forms
   - [ ] Rich text editor
 
