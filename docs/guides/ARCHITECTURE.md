@@ -23,12 +23,8 @@ nostromo-ui/
 │   ├── ui-core/           # Product and app components
 │   ├── ui-marketing/      # Marketing components
 │   └── ui-tw/            # Tailwind preset + themes
-├── docs/                # Nextra documentation site
-├── apps/
-│   └── playground/       # Development playground
-├── tools/
-│   ├── eslint-config/    # Shared ESLint config
-│   └── tsconfig/         # Shared TypeScript configs
+├── docs/                 # Nextra documentation site
+├── tools/                # Shared configs (if any)
 └── .github/              # CI/CD workflows
 ```
 
