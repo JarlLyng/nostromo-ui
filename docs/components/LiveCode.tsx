@@ -39,6 +39,7 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   // Auto-detect if code needs noInline (has export default or complex JSX)
   const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
   
+  // Handle export default functions - must check BEFORE removing export default
   if (needsNoInline && transformedCode.includes('export default')) {
     // Extract component name from "export default function ComponentName() { ... }"
     const functionMatch = transformedCode.match(/export\s+default\s+function\s+(\w+)\s*\([^)]*\)\s*{/);
@@ -73,6 +74,14 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
           transformedCode = `const Component = () => (${transformedCode})\n\nrender(<Component />)`;
         }
       }
+    }
+  } else if (needsNoInline && !transformedCode.includes('export default')) {
+    // Code was already transformed (imports removed), but still needs noInline
+    // Check if it's a function declaration
+    const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
+    if (functionMatch && !transformedCode.includes('render(')) {
+      const componentName = functionMatch[1];
+      transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
     }
   }
   
