@@ -86,6 +86,19 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 **Target**: 🎯 **CURRENT FOCUS**  
 **Goal**: Advanced tooling and features
 
+#### **Distribution & Marketing**
+- [ ] **npm Publishing** - Publish packages to npm registry
+  - [ ] Set up npm account and organization
+  - [ ] Configure package publishing
+  - [ ] Publish @nostromo/ui-core, @nostromo/ui-marketing, @nostromo/ui-tw
+  - [ ] Set up automated publishing workflow
+
+- [ ] **Release Announcement** - Announce 1.0.0 release publicly
+  - [ ] Social media posts (Twitter, LinkedIn)
+  - [ ] Reddit posts (r/reactjs, r/webdev)
+  - [ ] Blog post or article
+  - [ ] Community engagement
+
 #### **Advanced Components**
 - [ ] **Data Table Component**
   - [ ] Advanced table with sorting/filtering
