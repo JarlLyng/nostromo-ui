@@ -283,6 +283,77 @@ interface TableCellProps {
 }
 ```
 
+### DataTable
+```tsx
+interface DataTableProps<T = Record<string, unknown>> {
+  data: T[]
+  columns: TableColumn<T>[]
+  searchable?: boolean
+  filterable?: boolean
+  filters?: ColumnFilter<T>[]
+  showPagination?: boolean
+  defaultPageSize?: number
+  onSearch?: (searchTerm: string, filteredData: T[]) => void
+  onFilter?: (filters: Record<string, unknown>, filteredData: T[]) => void
+  className?: string
+}
+
+interface ColumnFilter<T = Record<string, unknown>> {
+  key: string
+  type: 'text' | 'select' | 'number' | 'date' | 'boolean'
+  options?: Array<{ label: string; value: string | number }>
+  placeholder?: string
+  filterFn?: (value: unknown, record: T) => boolean
+}
+```
+
+### Calendar
+```tsx
+interface CalendarProps {
+  mode?: 'single' | 'range' | 'multiple'
+  value?: Date | Date[] | { from?: Date; to?: Date }
+  defaultValue?: Date | Date[] | { from?: Date; to?: Date }
+  onChange?: (value: Date | Date[] | { from?: Date; to?: Date } | undefined) => void
+  minDate?: Date
+  maxDate?: Date
+  disabledDates?: Date[]
+  disabledDays?: number[]
+  locale?: string
+  placeholder?: string
+  label?: string
+  error?: boolean
+  helperText?: string
+  className?: string
+}
+```
+
+### Charts
+```tsx
+interface ChartProps {
+  type: 'line' | 'bar' | 'pie' | 'area'
+  data: ChartDataPoint[]
+  dataKeys: string[]
+  xAxisKey?: string
+  colors?: (string | undefined)[]
+  showGrid?: boolean
+  showLegend?: boolean
+  showTooltip?: boolean
+  title?: string
+  description?: string
+  className?: string
+  height?: number
+  ariaLabel?: string
+  ariaLabelledBy?: string
+  strokeWidth?: number
+  fillOpacity?: number
+}
+
+interface ChartDataPoint {
+  name: string
+  [key: string]: string | number
+}
+```
+
 ### Tabs
 ```tsx
 interface TabsProps {
