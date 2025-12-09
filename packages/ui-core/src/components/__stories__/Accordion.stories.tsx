@@ -385,7 +385,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Type</label>
             <select
               value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value as any)}
+              onChange={(e) => setSelectedType(e.target.value as 'single' | 'multiple')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="single">Single</option>

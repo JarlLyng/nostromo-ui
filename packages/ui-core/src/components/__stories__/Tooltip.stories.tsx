@@ -370,7 +370,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as any)}
+              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'light' | 'dark' | 'success' | 'warning' | 'error' | 'info')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="default">Default</option>
@@ -387,7 +387,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Size</label>
             <select
               value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value as any)}
+              onChange={(e) => setSelectedSize(e.target.value as 'sm' | 'md' | 'lg')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="sm">Small</option>
@@ -400,7 +400,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Placement</label>
             <select
               value={selectedPlacement}
-              onChange={(e) => setSelectedPlacement(e.target.value as any)}
+              onChange={(e) => setSelectedPlacement(e.target.value as 'top' | 'bottom' | 'left' | 'right')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="top">Top</option>
@@ -414,7 +414,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Trigger</label>
             <select
               value={selectedTrigger}
-              onChange={(e) => setSelectedTrigger(e.target.value as any)}
+              onChange={(e) => setSelectedTrigger(e.target.value as 'hover' | 'click' | 'focus')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="hover">Hover</option>

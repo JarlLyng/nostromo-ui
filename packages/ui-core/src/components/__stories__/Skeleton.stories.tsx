@@ -298,7 +298,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as any)}
+              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'light' | 'dark' | 'primary' | 'success' | 'warning' | 'error')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="default">Default</option>
@@ -315,7 +315,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Size</label>
             <select
               value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value as any)}
+              onChange={(e) => setSelectedSize(e.target.value as 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="xs">Extra Small</option>
@@ -332,7 +332,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Shape</label>
             <select
               value={selectedShape}
-              onChange={(e) => setSelectedShape(e.target.value as any)}
+              onChange={(e) => setSelectedShape(e.target.value as 'rectangle' | 'circle' | 'square' | 'pill')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="rectangle">Rectangle</option>
@@ -346,7 +346,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Animation</label>
             <select
               value={selectedAnimation}
-              onChange={(e) => setSelectedAnimation(e.target.value as any)}
+              onChange={(e) => setSelectedAnimation(e.target.value as 'pulse' | 'wave' | 'none')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="pulse">Pulse</option>
