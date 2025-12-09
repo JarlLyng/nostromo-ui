@@ -300,7 +300,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as any)}
+              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'destructive')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="default">Default</option>
@@ -315,7 +315,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Position</label>
             <select
               value={selectedPosition}
-              onChange={(e) => setSelectedPosition(e.target.value as any)}
+              onChange={(e) => setSelectedPosition(e.target.value as 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="top-left">Top Left</option>

@@ -11,7 +11,9 @@ Welcome to Nostromo UI! This guide helps you get started with our UI library.
 
 ## Installation
 
-Install Nostromo UI in your project:
+### From npm (when published)
+
+Once published to npm, install Nostromo UI in your project:
 
 ```bash
 # npm
@@ -23,6 +25,23 @@ pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 # yarn
 yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
+
+### From GitHub (development/local)
+
+For local development or if packages aren't published yet, you can install directly from GitHub:
+
+```bash
+# Using pnpm (recommended for monorepo)
+pnpm add @nostromo/ui-core@workspace:* @nostromo/ui-marketing@workspace:* @nostromo/ui-tw@workspace:*
+
+# Or clone the repository and link locally
+git clone https://github.com/JarlLyng/nostromo-ui.git
+cd nostromo-ui
+pnpm install
+pnpm build
+```
+
+**Note**: Currently, packages are not published to npm. For production use, clone the repository and build locally, or wait for npm publication.
 
 ### Peer Dependencies
 

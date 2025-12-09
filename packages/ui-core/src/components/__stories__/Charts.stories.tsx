@@ -219,7 +219,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Chart Type</label>
             <select
               value={chartType}
-              onChange={(e) => setChartType(e.target.value as any)}
+              onChange={(e) => setChartType(e.target.value as 'line' | 'bar' | 'pie' | 'area')}
               className="border border-neutral-300 rounded px-3 py-1"
             >
               <option value="line">Line</option>

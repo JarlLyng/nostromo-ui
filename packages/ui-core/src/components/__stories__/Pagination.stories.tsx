@@ -67,7 +67,7 @@ export default meta;
 type Story = StoryObj<typeof Pagination>;
 
 // Interactive wrapper for stories
-const PaginationWrapper = (args: any) => {
+const PaginationWrapper = (args: React.ComponentProps<typeof Pagination>) => {
   const [currentPage, setCurrentPage] = useState(args.currentPage);
   
   return (
