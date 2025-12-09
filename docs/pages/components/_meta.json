@@ -42,8 +42,15 @@
   },
   "card": "Card",
   "table": "Table",
+  "data-table": "DataTable",
   "avatar": "Avatar",
   "accordion": "Accordion",
+  "advanced": {
+    "title": "Advanced",
+    "type": "separator"
+  },
+  "calendar": "Calendar",
+  "charts": "Charts",
   "dialog": "Dialog",
   "error-boundary": "ErrorBoundary",
   "marketing": {
