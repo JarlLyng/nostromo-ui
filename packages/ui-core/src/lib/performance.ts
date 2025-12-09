@@ -31,7 +31,7 @@ export function usePerformanceMonitor(
   const renderCount = React.useRef<number>(0);
   const markName = React.useRef<string>(`${componentName}-render-${Date.now()}`);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (!enabled || typeof window === 'undefined' || !window.performance) return;
 
     renderCount.current += 1;

@@ -148,14 +148,17 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## 📊 Key Metrics
 
 ### **Current Status**
-- **Components**: ✅ **30/30 Core Components** + **6/6 Marketing Components** completed
+- **Components**: ✅ **30 Core Components** + **6 Marketing Components** completed
   - 27 base components + 3 advanced components (DataTable, Calendar, Charts)
-- **Themes**: ✅ **4/4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
-- **Documentation**: ✅ **100% complete** (Nextra-based documentation site)
-- **Tests**: ✅ **100% complete** (803+ tests passing)
-- **Accessibility**: ✅ **100% complete** (all accessibility tests passing)
-- **Storybook**: ✅ **100% complete** (React with comprehensive stories)
-- **Build System**: ✅ **100% complete** (ESM/CJS output with type definitions)
+- **Themes**: ✅ **4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
+- **Documentation**: ✅ **Complete** (Nextra-based documentation site with all components)
+- **Tests**: 
+  - Core package: 829 tests (unit + accessibility)
+  - Marketing package: 7 smoke tests (export + render verification)
+  - Theme package: 3 smoke tests (preset structure validation)
+- **Accessibility**: ✅ **Compliant** (All core components pass WCAG 2.1 AA tests)
+- **Storybook**: ✅ **Core components covered** (React stories for all core components, marketing components documented on site)
+- **Build System**: ✅ **Complete** (ESM/CJS output with type definitions)
 
 ### **Phase Progress**
 - **Phase 1 (MVP 0.1.0)**: ✅ **100% Complete**
