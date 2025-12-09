@@ -41,24 +41,26 @@ jobs:
         echo ""
         # Check output for actual errors (not just warnings)
         # ESLint output format: "✖ 46 problems (0 errors, 46 warnings)"
-        # Also check for "problems (0 errors" pattern
-        if grep -E "(0 errors|problems \(0 errors)" lint-output.txt > /dev/null 2>&1; then
+        # Check multiple patterns to be safe
+        if grep -E "(✖.*problems.*\(0 errors|0 errors.*warnings|problems \(0 errors)" lint-output.txt > /dev/null 2>&1; then
           echo "✅ Linter completed with warnings only (acceptable)"
           exit 0
-        elif grep -E "problems \([1-9]" lint-output.txt > /dev/null 2>&1; then
+        elif grep -E "problems \([1-9][0-9]* errors" lint-output.txt > /dev/null 2>&1; then
           echo "❌ Linter found errors"
           exit 1
         elif [ $LINT_EXIT -eq 0 ]; then
           echo "✅ Linter passed (no errors or warnings)"
           exit 0
         else
-          # If exit code is non-zero but we can't find error count, check for error patterns
-          if grep -i "error" lint-output.txt | grep -v "warning" > /dev/null 2>&1; then
-            echo "❌ Linter found errors"
-            exit 1
-          else
-            echo "✅ Linter completed (warnings only)"
+          # If exit code is non-zero, check if it's just warnings
+          # Look for the summary line with error count
+          ERROR_COUNT=$(grep -oE "\([0-9]+ errors" lint-output.txt | grep -oE "[0-9]+" | head -1 || echo "0")
+          if [ "$ERROR_COUNT" = "0" ] || [ -z "$ERROR_COUNT" ]; then
+            echo "✅ Linter completed (warnings only, exit code was $LINT_EXIT)"
             exit 0
+          else
+            echo "❌ Linter found $ERROR_COUNT error(s)"
+            exit 1
           fi
         fi
       id: lint
