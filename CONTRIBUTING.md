@@ -113,9 +113,9 @@ export const Button = ({ variant = 'default', size = 'md', children, ...props }:
 - **Screen readers**: Test with screen readers
 
 ### Performance
-- **Tree shaking**: Komponenter skal være tree-shakeable
+- **Tree shaking**: Components must be tree-shakeable
 - **Bundle size**: Minimal bundle impact
-- **SSR compatible**: Ingen client-side dependencies
+- **SSR compatible**: No client-side dependencies
 
 ## Testing
 
@@ -253,9 +253,9 @@ pnpm changeset
 ## Getting Help
 
 ### Resources
-- **GitHub Issues**: Bug reports og feature requests
-- **GitHub Discussions**: Generelle spørgsmål
-- **Discord**: Real-time community support
+- **GitHub Issues**: Bug reports and feature requests
+- **GitHub Discussions**: General questions
+- **Discord**: Real-time community support (coming soon)
 
 ### Questions?
 If you have questions, feel free to:

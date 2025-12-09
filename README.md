@@ -170,4 +170,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Nostromo UI** - *"In space, no one can hear you scream... but everyone can see your beautiful UI"* 🚀# Trigger deployment
+**Nostromo UI** - *"In space, no one can hear you scream... but everyone can see your beautiful UI"* 🚀

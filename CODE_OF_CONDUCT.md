@@ -71,4 +71,4 @@ This Code of Conduct is adapted from the [Contributor Covenant](https://www.cont
 
 **Thank you for contributing to an inclusive and respectful community!** 🤝
 
-*Last updated: October 2025*
+*Last updated: January 2025*
