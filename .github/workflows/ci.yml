@@ -19,8 +19,6 @@ jobs:
       
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
-      with:
-        package_json_path: package.json
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -41,27 +39,37 @@ jobs:
         echo ""
         # Check output for actual errors (not just warnings)
         # ESLint output format: "✖ 46 problems (0 errors, 46 warnings)"
-        # Check multiple patterns to be safe
-        if grep -E "(✖.*problems.*\(0 errors|0 errors.*warnings|problems \(0 errors)" lint-output.txt > /dev/null 2>&1; then
-          echo "✅ Linter completed with warnings only (acceptable)"
-          exit 0
-        elif grep -E "problems \([1-9][0-9]* errors" lint-output.txt > /dev/null 2>&1; then
-          echo "❌ Linter found errors"
-          exit 1
-        elif [ $LINT_EXIT -eq 0 ]; then
-          echo "✅ Linter passed (no errors or warnings)"
-          exit 0
-        else
-          # If exit code is non-zero, check if it's just warnings
-          # Look for the summary line with error count
-          ERROR_COUNT=$(grep -oE "\([0-9]+ errors" lint-output.txt | grep -oE "[0-9]+" | head -1 || echo "0")
-          if [ "$ERROR_COUNT" = "0" ] || [ -z "$ERROR_COUNT" ]; then
-            echo "✅ Linter completed (warnings only, exit code was $LINT_EXIT)"
+        # Turbo may prefix with package name: "@nostromo/ui-core:lint: ✖ 22 problems (0 errors, 22 warnings)"
+        
+        # Extract all error counts from the output
+        ERROR_COUNTS=$(grep -oE "\([0-9]+ errors" lint-output.txt | grep -oE "[0-9]+" || echo "")
+        
+        # Check if we found any error counts
+        if [ -z "$ERROR_COUNTS" ]; then
+          # No error count found - check exit code
+          if [ $LINT_EXIT -eq 0 ]; then
+            echo "✅ Linter passed (no errors or warnings found)"
             exit 0
           else
-            echo "❌ Linter found $ERROR_COUNT error(s)"
+            echo "⚠️  Linter exit code $LINT_EXIT but no error pattern found - treating as failure"
             exit 1
           fi
+        fi
+        
+        # Check each error count
+        MAX_ERRORS=0
+        for count in $ERROR_COUNTS; do
+          if [ "$count" -gt "$MAX_ERRORS" ]; then
+            MAX_ERRORS=$count
+          fi
+        done
+        
+        if [ "$MAX_ERRORS" -eq 0 ]; then
+          echo "✅ Linter completed with warnings only (0 errors found)"
+          exit 0
+        else
+          echo "❌ Linter found $MAX_ERRORS error(s)"
+          exit 1
         fi
       id: lint
       
@@ -137,8 +145,6 @@ jobs:
       
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
-      with:
-        package_json_path: package.json
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
