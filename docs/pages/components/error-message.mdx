@@ -38,18 +38,16 @@ export default function Example() {
 
 ## Code Examples
 
-```jsx
-import { ErrorMessage } from '@nostromo/ui-core'
+<LiveCode code={`import { ErrorMessage, Input } from '@nostromo/ui-core'
 
 export default function ErrorMessageExample() {
   return (
-    <div>
-      <input type="email" />
+    <div className="space-y-2">
+      <Input type="email" placeholder="Enter email" error />
       <ErrorMessage>Please enter a valid email address</ErrorMessage>
     </div>
   )
-}
-```
+}`} />
 
 ## Props
 

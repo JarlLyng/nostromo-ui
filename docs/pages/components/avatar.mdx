@@ -38,14 +38,13 @@ export default function Example() {
 
 ## Code Examples
 
-```jsx
-import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
+<LiveCode code={`import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
 
 export default function AvatarExamples() {
   return (
     <div className="space-x-4">
       <Avatar>
-        <AvatarImage src="/avatar.jpg" alt="User" />
+        <AvatarImage src="https://via.placeholder.com/40?text=JD" alt="User" />
         <AvatarFallback>JD</AvatarFallback>
       </Avatar>
       
@@ -54,13 +53,11 @@ export default function AvatarExamples() {
       </Avatar>
     </div>
   )
-}
-```
+}`} />
 
 ## Sizes
 
-```jsx
-import { Avatar, AvatarFallback, AvatarImage } from '@nostromo/ui-core'
+<LiveCode code={`import { Avatar, AvatarFallback } from '@nostromo/ui-core'
 
 export default function AvatarSizes() {
   return (
@@ -76,8 +73,7 @@ export default function AvatarSizes() {
       </Avatar>
     </div>
   )
-}
-```
+}`} />
 
 ## Props
 

@@ -45,13 +45,14 @@ export default function Example() {
 
 ## Code Examples
 
-```jsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@nostromo/ui-core'
+<LiveCode code={`import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button } from '@nostromo/ui-core'
 
 export default function DialogExample() {
   return (
     <Dialog>
-      <DialogTrigger>Open Dialog</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Are you sure?</DialogTitle>
@@ -60,18 +61,18 @@ export default function DialogExample() {
       </DialogContent>
     </Dialog>
   )
-}
-```
+}`} />
 
 ## With Form
 
-```jsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label } from '@nostromo/ui-core'
+<LiveCode code={`import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button, Input, Label } from '@nostromo/ui-core'
 
 export default function DialogWithForm() {
   return (
     <Dialog>
-      <DialogTrigger>Open Form</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button>Open Form</Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create User</DialogTitle>
@@ -90,8 +91,7 @@ export default function DialogWithForm() {
       </DialogContent>
     </Dialog>
   )
-}
-```
+}`} />
 
 ## Accessibility
 

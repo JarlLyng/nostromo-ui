@@ -38,18 +38,16 @@ export default function Example() {
 
 ## Code Examples
 
-```jsx
-import { HelperText } from '@nostromo/ui-core'
+<LiveCode code={`import { HelperText, Input } from '@nostromo/ui-core'
 
 export default function HelperTextExample() {
   return (
-    <div>
-      <input type="password" />
+    <div className="space-y-2">
+      <Input type="password" placeholder="Enter password" />
       <HelperText>Password must be at least 8 characters long</HelperText>
     </div>
   )
-}
-```
+}`} />
 
 ## Props
 
