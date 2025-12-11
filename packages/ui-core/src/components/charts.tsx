@@ -14,9 +14,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell,
-  type TooltipProps as RechartsTooltipProps,
-  type LegendProps as RechartsLegendProps
+  Cell
 } from 'recharts';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
