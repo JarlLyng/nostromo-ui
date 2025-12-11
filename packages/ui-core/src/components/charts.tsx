@@ -15,8 +15,8 @@ import {
   Legend,
   ResponsiveContainer,
   Cell,
-  type TooltipProps,
-  type LegendProps
+  type TooltipProps as RechartsTooltipProps,
+  type LegendProps as RechartsLegendProps
 } from 'recharts';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
@@ -86,18 +86,28 @@ const defaultColors = [
 ];
 
 // Custom tooltip component with Tailwind styling
-const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    name?: string;
+    value?: number | string;
+    color?: string;
+  }>;
+  label?: string | number;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-800">
-        <p className="mb-2 font-semibold text-neutral-900 dark:text-neutral-100">{String(label)}</p>
+        <p className="mb-2 font-semibold text-neutral-900 dark:text-neutral-100">{String(label ?? '')}</p>
         {payload.map((entry, index: number) => (
           <p
             key={index}
             className="text-sm"
             style={{ color: entry.color }}
           >
-            {`${entry.name}: ${entry.value}`}
+            {`${entry.name ?? ''}: ${entry.value ?? ''}`}
           </p>
         ))}
       </div>
@@ -107,7 +117,14 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
 };
 
 // Custom legend component with Tailwind styling
-const CustomLegend = ({ payload }: LegendProps) => {
+interface CustomLegendProps {
+  payload?: Array<{
+    value?: string;
+    color?: string;
+  }>;
+}
+
+const CustomLegend = ({ payload }: CustomLegendProps) => {
   return (
     <div className="mt-4 flex flex-wrap justify-center gap-4">
       {payload?.map((entry, index: number) => (
@@ -258,7 +275,7 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
                 cx="50%"
                 cy="50%"
                 outerRadius={chartHeight / 4}
-                label={({ name, percent }: { name: string; percent: number }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                label={(props: { name?: string; percent?: number }) => `${props.name ?? ''}: ${((props.percent ?? 0) * 100).toFixed(0)}%`}
               >
                 {data.map((entry, index) => (
                   <Cell
