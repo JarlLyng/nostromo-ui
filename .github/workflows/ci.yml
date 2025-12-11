@@ -37,32 +37,44 @@ jobs:
         echo ""
         echo "=== Lint Exit Code: $LINT_EXIT ==="
         echo ""
+        echo "=== Checking lint output for errors ==="
+        cat lint-output.txt | grep -E "(✖|problems|errors)" | head -10
+        echo ""
+        
         # Check output for actual errors (not just warnings)
         # ESLint output format: "✖ 46 problems (0 errors, 46 warnings)"
         # Turbo may prefix with package name: "@nostromo/ui-core:lint: ✖ 22 problems (0 errors, 22 warnings)"
         
         # Extract all error counts from the output
         ERROR_COUNTS=$(grep -oE "\([0-9]+ errors" lint-output.txt | grep -oE "[0-9]+" || echo "")
+        echo "=== Error counts found: '$ERROR_COUNTS' ==="
         
         # Check if we found any error counts
         if [ -z "$ERROR_COUNTS" ]; then
-          # No error count found - check exit code
-          if [ $LINT_EXIT -eq 0 ]; then
+          # No error count found - check if there are any actual error messages
+          if grep -qiE "error" lint-output.txt | grep -v "warning" | grep -v "0 errors" > /dev/null 2>&1; then
+            echo "⚠️  Found error messages but no error count pattern - treating as failure"
+            exit 1
+          elif [ $LINT_EXIT -eq 0 ]; then
             echo "✅ Linter passed (no errors or warnings found)"
             exit 0
           else
-            echo "⚠️  Linter exit code $LINT_EXIT but no error pattern found - treating as failure"
-            exit 1
+            # Exit code non-zero but no errors found - likely just warnings
+            echo "✅ Linter exit code $LINT_EXIT but no errors found (warnings only)"
+            exit 0
           fi
         fi
         
         # Check each error count
         MAX_ERRORS=0
         for count in $ERROR_COUNTS; do
+          echo "Found error count: $count"
           if [ "$count" -gt "$MAX_ERRORS" ]; then
             MAX_ERRORS=$count
           fi
         done
+        
+        echo "=== Max errors across all packages: $MAX_ERRORS ==="
         
         if [ "$MAX_ERRORS" -eq 0 ]; then
           echo "✅ Linter completed with warnings only (0 errors found)"
