@@ -32,13 +32,14 @@ jobs:
     - name: Run linter
       run: |
         set +e
-        pnpm lint 2>&1 | tee lint-output.txt
-        LINT_EXIT=${PIPESTATUS[0]}
+        # Run lint and capture both output and exit code
+        pnpm lint > lint-output.txt 2>&1
+        LINT_EXIT=$?
         echo ""
         echo "=== Lint Exit Code: $LINT_EXIT ==="
         echo ""
         echo "=== Checking lint output for errors ==="
-        cat lint-output.txt | grep -E "(✖|problems|errors)" | head -10
+        grep -E "(✖|problems|errors)" lint-output.txt | head -10 || echo "No error patterns found"
         echo ""
         
         # Check output for actual errors (not just warnings)
@@ -51,16 +52,24 @@ jobs:
         
         # Check if we found any error counts
         if [ -z "$ERROR_COUNTS" ]; then
-          # No error count found - check if there are any actual error messages
-          if grep -qiE "error" lint-output.txt | grep -v "warning" | grep -v "0 errors" > /dev/null 2>&1; then
-            echo "⚠️  Found error messages but no error count pattern - treating as failure"
-            exit 1
+          # No error count found - check if there are any actual error messages (not warnings)
+          if grep -E "✖.*problems.*\([1-9]" lint-output.txt > /dev/null 2>&1; then
+            echo "⚠️  Found problems but no error count pattern - checking for actual errors"
+            # Check if there are any lines with "error" that aren't "0 errors" or "warnings"
+            if grep -E "error" lint-output.txt | grep -v "0 errors" | grep -v "warnings" | grep -v "warning" > /dev/null 2>&1; then
+              echo "❌ Found actual error messages - treating as failure"
+              exit 1
+            else
+              echo "✅ No actual errors found (warnings only)"
+              exit 0
+            fi
           elif [ $LINT_EXIT -eq 0 ]; then
             echo "✅ Linter passed (no errors or warnings found)"
             exit 0
           else
             # Exit code non-zero but no errors found - likely just warnings
-            echo "✅ Linter exit code $LINT_EXIT but no errors found (warnings only)"
+            # ESLint returns exit code 1 even with only warnings
+            echo "✅ Linter exit code $LINT_EXIT but no errors found (warnings only - acceptable)"
             exit 0
           fi
         fi
