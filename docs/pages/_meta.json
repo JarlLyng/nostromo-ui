@@ -2,7 +2,7 @@
   "index": "Home",
   "getting-started": "Getting Started",
   "theming": "Theming",
-  "api": "API Reference",
+  "api-reference": "API Reference",
   "components": {
     "title": "Components",
     "type": "page",

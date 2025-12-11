@@ -13,4 +13,8 @@ export default withNextra({
   trailingSlash: true,
   assetPrefix: process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '',
+  // Explicitly exclude /api from being treated as an API route
+  async rewrites() {
+    return []
+  },
 })
