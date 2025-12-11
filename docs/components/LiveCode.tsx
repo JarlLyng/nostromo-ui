@@ -65,7 +65,9 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
         .trim();
       
       // Add render() call at the end - this is required for noInline mode
-      transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
+      if (!transformedCode.includes('render(')) {
+        transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
+      }
     } else {
       // Fallback: try to extract any default export
       transformedCode = transformedCode
@@ -74,9 +76,9 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
       
       // If we still have a function, try to extract it
       const fallbackMatch = transformedCode.match(/function\s+(\w+)\s*\(/);
-      if (fallbackMatch) {
+      if (fallbackMatch && !transformedCode.includes('render(')) {
         transformedCode = `${transformedCode}\n\nrender(<${fallbackMatch[1]} />)`;
-      } else {
+      } else if (!transformedCode.includes('render(')) {
         // Last resort: wrap in render() - create a component and render it
         const lastBraceIndex = transformedCode.lastIndexOf('}');
         if (lastBraceIndex > 0) {
@@ -95,6 +97,9 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
     if (functionMatch && !transformedCode.includes('render(')) {
       const componentName = functionMatch[1];
       transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
+    } else if (!functionMatch && !transformedCode.includes('render(')) {
+      // No function found, wrap in component
+      transformedCode = `const Component = () => (${transformedCode})\n\nrender(<Component />)`;
     }
   }
   
