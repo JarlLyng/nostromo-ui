@@ -10,9 +10,22 @@ const scope = {
   React,
   ...Nostromo,
   ...NostromoMarketing,
+  // Explicitly add commonly used components for better IDE support
+  Hero: NostromoMarketing.Hero,
+  Features: NostromoMarketing.Features,
+  Testimonials: NostromoMarketing.Testimonials,
+  Pricing: NostromoMarketing.Pricing,
+  Gallery: NostromoMarketing.Gallery,
+  LogoWall: NostromoMarketing.LogoWall,
+  Button: Nostromo.Button,
+  Input: Nostromo.Input,
+  // React hooks
   useState: React.useState,
   useEffect: React.useEffect,
   useRef: React.useRef,
+  useCallback: React.useCallback,
+  useMemo: React.useMemo,
+  // Helper function for rendering
   render: (component: React.ReactElement) => component,
 }
 
