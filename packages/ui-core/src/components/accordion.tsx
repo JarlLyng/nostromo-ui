@@ -115,10 +115,12 @@ export interface AccordionItemProps extends VariantProps<typeof accordionItemVar
   disabled?: boolean;
 }
 
-export interface AccordionTriggerProps extends VariantProps<typeof accordionTriggerVariants> {
+export interface AccordionTriggerProps extends VariantProps<typeof accordionTriggerVariants>, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'onKeyDown'> {
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 export interface AccordionContentProps extends VariantProps<typeof accordionContentVariants> {
