@@ -7,8 +7,36 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Fixed
+- **ESLint Warnings** - Resolved all 22 ESLint warnings by replacing `any` types with proper TypeScript types
+  - Fixed `charts.tsx`: Used custom interfaces instead of recharts types
+  - Fixed `accordion.tsx`: Extended AccordionTriggerProps with button attributes
+  - Fixed `toast.tsx`: Resolved react-hooks/exhaustive-deps warning
+  - Fixed test files: Replaced `any` with proper types
+  - Fixed `icon.tsx`, `table.tsx`, `performance.ts`: Replaced `any` with `unknown` or proper types
+- **TypeScript Build Errors** - Resolved all TypeScript compilation errors
+  - Fixed `icon.tsx`: Changed from `ComponentType<unknown>` to `React.ElementType` to support forwardRef components
+  - Fixed `charts.tsx`: Created custom interfaces for tooltip and legend props
+  - Fixed `accordion.tsx`: Extended AccordionTriggerProps interface properly
+- **CI/CD Pipeline** - Improved lint error detection and removed deprecated configurations
+  - Removed deprecated `package_json_path` from pnpm/action-setup
+  - Improved lint step to correctly handle ESLint exit codes with warnings
+  - All CI checks now passing
+- **Documentation** - Fixed API reference page routing
+  - Renamed `api.mdx` to `api-reference.mdx` to avoid Next.js API route conflict
+  - Updated all internal links to use `/api-reference` path
+- **Bundle Size** - Increased size limit to accommodate new components
+  - Updated limit from 320 KB to 420 KB
+  - Current bundle size: 404.11 KB (with tree-shaking support)
+
+### Added
+- **Advanced Components** - DataTable, Calendar, and Charts components fully implemented
+  - DataTable: Advanced table with search, filtering, sorting, and pagination
+  - Calendar: Date picker with single, range, and multiple selection modes
+  - Charts: Data visualization with line, bar, area, and pie charts
+  - All components include comprehensive tests and Storybook stories
+
 ### Planned
-- Advanced components (DataTable, Calendar, Charts)
 - Search functionality in documentation
 - Performance optimizations
 - Additional themes
