@@ -96,11 +96,11 @@ export function withPerformanceMonitoring<P extends object>(
   componentName?: string,
   options?: PerformanceOptions
 ) {
-  const WrappedComponent = React.forwardRef<any, P>((props, ref) => {
+  const WrappedComponent = React.forwardRef<unknown, P>((props, ref) => {
     const name = componentName || Component.displayName || Component.name || 'Unknown';
     usePerformanceMonitor(name, options);
     
-    return React.createElement(Component, { ...(props as any), ref });
+    return React.createElement(Component, { ...(props as P), ref });
   });
   
   WrappedComponent.displayName = `withPerformanceMonitoring(${Component.displayName || Component.name})`;
@@ -148,7 +148,7 @@ export function useMemoryMonitor() {
     if (typeof window === 'undefined' || !('memory' in performance)) return;
 
     const updateMemoryInfo = () => {
-      const memory = (performance as any).memory;
+      const memory = (performance as Performance & { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
       if (memory) {
         setMemoryInfo({
           usedJSHeapSize: memory.usedJSHeapSize,
@@ -174,7 +174,7 @@ export const performanceUtils = {
   /**
    * Debounce function for performance optimization
    */
-  debounce: <T extends (...args: any[]) => any>(
+  debounce: <T extends (...args: unknown[]) => unknown>(
     func: T,
     wait: number
   ): ((...args: Parameters<T>) => void) => {
@@ -188,7 +188,7 @@ export const performanceUtils = {
   /**
    * Throttle function for performance optimization
    */
-  throttle: <T extends (...args: any[]) => any>(
+  throttle: <T extends (...args: unknown[]) => unknown>(
     func: T,
     limit: number
   ): ((...args: Parameters<T>) => void) => {
@@ -205,7 +205,7 @@ export const performanceUtils = {
   /**
    * Memoize expensive calculations
    */
-  memoize: <T extends (...args: any[]) => any>(fn: T): T => {
+  memoize: <T extends (...args: unknown[]) => unknown>(fn: T): T => {
     const cache = new Map();
     return ((...args: Parameters<T>) => {
       const key = JSON.stringify(args);

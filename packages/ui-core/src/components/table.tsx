@@ -469,7 +469,7 @@ const TableForwardRef = React.forwardRef(TableComponent) as <T extends Record<st
   props: TableProps<T> & { ref?: React.Ref<HTMLTableElement> }
 ) => React.ReactElement;
 
-(TableForwardRef as any).displayName = 'Table';
+(TableForwardRef as React.ComponentType<TableProps<unknown>> & { displayName?: string }).displayName = 'Table';
 
 export const Table = TableForwardRef;
 

@@ -321,12 +321,16 @@ export const AccordionTrigger = React.forwardRef<HTMLButtonElement, AccordionTri
         data-state={open ? 'open' : 'closed'}
         data-accordion-trigger="true"
         onClick={(e) => {
-          if ('onClick' in props && props.onClick) (props.onClick as any)(e);
+          if ('onClick' in props && props.onClick) {
+            props.onClick(e as React.MouseEvent<HTMLButtonElement>);
+          }
           if (finalDisabled) return;
           toggle();
         }}
         onKeyDown={(e) => {
-          if ('onKeyDown' in props && props.onKeyDown) (props.onKeyDown as any)(e);
+          if ('onKeyDown' in props && props.onKeyDown) {
+            props.onKeyDown(e as React.KeyboardEvent<HTMLButtonElement>);
+          }
           if (finalDisabled) return;
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();

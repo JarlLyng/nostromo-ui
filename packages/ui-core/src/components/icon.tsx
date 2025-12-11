@@ -228,7 +228,7 @@ import {
 } from 'phosphor-react';
 
 // Create a mapping of icon names to components
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<unknown>> = {
   // Navigation
   house: House,
   user: User,

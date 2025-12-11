@@ -112,7 +112,7 @@ describe('ErrorBoundary', () => {
   it('does not show error details when not on localhost', () => {
     // Mock window.location.hostname to simulate production environment
     const originalLocation = window.location;
-    delete (window as any).location;
+    delete (window as Window & { location?: Location }).location;
     window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
 
     render(
@@ -149,7 +149,7 @@ describe('ErrorBoundary', () => {
   it('does not log error to console when not on localhost', () => {
     // Mock window.location.hostname to simulate production environment
     const originalLocation = window.location;
-    delete (window as any).location;
+    delete (window as Window & { location?: Location }).location;
     window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
 
     // Clear any previous calls

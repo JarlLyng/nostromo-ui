@@ -27,7 +27,7 @@ const ToastTestComponent = () => {
 };
 
 // Mock Toast component for direct testing
-const MockToast = ({ title, description, variant, position, action, ...props }: any) => (
+const MockToast = ({ title, description, variant, position, action, ...props }: { title?: string; description?: string; variant?: string; position?: string; action?: React.ReactNode; [key: string]: unknown }) => (
   <div 
     className={`toast ${variant} ${position}`}
     role="alert"

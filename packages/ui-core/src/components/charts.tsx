@@ -14,7 +14,9 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell
+  Cell,
+  type TooltipProps,
+  type LegendProps
 } from 'recharts';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
@@ -84,12 +86,12 @@ const defaultColors = [
 ];
 
 // Custom tooltip component with Tailwind styling
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-800">
-        <p className="mb-2 font-semibold text-neutral-900 dark:text-neutral-100">{label}</p>
-        {payload.map((entry: any, index: number) => (
+        <p className="mb-2 font-semibold text-neutral-900 dark:text-neutral-100">{String(label)}</p>
+        {payload.map((entry, index: number) => (
           <p
             key={index}
             className="text-sm"
@@ -105,10 +107,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 // Custom legend component with Tailwind styling
-const CustomLegend = ({ payload }: any) => {
+const CustomLegend = ({ payload }: LegendProps) => {
   return (
     <div className="mt-4 flex flex-wrap justify-center gap-4">
-      {payload?.map((entry: any, index: number) => (
+      {payload?.map((entry, index: number) => (
         <div key={index} className="flex items-center gap-2">
           <div
             className="h-3 w-3 rounded"
@@ -256,7 +258,7 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
                 cx="50%"
                 cy="50%"
                 outerRadius={chartHeight / 4}
-                label={({ name, percent }: any) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }: { name: string; percent: number }) => `${name}: ${(percent * 100).toFixed(0)}%`}
               >
                 {data.map((entry, index) => (
                   <Cell
