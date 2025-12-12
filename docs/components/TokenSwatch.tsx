@@ -44,10 +44,14 @@ export default function TokenSwatch({ name, value, color, description }: TokenSw
       </div>
       <button
         onClick={handleCopy}
-        className="px-2 py-1 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground flex-shrink-0 opacity-0 group-hover:opacity-100"
+        className="px-2 py-1 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-all text-foreground flex-shrink-0 opacity-0 group-hover:opacity-100 hover:scale-105"
         title="Copy variable"
       >
-        {copied ? '✓' : 'Copy'}
+        {copied ? (
+          <span className="text-success">✓ Copied</span>
+        ) : (
+          'Copy'
+        )}
       </button>
     </div>
   )
