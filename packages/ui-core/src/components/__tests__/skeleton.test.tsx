@@ -184,7 +184,7 @@ describe('SkeletonButton', () => {
     expect(screen.getByLabelText('Loading button')).toHaveClass('bg-primary/10');
 
     rerender(<SkeletonButton variant="outline" />);
-    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-muted', 'border', 'border-border');
+    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-muted/50', 'border', 'border-border');
   });
 
   it('does not render when loading is false', () => {

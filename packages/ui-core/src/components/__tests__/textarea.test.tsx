@@ -23,7 +23,7 @@ describe("Textarea", () => {
     render(<Textarea error helperText="This is an error" />);
     const textarea = screen.getByRole("textbox");
     expect(textarea).toHaveAttribute("aria-invalid", "true");
-    expect(screen.getByText("This is an error")).toHaveClass("text-error-500");
+    expect(screen.getByText("This is an error")).toHaveClass("text-destructive");
   });
 
   it("renders with placeholder", () => {
@@ -87,13 +87,13 @@ describe("Textarea", () => {
 
   it("applies correct variant styling based on prop", () => {
     const { rerender } = render(<Textarea variant="default" />);
-    expect(screen.getByRole("textbox")).toHaveClass("border-neutral-200");
+    expect(screen.getByRole("textbox")).toHaveClass("border-border");
 
     rerender(<Textarea variant="error" />);
-    expect(screen.getByRole("textbox")).toHaveClass("border-error-500");
+    expect(screen.getByRole("textbox")).toHaveClass("border-destructive");
 
     rerender(<Textarea variant="success" />);
-    expect(screen.getByRole("textbox")).toHaveClass("border-success-500");
+    expect(screen.getByRole("textbox")).toHaveClass("border-success");
   });
 
   it("applies correct size styling based on prop", () => {

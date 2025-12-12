@@ -62,7 +62,7 @@ describe('Select', () => {
       </Select>
     );
 
-    expect(screen.getByRole('combobox')).toHaveClass('border-input');
+    expect(screen.getByRole('combobox')).toHaveClass('border-border');
 
     rerender(
       <Select defaultValue="apple">

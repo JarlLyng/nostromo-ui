@@ -104,7 +104,7 @@ describe('Toast', () => {
     );
     const title2 = screen.getByText('Test');
     const toastRoot2 = title2.closest('[data-visible][data-leaving]')!;
-    expect(toastRoot2).toHaveClass('border-error-200', 'bg-error-50', 'text-error-900');
+    expect(toastRoot2).toHaveClass('border-destructive/20', 'bg-destructive/10', 'text-destructive');
 
     rerender(
       <Toast
@@ -284,7 +284,7 @@ describe('Toast', () => {
     const title2 = screen.getByText('Error');
     const toastRoot2 = title2.closest('[data-visible][data-leaving]')!;
     const icon2 = toastRoot2.querySelector('svg')!;
-    expect(icon2).toHaveClass('text-error-600');
+    expect(icon2).toHaveClass('text-destructive');
 
     rerender(
       <Toast

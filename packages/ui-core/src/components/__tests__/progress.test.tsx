@@ -46,7 +46,7 @@ describe('Progress', () => {
 
   it('applies correct variant classes', () => {
     const { rerender } = render(<Progress value={50} variant="primary" />);
-    expect(screen.getByRole('progressbar')).toHaveClass('bg-primary-100');
+    expect(screen.getByRole('progressbar')).toHaveClass('bg-primary/10');
 
     rerender(<Progress value={50} variant="success" />);
     expect(screen.getByRole('progressbar')).toHaveClass('bg-success-100');

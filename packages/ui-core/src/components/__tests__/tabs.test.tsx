@@ -64,7 +64,7 @@ describe('Tabs', () => {
       </Tabs>
     );
 
-    expect(screen.getByRole('tablist')).toHaveClass('border', 'border-neutral-300', 'bg-transparent');
+    expect(screen.getByRole('tablist')).toHaveClass('border', 'border-border', 'bg-transparent');
 
     rerender(
       <Tabs defaultValue="tab1">

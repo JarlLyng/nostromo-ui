@@ -93,8 +93,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             id={helperTextId}
             className={cn(
               "text-sm text-muted-foreground",
-              error && "text-error-600",
-              success && "text-success-600"
+              error && "text-destructive",
+              success && "text-success"
             )}
           >
             {helperText}
