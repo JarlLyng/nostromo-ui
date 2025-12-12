@@ -76,6 +76,10 @@ We use an HSL-based color system with semantic naming. This gives you full contr
   --color-accent-foreground: hsl(var(--color-brand-900));
   --color-destructive: hsl(var(--color-error-500));
   --color-destructive-foreground: hsl(var(--color-neutral-50));
+  --color-success-foreground: hsl(var(--color-neutral-50));
+  --color-warning-foreground: hsl(var(--color-neutral-900));
+  --color-error-foreground: hsl(var(--color-neutral-50));
+  --color-info-foreground: hsl(var(--color-neutral-50));
   --color-ring: hsl(var(--color-brand-500));
 }
 ```
@@ -484,19 +488,20 @@ import * as Nostromo from '@nostromo/ui-core';
 ### Bundle Size Optimization
 ```js
 // tailwind.config.js
+const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+
 module.exports = {
   content: [
-    // Only scan components you use
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@nostromo/ui-core/dist/**/*.{js,jsx,ts,tsx}',
+    // Scan your source files
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    // Include Nostromo UI components
+    './node_modules/@nostromo/**/*.{js,ts,jsx,tsx}',
   ],
-  // Purge unused CSS
-  purge: {
-    enabled: true,
-    content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  }
+  presets: [nostromoPreset],
 };
 ```
+
+**Note**: Tailwind CSS v3+ uses `content` instead of the deprecated `purge` option. The `content` array tells Tailwind which files to scan for class names.
 
 ## Migration Guide
 

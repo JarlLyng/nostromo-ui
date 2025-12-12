@@ -1,7 +1,8 @@
 /* Nostromo UI Advanced Documentation - Theme System */
+/* This file provides documentation-specific styling that extends the base Nostromo UI themes */
 
-/* Light Theme (Default) */
-:root {
+/* Documentation Theme - Uses Nostromo theme as base */
+[data-theme="docs"] {
   /* Color Palette */
   --color-primary: 262 84% 52%;
   --color-secondary: 262 84% 45%;
@@ -100,8 +101,8 @@
   --animation-error: hsl(var(--color-error));
 }
 
-/* Dark Theme */
-[data-theme="dark"] {
+/* Dark Theme - Documentation specific */
+[data-theme="docs"][data-color-scheme="dark"] {
   /* Color Palette (same as light) */
   --color-primary: 262 84% 52%;
   --color-secondary: 262 84% 45%;
@@ -200,13 +201,9 @@
   --animation-error: hsl(var(--color-error));
 }
 
-/* Auto Theme (System Preference) */
-[data-theme="auto"] {
-  /* Use system preference */
-}
-
+/* Auto Theme (System Preference) - Documentation specific */
 @media (prefers-color-scheme: dark) {
-  [data-theme="auto"] {
+  [data-theme="docs"] {
     /* Dark theme variables */
     --color-neutral-50: 0 0% 4%;
     --color-neutral-100: 0 0% 9%;
@@ -275,8 +272,13 @@
   }
 }
 
-/* Theme Transition */
-* {
+/* Theme Transition - Applied only to specific components for better performance */
+.theme-toggle,
+.theme-dropdown-trigger,
+.theme-dropdown-item,
+.theme-status,
+.theme-persist,
+.theme-debug {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -326,12 +328,12 @@
   transform: translate(-50%, -50%) rotate(180deg);
 }
 
-[data-theme="dark"] .theme-toggle-icon.light {
+[data-theme="docs"][data-color-scheme="dark"] .theme-toggle-icon.light {
   opacity: 0;
   transform: translate(-50%, -50%) rotate(-180deg);
 }
 
-[data-theme="dark"] .theme-toggle-icon.dark {
+[data-theme="docs"][data-color-scheme="dark"] .theme-toggle-icon.dark {
   opacity: 1;
   transform: translate(-50%, -50%) rotate(0deg);
 }
