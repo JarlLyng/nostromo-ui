@@ -3,9 +3,7 @@
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@nostromo/ui-core'
 import * as NostromoMarketing from '@nostromo/ui-marketing'
-import React, { useState, useEffect } from 'react'
-import '@nostromo/ui-tw/base.css'
-import '@nostromo/ui-tw/themes/nostromo.css'
+import React, { useState, useEffect, useRef } from 'react'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
@@ -39,6 +37,7 @@ interface LiveCodeProps {
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  const previewRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
     // Reset loading state when code changes
@@ -48,6 +47,24 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
     const timer = setTimeout(() => setIsLoading(false), 300)
     return () => clearTimeout(timer)
   }, [code])
+
+  // Ensure CSS is available in the preview container
+  // This is a fallback for react-live's isolated rendering context
+  useEffect(() => {
+    if (!previewRef.current) return
+
+    // Check if CSS is already loaded by testing for a CSS variable
+    const testElement = previewRef.current.querySelector('[data-theme]') || previewRef.current
+    const computedStyle = window.getComputedStyle(testElement as Element)
+    const brandColor = computedStyle.getPropertyValue('--color-brand-500')
+    
+    // If CSS variables are not available, the global CSS from _app.tsx should handle it
+    // This effect just ensures the theme attributes are set correctly
+    if (testElement instanceof HTMLElement) {
+      testElement.setAttribute('data-theme', 'nostromo')
+      testElement.setAttribute('data-color-scheme', 'light')
+    }
+  }, [isLoading])
   
   // Transform code to work with react-live
   // Remove import statements since components are already in scope
@@ -134,6 +151,7 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
               </div>
             )}
             <div 
+              ref={previewRef}
               style={{ display: isLoading ? 'none' : 'block' }}
               data-theme="nostromo"
               data-color-scheme="light"
