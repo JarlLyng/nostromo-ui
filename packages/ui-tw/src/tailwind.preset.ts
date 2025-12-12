@@ -34,6 +34,8 @@ const nostromoPreset: Partial<Config> = {
         },
         // Semantic colors
         success: {
+          DEFAULT: 'hsl(var(--color-success-500))',
+          foreground: 'hsl(var(--color-success-foreground))',
           50: 'hsl(var(--color-success-50))',
           100: 'hsl(var(--color-success-100))',
           200: 'hsl(var(--color-success-200))',
@@ -47,6 +49,8 @@ const nostromoPreset: Partial<Config> = {
           950: 'hsl(var(--color-success-950))',
         },
         warning: {
+          DEFAULT: 'hsl(var(--color-warning-500))',
+          foreground: 'hsl(var(--color-warning-foreground))',
           50: 'hsl(var(--color-warning-50))',
           100: 'hsl(var(--color-warning-100))',
           200: 'hsl(var(--color-warning-200))',
@@ -60,6 +64,8 @@ const nostromoPreset: Partial<Config> = {
           950: 'hsl(var(--color-warning-950))',
         },
         error: {
+          DEFAULT: 'hsl(var(--color-error-500))',
+          foreground: 'hsl(var(--color-error-foreground))',
           50: 'hsl(var(--color-error-50))',
           100: 'hsl(var(--color-error-100))',
           200: 'hsl(var(--color-error-200))',
@@ -73,6 +79,8 @@ const nostromoPreset: Partial<Config> = {
           950: 'hsl(var(--color-error-950))',
         },
         info: {
+          DEFAULT: 'hsl(var(--color-info-500))',
+          foreground: 'hsl(var(--color-info-foreground))',
           50: 'hsl(var(--color-info-50))',
           100: 'hsl(var(--color-info-100))',
           200: 'hsl(var(--color-info-200))',
