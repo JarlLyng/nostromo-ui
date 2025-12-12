@@ -42,13 +42,13 @@
     "postinstall:ui-tw": "turbo run build --filter=@nostromo/ui-tw"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
-    "@tailwindcss/vite": "^4.1.17",
+    "@changesets/cli": "^2.29.8",
+    "@tailwindcss/vite": "^4.1.18",
     "bundle-analyzer": "^0.0.6",
     "eslint": "^9.39.1",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "tsx": "^4.21.0",
-    "turbo": "^1.13.4",
+    "turbo": "^2.6.3",
     "typescript": "^5.9.2"
   },
   "dependencies": {
