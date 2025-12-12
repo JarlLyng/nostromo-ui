@@ -76,15 +76,28 @@ export default function StorybookEmbed({
           style={{ height, width }}
         >
           <div className="text-center max-w-md">
-            <p className="text-sm font-medium mb-2">Storybook ikke tilgængelig</p>
-            <p className="text-xs mb-4">For at se interaktive eksempler, start Storybook lokalt:</p>
-            <div className="bg-gray-200 rounded p-3 text-left font-mono text-xs">
-              <code className="block mb-1">cd packages/ui-core</code>
-              <code className="block">pnpm storybook</code>
+            <p className="text-sm font-medium mb-2">Storybook unavailable</p>
+            <p className="text-xs mb-4">To view interactive examples, you can:</p>
+            <div className="space-y-3">
+              <a
+                href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(story)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+              >
+                Open in Storybook →
+              </a>
+              <div className="text-xs text-gray-500 mt-3">
+                <p className="mb-2">Or run Storybook locally:</p>
+                <div className="bg-gray-200 rounded p-3 text-left font-mono">
+                  <code className="block mb-1">cd packages/ui-core</code>
+                  <code className="block">pnpm storybook</code>
+                </div>
+                <p className="mt-2 text-gray-400">
+                  Storybook will run on http://localhost:6006
+                </p>
+              </div>
             </div>
-            <p className="text-xs mt-4 text-gray-400">
-              Storybook vil køre på http://localhost:6006
-            </p>
           </div>
         </div>
       </div>

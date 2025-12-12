@@ -4,6 +4,123 @@ Nostromo UI's theming system is built around **CSS variables in HSL format** tha
 
 > **💡 Live Examples**: See all themes in action in [Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--all-themes)
 
+## 🎨 Predefined Themes
+
+Nostromo UI includes 4 complete themes, each with a unique aesthetic:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+  <div className="border rounded-lg p-4">
+    <h3 className="text-lg font-semibold mb-2">Nostromo</h3>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Default theme - Purple/blue inspired by space and technology</p>
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(262_84%_52%)]"></div>
+        <span className="text-xs">Primary: Purple/Blue</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(0_0%_98%)] border"></div>
+        <span className="text-xs">Neutral: Industrial grays</span>
+      </div>
+    </div>
+    <code className="text-xs mt-3 block">data-theme="nostromo"</code>
+  </div>
+
+  <div className="border rounded-lg p-4">
+    <h3 className="text-lg font-semibold mb-2">Mother</h3>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Clinical, clean aesthetic - Cyan/teal for medical/healthcare</p>
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(195_100%_50%)]"></div>
+        <span className="text-xs">Primary: Cyan/Teal</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(0_0%_98%)] border"></div>
+        <span className="text-xs">Neutral: Clean whites</span>
+      </div>
+    </div>
+    <code className="text-xs mt-3 block">data-theme="mother"</code>
+  </div>
+
+  <div className="border rounded-lg p-4">
+    <h3 className="text-lg font-semibold mb-2">LV-426</h3>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Warm, earthy aesthetic - Orange/amber for nature/outdoor</p>
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(25_95%_53%)]"></div>
+        <span className="text-xs">Primary: Orange/Amber</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(0_0%_98%)] border"></div>
+        <span className="text-xs">Neutral: Warm grays</span>
+      </div>
+    </div>
+    <code className="text-xs mt-3 block">data-theme="lv-426"</code>
+  </div>
+
+  <div className="border rounded-lg p-4">
+    <h3 className="text-lg font-semibold mb-2">Sulaco</h3>
+    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Military, professional aesthetic - Blue/steel for corporate</p>
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(220_100%_50%)]"></div>
+        <span className="text-xs">Primary: Blue/Steel</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-4 h-4 rounded bg-[hsl(0_0%_98%)] border"></div>
+        <span className="text-xs">Neutral: Cool grays</span>
+      </div>
+    </div>
+    <code className="text-xs mt-3 block">data-theme="sulaco"</code>
+  </div>
+</div>
+
+### Try Themes
+
+<LiveCode code={`
+function ThemeDemo() {
+  const [theme, setTheme] = React.useState('nostromo');
+  
+  const themes = [
+    { id: 'nostromo', name: 'Nostromo', color: 'hsl(262 84% 52%)' },
+    { id: 'mother', name: 'Mother', color: 'hsl(195 100% 50%)' },
+    { id: 'lv-426', name: 'LV-426', color: 'hsl(25 95% 53%)' },
+    { id: 'sulaco', name: 'Sulaco', color: 'hsl(220 100% 50%)' },
+  ];
+  
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+  
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        {themes.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setTheme(t.id)}
+            className={\`px-4 py-2 rounded border transition-colors \${
+              theme === t.id 
+                ? 'bg-primary text-primary-foreground border-primary' 
+                : 'bg-background border-border hover:bg-muted'
+            }\`}
+          >
+            {t.name}
+          </button>
+        ))}
+      </div>
+      <div className="p-6 border rounded-lg bg-card">
+        <h3 className="text-lg font-semibold mb-2">Current Theme: {theme}</h3>
+        <p className="text-sm text-muted-foreground">
+          All themes are WCAG AA compliant and support both light and dark modes.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+render(<ThemeDemo />)
+`} />
+
 ## 🎨 Quick Start
 
 ### 1. Import Base CSS

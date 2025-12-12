@@ -3,7 +3,7 @@
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@nostromo/ui-core'
 import * as NostromoMarketing from '@nostromo/ui-marketing'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
@@ -35,6 +35,18 @@ interface LiveCodeProps {
 }
 
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasError, setHasError] = useState(false)
+  
+  useEffect(() => {
+    // Reset loading state when code changes
+    setIsLoading(true)
+    setHasError(false)
+    // Set loading to false after a short delay to allow component to render
+    const timer = setTimeout(() => setIsLoading(false), 300)
+    return () => clearTimeout(timer)
+  }, [code])
+  
   // Transform code to work with react-live
   // Remove import statements since components are already in scope
   let transformedCode = code.trim()
@@ -110,9 +122,21 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
           <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
             <span className="text-sm text-gray-600 dark:text-gray-400">Live Example</span>
           </div>
-          <div className="p-4 bg-white dark:bg-gray-950">
-            <LivePreview />
-            <LiveError className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-800 dark:text-red-200 text-sm" />
+          <div className="p-4 bg-white dark:bg-gray-950 relative min-h-[100px]">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-950">
+                <div className="animate-pulse space-y-2">
+                  <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-32"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-24"></div>
+                </div>
+              </div>
+            )}
+            <div style={{ display: isLoading ? 'none' : 'block' }}>
+              <LivePreview />
+            </div>
+            <LiveError 
+              className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-800 dark:text-red-200 text-sm"
+            />
           </div>
           <details className="border-t border-gray-200 dark:border-gray-800">
             <summary className="px-4 py-2 bg-gray-50 dark:bg-gray-900 cursor-pointer text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
