@@ -63,6 +63,67 @@ export default function FeaturesExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { Features } from '@nostromo/ui-marketing'
+
+export default function FeaturesCardsExample() {
+  return (
+    <Features
+      title="Our Features"
+      subtitle="Everything you need to build amazing products"
+      variant="cards"
+      columns={3}
+      features={[
+        {
+          title: "Fast Performance",
+          description: "Lightning-fast components built for speed",
+          icon: "Zap"
+        },
+        {
+          title: "Developer Experience",
+          description: "Intuitive APIs and comprehensive documentation",
+          icon: "Code"
+        },
+        {
+          title: "Accessibility",
+          description: "WCAG 2.1 AA compliant out of the box",
+          icon: "Accessibility"
+        }
+      ]}
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Features } from '@nostromo/ui-marketing'
+
+export default function FeaturesMinimalExample() {
+  return (
+    <Features
+      title="Why Choose Us?"
+      variant="minimal"
+      columns={2}
+      centered={true}
+      features={[
+        {
+          title: "TypeScript First",
+          description: "Full TypeScript support with strict type checking"
+        },
+        {
+          title: "Customizable",
+          description: "CSS variables and Tailwind for easy theming"
+        },
+        {
+          title: "Accessible",
+          description: "WCAG 2.1 AA compliant components"
+        },
+        {
+          title: "Well Documented",
+          description: "Comprehensive documentation and examples"
+        }
+      ]}
+    />
+  )
+}`} noInline={true} />
+
 ## Code Examples
 
 ## Props

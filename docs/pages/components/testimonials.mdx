@@ -60,6 +60,55 @@ export default function TestimonialsExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { Testimonials } from '@nostromo/ui-marketing'
+
+export default function TestimonialsCardsExample() {
+  return (
+    <Testimonials
+      title="Customer Reviews"
+      variant="cards"
+      columns={2}
+      testimonials={[
+        {
+          content: "The best UI library we've used. It saved us weeks of development time.",
+          author: "Alex Thompson",
+          role: "CTO",
+          company: "TechStart",
+          rating: 5
+        },
+        {
+          content: "Outstanding documentation and support. Highly recommended!",
+          author: "Maria Garcia",
+          role: "Lead Developer",
+          company: "DesignCo",
+          rating: 5
+        }
+      ]}
+      showRatings={true}
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Testimonials } from '@nostromo/ui-marketing'
+
+export default function TestimonialsMinimalExample() {
+  return (
+    <Testimonials
+      title="What People Say"
+      variant="minimal"
+      columns={1}
+      testimonials={[
+        {
+          content: "Nostromo UI has transformed how we build interfaces. The components are beautiful, accessible, and easy to customize.",
+          author: "David Kim",
+          role: "Product Designer",
+          company: "Creative Labs"
+        }
+      ]}
+    />
+  )
+}`} noInline={true} />
+
 ## Code Examples
 
 ## Props

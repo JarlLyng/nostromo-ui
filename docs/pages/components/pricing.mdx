@@ -64,6 +64,71 @@ export default function PricingExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { Pricing } from '@nostromo/ui-marketing'
+import { Button } from '@nostromo/ui-core'
+
+export default function PricingComparisonExample() {
+  return (
+    <Pricing
+      title="Compare Plans"
+      variant="comparison"
+      plans={[
+        {
+          name: "Basic",
+          price: "$9",
+          period: "month",
+          features: ["5 projects", "Basic support"],
+          cta: <Button variant="outline">Get Started</Button>
+        },
+        {
+          name: "Pro",
+          price: "$29",
+          period: "month",
+          features: ["Unlimited projects", "Priority support", "Advanced features"],
+          cta: <Button>Get Started</Button>,
+          featured: true
+        },
+        {
+          name: "Enterprise",
+          price: "$99",
+          period: "month",
+          features: ["Everything in Pro", "Dedicated support", "Custom integrations"],
+          cta: <Button variant="outline">Contact Sales</Button>
+        }
+      ]}
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Pricing } from '@nostromo/ui-marketing'
+
+export default function PricingSimpleExample() {
+  return (
+    <Pricing
+      title="Simple Pricing"
+      columns={2}
+      plans={[
+        {
+          name: "Monthly",
+          price: "$29",
+          period: "per month",
+          features: ["All features", "Email support"],
+          cta: "Start Free Trial"
+        },
+        {
+          name: "Yearly",
+          price: "$290",
+          period: "per year",
+          description: "Save $58 per year",
+          features: ["All features", "Priority support", "Save 20%"],
+          cta: "Start Free Trial",
+          badge: "Best Value"
+        }
+      ]}
+    />
+  )
+}`} noInline={true} />
+
 ## Code Examples
 
 ## Props

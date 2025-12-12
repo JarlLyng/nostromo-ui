@@ -52,6 +52,44 @@ export default function LogoWallExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { LogoWall } from '@nostromo/ui-marketing'
+
+export default function LogoWallCarouselExample() {
+  return (
+    <LogoWall
+      title="Trusted by industry leaders"
+      variant="carousel"
+      logos={[
+        { src: "https://via.placeholder.com/150x80?text=Company+1", alt: "Company 1" },
+        { src: "https://via.placeholder.com/150x80?text=Company+2", alt: "Company 2" },
+        { src: "https://via.placeholder.com/150x80?text=Company+3", alt: "Company 3" },
+        { src: "https://via.placeholder.com/150x80?text=Company+4", alt: "Company 4" },
+        { src: "https://via.placeholder.com/150x80?text=Company+5", alt: "Company 5" }
+      ]}
+      itemHover="opacity"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { LogoWall } from '@nostromo/ui-marketing'
+
+export default function LogoWallMinimalExample() {
+  return (
+    <LogoWall
+      variant="default"
+      logos={[
+        { src: "https://via.placeholder.com/120x60?text=Logo+1", alt: "Logo 1" },
+        { src: "https://via.placeholder.com/120x60?text=Logo+2", alt: "Logo 2" },
+        { src: "https://via.placeholder.com/120x60?text=Logo+3", alt: "Logo 3" },
+        { src: "https://via.placeholder.com/120x60?text=Logo+4", alt: "Logo 4" }
+      ]}
+      itemSize="sm"
+      imageFilter="grayscale"
+      showTitle={false}
+    />
+  )
+}`} noInline={true} />
+
 ## Code Examples
 
 ## Props

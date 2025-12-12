@@ -50,6 +50,43 @@ export default function GalleryExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { Gallery } from '@nostromo/ui-marketing'
+
+export default function GalleryMasonryExample() {
+  return (
+    <Gallery
+      variant="masonry"
+      images={[
+        { src: "https://via.placeholder.com/400x500?text=Tall+1", alt: "Tall Image 1" },
+        { src: "https://via.placeholder.com/400x300?text=Wide+1", alt: "Wide Image 1" },
+        { src: "https://via.placeholder.com/400x400?text=Square+1", alt: "Square Image 1" },
+        { src: "https://via.placeholder.com/400x600?text=Tall+2", alt: "Tall Image 2" },
+        { src: "https://via.placeholder.com/400x350?text=Medium+1", alt: "Medium Image 1" }
+      ]}
+      itemHover="overlay"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Gallery } from '@nostromo/ui-marketing'
+
+export default function GalleryGridExample() {
+  return (
+    <Gallery
+      variant="grid"
+      images={[
+        { src: "https://via.placeholder.com/300x300?text=1", alt: "Image 1" },
+        { src: "https://via.placeholder.com/300x300?text=2", alt: "Image 2" },
+        { src: "https://via.placeholder.com/300x300?text=3", alt: "Image 3" },
+        { src: "https://via.placeholder.com/300x300?text=4", alt: "Image 4" }
+      ]}
+      columns={2}
+      itemAspectRatio="square"
+      showLightbox={true}
+    />
+  )
+}`} noInline={true} />
+
 ## Code Examples
 
 ## Props
