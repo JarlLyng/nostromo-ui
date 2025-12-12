@@ -32,12 +32,22 @@ const scope = {
 interface LiveCodeProps {
   code: string
   noInline?: boolean
+  theme?: 'nostromo' | 'mother' | 'lv-426' | 'sulaco'
+  colorScheme?: 'light' | 'dark'
+  storyId?: string
 }
 
-export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
+export default function LiveCode({ 
+  code, 
+  noInline = false, 
+  theme = 'nostromo',
+  colorScheme = 'light',
+  storyId 
+}: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme)
   const previewRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
@@ -49,23 +59,15 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
     return () => clearTimeout(timer)
   }, [code])
 
-  // Ensure CSS is available in the preview container
-  // This is a fallback for react-live's isolated rendering context
+  // Set theme attributes on preview container
   useEffect(() => {
     if (!previewRef.current) return
-
-    // Check if CSS is already loaded by testing for a CSS variable
-    const testElement = previewRef.current.querySelector('[data-theme]') || previewRef.current
-    const computedStyle = window.getComputedStyle(testElement as Element)
-    const brandColor = computedStyle.getPropertyValue('--color-brand-500')
-    
-    // If CSS variables are not available, the global CSS from _app.tsx should handle it
-    // This effect just ensures the theme attributes are set correctly
-    if (testElement instanceof HTMLElement) {
-      testElement.setAttribute('data-theme', 'nostromo')
-      testElement.setAttribute('data-color-scheme', 'light')
+    const container = previewRef.current.querySelector('[data-theme]') || previewRef.current
+    if (container instanceof HTMLElement) {
+      container.setAttribute('data-theme', theme)
+      container.setAttribute('data-color-scheme', currentColorScheme)
     }
-  }, [isLoading])
+  }, [theme, currentColorScheme, isLoading])
 
   const handleCopy = async () => {
     try {
@@ -161,20 +163,38 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
             </div>
             <div className="flex items-center gap-2">
               <button
+                onClick={() => setCurrentColorScheme(currentColorScheme === 'light' ? 'dark' : 'light')}
+                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+                title="Toggle theme"
+              >
+                {currentColorScheme === 'light' ? '🌙' : '☀️'}
+              </button>
+              <button
                 onClick={handleCopy}
                 className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
                 title="Copy code"
               >
                 {copied ? 'Copied!' : 'Copy'}
               </button>
-              <a
-                href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
-              >
-                Storybook →
-              </a>
+              {storyId ? (
+                <a
+                  href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(storyId)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+                >
+                  Storybook →
+                </a>
+              ) : (
+                <a
+                  href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+                >
+                  Storybook →
+                </a>
+              )}
             </div>
           </div>
           <div className="p-6 bg-background relative min-h-[100px]">
@@ -189,8 +209,8 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
             <div 
               ref={previewRef}
               style={{ display: isLoading ? 'none' : 'block' }}
-              data-theme="nostromo"
-              data-color-scheme="light"
+              data-theme={theme}
+              data-color-scheme={currentColorScheme}
             >
               <LivePreview />
             </div>

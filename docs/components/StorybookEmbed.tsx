@@ -13,6 +13,7 @@ export default function StorybookEmbed({
 }: StorybookEmbedProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [hasError, setHasError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const iframe = iframeRef.current
@@ -41,6 +42,7 @@ export default function StorybookEmbed({
     // Handle iframe load error
     const handleError = () => setHasError(true)
     const handleLoad = () => {
+      setIsLoading(false)
       // Check if iframe loaded successfully
       try {
         if (iframe.contentDocument === null) {
@@ -136,17 +138,30 @@ export default function StorybookEmbed({
           Open in New Tab →
         </a>
       </div>
-      <iframe
-        ref={iframeRef}
-        style={{ 
-          width, 
-          height, 
-          border: 'none',
-          display: 'block'
-        }}
-        title={`Storybook: ${story}`}
-        loading="lazy"
-      />
+      <div className="relative" style={{ width, height }}>
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-muted/30">
+            <div className="animate-pulse space-y-3 w-full max-w-md px-4">
+              <div className="h-4 bg-muted rounded w-3/4"></div>
+              <div className="h-4 bg-muted rounded w-1/2"></div>
+              <div className="h-32 bg-muted rounded"></div>
+            </div>
+          </div>
+        )}
+        <iframe
+          ref={iframeRef}
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            border: 'none',
+            display: 'block',
+            opacity: isLoading ? 0 : 1,
+            transition: 'opacity 0.3s ease'
+          }}
+          title={`Storybook: ${story}`}
+          loading="lazy"
+        />
+      </div>
     </div>
   )
 }
