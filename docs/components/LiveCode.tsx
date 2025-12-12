@@ -137,7 +137,17 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
               style={{ display: isLoading ? 'none' : 'block' }}
               data-theme="nostromo"
               data-color-scheme="light"
+              className="nostromo-live-preview"
             >
+              <style jsx global>{`
+                .nostromo-live-preview {
+                  /* Ensure theme variables are available */
+                  --color-brand-500: 262 84% 52%;
+                  --color-neutral-50: 0 0% 98%;
+                  --color-neutral-900: 0 0% 9%;
+                  /* Add other critical CSS variables as needed */
+                }
+              `}</style>
               <LivePreview />
             </div>
             <LiveError 
