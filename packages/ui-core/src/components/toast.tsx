@@ -125,7 +125,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
     
     return id;
-  }, []);
+  }, [removeToast]);
 
   const clearToasts = useCallback(() => {
     // Clear all timeouts
