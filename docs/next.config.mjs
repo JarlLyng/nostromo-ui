@@ -1,13 +1,8 @@
 import nextra from 'nextra'
-import CodeBlock from './components/CodeBlock'
 
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
   themeConfig: './theme.config.tsx',
-  mdxOptions: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
 })
 
 /** @type {import('next').NextConfig} */
