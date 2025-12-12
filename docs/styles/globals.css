@@ -26,6 +26,30 @@
   --radius-xl: 1rem;     /* 16px */
 }
 
+/* Bind fonts to body and code */
+body,
+.nx-body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+code,
+pre,
+.nx-code,
+.nx-code-block pre {
+  font-family: var(--font-mono);
+}
+
+/* Main content container */
+.nx-container,
+main article {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 /* Global container constraints */
 .nx-container {
   max-width: var(--container-max);
@@ -41,6 +65,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin: 1.5rem 0;
 }
 
 .nx-code-block-header {
@@ -50,6 +75,11 @@
   padding: 0.5rem 1rem;
   background: hsl(var(--color-neutral-900));
   border-bottom: 1px solid hsl(var(--color-neutral-800));
+}
+
+[data-theme="docs"][data-color-scheme="dark"] .nx-code-block-header {
+  background: hsl(var(--color-neutral-950));
+  border-bottom-color: hsl(var(--color-neutral-800));
 }
 
 .nx-code-block-actions {
@@ -71,6 +101,52 @@
 .nx-code-block-copy:hover {
   background: hsl(var(--color-neutral-700));
   border-color: hsl(var(--color-neutral-600));
+}
+
+[data-theme="docs"][data-color-scheme="dark"] .nx-code-block-copy {
+  background: hsl(var(--color-neutral-800));
+  border-color: hsl(var(--color-neutral-700));
+  color: hsl(var(--color-neutral-200));
+}
+
+.nx-code-block > pre {
+  margin: 0;
+  border-radius: 0;
+  padding: 1rem 1.25rem;
+}
+
+/* Style Nextra's default code blocks */
+pre[class*="language-"],
+pre > code {
+  position: relative;
+}
+
+/* Add wrapper styling to Nextra pre blocks */
+pre {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Add copy button via CSS (will be enhanced with JS later) */
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: hsl(var(--color-neutral-800));
+  border: 1px solid hsl(var(--color-neutral-700));
+  border-radius: var(--radius-sm);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+pre:hover::before {
+  opacity: 1;
 }
 
 /* Card surfaces with gradients/shadows */
