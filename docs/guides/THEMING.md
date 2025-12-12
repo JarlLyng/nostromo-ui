@@ -51,11 +51,57 @@ We use an HSL-based color system with semantic naming. This gives you full contr
   --color-neutral-900: 0 0% 9%;
   --color-neutral-950: 0 0% 4%;
 
-  /* Semantic colors */
+  /* Success Colors - Full scale (50-950) */
+  --color-success-50: 142 76% 95%;
+  --color-success-100: 142 76% 90%;
+  --color-success-200: 142 76% 80%;
+  --color-success-300: 142 76% 70%;
+  --color-success-400: 142 76% 60%;
   --color-success-500: 142 76% 36%;
+  --color-success-600: 142 76% 30%;
+  --color-success-700: 142 76% 25%;
+  --color-success-800: 142 76% 20%;
+  --color-success-900: 142 76% 15%;
+  --color-success-950: 142 76% 8%;
+
+  /* Warning Colors - Full scale (50-950) */
+  --color-warning-50: 38 92% 95%;
+  --color-warning-100: 38 92% 90%;
+  --color-warning-200: 38 92% 80%;
+  --color-warning-300: 38 92% 70%;
+  --color-warning-400: 38 92% 60%;
   --color-warning-500: 38 92% 50%;
+  --color-warning-600: 38 92% 45%;
+  --color-warning-700: 38 92% 35%;
+  --color-warning-800: 38 92% 25%;
+  --color-warning-900: 38 92% 15%;
+  --color-warning-950: 38 92% 8%;
+
+  /* Error Colors - Full scale (50-950) */
+  --color-error-50: 0 84% 95%;
+  --color-error-100: 0 84% 90%;
+  --color-error-200: 0 84% 80%;
+  --color-error-300: 0 84% 70%;
+  --color-error-400: 0 84% 60%;
   --color-error-500: 0 84% 60%;
+  --color-error-600: 0 84% 50%;
+  --color-error-700: 0 84% 40%;
+  --color-error-800: 0 84% 30%;
+  --color-error-900: 0 84% 20%;
+  --color-error-950: 0 84% 10%;
+
+  /* Info Colors - Full scale (50-950) */
+  --color-info-50: 199 89% 95%;
+  --color-info-100: 199 89% 90%;
+  --color-info-200: 199 89% 80%;
+  --color-info-300: 199 89% 70%;
+  --color-info-400: 199 89% 60%;
   --color-info-500: 199 89% 48%;
+  --color-info-600: 199 89% 40%;
+  --color-info-700: 199 89% 30%;
+  --color-info-800: 199 89% 20%;
+  --color-info-900: 199 89% 15%;
+  --color-info-950: 199 89% 8%;
 
   /* Semantic tokens for component theming (WCAG AA validated) */
   --color-background: hsl(var(--color-neutral-50));
@@ -234,9 +280,9 @@ To change brand colors for your project:
 </html>
 ```
 
-### Dynamisk Tema Skift
+### Dynamic Theme Switching
 ```tsx
-// React eksempel
+// React example
 function ThemeToggle() {
   const [theme, setTheme] = useState('nostromo');
   
