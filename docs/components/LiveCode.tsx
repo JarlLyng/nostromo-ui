@@ -4,6 +4,8 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@nostromo/ui-core'
 import * as NostromoMarketing from '@nostromo/ui-marketing'
 import React, { useState, useEffect } from 'react'
+import '@nostromo/ui-tw/base.css'
+import '@nostromo/ui-tw/themes/nostromo.css'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
@@ -131,7 +133,11 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
                 </div>
               </div>
             )}
-            <div style={{ display: isLoading ? 'none' : 'block' }}>
+            <div 
+              style={{ display: isLoading ? 'none' : 'block' }}
+              data-theme="nostromo"
+              data-color-scheme="light"
+            >
               <LivePreview />
             </div>
             <LiveError 
