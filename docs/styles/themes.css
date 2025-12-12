@@ -574,3 +574,46 @@
 [data-theme="docs"][data-color-scheme="dark"] table tbody tr:hover {
   background-color: hsl(var(--color-neutral-800) / 0.5);
 }
+
+/* Section backgrounds with subtle mesh/gradient */
+.nx-section {
+  position: relative;
+}
+
+.nx-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, hsl(var(--color-primary) / 0.03), transparent 50%),
+              radial-gradient(circle at 80% 50%, hsl(var(--color-primary) / 0.02), transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nx-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scroll progress bar */
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: hsl(var(--color-primary));
+  transform-origin: left;
+  z-index: 9999;
+  animation: scroll-progress linear;
+  animation-timeline: scroll();
+}

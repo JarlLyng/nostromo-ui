@@ -7,6 +7,17 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const progressBar = document.createElement('div');
+                progressBar.className = 'scroll-progress';
+                document.body.appendChild(progressBar);
+              })();
+            `,
+          }}
+        />
       </body>
     </Html>
   )

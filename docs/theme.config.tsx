@@ -30,6 +30,7 @@ const config: DocsThemeConfig = {
       return <>{title}</>
     },
   },
+  // Add scroll progress bar via custom script in _document.tsx
   toc: {
     backToTop: true,
   },
