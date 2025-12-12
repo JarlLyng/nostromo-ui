@@ -1,0 +1,100 @@
+version: 2
+updates:
+  # Root package.json
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "automated"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # Group updates to reduce PR noise
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+      production-dependencies:
+        dependency-type: "production"
+    # Ignore major version updates for critical packages
+    ignore:
+      # Ignore major updates for React (breaking changes)
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      # Ignore major updates for TypeScript (breaking changes)
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # Ignore major updates for Tailwind (breaking changes)
+      - dependency-name: "@tailwindcss/vite"
+        update-types: ["version-update:semver-major"]
+
+  # UI Core package
+  - package-ecosystem: "npm"
+    directory: "/packages/ui-core"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ui-core"
+      - "automated"
+
+  # UI Marketing package
+  - package-ecosystem: "npm"
+    directory: "/packages/ui-marketing"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ui-marketing"
+      - "automated"
+
+  # UI TW package
+  - package-ecosystem: "npm"
+    directory: "/packages/ui-tw"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ui-tw"
+      - "automated"
+
+  # Docs package
+  - package-ecosystem: "npm"
+    directory: "/docs"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "docs"
+      - "automated"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "automated"
+
