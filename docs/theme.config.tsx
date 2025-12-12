@@ -2,9 +2,14 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
   logo: (
-    <span style={{ fontWeight: 600, fontSize: '1.2rem' }}>
-      🚀 Nostromo UI
-    </span>
+    <div className="flex items-center gap-2">
+      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
+        N
+      </div>
+      <span style={{ fontWeight: 600, fontSize: '1.2rem' }}>
+        Nostromo UI
+      </span>
+    </div>
   ),
   project: {
     link: 'https://github.com/JarlLyng/nostromo-ui',
@@ -20,7 +25,7 @@ const config: DocsThemeConfig = {
     defaultMenuCollapseLevel: 1,
     titleComponent: ({ title, type }) => {
       if (type === 'separator') {
-        return <span className="nx-text-xs nx-font-semibold nx-text-gray-500 dark:nx-text-gray-400">{title}</span>
+        return <span className="nx-text-xs nx-font-semibold nx-text-muted-foreground uppercase tracking-wider">{title}</span>
       }
       return <>{title}</>
     },

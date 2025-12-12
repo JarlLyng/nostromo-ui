@@ -1,4 +1,6 @@
 import LiveCode from '../components/LiveCode'
+import TokenSwatch from '../components/TokenSwatch'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@nostromo/ui-core'
 
 # Theming & Design Tokens
 
@@ -73,6 +75,146 @@ Nostromo UI includes 4 complete themes, each with a unique aesthetic:
       </div>
     </div>
     <code className="text-xs mt-3 block">data-theme="sulaco"</code>
+  </div>
+</div>
+
+### Theme Gallery
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+  <div className="nx-card">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Nostromo</h3>
+      <a 
+        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--nostromo"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs text-primary hover:underline"
+      >
+        View in Storybook →
+      </a>
+    </div>
+    <div className="space-y-2 mb-4">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(262_84%_52%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Primary: Purple/Blue</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(0_0%_98%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Neutral: Industrial grays</span>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex-1 p-4 rounded-lg bg-background border border-border">
+        <div className="text-xs font-medium mb-2">Light</div>
+        <div className="h-16 rounded bg-gradient-to-br from-primary/20 to-primary/5"></div>
+      </div>
+      <div className="flex-1 p-4 rounded-lg bg-neutral-900 border border-border">
+        <div className="text-xs font-medium mb-2 text-neutral-200">Dark</div>
+        <div className="h-16 rounded bg-gradient-to-br from-primary/30 to-primary/10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div className="nx-card">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Mother</h3>
+      <a 
+        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--mother"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs text-primary hover:underline"
+      >
+        View in Storybook →
+      </a>
+    </div>
+    <div className="space-y-2 mb-4">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(195_100%_50%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Primary: Cyan/Teal</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(0_0%_98%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Neutral: Clean whites</span>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex-1 p-4 rounded-lg bg-background border border-border">
+        <div className="text-xs font-medium mb-2">Light</div>
+        <div className="h-16 rounded bg-gradient-to-br from-cyan-200/20 to-cyan-100/5"></div>
+      </div>
+      <div className="flex-1 p-4 rounded-lg bg-neutral-900 border border-border">
+        <div className="text-xs font-medium mb-2 text-neutral-200">Dark</div>
+        <div className="h-16 rounded bg-gradient-to-br from-cyan-400/30 to-cyan-300/10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div className="nx-card">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">LV-426</h3>
+      <a 
+        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--lv-426"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs text-primary hover:underline"
+      >
+        View in Storybook →
+      </a>
+    </div>
+    <div className="space-y-2 mb-4">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(25_95%_53%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Primary: Orange/Amber</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(0_0%_98%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Neutral: Warm grays</span>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex-1 p-4 rounded-lg bg-background border border-border">
+        <div className="text-xs font-medium mb-2">Light</div>
+        <div className="h-16 rounded bg-gradient-to-br from-orange-200/20 to-orange-100/5"></div>
+      </div>
+      <div className="flex-1 p-4 rounded-lg bg-neutral-900 border border-border">
+        <div className="text-xs font-medium mb-2 text-neutral-200">Dark</div>
+        <div className="h-16 rounded bg-gradient-to-br from-orange-400/30 to-orange-300/10"></div>
+      </div>
+    </div>
+  </div>
+
+  <div className="nx-card">
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-lg font-semibold">Sulaco</h3>
+      <a 
+        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--sulaco"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-xs text-primary hover:underline"
+      >
+        View in Storybook →
+      </a>
+    </div>
+    <div className="space-y-2 mb-4">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(220_100%_50%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Primary: Blue/Steel</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 rounded bg-[hsl(0_0%_98%)] border border-border"></div>
+        <span className="text-sm text-muted-foreground">Neutral: Cool grays</span>
+      </div>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex-1 p-4 rounded-lg bg-background border border-border">
+        <div className="text-xs font-medium mb-2">Light</div>
+        <div className="h-16 rounded bg-gradient-to-br from-blue-200/20 to-blue-100/5"></div>
+      </div>
+      <div className="flex-1 p-4 rounded-lg bg-neutral-900 border border-border">
+        <div className="text-xs font-medium mb-2 text-neutral-200">Dark</div>
+        <div className="h-16 rounded bg-gradient-to-br from-blue-400/30 to-blue-300/10"></div>
+      </div>
+    </div>
   </div>
 </div>
 
