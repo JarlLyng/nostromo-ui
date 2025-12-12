@@ -70,7 +70,7 @@ describe('Contrast Accessibility Tests', () => {
   describe('Button Component', () => {
     it('should have sufficient contrast for default variant', async () => {
       const { Button } = await import('../button');
-      const { container } = render(<Button>Test Button</Button>);
+      render(<Button>Test Button</Button>);
       const button = screen.getByRole('button');
       const styles = getComputedStyles(button);
       
@@ -84,7 +84,7 @@ describe('Contrast Accessibility Tests', () => {
 
     it('should have sufficient contrast for secondary variant', async () => {
       const { Button } = await import('../button');
-      const { container } = render(<Button variant="secondary">Test Button</Button>);
+      render(<Button variant="secondary">Test Button</Button>);
       const button = screen.getByRole('button');
       const styles = getComputedStyles(button);
       
@@ -99,7 +99,7 @@ describe('Contrast Accessibility Tests', () => {
   describe('Card Component', () => {
     it('should have sufficient contrast for card text', async () => {
       const { Card, CardContent } = await import('../card');
-      const { container } = render(
+      render(
         <Card>
           <CardContent>
             <p>Test content</p>
@@ -126,7 +126,7 @@ describe('Contrast Accessibility Tests', () => {
   describe('Input Component', () => {
     it('should have sufficient contrast for input text', async () => {
       const { Input } = await import('../input');
-      const { container } = render(<Input placeholder="Enter text" />);
+      render(<Input placeholder="Enter text" />);
       const input = screen.getByPlaceholderText('Enter text');
       const styles = getComputedStyles(input);
       
@@ -142,7 +142,7 @@ describe('Contrast Accessibility Tests', () => {
   describe('Alert Component', () => {
     it('should have sufficient contrast for default variant', async () => {
       const { Alert } = await import('../alert');
-      const { container } = render(
+      render(
         <Alert title="Test Alert" description="Test description" />
       );
       
@@ -182,7 +182,7 @@ describe('Contrast Accessibility Tests', () => {
   describe('Label Component', () => {
     it('should have sufficient contrast for default variant', async () => {
       const { Label } = await import('../label');
-      const { container } = render(<Label>Test Label</Label>);
+      render(<Label>Test Label</Label>);
       const label = screen.getByText('Test Label');
       const styles = getComputedStyles(label);
       

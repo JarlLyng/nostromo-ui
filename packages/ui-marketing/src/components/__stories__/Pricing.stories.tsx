@@ -1,7 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Pricing } from '../pricing';
-import { Button } from '@nostromo/ui-core';
 
 const samplePlans = [
   {

@@ -16,7 +16,7 @@ function hslToRgb(hslString: string): [number, number, number] {
   const cleaned = hslString.replace(/^hsl\(|\)$/g, '').trim();
   const parts = cleaned.split(/\s+/);
   
-  if (parts.length < 3) {
+  if (parts.length < 3 || !parts[0] || !parts[1] || !parts[2]) {
     throw new Error(`Invalid HSL format: ${hslString}`);
   }
 
@@ -60,7 +60,7 @@ function getRelativeLuminance(r: number, g: number, b: number): number {
     val = val / 255;
     return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
   });
-  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  return 0.2126 * (rs ?? 0) + 0.7152 * (gs ?? 0) + 0.0722 * (bs ?? 0);
 }
 
 /**
@@ -136,7 +136,7 @@ export function parseColorValue(cssVar: string, computedValue?: string): string 
 
   // Try to extract from hsl() format
   const hslMatch = cssVar.match(/hsl\(([^)]+)\)/);
-  if (hslMatch) {
+  if (hslMatch && hslMatch[1]) {
     return hslMatch[1].trim();
   }
 
