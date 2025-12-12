@@ -8,12 +8,12 @@ const tableVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border border-neutral-200 shadow-sm hover:shadow-md',
-        striped: 'border border-neutral-200 shadow-sm hover:shadow-md',
-        bordered: 'border-2 border-neutral-300 shadow-md hover:shadow-lg',
-        hover: 'border border-neutral-200 shadow-sm hover:shadow-md',
-        elevated: 'border border-neutral-200 shadow-lg hover:shadow-xl',
-        interactive: 'border border-neutral-200 shadow-sm hover:shadow-md hover:border-brand-500'
+        default: 'border border-border shadow-sm hover:shadow-md',
+        striped: 'border border-border shadow-sm hover:shadow-md',
+        bordered: 'border-2 border-border shadow-md hover:shadow-lg',
+        hover: 'border border-border shadow-sm hover:shadow-md',
+        elevated: 'border border-border shadow-lg hover:shadow-xl',
+        interactive: 'border border-border shadow-sm hover:shadow-md hover:border-primary'
       },
       size: {
         sm: 'text-xs sm:text-sm',
@@ -33,12 +33,12 @@ const tableHeaderVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
-        striped: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
-        bordered: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
-        hover: 'bg-neutral-50 text-neutral-900 hover:bg-neutral-100',
-        elevated: 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200',
-        interactive: 'bg-neutral-50 text-neutral-900 hover:bg-brand-50 hover:text-brand-900'
+        default: 'bg-muted text-foreground hover:bg-muted/80',
+        striped: 'bg-muted text-foreground hover:bg-muted/80',
+        bordered: 'bg-muted text-foreground hover:bg-muted/80',
+        hover: 'bg-muted text-foreground hover:bg-muted/80',
+        elevated: 'bg-muted text-foreground hover:bg-muted/80',
+        interactive: 'bg-muted text-foreground hover:bg-primary/10 hover:text-primary'
       },
       size: {
         sm: 'px-2 py-1 sm:px-3 sm:py-2',
@@ -54,16 +54,16 @@ const tableHeaderVariants = cva(
 );
 
 const tableCellVariants = cva(
-  'border-neutral-200 transition-all duration-200',
+  'border-border transition-all duration-200',
   {
     variants: {
       variant: {
-        default: 'border-b border-neutral-200 hover:bg-neutral-50',
-        striped: 'border-b border-neutral-200 even:bg-neutral-50 hover:bg-neutral-100',
-        bordered: 'border border-neutral-200 hover:bg-neutral-50',
-        hover: 'border-b border-neutral-200 hover:bg-neutral-50',
-        elevated: 'border-b border-neutral-200 hover:bg-neutral-100',
-        interactive: 'border-b border-neutral-200 hover:bg-brand-50 hover:text-brand-900'
+        default: 'border-b border-border hover:bg-muted/50',
+        striped: 'border-b border-border even:bg-muted/50 hover:bg-muted/80',
+        bordered: 'border border-border hover:bg-muted/50',
+        hover: 'border-b border-border hover:bg-muted/50',
+        elevated: 'border-b border-border hover:bg-muted/80',
+        interactive: 'border-b border-border hover:bg-primary/10 hover:text-primary'
       },
       size: {
         sm: 'px-2 py-1 sm:px-3 sm:py-2',
@@ -409,9 +409,9 @@ function TableComponent<T extends Record<string, unknown> = Record<string, unkno
         </div>
         
         {pagination && (
-          <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 sm:px-4 py-3 bg-white border-t border-gray-200 gap-2 sm:gap-0">
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-4 px-2 sm:px-4 py-3 bg-card border-t border-border gap-2 sm:gap-0">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-700">
+              <span className="text-sm text-muted-foreground">
                 Showing {((pagination.current - 1) * pagination.pageSize) + 1} to{' '}
                 {Math.min(pagination.current * pagination.pageSize, pagination.total)} of{' '}
                 {pagination.total} results

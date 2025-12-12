@@ -4,14 +4,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const selectTriggerVariants = cva(
-  'flex h-10 w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:shadow-input-hover',
+  'flex h-10 w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 shadow-input hover:shadow-input-hover',
   {
     variants: {
       variant: {
-        default: 'border-neutral-300 hover:border-neutral-400 focus:border-brand-500',
-        outline: 'border-2 border-neutral-300 hover:border-neutral-400 focus:border-brand-500',
-        ghost: 'border-transparent bg-transparent hover:bg-neutral-50',
-        error: 'border-error-500 hover:border-error-600 focus:border-error-500 focus:ring-error-500',
+        default: 'border-border hover:border-border focus:border-ring',
+        outline: 'border-2 border-border hover:border-border focus:border-ring',
+        ghost: 'border-transparent bg-transparent hover:bg-muted',
+        error: 'border-destructive hover:border-destructive/80 focus:border-destructive focus:ring-destructive',
         success: 'border-success-500 hover:border-success-600 focus:border-success-500 focus:ring-success-500',
       },
       size: {
@@ -32,10 +32,10 @@ const selectContentVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-neutral-200 shadow-lg hover:shadow-xl',
-        outline: 'border-2 border-neutral-300 shadow-lg hover:shadow-xl',
+        default: 'border-border shadow-lg hover:shadow-xl',
+        outline: 'border-2 border-border shadow-lg hover:shadow-xl',
         ghost: 'border-transparent shadow-xl hover:shadow-2xl',
-        error: 'border-error-200 shadow-lg hover:shadow-xl',
+        error: 'border-destructive/20 shadow-lg hover:shadow-xl',
         success: 'border-success-200 shadow-lg hover:shadow-xl',
       },
     },
@@ -50,9 +50,9 @@ const selectItemVariants = cva(
   {
     variants: {
       variant: {
-        default: 'focus:bg-neutral-100 focus:text-neutral-900 hover:bg-neutral-50',
-        highlight: 'focus:bg-brand-100 focus:text-brand-900 hover:bg-brand-50',
-        error: 'focus:bg-error-100 focus:text-error-900 hover:bg-error-50',
+        default: 'focus:bg-accent focus:text-accent-foreground hover:bg-muted',
+        highlight: 'focus:bg-primary/10 focus:text-primary hover:bg-primary/5',
+        error: 'focus:bg-destructive/10 focus:text-destructive hover:bg-destructive/5',
         success: 'focus:bg-success-100 focus:text-success-900 hover:bg-success-50',
       },
     },

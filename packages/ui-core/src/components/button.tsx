@@ -4,48 +4,48 @@ import { cn } from "../lib/utils";
 
 const buttonVariants = cva(
   // Base styles with improved spacing and transitions
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         // Enhanced default with better depth
         default: [
-          "bg-brand-500 text-white shadow-md hover:bg-brand-600 hover:shadow-lg",
+          "bg-primary text-primary-foreground shadow-md hover:bg-primary/90 hover:shadow-lg",
           "active:scale-[0.98] active:shadow-sm",
-          "border border-brand-400/20"
+          "border border-primary/20"
         ],
         // Enhanced secondary with better contrast
         secondary: [
-          "bg-neutral-100 text-neutral-900 border border-neutral-200",
-          "hover:bg-neutral-200 hover:border-neutral-300 hover:shadow-sm",
+          "bg-secondary text-secondary-foreground border border-border",
+          "hover:bg-secondary/80 hover:border-border hover:shadow-sm",
           "active:scale-[0.98]"
         ],
         // Enhanced outline with better focus
         outline: [
-          "border-2 border-neutral-300 bg-transparent text-neutral-900",
-          "hover:bg-neutral-50 hover:border-brand-500 hover:text-brand-600",
-          "focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
+          "border-2 border-border bg-transparent text-foreground",
+          "hover:bg-muted hover:border-primary hover:text-primary",
+          "focus-visible:ring-ring/20 focus-visible:border-primary",
           "active:scale-[0.98]"
         ],
         // Enhanced ghost with better hover
         ghost: [
-          "text-neutral-900 hover:bg-neutral-100 hover:text-neutral-900",
-          "active:bg-neutral-200 active:scale-[0.98]"
+          "text-foreground hover:bg-muted hover:text-foreground",
+          "active:bg-muted/80 active:scale-[0.98]"
         ],
         // Enhanced destructive with better feedback
         destructive: [
-          "bg-error-500 text-white shadow-md hover:bg-error-600 hover:shadow-lg",
+          "bg-destructive text-destructive-foreground shadow-md hover:bg-destructive/90 hover:shadow-lg",
           "active:scale-[0.98] active:shadow-sm",
-          "border border-error-400/20"
+          "border border-destructive/20"
         ],
         // Subtle variant for less prominent actions
         subtle: [
-          "bg-neutral-50 text-neutral-700 border border-neutral-200",
-          "hover:bg-neutral-100 hover:border-neutral-300",
+          "bg-muted text-muted-foreground border border-border",
+          "hover:bg-muted/80 hover:border-border",
           "active:scale-[0.98]"
         ],
         // Link variant
-        link: "text-brand-500 underline-offset-4 hover:underline",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         // Improved spacing for consistency
@@ -59,8 +59,8 @@ const buttonVariants = cva(
       state: {
         default: "",
         loading: "cursor-wait",
-        success: "bg-success-500 hover:bg-success-600 text-white",
-        error: "bg-error-500 hover:bg-error-600 text-white"
+        success: "bg-success hover:bg-success-600 text-success-foreground",
+        error: "bg-destructive hover:bg-destructive/90 text-destructive-foreground"
       }
     },
     defaultVariants: {

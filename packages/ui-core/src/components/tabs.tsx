@@ -8,11 +8,11 @@ const tabsListVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-neutral-100 shadow-sm hover:shadow-md',
-        outline: 'border border-neutral-300 bg-transparent shadow-sm hover:shadow-md',
+        default: 'bg-muted shadow-sm hover:shadow-md',
+        outline: 'border border-border bg-transparent shadow-sm hover:shadow-md',
         pills: 'bg-transparent p-0 shadow-none',
-        elevated: 'bg-neutral-50 shadow-md hover:shadow-lg',
-        filled: 'bg-neutral-200 shadow-sm hover:shadow-md',
+        elevated: 'bg-muted/50 shadow-md hover:shadow-lg',
+        filled: 'bg-muted shadow-sm hover:shadow-md',
       },
       size: {
         default: 'h-10',
@@ -28,15 +28,15 @@ const tabsListVariants = cva(
 );
 
 const tabsTriggerVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-neutral-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-muted/50',
   {
     variants: {
       variant: {
-        default: 'data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:shadow-sm data-[state=active]:border-neutral-200',
-        outline: 'data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:border-b-2 data-[state=active]:border-brand-500 data-[state=active]:shadow-sm',
-        pills: 'data-[state=active]:bg-brand-500 data-[state=active]:text-white data-[state=active]:shadow-sm hover:bg-brand-50 hover:text-brand-700',
-        elevated: 'data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:shadow-md data-[state=active]:border-neutral-200',
-        filled: 'data-[state=active]:bg-neutral-200 data-[state=active]:text-neutral-900 data-[state=active]:shadow-sm',
+        default: 'data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm data-[state=active]:border-border',
+        outline: 'data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:shadow-sm',
+        pills: 'data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm hover:bg-primary/10 hover:text-primary',
+        elevated: 'data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-md data-[state=active]:border-border',
+        filled: 'data-[state=active]:bg-muted data-[state=active]:text-foreground data-[state=active]:shadow-sm',
       },
       size: {
         default: 'px-3 py-1.5 text-sm',

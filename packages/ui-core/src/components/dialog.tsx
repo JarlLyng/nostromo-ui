@@ -7,10 +7,10 @@ const dialogVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-neutral-200 shadow-lg hover:shadow-xl",
-        elevated: "border-neutral-200 shadow-xl hover:shadow-2xl",
-        outlined: "border-2 border-neutral-300 shadow-md hover:border-brand-500 hover:shadow-lg",
-        filled: "border-neutral-100 bg-neutral-50 shadow-md hover:shadow-lg",
+        default: "border-border shadow-lg hover:shadow-xl",
+        elevated: "border-border shadow-xl hover:shadow-2xl",
+        outlined: "border-2 border-border shadow-md hover:border-primary hover:shadow-lg",
+        filled: "border-border bg-muted shadow-md hover:shadow-lg",
         destructive: "border-error-200 bg-error-50 shadow-lg hover:shadow-xl",
       },
       size: {

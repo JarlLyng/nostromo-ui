@@ -85,6 +85,40 @@ const nostromoPreset: Partial<Config> = {
           900: 'hsl(var(--color-info-900))',
           950: 'hsl(var(--color-info-950))',
         },
+        // Semantic colors for component theming
+        background: 'hsl(var(--color-background))',
+        foreground: 'hsl(var(--color-foreground))',
+        muted: {
+          DEFAULT: 'hsl(var(--color-muted))',
+          foreground: 'hsl(var(--color-muted-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--color-popover))',
+          foreground: 'hsl(var(--color-popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--color-card))',
+          foreground: 'hsl(var(--color-card-foreground))',
+        },
+        border: 'hsl(var(--color-border))',
+        input: 'hsl(var(--color-input))',
+        primary: {
+          DEFAULT: 'hsl(var(--color-primary))',
+          foreground: 'hsl(var(--color-primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--color-secondary))',
+          foreground: 'hsl(var(--color-secondary-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--color-accent))',
+          foreground: 'hsl(var(--color-accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--color-destructive))',
+          foreground: 'hsl(var(--color-destructive-foreground))',
+        },
+        ring: 'hsl(var(--color-ring))',
       },
       // Border radius
       borderRadius: {

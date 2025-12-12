@@ -59,8 +59,8 @@ const pricingBadgeVariants = cva(
       variant: {
         default: 'bg-primary text-primary-foreground',
         accent: 'bg-accent text-accent-foreground',
-        success: 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400',
-        warning: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400',
+        success: 'bg-success-100 text-success-800',
+        warning: 'bg-warning-100 text-warning-800',
       },
     },
     defaultVariants: {
@@ -154,14 +154,14 @@ export const Pricing: React.FC<PricingProps> = ({
                 >
                   <span
                     className={cn(
-                      'inline-block h-4 w-4 transform rounded-full bg-white transition-transform',
+                      'inline-block h-4 w-4 transform rounded-full bg-background transition-transform',
                       showYearly ? 'translate-x-6' : 'translate-x-1'
                     )}
                   />
                 </button>
                 <span className={cn('text-sm', showYearly && 'text-foreground font-medium')}>
                   Yearly
-                  <span className="ml-1 text-xs text-green-600 dark:text-green-400">
+                  <span className="ml-1 text-xs text-success-600">
                     (Save 20%)
                   </span>
                 </span>
@@ -216,7 +216,7 @@ export const Pricing: React.FC<PricingProps> = ({
                       className={cn(
                         'w-5 h-5 rounded-full flex items-center justify-center text-xs',
                         feature.included
-                          ? 'bg-green-100 text-green-600 dark:bg-green-900/20 dark:text-green-400'
+                          ? 'bg-success-100 text-success-600'
                           : 'bg-muted text-muted-foreground'
                       )}
                     >

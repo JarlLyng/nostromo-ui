@@ -10,41 +10,35 @@ const cardVariants = cva(
       variant: {
         // Enhanced default with better depth
         default: [
-          "border-neutral-200 shadow-sm bg-white text-neutral-900",
-          "hover:shadow-md hover:border-neutral-300",
-          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+          "border-border shadow-sm bg-card text-card-foreground",
+          "hover:shadow-md hover:border-border"
         ],
         // Enhanced elevated with better shadow
         elevated: [
-          "border-neutral-200 shadow-lg bg-white text-neutral-900",
-          "hover:shadow-xl hover:border-neutral-300",
-          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+          "border-border shadow-lg bg-card text-card-foreground",
+          "hover:shadow-xl hover:border-border"
         ],
         // Enhanced outlined with better focus
         outlined: [
-          "border-2 border-neutral-300 shadow-none bg-white text-neutral-900",
-          "hover:border-brand-500 hover:shadow-sm",
-          "focus-within:border-brand-500 focus-within:shadow-sm",
-          "dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-100"
+          "border-2 border-border shadow-none bg-card text-card-foreground",
+          "hover:border-primary hover:shadow-sm",
+          "focus-within:border-primary focus-within:shadow-sm"
         ],
         // Enhanced filled with better contrast
         filled: [
-          "border-neutral-100 bg-neutral-50 text-neutral-900",
-          "hover:bg-neutral-100 hover:shadow-sm",
-          "dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-100"
+          "border-border bg-muted text-card-foreground",
+          "hover:bg-muted/80 hover:shadow-sm"
         ],
         // Enhanced interactive with better feedback
         interactive: [
-          "border-neutral-200 shadow-sm cursor-pointer bg-white text-neutral-900",
-          "hover:shadow-md hover:border-brand-500 hover:scale-[1.02]",
-          "active:scale-[0.98] active:shadow-sm",
-          "dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-100"
+          "border-border shadow-sm cursor-pointer bg-card text-card-foreground",
+          "hover:shadow-md hover:border-primary hover:scale-[1.02]",
+          "active:scale-[0.98] active:shadow-sm"
         ],
         // Subtle variant for less prominent cards
         subtle: [
-          "border-neutral-100 bg-neutral-50/50 text-neutral-700",
-          "hover:bg-neutral-50 hover:border-neutral-200",
-          "dark:bg-neutral-800/50 dark:border-neutral-700 dark:text-neutral-300"
+          "border-border bg-muted/50 text-muted-foreground",
+          "hover:bg-muted hover:border-border"
         ]
       },
       size: {

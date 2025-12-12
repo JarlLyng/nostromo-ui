@@ -4,17 +4,17 @@ import { cn } from '../lib/utils';
 
 // Skeleton variants
 const skeletonVariants = cva(
-  'animate-pulse rounded-md bg-gray-200',
+  'animate-pulse rounded-md bg-muted',
   {
     variants: {
       variant: {
-        default: 'bg-gray-200',
-        light: 'bg-gray-100',
-        dark: 'bg-gray-300',
-        primary: 'bg-blue-200',
-        success: 'bg-green-200',
-        warning: 'bg-yellow-200',
-        error: 'bg-red-200'
+        default: 'bg-muted',
+        light: 'bg-muted/50',
+        dark: 'bg-muted',
+        primary: 'bg-primary/10',
+        success: 'bg-success-200',
+        warning: 'bg-warning-200',
+        error: 'bg-error-200'
       },
       size: {
         xs: 'h-2',
@@ -231,11 +231,11 @@ export const SkeletonButton = React.forwardRef<HTMLDivElement, SkeletonButtonPro
     };
 
     const variantClasses = {
-      default: 'bg-gray-200',
-      primary: 'bg-blue-200',
-      secondary: 'bg-gray-300',
-      outline: 'bg-gray-100 border border-gray-300',
-      ghost: 'bg-gray-100'
+      default: 'bg-muted',
+      primary: 'bg-primary/10',
+      secondary: 'bg-secondary',
+      outline: 'bg-muted/50 border border-border',
+      ghost: 'bg-muted/50'
     };
 
     const finalVariant = variant || 'default';
@@ -279,7 +279,7 @@ export const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
       <div
         ref={ref}
         className={cn(
-          'p-6 border border-gray-200 rounded-lg bg-white',
+          'p-6 border border-border rounded-lg bg-card',
           className
         )}
         aria-label="Loading card content"

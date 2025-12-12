@@ -56,6 +56,27 @@ We use an HSL-based color system with semantic naming. This gives you full contr
   --color-warning-500: 38 92% 50%;
   --color-error-500: 0 84% 60%;
   --color-info-500: 199 89% 48%;
+
+  /* Semantic tokens for component theming (WCAG AA validated) */
+  --color-background: hsl(var(--color-neutral-50));
+  --color-foreground: hsl(var(--color-neutral-900));
+  --color-muted: hsl(var(--color-neutral-100));
+  --color-muted-foreground: hsl(var(--color-neutral-600));
+  --color-popover: hsl(var(--color-neutral-50));
+  --color-popover-foreground: hsl(var(--color-neutral-900));
+  --color-card: hsl(var(--color-neutral-50));
+  --color-card-foreground: hsl(var(--color-neutral-900));
+  --color-border: hsl(var(--color-neutral-200));
+  --color-input: hsl(var(--color-neutral-200));
+  --color-primary: hsl(var(--color-brand-500));
+  --color-primary-foreground: hsl(var(--color-neutral-50));
+  --color-secondary: hsl(var(--color-neutral-100));
+  --color-secondary-foreground: hsl(var(--color-neutral-900));
+  --color-accent: hsl(var(--color-brand-100));
+  --color-accent-foreground: hsl(var(--color-brand-900));
+  --color-destructive: hsl(var(--color-error-500));
+  --color-destructive-foreground: hsl(var(--color-neutral-50));
+  --color-ring: hsl(var(--color-brand-500));
 }
 ```
 
@@ -385,11 +406,52 @@ All our colors are designed to meet WCAG 2.1 AA standards:
 }
 ```
 
+### Semantic Tokens for Accessibility
+All components use semantic color tokens that automatically ensure proper contrast:
+
+```tsx
+// ✅ Correct - Uses semantic tokens
+<Button className="bg-primary text-primary-foreground">Click me</Button>
+<Card className="bg-card text-card-foreground">Content</Card>
+<Input className="border-border text-foreground" />
+
+// ❌ Wrong - Hardcoded colors
+<Button className="bg-brand-500 text-white">Click me</Button>
+<Card className="bg-white text-neutral-900">Content</Card>
+<Input className="border-neutral-200 text-neutral-900" />
+```
+
+### Available Semantic Tokens
+- `background` / `foreground` - Main page background and text
+- `card` / `card-foreground` - Card backgrounds and text
+- `muted` / `muted-foreground` - Muted backgrounds and secondary text
+- `popover` / `popover-foreground` - Popover/dropdown backgrounds
+- `primary` / `primary-foreground` - Primary actions
+- `secondary` / `secondary-foreground` - Secondary actions
+- `accent` / `accent-foreground` - Accent colors
+- `destructive` / `destructive-foreground` - Error/destructive actions
+- `border` - Border colors
+- `input` - Input border colors
+- `ring` - Focus ring colors
+
+### Contrast Validation Tools
+We provide automated contrast validation:
+
+```bash
+# Validate theme contrasts
+pnpm validate:theme-contrasts
+
+# Audit components for hardcoded colors
+pnpm audit:contrast
+```
+
+The validation tools check all semantic token combinations in both light and dark mode to ensure WCAG AA compliance.
+
 ### Focus States
 ```css
 /* Automatiske focus states */
 .focus-visible {
-  outline: 2px solid hsl(var(--color-brand-500));
+  outline: 2px solid hsl(var(--color-ring));
   outline-offset: 2px;
 }
 ```

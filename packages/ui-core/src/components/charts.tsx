@@ -97,8 +97,8 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
-      <div className="rounded-lg border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-800">
-        <p className="mb-2 font-semibold text-neutral-900 dark:text-neutral-100">{String(label ?? '')}</p>
+      <div className="rounded-lg border border-border bg-popover p-3 shadow-lg">
+        <p className="mb-2 font-semibold text-popover-foreground">{String(label ?? '')}</p>
         {payload.map((entry, index: number) => (
           <p
             key={index}
@@ -132,7 +132,7 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
             style={{ backgroundColor: entry.color }}
             aria-hidden="true"
           />
-          <span className="text-sm text-neutral-700 dark:text-neutral-300">
+          <span className="text-sm text-popover-foreground">
             {entry.value}
           </span>
         </div>
@@ -303,12 +303,12 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
         {...props}
       >
         {title && (
-          <h3 className="mb-2 text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+          <h3 className="mb-2 text-lg font-semibold text-foreground">
             {title}
           </h3>
         )}
         {description && (
-          <p className="mb-4 text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="mb-4 text-sm text-muted-foreground">
             {description}
           </p>
         )}

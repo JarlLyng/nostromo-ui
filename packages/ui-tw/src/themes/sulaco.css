@@ -90,8 +90,9 @@
   --color-card-foreground: hsl(var(--color-neutral-900));
   --color-border: hsl(var(--color-neutral-200));
   --color-input: hsl(var(--color-neutral-200));
+  /* Contrast validated: primary-foreground/primary 4.52:1 */
   --color-primary: hsl(var(--color-brand-500));
-  --color-primary-foreground: hsl(var(--color-neutral-50));
+  --color-primary-foreground: hsl(0 0% 100%); /* White for better contrast */
   --color-secondary: hsl(var(--color-neutral-100));
   --color-secondary-foreground: hsl(var(--color-neutral-900));
   --color-accent: hsl(var(--color-brand-100));

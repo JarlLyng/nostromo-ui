@@ -7,10 +7,10 @@ const errorMessageVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-error-600',
-        inline: 'text-error-600 text-xs',
-        subtle: 'text-error-500',
-        strong: 'text-error-700 font-semibold',
+        default: 'text-destructive',
+        inline: 'text-destructive text-xs',
+        subtle: 'text-destructive/80',
+        strong: 'text-destructive font-semibold',
       },
       size: {
         sm: 'text-xs',

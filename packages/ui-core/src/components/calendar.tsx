@@ -10,8 +10,8 @@ const calendarVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-neutral-200 bg-white',
-        outline: 'border-2 border-neutral-300',
+        default: 'border-border bg-card',
+        outline: 'border-2 border-border',
         ghost: 'border-transparent bg-transparent shadow-none'
       },
       size: {
@@ -28,16 +28,16 @@ const calendarVariants = cva(
 );
 
 const calendarDayVariants = cva(
-  'flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'hover:bg-neutral-100 text-neutral-900',
-        selected: 'bg-brand-600 text-white hover:bg-brand-700 font-semibold',
-        range: 'bg-brand-100 text-brand-900 hover:bg-brand-200 font-medium',
-        today: 'border-2 border-brand-500 text-neutral-900 font-semibold',
-        outside: 'text-neutral-500',
-        disabled: 'text-neutral-300 cursor-not-allowed'
+        default: 'hover:bg-muted text-foreground',
+        selected: 'bg-primary text-primary-foreground hover:bg-primary/90 font-semibold',
+        range: 'bg-primary/10 text-primary hover:bg-primary/20 font-medium',
+        today: 'border-2 border-primary text-foreground font-semibold',
+        outside: 'text-muted-foreground',
+        disabled: 'text-muted-foreground/50 cursor-not-allowed'
       },
       size: {
         sm: 'h-7 w-7 text-xs',
@@ -455,7 +455,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   "disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 text-left",
                   error
                     ? "border-error-500 shadow-sm hover:border-error-600 focus-visible:ring-error-500/20 focus-visible:border-error-500"
-                    : "border-neutral-300 shadow-sm hover:border-neutral-400 focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
+                    : "border-border shadow-sm hover:border-border-medium focus-visible:ring-ring/20 focus-visible:border-primary",
                   "h-10",
                   inputClassName
                 )}
@@ -482,7 +482,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           <Popover.Portal>
             <Popover.Content
               className={cn(
-                'z-50 w-auto rounded-lg border bg-white p-4 shadow-lg',
+                'z-50 w-auto rounded-lg border bg-popover p-4 shadow-lg',
                 'data-[state=open]:animate-in data-[state=closed]:animate-out',
                 'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
                 'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
@@ -522,7 +522,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       </svg>
                     </Button>
                     
-                    <h3 className="text-sm font-semibold text-neutral-900">{monthYearDisplay}</h3>
+                    <h3 className="text-sm font-semibold text-popover-foreground">{monthYearDisplay}</h3>
                     
                     <Button
                       variant="ghost"
@@ -561,7 +561,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   {dayNames.map((day) => (
                     <div
                       key={day}
-                      className="text-center text-xs font-medium text-neutral-500"
+                      className="text-center text-xs font-medium text-muted-foreground"
                     >
                       {day}
                     </div>
@@ -658,8 +658,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 {/* Footer for range mode */}
                 {mode === 'range' && (calendarValue as { from?: Date; to?: Date })?.from && 
                  !(calendarValue as { from?: Date; to?: Date })?.to && (
-                  <div className="mt-4 pt-4 border-t border-neutral-200">
-                    <p className="text-xs text-neutral-600 text-center">
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <p className="text-xs text-muted-foreground text-center">
                       Select end date
                     </p>
                   </div>

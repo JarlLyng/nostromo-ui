@@ -4,13 +4,13 @@ import { cn } from '../lib/utils';
 
 // Accordion variants
 const accordionVariants = cva(
-  'border border-gray-200 rounded-md overflow-hidden',
+  'border border-border rounded-md overflow-hidden',
   {
     variants: {
       variant: {
-        default: 'bg-white',
-        outlined: 'border-2 border-gray-300',
-        filled: 'bg-gray-50',
+        default: 'bg-card',
+        outlined: 'border-2 border-border',
+        filled: 'bg-muted',
         ghost: 'border-transparent bg-transparent'
       },
       size: {
@@ -27,13 +27,13 @@ const accordionVariants = cva(
 );
 
 const accordionItemVariants = cva(
-  'border-b border-gray-200 last:border-b-0',
+  'border-b border-border last:border-b-0',
   {
     variants: {
       variant: {
         default: '',
-        outlined: 'border-gray-300',
-        filled: 'border-gray-300',
+        outlined: 'border-border',
+        filled: 'border-border',
         ghost: 'border-transparent'
       }
     },
@@ -44,14 +44,14 @@ const accordionItemVariants = cva(
 );
 
 const accordionTriggerVariants = cva(
-  'flex w-full items-center justify-between py-4 px-6 text-left font-medium transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset disabled:opacity-50 disabled:cursor-not-allowed',
+  'flex w-full items-center justify-between py-4 px-6 text-left font-medium transition-colors hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-inset disabled:opacity-50 disabled:cursor-not-allowed',
   {
     variants: {
       variant: {
-        default: 'text-gray-900',
-        outlined: 'text-gray-900',
-        filled: 'text-gray-900',
-        ghost: 'text-gray-900'
+        default: 'text-foreground',
+        outlined: 'text-foreground',
+        filled: 'text-foreground',
+        ghost: 'text-foreground'
       },
       size: {
         sm: 'py-3 px-4 text-sm',

@@ -4,14 +4,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const switchVariants = cva(
-  "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand-500 data-[state=unchecked]:bg-neutral-200",
+  "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted",
   {
     variants: {
       variant: {
         default:
-          "data-[state=checked]:bg-brand-500 data-[state=unchecked]:bg-neutral-200 focus-visible:ring-brand-500",
+          "data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted focus-visible:ring-ring",
         error:
-          "data-[state=checked]:bg-error-500 data-[state=unchecked]:bg-error-100 focus-visible:ring-error-500",
+          "data-[state=checked]:bg-destructive data-[state=unchecked]:bg-destructive/20 focus-visible:ring-destructive",
         success:
           "data-[state=checked]:bg-success-500 data-[state=unchecked]:bg-success-100 focus-visible:ring-success-500",
       },
@@ -29,7 +29,7 @@ const switchVariants = cva(
 );
 
 const switchThumbVariants = cva(
-  "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
+  "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
   {
     variants: {
       size: {

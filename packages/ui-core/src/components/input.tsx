@@ -10,16 +10,16 @@ const inputVariants = cva(
       variant: {
         // Enhanced default with better focus
         default: [
-          "border-neutral-300 shadow-sm",
-          "hover:border-neutral-400 hover:shadow-sm",
-          "focus-visible:ring-brand-500/20 focus-visible:border-brand-500",
+          "border-border shadow-sm",
+          "hover:border-border hover:shadow-sm",
+          "focus-visible:ring-ring/20 focus-visible:border-ring",
           "focus-visible:shadow-md"
         ],
         // Enhanced error with better feedback
         error: [
-          "border-error-500 shadow-sm",
-          "hover:border-error-600 hover:shadow-sm",
-          "focus-visible:ring-error-500/20 focus-visible:border-error-500",
+          "border-destructive shadow-sm",
+          "hover:border-destructive/80 hover:shadow-sm",
+          "focus-visible:ring-destructive/20 focus-visible:border-destructive",
           "focus-visible:shadow-md"
         ],
         // Enhanced success with better feedback
@@ -31,10 +31,10 @@ const inputVariants = cva(
         ],
         // Subtle variant for less prominent inputs
         subtle: [
-          "border-neutral-200 bg-neutral-50/50",
-          "hover:border-neutral-300 hover:bg-neutral-50/80",
-          "focus-visible:ring-brand-500/10 focus-visible:border-brand-500",
-          "focus-visible:bg-white"
+          "border-border bg-muted/50",
+          "hover:border-border hover:bg-muted/80",
+          "focus-visible:ring-ring/10 focus-visible:border-ring",
+          "focus-visible:bg-background"
         ]
       },
       inputSize: {

@@ -18,12 +18,12 @@ const radioGroupVariants = cva(
 );
 
 const radioItemVariants = cva(
-  "peer h-4 w-4 shrink-0 rounded-full border border-neutral-300 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-brand-500 data-[state=checked]:text-white data-[state=checked]:border-brand-500 transition-all duration-200",
+  "peer h-4 w-4 shrink-0 rounded-full border border-border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "border-neutral-300 hover:border-neutral-400 data-[state=checked]:bg-brand-500 data-[state=checked]:border-brand-500",
-        error: "border-error-500 focus-visible:ring-error-500 data-[state=checked]:bg-error-500 data-[state=checked]:border-error-500",
+        default: "border-border hover:border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary",
+        error: "border-destructive focus-visible:ring-destructive data-[state=checked]:bg-destructive data-[state=checked]:border-destructive",
         success: "border-success-500 focus-visible:ring-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:border-success-500",
       },
       size: {

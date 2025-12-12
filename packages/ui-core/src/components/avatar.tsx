@@ -15,8 +15,8 @@ const avatarVariants = cva(
       variant: {
         default: "shadow-avatar hover:shadow-avatar-hover",
         elevated: "shadow-lg hover:shadow-xl",
-        outline: "border-2 border-neutral-300 shadow-sm hover:border-brand-500 hover:shadow-avatar",
-        filled: "bg-neutral-100 shadow-sm hover:shadow-avatar",
+        outline: "border-2 border-border shadow-sm hover:border-primary hover:shadow-avatar",
+        filled: "bg-muted shadow-sm hover:shadow-avatar",
         interactive: "shadow-avatar hover:shadow-avatar-hover cursor-pointer hover:scale-105",
       },
     },
@@ -72,7 +72,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center rounded-full bg-neutral-100 text-sm font-medium text-neutral-600">
+          <div className="flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">
             {fallback}
           </div>
         )}
@@ -101,7 +101,7 @@ const AvatarFallback = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-neutral-100 text-sm font-medium text-neutral-600",
+      "flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground",
       className
     )}
     {...props}

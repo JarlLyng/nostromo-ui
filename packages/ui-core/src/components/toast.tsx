@@ -8,9 +8,9 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-neutral-200 bg-white text-neutral-900 shadow-toast hover:shadow-toast-hover',
+        default: 'border-border bg-card text-card-foreground shadow-toast hover:shadow-toast-hover',
         success: 'border-success-200 bg-success-50 text-success-900 shadow-toast hover:shadow-toast-hover',
-        error: 'border-error-200 bg-error-50 text-error-900 shadow-toast hover:shadow-toast-hover',
+        error: 'border-destructive/20 bg-destructive/10 text-destructive shadow-toast hover:shadow-toast-hover',
         warning: 'border-warning-200 bg-warning-50 text-warning-900 shadow-toast hover:shadow-toast-hover',
         info: 'border-info-200 bg-info-50 text-info-900 shadow-toast hover:shadow-toast-hover'
       },
@@ -43,9 +43,9 @@ const toastIconVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-neutral-500',
+        default: 'text-muted-foreground',
         success: 'text-success-600',
-        error: 'text-error-600',
+        error: 'text-destructive',
         warning: 'text-warning-600',
         info: 'text-info-600'
       }

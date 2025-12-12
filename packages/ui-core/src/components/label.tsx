@@ -7,9 +7,9 @@ const labelVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-neutral-900',
-        muted: 'text-neutral-600',
-        error: 'text-error-600',
+        default: 'text-foreground',
+        muted: 'text-muted-foreground',
+        error: 'text-destructive',
         success: 'text-success-600',
         warning: 'text-warning-600',
         info: 'text-info-600',

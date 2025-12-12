@@ -48,12 +48,12 @@ export interface DataTableProps<T = Record<string, unknown>>
 
 // Filter bar component
 const filterBarVariants = cva(
-  'flex flex-wrap items-center gap-2 p-4 bg-neutral-50 border-b border-neutral-200',
+  'flex flex-wrap items-center gap-2 p-4 bg-muted border-b border-border',
   {
     variants: {
       variant: {
-        default: 'bg-neutral-50',
-        compact: 'p-2 bg-white',
+        default: 'bg-muted',
+        compact: 'p-2 bg-card',
         minimal: 'p-2 bg-transparent border-0'
       }
     },
@@ -282,7 +282,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
                       key={filter.key}
                       value={String(filterValue || '')}
                       onChange={(e) => handleFilterChange(filter.key, e.target.value || undefined)}
-                      className="rounded-md border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500"
+                      className="rounded-md border border-input px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary"
                       aria-label={`Filter by ${filter.key}`}
                     >
                       <option value="">All {filter.key}</option>
@@ -316,7 +316,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
                 <button
                   type="button"
                   onClick={() => setColumnFilters({})}
-                  className="px-3 py-2 text-sm text-neutral-600 hover:text-neutral-900 underline"
+                  className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground underline"
                   aria-label="Clear all filters"
                 >
                   Clear filters
@@ -352,7 +352,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
       
       {/* Results Summary */}
       {showPagination && sortedData.length > 0 && (
-        <div className="mt-2 px-4 py-2 text-sm text-neutral-600">
+        <div className="mt-2 px-4 py-2 text-sm text-muted-foreground">
           Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results
           {searchTerm && ` (filtered from ${initialData.length} total)`}
         </div>

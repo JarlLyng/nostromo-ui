@@ -34,6 +34,8 @@
     "ui-core:build": "turbo run build --filter=@nostromo/ui-core",
     "ui-core:test": "turbo run test --filter=@nostromo/ui-core",
     "analyze": "ANALYZE=true turbo run build",
+    "audit:contrast": "tsx scripts/audit-contrast.ts",
+    "validate:theme-contrasts": "tsx scripts/validate-theme-contrasts.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",
@@ -45,6 +47,7 @@
     "bundle-analyzer": "^0.0.6",
     "eslint": "^9.39.1",
     "prettier": "^3.6.2",
+    "tsx": "^4.21.0",
     "turbo": "^1.13.4",
     "typescript": "^5.9.2"
   },

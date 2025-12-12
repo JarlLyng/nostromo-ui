@@ -4,17 +4,17 @@ import { cn } from '../lib/utils';
 
 // Tooltip variants
 const tooltipVariants = cva(
-  'absolute z-50 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-md shadow-lg transition-opacity duration-200',
+  'absolute z-50 px-3 py-2 text-sm font-medium rounded-md shadow-lg transition-opacity duration-200',
   {
     variants: {
       variant: {
-        default: 'bg-gray-900 text-white',
-        light: 'bg-white text-gray-900 border border-gray-200',
-        dark: 'bg-gray-900 text-white',
-        success: 'bg-green-600 text-white',
-        warning: 'bg-yellow-500 text-white',
-        error: 'bg-red-600 text-white',
-        info: 'bg-blue-600 text-white'
+        default: 'bg-popover text-popover-foreground border border-border',
+        light: 'bg-popover text-popover-foreground border border-border',
+        dark: 'bg-popover text-popover-foreground border border-border',
+        success: 'bg-success text-success-foreground',
+        warning: 'bg-warning text-warning-foreground',
+        error: 'bg-destructive text-destructive-foreground',
+        info: 'bg-info text-info-foreground'
       },
       size: {
         sm: 'text-xs px-2 py-1',
@@ -49,13 +49,13 @@ const arrowVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-gray-900',
-        light: 'bg-white border border-gray-200',
-        dark: 'bg-gray-900',
-        success: 'bg-green-600',
-        warning: 'bg-yellow-500',
-        error: 'bg-red-600',
-        info: 'bg-blue-600'
+        default: 'bg-popover border border-border',
+        light: 'bg-popover border border-border',
+        dark: 'bg-popover border border-border',
+        success: 'bg-success-500',
+        warning: 'bg-warning-500',
+        error: 'bg-destructive',
+        info: 'bg-info-500'
       },
       placement: {
         'top': 'top-full left-1/2 -translate-x-1/2 -translate-y-1/2',

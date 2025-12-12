@@ -172,43 +172,31 @@ module.exports = {
 ## 🚫 Theming Anti-Patterns
 
 ### ❌ Don't Do This
-```css
-/* Wrong - hardcoded colors */
-.button {
-  background-color: #8b5cf6;
-  color: white;
-}
+```tsx
+// Wrong - hardcoded colors
+<Button className="bg-brand-500 text-white">Click</Button>
+<Card className="bg-white text-neutral-900">Content</Card>
+<Input className="border-neutral-200 text-neutral-900" />
 
-/* Wrong - RGB instead of HSL */
-:root {
-  --color-primary: 139 92 246;
-}
+// Wrong - dark: prefixes (use CSS variables instead)
+<div className="bg-white dark:bg-neutral-900">Content</div>
 
-/* Wrong - inconsistent naming */
-:root {
-  --primary-color: 262 84% 52%;
-  --secondaryColor: 0 0% 45%;
-}
+// Wrong - direct neutral color usage
+<span className="text-neutral-600">Muted text</span>
 ```
 
 ### ✅ Do This Instead
-```css
-/* Correct - using CSS variables */
-.button {
-  background-color: hsl(var(--color-brand-500));
-  color: hsl(var(--color-neutral-50));
-}
+```tsx
+// Correct - using semantic tokens
+<Button className="bg-primary text-primary-foreground">Click</Button>
+<Card className="bg-card text-card-foreground">Content</Card>
+<Input className="border-border text-foreground" />
 
-/* Correct - HSL format */
-:root {
-  --color-brand-500: 262 84% 52%;
-}
+// Correct - semantic tokens work in both light and dark mode
+<div className="bg-background text-foreground">Content</div>
 
-/* Correct - consistent naming */
-:root {
-  --color-brand-500: 262 84% 52%;
-  --color-neutral-500: 0 0% 45%;
-}
+// Correct - semantic muted colors
+<span className="text-muted-foreground">Muted text</span>
 ```
 
 ## 🌙 Dark Mode Implementation
@@ -248,13 +236,60 @@ function useDarkMode() {
 }
 ```
 
-## 🎯 Theme Validation
+## 🎯 Theme Validation & Best Practices
 
-### Color Contrast
-Ensure all color combinations meet WCAG 2.1 AA standards:
-- **Normal text**: 4.5:1 contrast ratio
-- **Large text**: 3:1 contrast ratio
-- **UI components**: 3:1 contrast ratio
+### Color Contrast Requirements
+All color combinations must meet WCAG 2.1 AA standards:
+- **Normal text**: 4.5:1 contrast ratio minimum
+- **Large text** (18pt+ or 14pt+ bold): 3:1 contrast ratio minimum
+- **UI components**: 3:1 contrast ratio minimum
+
+### Semantic Tokens - Always Use These
+**ALWAYS** use semantic tokens in components. Never use hardcoded colors:
+
+```tsx
+// ✅ CORRECT - Semantic tokens
+className="bg-primary text-primary-foreground"
+className="bg-card text-card-foreground"
+className="bg-muted text-muted-foreground"
+className="border-border"
+className="text-foreground"
+
+// ❌ WRONG - Hardcoded colors
+className="bg-brand-500 text-white"
+className="bg-white text-neutral-900"
+className="bg-neutral-50 text-neutral-600"
+className="border-neutral-200"
+className="text-neutral-900"
+```
+
+### Dark Mode - Use CSS Variables, Not dark: Prefix
+**NEVER** use `dark:` prefixes. Semantic tokens automatically adapt:
+
+```tsx
+// ✅ CORRECT - Semantic tokens work in both modes
+className="bg-background text-foreground"
+
+// ❌ WRONG - dark: prefix
+className="bg-white dark:bg-neutral-900"
+```
+
+### Validation Tools
+Run these before committing:
+```bash
+# Validate all theme contrasts
+pnpm validate:theme-contrasts
+
+# Audit components for hardcoded colors
+pnpm audit:contrast
+```
+
+### Component Development Rules
+1. **Always use semantic tokens** - `text-foreground`, `bg-card`, `border-border`, etc.
+2. **Never use hardcoded colors** - No `text-neutral-900`, `bg-white`, `border-neutral-200`
+3. **Never use dark: prefixes** - Semantic tokens handle dark mode automatically
+4. **Validate contrasts** - Run validation tools before committing
+5. **Test in both modes** - Ensure components work in light and dark mode
 
 ## 🔧 Theme Utilities
 

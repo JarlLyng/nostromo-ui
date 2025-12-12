@@ -59,9 +59,9 @@ const featureIconVariants = cva(
         default: 'bg-primary/10 text-primary',
         accent: 'bg-accent/20 text-accent-foreground',
         muted: 'bg-muted text-muted-foreground',
-        success: 'bg-green-100 text-green-600 dark:bg-green-900/20 dark:text-green-400',
-        warning: 'bg-yellow-100 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400',
-        error: 'bg-red-100 text-red-600 dark:bg-red-900/20 dark:text-red-400',
+        success: 'bg-success-100 text-success-600',
+        warning: 'bg-warning-100 text-warning-600',
+        error: 'bg-error-100 text-error-600',
       },
     },
     defaultVariants: {

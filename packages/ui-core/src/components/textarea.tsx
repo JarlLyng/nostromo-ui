@@ -3,14 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const textareaVariants = cva(
-  "flex min-h-[80px] w-full rounded-md border border-neutral-200 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200",
+  "flex min-h-[80px] w-full rounded-md border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200",
   {
     variants: {
       variant: {
         default:
-          "border-neutral-200 focus-visible:ring-brand-500 focus-visible:ring-offset-background",
+          "border-border focus-visible:ring-ring focus-visible:ring-offset-background",
         error:
-          "border-error-500 focus-visible:ring-error-500 focus-visible:ring-offset-background",
+          "border-destructive focus-visible:ring-destructive focus-visible:ring-offset-background",
         success:
           "border-success-500 focus-visible:ring-success-500 focus-visible:ring-offset-background",
       },

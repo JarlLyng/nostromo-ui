@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
 
 const progressVariants = cva(
-  'relative overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800',
+  'relative overflow-hidden rounded-full bg-muted',
   {
     variants: {
       size: {
@@ -13,14 +13,14 @@ const progressVariants = cva(
         xl: 'h-4',
       },
       variant: {
-        default: 'bg-neutral-200 dark:bg-neutral-800',
-        primary: 'bg-primary-100 dark:bg-primary-900/20',
-        success: 'bg-success-100 dark:bg-success-900/20',
-        warning: 'bg-warning-100 dark:bg-warning-900/20',
-        error: 'bg-error-100 dark:bg-error-900/20',
-        energy: 'bg-gradient-to-r from-cyan-100 to-blue-100 dark:from-cyan-900/20 dark:to-blue-900/20',
-        health: 'bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20',
-        alien: 'bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20',
+        default: 'bg-muted',
+        primary: 'bg-primary/10',
+        success: 'bg-success-100',
+        warning: 'bg-warning-100',
+        error: 'bg-error-100',
+        energy: 'bg-gradient-to-r from-cyan-100 to-blue-100',
+        health: 'bg-gradient-to-r from-green-100 to-emerald-100',
+        alien: 'bg-gradient-to-r from-purple-100 to-pink-100',
       },
     },
     defaultVariants: {
@@ -35,11 +35,11 @@ const progressBarVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary-600 dark:bg-primary-500',
-        primary: 'bg-primary-600 dark:bg-primary-500',
-        success: 'bg-success-600 dark:bg-success-500',
-        warning: 'bg-warning-600 dark:bg-warning-500',
-        error: 'bg-error-600 dark:bg-error-500',
+        default: 'bg-primary',
+        primary: 'bg-primary',
+        success: 'bg-success-600',
+        warning: 'bg-warning-600',
+        error: 'bg-error-600',
         energy: 'bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/25',
         health: 'bg-gradient-to-r from-green-500 to-emerald-500 shadow-lg shadow-green-500/25',
         alien: 'bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/25',
@@ -66,14 +66,14 @@ const progressLabelVariants = cva(
   {
     variants: {
       variant: {
-        default: 'text-neutral-700 dark:text-neutral-300',
-        primary: 'text-primary-700 dark:text-primary-300',
-        success: 'text-success-700 dark:text-success-300',
-        warning: 'text-warning-700 dark:text-warning-300',
-        error: 'text-error-700 dark:text-error-300',
-        energy: 'text-cyan-700 dark:text-cyan-300',
-        health: 'text-green-700 dark:text-green-300',
-        alien: 'text-purple-700 dark:text-purple-300',
+        default: 'text-muted-foreground',
+        primary: 'text-primary',
+        success: 'text-success-700',
+        warning: 'text-warning-700',
+        error: 'text-error-700',
+        energy: 'text-cyan-700',
+        health: 'text-green-700',
+        alien: 'text-purple-700',
       },
     },
     defaultVariants: {
@@ -255,13 +255,13 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
     const getStrokeColor = () => {
       switch (variant) {
         case 'primary':
-          return 'stroke-primary-600 dark:stroke-primary-500';
+          return 'stroke-primary';
         case 'success':
-          return 'stroke-success-600 dark:stroke-success-500';
+          return 'stroke-success';
         case 'warning':
-          return 'stroke-warning-600 dark:stroke-warning-500';
+          return 'stroke-warning';
         case 'error':
-          return 'stroke-error-600 dark:stroke-error-500';
+          return 'stroke-error';
         case 'energy':
           return 'stroke-cyan-500';
         case 'health':
@@ -269,7 +269,7 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
         case 'alien':
           return 'stroke-purple-500';
         default:
-          return 'stroke-primary-600 dark:stroke-primary-500';
+          return 'stroke-primary';
       }
     };
 
@@ -310,7 +310,7 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
             stroke="currentColor"
             strokeWidth={strokeWidth}
             fill="none"
-            className="text-neutral-200 dark:text-neutral-800"
+            className="text-muted"
           />
           
           {/* Progress circle */}
