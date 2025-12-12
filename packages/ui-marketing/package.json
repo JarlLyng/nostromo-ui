@@ -81,6 +81,6 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "tsup": "^7.0.0",
     "typescript": "^5.0.0",
-    "vitest": "^1.0.0"
+    "vitest": "^4.0.15"
   }
 }
