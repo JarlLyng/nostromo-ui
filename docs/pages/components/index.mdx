@@ -1,8 +1,40 @@
-import { Badge } from '@nostromo/ui-core'
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle } from '@nostromo/ui-core'
+import LiveCode from '../components/LiveCode'
 
 # Components
 
 Browse all 30 core components and 6 marketing components. All components are **production-ready** and **WCAG 2.1 AA compliant**.
+
+## Quick Preview
+
+<LiveCode code={`import { Button, Badge, Card, CardContent, CardHeader, CardTitle } from '@nostromo/ui-core'
+
+export default function ComponentPreview() {
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-2 flex-wrap">
+        <Button variant="default">Button</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="destructive">Destructive</Button>
+      </div>
+      <div className="flex gap-2 flex-wrap">
+        <Badge variant="default">Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Example Card</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>This is a preview of some core components. Click on any component below to see full documentation and more examples.</p>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}`} />
 
 ## Core Components (30)
 
