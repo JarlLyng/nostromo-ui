@@ -37,6 +37,7 @@ interface LiveCodeProps {
 export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  const [copied, setCopied] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
   
   useEffect(() => {
@@ -65,6 +66,16 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
       testElement.setAttribute('data-color-scheme', 'light')
     }
   }, [isLoading])
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy code:', err)
+    }
+  }
   
   // Transform code to work with react-live
   // Remove import statements since components are already in scope
@@ -137,13 +148,38 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
   return (
     <div className="my-6">
       <LiveProvider code={transformedCode} scope={scope} noInline={needsNoInline}>
-        <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
-          <div className="bg-gray-50 dark:bg-gray-900 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-            <span className="text-sm text-gray-600 dark:text-gray-400">Live Example</span>
+        <div className="border border-border rounded-xl overflow-hidden shadow-lg bg-card">
+          {/* Panel header with actions */}
+          <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-sm font-medium text-muted-foreground">Live Example</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleCopy}
+                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+                title="Copy code"
+              >
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+              <a
+                href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+              >
+                Storybook →
+              </a>
+            </div>
           </div>
-          <div className="p-4 bg-white dark:bg-gray-950 relative min-h-[100px]">
+          <div className="p-6 bg-background relative min-h-[100px]">
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-950">
+              <div className="absolute inset-0 flex items-center justify-center bg-background">
                 <div className="animate-pulse space-y-2">
                   <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-32"></div>
                   <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-24"></div>
@@ -162,16 +198,20 @@ export default function LiveCode({ code, noInline = false }: LiveCodeProps) {
               className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-800 dark:text-red-200 text-sm"
             />
           </div>
-          <details className="border-t border-gray-200 dark:border-gray-800">
-            <summary className="px-4 py-2 bg-gray-50 dark:bg-gray-900 cursor-pointer text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
-              View Code
+          <details className="border-t border-border">
+            <summary className="px-4 py-3 bg-muted/30 cursor-pointer text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center justify-between">
+              <span>View Code</span>
+              <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </summary>
-            <div className="bg-gray-950">
+            <div className="bg-neutral-950 border-t border-border">
               <LiveEditor
                 style={{
-                  fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace',
+                  fontFamily: 'var(--font-mono), "Fira Code", "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace',
                   fontSize: '14px',
-                  padding: '16px',
+                  padding: '20px',
+                  lineHeight: '1.6',
                 }}
                 className="min-h-[200px]"
               />

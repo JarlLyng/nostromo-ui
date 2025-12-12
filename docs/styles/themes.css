@@ -538,3 +538,39 @@
   color: var(--text-primary);
   font-family: var(--font-mono);
 }
+
+/* Enhanced documentation surfaces */
+[data-theme="docs"] {
+  /* Layered card backgrounds */
+  --card-bg-1: hsl(var(--color-neutral-50));
+  --card-bg-2: hsl(var(--color-neutral-100));
+  --card-border: hsl(var(--color-neutral-200));
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  /* Focus rings */
+  --focus-ring: 0 0 0 2px hsl(var(--color-primary) / 0.2);
+  --focus-ring-offset: 0 0 0 2px hsl(var(--color-neutral-50)), 0 0 0 4px hsl(var(--color-primary) / 0.2);
+}
+
+[data-theme="docs"][data-color-scheme="dark"] {
+  --card-bg-1: hsl(var(--color-neutral-950));
+  --card-bg-2: hsl(var(--color-neutral-900));
+  --card-border: hsl(var(--color-neutral-800));
+  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --focus-ring-offset: 0 0 0 2px hsl(var(--color-neutral-950)), 0 0 0 4px hsl(var(--color-primary) / 0.2);
+}
+
+/* Table row styling for better scanability */
+[data-theme="docs"] table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+[data-theme="docs"] table tbody tr:hover {
+  background-color: hsl(var(--color-neutral-100) / 0.5);
+}
+
+[data-theme="docs"][data-color-scheme="dark"] table tbody tr:hover {
+  background-color: hsl(var(--color-neutral-800) / 0.5);
+}

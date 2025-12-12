@@ -62,17 +62,28 @@ export default function StorybookEmbed({
 
   if (hasError) {
     return (
-      <div className="my-6 border border-gray-200 rounded-lg overflow-hidden">
-        <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
-          <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="ml-2 text-sm text-gray-600">Storybook: {story}</span>
+      <div className="my-6 border border-border rounded-xl overflow-hidden shadow-lg bg-card">
+        <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <span className="text-sm font-medium text-muted-foreground">Storybook: {story}</span>
+            <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-destructive/10 text-destructive border border-destructive/20">Unavailable</span>
           </div>
+          <a
+            href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(story)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+          >
+            Open in New Tab →
+          </a>
         </div>
         <div 
-          className="bg-gray-100 flex items-center justify-center text-gray-500 p-8"
+          className="bg-muted/30 flex items-center justify-center text-muted-foreground p-8"
           style={{ height, width }}
         >
           <div className="text-center max-w-md">
@@ -83,17 +94,17 @@ export default function StorybookEmbed({
                 href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(story)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+                className="inline-block px-6 py-3 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
               >
                 Open in Storybook →
               </a>
-              <div className="text-xs text-gray-500 mt-3">
-                <p className="mb-2">Or run Storybook locally:</p>
-                <div className="bg-gray-200 rounded p-3 text-left font-mono">
-                  <code className="block mb-1">cd packages/ui-core</code>
-                  <code className="block">pnpm storybook</code>
+              <div className="text-xs text-muted-foreground mt-4">
+                <p className="mb-2 font-medium">Or run Storybook locally:</p>
+                <div className="bg-muted rounded-lg p-3 text-left font-mono border border-border">
+                  <code className="block mb-1 text-foreground">cd packages/ui-core</code>
+                  <code className="block text-foreground">pnpm storybook</code>
                 </div>
-                <p className="mt-2 text-gray-400">
+                <p className="mt-2 text-muted-foreground">
                   Storybook will run on http://localhost:6006
                 </p>
               </div>
@@ -105,14 +116,25 @@ export default function StorybookEmbed({
   }
 
   return (
-    <div className="my-6 border border-gray-200 rounded-lg overflow-hidden">
-      <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-          <span className="ml-2 text-sm text-gray-600">Storybook: {story}</span>
+    <div className="my-6 border border-border rounded-xl overflow-hidden shadow-lg bg-card">
+      <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          </div>
+          <span className="text-sm font-medium text-muted-foreground">Storybook: {story}</span>
+          <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-success/10 text-success border border-success/20">Active</span>
         </div>
+        <a
+          href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(story)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+        >
+          Open in New Tab →
+        </a>
       </div>
       <iframe
         ref={iframeRef}
