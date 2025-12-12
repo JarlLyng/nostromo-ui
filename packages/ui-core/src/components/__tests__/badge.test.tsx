@@ -12,13 +12,13 @@ describe('Badge', () => {
 
   it('renders with different variants', () => {
     const { rerender } = render(<Badge variant="secondary">Secondary</Badge>);
-    expect(screen.getByText('Secondary')).toHaveClass('bg-neutral-200');
+    expect(screen.getByText('Secondary')).toHaveClass('bg-secondary');
 
     rerender(<Badge variant="destructive">Destructive</Badge>);
-    expect(screen.getByText('Destructive')).toHaveClass('bg-error-500');
+    expect(screen.getByText('Destructive')).toHaveClass('bg-destructive');
 
     rerender(<Badge variant="outline">Outline</Badge>);
-    expect(screen.getByText('Outline')).toHaveClass('text-neutral-900');
+    expect(screen.getByText('Outline')).toHaveClass('text-foreground');
   });
 
   it('applies custom className', () => {

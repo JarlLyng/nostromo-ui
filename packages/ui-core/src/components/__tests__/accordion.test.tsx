@@ -117,7 +117,7 @@ describe('Accordion', () => {
         </AccordionItem>
       </Accordion>
     );
-    expect(screen.getByText('Item 1').closest('div')?.parentElement).toHaveClass('border-2', 'border-gray-300');
+    expect(screen.getByText('Item 1').closest('div')?.parentElement).toHaveClass('border-2', 'border-border');
 
     rerender(
       <Accordion variant="filled">
@@ -127,7 +127,7 @@ describe('Accordion', () => {
         </AccordionItem>
       </Accordion>
     );
-    expect(screen.getByText('Item 1').closest('div')?.parentElement).toHaveClass('bg-gray-50');
+    expect(screen.getByText('Item 1').closest('div')?.parentElement).toHaveClass('bg-muted');
 
     rerender(
       <Accordion variant="ghost">

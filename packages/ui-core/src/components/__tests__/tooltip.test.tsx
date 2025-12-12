@@ -162,28 +162,28 @@ describe('Tooltip', () => {
         <button>Test</button>
       </Tooltip>
     );
-    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-green-600', 'text-white');
+    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-success', 'text-success-foreground');
 
     rerender(
       <Tooltip content="Test tooltip" variant="error" open>
         <button>Test</button>
       </Tooltip>
     );
-    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-red-600', 'text-white');
+    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-destructive', 'text-destructive-foreground');
 
     rerender(
       <Tooltip content="Test tooltip" variant="warning" open>
         <button>Test</button>
       </Tooltip>
     );
-    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-yellow-500', 'text-white');
+    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-warning', 'text-warning-foreground');
 
     rerender(
       <Tooltip content="Test tooltip" variant="info" open>
         <button>Test</button>
       </Tooltip>
     );
-    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-blue-600', 'text-white');
+    expect(screen.getByText('Test tooltip').closest('div')).toHaveClass('bg-info', 'text-info-foreground');
   });
 
   it('applies correct size classes', () => {
@@ -437,7 +437,7 @@ describe('TooltipContent', () => {
     );
     
     const content = screen.getByText('Test content');
-    expect(content).toHaveClass('bg-green-600', 'text-white', 'text-base', 'px-4', 'py-3');
+    expect(content).toHaveClass('bg-success', 'text-success-foreground', 'text-base', 'px-4', 'py-3');
   });
 
   it('renders arrow with correct classes', () => {

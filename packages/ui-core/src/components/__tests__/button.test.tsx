@@ -13,16 +13,16 @@ describe('Button', () => {
 
   it('renders with different variants', () => {
     const { rerender } = render(<Button variant="destructive">Delete</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-error-500');
+    expect(screen.getByRole('button')).toHaveClass('bg-destructive');
 
     rerender(<Button variant="outline">Outline</Button>);
-    expect(screen.getByRole('button')).toHaveClass('border-2', 'border-neutral-300');
+    expect(screen.getByRole('button')).toHaveClass('border-2', 'border-border');
 
     rerender(<Button variant="ghost">Ghost</Button>);
-    expect(screen.getByRole('button')).toHaveClass('hover:bg-neutral-100');
+    expect(screen.getByRole('button')).toHaveClass('hover:bg-muted');
 
     rerender(<Button variant="subtle">Subtle</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-neutral-50');
+    expect(screen.getByRole('button')).toHaveClass('bg-muted');
   });
 
   it('renders with different sizes', () => {
@@ -105,10 +105,10 @@ describe('Button', () => {
 
   it('renders with different state variants', () => {
     const { rerender } = render(<Button state="success">Success</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-success-500');
+    expect(screen.getByRole('button')).toHaveClass('bg-success');
 
     rerender(<Button state="error">Error</Button>);
-    expect(screen.getByRole('button')).toHaveClass('bg-error-500');
+    expect(screen.getByRole('button')).toHaveClass('bg-destructive');
 
     rerender(<Button state="loading">Loading</Button>);
     expect(screen.getByRole('button')).toHaveClass('cursor-wait');

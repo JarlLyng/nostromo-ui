@@ -8,7 +8,7 @@ describe('Card Components', () => {
       render(<Card>Card content</Card>);
       const card = screen.getByText('Card content');
       expect(card).toBeInTheDocument();
-      expect(card).toHaveClass('rounded-lg', 'border', 'bg-white', 'shadow-sm');
+      expect(card).toHaveClass('rounded-lg', 'border', 'bg-card', 'shadow-sm');
     });
 
     it('applies custom className', () => {

@@ -11,13 +11,13 @@ describe('HelperText', () => {
   it('applies default variant styles', () => {
     render(<HelperText>Helper text content</HelperText>);
     const helperText = screen.getByText('Helper text content');
-    expect(helperText).toHaveClass('text-sm', 'text-neutral-600');
+    expect(helperText).toHaveClass('text-sm', 'text-muted-foreground');
   });
 
   it('applies error variant styles', () => {
     render(<HelperText variant="error">Error message</HelperText>);
     const helperText = screen.getByText('Error message');
-    expect(helperText).toHaveClass('text-error-600');
+    expect(helperText).toHaveClass('text-destructive');
   });
 
   it('applies success variant styles', () => {

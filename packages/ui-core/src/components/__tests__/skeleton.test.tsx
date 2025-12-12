@@ -8,21 +8,21 @@ describe('Skeleton', () => {
     
     const skeleton = screen.getByLabelText('Loading content');
     expect(skeleton).toBeInTheDocument();
-    expect(skeleton).toHaveClass('animate-pulse', 'rounded-md', 'bg-gray-200');
+    expect(skeleton).toHaveClass('animate-pulse', 'rounded-md', 'bg-muted');
   });
 
   it('renders with custom variant', () => {
     const { rerender } = render(<Skeleton variant="primary" className="w-64 h-4" />);
-    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-blue-200');
+    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-primary/10');
 
     rerender(<Skeleton variant="success" className="w-64 h-4" />);
-    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-green-200');
+    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-success-200');
 
     rerender(<Skeleton variant="warning" className="w-64 h-4" />);
-    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-yellow-200');
+    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-warning-200');
 
     rerender(<Skeleton variant="error" className="w-64 h-4" />);
-    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-red-200');
+    expect(screen.getByLabelText('Loading content')).toHaveClass('bg-error-200');
   });
 
   it('renders with custom size', () => {
@@ -153,7 +153,7 @@ describe('SkeletonAvatar', () => {
 
   it('renders with custom variant', () => {
     render(<SkeletonAvatar variant="primary" />);
-    expect(screen.getByLabelText('Loading avatar')).toHaveClass('bg-blue-200');
+    expect(screen.getByLabelText('Loading avatar')).toHaveClass('bg-primary/10');
   });
 
   it('does not render when loading is false', () => {
@@ -181,10 +181,10 @@ describe('SkeletonButton', () => {
 
   it('renders with custom variant', () => {
     const { rerender } = render(<SkeletonButton variant="primary" />);
-    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-blue-200');
+    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-primary/10');
 
     rerender(<SkeletonButton variant="outline" />);
-    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-gray-100', 'border', 'border-gray-300');
+    expect(screen.getByLabelText('Loading button')).toHaveClass('bg-muted', 'border', 'border-border');
   });
 
   it('does not render when loading is false', () => {
@@ -270,7 +270,7 @@ describe('SkeletonList', () => {
     
     const avatars = screen.getAllByLabelText('Loading avatar');
     avatars.forEach(avatar => {
-      expect(avatar).toHaveClass('bg-blue-200');
+      expect(avatar).toHaveClass('bg-primary/10');
     });
   });
 
