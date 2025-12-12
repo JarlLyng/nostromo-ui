@@ -69,10 +69,12 @@ The Nostromo UI documentation site is designed to be fully accessible to all use
 ## 🎨 Visual Accessibility
 
 ### **Color Contrast:**
-- **Normal text**: 4.5:1 contrast ratio
-- **Large text**: 3:1 contrast ratio
-- **UI components**: 3:1 contrast ratio
-- **Focus indicators**: 3:1 contrast ratio
+- **Normal text**: 4.5:1 contrast ratio (WCAG AA compliant)
+- **Large text**: 3:1 contrast ratio (WCAG AA compliant)
+- **UI components**: 3:1 contrast ratio (WCAG AA compliant)
+- **Focus indicators**: 3:1 contrast ratio (WCAG AA compliant)
+- **All themes validated**: All 4 themes (Nostromo, Mother, LV-426, Sulaco) have been validated and adjusted to meet WCAG AA requirements in both light and dark modes
+- **Semantic tokens**: All components use semantic color tokens (background, foreground, muted, primary, etc.) ensuring consistent contrast across themes
 
 ### **High Contrast Mode:**
 ```css

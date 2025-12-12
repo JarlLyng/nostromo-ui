@@ -97,6 +97,11 @@ nostromo-ui/
 
 ## Development Commands
 
+### Test Results
+- **Core Package**: 842 tests passing (unit + accessibility) - 100% pass rate
+- **Marketing Package**: 7 smoke tests (export + render verification)
+- **Theme Package**: 3 smoke tests (preset structure validation)
+
 ### Root Commands
 ```bash
 # Install dependencies

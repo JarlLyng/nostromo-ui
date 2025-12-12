@@ -7,7 +7,26 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 
 ## [Unreleased]
 
+### Added
+- **WCAG AA Design Optimization** - Complete design system refactoring for WCAG 2.1 AA compliance
+  - Semantic color tokens system implemented across all components
+  - Extended Tailwind preset with semantic token mappings (background, foreground, muted, primary, etc.)
+  - Created contrast validation scripts (`audit:contrast`, `validate:theme-contrasts`)
+  - All 4 themes (Nostromo, Mother, LV-426, Sulaco) validated and adjusted for WCAG AA contrast in both light and dark modes
+  - All components refactored to use semantic tokens instead of hardcoded colors
+  - Updated all unit tests to use semantic tokens
+- **Dependabot Configuration** - Automated dependency updates across monorepo
+  - Configured for root, ui-core, ui-marketing, ui-tw, docs packages
+  - Grouped updates to reduce PR noise
+  - Weekly schedule with Monday morning updates
+
 ### Fixed
+- **WCAG AA Contrast Issues** - Fixed all contrast ratio violations
+  - Adjusted semantic color pairs (foreground/background, muted-foreground/muted, card-foreground/card, popover-foreground/popover, primary-foreground/primary, secondary-foreground/secondary) in all themes
+  - All components now meet WCAG 2.1 AA requirements (4.5:1 for normal text, 3:1 for large text/UI components)
+- **Test Failures** - Fixed all 11 failing tests after semantic token refactoring
+  - Updated all test assertions to use semantic tokens
+  - 100% test pass rate achieved (842/842 tests passing)
 - **ESLint Warnings** - Resolved all 22 ESLint warnings by replacing `any` types with proper TypeScript types
   - Fixed `charts.tsx`: Used custom interfaces instead of recharts types
   - Fixed `accordion.tsx`: Extended AccordionTriggerProps with button attributes

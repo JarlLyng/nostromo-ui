@@ -357,10 +357,50 @@ For detailed accessibility information, see [ACCESSIBILITY_GUIDE.md](./ACCESSIBI
 For detailed theming information, see [THEMING.md](./THEMING.md).
 
 **Key Points:**
+- **Use semantic color tokens** - Always use semantic tokens (background, foreground, muted, primary, etc.) instead of hardcoded colors
+- **WCAG AA compliance** - All semantic color pairs are validated for WCAG 2.1 AA contrast requirements
 - Use CSS variables for consistent theming
 - Implement theme switching with `data-theme` attribute
 - Support dark mode with `data-color-scheme` attribute
 - Create custom themes by extending base theme variables
+
+### Semantic Color Tokens
+
+Nostromo UI uses semantic color tokens to ensure consistent theming and WCAG AA compliance:
+
+```tsx
+// ✅ Good: Use semantic tokens
+<Button className="bg-primary text-primary-foreground">
+  Click me
+</Button>
+
+<div className="bg-card text-card-foreground border-border">
+  Content
+</div>
+
+// ❌ Avoid: Hardcoded colors
+<Button className="bg-brand-500 text-white">
+  Click me
+</Button>
+
+<div className="bg-white text-neutral-900 border-neutral-200">
+  Content
+</div>
+```
+
+**Available Semantic Tokens:**
+- `background` / `foreground` - Main background and text colors
+- `muted` / `muted-foreground` - Muted backgrounds and text
+- `card` / `card-foreground` - Card backgrounds and text
+- `popover` / `popover-foreground` - Popover backgrounds and text
+- `primary` / `primary-foreground` - Primary action colors
+- `secondary` / `secondary-foreground` - Secondary action colors
+- `accent` / `accent-foreground` - Accent colors
+- `destructive` / `destructive-foreground` - Error/destructive action colors
+- `border` / `input` - Border and input border colors
+- `ring` - Focus ring color
+
+All semantic tokens are validated for WCAG AA contrast in both light and dark modes.
 
 ---
 
