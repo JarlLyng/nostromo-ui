@@ -12,7 +12,7 @@ const textareaVariants = cva(
         error:
           "border-destructive focus-visible:ring-destructive focus-visible:ring-offset-background",
         success:
-          "border-success-500 focus-visible:ring-success-500 focus-visible:ring-offset-background",
+          "border-success focus-visible:ring-success focus-visible:ring-offset-background",
       },
       size: {
         sm: "min-h-[60px] px-2 py-1 text-xs",
@@ -126,7 +126,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             id={helperTextId}
             className={cn(
               "text-sm text-muted-foreground",
-              error && "text-error-500"
+              error && "text-destructive"
             )}
           >
             {helperText}

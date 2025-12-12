@@ -13,7 +13,7 @@ const switchVariants = cva(
         error:
           "data-[state=checked]:bg-destructive data-[state=unchecked]:bg-destructive/20 focus-visible:ring-destructive",
         success:
-          "data-[state=checked]:bg-success-500 data-[state=unchecked]:bg-success-100 focus-visible:ring-success-500",
+          "data-[state=checked]:bg-success data-[state=unchecked]:bg-success-100 focus-visible:ring-success",
       },
       size: {
         sm: "h-4 w-7",
@@ -108,7 +108,7 @@ const Switch = React.forwardRef<
               id={helperTextId}
               className={cn(
                 "text-sm text-muted-foreground",
-                error && "text-error-500"
+                error && "text-destructive"
               )}
             >
               {helperText}
