@@ -58,7 +58,7 @@ describe("RadioGroup", () => {
     
     const radioItems = screen.getAllByRole("radio");
     radioItems.forEach(radio => {
-      expect(radio).toHaveClass("border-error-500");
+      expect(radio).toHaveClass("border-destructive");
     });
   });
 
@@ -244,7 +244,7 @@ describe("RadioItem", () => {
     const { rerender } = render(<RadioItem value="option1" label="Option 1" variant="error" />);
     
     let radio = screen.getByRole("radio");
-    expect(radio).toHaveClass("border-error-500");
+    expect(radio).toHaveClass("border-destructive");
 
     rerender(<RadioItem value="option1" label="Option 1" variant="success" />);
     radio = screen.getByRole("radio");

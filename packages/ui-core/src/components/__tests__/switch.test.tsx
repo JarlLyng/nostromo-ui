@@ -23,7 +23,7 @@ describe("Switch", () => {
     render(<Switch error helperText="This is an error" />);
     const switchElement = screen.getByRole("switch");
     expect(switchElement).toHaveAttribute("aria-invalid", "true");
-    expect(screen.getByText("This is an error")).toHaveClass("text-error-500");
+    expect(screen.getByText("This is an error")).toHaveClass("text-destructive");
   });
 
   it("renders as checked when defaultChecked is true", () => {
@@ -83,13 +83,13 @@ describe("Switch", () => {
 
   it("applies correct variant styling based on prop", () => {
     const { rerender } = render(<Switch variant="default" />);
-    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-brand-500");
+    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-primary");
 
     rerender(<Switch variant="error" />);
-    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-error-500");
+    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-destructive");
 
     rerender(<Switch variant="success" />);
-    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-success-500");
+    expect(screen.getByRole("switch")).toHaveClass("data-[state=checked]:bg-success");
   });
 
   it("applies correct size styling based on prop", () => {

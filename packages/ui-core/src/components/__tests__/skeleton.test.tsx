@@ -199,7 +199,7 @@ describe('SkeletonCard', () => {
     
     const card = screen.getByLabelText('Loading card content');
     expect(card).toBeInTheDocument();
-    expect(card).toHaveClass('p-6', 'border', 'border-gray-200', 'rounded-lg', 'bg-white');
+    expect(card).toHaveClass('p-6', 'border', 'border-border', 'rounded-lg', 'bg-card');
   });
 
   it('renders without avatar when showAvatar is false', () => {

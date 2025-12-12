@@ -37,9 +37,9 @@ describe('Input', () => {
     const input = screen.getByPlaceholderText('Enter text');
     const helperText = screen.getByText('This is an error');
     
-    expect(input).toHaveClass('border-error-500');
+    expect(input).toHaveClass('border-destructive');
     expect(input).toHaveAttribute('aria-invalid', 'true');
-    expect(helperText).toHaveClass('text-error-600');
+    expect(helperText).toHaveClass('text-destructive');
   });
 
   it('handles user input', async () => {

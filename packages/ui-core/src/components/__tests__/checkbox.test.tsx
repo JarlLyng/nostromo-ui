@@ -29,7 +29,7 @@ describe("Checkbox", () => {
   it("applies error styling when error is true", () => {
     render(<Checkbox error />);
     const checkbox = screen.getByRole("checkbox");
-    expect(checkbox).toHaveClass("border-error-500");
+    expect(checkbox).toHaveClass("border-destructive");
   });
 
   it("applies success styling when variant is success", () => {
