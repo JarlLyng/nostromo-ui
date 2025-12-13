@@ -34,7 +34,7 @@ npx serve@latest out -p 3000
 
 ### Step 3: Test i Browser
 
-1. **Åbn browser**: http://localhost:3000/components
+1. **Åbn browser**: http://localhost:3000/nostromo-ui/components/ (eller http://localhost:3000/components/ hvis basePath ikke er sat)
 2. **Åbn Developer Tools** (F12)
 3. **Gå til Console tab**
 4. **Check for fejl**:
