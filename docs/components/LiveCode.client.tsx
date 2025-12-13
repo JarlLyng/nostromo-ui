@@ -45,15 +45,19 @@ export default function LiveCodeClient({
   storyId 
 }: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
-  const [hasError, setHasError] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const [copied, setCopied] = useState(false)
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme)
   const previewRef = useRef<HTMLDivElement>(null)
   const styleInjectedRef = useRef(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   
   // Inject CSS on client side only to avoid hydration errors
   useEffect(() => {
-    if (styleInjectedRef.current || typeof document === 'undefined') return
+    if (!mounted || styleInjectedRef.current || typeof document === 'undefined') return
     
     // Check if style already exists
     const existingStyle = document.getElementById('livecode-preview-styles')
@@ -223,12 +227,11 @@ export default function LiveCodeClient({
     `
     document.head.appendChild(style)
     styleInjectedRef.current = true
-  }, [])
+  }, [mounted])
   
   useEffect(() => {
     // Reset loading state when code changes
     setIsLoading(true)
-    setHasError(false)
     // Set loading to false after a short delay to allow component to render
     const timer = setTimeout(() => setIsLoading(false), 300)
     return () => clearTimeout(timer)
@@ -322,6 +325,10 @@ export default function LiveCodeClient({
     }
   }
   
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div className="my-6">

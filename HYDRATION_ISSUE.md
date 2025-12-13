@@ -164,7 +164,7 @@ export default function Example() {
 
 ## Løsning implementeret (client-only LiveCode)
 
-- `docs/components/LiveCode.tsx` eksporterer nu komponenten via `next/dynamic` med `ssr: false` og en statisk fallback, så LiveCode slet ikke server-renderes ved static export. Der er dermed ingen server-markup, som React kan mis-matche ved hydration.
+- `docs/components/LiveCode.tsx` eksporterer nu komponenten via `next/dynamic` med `ssr: false` og en statisk fallback. Wrapper komponenten har også mount-guard (`if (!mounted) return <LiveCodeFallback />`), så både server og første client render returnerer samme fallback, hvilket eliminerer hydration mismatch.
 - Den interaktive kode bor i `docs/components/LiveCode.client.tsx` (med `'use client'`). Der er tilføjet et mount-guard (`if (!mounted) return null;`), så komponenten først får DOM efter første client render, hvilket eliminerer hydration-mismatches fra rest-HTML.
 - CSS-injektion kører først efter mount, så vi undgår document-referencer under hydration.
 - Fallbacken matcher layoutet fra den tidligere placeholder, så siden bevarer formen under load, men selve React Live DOM oprettes først på klienten.

@@ -1,4 +1,7 @@
+'use client'
+
 import dynamic from 'next/dynamic'
+import { useState, useEffect } from 'react'
 import type { LiveCodeProps } from './LiveCode.client'
 
 // Disable SSR because react-live relies on browser-only APIs and mismatches when hydrated from static export
@@ -62,8 +65,14 @@ function LiveCodeFallback({ code, theme = 'nostromo', colorScheme = 'light', sto
 }
 
 export default function LiveCode(props: LiveCodeProps) {
-  // Show fallback during SSR and initial load
-  if (typeof window === 'undefined') {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Always return fallback until mounted to prevent hydration mismatch
+  if (!mounted) {
     return <LiveCodeFallback {...props} />
   }
 
