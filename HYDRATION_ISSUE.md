@@ -165,12 +165,15 @@ export default function Example() {
 ## Løsning implementeret (client-only LiveCode)
 
 - `docs/components/LiveCode.tsx` eksporterer nu komponenten via `next/dynamic` med `ssr: false` og en statisk fallback, så LiveCode slet ikke server-renderes ved static export. Der er dermed ingen server-markup, som React kan mis-matche ved hydration.
-- Den interaktive kode bor i `docs/components/LiveCode.client.tsx` (med `'use client'`), hvor `ClientOnly`-wrappen er fjernet, men øvrig funktionalitet og CSS-injektion er bevaret.
+- Den interaktive kode bor i `docs/components/LiveCode.client.tsx` (med `'use client'`). Der er tilføjet et mount-guard (`if (!mounted) return null;`), så komponenten først får DOM efter første client render, hvilket eliminerer hydration-mismatches fra rest-HTML.
+- CSS-injektion kører først efter mount, så vi undgår document-referencer under hydration.
 - Fallbacken matcher layoutet fra den tidligere placeholder, så siden bevarer formen under load, men selve React Live DOM oprettes først på klienten.
-- Årsag: `react-live` genererer markup på klienten (og afhænger af browser APIs). I static export blev der alligevel genereret server-HTML, som ikke matchede klientens runtime-evaluering af code-examples; ved at disable SSR fjernes hydrationsgrundlaget.
-- **Implementering**: Wrapper komponent tjekker `typeof window === 'undefined'` for at returnere fallback under SSR, og bruger `dynamic` import for client-side rendering.
-- **Build status**: ✅ Build virker (`pnpm -C docs build`)
-- **Verifikation**: Kør `pnpm -C docs build && pnpm -C docs start` og check i browseren, at error #418/#423 ikke længere vises på fx `/components`.
+- Årsag: `react-live` genererer markup på klienten (og afhænger af browser APIs). I static export blev der alligevel genereret server-HTML, som ikke matchede klientens runtime-evaluering af code-examples; ved at disable SSR + mount-guard fjernes hydrationsgrundlaget helt.
+- **Test Status**: 
+  - ✅ Build virker (`pnpm -C docs build` - ingen fejl)
+  - ✅ Mount-guard implementeret korrekt (`if (!mounted) return null`)
+  - ✅ CSS injection kører kun efter mount
+  - ⏳ Browser test mangler: Kør `pnpm -C docs build && pnpm -C docs start` og check i browseren, at error #418/#423 ikke længere vises på fx `/components`.
 
 ## Fejlens Effekt
 
