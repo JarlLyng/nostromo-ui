@@ -44,16 +44,23 @@ export default function LiveCode({
   colorScheme = 'light',
   storyId 
 }: LiveCodeProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  // Initialize with false to match server render (no loading state on server)
+  const [isLoading, setIsLoading] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [copied, setCopied] = useState(false)
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme)
+  const [isMounted, setIsMounted] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
   const styleInjectedRef = useRef(false)
   
+  // Mark component as mounted to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+  
   // Inject CSS on client side only to avoid hydration errors
   useEffect(() => {
-    if (styleInjectedRef.current || typeof document === 'undefined') return
+    if (!isMounted || styleInjectedRef.current || typeof document === 'undefined') return
     
     // Check if style already exists
     const existingStyle = document.getElementById('livecode-preview-styles')
@@ -223,26 +230,27 @@ export default function LiveCode({
     `
     document.head.appendChild(style)
     styleInjectedRef.current = true
-  }, [])
+  }, [isMounted])
   
   useEffect(() => {
+    if (!isMounted) return
     // Reset loading state when code changes
     setIsLoading(true)
     setHasError(false)
     // Set loading to false after a short delay to allow component to render
     const timer = setTimeout(() => setIsLoading(false), 300)
     return () => clearTimeout(timer)
-  }, [code])
+  }, [code, isMounted])
 
   // Set theme attributes on preview container
   useEffect(() => {
-    if (!previewRef.current) return
+    if (!isMounted || !previewRef.current) return
     const container = previewRef.current.querySelector('[data-theme]') || previewRef.current
     if (container instanceof HTMLElement) {
       container.setAttribute('data-theme', theme)
       container.setAttribute('data-color-scheme', currentColorScheme)
     }
-  }, [theme, currentColorScheme, isLoading])
+  }, [theme, currentColorScheme, isLoading, isMounted])
 
   const handleCopy = async () => {
     try {
@@ -373,7 +381,7 @@ export default function LiveCode({
             </div>
           </div>
           <div className="p-6 bg-background relative min-h-[100px]">
-            {isLoading && (
+            {isMounted && isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-background">
                 <div className="animate-pulse space-y-2">
                   <div className="h-4 bg-gray-200 dark:bg-gray-800 rounded w-32"></div>
@@ -381,17 +389,28 @@ export default function LiveCode({
                 </div>
               </div>
             )}
-            <div 
-              ref={previewRef}
-              style={{ display: isLoading ? 'none' : 'block' }}
-              data-theme={theme}
-              data-color-scheme={currentColorScheme}
-            >
-              <LivePreview />
-            </div>
-            <LiveError 
-              className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-800 dark:text-red-200 text-sm"
-            />
+            {isMounted ? (
+              <div 
+                ref={previewRef}
+                style={{ display: isLoading ? 'none' : 'block' }}
+                data-theme={theme}
+                data-color-scheme={currentColorScheme}
+              >
+                <LivePreview />
+              </div>
+            ) : (
+              <div 
+                data-theme={theme}
+                data-color-scheme={currentColorScheme}
+                className="min-h-[100px]"
+                suppressHydrationWarning
+              />
+            )}
+            {isMounted && (
+              <LiveError 
+                className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-800 dark:text-red-200 text-sm"
+              />
+            )}
           </div>
           <details className="border-t border-border">
             <summary className="px-4 py-3 bg-muted/30 cursor-pointer text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center justify-between">
