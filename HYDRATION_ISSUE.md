@@ -173,3 +173,60 @@ export default function Example() {
 - React error #418: Hydration failed because the initial UI does not match what was rendered on the server
 - React error #423: (også set i logs) - Relateret hydration fejl
 
+## Eksempel på Fejl i Browser
+
+Fejlen opstår gentagne gange (mange instanser) i browser console:
+- Hver `LiveCode` komponent på siden trigger fejlen
+- Fejlen opstår ved hydration (når React tager over fra server HTML)
+- Fejlen forhindrer ikke funktionalitet, men skaber meget støj
+
+## Debugging Information
+
+For at debugge problemet yderligere:
+
+1. **Kør i development mode**:
+   ```bash
+   cd docs
+   pnpm dev
+   ```
+   Dette vil give den fulde React fejlmeddelelse i stedet for minified error #418
+
+2. **Tjek React DevTools**: Inspect komponenten for at se hydration mismatch
+
+3. **Tjek Network Tab**: Se om der er problemer med loading af assets
+
+4. **Tjek Console**: Se om der er andre fejl før hydration fejlen
+
+## Mulige Workarounds
+
+Hvis problemet ikke kan løses direkte:
+
+1. **Disable LiveCode i production**: Vis kun static code blocks
+2. **Lazy load LiveCode**: Load kun når bruger interagerer
+3. **Brug iframe**: Embed live eksempler i iframe for isolation
+4. **Brug Storybook links**: Erstat LiveCode med links til Storybook
+
+## Test Cases
+
+For at reproducere problemet:
+
+1. Build dokumentationssitet: `pnpm build --filter=nostromo-ui-docs`
+2. Serve static build: `cd docs/.next && npx serve`
+3. Åbn browser og naviger til `/components`
+4. Åbn browser console
+5. Observer gentagne error #418 fejl
+
+## Relaterede Filer
+
+- `docs/components/LiveCode.tsx` - Hovedkomponent (486 linjer)
+- `docs/components/ClientOnly.tsx` - Wrapper komponent (20 linjer)
+- `docs/pages/components/index.mdx` - Eksempel på brug
+- `docs/pages/components/*.mdx` - Flere eksempler
+
+## Noter
+
+- Problem opstår kun i production build, ikke i development
+- Problem opstår kun med static export, ikke med server-side rendering
+- Alle LiveCode instanser på en side trigger fejlen
+- Fejlen er ikke fatal - komponenten fungerer stadig, men med console errors
+
