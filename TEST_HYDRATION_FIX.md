@@ -14,11 +14,13 @@
 
 ## Test Process
 
-### Step 1: Build
+### Step 1: Build (Production)
 ```bash
 cd /Users/jarl.l/Documents/Github/nostromo-ui
 pnpm -C docs build
 ```
+
+**Note**: Build'en er lavet med `basePath: '/nostromo-ui'` for production. Dette er korrekt for GitHub Pages deployment.
 
 **Forventet resultat**: ✅ Build successful, ingen fejl
 
@@ -34,12 +36,20 @@ npx serve@latest out -p 3000
 
 ### Step 3: Test i Browser
 
-1. **Åbn browser**: http://localhost:3000/nostromo-ui/components/ (eller http://localhost:3000/components/ hvis basePath ikke er sat)
+1. **Åbn browser**: 
+   - **Lokalt test**: http://localhost:3000/components/ 
+   - **Note**: Assets vil fejle (404) fordi build'en har `basePath: '/nostromo-ui'`, men dette påvirker ikke hydration testen. For at teste hydration, skal du:
+     - Enten: Test direkte på GitHub Pages (https://jarllyng.github.io/nostromo-ui/components/)
+     - Eller: Ignorer asset 404 fejl og fokusér kun på React hydration fejl i console
 2. **Åbn Developer Tools** (F12)
 3. **Gå til Console tab**
-4. **Check for fejl**:
+4. **Filtrer console**:
+   - Ignorer 404 fejl for assets (dette er forventet pga. basePath)
+   - Ignorer workbox warnings
+   - Fokusér kun på React hydration fejl
+5. **Check for fejl**:
    - ❌ **Før fix**: Mange `Error: Minified React error #418` fejl
-   - ✅ **Efter fix**: Ingen hydration fejl
+   - ✅ **Efter fix**: Ingen hydration fejl (#418 eller #423)
 
 ### Step 4: Verificer Funktionalitet
 
