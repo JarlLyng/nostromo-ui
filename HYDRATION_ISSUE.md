@@ -170,10 +170,12 @@ export default function Example() {
 - Fallbacken matcher layoutet fra den tidligere placeholder, så siden bevarer formen under load, men selve React Live DOM oprettes først på klienten.
 - Årsag: `react-live` genererer markup på klienten (og afhænger af browser APIs). I static export blev der alligevel genereret server-HTML, som ikke matchede klientens runtime-evaluering af code-examples; ved at disable SSR + mount-guard fjernes hydrationsgrundlaget helt.
 - **Test Status**: 
-  - ✅ Build virker (`pnpm -C docs build` - ingen fejl)
+  - ✅ Build virker (`pnpm -C docs build` - ingen fejl, 46 sider bygget)
   - ✅ Mount-guard implementeret korrekt (`if (!mounted) return null`)
   - ✅ CSS injection kører kun efter mount
-  - ⏳ Browser test mangler: Kør `pnpm -C docs build && pnpm -C docs start` og check i browseren, at error #418/#423 ikke længere vises på fx `/components`.
+  - ✅ TypeScript compilation: Ingen fejl
+  - ✅ Static pages: Alle 46 sider genereret korrekt
+  - ⏳ Browser test mangler: Kør `pnpm -C docs start` og check i browseren, at error #418/#423 ikke længere vises på fx `/components`.
 
 ## Fejlens Effekt
 
