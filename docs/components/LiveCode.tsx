@@ -4,6 +4,7 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@nostromo/ui-core'
 import * as NostromoMarketing from '@nostromo/ui-marketing'
 import React, { useState, useEffect, useRef } from 'react'
+import ClientOnly from './ClientOnly'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
@@ -44,23 +45,16 @@ export default function LiveCode({
   colorScheme = 'light',
   storyId 
 }: LiveCodeProps) {
-  // Initialize with false to match server render (no loading state on server)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
   const [copied, setCopied] = useState(false)
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme)
-  const [isMounted, setIsMounted] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
   const styleInjectedRef = useRef(false)
   
-  // Mark component as mounted to avoid hydration mismatch
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-  
   // Inject CSS on client side only to avoid hydration errors
   useEffect(() => {
-    if (!isMounted || styleInjectedRef.current || typeof document === 'undefined') return
+    if (styleInjectedRef.current || typeof document === 'undefined') return
     
     // Check if style already exists
     const existingStyle = document.getElementById('livecode-preview-styles')
@@ -230,27 +224,26 @@ export default function LiveCode({
     `
     document.head.appendChild(style)
     styleInjectedRef.current = true
-  }, [isMounted])
+  }, [])
   
   useEffect(() => {
-    if (!isMounted) return
     // Reset loading state when code changes
     setIsLoading(true)
     setHasError(false)
     // Set loading to false after a short delay to allow component to render
     const timer = setTimeout(() => setIsLoading(false), 300)
     return () => clearTimeout(timer)
-  }, [code, isMounted])
+  }, [code])
 
   // Set theme attributes on preview container
   useEffect(() => {
-    if (!isMounted || !previewRef.current) return
+    if (!previewRef.current) return
     const container = previewRef.current.querySelector('[data-theme]') || previewRef.current
     if (container instanceof HTMLElement) {
       container.setAttribute('data-theme', theme)
       container.setAttribute('data-color-scheme', currentColorScheme)
     }
-  }, [theme, currentColorScheme, isLoading, isMounted])
+  }, [theme, currentColorScheme, isLoading])
 
   const handleCopy = async () => {
     try {
@@ -330,66 +323,64 @@ export default function LiveCode({
     }
   }
   
-  // Server-side render: return placeholder to match structure
-  if (!isMounted) {
-    return (
-      <div className="my-6">
-        <div className="border border-border rounded-xl overflow-hidden shadow-lg bg-card">
-          <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <span className="text-sm font-medium text-muted-foreground">Live Example</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border text-foreground">
-                ☀️
-              </div>
-              <div className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border text-foreground">
-                Copy
-              </div>
-              <a
-                href={storyId ? `https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(storyId)}` : "https://jarllyng.github.io/nostromo-ui/storybook-static/"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
-              >
-                Storybook →
-              </a>
-            </div>
-          </div>
-          <div className="p-6 bg-background relative min-h-[100px]" suppressHydrationWarning>
-            <div 
-              data-theme={theme}
-              data-color-scheme={currentColorScheme}
-              className="min-h-[100px]"
-            />
-          </div>
-          <details className="border-t border-border">
-            <summary className="px-4 py-3 bg-muted/30 cursor-pointer text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center justify-between">
-              <span>View Code</span>
-              <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div className="bg-neutral-950 border-t border-border">
-              <div className="min-h-[200px] p-5 text-neutral-400 text-sm font-mono" suppressHydrationWarning>
-                {code.split('\n').slice(0, 10).join('\n')}...
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-    )
-  }
-
-  // Client-side render: full LiveProvider
+  // Wrap entire LiveProvider in ClientOnly to prevent hydration mismatch
   return (
-    <div className="my-6">
-      <LiveProvider code={transformedCode} scope={scope} noInline={needsNoInline}>
+    <ClientOnly
+      fallback={
+        <div className="my-6">
+          <div className="border border-border rounded-xl overflow-hidden shadow-lg bg-card">
+            <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+                <span className="text-sm font-medium text-muted-foreground">Live Example</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border text-foreground">
+                  ☀️
+                </div>
+                <div className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border text-foreground">
+                  Copy
+                </div>
+                <a
+                  href={storyId ? `https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(storyId)}` : "https://jarllyng.github.io/nostromo-ui/storybook-static/"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
+                >
+                  Storybook →
+                </a>
+              </div>
+            </div>
+            <div className="p-6 bg-background relative min-h-[100px]">
+              <div 
+                data-theme={theme}
+                data-color-scheme={currentColorScheme}
+                className="min-h-[100px]"
+              />
+            </div>
+            <details className="border-t border-border">
+              <summary className="px-4 py-3 bg-muted/30 cursor-pointer text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center justify-between">
+                <span>View Code</span>
+                <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="bg-neutral-950 border-t border-border">
+                <div className="min-h-[200px] p-5 text-neutral-400 text-sm font-mono">
+                  {code.split('\n').slice(0, 10).join('\n')}...
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      }
+    >
+      <div className="my-6">
+        <LiveProvider code={transformedCode} scope={scope} noInline={needsNoInline}>
         <div className="border border-border rounded-xl overflow-hidden shadow-lg bg-card">
           {/* Panel header with actions */}
           <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
@@ -480,6 +471,7 @@ export default function LiveCode({
         </div>
       </LiveProvider>
     </div>
+    </ClientOnly>
   )
 }
 
