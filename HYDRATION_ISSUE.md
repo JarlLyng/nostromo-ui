@@ -175,7 +175,8 @@ export default function Example() {
   - ✅ CSS injection kører kun efter mount
   - ✅ TypeScript compilation: Ingen fejl
   - ✅ Static pages: Alle 46 sider genereret korrekt
-  - ⏳ Browser test mangler: Kør `pnpm -C docs start` og check i browseren, at error #418/#423 ikke længere vises på fx `/components`.
+  - ✅ Server test: Statisk build kan serves med `npx serve@latest out -l 3000`
+  - ⏳ Browser test mangler: Åbn http://localhost:3000/components/ i browseren og check console for error #418/#423.
 
 ## Fejlens Effekt
 
