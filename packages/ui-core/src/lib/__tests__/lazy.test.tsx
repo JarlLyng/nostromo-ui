@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import * as React from 'react';
 import { LazyComponent, withLazyLoading, useLazyLoading, LazyInView } from '../lazy';
 
@@ -7,39 +7,67 @@ import { LazyComponent, withLazyLoading, useLazyLoading, LazyInView } from '../l
 const mockObserve = vi.fn();
 const mockUnobserve = vi.fn();
 const mockDisconnect = vi.fn();
-let mockCallback: IntersectionObserverCallback | null = null;
+let mockObserverInstance: MockIntersectionObserver | null = null;
 
 class MockIntersectionObserver {
   root = null;
   rootMargin = '';
   thresholds: number[] = [];
+  private _callback: IntersectionObserverCallback | null = null;
   
   constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
-    mockCallback = callback;
+    this._callback = callback;
+    // Store instance reference - eslint-disable needed for test mock
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    mockObserverInstance = this;
     if (options?.rootMargin) this.rootMargin = options.rootMargin;
     if (options?.threshold !== undefined) {
       this.thresholds = Array.isArray(options.threshold) ? options.threshold : [options.threshold];
     }
   }
   
-  observe(...args: Parameters<IntersectionObserver['observe']>) {
-    return mockObserve(...args);
+  observe(element: Element) {
+    mockObserve(element);
   }
   
-  unobserve(...args: Parameters<IntersectionObserver['unobserve']>) {
-    return mockUnobserve(...args);
+  unobserve(element: Element) {
+    mockUnobserve(element);
   }
   
   disconnect() {
+    this._callback = null;
+    mockObserverInstance = null;
     return mockDisconnect();
   }
   
   takeRecords() {
     return [];
   }
+  
+  // Helper method to safely trigger callback
+  triggerCallback(entries: IntersectionObserverEntry[]) {
+    if (this._callback) {
+      this._callback(entries, this as unknown as IntersectionObserver);
+    }
+  }
 }
 
 window.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
+
+// Cleanup between tests
+beforeEach(() => {
+  mockObserve.mockClear();
+  mockUnobserve.mockClear();
+  mockDisconnect.mockClear();
+  mockObserverInstance = null;
+});
+
+afterEach(() => {
+  // Ensure all observers are disconnected
+  if (mockObserverInstance) {
+    mockObserverInstance.disconnect();
+  }
+});
 
 // Component that throws an error
 const ThrowError = () => {
@@ -205,10 +233,6 @@ describe('useLazyLoading', () => {
   });
 
   it('disconnects observer on unmount', () => {
-    const mockDisconnectLocal = vi.fn();
-    const originalDisconnect = mockDisconnect;
-    mockDisconnect.mockImplementation(mockDisconnectLocal);
-
     const TestComponent = () => {
       const { ref } = useLazyLoading();
       
@@ -216,10 +240,13 @@ describe('useLazyLoading', () => {
     };
 
     const { unmount } = render(<TestComponent />);
+    
+    // Wait for observer to be set up
+    expect(mockObserve).toHaveBeenCalled();
+    
     unmount();
 
-    expect(mockDisconnectLocal).toHaveBeenCalled();
-    mockDisconnect.mockImplementation(originalDisconnect);
+    expect(mockDisconnect).toHaveBeenCalled();
   });
 });
 
@@ -253,10 +280,26 @@ describe('LazyInView', () => {
       </LazyInView>
     );
 
-    // Simulate intersection
-    if (mockCallback) {
-      mockCallback([{ isIntersecting: true } as IntersectionObserverEntry], null as IntersectionObserver | null);
-    }
+    // Wait for observer to be set up
+    await waitFor(() => {
+      expect(mockObserve).toHaveBeenCalled();
+    });
+
+    // Simulate intersection safely using act
+    await act(async () => {
+      if (mockObserverInstance) {
+        const entry = {
+          isIntersecting: true,
+          intersectionRatio: 1,
+          boundingClientRect: {} as DOMRectReadOnly,
+          rootBounds: null,
+          target: document.createElement('div'),
+          time: Date.now(),
+        } as IntersectionObserverEntry;
+        
+        mockObserverInstance.triggerCallback([entry]);
+      }
+    });
 
     await waitFor(() => {
       expect(screen.getByText('Lazy loaded successfully')).toBeInTheDocument();
