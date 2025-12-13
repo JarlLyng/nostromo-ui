@@ -25,8 +25,10 @@ pnpm -C docs build
 ### Step 2: Start Server
 ```bash
 cd docs
-pnpm start
+npx serve@latest out -p 3000
 ```
+
+**Note**: Da Next.js er konfigureret med `output: 'export'`, skal vi bruge `serve` i stedet for `next start`.
 
 **Forventet resultat**: Server starter på http://localhost:3000
 
