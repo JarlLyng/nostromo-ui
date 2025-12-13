@@ -156,9 +156,11 @@ export default function Example() {
 
 - **React Version**: 18.x (via Next.js)
 - **Next.js Version**: 14.x (via Nextra)
-- **react-live Version**: Seneste (tjek package.json)
+- **react-live Version**: ^4.1.8 (tjek `docs/package.json`)
+- **Nextra Version**: 2.13.2
 - **Build Type**: Static export (Next.js static HTML export)
 - **Fejl opstår**: Kun i production build, ikke i development
+- **Environment**: Production (minified React bundle)
 
 ## Fejlens Effekt
 
