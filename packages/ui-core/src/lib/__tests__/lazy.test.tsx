@@ -255,7 +255,7 @@ describe('LazyInView', () => {
 
     // Simulate intersection
     if (mockCallback) {
-      mockCallback([{ isIntersecting: true } as IntersectionObserverEntry], null as any);
+      mockCallback([{ isIntersecting: true } as IntersectionObserverEntry], null as IntersectionObserver | null);
     }
 
     await waitFor(() => {

@@ -12,7 +12,8 @@ afterEach(() => {
 });
 
 // Mock IntersectionObserver
-global.IntersectionObserver = class IntersectionObserver {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).IntersectionObserver = class IntersectionObserver {
   root = null;
   rootMargin = '';
   thresholds = [];
@@ -27,7 +28,8 @@ global.IntersectionObserver = class IntersectionObserver {
 } as typeof IntersectionObserver;
 
 // Mock ResizeObserver
-global.ResizeObserver = class ResizeObserver {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).ResizeObserver = class ResizeObserver {
   constructor() {}
   disconnect() {}
   observe() {}
