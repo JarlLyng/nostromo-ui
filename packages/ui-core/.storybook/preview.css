@@ -297,6 +297,7 @@
   
   /* Semantic colors - these are what Button component uses */
   /* IMPORTANT: These must be HSL values (not wrapped in hsl()) for Tailwind to work */
+  /* Light mode defaults */
   --color-background: 0 0% 100%;
   --color-foreground: 0 0% 3.9%;
   --color-border: 0 0% 89.8%;
@@ -321,4 +322,26 @@
   --color-warning-foreground: 0 0% 9%;
   --color-error-foreground: 0 0% 98%;
   --color-info-foreground: 0 0% 98%;
+}
+
+/* Dark mode overrides - ensure proper contrast */
+[data-theme="nostromo"][data-color-scheme="dark"],
+@media (prefers-color-scheme: dark) {
+  [data-theme="nostromo"] {
+    /* Dark mode semantic colors - fixed contrast issues */
+    --color-background: 0 0% 9%; /* Dark background */
+    --color-foreground: 0 0% 98%; /* Light text */
+    --color-muted: 0 0% 85%;
+    --color-muted-foreground: 0 0% 65%;
+    --color-popover: 0 0% 85%; /* Dark popover */
+    --color-popover-foreground: 0 0% 98%; /* Light text on dark popover */
+    --color-card: 0 0% 85%;
+    --color-card-foreground: 0 0% 98%;
+    --color-border: 0 0% 75%;
+    --color-primary-foreground: 0 0% 9%; /* Dark text on light primary */
+    --color-destructive-foreground: 0 0% 9%; /* Dark text on light destructive */
+    --color-success-foreground: 0 0% 9%;
+    --color-error-foreground: 0 0% 9%;
+    --color-info-foreground: 0 0% 9%;
+  }
 }
