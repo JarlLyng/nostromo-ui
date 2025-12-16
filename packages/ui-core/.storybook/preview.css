@@ -206,14 +206,49 @@
 
 /* Ensure CSS variables are available even if theme attribute is missing */
 /* This is a fallback to ensure colors work even if data-theme isn't set immediately */
-:root {
-  /* Brand colors - fallback if theme CSS import fails */
+/* CRITICAL: These must match the format expected by Tailwind (HSL values without hsl() wrapper) */
+:root,
+[data-theme="nostromo"] {
+  /* Brand colors - base palette */
+  --color-brand-50: 262 84% 95%;
+  --color-brand-100: 262 84% 90%;
+  --color-brand-200: 262 84% 80%;
+  --color-brand-300: 262 84% 70%;
+  --color-brand-400: 262 84% 60%;
   --color-brand-500: 262 84% 52%;
   --color-brand-600: 262 84% 45%;
+  --color-brand-700: 262 84% 35%;
+  --color-brand-800: 262 84% 25%;
+  --color-brand-900: 262 84% 15%;
+  --color-brand-950: 262 84% 8%;
+  
+  /* Error colors */
+  --color-error-50: 0 84% 95%;
+  --color-error-100: 0 84% 90%;
+  --color-error-200: 0 84% 80%;
+  --color-error-300: 0 84% 70%;
+  --color-error-400: 0 84% 60%;
   --color-error-500: 0 84% 60%;
   --color-error-600: 0 84% 50%;
+  --color-error-700: 0 84% 40%;
+  --color-error-800: 0 84% 30%;
+  --color-error-900: 0 84% 20%;
+  --color-error-950: 0 84% 10%;
+  
+  /* Success colors */
+  --color-success-50: 142 76% 95%;
+  --color-success-100: 142 76% 90%;
+  --color-success-200: 142 76% 80%;
+  --color-success-300: 142 76% 70%;
+  --color-success-400: 142 76% 60%;
   --color-success-500: 142 76% 36%;
   --color-success-600: 142 76% 30%;
+  --color-success-700: 142 76% 25%;
+  --color-success-800: 142 76% 20%;
+  --color-success-900: 142 76% 15%;
+  --color-success-950: 142 76% 8%;
+  
+  /* Neutral colors */
   --color-neutral-50: 0 0% 98%;
   --color-neutral-100: 0 0% 96%;
   --color-neutral-200: 0 0% 90%;
@@ -225,6 +260,9 @@
   --color-neutral-800: 0 0% 15%;
   --color-neutral-900: 0 0% 9%;
   --color-neutral-950: 0 0% 4%;
+  
+  /* Semantic colors - these are what Button component uses */
+  /* IMPORTANT: These must be HSL values (not wrapped in hsl()) for Tailwind to work */
   --color-background: 0 0% 100%;
   --color-foreground: 0 0% 3.9%;
   --color-border: 0 0% 89.8%;
@@ -236,4 +274,17 @@
   --color-muted-foreground: 0 0% 45.1%;
   --color-destructive: 0 84% 60%;
   --color-destructive-foreground: 0 0% 98%;
+  --color-ring: 262 84% 52%;
+  
+  /* Additional semantic colors */
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 0 0% 3.9%;
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 0 0% 3.9%;
+  --color-accent: 0 0% 96.1%;
+  --color-accent-foreground: 0 0% 9%;
+  --color-success-foreground: 0 0% 98%;
+  --color-warning-foreground: 0 0% 9%;
+  --color-error-foreground: 0 0% 98%;
+  --color-info-foreground: 0 0% 98%;
 }
