@@ -199,6 +199,40 @@
 [data-theme="nostromo"] .gap-3 { gap: 0.75rem; }
 [data-theme="nostromo"] .gap-4 { gap: 1rem; }
 
+/* Explicit CSS rules for semantic colors used by Button component */
+/* These ensure colors work even if Tailwind doesn't generate the classes */
+[data-theme="nostromo"] .bg-primary { background-color: hsl(var(--color-primary)); }
+[data-theme="nostromo"] .bg-primary\/90 { background-color: hsl(var(--color-primary) / 0.9); }
+[data-theme="nostromo"] .text-primary-foreground { color: hsl(var(--color-primary-foreground)); }
+[data-theme="nostromo"] .bg-secondary { background-color: hsl(var(--color-secondary)); }
+[data-theme="nostromo"] .bg-secondary\/80 { background-color: hsl(var(--color-secondary) / 0.8); }
+[data-theme="nostromo"] .text-secondary-foreground { color: hsl(var(--color-secondary-foreground)); }
+[data-theme="nostromo"] .bg-destructive { background-color: hsl(var(--color-destructive)); }
+[data-theme="nostromo"] .bg-destructive\/90 { background-color: hsl(var(--color-destructive) / 0.9); }
+[data-theme="nostromo"] .text-destructive-foreground { color: hsl(var(--color-destructive-foreground)); }
+[data-theme="nostromo"] .bg-muted { background-color: hsl(var(--color-muted)); }
+[data-theme="nostromo"] .bg-muted\/80 { background-color: hsl(var(--color-muted) / 0.8); }
+[data-theme="nostromo"] .text-muted-foreground { color: hsl(var(--color-muted-foreground)); }
+[data-theme="nostromo"] .bg-success { background-color: hsl(var(--color-success-500)); }
+[data-theme="nostromo"] .bg-success-600 { background-color: hsl(var(--color-success-600)); }
+[data-theme="nostromo"] .text-success-foreground { color: hsl(var(--color-success-foreground)); }
+[data-theme="nostromo"] .border-primary { border-color: hsl(var(--color-primary)); }
+[data-theme="nostromo"] .border-primary\/20 { border-color: hsl(var(--color-primary) / 0.2); }
+[data-theme="nostromo"] .border-destructive { border-color: hsl(var(--color-destructive)); }
+[data-theme="nostromo"] .border-destructive\/20 { border-color: hsl(var(--color-destructive) / 0.2); }
+[data-theme="nostromo"] .border-border { border-color: hsl(var(--color-border)); }
+[data-theme="nostromo"] .text-foreground { color: hsl(var(--color-foreground)); }
+[data-theme="nostromo"] .bg-background { background-color: hsl(var(--color-background)); }
+[data-theme="nostromo"] .bg-transparent { background-color: transparent; }
+[data-theme="nostromo"] .hover\:bg-primary\/90:hover { background-color: hsl(var(--color-primary) / 0.9); }
+[data-theme="nostromo"] .hover\:bg-secondary\/80:hover { background-color: hsl(var(--color-secondary) / 0.8); }
+[data-theme="nostromo"] .hover\:bg-destructive\/90:hover { background-color: hsl(var(--color-destructive) / 0.9); }
+[data-theme="nostromo"] .hover\:bg-muted:hover { background-color: hsl(var(--color-muted)); }
+[data-theme="nostromo"] .hover\:bg-muted\/80:hover { background-color: hsl(var(--color-muted) / 0.8); }
+[data-theme="nostromo"] .hover\:text-primary:hover { color: hsl(var(--color-primary)); }
+[data-theme="nostromo"] .hover\:border-primary:hover { border-color: hsl(var(--color-primary)); }
+[data-theme="nostromo"] .focus-visible\:ring-ring:focus-visible { --tw-ring-color: hsl(var(--color-ring)); }
+
 /* Diagnostic utility - indicates Tailwind config is loaded */
 .__tw-config-loaded {
   outline: 3px solid lime !important;
