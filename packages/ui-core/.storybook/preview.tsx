@@ -12,19 +12,19 @@ const preview: Preview = {
       default: 'light',
     },
   },
-  // Set theme on HTML element - ensure it's set before render
+  // Theme is set synchronously in preview-head.html, but ensure it's still set
+  // in case preview-head.html doesn't execute (defensive programming)
   decorators: [
     (Story) => {
-      React.useEffect(() => {
-        if (typeof document !== 'undefined') {
+      // Set theme synchronously if not already set (fallback)
+      if (typeof document !== 'undefined') {
+        if (!document.documentElement.hasAttribute('data-theme')) {
           document.documentElement.setAttribute('data-theme', 'nostromo');
-          document.documentElement.setAttribute('data-color-scheme', 'light');
-          // Force CSS variable update
-          const style = getComputedStyle(document.documentElement);
-          const brand500 = style.getPropertyValue('--color-brand-500');
-          console.log('Theme applied, --color-brand-500:', brand500);
         }
-      }, []);
+        if (!document.documentElement.hasAttribute('data-color-scheme')) {
+          document.documentElement.setAttribute('data-color-scheme', 'light');
+        }
+      }
       return React.createElement(Story);
     },
   ],

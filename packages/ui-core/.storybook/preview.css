@@ -204,3 +204,37 @@
 .__tw-config-loaded {
   outline: 3px solid lime !important;
 }
+
+/* Ensure CSS variables are available even if theme attribute is missing */
+/* This is a fallback to ensure colors work even if data-theme isn't set immediately */
+:root {
+  /* Brand colors - fallback if theme CSS import fails */
+  --color-brand-500: 262 84% 52%;
+  --color-brand-600: 262 84% 45%;
+  --color-error-500: 0 84% 60%;
+  --color-error-600: 0 84% 50%;
+  --color-success-500: 142 76% 36%;
+  --color-success-600: 142 76% 30%;
+  --color-neutral-50: 0 0% 98%;
+  --color-neutral-100: 0 0% 96%;
+  --color-neutral-200: 0 0% 90%;
+  --color-neutral-300: 0 0% 83%;
+  --color-neutral-400: 0 0% 64%;
+  --color-neutral-500: 0 0% 45%;
+  --color-neutral-600: 0 0% 32%;
+  --color-neutral-700: 0 0% 25%;
+  --color-neutral-800: 0 0% 15%;
+  --color-neutral-900: 0 0% 9%;
+  --color-neutral-950: 0 0% 4%;
+  --color-background: 0 0% 100%;
+  --color-foreground: 0 0% 3.9%;
+  --color-border: 0 0% 89.8%;
+  --color-primary: 262 84% 52%;
+  --color-primary-foreground: 0 0% 98%;
+  --color-secondary: 0 0% 96.1%;
+  --color-secondary-foreground: 0 0% 9%;
+  --color-muted: 0 0% 96.1%;
+  --color-muted-foreground: 0 0% 45.1%;
+  --color-destructive: 0 84% 60%;
+  --color-destructive-foreground: 0 0% 98%;
+}
