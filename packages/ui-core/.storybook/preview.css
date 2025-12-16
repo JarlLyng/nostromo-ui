@@ -1,6 +1,5 @@
 /* Storybook CSS imports */
-/* Import theme FIRST - CSS variables must be available before Tailwind processes */
-@import '@nostromo/ui-tw/themes/nostromo.css';
+/* Note: Theme CSS is imported in preview.tsx to ensure it loads before Tailwind */
 /* Import base.css which includes Tailwind directives and CSS reset */
 @import '@nostromo/ui-tw/base.css';
 /* Import Tailwind CSS v4 - this generates all utility classes */

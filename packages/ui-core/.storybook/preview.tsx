@@ -1,6 +1,10 @@
 import type { Preview } from '@storybook/react';
 import React from 'react';
 
+// Import theme CSS FIRST to ensure CSS variables are available
+// This must be imported before preview.css to ensure variables are defined
+import '@nostromo/ui-tw/themes/nostromo.css';
+
 // Import CSS - this triggers Tailwind processing
 import './preview.css';
 
