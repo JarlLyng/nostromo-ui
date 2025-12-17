@@ -219,6 +219,18 @@ Storybook uses React + Vite with Tailwind CSS v4. Configuration is in `packages/
 
 For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-issues).
 
+## Analytics (Umami)
+
+- Provider: Umami (`https://umami-iamjarl.vercel.app/script.js`)
+- Helper: `docs/lib/analytics.ts` exposes `track(event, data?)` (no-op on SSR)
+- Events implemented on docs site:
+  - `theme_change`: fired when `data-theme` or `data-color-scheme` changes (payload: `{ theme, colorScheme }`)
+  - `cta_get_started`: `/getting-started` hero CTA (payload: `{ placement: 'hero' }`)
+  - `cta_storybook`: Storybook hero CTA (payload: `{ placement: 'hero' }`)
+  - `cta_view_components`: “View All Components” link (payload: `{ placement: 'components_list' }`)
+- How to emit custom events:
+  - Import `track` and call `track('event_name', { optional: 'data' })` inside client-side handlers.
+
 ## CI/CD Pipeline
 
 ### GitHub Actions CI Workflow
