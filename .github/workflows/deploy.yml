@@ -3,8 +3,6 @@ name: Deploy Documentation to GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # Prevent concurrent deployments to avoid conflicts
 concurrency:
@@ -18,6 +16,7 @@ permissions:
 
 jobs:
   build-and-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

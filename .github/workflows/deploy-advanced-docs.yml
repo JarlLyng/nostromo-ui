@@ -9,14 +9,6 @@ on:
       - 'packages/ui-tw/**'
       - 'packages/ui-marketing/**'
       - '.github/workflows/deploy-advanced-docs.yml'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'packages/docs-advanced/**'
-      - 'packages/ui-core/**'
-      - 'packages/ui-tw/**'
-      - 'packages/ui-marketing/**'
-      - '.github/workflows/deploy-advanced-docs.yml'
 
 # Prevent concurrent deployments to avoid conflicts
 concurrency:
@@ -25,6 +17,7 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
