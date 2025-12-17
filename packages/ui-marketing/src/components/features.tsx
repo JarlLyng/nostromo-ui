@@ -121,9 +121,9 @@ export const Features: React.FC<FeaturesProps> = ({
         )}
         
         <div className={cn(featuresGridVariants({ columns }))}>
-          {features.map((feature) => (
+          {features.map((feature, idx) => (
             <div
-              key={feature.id}
+              key={feature.id || idx}
               className={cn(featureCardVariants({ variant: cardVariant }))}
             >
               {feature.icon && (

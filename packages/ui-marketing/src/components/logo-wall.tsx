@@ -164,9 +164,9 @@ export const LogoWall: React.FC<LogoWallProps> = ({
           })
         )}
       >
-        {displayLogos.map((logo) => (
+        {displayLogos.map((logo, idx) => (
           <div
-            key={logo.id}
+            key={logo.id || idx}
             className={cn(
               logoItemVariants({ 
                 variant: itemVariant, 

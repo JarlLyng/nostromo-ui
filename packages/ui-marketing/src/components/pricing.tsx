@@ -171,9 +171,9 @@ export const Pricing: React.FC<PricingProps> = ({
         )}
         
         <div className={cn(pricingGridVariants({ columns }))}>
-          {plans.map((plan) => (
+          {plans.map((plan, idx) => (
             <div
-              key={plan.id}
+              key={plan.id || idx}
               className={cn(
                 pricingCardVariants({ 
                   variant: plan.popular ? 'popular' : 'default' 
