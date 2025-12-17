@@ -157,7 +157,7 @@ export const Gallery: React.FC<GalleryProps> = ({
       >
         {images.map((image, index) => (
           <div
-            key={image.id}
+            key={image.id || index}
             className={cn(
               galleryItemVariants({ 
                 aspectRatio: itemAspectRatio, 

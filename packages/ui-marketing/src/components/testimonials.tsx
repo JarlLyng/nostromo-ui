@@ -115,9 +115,9 @@ export const Testimonials: React.FC<TestimonialsProps> = ({
         )}
         
         <div className={cn(testimonialsGridVariants({ columns }))}>
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, idx) => (
             <div
-              key={testimonial.id}
+              key={testimonial.id || idx}
               className={cn(testimonialCardVariants({ variant: cardVariant }))}
             >
               {showRatings && testimonial.rating && (
