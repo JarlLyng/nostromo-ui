@@ -189,17 +189,21 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
                 tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
-              {dataKeys.map((key, index) => (
-                <Line
-                  key={key}
-                  type="monotone"
-                  dataKey={key}
-                  stroke={colors[index % colors.length]}
-                  strokeWidth={strokeWidth}
-                  dot={{ r: 4, fill: colors[index % colors.length] }}
-                  activeDot={{ r: 6 }}
-                />
-              ))}
+              {dataKeys.map((key, index) => {
+                const colorIndex = index % colors.length;
+                const color = (colors[colorIndex] ?? defaultColors[colorIndex % defaultColors.length]) as string;
+                return (
+                  <Line
+                    key={key}
+                    type="monotone"
+                    dataKey={key}
+                    stroke={color}
+                    strokeWidth={strokeWidth}
+                    dot={{ r: 4, fill: color }}
+                    activeDot={{ r: 6 }}
+                  />
+                );
+              })}
               {showLegend && <Legend content={<CustomLegend />} />}
             </LineChart>
           );
@@ -218,13 +222,17 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
                 tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
-              {dataKeys.map((key, index) => (
-                <Bar
-                  key={key}
-                  dataKey={key}
-                  fill={colors[index % colors.length]}
-                />
-              ))}
+              {dataKeys.map((key, index) => {
+                const colorIndex = index % colors.length;
+                const color = (colors[colorIndex] ?? defaultColors[colorIndex % defaultColors.length]) as string;
+                return (
+                  <Bar
+                    key={key}
+                    dataKey={key}
+                    fill={color}
+                  />
+                );
+              })}
               {showLegend && <Legend content={<CustomLegend />} />}
             </BarChart>
           );
