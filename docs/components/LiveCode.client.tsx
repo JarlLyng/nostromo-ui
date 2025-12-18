@@ -285,9 +285,14 @@ export default function LiveCodeClient({
         .trim();
       
       // For noInline mode, react-live expects the last expression to be what gets rendered
-      // We need to return the component invocation, not just the JSX
-      // Wrap in an IIFE that returns the component
-      if (!transformedCode.includes('return') && !transformedCode.includes(`<${componentName}`)) {
+      // We need to ensure the component is returned as the last expression
+      // Extract the return statement and use it directly
+      const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
+      if (returnMatch) {
+        // Use the return value directly
+        transformedCode = returnMatch[1].trim();
+      } else {
+        // Fallback: wrap in IIFE that returns the component
         transformedCode = `(() => {
   ${transformedCode}
   return <${componentName} />
@@ -301,36 +306,38 @@ export default function LiveCodeClient({
       
       // If we still have a function, try to extract it
       const fallbackMatch = transformedCode.match(/function\s+(\w+)\s*\(/);
-      if (fallbackMatch && !transformedCode.includes(`<${fallbackMatch[1]}`)) {
-        transformedCode = `(() => {
+      if (fallbackMatch) {
+        const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
+        if (returnMatch) {
+          transformedCode = returnMatch[1].trim();
+        } else {
+          transformedCode = `(() => {
   ${transformedCode}
   return <${fallbackMatch[1]} />
 })()`;
-      } else if (!fallbackMatch) {
-        // Last resort: wrap in component and return it
-        transformedCode = `(() => {
-  const Component = () => (${transformedCode})
-  return <Component />
-})()`;
+        }
+      } else {
+        // Last resort: use as-is if it's already JSX
+        transformedCode = transformedCode;
       }
     }
   } else if (needsNoInline && !transformedCode.includes('export default')) {
     // Code was already transformed (imports removed), but still needs noInline
     // Check if it's a function declaration
     const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
-    if (functionMatch && !transformedCode.includes(`<${functionMatch[1]}`)) {
+    if (functionMatch) {
       const componentName = functionMatch[1];
-      transformedCode = `(() => {
+      const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
+      if (returnMatch) {
+        transformedCode = returnMatch[1].trim();
+      } else {
+        transformedCode = `(() => {
   ${transformedCode}
   return <${componentName} />
 })()`;
-    } else if (!functionMatch) {
-      // No function found, wrap in component
-      transformedCode = `(() => {
-  const Component = () => (${transformedCode})
-  return <Component />
-})()`;
+      }
     }
+    // If no function found, assume it's already JSX and use as-is
   }
   
 
