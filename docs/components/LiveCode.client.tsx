@@ -369,31 +369,16 @@ export default function LiveCodeClient({
       }
     } else if (arrowFunctionMatch) {
       // Handle arrow functions: const ComponentName = () => { ... }
+      // For noInline mode, we keep the function definition and let render() removal handle the rest
       const componentName = arrowFunctionMatch[1];
-      const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:365',message:'Arrow function found',data:{componentName,hasReturnMatch:!!returnMatch},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:365',message:'Arrow function found - keeping definition',data:{componentName,transformedCodeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
       // #endregion
       
-      if (returnMatch) {
-        // Extract the return value
-        transformedCode = returnMatch[1].trim();
-        
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:370',message:'Extracted return from arrow function',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-        // #endregion
-      } else {
-        // Fallback: wrap in IIFE that returns the component
-        transformedCode = `(() => {
-  ${transformedCode}
-  return <${componentName} />
-})()`;
-        
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:378',message:'Using IIFE for arrow function',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-        // #endregion
-      }
+      // Don't extract return value - keep the full function definition
+      // The render() removal will handle replacing render(<Component />) with <Component />
+      // This ensures react-live has both the function definition and the component call
     }
     // If no function found, assume it's already JSX and use as-is
   }
