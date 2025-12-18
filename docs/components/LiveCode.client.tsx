@@ -25,8 +25,6 @@ const scope = {
   useRef: React.useRef,
   useCallback: React.useCallback,
   useMemo: React.useMemo,
-  // Helper function for rendering
-  render: (component: React.ReactElement) => component,
 }
 
 export interface LiveCodeProps {
@@ -286,9 +284,10 @@ export default function LiveCodeClient({
         .replace(/export\s+default\s+function\s+(\w+)/g, 'function $1')
         .trim();
       
-      // Add render() call at the end - this is required for noInline mode
-      if (!transformedCode.includes('render(')) {
-        transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
+      // For noInline mode, react-live expects the component to be the last expression
+      // So we just return the component directly
+      if (!transformedCode.endsWith(`<${componentName} />`)) {
+        transformedCode = `${transformedCode}\n\n<${componentName} />`;
       }
     } else {
       // Fallback: try to extract any default export
@@ -298,30 +297,23 @@ export default function LiveCodeClient({
       
       // If we still have a function, try to extract it
       const fallbackMatch = transformedCode.match(/function\s+(\w+)\s*\(/);
-      if (fallbackMatch && !transformedCode.includes('render(')) {
-        transformedCode = `${transformedCode}\n\nrender(<${fallbackMatch[1]} />)`;
-      } else if (!transformedCode.includes('render(')) {
-        // Last resort: wrap in render() - create a component and render it
-        const lastBraceIndex = transformedCode.lastIndexOf('}');
-        if (lastBraceIndex > 0) {
-          // Extract the return statement or component body
-          transformedCode = `const Component = () => ${transformedCode}\n\nrender(<Component />)`;
-        } else {
-          // If no braces, assume it's JSX
-          transformedCode = `const Component = () => (${transformedCode})\n\nrender(<Component />)`;
-        }
+      if (fallbackMatch && !transformedCode.endsWith(`<${fallbackMatch[1]} />`)) {
+        transformedCode = `${transformedCode}\n\n<${fallbackMatch[1]} />`;
+      } else if (!fallbackMatch) {
+        // Last resort: wrap in component and return it
+        transformedCode = `const Component = () => (${transformedCode})\n\n<Component />`;
       }
     }
   } else if (needsNoInline && !transformedCode.includes('export default')) {
     // Code was already transformed (imports removed), but still needs noInline
     // Check if it's a function declaration
     const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
-    if (functionMatch && !transformedCode.includes('render(')) {
+    if (functionMatch && !transformedCode.endsWith(`<${functionMatch[1]} />`)) {
       const componentName = functionMatch[1];
-      transformedCode = `${transformedCode}\n\nrender(<${componentName} />)`;
-    } else if (!functionMatch && !transformedCode.includes('render(')) {
+      transformedCode = `${transformedCode}\n\n<${componentName} />`;
+    } else if (!functionMatch) {
       // No function found, wrap in component
-      transformedCode = `const Component = () => (${transformedCode})\n\nrender(<Component />)`;
+      transformedCode = `const Component = () => (${transformedCode})\n\n<Component />`;
     }
   }
   
