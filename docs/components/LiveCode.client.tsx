@@ -348,8 +348,14 @@ export default function LiveCodeClient({
     }
   } else if (needsNoInline && !transformedCode.includes('export default')) {
     // Code was already transformed (imports removed), but still needs noInline
-    // Check if it's a function declaration
+    // Check if it's a function declaration or arrow function
     const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
+    const arrowFunctionMatch = transformedCode.match(/const\s+(\w+)\s*=\s*(\([^)]*\)|\(\))\s*=>\s*{/);
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:350',message:'Checking for function declarations',data:{hasFunctionMatch:!!functionMatch,hasArrowFunctionMatch:!!arrowFunctionMatch,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    
     if (functionMatch) {
       const componentName = functionMatch[1];
       const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
@@ -361,6 +367,33 @@ export default function LiveCodeClient({
   return <${componentName} />
 })()`;
       }
+    } else if (arrowFunctionMatch) {
+      // Handle arrow functions: const ComponentName = () => { ... }
+      const componentName = arrowFunctionMatch[1];
+      const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:365',message:'Arrow function found',data:{componentName,hasReturnMatch:!!returnMatch},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+      // #endregion
+      
+      if (returnMatch) {
+        // Extract the return value
+        transformedCode = returnMatch[1].trim();
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:370',message:'Extracted return from arrow function',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+      } else {
+        // Fallback: wrap in IIFE that returns the component
+        transformedCode = `(() => {
+  ${transformedCode}
+  return <${componentName} />
+})()`;
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:378',message:'Using IIFE for arrow function',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+        // #endregion
+      }
     }
     // If no function found, assume it's already JSX and use as-is
   }
@@ -370,7 +403,7 @@ export default function LiveCodeClient({
   // render() is not in scope and causes React error #31 (trying to render an object)
   if (transformedCode.includes('render(')) {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:368',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
     // Match render(<ComponentName />) or render(<ComponentName />) at the end (most common case)
@@ -379,10 +412,11 @@ export default function LiveCodeClient({
     if (renderMatch) {
       const componentName = renderMatch[1];
       // Replace render(<ComponentName />) with just <ComponentName />
+      // This ensures react-live gets the component directly
       transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, `<${componentName} />`);
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:375',message:'Replaced render() with component',data:{componentName,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:402',message:'Replaced render() with component',data:{componentName,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
     } else {
       // Try to match render() with any JSX expression inside (handles complex JSX)
@@ -394,7 +428,7 @@ export default function LiveCodeClient({
         transformedCode = transformedCode.replace(/render\s*\(\s*[^)]+\s*\)\s*;?\s*$/m, jsxContent);
         
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:383',message:'Replaced render() with JSX content',data:{jsxContent,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:410',message:'Replaced render() with JSX content',data:{jsxContent,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
         // #endregion
       } else {
         // Fallback: just remove the render() call entirely
@@ -402,7 +436,7 @@ export default function LiveCodeClient({
         transformedCode = transformedCode.replace(/render\s*\([^)]*\)\s*;?\s*/g, '').trim();
         
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:390',message:'Removed render() call (fallback)',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:417',message:'Removed render() call (fallback)',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
         // #endregion
       }
     }
