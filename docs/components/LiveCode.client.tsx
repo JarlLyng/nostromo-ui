@@ -25,6 +25,9 @@ const scope = {
   useRef: React.useRef,
   useCallback: React.useCallback,
   useMemo: React.useMemo,
+  // Add render() function to scope - in noInline mode, react-live expects the last expression
+  // to be what gets rendered, so render() should just return its argument
+  render: (element: React.ReactElement) => element,
 }
 
 export interface LiveCodeProps {
@@ -383,57 +386,14 @@ export default function LiveCodeClient({
     // If no function found, assume it's already JSX and use as-is
   }
   
-  // Remove render() calls - react-live doesn't need them in noInline mode
-  // In noInline mode, react-live expects the last expression to be the component to render
-  // render() is not in scope and causes React error #31 (trying to render an object)
-  // We need to replace render(<Component />) with just <Component />
-  // CRITICAL: This must happen AFTER all other transformations to ensure we catch all render() calls
-  // Use a more aggressive approach: find render() and extract the JSX inside, regardless of format
-  while (transformedCode.includes('render(')) {
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
-    
-    // Find the opening parenthesis after "render"
-    const renderIndex = transformedCode.indexOf('render(');
-    if (renderIndex === -1) break;
-    
-    // Find the matching closing parenthesis
-    // We need to handle nested parentheses in JSX like render(<Component prop={<Nested />} />)
-    let depth = 0;
-    let startIndex = renderIndex + 'render('.length;
-    let endIndex = startIndex;
-    
-    for (let i = startIndex; i < transformedCode.length; i++) {
-      const char = transformedCode[i];
-      if (char === '(') depth++;
-      else if (char === ')') {
-        if (depth === 0) {
-          endIndex = i;
-          break;
-        }
-        depth--;
-      }
-    }
-    
-    // Extract the JSX content inside render()
-    const jsxContent = transformedCode.substring(startIndex, endIndex).trim();
-    const fullRenderCall = transformedCode.substring(renderIndex, endIndex + 1);
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:401',message:'Extracted JSX from render()',data:{jsxContent:jsxContent.substring(0,100),fullRenderCall:fullRenderCall.substring(0,50)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
-    
-    // Replace render(...) with just the JSX content
-    transformedCode = transformedCode.replace(fullRenderCall, jsxContent);
-    
-    // Also remove any trailing semicolon that might be after render()
-    transformedCode = transformedCode.replace(/;\s*$/, '').trim();
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:406',message:'Replaced render() with JSX',data:{transformedCode:transformedCode.substring(0,300),stillHasRender:transformedCode.includes('render(')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
-  }
+  // In noInline mode, react-live expects the last expression to be what gets rendered
+  // We've added render() to the scope, so it will work correctly
+  // However, for cleaner code, we can still remove render() calls if desired
+  // But since render() is now in scope, we don't need to remove it - it will just return the element
+  // This is actually the correct approach: render() in scope means the code works as-is
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'render() is now in scope - no need to remove',data:{transformedCode:transformedCode.substring(0,300),hasRender:transformedCode.includes('render(')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
 
   // #region agent log
   fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:360',message:'Final transformed code',data:{transformedCode:transformedCode.substring(0,300),needsNoInline,codeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'ALL'})}).catch(()=>{});
