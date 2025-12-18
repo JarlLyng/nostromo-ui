@@ -259,6 +259,10 @@ export default function LiveCodeClient({
   // Remove import statements since components are already in scope
   let transformedCode = code.trim()
   
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:260',message:'Original code received',data:{code:code.substring(0,200),codeLength:code.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
+  
   // Remove all import statements (they're not needed since components are in scope)
   // Split by lines and filter out import lines
   const lines = transformedCode.split('\n')
@@ -269,8 +273,16 @@ export default function LiveCodeClient({
   })
   transformedCode = filteredLines.join('\n').trim()
   
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:272',message:'After removing imports',data:{transformedCode:transformedCode.substring(0,200),hasRender:transformedCode.includes('render(')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
+  
   // Auto-detect if code needs noInline (has export default or complex JSX)
   const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
+  
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:275',message:'noInline detection',data:{needsNoInline,noInline,hasExportDefault:code.includes('export default'),hasFragment:code.includes('React.Fragment')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+  // #endregion
   
   // Handle export default functions - must check BEFORE removing export default
   if (needsNoInline && transformedCode.includes('export default')) {
@@ -288,15 +300,28 @@ export default function LiveCodeClient({
       // We need to ensure the component is returned as the last expression
       // Extract the return statement and use it directly
       const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:290',message:'Return match check',data:{hasReturnMatch:!!returnMatch,componentName,transformedCodeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
+      
       if (returnMatch) {
         // Use the return value directly
         transformedCode = returnMatch[1].trim();
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:293',message:'Extracted return value',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
       } else {
         // Fallback: wrap in IIFE that returns the component
         transformedCode = `(() => {
   ${transformedCode}
   return <${componentName} />
 })()`;
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:296',message:'Using IIFE fallback',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
       }
     } else {
       // Fallback: try to extract any default export
@@ -340,6 +365,52 @@ export default function LiveCodeClient({
     // If no function found, assume it's already JSX and use as-is
   }
   
+  // Remove render() calls - react-live doesn't need them in noInline mode
+  // In noInline mode, react-live expects the last expression to be the component to render
+  // render() is not in scope and causes React error #31 (trying to render an object)
+  if (transformedCode.includes('render(')) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:368',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    
+    // Match render(<ComponentName />) or render(<ComponentName />) at the end (most common case)
+    // This regex matches: render(<ComponentName />) or render(<ComponentName/>) at end of string
+    const renderMatch = transformedCode.match(/render\s*\(\s*<(\w+)\s*\/?>\s*\)\s*;?\s*$/m);
+    if (renderMatch) {
+      const componentName = renderMatch[1];
+      // Replace render(<ComponentName />) with just <ComponentName />
+      transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, `<${componentName} />`);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:375',message:'Replaced render() with component',data:{componentName,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+    } else {
+      // Try to match render() with any JSX expression inside (handles complex JSX)
+      // This matches render(...anything...) at the end
+      const renderMatchAny = transformedCode.match(/render\s*\(\s*([^)]+)\s*\)\s*;?\s*$/m);
+      if (renderMatchAny) {
+        const jsxContent = renderMatchAny[1].trim();
+        // Replace render(...) with just the JSX content
+        transformedCode = transformedCode.replace(/render\s*\(\s*[^)]+\s*\)\s*;?\s*$/m, jsxContent);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:383',message:'Replaced render() with JSX content',data:{jsxContent,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
+      } else {
+        // Fallback: just remove the render() call entirely
+        // This handles cases where render() might be in the middle of code
+        transformedCode = transformedCode.replace(/render\s*\([^)]*\)\s*;?\s*/g, '').trim();
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:390',message:'Removed render() call (fallback)',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
+      }
+    }
+  }
+
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:360',message:'Final transformed code',data:{transformedCode:transformedCode.substring(0,300),needsNoInline,codeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'ALL'})}).catch(()=>{});
+  // #endregion
 
   if (!mounted) {
     return null
