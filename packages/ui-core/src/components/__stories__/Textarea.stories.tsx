@@ -181,7 +181,7 @@ export const Controlled: Story = {
         <Textarea 
           {...args} 
           value={value} 
-          onChange={(e) => setValue(e.target.value)} 
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)} 
         />
         <p className="text-sm text-muted-foreground">
           Character count: {value.length}

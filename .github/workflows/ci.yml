@@ -31,67 +31,7 @@ jobs:
       
     - name: Run linter
       run: |
-        set +e
-        # Run lint and capture both output and exit code
-        pnpm lint > lint-output.txt 2>&1
-        LINT_EXIT=$?
-        echo ""
-        echo "=== Lint Exit Code: $LINT_EXIT ==="
-        echo ""
-        echo "=== Checking lint output for errors ==="
-        grep -E "(✖|problems|errors)" lint-output.txt | head -10 || echo "No error patterns found"
-        echo ""
-        
-        # Check output for actual errors (not just warnings)
-        # ESLint output format: "✖ 46 problems (0 errors, 46 warnings)"
-        # Turbo may prefix with package name: "@nostromo/ui-core:lint: ✖ 22 problems (0 errors, 22 warnings)"
-        
-        # Extract all error counts from the output
-        ERROR_COUNTS=$(grep -oE "\([0-9]+ errors" lint-output.txt | grep -oE "[0-9]+" || echo "")
-        echo "=== Error counts found: '$ERROR_COUNTS' ==="
-        
-        # Check if we found any error counts
-        if [ -z "$ERROR_COUNTS" ]; then
-          # No error count found - check if there are any actual error messages (not warnings)
-          if grep -E "✖.*problems.*\([1-9]" lint-output.txt > /dev/null 2>&1; then
-            echo "⚠️  Found problems but no error count pattern - checking for actual errors"
-            # Check if there are any lines with "error" that aren't "0 errors" or "warnings"
-            if grep -E "error" lint-output.txt | grep -v "0 errors" | grep -v "warnings" | grep -v "warning" > /dev/null 2>&1; then
-              echo "❌ Found actual error messages - treating as failure"
-              exit 1
-            else
-              echo "✅ No actual errors found (warnings only)"
-              exit 0
-            fi
-          elif [ $LINT_EXIT -eq 0 ]; then
-            echo "✅ Linter passed (no errors or warnings found)"
-            exit 0
-          else
-            # Exit code non-zero but no errors found - likely just warnings
-            # ESLint returns exit code 1 even with only warnings
-            echo "✅ Linter exit code $LINT_EXIT but no errors found (warnings only - acceptable)"
-            exit 0
-          fi
-        fi
-        
-        # Check each error count
-        MAX_ERRORS=0
-        for count in $ERROR_COUNTS; do
-          echo "Found error count: $count"
-          if [ "$count" -gt "$MAX_ERRORS" ]; then
-            MAX_ERRORS=$count
-          fi
-        done
-        
-        echo "=== Max errors across all packages: $MAX_ERRORS ==="
-        
-        if [ "$MAX_ERRORS" -eq 0 ]; then
-          echo "✅ Linter completed with warnings only (0 errors found)"
-          exit 0
-        else
-          echo "❌ Linter found $MAX_ERRORS error(s)"
-          exit 1
-        fi
+        pnpm lint
       id: lint
       
     - name: Run type check
@@ -129,33 +69,23 @@ jobs:
       id: build
       
     - name: Check bundle sizes
-      continue-on-error: true
       run: |
         cd packages/ui-core
         pnpm size 2>&1 | tee size-output.txt
-        exit ${PIPESTATUS[0]}
       id: size
       
     - name: Upload error logs
-      if: always()
+      if: failure()
       uses: actions/upload-artifact@v4
-      continue-on-error: true
       with:
         name: ci-error-logs
         path: |
-          lint-output.txt
           typecheck-output.txt
           test-output.txt
           build-output.txt
           packages/ui-core/size-output.txt
         if-no-files-found: ignore
         retention-days: 7
-      
-    - name: Fail if any step failed
-      if: steps.lint.outcome == 'failure' || steps.typecheck.outcome == 'failure' || steps.tests.outcome == 'failure' || steps.build.outcome == 'failure' || steps.size.outcome == 'failure'
-      run: |
-        echo "One or more checks failed. See artifacts for details."
-        exit 1
 
   accessibility:
     runs-on: ubuntu-latest
@@ -177,26 +107,17 @@ jobs:
       run: pnpm install --frozen-lockfile
       
     - name: Run accessibility tests
-      continue-on-error: true
       run: |
         cd packages/ui-core
         pnpm test:a11y 2>&1 | tee a11y-output.txt
-        exit ${PIPESTATUS[0]}
       id: a11y
       
     - name: Upload error logs
-      if: always()
+      if: failure()
       uses: actions/upload-artifact@v4
-      continue-on-error: true
       with:
         name: a11y-error-logs
         path: packages/ui-core/a11y-output.txt
         if-no-files-found: ignore
         retention-days: 7
-      
-    - name: Fail if step failed
-      if: steps.a11y.outcome == 'failure'
-      run: |
-        echo "Accessibility tests failed. See artifacts for details."
-        exit 1
 

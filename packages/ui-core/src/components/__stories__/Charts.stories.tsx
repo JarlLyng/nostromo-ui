@@ -219,7 +219,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Chart Type</label>
             <select
               value={chartType}
-              onChange={(e) => setChartType(e.target.value as 'line' | 'bar' | 'pie' | 'area')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setChartType(e.target.value as 'line' | 'bar' | 'pie' | 'area')}
               className="border border-neutral-300 rounded px-3 py-1"
             >
               <option value="line">Line</option>
@@ -236,7 +236,7 @@ export const InteractivePlayground: Story = {
                   <input
                     type="checkbox"
                     checked={selectedKeys.includes(key)}
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       if (e.target.checked) {
                         setSelectedKeys([...selectedKeys, key]);
                       } else {

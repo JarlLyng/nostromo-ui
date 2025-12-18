@@ -358,7 +358,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'outlined' | 'filled' | 'ghost')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedVariant(e.target.value as 'default' | 'outlined' | 'filled' | 'ghost')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="default">Default</option>
@@ -372,7 +372,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Size</label>
             <select
               value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value as 'sm' | 'md' | 'lg')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedSize(e.target.value as 'sm' | 'md' | 'lg')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="sm">Small</option>
@@ -385,7 +385,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Type</label>
             <select
               value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value as 'single' | 'multiple')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedType(e.target.value as 'single' | 'multiple')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="single">Single</option>
@@ -398,7 +398,7 @@ export const InteractivePlayground: Story = {
             <input
               type="checkbox"
               checked={collapsible}
-              onChange={(e) => setCollapsible(e.target.checked)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCollapsible(e.target.checked)}
               className="mt-1"
             />
           </div>

@@ -169,6 +169,15 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
     const chartHeight = height || (size === 'sm' ? 192 : size === 'lg' ? 384 : size === 'xl' ? 500 : 256);
 
     const renderChart = () => {
+      // SSR guard: recharts requires browser environment
+      if (typeof window === 'undefined') {
+        return (
+          <div className="flex items-center justify-center h-full text-muted-foreground">
+            <p>Chart loading...</p>
+          </div>
+        );
+      }
+
       const commonProps = {
         data,
         margin: { top: 5, right: 5, left: 5, bottom: 5 }

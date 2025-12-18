@@ -300,7 +300,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'destructive')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedVariant(e.target.value as 'default' | 'destructive')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="default">Default</option>
@@ -315,7 +315,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Position</label>
             <select
               value={selectedPosition}
-              onChange={(e) => setSelectedPosition(e.target.value as 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedPosition(e.target.value as 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center')}
               className="w-full border border-gray-300 rounded px-3 py-2"
             >
               <option value="top-left">Top Left</option>
@@ -332,7 +332,7 @@ export const InteractivePlayground: Story = {
             <input
               type="number"
               value={duration}
-              onChange={(e) => setDuration(Number(e.target.value))}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDuration(Number(e.target.value))}
               className="w-full border border-gray-300 rounded px-3 py-2"
               min="0"
               step="1000"
@@ -344,7 +344,7 @@ export const InteractivePlayground: Story = {
             <input
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
           </div>
@@ -353,7 +353,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Description</label>
             <textarea
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
               className="w-full border border-gray-300 rounded px-3 py-2"
               rows={3}
             />

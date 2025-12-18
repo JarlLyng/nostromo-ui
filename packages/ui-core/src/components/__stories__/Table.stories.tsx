@@ -318,7 +318,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={selectedVariant}
-              onChange={(e) => setSelectedVariant(e.target.value as 'default' | 'striped' | 'bordered' | 'hover')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedVariant(e.target.value as 'default' | 'striped' | 'bordered' | 'hover')}
               className="border border-gray-300 rounded px-3 py-1"
             >
               <option value="default">Default</option>
@@ -331,7 +331,7 @@ export const InteractivePlayground: Story = {
             <label className="block text-sm font-medium mb-2">Size</label>
             <select
               value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value as 'sm' | 'md' | 'lg')}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedSize(e.target.value as 'sm' | 'md' | 'lg')}
               className="border border-gray-300 rounded px-3 py-1"
             >
               <option value="sm">Small</option>

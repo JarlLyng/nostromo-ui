@@ -249,7 +249,7 @@ export const Interactive: Story = {
             <label className="block text-sm font-medium mb-2">Icon</label>
             <select 
               value={selectedIcon} 
-              onChange={(e) => setSelectedIcon(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedIcon(e.target.value)}
               className="w-full p-2 border rounded"
             >
               {iconNames.slice(0, 20).map(name => (
@@ -262,7 +262,7 @@ export const Interactive: Story = {
             <label className="block text-sm font-medium mb-2">Size</label>
             <select 
               value={selectedSize} 
-              onChange={(e) => setSelectedSize(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedSize(e.target.value)}
               className="w-full p-2 border rounded"
             >
               <option value="xs">XS</option>
@@ -279,7 +279,7 @@ export const Interactive: Story = {
             <label className="block text-sm font-medium mb-2">Weight</label>
             <select 
               value={selectedWeight} 
-              onChange={(e) => setSelectedWeight(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedWeight(e.target.value)}
               className="w-full p-2 border rounded"
             >
               <option value="thin">Thin</option>
@@ -295,7 +295,7 @@ export const Interactive: Story = {
             <label className="block text-sm font-medium mb-2">Color</label>
             <select 
               value={selectedColor} 
-              onChange={(e) => setSelectedColor(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSelectedColor(e.target.value)}
               className="w-full p-2 border rounded"
             >
               <option value="current">Current</option>

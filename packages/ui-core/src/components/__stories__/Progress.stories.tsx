@@ -243,7 +243,7 @@ export const InteractiveDemo: Story = {
               min="0"
               max="100"
               value={value}
-              onChange={(e) => setValue(Number(e.target.value))}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(Number(e.target.value))}
               className="w-full"
             />
           </div>
@@ -252,7 +252,7 @@ export const InteractiveDemo: Story = {
             <label className="block text-sm font-medium mb-2">Variant</label>
             <select
               value={variant}
-              onChange={(e) => setVariant(e.target.value as typeof variant)}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setVariant(e.target.value as typeof variant)}
               className="w-full p-2 border rounded"
             >
               <option value="default">Default</option>
@@ -271,7 +271,7 @@ export const InteractiveDemo: Story = {
               <input
                 type="checkbox"
                 checked={glow}
-                onChange={(e) => setGlow(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGlow(e.target.checked)}
                 className="mr-2"
               />
               Glow Effect
@@ -280,7 +280,7 @@ export const InteractiveDemo: Story = {
               <input
                 type="checkbox"
                 checked={animated}
-                onChange={(e) => setAnimated(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAnimated(e.target.checked)}
                 className="mr-2"
               />
               Animated

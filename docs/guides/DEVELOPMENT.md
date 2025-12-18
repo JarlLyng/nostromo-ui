@@ -25,13 +25,12 @@ This file describes how to set up Nostromo UI for development, including install
 ### Installation
 
 #### For Using Nostromo UI in Your Project
-```bash
-# Install packages
-pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
-# Or with npm/yarn
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
-yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+> **⚠️ Note**: Packages are currently workspace-only. npm publishing is planned for future release. For now, use the workspace setup below.
+
+```bash
+# Future npm installation (planned)
+# pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
 
 #### For Developing Nostromo UI

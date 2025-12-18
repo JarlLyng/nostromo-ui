@@ -19,8 +19,17 @@ The name is inspired by the spaceship *USCSS Nostromo* from the movie **Alien** 
 ## 🚀 Quick Start
 
 ### Installation
+
+> **⚠️ Note**: Packages are currently workspace-only. For development setup, see [Development Guide](docs/guides/DEVELOPMENT.md). npm publishing is planned for future release.
+
 ```bash
-pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+# Workspace setup (for development)
+git clone https://github.com/JarlLyng/nostromo-ui.git
+cd nostromo-ui
+pnpm install
+
+# Future npm installation (planned)
+# pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 ```
 
 ### Setup
@@ -37,7 +46,7 @@ module.exports = {
 };
 
 // main.tsx
-import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/base.css";
 import "@nostromo/ui-tw/themes/nostromo.css";
 
 // Component usage
@@ -100,9 +109,27 @@ All components are built with:
 
 ## 📊 Project Status
 
-**Current Phase**: Stable Release (1.0.0) 🎉
-**Next Milestone**: Advanced Features (1.1.0)
-**Current Focus**: Production use and community growth
+**Current Phase**: Stable Release (1.0.0) 🎉  
+**Next Milestone**: Performance & Optimization (1.2.0)  
+**Current Focus**: Code quality improvements and npm publishing
+
+### 📋 Factual Status Table
+
+| Metric | Status | Details |
+|--------|--------|---------|
+| **Core Components** | ✅ | 30 components implemented |
+| **Marketing Components** | ✅ | 6 components implemented |
+| **Themes** | ✅ | 4 themes (Nostromo, Mother, LV-426, Sulaco) |
+| **Core Tests** | ✅ | 842 tests passing (61 test files) |
+| **Marketing Tests** | ⚠️ | 7 smoke tests (minimal coverage) |
+| **TypeScript** | ✅ | Zero errors, strict mode enabled |
+| **Linting** | ⚠️ | Some warnings in stories/test files |
+| **CI/CD** | ✅ | All critical checks passing |
+| **Documentation** | ✅ | 12 guides + live examples |
+| **Distribution** | ⚠️ | Workspace-only (npm publishing planned) |
+| **Bundle Size** | ✅ | ~404 KB (with tree-shaking) |
+
+> **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
 
 ### 🎉 **Stable Release**
 Nostromo UI 1.0.0 is now production-ready! After extensive testing and community feedback, we're proud to offer a complete, stable component library.
@@ -130,13 +157,13 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **Build System** - tsup with ESM + CJS output and type definitions
 - **Nextra Documentation Site** - Modern documentation with all 30 components, interactive Storybook examples and live previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
-- **Code Quality** - All ESLint warnings resolved, TypeScript strict mode, CI/CD pipeline
+- **Code Quality** - TypeScript strict mode, CI/CD pipeline (some lint warnings remain - see status table below)
 
 ### 🎯 **Latest Improvements**
 - **WCAG AA Compliance** - All components optimized for WCAG 2.1 AA contrast requirements in both light and dark modes
 - **Semantic Color Tokens** - Complete refactoring to semantic color tokens (background, foreground, muted, primary, etc.) for better theming and accessibility
 - **Advanced Components** - DataTable, Calendar, and Charts components fully implemented and tested
-- **Code Quality** - All ESLint warnings fixed, TypeScript errors resolved, bundle size optimized
+- **Code Quality** - TypeScript errors resolved, bundle size optimized
 - **CI/CD** - Improved lint detection, removed deprecated configurations, all checks passing
 - **Documentation** - All components now have live, interactive examples (StorybookEmbed + LiveCode)
 - **Live Examples** - Every component documentation page includes multiple live, editable examples

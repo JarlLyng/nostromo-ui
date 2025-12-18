@@ -522,5 +522,5 @@ Icon.displayName = 'Icon';
 // Export icon names for TypeScript autocomplete
 export const iconNames = Object.keys(iconMap) as IconName[];
 
-// Export individual icons for direct import
-export * from 'phosphor-react';
+// Note: For additional icons, import directly from 'phosphor-react' to avoid bundling unused icons
+// Example: import { CustomIcon } from 'phosphor-react'

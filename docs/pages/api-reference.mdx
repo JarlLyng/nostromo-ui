@@ -1,34 +1,38 @@
 # API Reference
 
+> **Note**: This is a partial API reference showing the most commonly used props. For complete type definitions, see the TypeScript types exported from each component. All components extend standard HTML attributes where applicable.
+
 Complete API documentation for all Nostromo UI components.
+
+> **Tip**: Import components from `@nostromo/ui-core` or `@nostromo/ui-marketing` to get full TypeScript support and autocomplete.
 
 ## Core Components
 
 ### Button
 ```tsx
-interface ButtonProps {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
-  size?: 'default' | 'sm' | 'lg'
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'subtle'
+  size?: 'default' | 'sm' | 'lg' | 'xl' | 'icon'
+  state?: 'default' | 'loading' | 'success' | 'error'
   disabled?: boolean
   loading?: boolean
+  loadingText?: string
   children: React.ReactNode
   className?: string
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 ```
 
 ### Input
 ```tsx
-interface InputProps {
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url'
-  placeholder?: string
-  disabled?: boolean
-  value?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  variant?: 'default' | 'error' | 'success' | 'subtle'
+  inputSize?: 'sm' | 'default' | 'lg'
+  error?: boolean
+  success?: boolean
+  helperText?: string
+  label?: string
   className?: string
-  id?: string
-  name?: string
-  required?: boolean
+  // ... all standard HTML input attributes
 }
 ```
 
@@ -152,11 +156,16 @@ interface CheckboxProps {
 ### Icon
 ```tsx
 interface IconProps {
-  name: string
-  size?: 'sm' | 'md' | 'lg'
+  name: IconName  // See iconNames export for available icons (~170 icons)
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+  weight?: 'thin' | 'light' | 'regular' | 'bold' | 'fill' | 'duotone'
+  color?: 'current' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'muted'
   className?: string
-  onClick?: (event: React.MouseEvent<SVGElement>) => void
+  // ... all standard SVG attributes
 }
+
+// Note: For icons not in iconMap, import directly from 'phosphor-react'
+// Example: import { CustomIcon } from 'phosphor-react'
 ```
 
 ### Label
@@ -428,7 +437,13 @@ interface HeroProps {
   title: string
   subtitle?: string
   cta?: React.ReactNode
-  background?: string
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  variant?: 'default' | 'muted' | 'accent'
+  contentAlign?: 'left' | 'center' | 'right'
+  titleSize?: 'sm' | 'md' | 'lg' | 'xl'
+  subtitleSize?: 'sm' | 'md' | 'lg'
+  backgroundImage?: string
+  overlay?: boolean
   className?: string
 }
 ```
@@ -437,10 +452,18 @@ interface HeroProps {
 ```tsx
 interface FeaturesProps {
   features: Array<{
+    id: string
     title: string
     description: string
     icon?: React.ReactNode
+    iconVariant?: 'default' | 'accent' | 'muted' | 'success' | 'warning' | 'error'
   }>
+  title?: string
+  subtitle?: string
+  columns?: 1 | 2 | 3 | 4
+  variant?: 'default' | 'muted' | 'accent'
+  cardVariant?: 'default' | 'accent' | 'muted'
+  centered?: boolean
   className?: string
 }
 ```
@@ -474,13 +497,37 @@ interface LogoWallProps {
 ```tsx
 interface PricingProps {
   plans: Array<{
+    id: string
     name: string
-    price: string
-    description: string
-    features: string[]
-    cta: React.ReactNode
+    description?: string
+    price: {
+      monthly: number
+      yearly?: number
+    }
+    currency?: string
+    period?: string
+    features: Array<{
+      id: string
+      name: string
+      included: boolean
+    }>
+    cta: {
+      text: string
+      href?: string
+      onClick?: () => void
+    }
+    badge?: {
+      text: string
+      variant?: 'default' | 'accent' | 'success' | 'warning'
+    }
     popular?: boolean
   }>
+  title?: string
+  subtitle?: string
+  columns?: 1 | 2 | 3 | 4
+  variant?: 'default' | 'muted' | 'accent'
+  showYearly?: boolean
+  onToggleBilling?: (yearly: boolean) => void
   className?: string
 }
 ```
@@ -489,11 +536,20 @@ interface PricingProps {
 ```tsx
 interface TestimonialsProps {
   testimonials: Array<{
-    content: string
-    author: string
+    id: string
+    name: string
     role: string
+    company?: string
+    content: string
     avatar?: string
+    rating?: number
   }>
+  title?: string
+  subtitle?: string
+  columns?: 1 | 2 | 3 | 4
+  variant?: 'default' | 'muted' | 'accent'
+  cardVariant?: 'default' | 'accent' | 'muted'
+  showRatings?: boolean
   className?: string
 }
 ```

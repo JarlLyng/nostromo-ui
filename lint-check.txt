@@ -1,0 +1,7 @@
+Scope: 4 of 5 workspace projects
+packages/ui-tw lint$ eslint src --ext .ts,.tsx
+packages/ui-tw lint: Done
+packages/ui-core lint$ eslint src
+packages/ui-core lint: Done
+packages/ui-marketing lint$ eslint src --ext .ts,.tsx
+packages/ui-marketing lint: Done
