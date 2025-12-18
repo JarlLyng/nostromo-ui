@@ -284,10 +284,14 @@ export default function LiveCodeClient({
         .replace(/export\s+default\s+function\s+(\w+)/g, 'function $1')
         .trim();
       
-      // For noInline mode, react-live expects the component to be the last expression
-      // So we just return the component directly
-      if (!transformedCode.endsWith(`<${componentName} />`)) {
-        transformedCode = `${transformedCode}\n\n<${componentName} />`;
+      // For noInline mode, react-live expects the last expression to be what gets rendered
+      // We need to return the component invocation, not just the JSX
+      // Wrap in an IIFE that returns the component
+      if (!transformedCode.includes('return') && !transformedCode.includes(`<${componentName}`)) {
+        transformedCode = `(() => {
+  ${transformedCode}
+  return <${componentName} />
+})()`;
       }
     } else {
       // Fallback: try to extract any default export
@@ -297,23 +301,35 @@ export default function LiveCodeClient({
       
       // If we still have a function, try to extract it
       const fallbackMatch = transformedCode.match(/function\s+(\w+)\s*\(/);
-      if (fallbackMatch && !transformedCode.endsWith(`<${fallbackMatch[1]} />`)) {
-        transformedCode = `${transformedCode}\n\n<${fallbackMatch[1]} />`;
+      if (fallbackMatch && !transformedCode.includes(`<${fallbackMatch[1]}`)) {
+        transformedCode = `(() => {
+  ${transformedCode}
+  return <${fallbackMatch[1]} />
+})()`;
       } else if (!fallbackMatch) {
         // Last resort: wrap in component and return it
-        transformedCode = `const Component = () => (${transformedCode})\n\n<Component />`;
+        transformedCode = `(() => {
+  const Component = () => (${transformedCode})
+  return <Component />
+})()`;
       }
     }
   } else if (needsNoInline && !transformedCode.includes('export default')) {
     // Code was already transformed (imports removed), but still needs noInline
     // Check if it's a function declaration
     const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
-    if (functionMatch && !transformedCode.endsWith(`<${functionMatch[1]} />`)) {
+    if (functionMatch && !transformedCode.includes(`<${functionMatch[1]}`)) {
       const componentName = functionMatch[1];
-      transformedCode = `${transformedCode}\n\n<${componentName} />`;
+      transformedCode = `(() => {
+  ${transformedCode}
+  return <${componentName} />
+})()`;
     } else if (!functionMatch) {
       // No function found, wrap in component
-      transformedCode = `const Component = () => (${transformedCode})\n\n<Component />`;
+      transformedCode = `(() => {
+  const Component = () => (${transformedCode})
+  return <Component />
+})()`;
     }
   }
   
