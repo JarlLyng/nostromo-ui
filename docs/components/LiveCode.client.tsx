@@ -386,44 +386,39 @@ export default function LiveCodeClient({
   // Remove render() calls - react-live doesn't need them in noInline mode
   // In noInline mode, react-live expects the last expression to be the component to render
   // render() is not in scope and causes React error #31 (trying to render an object)
+  // We need to replace render(<Component />) with just <Component />
   if (transformedCode.includes('render(')) {
     // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
-    // Match render(<ComponentName />) or render(<ComponentName />) at the end (most common case)
-    // This regex matches: render(<ComponentName />) or render(<ComponentName/>) at end of string
-    const renderMatch = transformedCode.match(/render\s*\(\s*<(\w+)\s*\/?>\s*\)\s*;?\s*$/m);
+    // More robust regex that matches render() with any JSX inside, including multiline
+    // Matches: render(<Component />), render(<Component/>), render( <Component /> ), etc.
+    // This regex uses [\s\S]*? to match any characters including newlines (non-greedy)
+    const renderMatch = transformedCode.match(/render\s*\(\s*([\s\S]+?)\s*\)\s*;?\s*$/m);
+    
     if (renderMatch) {
-      const componentName = renderMatch[1];
-      // Replace render(<ComponentName />) with just <ComponentName />
-      // This ensures react-live gets the component directly
-      transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, `<${componentName} />`);
+      const jsxContent = renderMatch[1].trim();
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:402',message:'Replaced render() with component',data:{componentName,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:401',message:'Extracted JSX from render()',data:{jsxContent:jsxContent.substring(0,100),renderMatchLength:renderMatch[0].length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
+      
+      // Replace the entire render() call with just the JSX content
+      // Use the full match (renderMatch[0]) to replace exactly what was matched
+      transformedCode = transformedCode.replace(renderMatch[0], jsxContent);
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:406',message:'Replaced render() with JSX',data:{transformedCode:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
     } else {
-      // Try to match render() with any JSX expression inside (handles complex JSX)
-      // This matches render(...anything...) at the end
-      const renderMatchAny = transformedCode.match(/render\s*\(\s*([^)]+)\s*\)\s*;?\s*$/m);
-      if (renderMatchAny) {
-        const jsxContent = renderMatchAny[1].trim();
-        // Replace render(...) with just the JSX content
-        transformedCode = transformedCode.replace(/render\s*\(\s*[^)]+\s*\)\s*;?\s*$/m, jsxContent);
-        
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:410',message:'Replaced render() with JSX content',data:{jsxContent,transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
-      } else {
-        // Fallback: just remove the render() call entirely
-        // This handles cases where render() might be in the middle of code
-        transformedCode = transformedCode.replace(/render\s*\([^)]*\)\s*;?\s*/g, '').trim();
-        
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:417',message:'Removed render() call (fallback)',data:{transformedCode:transformedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
-      }
+      // Fallback: try to remove render() calls more aggressively
+      // This handles edge cases where regex might not match
+      transformedCode = transformedCode.replace(/render\s*\([^)]*\)\s*;?\s*/g, '').trim();
+      
+      // #region agent log
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:412',message:'Removed render() call (fallback)',data:{transformedCode:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      // #endregion
     }
   }
 
