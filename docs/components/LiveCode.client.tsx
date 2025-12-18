@@ -369,16 +369,16 @@ export default function LiveCodeClient({
       }
     } else if (arrowFunctionMatch) {
       // Handle arrow functions: const ComponentName = () => { ... }
-      // For noInline mode, we keep the function definition and let render() removal handle the rest
+      // For noInline mode, we need to ensure the last expression is the component call
       const componentName = arrowFunctionMatch[1];
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:365',message:'Arrow function found - keeping definition',data:{componentName,transformedCodeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:365',message:'Arrow function found',data:{componentName,transformedCodeLength:transformedCode.length,hasRender:transformedCode.includes('render(')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
       // #endregion
       
-      // Don't extract return value - keep the full function definition
-      // The render() removal will handle replacing render(<Component />) with <Component />
-      // This ensures react-live has both the function definition and the component call
+      // If there's a render() call, we'll handle it in the render() removal section
+      // But we need to make sure the function definition is kept and render() is replaced
+      // The function definition must come before the component call
     }
     // If no function found, assume it's already JSX and use as-is
   }
@@ -387,21 +387,31 @@ export default function LiveCodeClient({
   // In noInline mode, react-live expects the last expression to be the component to render
   // render() is not in scope and causes React error #31 (trying to render an object)
   // We need to replace render(<Component />) with just <Component />
+  // CRITICAL: This must happen AFTER all other transformations to ensure we catch all render() calls
   if (transformedCode.includes('render(')) {
     // #region agent log
     fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:395',message:'Found render() call - removing',data:{transformedCodeBefore:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
     // #endregion
     
-    // More robust regex that matches render() with any JSX inside, including multiline
-    // Matches: render(<Component />), render(<Component/>), render( <Component /> ), etc.
-    // This regex uses [\s\S]*? to match any characters including newlines (non-greedy)
-    const renderMatch = transformedCode.match(/render\s*\(\s*([\s\S]+?)\s*\)\s*;?\s*$/m);
+    // Try multiple regex patterns to catch different render() patterns
+    // Pattern 1: render(<Component />) at end of string (most common)
+    let renderMatch = transformedCode.match(/render\s*\(\s*([\s\S]+?)\s*\)\s*;?\s*$/m);
+    
+    // Pattern 2: render(<Component />) anywhere in code (with newlines)
+    if (!renderMatch) {
+      renderMatch = transformedCode.match(/render\s*\(\s*([\s\S]+?)\s*\)\s*;?\s*(?=\n|$)/);
+    }
+    
+    // Pattern 3: render(<Component />) on a single line
+    if (!renderMatch) {
+      renderMatch = transformedCode.match(/render\s*\(\s*([^)]+)\s*\)\s*;?\s*/);
+    }
     
     if (renderMatch) {
       const jsxContent = renderMatch[1].trim();
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:401',message:'Extracted JSX from render()',data:{jsxContent:jsxContent.substring(0,100),renderMatchLength:renderMatch[0].length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:401',message:'Extracted JSX from render()',data:{jsxContent:jsxContent.substring(0,100),renderMatchLength:renderMatch[0].length,fullMatch:renderMatch[0].substring(0,50)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
       
       // Replace the entire render() call with just the JSX content
@@ -409,8 +419,17 @@ export default function LiveCodeClient({
       transformedCode = transformedCode.replace(renderMatch[0], jsxContent);
       
       // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:406',message:'Replaced render() with JSX',data:{transformedCode:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+      fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:406',message:'Replaced render() with JSX',data:{transformedCode:transformedCode.substring(0,300),stillHasRender:transformedCode.includes('render(')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
       // #endregion
+      
+      // If there are still render() calls, remove them aggressively
+      if (transformedCode.includes('render(')) {
+        transformedCode = transformedCode.replace(/render\s*\([^)]*\)\s*;?\s*/g, '').trim();
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:415',message:'Removed remaining render() calls',data:{transformedCode:transformedCode.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+        // #endregion
+      }
     } else {
       // Fallback: try to remove render() calls more aggressively
       // This handles edge cases where regex might not match
