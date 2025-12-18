@@ -7,9 +7,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 ## Quick Preview
 
-<LiveCode code={`import { Button, Badge, Card, CardContent, CardHeader, CardTitle } from '@nostromo/ui-core'
-
-export default function ComponentPreview() {
+<LiveCode noInline={true} code={`const ComponentPreview = () => {
   return (
     <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
@@ -34,7 +32,9 @@ export default function ComponentPreview() {
       </Card>
     </div>
   )
-}`} />
+}
+
+render(<ComponentPreview />)`} />
 
 ## Core Components (30)
 
@@ -368,4 +368,3 @@ All components are marked as **Stable**, meaning they are:
 - [API Reference](/api-reference) - Complete component API documentation
 - [Theming Guide](/theming) - Customize themes and design tokens
 - [Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/) - Interactive component playground
-
