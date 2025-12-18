@@ -419,6 +419,24 @@ export default function LiveCodeClient({
   fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:360',message:'Final transformed code',data:{transformedCode:transformedCode.substring(0,300),needsNoInline,codeLength:transformedCode.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'ALL'})}).catch(()=>{});
   // #endregion
 
+  // CRITICAL FIX: In noInline mode, react-live expects the last expression to be a component call or function
+  // If we just have JSX directly, it evaluates to a React element object which React can't render directly
+  // We need to wrap it in a function that returns the JSX, or ensure it's a component call
+  if (needsNoInline && transformedCode.trim().startsWith('<') && !transformedCode.includes('function') && !transformedCode.includes('=>')) {
+    // JSX directly - wrap in IIFE that returns it
+    const wrappedCode = `(() => { return ${transformedCode} })()`;
+    
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:425',message:'Wrapping JSX in IIFE for noInline',data:{original:transformedCode.substring(0,200),wrapped:wrappedCode.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+    // #endregion
+    
+    transformedCode = wrappedCode;
+  }
+
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/c0108656-f31a-4d05-928f-b611b83f9b07',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'LiveCode.client.tsx:432',message:'Code sent to LiveProvider',data:{transformedCode:transformedCode.substring(0,300),needsNoInline,codeStartsWithJSX:transformedCode.trim().startsWith('<')},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+  // #endregion
+
   if (!mounted) {
     return null
   }
