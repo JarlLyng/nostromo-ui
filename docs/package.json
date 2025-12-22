@@ -13,7 +13,7 @@
     "@nostromo/ui-core": "workspace:*",
     "@nostromo/ui-marketing": "workspace:*",
     "@nostromo/ui-tw": "workspace:*",
-    "next": "^14.2.35",
+    "next": "^16.1.0",
     "nextra": "2.13.2",
     "nextra-theme-docs": "2.13.2",
     "react": "^18.3.1",
