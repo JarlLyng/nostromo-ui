@@ -1,4 +1,3 @@
-import StorybookEmbed from '../../components/StorybookEmbed'
 import LiveCode from '../../components/LiveCode'
 
 # Input
@@ -31,13 +30,11 @@ export default function Example() {
 
 ## Live Examples
 
-<StorybookEmbed story="components-input--default" />
+<LiveCode code={`import { Input } from '@nostromo/ui-core'
 
-<StorybookEmbed story="components-input--all-variants" />
-
-<StorybookEmbed story="components-input--with-error" />
-
-## Code Examples
+export default function InputDefault() {
+  return <Input placeholder="Type something..." />
+}`} />
 
 <LiveCode code={`import { Input } from '@nostromo/ui-core'
 
@@ -48,6 +45,17 @@ export default function InputExamples() {
       <Input type="email" placeholder="Email" />
       <Input type="password" placeholder="Password" />
       <Input disabled placeholder="Disabled" />
+    </div>
+  )
+}`} />
+
+<LiveCode code={`import { Input } from '@nostromo/ui-core'
+
+export default function InputWithError() {
+  return (
+    <div className="space-y-4">
+      <Input placeholder="Email" error helperText="Please enter a valid email address" />
+      <Input placeholder="Password" type="password" error />
     </div>
   )
 }`} />

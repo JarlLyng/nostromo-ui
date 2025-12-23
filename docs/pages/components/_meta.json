@@ -1,5 +1,8 @@
 {
-  "index": "Overview",
+  "index": {
+    "title": "Overview",
+    "type": "page"
+  },
   "primitives": {
     "title": "Primitives",
     "type": "separator"

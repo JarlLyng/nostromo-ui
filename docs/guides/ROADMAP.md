@@ -154,7 +154,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Updated all internal links
   - [x] Improved documentation consistency
   - [x] Added live examples to all component documentation pages
-  - [x] Integrated StorybookEmbed for interactive component demos
+  - [x] Integrated LiveCode for interactive component demos (migrated from StorybookEmbed for better rendering)
   - [x] Added multiple LiveCode examples showing different variants and use cases
 
 - [x] **Bundle Size Management** ✅ **COMPLETED**

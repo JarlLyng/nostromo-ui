@@ -1,3 +1,11 @@
+/**
+ * @deprecated This component is deprecated. Use LiveCode component instead for better rendering and performance.
+ * StorybookEmbed uses iframes which cause rendering issues, CORS problems, and inconsistent styling.
+ * All component documentation pages have been migrated to use LiveCode.
+ * 
+ * If you need to reference Storybook, use direct links instead:
+ * <a href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/...">View in Storybook</a>
+ */
 import React, { useEffect, useRef, useState } from 'react'
 
 interface StorybookEmbedProps {

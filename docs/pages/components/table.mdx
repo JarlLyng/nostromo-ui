@@ -1,4 +1,3 @@
-import StorybookEmbed from '../../components/StorybookEmbed'
 import LiveCode from '../../components/LiveCode'
 
 # Table
@@ -41,11 +40,56 @@ export default function Example() {
 
 ## Live Examples
 
-<StorybookEmbed story="components-table--default" />
+<LiveCode code={`import { Table } from '@nostromo/ui-core'
 
-<StorybookEmbed story="components-table--striped" />
+export default function TableDefault() {
+  const data = [
+    { id: '1', name: 'John Doe', email: 'john@example.com' },
+    { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
+    { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
+  ]
+  
+  const columns = [
+    { key: 'name', title: 'Name', dataIndex: 'name' },
+    { key: 'email', title: 'Email', dataIndex: 'email' }
+  ]
+  
+  return <Table data={data} columns={columns} />
+}`} />
 
-<StorybookEmbed story="components-table--bordered" />
+<LiveCode code={`import { Table } from '@nostromo/ui-core'
+
+export default function TableStriped() {
+  const data = [
+    { id: '1', name: 'John Doe', email: 'john@example.com' },
+    { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
+    { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
+  ]
+  
+  const columns = [
+    { key: 'name', title: 'Name', dataIndex: 'name' },
+    { key: 'email', title: 'Email', dataIndex: 'email' }
+  ]
+  
+  return <Table data={data} columns={columns} variant="striped" />
+}`} />
+
+<LiveCode code={`import { Table } from '@nostromo/ui-core'
+
+export default function TableBordered() {
+  const data = [
+    { id: '1', name: 'John Doe', email: 'john@example.com' },
+    { id: '2', name: 'Jane Smith', email: 'jane@example.com' },
+    { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
+  ]
+  
+  const columns = [
+    { key: 'name', title: 'Name', dataIndex: 'name' },
+    { key: 'email', title: 'Email', dataIndex: 'email' }
+  ]
+  
+  return <Table data={data} columns={columns} variant="bordered" />
+}`} />
 
 ## Advanced Examples
 

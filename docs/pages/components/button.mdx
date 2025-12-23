@@ -1,4 +1,3 @@
-import StorybookEmbed from '../../components/StorybookEmbed'
 import LiveCode from '../../components/LiveCode'
 
 # Button
@@ -29,23 +28,21 @@ export default function Example() {
 
 ## Live Examples
 
-<StorybookEmbed story="components-button--default" />
+<LiveCode code={`import { Button } from '@nostromo/ui-core'
 
-<StorybookEmbed story="components-button--all-variants" />
-
-<StorybookEmbed story="components-button--all-sizes" />
-
-## Code Examples
+export default function ButtonDefault() {
+  return <Button>Click me</Button>
+}`} />
 
 <LiveCode code={`import { Button } from '@nostromo/ui-core'
 
 export default function ButtonExamples() {
   return (
-    <div className="space-x-4">
+    <div className="flex flex-wrap gap-4">
       <Button variant="default">Default</Button>
+      <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Destructive</Button>
       <Button variant="outline">Outline</Button>
-      <Button variant="secondary">Secondary</Button>
       <Button variant="ghost">Ghost</Button>
       <Button variant="link">Link</Button>
     </div>
