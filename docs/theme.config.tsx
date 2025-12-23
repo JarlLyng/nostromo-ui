@@ -3,9 +3,22 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: (
     <div className="flex items-center gap-2">
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold text-lg shadow-sm">
-        N
-      </div>
+      <img
+        src="/logo-black.svg"
+        alt="Nostromo UI"
+        width={32}
+        height={32}
+        className="dark:hidden"
+        style={{ display: 'inline-block' }}
+      />
+      <img
+        src="/logo-white.svg"
+        alt="Nostromo UI"
+        width={32}
+        height={32}
+        className="hidden dark:block"
+        style={{ display: 'inline-block' }}
+      />
       <span style={{ fontWeight: 600, fontSize: '1.2rem' }}>
         Nostromo UI
       </span>
