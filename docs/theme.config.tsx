@@ -1,10 +1,12 @@
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
+const basePath = process.env.NODE_ENV === 'production' ? '/nostromo-ui' : ''
+
 const config: DocsThemeConfig = {
   logo: (
     <div className="flex items-center gap-2">
       <img
-        src="/logo-black.svg"
+        src={`${basePath}/logo-black.svg`}
         alt="Nostromo UI"
         width={32}
         height={32}
@@ -12,7 +14,7 @@ const config: DocsThemeConfig = {
         style={{ display: 'inline-block' }}
       />
       <img
-        src="/logo-white.svg"
+        src={`${basePath}/logo-white.svg`}
         alt="Nostromo UI"
         width={32}
         height={32}
