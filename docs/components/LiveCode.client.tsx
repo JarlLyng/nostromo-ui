@@ -348,36 +348,18 @@ export default function LiveCodeClient({
       // We always wrap arrow functions in an IIFE to ensure proper evaluation
       const componentName = arrowFunctionMatch[1];
       
-      // If there's a render() call, extract the component name from it
-      // and replace render(<ComponentName />) with just <ComponentName />
+      // Remove any render() calls first
       if (transformedCode.includes('render(')) {
-        // Find render(<ComponentName />) and extract ComponentName
-        const renderMatch = transformedCode.match(/render\s*\(\s*<(\w+)\s*\/?>\s*\)/);
-        if (renderMatch && renderMatch[1] === componentName) {
-          // Replace render(<ComponentName />) with <ComponentName />
-          transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/, `<${componentName} />`);
-        }
+        transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '');
       }
       
       // Always wrap arrow functions in IIFE for noInline mode
       // This ensures react-live can properly evaluate the code
-      // Check if component is called at the end (with or without render())
-      const hasComponentCall = transformedCode.includes(`<${componentName}`) && 
-                               (transformedCode.match(new RegExp(`<${componentName}\\s*/?>`)) !== null);
-      
-      if (hasComponentCall) {
-        // Component is called - wrap everything in IIFE that returns the component
-        transformedCode = `(() => {
+      // The IIFE will execute the function definition and return the component call
+      transformedCode = `(() => {
   ${transformedCode}
   return <${componentName} />
 })()`;
-      } else {
-        // Component is not called - wrap and call it
-        transformedCode = `(() => {
-  ${transformedCode}
-  return <${componentName} />
-})()`;
-      }
     }
     // If no function found, assume it's already JSX and use as-is
   }
