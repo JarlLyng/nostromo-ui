@@ -348,10 +348,12 @@ export default function LiveCodeClient({
       // We always wrap arrow functions in an IIFE to ensure proper evaluation
       const componentName = arrowFunctionMatch[1];
       
-      // Remove any render() calls first
-      if (transformedCode.includes('render(')) {
-        transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '');
-      }
+      // Remove any render() calls or component calls at the end
+      // We'll add the component call in the IIFE return statement
+      transformedCode = transformedCode
+        .replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '')
+        .replace(new RegExp(`<${componentName}\\s*/?>\\s*$`, 'm'), '')
+        .trim();
       
       // Always wrap arrow functions in IIFE for noInline mode
       // This ensures react-live can properly evaluate the code
