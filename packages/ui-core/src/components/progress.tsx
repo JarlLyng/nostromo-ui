@@ -94,7 +94,7 @@ export interface ProgressProps
   indeterminate?: boolean;
 }
 
-const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
+const ProgressComponent = React.forwardRef<HTMLDivElement, ProgressProps>(
   (
     {
       className,
@@ -179,7 +179,10 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
   }
 );
 
-Progress.displayName = 'Progress';
+ProgressComponent.displayName = 'Progress';
+
+// Memoize Progress for performance optimization
+const Progress = React.memo(ProgressComponent) as typeof ProgressComponent;
 
 // Circular Progress Component
 const circularProgressVariants = cva(
@@ -229,7 +232,7 @@ export interface CircularProgressProps
   strokeWidth?: number;
 }
 
-const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>(
+const CircularProgressComponent = React.forwardRef<HTMLDivElement, CircularProgressProps>(
   (
     {
       className,
@@ -353,6 +356,9 @@ const CircularProgress = React.forwardRef<HTMLDivElement, CircularProgressProps>
   }
 );
 
-CircularProgress.displayName = 'CircularProgress';
+CircularProgressComponent.displayName = 'CircularProgress';
+
+// Memoize CircularProgress for performance optimization
+const CircularProgress = React.memo(CircularProgressComponent) as typeof CircularProgressComponent;
 
 export { Progress, CircularProgress, progressVariants, progressBarVariants, progressLabelVariants };

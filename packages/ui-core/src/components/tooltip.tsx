@@ -148,7 +148,7 @@ const useTooltipContext = () => {
 };
 
 // Main Tooltip Component
-export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
+const TooltipComponent = React.forwardRef<HTMLDivElement, TooltipProps>(
   ({
     children,
     content,
@@ -301,7 +301,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   }
 );
 
-Tooltip.displayName = 'Tooltip';
+TooltipComponent.displayName = 'Tooltip';
+
+// Note: Tooltip memoization and subcomponent attachment happens at end of file
 
 // Tooltip Trigger Component
 export const TooltipTrigger = React.forwardRef<HTMLElement, TooltipTriggerProps>(
@@ -574,5 +576,17 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({
   );
 };
 
-// Export variants for external use
-export { tooltipVariants, arrowVariants };
+// Memoize Tooltip for performance optimization (after all subcomponents are defined)
+const Tooltip = React.memo(TooltipComponent) as typeof TooltipComponent & {
+  Trigger: typeof TooltipTrigger;
+  Content: typeof TooltipContent;
+  Provider: typeof TooltipProvider;
+};
+
+// Attach subcomponents to Tooltip for compound component pattern
+Tooltip.Trigger = TooltipTrigger;
+Tooltip.Content = TooltipContent;
+Tooltip.Provider = TooltipProvider;
+
+// Export variants and Tooltip for external use
+export { Tooltip, tooltipVariants, arrowVariants };

@@ -16,8 +16,23 @@
     "limit": "35 KB"
   },
   {
+    "path": "dist/components/charts.js",
+    "limit": "105 KB"
+  },
+  {
+    "path": "dist/components/data-table.js",
+    "limit": "25 KB"
+  },
+  {
+    "path": "dist/components/calendar.js",
+    "limit": "30 KB"
+  },
+  {
+    "path": "dist/components/icon.js",
+    "limit": "51 KB"
+  },
+  {
     "path": "dist/index.js",
     "limit": "420 KB"
   }
 ]
-

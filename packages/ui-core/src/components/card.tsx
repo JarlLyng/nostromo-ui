@@ -61,7 +61,7 @@ export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof cardVariants> {}
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
+const CardComponent = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, size, ...props }, ref) => (
     <div
       ref={ref}
@@ -70,7 +70,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     />
   )
 );
-Card.displayName = "Card";
+CardComponent.displayName = "Card";
 
 // Enhanced subcomponents with improved spacing
 const CardHeader = React.forwardRef<
@@ -136,4 +136,22 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };
+export { CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };
+
+// Memoize Card for performance optimization (after all subcomponents are defined)
+const Card = React.memo(CardComponent) as typeof CardComponent & {
+  Header: typeof CardHeader;
+  Title: typeof CardTitle;
+  Description: typeof CardDescription;
+  Content: typeof CardContent;
+  Footer: typeof CardFooter;
+};
+
+// Attach subcomponents to Card for compound component pattern
+Card.Header = CardHeader;
+Card.Title = CardTitle;
+Card.Description = CardDescription;
+Card.Content = CardContent;
+Card.Footer = CardFooter;
+
+export { Card };

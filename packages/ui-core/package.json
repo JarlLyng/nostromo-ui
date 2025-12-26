@@ -147,6 +147,11 @@
       "import": "./dist/components/error-boundary.js",
       "require": "./dist/components/error-boundary.cjs"
     },
+    "./charts-lazy": {
+      "types": "./dist/components/charts-lazy.d.ts",
+      "import": "./dist/components/charts-lazy.js",
+      "require": "./dist/components/charts-lazy.cjs"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -174,8 +179,11 @@
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist",
     "analyze": "ANALYZE=true tsup",
+    "analyze:bundle": "node scripts/analyze-bundle.js",
     "size": "size-limit",
-    "size:why": "size-limit --why"
+    "size:why": "size-limit --why",
+    "test:performance": "vitest run src/components/__tests__/performance.test.tsx",
+    "test:memory": "vitest run src/lib/__tests__/memory-leaks.test.tsx"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

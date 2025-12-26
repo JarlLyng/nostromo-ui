@@ -69,10 +69,13 @@ export interface BadgeProps
  * <Badge size="lg">Large</Badge>
  * ```
  */
-function Badge({ className, variant, size, ...props }: BadgeProps) {
+function BadgeComponent({ className, variant, size, ...props }: BadgeProps) {
   return (
     <div className={cn(badgeVariants({ variant, size }), className)} {...props} />
   );
 }
+
+// Memoize Badge for performance optimization
+const Badge = React.memo(BadgeComponent) as typeof BadgeComponent;
 
 export { Badge, badgeVariants };

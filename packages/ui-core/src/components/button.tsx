@@ -91,7 +91,7 @@ export interface ButtonProps
   state?: "default" | "loading" | "success" | "error";
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ 
     className, 
     variant, 
@@ -144,6 +144,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
-Button.displayName = "Button";
+ButtonComponent.displayName = "Button";
+
+// Memoize Button for performance optimization
+// Only re-renders when props actually change
+const Button = React.memo(ButtonComponent) as typeof ButtonComponent;
 
 export { Button, buttonVariants };

@@ -363,3 +363,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
 
 DataTable.displayName = 'DataTable';
 
+// Memoize DataTable for performance optimization
+// DataTable is a complex component with filtering, sorting, and pagination
+export const DataTableMemoized = React.memo(DataTable) as typeof DataTable;
+

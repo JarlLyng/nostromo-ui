@@ -191,7 +191,7 @@ const ToastContainer: React.FC<{ toasts: ToastProps[] }> = ({ toasts }) => {
 };
 
 // Individual Toast Component
-export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
+const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
   ({
     id: _id,
     title,
@@ -331,7 +331,10 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   }
 );
 
-Toast.displayName = 'Toast';
+ToastComponent.displayName = 'Toast';
+
+// Memoize Toast for performance optimization
+export const Toast = React.memo(ToastComponent) as typeof ToastComponent;
 
 // Toast Hook for easy usage
 export const useToastNotification = () => {

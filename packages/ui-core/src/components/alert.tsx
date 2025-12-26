@@ -61,7 +61,7 @@ export interface AlertProps
   icon?: React.ReactNode;
 }
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
   (
     {
       className,
@@ -138,7 +138,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     );
   }
 );
-Alert.displayName = "Alert";
+AlertComponent.displayName = "Alert";
 
 const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -163,6 +163,16 @@ const AlertDescription = React.forwardRef<
   />
 ));
 AlertDescription.displayName = "AlertDescription";
+
+// Memoize Alert for performance optimization (after all subcomponents are defined)
+const Alert = React.memo(AlertComponent) as typeof AlertComponent & {
+  Title: typeof AlertTitle;
+  Description: typeof AlertDescription;
+};
+
+// Attach subcomponents to Alert for compound component pattern
+Alert.Title = AlertTitle;
+Alert.Description = AlertDescription;
 
 export { 
   Alert, 

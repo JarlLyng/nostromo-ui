@@ -102,6 +102,10 @@ export type { CalendarProps, CalendarMode } from './components/calendar';
 export { Chart, chartContainerVariants } from './components/charts';
 export type { ChartProps, ChartType, ChartDataPoint } from './components/charts';
 
+// Lazy-loaded Chart component for better code splitting
+export { LazyChart } from './components/charts-lazy';
+export type { LazyChartProps } from './components/charts-lazy';
+
 export { Toast, ToastProvider, useToastNotification, toastVariants, toastIconVariants } from './components/toast';
 export type { ToastProps, ToastContextType } from './components/toast';
 

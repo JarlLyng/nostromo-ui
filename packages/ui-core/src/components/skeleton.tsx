@@ -77,7 +77,7 @@ export interface SkeletonCardProps extends Omit<SkeletonProps, 'shape' | 'size'>
 }
 
 // Main Skeleton Component
-export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
+const SkeletonComponent = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ({
     className,
     children,
@@ -115,7 +115,10 @@ export const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   }
 );
 
-Skeleton.displayName = 'Skeleton';
+SkeletonComponent.displayName = 'Skeleton';
+
+// Memoize Skeleton for performance optimization
+export const Skeleton = React.memo(SkeletonComponent) as typeof SkeletonComponent;
 
 // Skeleton Text Component
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(

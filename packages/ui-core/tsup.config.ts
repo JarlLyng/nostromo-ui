@@ -23,13 +23,27 @@ export default defineConfig({
     'src/components/tooltip.tsx',
     'src/components/accordion.tsx',
     'src/components/skeleton.tsx',
+    'src/components/checkbox.tsx',
+    'src/components/radio-group.tsx',
+    'src/components/switch.tsx',
+    'src/components/textarea.tsx',
+    'src/components/alert.tsx',
+    'src/components/breadcrumb.tsx',
+    'src/components/pagination.tsx',
+    'src/components/separator.tsx',
+    'src/components/data-table.tsx',
+    'src/components/calendar.tsx',
+    'src/components/charts.tsx',
+    'src/components/charts-lazy.tsx',
     // Performance utilities
     'src/lib/lazy.tsx',
     'src/lib/performance.ts',
   ],
   format: ['cjs', 'esm'],
   dts: true,
-  splitting: false,
+  // Enable code splitting for better chunk optimization
+  // This creates separate chunks for heavy components (Charts, DataTable, Calendar)
+  splitting: true,
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
@@ -49,6 +63,6 @@ export default defineConfig({
       options.minifyWhitespace = true;
     }
   },
-  // Add bundle analysis in development
-  onSuccess: process.env.ANALYZE === 'true' ? 'npx bundle-analyzer dist' : undefined,
+  // Bundle analysis - will be handled by analyze script
+  metafile: process.env.ANALYZE === 'true',
 });

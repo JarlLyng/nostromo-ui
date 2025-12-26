@@ -60,7 +60,7 @@ export interface InputProps
   label?: string;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, error, success, helperText, label, id, variant, inputSize, ...props }, ref) => {
     const inputId = id || React.useId();
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
@@ -104,6 +104,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-Input.displayName = "Input";
+InputComponent.displayName = "Input";
+
+// Memoize Input for performance optimization
+const Input = React.memo(InputComponent) as typeof InputComponent;
 
 export { Input, inputVariants };

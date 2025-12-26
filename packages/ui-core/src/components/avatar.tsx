@@ -35,7 +35,7 @@ export interface AvatarProps
   fallback?: string;
 }
 
-const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+const AvatarComponent = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, size, variant, src, alt, fallback, children, ...props }, ref) => {
     const [imageError, setImageError] = React.useState(false);
     
@@ -80,7 +80,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     );
   }
 );
-Avatar.displayName = "Avatar";
+AvatarComponent.displayName = "Avatar";
 
 const AvatarImage = React.forwardRef<
   HTMLImageElement,
@@ -108,5 +108,15 @@ const AvatarFallback = React.forwardRef<
   />
 ));
 AvatarFallback.displayName = "AvatarFallback";
+
+// Memoize Avatar for performance optimization (after all subcomponents are defined)
+const Avatar = React.memo(AvatarComponent) as typeof AvatarComponent & {
+  Image: typeof AvatarImage;
+  Fallback: typeof AvatarFallback;
+};
+
+// Attach subcomponents to Avatar for compound component pattern
+Avatar.Image = AvatarImage;
+Avatar.Fallback = AvatarFallback;
 
 export { Avatar, AvatarImage, AvatarFallback, avatarVariants };

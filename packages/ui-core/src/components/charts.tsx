@@ -141,7 +141,7 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
   );
 };
 
-export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
+const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
   (
     {
       type,
@@ -337,7 +337,11 @@ export const Chart = React.forwardRef<HTMLDivElement, ChartProps>(
   }
 );
 
-Chart.displayName = 'Chart';
+ChartComponent.displayName = 'Chart';
+
+// Memoize Chart component for performance optimization
+// Charts are expensive to render, so memoization helps prevent unnecessary re-renders
+export const Chart = React.memo(ChartComponent) as typeof ChartComponent;
 
 export { chartContainerVariants };
 
