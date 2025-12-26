@@ -194,7 +194,7 @@
     "@nostromo/ui-tw": "workspace:^",
     "@size-limit/preset-small-lib": "^11.2.0",
     "@storybook/addon-a11y": "^9.1.17",
-    "@storybook/addon-docs": "^9.1.17",
+    "@storybook/addon-docs": "^10.1.10",
     "@storybook/addon-onboarding": "^9.1.17",
     "@storybook/icons": "^2.0.1",
     "@storybook/manager-api": "9.0.0-alpha.1",
