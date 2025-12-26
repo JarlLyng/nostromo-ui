@@ -5,7 +5,12 @@
  * For GitHub Pages: NEXT_PUBLIC_BASE_PATH="/nostromo-ui"
  */
 export function withBasePath(path: string): string {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '')
+  const basePath =
+    process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+      ? process.env.NEXT_PUBLIC_BASE_PATH
+      : process.env.NODE_ENV === 'production'
+        ? '/nostromo-ui'
+        : ''
   
   // Don't add basePath if path is already absolute or external
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('//')) {
@@ -17,4 +22,3 @@ export function withBasePath(path: string): string {
   
   return `${basePath}${cleanPath}`
 }
-

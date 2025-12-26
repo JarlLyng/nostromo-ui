@@ -18,6 +18,9 @@ jobs:
   build-and-deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      # Custom domain uses root path, not /nostromo-ui
+      NEXT_PUBLIC_BASE_PATH: ""
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -103,11 +106,12 @@ jobs:
         echo "Building docs..."
         cd docs
         pnpm run build
+        BASE_PATH="${NEXT_PUBLIC_BASE_PATH:-/nostromo-ui}"
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
         echo "Fixing vite-inject-mocker-entry.js paths for GitHub Pages subpath..."
-        sed -i 's|src="/vite-inject-mocker-entry.js"|src="/nostromo-ui/storybook-static/vite-inject-mocker-entry.js"|g' out/storybook-static/index.html || true
-        sed -i 's|src="/vite-inject-mocker-entry.js"|src="/nostromo-ui/storybook-static/vite-inject-mocker-entry.js"|g' out/storybook-static/iframe.html || true
+        sed -i "s|src=\"/vite-inject-mocker-entry.js\"|src=\"${BASE_PATH}/storybook-static/vite-inject-mocker-entry.js\"|g" out/storybook-static/index.html || true
+        sed -i "s|src=\"/vite-inject-mocker-entry.js\"|src=\"${BASE_PATH}/storybook-static/vite-inject-mocker-entry.js\"|g" out/storybook-static/iframe.html || true
         echo "Copying favicon files..."
         cp public/favicon.ico out/
         cp public/favicon.svg out/

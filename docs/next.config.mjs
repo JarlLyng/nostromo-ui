@@ -6,9 +6,15 @@ const withNextra = nextra({
 })
 
 // basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
+// IMPORTANT: allow empty string as a valid value (custom domain)
 // For custom domain (nostromo-ui.dev): NEXT_PUBLIC_BASE_PATH=""
 // For GitHub Pages: NEXT_PUBLIC_BASE_PATH="/nostromo-ui"
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '')
+const basePath =
+  process.env.NEXT_PUBLIC_BASE_PATH !== undefined
+    ? process.env.NEXT_PUBLIC_BASE_PATH
+    : process.env.NODE_ENV === 'production'
+      ? '/nostromo-ui'
+      : ''
 
 /** @type {import('next').NextConfig} */
 export default withNextra({
