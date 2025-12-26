@@ -73,7 +73,6 @@ describe('Memory Leak Prevention', () => {
     });
 
     it('should cleanup event listeners on unmount', () => {
-      const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
       const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
       const { unmount } = render(
@@ -91,7 +90,6 @@ describe('Memory Leak Prevention', () => {
 
   describe('Dialog Component', () => {
     it('should cleanup event listeners on unmount', () => {
-      const addEventListenerSpy = vi.spyOn(document, 'addEventListener');
       const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
 
       const { unmount } = render(

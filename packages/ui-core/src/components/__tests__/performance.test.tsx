@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import React from 'react';
 import { Button } from '../button';
@@ -97,6 +97,7 @@ describe('Component Performance', () => {
         renderCount++;
         return <div>Test</div>;
       });
+      TestComponent.displayName = 'TestComponent';
 
       const { rerender } = render(<TestComponent />);
       expect(renderCount).toBe(1);
@@ -113,6 +114,7 @@ describe('Component Performance', () => {
         renderCount++;
         return <div>{value}</div>;
       });
+      TestComponent.displayName = 'TestComponent';
 
       const { rerender } = render(<TestComponent value={1} />);
       expect(renderCount).toBe(1);
