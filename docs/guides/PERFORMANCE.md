@@ -1,3 +1,5 @@
+import LiveCode from '../components/LiveCode'
+
 # Performance Guide
 
 This guide covers performance optimization strategies for Nostromo UI, including bundle size optimization, runtime performance, and best practices.
@@ -207,23 +209,29 @@ function MyComponent() {
 
 Monitor memory usage (development only):
 
-```tsx
-import { useMemoryMonitor } from '@nostromo/ui-core';
+<LiveCode code={`import { useMemoryMonitor } from '@nostromo/ui-core'
+import { Card } from '@nostromo/ui-core'
 
-function App() {
-  const memoryInfo = useMemoryMonitor();
+export default function MemoryMonitorExample() {
+  const memoryInfo = useMemoryMonitor()
 
-  if (memoryInfo) {
-    console.log('Memory usage:', {
-      used: memoryInfo.usedJSHeapSize,
-      total: memoryInfo.totalJSHeapSize,
-      limit: memoryInfo.jsHeapSizeLimit
-    });
-  }
-
-  return <div>App</div>;
-}
-```
+  return (
+    <Card className="p-4">
+      <h3 className="font-semibold mb-2">Memory Usage</h3>
+      {memoryInfo ? (
+        <div className="space-y-1 text-sm">
+          <p>Used: {(memoryInfo.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
+          <p>Total: {(memoryInfo.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
+          <p>Limit: {(memoryInfo.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB</p>
+        </div>
+      ) : (
+        <p className="text-sm text-muted-foreground">
+          Memory API not available (check browser console)
+        </p>
+      )}
+    </Card>
+  )
+}`} noInline={true} />
 
 ## Memory Optimization
 
