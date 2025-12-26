@@ -350,9 +350,11 @@ export default function LiveCodeClient({
       
       // Remove any render() calls or component calls at the end
       // We'll add the component call in the IIFE return statement
+      // Use a more robust regex that handles newlines and whitespace
       transformedCode = transformedCode
         .replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '')
-        .replace(new RegExp(`<${componentName}\\s*/?>\\s*$`, 'm'), '')
+        .replace(new RegExp(`<${componentName}\\s*/?>\\s*;?\\s*$`, 'm'), '')
+        .replace(new RegExp(`\\n\\s*<${componentName}\\s*/>\\s*;?\\s*$`, 'm'), '')
         .trim();
       
       // Always wrap arrow functions in IIFE for noInline mode
@@ -460,7 +462,7 @@ export default function LiveCodeClient({
           <details className="border-t border-border">
             <summary className="px-4 py-3 bg-muted/30 cursor-pointer text-sm font-medium text-foreground hover:bg-muted/50 transition-colors flex items-center justify-between">
               <span>View Code</span>
-              <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
