@@ -66,7 +66,7 @@ All components are optimized with `React.memo` to prevent unnecessary re-renders
 <LiveCode code={`import { Button, Input, Card } from '@nostromo/ui-core'
 import { useState } from 'react'
 
-export default function MemoizedComponents() {
+const MemoizedComponents = () => {
   const [count, setCount] = useState(0)
   
   return (
@@ -92,7 +92,10 @@ export default function MemoizedComponents() {
       </div>
     </div>
   )
-}`} noInline={true} />
+}
+
+render(<MemoizedComponents />)
+`} noInline={true} />
 
 **How it works:**
 - Components automatically memoized
@@ -115,7 +118,7 @@ For components with expensive calculations:
 <LiveCode code={`import { useMemo, useState } from 'react'
 import { Chart } from '@nostromo/ui-core'
 
-export default function OptimizedChart() {
+const OptimizedChart = () => {
   const [rawData] = useState([
     { name: 'Jan', value: 100 },
     { name: 'Feb', value: 200 },
@@ -144,7 +147,10 @@ export default function OptimizedChart() {
       />
     </div>
   )
-}`} noInline={true} />
+}
+
+render(<OptimizedChart />)
+`} noInline={true} />
 
 ## Code Splitting
 
@@ -181,7 +187,7 @@ Heavy components (Charts, DataTable, Calendar) should be lazy-loaded for optimal
 
 <LiveCode code={`import { LazyChart, Skeleton } from '@nostromo/ui-core'
 
-export default function LazyChartExample() {
+const LazyChartExample = () => {
   const data = [
     { name: 'Jan', sales: 4000, revenue: 2400 },
     { name: 'Feb', sales: 3000, revenue: 1398 },
@@ -198,7 +204,10 @@ export default function LazyChartExample() {
       fallback={<Skeleton className="h-64 w-full" />}
     />
   )
-}`} noInline={true} />
+}
+
+render(<LazyChartExample />)
+`} noInline={true} />
 
 #### Option 2: Manual Lazy Loading
 
@@ -263,7 +272,7 @@ Monitor memory usage (development only):
 <LiveCode code={`import { useMemoryMonitor } from '@nostromo/ui-core'
 import { Card } from '@nostromo/ui-core'
 
-export default function MemoryMonitorExample() {
+const MemoryMonitorExample = () => {
   const memoryInfo = useMemoryMonitor()
 
   return (
@@ -282,7 +291,10 @@ export default function MemoryMonitorExample() {
       )}
     </Card>
   )
-}`} noInline={true} />
+}
+
+render(<MemoryMonitorExample />)
+`} noInline={true} />
 
 ## Memory Optimization
 
