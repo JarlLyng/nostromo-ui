@@ -100,7 +100,7 @@ export function withPerformanceMonitoring<P extends object>(
     const name = componentName || Component.displayName || Component.name || 'Unknown';
     usePerformanceMonitor(name, options);
     
-    return React.createElement(Component, { ...(props as P), ref });
+    return React.createElement(Component, { ...(props as P), ref } as P & { ref?: React.Ref<unknown> });
   });
   
   WrappedComponent.displayName = `withPerformanceMonitoring(${Component.displayName || Component.name})`;
