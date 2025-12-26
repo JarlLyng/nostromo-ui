@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-const basePath = process.env.NODE_ENV === 'production' ? '/nostromo-ui' : ''
+// basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
+// For custom domain (nostromo-ui.dev): NEXT_PUBLIC_BASE_PATH=""
+// For GitHub Pages: NEXT_PUBLIC_BASE_PATH="/nostromo-ui"
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === 'production' ? '/nostromo-ui' : '')
 
 export default function Document() {
   return (
