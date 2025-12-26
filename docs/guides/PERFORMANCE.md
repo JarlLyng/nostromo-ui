@@ -250,20 +250,33 @@ function Dashboard() {
 
 Monitor component render performance in development:
 
-```tsx
-import { usePerformanceMonitor } from '@nostromo/ui-core';
+<LiveCode code={`import { usePerformanceMonitor } from '@nostromo/ui-core'
+import { Button } from '@nostromo/ui-core'
+import { useState } from 'react'
 
-function MyComponent() {
-  usePerformanceMonitor('MyComponent', {
-    threshold: 16, // Log if render time exceeds 16ms
-    onMetric: (metric) => {
-      console.log(`Render time: ${metric.renderTime}ms`);
-    }
-  });
-
-  return <div>Content</div>;
+const PerformanceMonitorExample = () => {
+  // Monitor render performance (only logs in development)
+  usePerformanceMonitor('PerformanceMonitorExample', {
+    threshold: 16, // ms (60fps)
+    logSlowRenders: true
+  })
+  
+  const [count, setCount] = useState(0)
+  
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">
+        Check browser console to see performance metrics (development only)
+      </p>
+      <Button onClick={() => setCount(count + 1)}>
+        Render Count: {count}
+      </Button>
+    </div>
+  )
 }
-```
+
+render(<PerformanceMonitorExample />)
+`} noInline={true} />
 
 ### useMemoryMonitor Hook
 
