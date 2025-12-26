@@ -349,13 +349,25 @@ export default function LiveCodeClient({
       const componentName = arrowFunctionMatch[1];
       
       // Remove any render() calls or component calls at the end
-      // We'll add the component call in the IIFE return statement
-      // Use a more robust regex that handles newlines and whitespace
-      transformedCode = transformedCode
-        .replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '')
-        .replace(new RegExp(`<${componentName}\\s*/?>\\s*;?\\s*$`, 'm'), '')
-        .replace(new RegExp(`\\n\\s*<${componentName}\\s*/>\\s*;?\\s*$`, 'm'), '')
-        .trim();
+      // Split by lines and remove the last line if it's a component call
+      const lines = transformedCode.split('\n');
+      const lastLine = lines[lines.length - 1]?.trim() || '';
+      
+      // Check if last line is a component call or render() call
+      const isComponentCall = lastLine.match(new RegExp(`^<${componentName}\\s*/?>\\s*;?$`));
+      const isRenderCall = lastLine.match(/^render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?$/);
+      
+      if (isComponentCall || isRenderCall) {
+        // Remove the last line
+        lines.pop();
+        transformedCode = lines.join('\n').trim();
+      } else {
+        // Try regex as fallback
+        transformedCode = transformedCode
+          .replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/m, '')
+          .replace(new RegExp(`<${componentName}\\s*/?>\\s*;?\\s*$`, 'm'), '')
+          .trim();
+      }
       
       // Always wrap arrow functions in IIFE for noInline mode
       // This ensures react-live can properly evaluate the code
