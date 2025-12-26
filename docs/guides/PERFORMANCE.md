@@ -63,12 +63,41 @@ pnpm analyze
 
 All components are optimized with `React.memo` to prevent unnecessary re-renders:
 
-```tsx
-// Components automatically memoized
-<Button onClick={handleClick}>Click me</Button>
+<LiveCode code={`import { Button, Input, Card } from '@nostromo/ui-core'
+import { useState } from 'react'
 
-// Only re-renders when props actually change
-```
+export default function MemoizedComponents() {
+  const [count, setCount] = useState(0)
+  
+  return (
+    <div className="space-y-4">
+      <div>
+        <p className="text-sm text-muted-foreground mb-2">
+          Count: {count} - These components are memoized and won't re-render unnecessarily
+        </p>
+        <button 
+          onClick={() => setCount(count + 1)}
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
+        >
+          Increment Count
+        </button>
+      </div>
+      
+      <div className="space-y-2">
+        <Button>Memoized Button</Button>
+        <Input placeholder="Memoized Input" />
+        <Card className="p-4">
+          <p>Memoized Card - Only re-renders when props change</p>
+        </Card>
+      </div>
+    </div>
+  )
+}`} noInline={true} />
+
+**How it works:**
+- Components automatically memoized
+- Only re-renders when props actually change
+- Prevents unnecessary DOM updates
 
 ### Performance Benchmarks
 
@@ -83,22 +112,39 @@ pnpm test:performance
 
 For components with expensive calculations:
 
-```tsx
-import { useMemo } from 'react';
-import { Chart } from '@nostromo/ui-core';
+<LiveCode code={`import { useMemo, useState } from 'react'
+import { Chart } from '@nostromo/ui-core'
 
-function Dashboard({ data }) {
+export default function OptimizedChart() {
+  const [rawData] = useState([
+    { name: 'Jan', value: 100 },
+    { name: 'Feb', value: 200 },
+    { name: 'Mar', value: 150 },
+  ])
+  
   // Memoize expensive calculations
   const processedData = useMemo(() => {
-    return data.map(item => ({
+    return rawData.map(item => ({
       ...item,
-      calculated: expensiveCalculation(item)
-    }));
-  }, [data]);
+      calculated: item.value * 2, // Simulated expensive calculation
+      formatted: \`\${item.name}: \${item.value}\`
+    }))
+  }, [rawData])
 
-  return <Chart type="line" data={processedData} />;
-}
-```
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-muted-foreground">
+        Data is memoized and only recalculates when rawData changes
+      </p>
+      <Chart 
+        type="line" 
+        data={processedData}
+        dataKeys={['value', 'calculated']}
+        size="sm"
+      />
+    </div>
+  )
+}`} noInline={true} />
 
 ## Code Splitting
 
@@ -133,21 +179,26 @@ Heavy components (Charts, DataTable, Calendar) should be lazy-loaded for optimal
 
 #### Option 1: Using LazyChart Component (Recommended)
 
-```tsx
-import { LazyChart } from '@nostromo/ui-core';
-import { Skeleton } from '@nostromo/ui-core';
+<LiveCode code={`import { LazyChart, Skeleton } from '@nostromo/ui-core'
 
-function Dashboard() {
+export default function LazyChartExample() {
+  const data = [
+    { name: 'Jan', sales: 4000, revenue: 2400 },
+    { name: 'Feb', sales: 3000, revenue: 1398 },
+    { name: 'Mar', sales: 2000, revenue: 9800 },
+    { name: 'Apr', sales: 2780, revenue: 3908 },
+    { name: 'May', sales: 1890, revenue: 4800 },
+  ]
+  
   return (
     <LazyChart
       type="line"
       data={data}
       dataKeys={['sales', 'revenue']}
-      fallback={<Skeleton className="h-64" />}
+      fallback={<Skeleton className="h-64 w-full" />}
     />
-  );
-}
-```
+  )
+}`} noInline={true} />
 
 #### Option 2: Manual Lazy Loading
 
