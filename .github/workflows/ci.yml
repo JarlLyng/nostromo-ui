@@ -57,6 +57,7 @@ jobs:
       id: typecheck
       
     - name: Run tests
+      timeout-minutes: 15
       run: |
         cd packages/ui-core
         pnpm test:run 2>&1 | tee ../../test-output.txt
@@ -69,6 +70,7 @@ jobs:
       id: tests
       
     - name: Build packages
+      timeout-minutes: 10
       run: |
         pnpm build 2>&1 | tee build-output.txt
         BUILD_EXIT=${PIPESTATUS[0]}
@@ -125,6 +127,7 @@ jobs:
       run: pnpm install --frozen-lockfile
       
     - name: Run accessibility tests
+      timeout-minutes: 10
       run: |
         cd packages/ui-core
         pnpm test:a11y 2>&1 | tee a11y-output.txt
