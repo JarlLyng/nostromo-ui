@@ -10,9 +10,12 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
     // Timeout configuration to prevent hanging tests
-    testTimeout: 10000, // 10 seconds per test
-    hookTimeout: 10000, // 10 seconds for hooks
-    teardownTimeout: 10000, // 10 seconds for teardown
+    // Higher timeout in CI due to resource constraints
+    testTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
+    hookTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
+    teardownTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
+    // Limit concurrency to prevent resource exhaustion in CI
+    maxConcurrency: process.env.CI ? 2 : 5, // Lower concurrency in CI
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

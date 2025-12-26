@@ -133,7 +133,7 @@ describe('LazyComponent', () => {
     expect(screen.getByText('Custom loading...')).toBeInTheDocument();
   });
 
-  it('renders error fallback when error occurs', () => {
+  it('renders error fallback when error occurs', async () => {
     const CustomErrorFallback = ({ error, retry }: { error: Error; retry: () => void }) => (
       <div>
         <p>Error: {error.message}</p>
@@ -147,18 +147,24 @@ describe('LazyComponent', () => {
       </LazyComponent>
     );
 
-    expect(screen.getByText('Error: Lazy loading error')).toBeInTheDocument();
+    // Wait for error boundary to catch and render the error
+    await waitFor(() => {
+      expect(screen.getByText('Error: Lazy loading error')).toBeInTheDocument();
+    });
     expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
   });
 
-  it('uses default error boundary when no error fallback provided', () => {
+  it('uses default error boundary when no error fallback provided', async () => {
     render(
       <LazyComponent>
         <ThrowError />
       </LazyComponent>
     );
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    // Wait for error boundary to catch and render the default error message
+    await waitFor(() => {
+      expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    });
   });
 });
 
