@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main, develop ]
 
+# Prevent concurrent CI runs to avoid conflicts and save resources
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -72,6 +77,12 @@ jobs:
       run: |
         cd packages/ui-core
         pnpm size 2>&1 | tee size-output.txt
+        SIZE_EXIT=${PIPESTATUS[0]}
+        if [ $SIZE_EXIT -ne 0 ]; then
+          echo "❌ Bundle size check failed - bundle exceeds limits"
+          exit 1
+        fi
+        echo "✅ Bundle sizes within limits"
       id: size
       
     - name: Upload error logs
