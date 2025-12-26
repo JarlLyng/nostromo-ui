@@ -344,12 +344,12 @@ export default function LiveCodeClient({
       }
     } else if (arrowFunctionMatch) {
       // Handle arrow functions: const ComponentName = () => { ... }
-      // For noInline mode, we need to ensure the last expression is the component call
+      // For noInline mode, react-live needs the last expression to be what gets rendered
+      // We always wrap arrow functions in an IIFE to ensure proper evaluation
       const componentName = arrowFunctionMatch[1];
       
       // If there's a render() call, extract the component name from it
       // and replace render(<ComponentName />) with just <ComponentName />
-      // This ensures the last expression is the component, not render()
       if (transformedCode.includes('render(')) {
         // Find render(<ComponentName />) and extract ComponentName
         const renderMatch = transformedCode.match(/render\s*\(\s*<(\w+)\s*\/?>\s*\)/);
@@ -357,18 +357,26 @@ export default function LiveCodeClient({
           // Replace render(<ComponentName />) with <ComponentName />
           transformedCode = transformedCode.replace(/render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?\s*$/, `<${componentName} />`);
         }
-      } else {
-        // No render() call - check if component is already called at the end
-        // If not, ensure the component call is the last expression
-        const componentCallMatch = transformedCode.match(new RegExp(`<${componentName}\\s*/>\\s*$`));
-        if (!componentCallMatch) {
-          // Component is not called at the end - wrap everything in IIFE
-          transformedCode = `(() => {
+      }
+      
+      // Always wrap arrow functions in IIFE for noInline mode
+      // This ensures react-live can properly evaluate the code
+      // Check if component is called at the end (with or without render())
+      const hasComponentCall = transformedCode.includes(`<${componentName}`) && 
+                               (transformedCode.match(new RegExp(`<${componentName}\\s*/?>`)) !== null);
+      
+      if (hasComponentCall) {
+        // Component is called - wrap everything in IIFE that returns the component
+        transformedCode = `(() => {
   ${transformedCode}
   return <${componentName} />
 })()`;
-        }
-        // If component is already called at the end, use as-is
+      } else {
+        // Component is not called - wrap and call it
+        transformedCode = `(() => {
+  ${transformedCode}
+  return <${componentName} />
+})()`;
       }
     }
     // If no function found, assume it's already JSX and use as-is
