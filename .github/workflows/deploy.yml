@@ -72,6 +72,7 @@ jobs:
         pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@nostromo/ui-core/package.json'))\"" || echo "Workspace resolution failed"
       
     - name: Build all workspaces in graph order
+      timeout-minutes: 10
       run: |
         echo "Building all packages..."
         pnpm -r build
@@ -82,6 +83,7 @@ jobs:
         ls -la packages/ui-tw/dist/ || echo "ui-tw dist not found"
         
     - name: Build Storybook
+      timeout-minutes: 15
       run: |
         echo "Building Storybook..."
         echo "Checking @tailwindcss/vite availability..."
@@ -102,6 +104,7 @@ jobs:
         grep -o "data-theme=nostromo\|--color-brand-500" storybook-static/assets/*.css | head -5 || echo "Theme variables not found"
       
     - name: Build documentation
+      timeout-minutes: 15
       run: |
         echo "Building documentation..."
         echo "Building docs..."
