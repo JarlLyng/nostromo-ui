@@ -36,7 +36,13 @@ jobs:
       
     - name: Run linter
       run: |
-        pnpm lint
+        pnpm lint 2>&1 | tee lint-output.txt
+        LINT_EXIT=${PIPESTATUS[0]}
+        if [ $LINT_EXIT -ne 0 ]; then
+          echo "❌ Linter failed"
+          exit 1
+        fi
+        echo "✅ Linter passed"
       id: lint
       
     - name: Run type check
@@ -91,6 +97,7 @@ jobs:
       with:
         name: ci-error-logs
         path: |
+          lint-output.txt
           typecheck-output.txt
           test-output.txt
           build-output.txt
@@ -121,6 +128,12 @@ jobs:
       run: |
         cd packages/ui-core
         pnpm test:a11y 2>&1 | tee a11y-output.txt
+        A11Y_EXIT=${PIPESTATUS[0]}
+        if [ $A11Y_EXIT -ne 0 ]; then
+          echo "❌ Accessibility tests failed"
+          exit 1
+        fi
+        echo "✅ Accessibility tests passed"
       id: a11y
       
     - name: Upload error logs
