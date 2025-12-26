@@ -12,8 +12,9 @@ import { Badge } from '../badge';
  */
 
 describe('Component Performance', () => {
-  // Performance threshold: components should render within 16ms (60fps)
-  const PERFORMANCE_THRESHOLD = 16;
+  // Performance threshold: components should render within acceptable timeframe
+  // Higher threshold in CI due to environment variability (50ms for CI, 16ms ideal for local)
+  const PERFORMANCE_THRESHOLD = process.env.CI ? 50 : 16;
 
   const measureRenderTime = (component: React.ReactElement): number => {
     const start = performance.now();

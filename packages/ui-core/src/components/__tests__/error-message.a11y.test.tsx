@@ -76,6 +76,7 @@ describe('ErrorMessage Accessibility', () => {
           aria-invalid="true"
           aria-describedby="email-error"
           value="invalid-email"
+          onChange={() => {}}
         />
         <ErrorMessage id="email-error">
           Please enter a valid email address
