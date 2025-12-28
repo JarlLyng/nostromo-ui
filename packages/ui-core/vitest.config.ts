@@ -15,7 +15,8 @@ export default defineConfig({
     hookTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
     teardownTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
     // Limit concurrency to prevent resource exhaustion in CI
-    maxConcurrency: process.env.CI ? 2 : 5, // Lower concurrency in CI
+    // Increased from 2 to 4 to improve test performance while maintaining stability
+    maxConcurrency: process.env.CI ? 4 : 5, // Increased concurrency in CI for better performance
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
