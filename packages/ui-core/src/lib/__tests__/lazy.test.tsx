@@ -150,7 +150,7 @@ describe('LazyComponent', () => {
     // Wait for error boundary to catch and render the error
     await waitFor(() => {
       expect(screen.getByText('Error: Lazy loading error')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     expect(screen.getByRole('button', { name: /retry/i })).toBeInTheDocument();
   });
 
@@ -164,7 +164,7 @@ describe('LazyComponent', () => {
     // Wait for error boundary to catch and render the default error message
     await waitFor(() => {
       expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 });
 

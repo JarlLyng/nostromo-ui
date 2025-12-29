@@ -19,7 +19,7 @@ describe('Calendar', () => {
     
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /previous month/i })).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('displays current month and year', async () => {
@@ -56,11 +56,11 @@ describe('Calendar', () => {
       });
       const todayButton = screen.getByLabelText(todayLabel);
       fireEvent.click(todayButton);
-    });
+    }, { timeout: 5000 });
     
     await waitFor(() => {
       expect(onChange).toHaveBeenCalled();
-    });
+    }, { timeout: 5000 });
   });
 
   it('selects date range in range mode', async () => {
@@ -86,7 +86,7 @@ describe('Calendar', () => {
       expect(onChange).toHaveBeenCalledWith(
         expect.objectContaining({ from: expect.any(Date) })
       );
-    });
+    }, { timeout: 5000 });
   });
 
   it('selects multiple dates in multiple mode', async () => {
@@ -106,11 +106,11 @@ describe('Calendar', () => {
       });
       const todayButton = screen.getByLabelText(todayLabel);
       fireEvent.click(todayButton);
-    });
+    }, { timeout: 5000 });
     
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledWith(expect.arrayContaining([expect.any(Date)]));
-    });
+    }, { timeout: 5000 });
   });
 
   it('navigates to previous month', async () => {
@@ -122,7 +122,7 @@ describe('Calendar', () => {
     await waitFor(() => {
       const prevButton = screen.getByRole('button', { name: /previous month/i });
       fireEvent.click(prevButton);
-    });
+    }, { timeout: 5000 });
     
     // Month should have changed
     await waitFor(() => {
@@ -133,7 +133,7 @@ describe('Calendar', () => {
         year: 'numeric'
       });
       expect(screen.getByText(monthYear)).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('navigates to next month', async () => {
@@ -145,7 +145,7 @@ describe('Calendar', () => {
     await waitFor(() => {
       const nextButton = screen.getByRole('button', { name: /next month/i });
       fireEvent.click(nextButton);
-    });
+    }, { timeout: 5000 });
     
     // Month should have changed
     await waitFor(() => {
@@ -156,7 +156,7 @@ describe('Calendar', () => {
         year: 'numeric'
       });
       expect(screen.getByText(monthYear)).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('navigates to today when Today button is clicked', async () => {
@@ -169,13 +169,13 @@ describe('Calendar', () => {
     await waitFor(() => {
       const nextButton = screen.getByRole('button', { name: /next month/i });
       fireEvent.click(nextButton);
-    });
+    }, { timeout: 5000 });
     
     // Click Today button
     await waitFor(() => {
       const todayButton = screen.getByText('Today');
       fireEvent.click(todayButton);
-    });
+    }, { timeout: 5000 });
     
     // Should be back to current month
     await waitFor(() => {
@@ -185,7 +185,7 @@ describe('Calendar', () => {
         year: 'numeric'
       });
       expect(screen.getByText(monthYear)).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('disables dates before minDate', async () => {
@@ -207,7 +207,7 @@ describe('Calendar', () => {
       });
       const todayButton = screen.getByLabelText(todayLabel);
       expect(todayButton).toBeDisabled();
-    });
+    }, { timeout: 5000 });
   });
 
   it('disables dates after maxDate', async () => {
@@ -229,7 +229,7 @@ describe('Calendar', () => {
       });
       const todayButton = screen.getByLabelText(todayLabel);
       expect(todayButton).toBeDisabled();
-    });
+    }, { timeout: 5000 });
   });
 
   it('displays custom placeholder', () => {

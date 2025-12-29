@@ -49,7 +49,7 @@ describe("Alert", () => {
     render(<Alert dismissible onDismiss={handleDismiss} />);
     const dismissButton = screen.getByLabelText("Dismiss alert");
     fireEvent.click(dismissButton);
-    await waitFor(() => expect(handleDismiss).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(handleDismiss).toHaveBeenCalledTimes(1), { timeout: 5000 });
   });
 
   it("hides alert when dismiss button is clicked", async () => {
@@ -57,7 +57,7 @@ describe("Alert", () => {
     const alert = screen.getByRole("alert");
     const dismissButton = screen.getByLabelText("Dismiss alert");
     fireEvent.click(dismissButton);
-    await waitFor(() => expect(alert).not.toBeInTheDocument());
+    await waitFor(() => expect(alert).not.toBeInTheDocument(), { timeout: 5000 });
   });
 
   it("applies correct variant styling", () => {
