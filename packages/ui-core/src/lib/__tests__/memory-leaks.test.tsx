@@ -16,50 +16,67 @@ describe('Memory Leak Prevention', () => {
   beforeEach(() => {
     // Clear all timers before each test
     vi.clearAllTimers();
-    vi.useFakeTimers();
   });
 
   afterEach(() => {
     cleanup();
+    // Ensure real timers are restored after each test
     vi.useRealTimers();
+    vi.clearAllTimers();
   });
 
   describe('Toast Component', () => {
     it('should cleanup timeouts on unmount', () => {
-      const { unmount } = render(
-        <ToastProvider>
-          <TestToastComponent />
-        </ToastProvider>
-      );
+      vi.useFakeTimers();
+      
+      try {
+        const { unmount } = render(
+          <ToastProvider>
+            <TestToastComponent />
+          </ToastProvider>
+        );
 
-      // Fast-forward time to trigger timeout
-      vi.advanceTimersByTime(6000);
+        // Fast-forward time to trigger timeout
+        vi.advanceTimersByTime(6000);
 
-      // Unmount should cleanup all timeouts
-      unmount();
+        // Unmount should cleanup all timeouts
+        unmount();
 
-      // Verify no timers are still running
-      expect(vi.getTimerCount()).toBe(0);
+        // Verify no timers are still running
+        expect(vi.getTimerCount()).toBe(0);
+      } finally {
+        vi.useRealTimers();
+        vi.clearAllTimers();
+      }
     });
 
     it('should cleanup timeouts when toast is removed', () => {
-      const { unmount } = render(
-        <ToastProvider>
-          <TestToastComponent />
-        </ToastProvider>
-      );
+      vi.useFakeTimers();
+      
+      try {
+        const { unmount } = render(
+          <ToastProvider>
+            <TestToastComponent />
+          </ToastProvider>
+        );
 
-      // Fast-forward time
-      vi.advanceTimersByTime(1000);
+        // Fast-forward time
+        vi.advanceTimersByTime(1000);
 
-      unmount();
+        unmount();
 
-      expect(vi.getTimerCount()).toBe(0);
+        expect(vi.getTimerCount()).toBe(0);
+      } finally {
+        vi.useRealTimers();
+        vi.clearAllTimers();
+      }
     });
   });
 
   describe('Tooltip Component', () => {
     it('should cleanup timers on unmount', () => {
+      vi.useFakeTimers();
+      
       const { unmount } = render(
         <Tooltip content="Test tooltip">
           <button>Hover me</button>
@@ -70,6 +87,8 @@ describe('Memory Leak Prevention', () => {
 
       // Verify no timers are still running
       expect(vi.getTimerCount()).toBe(0);
+      
+      vi.useRealTimers();
     });
 
     it('should cleanup event listeners on unmount', () => {
@@ -124,6 +143,8 @@ describe('Memory Leak Prevention', () => {
 
   describe('Avatar Component', () => {
     it('should not leak memory when src changes', () => {
+      vi.useFakeTimers();
+      
       const { rerender } = render(
         <Avatar src="image1.jpg" alt="Avatar 1" />
       );
@@ -134,11 +155,15 @@ describe('Memory Leak Prevention', () => {
 
       // No timers or listeners should be created
       expect(vi.getTimerCount()).toBe(0);
+      
+      vi.useRealTimers();
     });
   });
 
   describe('Textarea Component', () => {
     it('should cleanup refs on unmount', () => {
+      vi.useFakeTimers();
+      
       const { unmount } = render(
         <Textarea autoResize />
       );
@@ -147,6 +172,8 @@ describe('Memory Leak Prevention', () => {
 
       // Verify no timers are still running
       expect(vi.getTimerCount()).toBe(0);
+      
+      vi.useRealTimers();
     });
   });
 });
