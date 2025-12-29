@@ -10,36 +10,34 @@ expect.extend(toHaveNoViolations);
 // Mock console.error globally to prevent error spam
 const originalConsoleError = console.error;
 
-// Set to track which ThrowError render calls have thrown
-// This prevents infinite loops when ErrorBoundary re-renders the same component
-const thrownRenderIds = new Set<number>();
-let renderCounter = 0;
-
 beforeEach(() => {
   console.error = vi.fn();
-  thrownRenderIds.clear(); // Clear all thrown errors before each test
-  renderCounter = 0; // Reset counter
 });
 
 afterEach(() => {
   cleanup();
   console.error = originalConsoleError;
   vi.clearAllMocks();
-  thrownRenderIds.clear(); // Ensure set is cleared after each test
-  renderCounter = 0; // Reset counter
 });
 
 // Component that throws an error for testing
-// Use a render counter to ensure error is only thrown once per render attempt
-// This prevents infinite loops when ErrorBoundary tries to re-render after catching error
-// When ErrorBoundary resets and re-renders children, a new render ID is created
+// Use React ref to ensure error is only thrown once per component instance
+// This prevents infinite loops when ErrorBoundary re-renders after catching error
+// When ErrorBoundary resets and re-renders children, a new component instance is created
+// so ref resets, allowing the error to be thrown again (which is desired for reset testing)
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
-  // Create a unique render ID for this render attempt
-  // When ErrorBoundary resets and re-renders, this will be a new render ID
-  const renderId = ++renderCounter;
+  const hasThrownRef = React.useRef(false);
   
-  if (shouldThrow && !thrownRenderIds.has(renderId)) {
-    thrownRenderIds.add(renderId);
+  // Reset the ref when shouldThrow changes from false to true
+  // This allows testing reset functionality where ErrorBoundary re-renders after reset
+  React.useEffect(() => {
+    if (!shouldThrow) {
+      hasThrownRef.current = false;
+    }
+  }, [shouldThrow]);
+  
+  if (shouldThrow && !hasThrownRef.current) {
+    hasThrownRef.current = true;
     throw new Error('Test error');
   }
   return <div>No error</div>;
