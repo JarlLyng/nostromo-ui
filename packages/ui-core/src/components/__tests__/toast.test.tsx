@@ -405,7 +405,6 @@ describe('ToastProvider and useToastNotification', () => {
       expect(screen.queryByText('Success message')).not.toBeInTheDocument();
       expect(screen.queryByText('Error message')).not.toBeInTheDocument();
     }, { timeout: 5000 });
-    });
   });
 
   it('provides convenience methods', async () => {
