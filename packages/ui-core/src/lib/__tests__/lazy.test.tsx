@@ -1,7 +1,19 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen, waitFor, act, cleanup } from '@testing-library/react';
 import * as React from 'react';
 import { LazyComponent, withLazyLoading, useLazyLoading, LazyInView } from '../lazy';
+
+// Mock console.error to prevent error spam from error boundaries
+const originalConsoleError = console.error;
+beforeEach(() => {
+  console.error = vi.fn();
+});
+
+afterEach(() => {
+  cleanup();
+  console.error = originalConsoleError;
+  vi.clearAllMocks();
+});
 
 // Mock IntersectionObserver
 const mockObserve = vi.fn();
@@ -67,6 +79,7 @@ afterEach(() => {
   if (mockObserverInstance) {
     mockObserverInstance.disconnect();
   }
+  // Additional cleanup is handled by the outer afterEach
 });
 
 // Component that throws an error

@@ -1,12 +1,26 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
+import { vi, beforeEach, afterEach } from 'vitest';
 import { ErrorBoundary } from '../error-boundary';
 
 // Extend Jest matchers
 expect.extend(toHaveNoViolations);
 
+// Mock console.error globally to prevent error spam
+const originalConsoleError = console.error;
+beforeEach(() => {
+  console.error = vi.fn();
+});
+
+afterEach(() => {
+  cleanup();
+  console.error = originalConsoleError;
+  vi.clearAllMocks();
+});
+
 // Component that throws an error for testing
+// Use a flag to ensure error is only thrown once per render
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
   if (shouldThrow) {
     throw new Error('Test error');
@@ -26,10 +40,6 @@ describe('ErrorBoundary Accessibility', () => {
   });
 
   it('should not have accessibility violations when error occurs', async () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     const { container } = render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
@@ -38,16 +48,9 @@ describe('ErrorBoundary Accessibility', () => {
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should have proper ARIA attributes for error state', () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
@@ -60,16 +63,9 @@ describe('ErrorBoundary Accessibility', () => {
     if (errorElement) {
       expect(errorElement).toBeInTheDocument();
     }
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should have proper contrast for error messages', async () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     const { container } = render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
@@ -78,9 +74,6 @@ describe('ErrorBoundary Accessibility', () => {
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should be accessible with custom error UI', async () => {
@@ -94,10 +87,6 @@ describe('ErrorBoundary Accessibility', () => {
       </div>
     );
     
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     const { container } = render(
       <ErrorBoundary fallback={CustomErrorUI}>
         <ThrowError shouldThrow={true} />
@@ -106,9 +95,6 @@ describe('ErrorBoundary Accessibility', () => {
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should support keyboard navigation in error UI', () => {
@@ -122,10 +108,6 @@ describe('ErrorBoundary Accessibility', () => {
         <a href="/support">Get help</a>
       </div>
     );
-    
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
     
     render(
       <ErrorBoundary fallback={CustomErrorUI}>
@@ -200,10 +182,6 @@ describe('ErrorBoundary Accessibility', () => {
       </div>
     );
     
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     render(
       <ErrorBoundary fallback={CustomErrorUI}>
         <ThrowError shouldThrow={true} />
@@ -233,10 +211,6 @@ describe('ErrorBoundary Accessibility', () => {
       </div>
     );
     
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     render(
       <ErrorBoundary fallback={CustomErrorUI}>
         <ThrowError shouldThrow={true} />
@@ -248,8 +222,5 @@ describe('ErrorBoundary Accessibility', () => {
     
     expect(retryButton).toBeInTheDocument();
     expect(reloadButton).toBeInTheDocument();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 });

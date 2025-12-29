@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import * as React from 'react';
 import { ErrorBoundary, useErrorHandler } from '../error-boundary';
 
@@ -7,10 +7,13 @@ import { ErrorBoundary, useErrorHandler } from '../error-boundary';
 const originalConsoleError = console.error;
 beforeEach(() => {
   console.error = vi.fn();
+  vi.clearAllMocks();
 });
 
 afterEach(() => {
+  cleanup();
   console.error = originalConsoleError;
+  vi.clearAllMocks();
 });
 
 // Component that throws an error
