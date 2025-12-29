@@ -21,23 +21,17 @@ afterEach(() => {
 });
 
 // Component that throws an error for testing
-// Use React ref to ensure error is only thrown once per component instance
+// Use a closure to track if this specific component instance has thrown
 // This prevents infinite loops when ErrorBoundary re-renders after catching error
-// When ErrorBoundary resets and re-renders children, a new component instance is created
-// so ref resets, allowing the error to be thrown again (which is desired for reset testing)
+// Each component instance gets its own closure variable that persists across renders
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
-  const hasThrownRef = React.useRef(false);
+  // Use a closure variable that persists for this component instance
+  // This is created once when the component is first rendered and persists
+  // across re-renders until the component is unmounted
+  const hasThrown = React.useMemo(() => ({ current: false }), []);
   
-  // Reset the ref when shouldThrow changes from false to true
-  // This allows testing reset functionality where ErrorBoundary re-renders after reset
-  React.useEffect(() => {
-    if (!shouldThrow) {
-      hasThrownRef.current = false;
-    }
-  }, [shouldThrow]);
-  
-  if (shouldThrow && !hasThrownRef.current) {
-    hasThrownRef.current = true;
+  if (shouldThrow && !hasThrown.current) {
+    hasThrown.current = true;
     throw new Error('Test error');
   }
   return <div>No error</div>;
