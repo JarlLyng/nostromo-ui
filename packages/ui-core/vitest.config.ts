@@ -17,7 +17,8 @@ export default defineConfig({
     // Limit concurrency to prevent resource exhaustion in CI
     // Increased from 2 to 4 to improve test performance while maintaining stability
     maxConcurrency: process.env.CI ? 4 : 5, // Increased concurrency in CI for better performance
-    coverage: {
+    // Disable coverage in CI to speed up tests (coverage can be run separately)
+    coverage: process.env.CI ? undefined : {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       exclude: [
@@ -28,6 +29,8 @@ export default defineConfig({
         '**/*.test.*',
       ],
     },
+    // Stop on first failure in CI to prevent hanging
+    bail: process.env.CI ? 1 : 0,
   },
   resolve: {
     alias: {
