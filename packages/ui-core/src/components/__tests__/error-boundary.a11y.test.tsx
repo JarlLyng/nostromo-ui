@@ -121,16 +121,9 @@ describe('ErrorBoundary Accessibility', () => {
     expect(button).toBeInTheDocument();
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/support');
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should handle multiple error boundaries', async () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     const { container } = render(
       <div>
         <ErrorBoundary>
@@ -144,16 +137,9 @@ describe('ErrorBoundary Accessibility', () => {
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should be accessible with nested error boundaries', async () => {
-    // Suppress console.error for this test
-    const originalError = console.error;
-    console.error = vi.fn();
-    
     const { container } = render(
       <ErrorBoundary>
         <ErrorBoundary>
@@ -164,9 +150,6 @@ describe('ErrorBoundary Accessibility', () => {
     
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should support custom ARIA attributes', () => {
@@ -192,9 +175,6 @@ describe('ErrorBoundary Accessibility', () => {
     expect(alert).toHaveAttribute('aria-live', 'assertive');
     expect(alert).toHaveAttribute('aria-label', 'Error occurred');
     expect(alert).toHaveAttribute('aria-describedby', 'error-description');
-    
-    // Restore console.error
-    console.error = originalError;
   });
 
   it('should handle recovery actions accessibly', () => {
