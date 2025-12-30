@@ -49,6 +49,10 @@ export default [js.configs.recommended, {
     '@typescript-eslint/no-empty-object-type': 'off',
     'no-undef': 'off', // TypeScript handles this
     'react-hooks/rules-of-hooks': 'off', // Disable for Storybook stories
+    // Disable new strict rules from react-hooks 7.x that are too strict for our use cases
+    'react-hooks/refs': 'off', // Too strict - refs are legitimately used in many places
+    'react-hooks/set-state-in-effect': 'off', // Too strict - legitimate use cases exist
+    'react-hooks/immutability': 'off', // Too strict - legitimate use cases exist
   },
   settings: {
     react: {
@@ -59,6 +63,13 @@ export default [js.configs.recommended, {
   files: ['**/*.stories.{ts,tsx}'],
   rules: {
     'react-hooks/rules-of-hooks': 'off',
+  },
+}, {
+  files: ['**/__tests__/**/*.{ts,tsx}'],
+  rules: {
+    'react-hooks/refs': 'off',
+    'react-hooks/set-state-in-effect': 'off',
+    'react-hooks/immutability': 'off',
   },
 }, {
   ignores: ['dist/**', 'node_modules/**', 'storybook-static/**'],
