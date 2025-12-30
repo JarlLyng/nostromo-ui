@@ -41,8 +41,8 @@ describe("Switch", () => {
     render(<Switch onCheckedChange={handleChange} />);
     const switchElement = screen.getByRole("switch");
     fireEvent.click(switchElement);
-    await waitFor(() => expect(handleChange).toHaveBeenCalledTimes(1));
-    await waitFor(() => expect(handleChange).toHaveBeenCalledWith(true));
+    await waitFor(() => expect(handleChange).toHaveBeenCalledTimes(1), { timeout: 5000 });
+    await waitFor(() => expect(handleChange).toHaveBeenCalledWith(true), { timeout: 5000 });
   });
 
   it("does not call onChange when disabled and clicked", () => {

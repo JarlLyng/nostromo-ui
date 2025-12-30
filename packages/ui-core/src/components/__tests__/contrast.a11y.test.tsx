@@ -22,8 +22,8 @@ function getComputedStyles(element: HTMLElement): {
 
 // Helper to convert RGB to HSL
 function rgbToHsl(rgb: string): string {
-  // Extract RGB values from "rgb(r, g, b)" format
-  const match = rgb.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  // Extract RGB values from "rgb(r, g, b)" or "rgba(r, g, b, a)" format
+  const match = rgb.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/);
   if (!match) {
     throw new Error(`Invalid RGB format: ${rgb}`);
   }
@@ -61,6 +61,19 @@ function rgbToHsl(rgb: string): string {
   return `${Math.round(h * 360)} ${Math.round(s * 100)}% ${Math.round(l * 100)}%`;
 }
 
+/**
+ * NOTE: This test suite is currently skipped because components do not yet meet WCAG AA contrast requirements.
+ * 
+ * The tests validate contrast ratios between foreground and background colors, but several components
+ * currently fail these checks. This is a known issue that needs to be addressed through design updates.
+ * 
+ * To enable these tests:
+ * 1. Review component color schemes and ensure they meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text)
+ * 2. Update component styles to improve contrast ratios
+ * 3. Remove the `.skip` from `describe.skip` below
+ * 
+ * Related: WCAG 2.1 AA compliance is a project goal (see docs/guides/ARCHITECTURE.md)
+ */
 describe.skip('Contrast Accessibility Tests', () => {
   beforeEach(() => {
     // Set up light mode
@@ -99,7 +112,7 @@ describe.skip('Contrast Accessibility Tests', () => {
   describe('Card Component', () => {
     it('should have sufficient contrast for card text', async () => {
       const { Card, CardContent } = await import('../card');
-      render(
+      const { container } = render(
         <Card>
           <CardContent>
             <p>Test content</p>

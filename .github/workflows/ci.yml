@@ -57,7 +57,7 @@ jobs:
       id: typecheck
       
     - name: Run tests
-      timeout-minutes: 25
+      timeout-minutes: 5
       run: |
         cd packages/ui-core
         pnpm test:run 2>&1 | tee ../../test-output.txt

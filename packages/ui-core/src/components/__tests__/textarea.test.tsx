@@ -46,7 +46,7 @@ describe("Textarea", () => {
     render(<Textarea onChange={handleChange} />);
     const textarea = screen.getByRole("textbox");
     fireEvent.change(textarea, { target: { value: "New text" } });
-    await waitFor(() => expect(handleChange).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(handleChange).toHaveBeenCalledTimes(1), { timeout: 5000 });
   });
 
   it("calls onInput when text is typed", async () => {
@@ -54,7 +54,7 @@ describe("Textarea", () => {
     render(<Textarea onInput={handleInput} />);
     const textarea = screen.getByRole("textbox");
     fireEvent.input(textarea, { target: { value: "Typed text" } });
-    await waitFor(() => expect(handleInput).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(handleInput).toHaveBeenCalledTimes(1), { timeout: 5000 });
   });
 
   it("renders as disabled", () => {

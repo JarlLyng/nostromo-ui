@@ -47,6 +47,10 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 - **Bundle Size** - Increased size limit to accommodate new components
   - Updated limit from 320 KB to 420 KB
   - Current bundle size: 404.11 KB (with tree-shaking support)
+- **Accessibility Tests** - Fixed contrast.a11y.test.tsx parsing and documentation
+  - Updated `rgbToHsl` helper to handle both `rgb()` and `rgba()` formats
+  - Fixed missing `container` destructuring in Card component test
+  - Added comprehensive documentation explaining why contrast tests are skipped (WCAG AA compliance pending)
 
 ### Added
 - **Advanced Components** - DataTable, Calendar, and Charts components fully implemented

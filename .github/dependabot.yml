@@ -14,6 +14,10 @@ updates:
     commit-message:
       prefix: "chore"
       include: "scope"
+    # Note: Dependabot may not always update pnpm-lock.yaml correctly in monorepos.
+    # If CI fails with ERR_PNPM_OUTDATED_LOCKFILE, manually update lockfile:
+    # git checkout <pr-branch> && pnpm install && git commit -am "chore: update pnpm-lock.yaml"
+    versioning-strategy: increase
     # Group updates to reduce PR noise
     groups:
       dev-dependencies:
@@ -48,6 +52,7 @@ updates:
       - "dependencies"
       - "ui-core"
       - "automated"
+    versioning-strategy: increase
     groups:
       dev-dependencies:
         dependency-type: "development"
@@ -135,6 +140,7 @@ updates:
       - "dependencies"
       - "docs"
       - "automated"
+    versioning-strategy: increase
     groups:
       dev-dependencies:
         dependency-type: "development"
