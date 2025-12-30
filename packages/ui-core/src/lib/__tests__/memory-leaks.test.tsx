@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { render, cleanup, act, waitFor, fireEvent } from '@testing-library/react';
+import { render, cleanup, act } from '@testing-library/react';
 import React from 'react';
 import { ToastProvider, useToastNotification } from '../../components/toast';
 import { Tooltip } from '../../components/tooltip';
