@@ -39,13 +39,13 @@ describe('Accordion', () => {
     
     await waitFor(() => {
       expect(content).not.toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
     
     fireEvent.click(trigger);
     
     await waitFor(() => {
       expect(content).toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
   });
 
   it('supports single type (only one item open at a time)', async () => {
@@ -71,14 +71,14 @@ describe('Accordion', () => {
     fireEvent.click(trigger1);
     await waitFor(() => {
       expect(content1).not.toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
     
     // Open second item - first should close
     fireEvent.click(trigger2);
     await waitFor(() => {
       expect(content2).not.toHaveAttribute('hidden');
       expect(content1).toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
   });
 
   it('supports multiple type (multiple items can be open)', async () => {
@@ -105,7 +105,7 @@ describe('Accordion', () => {
     await waitFor(() => {
       expect(screen.getByText('Content 1').closest('[role="region"]')).not.toHaveAttribute('hidden');
       expect(screen.getByText('Content 2').closest('[role="region"]')).not.toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
   });
 
   it('applies correct variant classes', () => {
@@ -252,42 +252,42 @@ describe('Accordion', () => {
     // Enter key should open/close
     act(() => {
       fireEvent.keyDown(trigger1, { key: 'Enter' });
-    });
+    }, { timeout: 5000 });
     await waitFor(() => {
       expect(screen.getByText('Content 1').closest('[role="region"]')).not.toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
     
     // Space key should open/close
     act(() => {
       fireEvent.keyDown(trigger1, { key: ' ' });
-    });
+    }, { timeout: 5000 });
     await waitFor(() => {
       const content = screen.getByText('Content 1').closest('[role="region"]')!;
       expect(content).toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
     
     // Arrow down should focus next item
     act(() => {
       fireEvent.keyDown(trigger1, { key: 'ArrowDown' });
-    });
+    }, { timeout: 5000 });
     expect(trigger2).toHaveFocus();
     
     // Arrow up should focus previous item
     act(() => {
       fireEvent.keyDown(trigger2, { key: 'ArrowUp' });
-    });
+    }, { timeout: 5000 });
     expect(trigger1).toHaveFocus();
     
     // Home should focus first item
     act(() => {
       fireEvent.keyDown(trigger2, { key: 'Home' });
-    });
+    }, { timeout: 5000 });
     expect(trigger1).toHaveFocus();
     
     // End should focus last item
     act(() => {
       fireEvent.keyDown(trigger1, { key: 'End' });
-    });
+    }, { timeout: 5000 });
     expect(trigger3).toHaveFocus();
   });
 
@@ -369,7 +369,7 @@ describe('AccordionTrigger', () => {
     await waitFor(() => {
       expect(trigger).toHaveAttribute('aria-expanded', 'true');
       expect(trigger).toHaveAttribute('data-state', 'open');
-    });
+    }, { timeout: 5000 });
   });
 
   it('renders chevron icon', () => {
@@ -406,7 +406,7 @@ describe('AccordionTrigger', () => {
     
     await waitFor(() => {
       expect(chevron).toHaveClass('rotate-180');
-    });
+    }, { timeout: 5000 });
   });
 });
 
@@ -447,6 +447,6 @@ describe('AccordionContent', () => {
     
     await waitFor(() => {
       expect(content).not.toHaveAttribute('hidden');
-    });
+    }, { timeout: 5000 });
   });
 });

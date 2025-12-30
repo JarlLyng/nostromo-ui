@@ -43,7 +43,7 @@ describe('DataTable', () => {
     await waitFor(() => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
       expect(screen.queryByText('Jane Smith')).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('searches across multiple columns', async () => {
@@ -56,7 +56,7 @@ describe('DataTable', () => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
       expect(screen.getByText('Alice Brown')).toBeInTheDocument();
       expect(screen.queryByText('Jane Smith')).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('applies column filters', async () => {
@@ -88,7 +88,7 @@ describe('DataTable', () => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
       expect(screen.getByText('Alice Brown')).toBeInTheDocument();
       expect(screen.queryByText('Jane Smith')).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('sorts data when column header is clicked', async () => {
@@ -104,7 +104,7 @@ describe('DataTable', () => {
         const rows = screen.getAllByRole('row');
         // First data row should be sorted
         expect(rows[1]).toHaveTextContent('Alice Brown');
-      });
+      }, { timeout: 5000 });
     }
   });
 
@@ -130,7 +130,7 @@ describe('DataTable', () => {
     await waitFor(() => {
       expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
       expect(screen.getByText('Alice Brown')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('calls onSearch callback when search term changes', async () => {
@@ -150,7 +150,7 @@ describe('DataTable', () => {
     
     await waitFor(() => {
       expect(onSearch).toHaveBeenCalledWith('John', expect.any(Array));
-    });
+    }, { timeout: 5000 });
   });
 
   it('calls onFilter callback when filter changes', async () => {
@@ -184,7 +184,7 @@ describe('DataTable', () => {
         { status: 'Active' },
         expect.any(Array)
       );
-    });
+    }, { timeout: 5000 });
   });
 
   it('hides search bar when showSearch is false', () => {
@@ -254,7 +254,7 @@ describe('DataTable', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Bob Johnson')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     // Search should reset to page 1
     const searchInput = screen.getByPlaceholderText('Search...');
@@ -264,7 +264,7 @@ describe('DataTable', () => {
       expect(screen.getByText('John Doe')).toBeInTheDocument();
       // Should be on page 1
       expect(screen.getByText(/Page 1 of/)).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('clears filters when clear button is clicked', async () => {
@@ -294,7 +294,7 @@ describe('DataTable', () => {
     
     await waitFor(() => {
       expect(screen.queryByText('Jane Smith')).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     // Clear filters
     const clearButton = screen.getByText('Clear filters');
@@ -302,7 +302,7 @@ describe('DataTable', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Jane Smith')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 });
 

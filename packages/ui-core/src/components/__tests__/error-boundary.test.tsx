@@ -1,21 +1,34 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import * as React from 'react';
 import { ErrorBoundary, useErrorHandler } from '../error-boundary';
 
 // Mock console.error to avoid noise in tests
 const originalConsoleError = console.error;
+
 beforeEach(() => {
   console.error = vi.fn();
+  vi.clearAllMocks();
 });
 
 afterEach(() => {
+  cleanup();
   console.error = originalConsoleError;
+  vi.clearAllMocks();
 });
 
 // Component that throws an error
+// Use a closure to track if this specific component instance has thrown
+// This prevents infinite loops when ErrorBoundary re-renders after catching error
+// Each component instance gets its own closure variable that persists across renders
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
-  if (shouldThrow) {
+  // Use a closure variable that persists for this component instance
+  // This is created once when the component is first rendered and persists
+  // across re-renders until the component is unmounted
+  const hasThrown = React.useMemo(() => ({ current: false }), []);
+  
+  if (shouldThrow && !hasThrown.current) {
+    hasThrown.current = true;
     throw new Error('Test error');
   }
   return <div>No error</div>;

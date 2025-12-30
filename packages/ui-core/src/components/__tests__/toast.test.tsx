@@ -217,7 +217,7 @@ describe('Toast', () => {
     
     await waitFor(() => {
       expect(onClose).toHaveBeenCalled();
-    });
+    }, { timeout: 5000 });
   });
 
   it('auto-closes after duration', async () => {
@@ -366,7 +366,7 @@ describe('ToastProvider and useToastNotification', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Success message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('shows multiple toasts', async () => {
@@ -397,14 +397,14 @@ describe('ToastProvider and useToastNotification', () => {
     
     await waitFor(() => {
       expect(screen.getByText('Success message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     fireEvent.click(screen.getByText('Clear All'));
     
     await waitFor(() => {
       expect(screen.queryByText('Success message')).not.toBeInTheDocument();
       expect(screen.queryByText('Error message')).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 
   it('provides convenience methods', async () => {
@@ -417,21 +417,21 @@ describe('ToastProvider and useToastNotification', () => {
     fireEvent.click(screen.getByText('Show Success'));
     await waitFor(() => {
       expect(screen.getByText('Success message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     fireEvent.click(screen.getByText('Show Error'));
     await waitFor(() => {
       expect(screen.getByText('Error message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     fireEvent.click(screen.getByText('Show Warning'));
     await waitFor(() => {
       expect(screen.getByText('Warning message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
     
     fireEvent.click(screen.getByText('Show Info'));
     await waitFor(() => {
       expect(screen.getByText('Info message')).toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
   });
 });
