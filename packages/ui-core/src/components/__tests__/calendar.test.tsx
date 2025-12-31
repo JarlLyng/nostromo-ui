@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { vi } from 'vitest';
 import { Calendar } from '../calendar';
 
@@ -113,42 +113,42 @@ describe('Calendar', () => {
     }, { timeout: 5000 });
   });
 
-  // TODO: Fix flaky test - fails consistently in CI due to timing issues with month state updates
-  // Issue: Test fails to find the previous month text after clicking previous month button
-  // This is a known flaky test that needs investigation and proper fix
-  it.skip('navigates to previous month', async () => {
+  it('navigates to previous month', async () => {
     render(<Calendar />);
     
     const button = screen.getByRole('button', { name: /open calendar|select date/i });
     fireEvent.click(button);
     
-    // Wait for calendar to open and find previous month button
-    const prevButton = await waitFor(() => {
-      return screen.getByRole('button', { name: /previous month/i });
+    // Wait for calendar to open
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /previous month/i })).toBeInTheDocument();
     }, { timeout: 5000 });
     
-    // Get current month before clicking
+    // Get current month before clicking - read from the actual displayed value
+    const monthYearElement = screen.getByTestId('calendar-month-year');
+    const currentMonthYear = monthYearElement.textContent || '';
+    
+    // Calculate expected previous month based on current displayed month
+    // Parse the current month to avoid date calculation issues
     const currentDate = new Date();
-    const currentMonthYear = currentDate.toLocaleDateString('en-US', {
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    
+    // Calculate previous month
+    const prevMonth = new Date(currentYear, currentMonth - 1, 1);
+    const expectedMonthYear = prevMonth.toLocaleDateString('en-US', {
       month: 'long',
       year: 'numeric'
     });
     
-    // Verify current month is displayed
-    expect(screen.getByText(currentMonthYear)).toBeInTheDocument();
-    
-    // Click previous month button
+    // Click previous month button only once
+    const prevButton = screen.getByRole('button', { name: /previous month/i });
     fireEvent.click(prevButton);
     
-    // Month should have changed
+    // Wait for the month display to change to previous month using testid
     await waitFor(() => {
-      const prevMonth = new Date();
-      prevMonth.setMonth(prevMonth.getMonth() - 1);
-      const monthYear = prevMonth.toLocaleDateString('en-US', {
-        month: 'long',
-        year: 'numeric'
-      });
-      expect(screen.getByText(monthYear)).toBeInTheDocument();
+      const updatedMonthYearElement = screen.getByTestId('calendar-month-year');
+      expect(updatedMonthYearElement).toHaveTextContent(expectedMonthYear);
     }, { timeout: 5000 });
   });
 

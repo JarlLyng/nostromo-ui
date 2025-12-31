@@ -522,7 +522,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       </svg>
                     </Button>
                     
-                    <h3 className="text-sm font-semibold text-popover-foreground">{monthYearDisplay}</h3>
+                    <h3 className="text-sm font-semibold text-popover-foreground" data-testid="calendar-month-year">{monthYearDisplay}</h3>
                     
                     <Button
                       variant="ghost"
