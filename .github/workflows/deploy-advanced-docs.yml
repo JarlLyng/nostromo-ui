@@ -54,8 +54,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-
             ${{ runner.os }}-pnpm-store-
-        # Cache retention: 7 days (default is unlimited)
-        # This prevents cache from growing indefinitely
+        # Cache retention: GitHub automatically evicts unused caches after 7 days
+        # To reduce cache storage, we can manually delete old caches via GitHub UI or CLI
             
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
