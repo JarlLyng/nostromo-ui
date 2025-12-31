@@ -67,6 +67,7 @@ export default function LiveCodeClient({
       return
     }
     
+    // Inject comprehensive CSS directly - Tailwind CSS classes need to be available
     const style = document.createElement('style')
     style.id = 'livecode-preview-styles'
     style.textContent = `
@@ -238,15 +239,42 @@ export default function LiveCodeClient({
     return () => clearTimeout(timer)
   }, [code])
 
-  // Set theme attributes on preview container
+  // Set theme attributes on preview container and ensure CSS variables are available
   useEffect(() => {
-    if (!previewRef.current) return
-    const container = previewRef.current.querySelector('[data-theme]') || previewRef.current
-    if (container instanceof HTMLElement) {
-      container.setAttribute('data-theme', theme)
-      container.setAttribute('data-color-scheme', currentColorScheme)
+    if (!previewRef.current || !mounted) return
+    
+    // Copy CSS variables from document root to preview container
+    const rootStyles = getComputedStyle(document.documentElement)
+    const container = previewRef.current
+    
+    // Get all CSS custom properties (variables)
+    const cssVariables: string[] = []
+    for (let i = 0; i < rootStyles.length; i++) {
+      const prop = rootStyles[i]
+      if (prop.startsWith('--')) {
+        cssVariables.push(prop)
+      }
     }
-  }, [theme, currentColorScheme, isLoading])
+    
+    // Apply CSS variables to preview container
+    cssVariables.forEach((varName) => {
+      const value = rootStyles.getPropertyValue(varName)
+      container.style.setProperty(varName, value)
+    })
+    
+    // Set theme attributes
+    container.setAttribute('data-theme', theme)
+    container.setAttribute('data-color-scheme', currentColorScheme)
+    
+    // Also set on any nested elements that might need it
+    const nestedElements = container.querySelectorAll('[data-theme]')
+    nestedElements.forEach((el) => {
+      if (el instanceof HTMLElement) {
+        el.setAttribute('data-theme', theme)
+        el.setAttribute('data-color-scheme', currentColorScheme)
+      }
+    })
+  }, [theme, currentColorScheme, isLoading, mounted])
 
   const handleCopy = async () => {
     try {
@@ -464,6 +492,7 @@ export default function LiveCodeClient({
               style={{ display: isLoading ? 'none' : 'block' }}
               data-theme={theme}
               data-color-scheme={currentColorScheme}
+              className="live-preview-container"
             >
               <LivePreview />
             </div>
