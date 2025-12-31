@@ -189,7 +189,7 @@ describe('Pricing Component', () => {
 
     it('should use index as key when id is missing', () => {
       const plansWithoutId = [
-        { name: 'Plan', price: { monthly: 10 }, features: [], cta: { text: 'Start' } },
+        { name: 'Plan', price: { monthly: 10 }, features: [], cta: { text: 'Start', onClick: vi.fn() } },
       ];
       render(<Pricing plans={plansWithoutId} />);
       expect(screen.getByText('Plan')).toBeInTheDocument();
