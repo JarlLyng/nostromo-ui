@@ -119,10 +119,23 @@ describe('Calendar', () => {
     const button = screen.getByRole('button', { name: /open calendar|select date/i });
     fireEvent.click(button);
     
-    await waitFor(() => {
-      const prevButton = screen.getByRole('button', { name: /previous month/i });
-      fireEvent.click(prevButton);
+    // Wait for calendar to open and find previous month button
+    const prevButton = await waitFor(() => {
+      return screen.getByRole('button', { name: /previous month/i });
     }, { timeout: 5000 });
+    
+    // Get current month before clicking
+    const currentDate = new Date();
+    const currentMonthYear = currentDate.toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric'
+    });
+    
+    // Verify current month is displayed
+    expect(screen.getByText(currentMonthYear)).toBeInTheDocument();
+    
+    // Click previous month button
+    fireEvent.click(prevButton);
     
     // Month should have changed
     await waitFor(() => {
