@@ -164,7 +164,7 @@ describe('Testimonials Component', () => {
       const testimonialsWithoutRating = [
         { id: '1', name: 'John', role: 'Dev', content: 'Test content' },
       ];
-      const { container } = render(<Testimonials testimonials={testimonialsWithoutRating} />);
+      render(<Testimonials testimonials={testimonialsWithoutRating} />);
       // Should not crash
       expect(screen.getByText(/Test content/)).toBeInTheDocument();
     });
