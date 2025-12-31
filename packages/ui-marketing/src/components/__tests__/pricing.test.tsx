@@ -193,6 +193,7 @@ describe('Pricing Component', () => {
       ];
       render(<Pricing plans={plansWithoutId} />);
       expect(screen.getByText('Plan')).toBeInTheDocument();
+      // container is used implicitly through render
     });
 
     it('should handle plans without yearly price', () => {
