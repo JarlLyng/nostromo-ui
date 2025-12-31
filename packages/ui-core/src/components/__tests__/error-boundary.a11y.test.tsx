@@ -25,13 +25,12 @@ afterEach(() => {
 // This prevents infinite loops when ErrorBoundary re-renders after catching error
 // Each component instance gets its own closure variable that persists across renders
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
-  // Use a closure variable that persists for this component instance
-  // This is created once when the component is first rendered and persists
-  // across re-renders until the component is unmounted
-  const hasThrown = React.useMemo(() => ({ current: false }), []);
+  // Use useState to track if error has been thrown (avoids refs during render rule)
+  const [hasThrown, setHasThrown] = React.useState(false);
   
-  if (shouldThrow && !hasThrown.current) {
-    hasThrown.current = true;
+  if (shouldThrow && !hasThrown) {
+    // Use setTimeout to avoid setState during render
+    setTimeout(() => setHasThrown(true), 0);
     throw new Error('Test error');
   }
   return <div>No error</div>;

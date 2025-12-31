@@ -516,6 +516,7 @@ export const TooltipContent = React.forwardRef<HTMLDivElement, TooltipContentPro
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('scroll', handleResize);
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [updatePosition, updatePositionDeps]);
 
     return (
