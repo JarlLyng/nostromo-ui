@@ -126,9 +126,9 @@ describe('Pricing Component', () => {
 
     it('should call onToggleBilling when toggle is clicked', () => {
       const onToggle = vi.fn();
-      const { container } = render(<Pricing plans={mockPlans} onToggleBilling={onToggle} />);
-      // Find the toggle button (it's inside the toggle container)
-      const toggleButton = container.querySelector('button[class*="inline-flex"]');
+      render(<Pricing plans={mockPlans} onToggleBilling={onToggle} />);
+      // Find the toggle button by its structure (it's a button with specific classes)
+      const toggleButton = screen.getByText('Monthly').parentElement?.querySelector('button');
       if (toggleButton) {
         fireEvent.click(toggleButton);
         expect(onToggle).toHaveBeenCalled();
