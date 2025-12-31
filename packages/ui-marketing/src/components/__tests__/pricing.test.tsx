@@ -197,7 +197,7 @@ describe('Pricing Component', () => {
 
     it('should handle plans without yearly price', () => {
       const plansWithoutYearly = [
-        { id: '1', name: 'Plan', price: { monthly: 10 }, features: [], cta: { text: 'Start' } },
+        { id: '1', name: 'Plan', price: { monthly: 10 }, features: [], cta: { text: 'Start', onClick: vi.fn() } },
       ];
       render(<Pricing plans={plansWithoutYearly} showYearly />);
       // Should fallback to monthly price
