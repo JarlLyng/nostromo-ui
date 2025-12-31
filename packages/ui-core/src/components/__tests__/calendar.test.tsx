@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { Calendar } from '../calendar';
 
@@ -126,10 +126,8 @@ describe('Calendar', () => {
     
     // Get current month before clicking - read from the actual displayed value
     const monthYearElement = screen.getByTestId('calendar-month-year');
-    const currentMonthYear = monthYearElement.textContent || '';
     
-    // Calculate expected previous month based on current displayed month
-    // Parse the current month to avoid date calculation issues
+    // Calculate expected previous month based on current date
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
