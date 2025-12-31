@@ -124,8 +124,9 @@ describe('Calendar', () => {
       expect(screen.getByRole('button', { name: /previous month/i })).toBeInTheDocument();
     }, { timeout: 5000 });
     
-    // Get current month before clicking - read from the actual displayed value
+    // Verify current month is displayed using testid
     const monthYearElement = screen.getByTestId('calendar-month-year');
+    expect(monthYearElement).toBeInTheDocument();
     
     // Calculate expected previous month based on current date
     const currentDate = new Date();
@@ -139,7 +140,7 @@ describe('Calendar', () => {
       year: 'numeric'
     });
     
-    // Click previous month button only once
+    // Click previous month button
     const prevButton = screen.getByRole('button', { name: /previous month/i });
     fireEvent.click(prevButton);
     
