@@ -100,7 +100,16 @@ export function withPerformanceMonitoring<P extends object>(
     const name = componentName || Component.displayName || Component.name || 'Unknown';
     usePerformanceMonitor(name, options);
     
-    return React.createElement(Component, { ...(props as P), ref } as P & { ref?: React.Ref<unknown> });
+    // Use callback ref to avoid accessing ref.current during render
+    const refCallback = React.useCallback((instance: unknown) => {
+      if (typeof ref === 'function') {
+        ref(instance);
+      } else if (ref && 'current' in ref) {
+        (ref as React.MutableRefObject<unknown>).current = instance;
+      }
+    }, [ref]);
+    
+    return React.createElement(Component, { ...(props as P), ref: refCallback } as P & { ref?: React.Ref<unknown> });
   });
   
   WrappedComponent.displayName = `withPerformanceMonitoring(${Component.displayName || Component.name})`;
