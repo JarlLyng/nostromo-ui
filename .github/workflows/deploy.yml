@@ -86,8 +86,11 @@ jobs:
         
     - name: Build Storybook
       timeout-minutes: 15
+      env:
+        # Set Storybook base path to match GitHub Pages subpath
+        STORYBOOK_BASE_PATH: "/nostromo-ui/storybook-static"
       run: |
-        echo "Building Storybook..."
+        echo "Building Storybook with base path: ${STORYBOOK_BASE_PATH}"
         echo "Checking @tailwindcss/vite availability..."
         pnpm list @tailwindcss/vite || echo "@tailwindcss/vite not found"
         echo "Installing @tailwindcss/vite in ui-core if needed..."
@@ -104,6 +107,8 @@ jobs:
         ls -la storybook-static/ | head -20
         echo "Checking CSS files for theme variables..."
         grep -o "data-theme=nostromo\|--color-brand-500" storybook-static/assets/*.css | head -5 || echo "Theme variables not found"
+        echo "Verifying base path in built HTML..."
+        grep -o "src=\".*vite-inject-mocker-entry.js\"" storybook-static/index.html | head -1 || echo "vite-inject path not found"
       
     - name: Build documentation
       timeout-minutes: 15
@@ -115,9 +120,9 @@ jobs:
         BASE_PATH="${NEXT_PUBLIC_BASE_PATH:-/nostromo-ui}"
         echo "Copying Storybook to docs output..."
         cp -r ../packages/ui-core/storybook-static out/storybook-static
-        echo "Fixing vite-inject-mocker-entry.js paths for GitHub Pages subpath..."
-        sed -i "s|src=\"/vite-inject-mocker-entry.js\"|src=\"${BASE_PATH}/storybook-static/vite-inject-mocker-entry.js\"|g" out/storybook-static/index.html || true
-        sed -i "s|src=\"/vite-inject-mocker-entry.js\"|src=\"${BASE_PATH}/storybook-static/vite-inject-mocker-entry.js\"|g" out/storybook-static/iframe.html || true
+        echo "Storybook base path is configured in Storybook config - no sed patching needed!"
+        echo "Verifying Storybook paths are correct..."
+        grep -o "src=\".*vite-inject-mocker-entry.js\"" out/storybook-static/index.html | head -1 || echo "vite-inject path not found"
         echo "Copying favicon files..."
         cp public/favicon.ico out/
         cp public/favicon.svg out/

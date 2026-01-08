@@ -1,6 +1,18 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { cva, type VariantProps } from 'class-variance-authority';
+import {
+  getDaysInMonth as dateFnsGetDaysInMonth,
+  startOfMonth,
+  getDay,
+  isSameDay as dateFnsIsSameDay,
+  isWithinInterval,
+  isBefore,
+  isAfter,
+  format as dateFnsFormat,
+  startOfDay,
+  endOfDay,
+} from 'date-fns';
 import { cn } from '../lib/utils';
 import { Button } from './button';
 
@@ -75,32 +87,36 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
   firstDayOfWeek?: 0 | 1; // 0 = Sunday, 1 = Monday
 }
 
-// Helper functions
+// Helper functions using date-fns for robust date manipulation
 const getDaysInMonth = (date: Date): number => {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  return dateFnsGetDaysInMonth(date);
 };
 
 const getFirstDayOfMonth = (date: Date, firstDayOfWeek: 0 | 1): number => {
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  // Use date-fns getDay for consistent day-of-week calculation
+  const firstDay = getDay(startOfMonth(date));
+  // Convert Sunday (0) to Monday-first (6) if needed
+  // Sunday = 0, Monday = 1, ..., Saturday = 6
+  // For Monday-first: Sunday becomes 6, Monday becomes 0, etc.
   return firstDayOfWeek === 1 ? (firstDay === 0 ? 6 : firstDay - 1) : firstDay;
 };
 
 const isSameDay = (date1: Date | undefined, date2: Date | undefined): boolean => {
   if (!date1 || !date2) return false;
-  return (
-    date1.getFullYear() === date2.getFullYear() &&
-    date1.getMonth() === date2.getMonth() &&
-    date1.getDate() === date2.getDate()
-  );
+  return dateFnsIsSameDay(date1, date2);
 };
 
 const isDateInRange = (date: Date, from?: Date, to?: Date): boolean => {
   if (!from && !to) return false;
   if (from && to) {
-    return date >= from && date <= to;
+    // Use date-fns isWithinInterval for proper date range checking
+    return isWithinInterval(startOfDay(date), {
+      start: startOfDay(from),
+      end: endOfDay(to),
+    });
   }
-  if (from) return date >= from;
-  if (to) return date <= to;
+  if (from) return !isBefore(startOfDay(date), startOfDay(from));
+  if (to) return !isAfter(startOfDay(date), endOfDay(to));
   return false;
 };
 
@@ -111,20 +127,19 @@ const isDateDisabled = (
   disabledDates?: Date[],
   disabledDays?: number[]
 ): boolean => {
-  if (minDate && date < minDate) return true;
-  if (maxDate && date > maxDate) return true;
+  if (minDate && isBefore(startOfDay(date), startOfDay(minDate))) return true;
+  if (maxDate && isAfter(startOfDay(date), endOfDay(maxDate))) return true;
   if (disabledDates?.some(d => isSameDay(d, date))) return true;
-  if (disabledDays?.includes(date.getDay())) return true;
+  if (disabledDays?.includes(getDay(date))) return true;
   return false;
 };
 
 const formatDate = (date: Date | undefined, locale: string = 'en-US'): string => {
   if (!date) return '';
-  return date.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
+  // Use date-fns format for consistent formatting
+  // Note: date-fns uses locale objects, but we'll use a simple format for now
+  // For full locale support, import locale from 'date-fns/locale'
+  return dateFnsFormat(date, 'MMM d, yyyy');
 };
 
 const formatDateRange = (from?: Date, to?: Date, locale: string = 'en-US'): string => {

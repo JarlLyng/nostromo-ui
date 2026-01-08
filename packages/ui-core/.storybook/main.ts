@@ -15,6 +15,10 @@ const config: StorybookConfig = {
     options: {},
   },
   core: { builder: '@storybook/builder-vite' },
+  // Configure base path for GitHub Pages deployment
+  // This is read from environment variable set in CI/CD
+  // Defaults to root path for local development
+  base: process.env.STORYBOOK_BASE_PATH || '/',
   viteFinal: async (config) => {
     // 1) React dedupe to avoid multiple React instances
     config.resolve = {
@@ -27,7 +31,14 @@ const config: StorybookConfig = {
     const tailwindVite = (await import('@tailwindcss/vite')).default;
     config.plugins = [...(config.plugins ?? []), tailwindVite()];
 
-    // 3) Optimize dependencies for faster builds
+    // 3) Configure base path for Vite (for GitHub Pages subpath deployment)
+    // This ensures all assets are loaded from the correct subpath
+    const basePath = process.env.STORYBOOK_BASE_PATH || '/';
+    if (basePath !== '/') {
+      config.base = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    }
+
+    // 4) Optimize dependencies for faster builds
     config.optimizeDeps = {
       ...(config.optimizeDeps ?? {}),
       force: true,
