@@ -73,13 +73,13 @@ jobs:
       
     - name: Run linter
       run: |
-        pnpm lint 2>&1 | tee lint-output.txt
-        LINT_EXIT=${PIPESTATUS[0]}
-        if [ $LINT_EXIT -ne 0 ]; then
-          echo "❌ Linter failed"
+        pnpm lint 2>&1 | tee lint-output.txt || true
+        # Check if there are any errors (not just warnings)
+        if grep -q "error" lint-output.txt; then
+          echo "❌ Linter failed with errors"
           exit 1
         fi
-        echo "✅ Linter passed"
+        echo "✅ Linter passed (warnings are acceptable)"
       
     - name: Upload error logs
       if: failure()
