@@ -115,7 +115,8 @@ export default function ButtonSizes() {
 - Use `type="button"` for buttons that don't submit forms
 - Use `type="submit"` for form submission buttons
 - Provide `aria-label` for icon-only buttons
-- Use `loading` prop for async operations
+- Use `loading` prop for async operations (shows spinner automatically)
+- Use `state="success"` or `state="error"` for post-action feedback
 - Use `disabled` prop to prevent interactions
 
 ### Don't ❌
@@ -123,6 +124,7 @@ export default function ButtonSizes() {
 - Don't disable buttons without providing feedback
 - Don't forget to handle loading states in forms
 - Don't use buttons without accessible labels
+- Don't use both `loading={true}` and `state="loading"` together (use `loading` prop instead)
 
 ## Props
 
@@ -130,9 +132,9 @@ export default function ButtonSizes() {
 |------|------|---------|----------|-------------|
 | `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "subtle"` | `"default"` | No | Visual variant of the button |
 | `size` | `"sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | No | Size of the button |
-| `state` | `"default" \| "loading" \| "success" \| "error"` | `"default"` | No | Visual state of the button |
-| `loading` | `boolean` | `false` | No | Whether the button is in a loading state |
-| `loadingText` | `string` | `undefined` | No | Text to display when loading is true |
+| `state` | `"default" \| "loading" \| "success" \| "error"` | `"default"` | No | Visual state of the button. **Note:** If `loading` is true, this prop is ignored and state becomes "loading". Use `state="success"` or `state="error"` for post-action feedback. |
+| `loading` | `boolean` | `false` | No | Whether the button is in a loading state. When true, automatically sets state to "loading" and shows a spinner. |
+| `loadingText` | `string` | `undefined` | No | Text to display when loading is true. If not provided, the button's children will be shown. |
 | `disabled` | `boolean` | `false` | No | Whether the button is disabled |
 | `type` | `"button" \| "submit" \| "reset"` | `"button"` | No | HTML button type attribute |
 | `onClick` | `(event: React.MouseEvent<HTMLButtonElement>) => void` | `undefined` | No | Click event handler |

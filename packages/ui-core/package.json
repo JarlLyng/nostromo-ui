@@ -183,7 +183,8 @@
     "size": "size-limit",
     "size:why": "size-limit --why",
     "test:performance": "vitest run src/components/__tests__/performance.test.tsx",
-    "test:memory": "vitest run src/lib/__tests__/memory-leaks.test.tsx"
+    "test:memory": "vitest run src/lib/__tests__/memory-leaks.test.tsx",
+    "prepublishOnly": "pnpm run type-check && pnpm run lint && pnpm run test:run && pnpm run build"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",

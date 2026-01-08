@@ -120,8 +120,8 @@ All components are built with:
 | **Core Components** | ✅ | 30 components implemented |
 | **Marketing Components** | ✅ | 6 components implemented |
 | **Themes** | ✅ | 4 themes (Nostromo, Mother, LV-426, Sulaco) |
-| **Core Tests** | ✅ | 842 tests passing (61 test files) |
-| **Marketing Tests** | ⚠️ | 7 smoke tests (minimal coverage) |
+| **Core Tests** | ✅ | 861 tests passing (61 test files) |
+| **Marketing Tests** | ✅ | 197 tests passing (13 test files) |
 | **TypeScript** | ✅ | Zero errors, strict mode enabled |
 | **Linting** | ⚠️ | Some warnings in stories/test files |
 | **CI/CD** | ✅ | All critical checks passing |

@@ -75,17 +75,21 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
-   * Whether the button is in a loading state
+   * Whether the button is in a loading state.
+   * When true, automatically sets state to "loading" and shows a spinner.
    * @default false
    */
   loading?: boolean;
   /**
-   * The loading text to display when loading is true
+   * The loading text to display when loading is true.
+   * If not provided, the button's children will be shown.
    * @default undefined
    */
   loadingText?: string;
   /**
-   * The visual state of the button
+   * The visual state of the button.
+   * Note: If `loading` is true, this prop is ignored and state becomes "loading".
+   * Use `state="success"` or `state="error"` for post-action feedback.
    * @default "default"
    */
   state?: "default" | "loading" | "success" | "error";
@@ -105,7 +109,8 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }, ref) => {
     const isDisabled = disabled || loading;
     
-    // Determine final state based on loading prop
+    // Determine final state: loading prop takes precedence over state prop
+    // This ensures loading always shows spinner, while state can be used for success/error feedback
     const finalState = loading ? "loading" : state;
     
     return (
