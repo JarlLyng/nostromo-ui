@@ -152,9 +152,9 @@ const formatDateRange = (from?: Date, to?: Date, locale: string = 'en-US'): stri
   return '';
 };
 
-const formatMultipleDates = (dates: Date[], locale: string = 'en-US'): string => {
+const formatMultipleDates = (dates: Date[], _locale: string = 'en-US'): string => {
   if (dates.length === 0) return '';
-  if (dates.length === 1) return formatDate(dates[0], locale);
+  if (dates.length === 1) return formatDate(dates[0], _locale);
   return `${dates.length} dates selected`;
 };
 
