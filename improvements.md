@@ -67,6 +67,8 @@ In `packages/ui-core/package.json`, there is a very long list of manual `exports
 - **ESLint**: You have `eslint` config in root and in packages. Ensure you are using a shared config (e.g., `@nostromo/eslint-config` workspace package) to avoid duplicating rules and ensure consistency across the monorepo.
 - **TSConfig**: You have `tsconfig.base.json`, which is good. Ensure all packages extend it.
 
+**Status**: ⚠️ **PARTIALLY ADDRESSED** - TSConfig is properly shared via `tsconfig.base.json` (all packages extend it). ESLint configs are duplicated across packages (`ui-core`, `ui-marketing`, `ui-tw`). Each package has similar but slightly different configs. Consider creating a shared `@nostromo/eslint-config` workspace package in the future to reduce duplication, but current setup works well for now.
+
 ## 🚀 Summary
 
 The project is in very good shape. The foundation is solid. The recommendations above are mostly "housekeeping" items to ensure scalability and maintainability as the project grows.
