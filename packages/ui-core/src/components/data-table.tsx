@@ -330,7 +330,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
       setPageSize(newPageSize);
       setCurrentPage(1); // Reset to first page when page size changes
     }
-  }, [pageSize]);
+  }, [pageSize, setCurrentPage, setPageSize]);
   
   // Notify callbacks
   React.useEffect(() => {
