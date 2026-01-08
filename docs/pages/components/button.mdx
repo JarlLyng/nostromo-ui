@@ -92,13 +92,18 @@ export default function ButtonSizes() {
   <XIcon />
 </Button>
 
-// Button with loading state
-<Button disabled={isLoading} aria-describedby="loading-text">
-  {isLoading ? 'Saving...' : 'Save'}
+// Button with loading state (recommended approach)
+<Button loading={isLoading} loadingText="Saving..." aria-describedby="loading-text">
+  Save
 </Button>
 <div id="loading-text" className="sr-only">
   Please wait while your changes are saved
 </div>
+
+// Button with success/error feedback after action
+<Button state={saveResult === 'success' ? 'success' : saveResult === 'error' ? 'error' : 'default'}>
+  {saveResult === 'success' ? 'Saved!' : saveResult === 'error' ? 'Failed' : 'Save'}
+</Button>
 
 // Button in form - use type="button" to prevent form submission
 <Button type="button" onClick={handleCancel}>
