@@ -86,7 +86,7 @@ import { Button } from "@nostromo/ui-core";
 - **Breadcrumb** - Navigation breadcrumbs with accessibility
 - **Pagination** - Page navigation with keyboard accessibility
 - **Separator** - Visual separators with horizontal and vertical variants
-- **Calendar** - Date picker with single, range, and multiple selection modes
+- **Calendar** - Date picker with single, range, and multiple selection modes (uses `date-fns` for robust date handling)
 - **Charts** - Data visualization with line, bar, area, and pie charts
 
 ### Marketing Components (6 components)
@@ -123,11 +123,11 @@ All components are built with:
 | **Core Tests** | ✅ | 861 tests passing (61 test files) |
 | **Marketing Tests** | ✅ | 197 tests passing (13 test files) |
 | **TypeScript** | ✅ | Zero errors, strict mode enabled |
-| **Linting** | ✅ | All warnings resolved |
-| **CI/CD** | ✅ | All critical checks passing |
+| **Linting** | ✅ | 0 errors, 8 warnings (acceptable) |
+| **CI/CD** | ✅ | All critical checks passing (parallelized) |
 | **Documentation** | ✅ | 12 guides + live examples |
 | **Distribution** | ⚠️ | Workspace-only (npm publishing planned) |
-| **Bundle Size** | ✅ | ~404 KB (with tree-shaking) |
+| **Bundle Size** | ✅ | ~204 KB (with tree-shaking) |
 
 > **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
 
@@ -149,7 +149,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall with full design system integration
 - **Form Components** - Complete set of form-related components
 - **Navigation Components** - Tabs and Select with keyboard accessibility
-- **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, and sorting; Charts with line, bar, area, and pie visualizations
+- **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, sorting, and server-side support (controlled mode); Charts with line, bar, area, and pie visualizations
 - **Feedback Components** - Toast, Tooltip, Progress with accessibility
 - **Layout Components** - Accordion, Skeleton with animations
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (842 tests passing - unit + accessibility)
@@ -163,14 +163,16 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **WCAG AA Compliance** - All components optimized for WCAG 2.1 AA contrast requirements in both light and dark modes
 - **Semantic Color Tokens** - Complete refactoring to semantic color tokens (background, foreground, muted, primary, etc.) for better theming and accessibility
 - **Advanced Components** - DataTable, Calendar, and Charts components fully implemented and tested
+- **Calendar Date Logic** - Replaced custom date manipulation with `date-fns` library for robust date handling (leap years, timezones, edge cases)
+- **DataTable Controlled Mode** - Added server-side pagination/sorting/filtering support with controlled mode props
 - **Code Quality** - TypeScript errors resolved, bundle size optimized
-- **CI/CD** - Improved lint detection, removed deprecated configurations, all checks passing
+- **CI/CD** - Parallelized workflow (lint, type-check, test run in parallel), improved lint error detection, all checks passing
 - **Documentation** - All components now have live, interactive examples (StorybookEmbed + LiveCode)
 - **Live Examples** - Every component documentation page includes multiple live, editable examples
-- **Storybook Integration** - Interactive Storybook embeds for all core components with stories
-- **Accessibility** - Comprehensive accessibility testing with axe-core integration (842 tests passing)
-- **Performance** - Bundle size monitoring and optimization (404 KB with tree-shaking support)
-- **Dependency Management** - Dependabot configured for automated dependency updates
+- **Storybook Integration** - Interactive Storybook embeds for all core components with stories, proper base path configuration
+- **Accessibility** - Comprehensive accessibility testing with axe-core integration (1058 tests passing)
+- **Performance** - Bundle size monitoring and optimization (~204 KB with tree-shaking support)
+- **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
 
 **Current Progress: 100% of MVP - Production Ready! 🎉**
 

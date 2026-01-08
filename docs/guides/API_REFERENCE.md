@@ -387,6 +387,129 @@ const columns = [
 
 ---
 
+### DataTable
+
+An advanced data table component with built-in search, filtering, sorting, and pagination. Supports both client-side and server-side operations via controlled mode.
+
+```tsx
+import { DataTable } from "@nostromo/ui-core"
+// or
+import { DataTable } from "@nostromo/ui-core/data-table"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `T[]` | - | **Required** - Array of data objects to display |
+| `columns` | `TableColumn<T>[]` | - | **Required** - Column definitions |
+| `searchable` | `boolean` | `true` | Enable global search functionality |
+| `searchTerm` | `string` | `undefined` | Controlled search term (for server-side search) |
+| `onSearchTermChange` | `(searchTerm: string) => void` | `undefined` | Callback when search term changes (controlled mode) |
+| `filterable` | `boolean` | `false` | Enable column filtering |
+| `columnFilters` | `Record<string, unknown>` | `undefined` | Controlled column filters (for server-side filtering) |
+| `onColumnFiltersChange` | `(filters: Record<string, unknown>) => void` | `undefined` | Callback when filters change (controlled mode) |
+| `sortColumn` | `string` | `undefined` | Controlled sort column (for server-side sorting) |
+| `sortDirection` | `"asc" \| "desc"` | `undefined` | Controlled sort direction (for server-side sorting) |
+| `onSortChange` | `(column: string, direction: "asc" \| "desc") => void` | `undefined` | Callback when sort changes (controlled mode) |
+| `currentPage` | `number` | `undefined` | Controlled current page (for server-side pagination) |
+| `pageSize` | `number` | `undefined` | Controlled page size (for server-side pagination) |
+| `onPageChange` | `(page: number) => void` | `undefined` | Callback when page changes (controlled mode) |
+| `onPageSizeChange` | `(size: number) => void` | `undefined` | Callback when page size changes (controlled mode) |
+| `totalItems` | `number` | `undefined` | Total number of items (required for server-side pagination) |
+| `defaultPageSize` | `number` | `10` | Default number of items per page |
+| `showPagination` | `boolean` | `true` | Show pagination controls |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+#### Example
+
+```tsx
+// Client-side (uncontrolled)
+<DataTable
+  data={employees}
+  columns={columns}
+  searchable={true}
+  filterable={true}
+/>
+
+// Server-side (controlled)
+<DataTable
+  data={employees}
+  columns={columns}
+  currentPage={page}
+  pageSize={pageSize}
+  totalItems={total}
+  onPageChange={setPage}
+  onPageSizeChange={setPageSize}
+  sortColumn={sortCol}
+  sortDirection={sortDir}
+  onSortChange={(col, dir) => {
+    setSortCol(col)
+    setSortDir(dir)
+  }}
+  searchTerm={search}
+  onSearchTermChange={setSearch}
+/>
+```
+
+---
+
+### Calendar
+
+A flexible date picker component with support for single date selection, date ranges, and multiple date selection. Uses `date-fns` library for robust date handling.
+
+```tsx
+import { Calendar } from "@nostromo/ui-core"
+// or
+import { Calendar } from "@nostromo/ui-core/calendar"
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `mode` | `"single" \| "range" \| "multiple"` | `"single"` | Selection mode |
+| `value` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | Controlled value |
+| `defaultValue` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | Uncontrolled default value |
+| `onChange` | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined` | Callback when value changes |
+| `minDate` | `Date` | `undefined` | Minimum selectable date |
+| `maxDate` | `Date` | `undefined` | Maximum selectable date |
+| `disabledDates` | `Date[]` | `undefined` | Array of disabled dates |
+| `disabledDays` | `number[]` | `undefined` | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
+| `locale` | `string` | `"en-US"` | Locale for date formatting |
+| `placeholder` | `string` | `"Select date..."` | Input placeholder text |
+| `label` | `string` | `undefined` | Input label |
+| `className` | `string` | `undefined` | Additional CSS classes |
+
+#### Features
+
+- **Robust date handling**: Uses `date-fns` library for reliable date manipulation
+- **Leap year support**: Correctly handles leap years and edge cases
+- **Timezone aware**: Proper timezone handling for date operations
+- **Localization ready**: Built-in support for different locales
+
+#### Example
+
+```tsx
+// Single date selection
+<Calendar
+  mode="single"
+  value={selectedDate}
+  onChange={setSelectedDate}
+  label="Select Date"
+/>
+
+// Date range selection
+<Calendar
+  mode="range"
+  value={dateRange}
+  onChange={setDateRange}
+  minDate={new Date()}
+/>
+```
+
+---
+
 ### Progress
 
 A progress indicator component with multiple variants.

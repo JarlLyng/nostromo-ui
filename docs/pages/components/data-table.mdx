@@ -126,21 +126,24 @@ export default function DataTableWithFilters() {
 - **Custom search keys** to specify which columns to search
 - **Real-time filtering** as you type
 - **Search callback** for custom handling
+- **Controlled mode** - Use `searchTerm` and `onSearchTermChange` for server-side search
 
 ### Filtering
 - **Column filters** with multiple filter types (text, select, number, date, boolean)
 - **Multiple filters** can be applied simultaneously
 - **Custom filter functions** for advanced filtering logic
 - **Clear filters** button to reset all filters
+- **Controlled mode** - Use `columnFilters` and `onColumnFiltersChange` for server-side filtering
 
 ### Sorting
 - **Column sorting** with ascending/descending order
 - **Default sort** column and direction
-- **Multi-sort** support (planned)
+- **Controlled mode** - Use `sortColumn`, `sortDirection`, and `onSortChange` for server-side sorting
 - **Sort indicators** in column headers
 
 ### Pagination
-- **Automatic pagination** with configurable page sizes
+- **Client-side pagination** - Automatic pagination of data (default)
+- **Server-side pagination** - Controlled mode with `currentPage`, `pageSize`, `onPageChange`, `onPageSizeChange`, and `totalItems`
 - **Page size options** (10, 20, 50, 100 by default)
 - **Results summary** showing current range and total
 - **Can be disabled** for small datasets
@@ -155,12 +158,24 @@ export default function DataTableWithFilters() {
 | `searchPlaceholder` | `string` | `"Search..."` | No | Placeholder text for search input |
 | `searchKeys` | `Array<keyof T \| string>` | `undefined` | No | Specific columns to search (defaults to all columns) |
 | `onSearch` | `(searchTerm: string, filteredData: T[]) => void` | `undefined` | No | Callback when search term changes |
+| `searchTerm` | `string` | `undefined` | No | Controlled search term (for server-side search) |
+| `onSearchTermChange` | `(searchTerm: string) => void` | `undefined` | No | Callback when search term changes (controlled mode) |
 | `filterable` | `boolean` | `false` | No | Enable column filtering |
 | `filters` | `ColumnFilter<T>[]` | `[]` | No | Filter definitions (see ColumnFilter interface) |
 | `onFilter` | `(filters: Record<string, unknown>, filteredData: T[]) => void` | `undefined` | No | Callback when filters change |
+| `columnFilters` | `Record<string, unknown>` | `undefined` | No | Controlled column filters (for server-side filtering) |
+| `onColumnFiltersChange` | `(filters: Record<string, unknown>) => void` | `undefined` | No | Callback when filters change (controlled mode) |
 | `defaultSortColumn` | `string` | `undefined` | No | Default column to sort by |
 | `defaultSortDirection` | `"asc" \| "desc"` | `"asc"` | No | Default sort direction |
+| `sortColumn` | `string` | `undefined` | No | Controlled sort column (for server-side sorting) |
+| `sortDirection` | `"asc" \| "desc"` | `undefined` | No | Controlled sort direction (for server-side sorting) |
+| `onSortChange` | `(column: string, direction: "asc" \| "desc") => void` | `undefined` | No | Callback when sort changes (controlled mode) |
 | `defaultPageSize` | `number` | `10` | No | Default number of items per page |
+| `currentPage` | `number` | `undefined` | No | Controlled current page (for server-side pagination) |
+| `pageSize` | `number` | `undefined` | No | Controlled page size (for server-side pagination) |
+| `onPageChange` | `(page: number) => void` | `undefined` | No | Callback when page changes (controlled mode) |
+| `onPageSizeChange` | `(size: number) => void` | `undefined` | No | Callback when page size changes (controlled mode) |
+| `totalItems` | `number` | `undefined` | No | Total number of items (required for server-side pagination) |
 | `pageSizeOptions` | `number[]` | `[10, 20, 50, 100]` | No | Available page size options |
 | `showPagination` | `boolean` | `true` | No | Show pagination controls |
 | `showSearch` | `boolean` | `true` | No | Show search bar |
@@ -264,6 +279,51 @@ interface ColumnFilter<T = Record<string, unknown>> {
   searchable={true}
   showPagination={false}  // Show all results
 />
+```
+
+### DataTable with Server-Side Pagination (Controlled Mode)
+
+```tsx
+import { useState } from 'react'
+import { DataTable } from '@nostromo/ui-core'
+
+export default function ServerSideDataTable() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+  const [sortColumn, setSortColumn] = useState('name')
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [totalItems, setTotalItems] = useState(0)
+
+  // Fetch data from server based on current state
+  const fetchData = async () => {
+    const response = await fetch(`/api/employees?page=${currentPage}&pageSize=${pageSize}&sort=${sortColumn}&direction=${sortDirection}&search=${searchTerm}`)
+    const { data, total } = await response.json()
+    setTotalItems(total)
+    return data
+  }
+
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      // Controlled props for server-side operations
+      currentPage={currentPage}
+      pageSize={pageSize}
+      totalItems={totalItems}
+      onPageChange={setCurrentPage}
+      onPageSizeChange={setPageSize}
+      sortColumn={sortColumn}
+      sortDirection={sortDirection}
+      onSortChange={(col, dir) => {
+        setSortColumn(col)
+        setSortDirection(dir)
+      }}
+      searchTerm={searchTerm}
+      onSearchTermChange={setSearchTerm}
+    />
+  )
+}
 ```
 
 ## Accessibility

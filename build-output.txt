@@ -1,0 +1,543 @@
+
+> nostromo-ui@1.0.0 build /home/runner/work/nostromo-ui/nostromo-ui
+> turbo run build
+
+
+Attention:
+Turborepo now collects completely anonymous telemetry regarding usage.
+This information is used to shape the Turborepo roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://turborepo.com/docs/telemetry
+
+• Packages in scope: @nostromo/ui-core, @nostromo/ui-marketing, @nostromo/ui-tw, nostromo-ui-docs
+• Running build in 4 packages
+• Remote caching disabled
+::group::@nostromo/ui-tw:build
+cache miss, executing 7026e1e9924ce3d6
+
+> @nostromo/ui-tw@1.0.0 build /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-tw
+> tsup
+
+[34mCLI[39m Building entry: src/index.ts, src/tailwind.preset.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.5.1
+[34mCLI[39m Using tsup config: /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-tw/tsup.config.ts
+[34mCLI[39m Target: es2022
+[34mCLI[39m Cleaning output folder
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[32mCJS[39m [1mdist/index.cjs               [22m[32m1.23 KB[39m
+[32mCJS[39m [1mdist/tailwind.preset.cjs     [22m[32m5.99 KB[39m
+[32mCJS[39m [1mdist/index.cjs.map           [22m[32m4.30 KB[39m
+[32mCJS[39m [1mdist/tailwind.preset.cjs.map [22m[32m12.94 KB[39m
+[32mCJS[39m ⚡️ Build success in 168ms
+[32mESM[39m [1mdist/index.js               [22m[32m1.19 KB[39m
+[32mESM[39m [1mdist/tailwind.preset.js     [22m[32m5.98 KB[39m
+[32mESM[39m [1mdist/index.js.map           [22m[32m4.30 KB[39m
+[32mESM[39m [1mdist/tailwind.preset.js.map [22m[32m12.93 KB[39m
+[32mESM[39m ⚡️ Build success in 169ms
+[34mDTS[39m Build start
+Conflicting namespaces: "src/index.ts" re-exports "ThemeName" from one of the modules "src/themes.ts" and "src/themes/utils.ts" (will be ignored).
+Conflicting namespaces: "src/index.ts" re-exports "themes" from one of the modules "src/themes.ts" and "src/themes/utils.ts" (will be ignored).
+[32mDTS[39m ⚡️ Build success in 1028ms
+[32mDTS[39m [1mdist/index.d.cts           [22m[32m1003.00 B[39m
+[32mDTS[39m [1mdist/tailwind.preset.d.cts [22m[32m125.00 B[39m
+[32mDTS[39m [1mdist/index.d.ts            [22m[32m1003.00 B[39m
+[32mDTS[39m [1mdist/tailwind.preset.d.ts  [22m[32m125.00 B[39m
+::endgroup::
+::group::@nostromo/ui-core:build
+cache miss, executing 7861171698eccc32
+
+> @nostromo/ui-core@1.0.0 build /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-core
+> tsup
+
+[34mCLI[39m Building entry: src/index.ts, src/components/accordion.tsx, src/components/alert.tsx, src/components/avatar.tsx, src/components/badge.tsx, src/components/breadcrumb.tsx, src/components/button.tsx, src/components/calendar.tsx, src/components/card.tsx, src/components/charts-lazy.tsx, src/components/charts.tsx, src/components/checkbox.tsx, src/components/data-table.tsx, src/components/dialog.tsx, src/components/error-boundary.tsx, src/components/error-message.tsx, src/components/helper-text.tsx, src/components/icon.tsx, src/components/input.tsx, src/components/label.tsx, src/components/pagination.tsx, src/components/progress.tsx, src/components/radio-group.tsx, src/components/select.tsx, src/components/separator.tsx, src/components/skeleton.tsx, src/components/switch.tsx, src/components/table.tsx, src/components/tabs.tsx, src/components/textarea.tsx, src/components/toast.tsx, src/components/tooltip.tsx, src/lib/lazy.tsx, src/lib/performance.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.5.1
+[34mCLI[39m Using tsup config: /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-core/tsup.config.ts
+[34mCLI[39m Target: es2022
+[34mCLI[39m Cleaning output folder
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[34mDTS[39m Build start
+[32mESM[39m [1mdist/lib/performance.js               [22m[32m234.00 B[39m
+[32mESM[39m [1mdist/lib/lazy.js                      [22m[32m204.00 B[39m
+[32mESM[39m [1mdist/components/switch.js             [22m[32m189.00 B[39m
+[32mESM[39m [1mdist/components/table.js              [22m[32m284.00 B[39m
+[32mESM[39m [1mdist/components/tabs.js               [22m[32m258.00 B[39m
+[32mESM[39m [1mdist/components/skeleton.js           [22m[32m285.00 B[39m
+[32mESM[39m [1mdist/components/toast.js              [22m[32m242.00 B[39m
+[32mESM[39m [1mdist/components/tooltip.js            [22m[32m248.00 B[39m
+[32mESM[39m [1mdist/components/separator.js          [22m[32m176.00 B[39m
+[32mESM[39m [1mdist/components/icon.js               [22m[32m153.00 B[39m
+[32mESM[39m [1mdist/components/input.js              [22m[32m160.00 B[39m
+[32mESM[39m [1mdist/components/label.js              [22m[32m160.00 B[39m
+[32mESM[39m [1mdist/components/helper-text.js        [22m[32m182.00 B[39m
+[32mESM[39m [1mdist/components/radio-group.js        [22m[32m220.00 B[39m
+[32mESM[39m [1mdist/components/textarea.js           [22m[32m172.00 B[39m
+[32mESM[39m [1mdist/components/select.js             [22m[32m348.00 B[39m
+[32mESM[39m [1mdist/components/progress.js           [22m[32m246.00 B[39m
+[32mESM[39m [1mdist/components/charts.js             [22m[32m171.00 B[39m
+[32mESM[39m [1mdist/components/pagination.js         [22m[32m339.00 B[39m
+[32mESM[39m [1mdist/components/card.js               [22m[32m241.00 B[39m
+[32mESM[39m [1mdist/components/data-table.js         [22m[32m236.00 B[39m
+[32mESM[39m [1mdist/components/dialog.js             [22m[32m263.00 B[39m
+[32mESM[39m [1mdist/components/charts-lazy.js        [22m[32m186.00 B[39m
+[32mESM[39m [1mdist/index.js                         [22m[32m3.94 KB[39m
+[32mESM[39m [1mdist/chunk-3MPLPRIO.js                [22m[32m1.31 KB[39m
+[32mESM[39m [1mdist/components/error-boundary.js     [22m[32m159.00 B[39m
+[32mESM[39m [1mdist/components/error-message.js      [22m[32m190.00 B[39m
+[32mESM[39m [1mdist/components/checkbox.js           [22m[32m172.00 B[39m
+[32mESM[39m [1mdist/chunk-YGFH5UPM.js                [22m[32m2.09 KB[39m
+[32mESM[39m [1mdist/chunk-J4O7CNGN.js                [22m[32m815.00 B[39m
+[32mESM[39m [1mdist/chunk-PZFBXO72.js                [22m[32m6.75 KB[39m
+[32mESM[39m [1mdist/chunk-TA43N522.js                [22m[32m7.02 KB[39m
+[32mESM[39m [1mdist/chunk-A6OPI44Y.js                [22m[32m2.29 KB[39m
+[32mESM[39m [1mdist/chunk-MFIN5FKJ.js                [22m[32m679.00 B[39m
+[32mESM[39m [1mdist/chunk-HN77OFLZ.js                [22m[32m2.73 KB[39m
+[32mESM[39m [1mdist/chunk-ZFIASCW4.js                [22m[32m2.81 KB[39m
+[32mESM[39m [1mdist/chunk-SEBS2UJO.js                [22m[32m4.95 KB[39m
+[32mESM[39m [1mdist/chunk-FVG3HDT5.js                [22m[32m4.36 KB[39m
+[32mESM[39m [1mdist/chunk-LZ52HXIB.js                [22m[32m2.22 KB[39m
+[32mESM[39m [1mdist/chunk-XGX46CFQ.js                [22m[32m406.00 B[39m
+[32mESM[39m [1mdist/chunk-ZCJY72V7.js                [22m[32m5.13 KB[39m
+[32mESM[39m [1mdist/chunk-NQBRIC53.js                [22m[32m4.80 KB[39m
+[32mESM[39m [1mdist/chunk-OGD4UGOY.js                [22m[32m1.85 KB[39m
+[32mESM[39m [1mdist/chunk-23ZWGPPJ.js                [22m[32m2.09 KB[39m
+[32mESM[39m [1mdist/chunk-GKB67HMI.js                [22m[32m4.93 KB[39m
+[32mESM[39m [1mdist/chunk-Q7YZZZM6.js                [22m[32m3.25 KB[39m
+[32mESM[39m [1mdist/chunk-AQWOUYJW.js                [22m[32m2.00 KB[39m
+[32mESM[39m [1mdist/chunk-R6QCROB7.js                [22m[32m8.10 KB[39m
+[32mESM[39m [1mdist/chunk-EUWRHBVY.js                [22m[32m750.00 B[39m
+[32mESM[39m [1mdist/components/accordion.js          [22m[32m356.00 B[39m
+[32mESM[39m [1mdist/chunk-45HU6K5K.js                [22m[32m2.08 KB[39m
+[32mESM[39m [1mdist/components/alert.js              [22m[32m276.00 B[39m
+[32mESM[39m [1mdist/components/avatar.js             [22m[32m201.00 B[39m
+[32mESM[39m [1mdist/chunk-DOC2QHAS.js                [22m[32m2.60 KB[39m
+[32mESM[39m [1mdist/components/badge.js              [22m[32m160.00 B[39m
+[32mESM[39m [1mdist/chunk-WRJCUGZD.js                [22m[32m1.81 KB[39m
+[32mESM[39m [1mdist/chunk-OEYUFPKM.js                [22m[32m1.56 KB[39m
+[32mESM[39m [1mdist/components/breadcrumb.js         [22m[32m370.00 B[39m
+[32mESM[39m [1mdist/chunk-JK6V5BOQ.js                [22m[32m4.94 KB[39m
+[32mESM[39m [1mdist/components/button.js             [22m[32m164.00 B[39m
+[32mESM[39m [1mdist/components/calendar.js           [22m[32m226.00 B[39m
+[32mESM[39m [1mdist/chunk-CEK6654S.js                [22m[32m2.65 KB[39m
+[32mESM[39m [1mdist/chunk-AC2JBXHQ.js                [22m[32m202.00 B[39m
+[32mESM[39m [1mdist/chunk-FT3IFM7F.js                [22m[32m3.67 KB[39m
+[32mESM[39m [1mdist/chunk-FQUMJ4LW.js                [22m[32m4.94 KB[39m
+[32mESM[39m [1mdist/chunk-GR3OW2AK.js                [22m[32m9.40 KB[39m
+[32mESM[39m [1mdist/chunk-TY6DCUAC.js                [22m[32m910.00 B[39m
+[32mESM[39m [1mdist/chunk-YEQHMV55.js                [22m[32m5.21 KB[39m
+[32mESM[39m [1mdist/lib/performance.js.map           [22m[32m75.00 B[39m
+[32mESM[39m [1mdist/lib/lazy.js.map                  [22m[32m68.00 B[39m
+[32mESM[39m [1mdist/components/switch.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/components/table.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/components/tabs.js.map           [22m[32m68.00 B[39m
+[32mESM[39m [1mdist/components/skeleton.js.map       [22m[32m72.00 B[39m
+[32mESM[39m [1mdist/components/toast.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/components/tooltip.js.map        [22m[32m71.00 B[39m
+[32mESM[39m [1mdist/components/separator.js.map      [22m[32m73.00 B[39m
+[32mESM[39m [1mdist/components/icon.js.map           [22m[32m68.00 B[39m
+[32mESM[39m [1mdist/components/input.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/components/label.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/components/helper-text.js.map    [22m[32m75.00 B[39m
+[32mESM[39m [1mdist/components/radio-group.js.map    [22m[32m75.00 B[39m
+[32mESM[39m [1mdist/components/textarea.js.map       [22m[32m72.00 B[39m
+[32mESM[39m [1mdist/components/select.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/components/progress.js.map       [22m[32m72.00 B[39m
+[32mESM[39m [1mdist/components/charts.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/components/pagination.js.map     [22m[32m74.00 B[39m
+[32mESM[39m [1mdist/components/card.js.map           [22m[32m68.00 B[39m
+[32mESM[39m [1mdist/components/data-table.js.map     [22m[32m74.00 B[39m
+[32mESM[39m [1mdist/components/dialog.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/components/charts-lazy.js.map    [22m[32m75.00 B[39m
+[32mESM[39m [1mdist/index.js.map                     [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/chunk-3MPLPRIO.js.map            [22m[32m5.59 KB[39m
+[32mESM[39m [1mdist/components/error-boundary.js.map [22m[32m78.00 B[39m
+[32mESM[39m [1mdist/components/error-message.js.map  [22m[32m77.00 B[39m
+[32mESM[39m [1mdist/components/checkbox.js.map       [22m[32m72.00 B[39m
+[32mESM[39m [1mdist/chunk-YGFH5UPM.js.map            [22m[32m11.26 KB[39m
+[32mESM[39m [1mdist/chunk-J4O7CNGN.js.map            [22m[32m2.71 KB[39m
+[32mESM[39m [1mdist/chunk-PZFBXO72.js.map            [22m[32m21.65 KB[39m
+[32mESM[39m [1mdist/chunk-TA43N522.js.map            [22m[32m30.43 KB[39m
+[32mESM[39m [1mdist/chunk-A6OPI44Y.js.map            [22m[32m5.98 KB[39m
+[32mESM[39m [1mdist/chunk-MFIN5FKJ.js.map            [22m[32m1.96 KB[39m
+[32mESM[39m [1mdist/chunk-HN77OFLZ.js.map            [22m[32m6.63 KB[39m
+[32mESM[39m [1mdist/chunk-ZFIASCW4.js.map            [22m[32m10.08 KB[39m
+[32mESM[39m [1mdist/chunk-SEBS2UJO.js.map            [22m[32m15.53 KB[39m
+[32mESM[39m [1mdist/chunk-FVG3HDT5.js.map            [22m[32m11.84 KB[39m
+[32mESM[39m [1mdist/chunk-LZ52HXIB.js.map            [22m[32m7.26 KB[39m
+[32mESM[39m [1mdist/chunk-XGX46CFQ.js.map            [22m[32m1.67 KB[39m
+[32mESM[39m [1mdist/chunk-ZCJY72V7.js.map            [22m[32m18.79 KB[39m
+[32mESM[39m [1mdist/chunk-NQBRIC53.js.map            [22m[32m17.71 KB[39m
+[32mESM[39m [1mdist/chunk-OGD4UGOY.js.map            [22m[32m5.20 KB[39m
+[32mESM[39m [1mdist/chunk-23ZWGPPJ.js.map            [22m[32m5.67 KB[39m
+[32mESM[39m [1mdist/chunk-GKB67HMI.js.map            [22m[32m28.76 KB[39m
+[32mESM[39m [1mdist/chunk-Q7YZZZM6.js.map            [22m[32m8.84 KB[39m
+[32mESM[39m [1mdist/chunk-AQWOUYJW.js.map            [22m[32m6.18 KB[39m
+[32mESM[39m [1mdist/chunk-R6QCROB7.js.map            [22m[32m31.29 KB[39m
+[32mESM[39m [1mdist/chunk-EUWRHBVY.js.map            [22m[32m2.12 KB[39m
+[32mESM[39m [1mdist/chunk-45HU6K5K.js.map            [22m[32m7.11 KB[39m
+[32mESM[39m [1mdist/components/alert.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/components/avatar.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/chunk-DOC2QHAS.js.map            [22m[32m8.13 KB[39m
+[32mESM[39m [1mdist/components/badge.js.map          [22m[32m69.00 B[39m
+[32mESM[39m [1mdist/chunk-WRJCUGZD.js.map            [22m[32m5.83 KB[39m
+[32mESM[39m [1mdist/chunk-OEYUFPKM.js.map            [22m[32m3.80 KB[39m
+[32mESM[39m [1mdist/components/breadcrumb.js.map     [22m[32m74.00 B[39m
+[32mESM[39m [1mdist/chunk-JK6V5BOQ.js.map            [22m[32m21.00 KB[39m
+[32mESM[39m [1mdist/components/button.js.map         [22m[32m70.00 B[39m
+[32mESM[39m [1mdist/components/calendar.js.map       [22m[32m72.00 B[39m
+[32mESM[39m [1mdist/chunk-CEK6654S.js.map            [22m[32m7.50 KB[39m
+[32mESM[39m [1mdist/chunk-AC2JBXHQ.js.map            [22m[32m423.00 B[39m
+[32mESM[39m [1mdist/chunk-FT3IFM7F.js.map            [22m[32m13.17 KB[39m
+[32mESM[39m [1mdist/chunk-FQUMJ4LW.js.map            [22m[32m16.51 KB[39m
+[32mESM[39m [1mdist/chunk-GR3OW2AK.js.map            [22m[32m41.77 KB[39m
+[32mESM[39m [1mdist/components/accordion.js.map      [22m[32m73.00 B[39m
+[32mESM[39m [1mdist/chunk-TY6DCUAC.js.map            [22m[32m2.38 KB[39m
+[32mESM[39m [1mdist/chunk-YEQHMV55.js.map            [22m[32m16.74 KB[39m
+[32mESM[39m ⚡️ Build success in 1093ms
+[32mCJS[39m [1mdist/index.cjs                         [22m[32m17.22 KB[39m
+[32mCJS[39m [1mdist/components/accordion.cjs          [22m[32m1.17 KB[39m
+[32mCJS[39m [1mdist/chunk-5O75USCZ.cjs                [22m[32m1.89 KB[39m
+[32mCJS[39m [1mdist/chunk-QRGUDFMU.cjs                [22m[32m2.58 KB[39m
+[32mCJS[39m [1mdist/chunk-SAQM22WC.cjs                [22m[32m1.24 KB[39m
+[32mCJS[39m [1mdist/chunk-OGQFCGQO.cjs                [22m[32m3.44 KB[39m
+[32mCJS[39m [1mdist/chunk-7AKB3UGH.cjs                [22m[32m2.66 KB[39m
+[32mCJS[39m [1mdist/chunk-XMIUWPZ4.cjs                [22m[32m2.96 KB[39m
+[32mCJS[39m [1mdist/chunk-EBMN3VAB.cjs                [22m[32m1.12 KB[39m
+[32mCJS[39m [1mdist/chunk-3F7IGQAQ.cjs                [22m[32m7.55 KB[39m
+[32mCJS[39m [1mdist/chunk-KFAFZX2E.cjs                [22m[32m6.36 KB[39m
+[32mCJS[39m [1mdist/chunk-XSBJTOIQ.cjs                [22m[32m7.40 KB[39m
+[32mCJS[39m [1mdist/chunk-5URCFCXW.cjs                [22m[32m1.34 KB[39m
+[32mCJS[39m [1mdist/chunk-VMGDJLMW.cjs                [22m[32m5.64 KB[39m
+[32mCJS[39m [1mdist/chunk-TLOFGMVI.cjs                [22m[32m3.49 KB[39m
+[32mCJS[39m [1mdist/chunk-KF2JXIGV.cjs                [22m[32m2.88 KB[39m
+[32mCJS[39m [1mdist/chunk-BAOO5LJD.cjs                [22m[32m625.00 B[39m
+[32mCJS[39m [1mdist/chunk-PWP6LLOI.cjs                [22m[32m5.40 KB[39m
+[32mCJS[39m [1mdist/chunk-7KFIARVW.cjs                [22m[32m6.20 KB[39m
+[32mCJS[39m [1mdist/chunk-IP3CDSUS.cjs                [22m[32m6.52 KB[39m
+[32mCJS[39m [1mdist/chunk-KRFB53IP.cjs                [22m[32m2.62 KB[39m
+[32mCJS[39m [1mdist/chunk-BOUIECUA.cjs                [22m[32m5.50 KB[39m
+[32mCJS[39m [1mdist/chunk-HPHY5AGH.cjs                [22m[32m3.95 KB[39m
+[32mCJS[39m [1mdist/chunk-FAJIAILM.cjs                [22m[32m1.18 KB[39m
+[32mCJS[39m [1mdist/chunk-WSFJ5VUI.cjs                [22m[32m2.41 KB[39m
+[32mCJS[39m [1mdist/chunk-OYWWUAIH.cjs                [22m[32m5.93 KB[39m
+[32mCJS[39m [1mdist/chunk-OXTZ4XAG.cjs                [22m[32m2.52 KB[39m
+[32mCJS[39m [1mdist/components/alert.cjs              [22m[32m939.00 B[39m
+[32mCJS[39m [1mdist/chunk-AYNBTCXH.cjs                [22m[32m9.40 KB[39m
+[32mCJS[39m [1mdist/components/avatar.cjs             [22m[32m597.00 B[39m
+[32mCJS[39m [1mdist/chunk-H7EKD4TS.cjs                [22m[32m2.43 KB[39m
+[32mCJS[39m [1mdist/chunk-CDIYZKTU.cjs                [22m[32m3.43 KB[39m
+[32mCJS[39m [1mdist/components/badge.cjs              [22m[32m378.00 B[39m
+[32mCJS[39m [1mdist/components/button.cjs             [22m[32m382.00 B[39m
+[32mCJS[39m [1mdist/components/calendar.cjs           [22m[32m537.00 B[39m
+[32mCJS[39m [1mdist/chunk-M5FBCBP4.cjs                [22m[32m5.61 KB[39m
+[32mCJS[39m [1mdist/chunk-DE77F5TI.cjs                [22m[32m2.01 KB[39m
+[32mCJS[39m [1mdist/chunk-SNQBW7HO.cjs                [22m[32m10.67 KB[39m
+[32mCJS[39m [1mdist/components/breadcrumb.cjs         [22m[32m1.27 KB[39m
+[32mCJS[39m [1mdist/chunk-ITRGJNWL.cjs                [22m[32m237.00 B[39m
+[32mCJS[39m [1mdist/chunk-D4PVJTPL.cjs                [22m[32m3.14 KB[39m
+[32mCJS[39m [1mdist/chunk-C3MLLP3Z.cjs                [22m[32m4.66 KB[39m
+[32mCJS[39m [1mdist/lib/lazy.cjs                      [22m[32m600.00 B[39m
+[32mCJS[39m [1mdist/components/separator.cjs          [22m[32m394.00 B[39m
+[32mCJS[39m [1mdist/lib/performance.cjs               [22m[32m715.00 B[39m
+[32mCJS[39m [1mdist/components/switch.cjs             [22m[32m496.00 B[39m
+[32mCJS[39m [1mdist/components/table.cjs              [22m[32m1.10 KB[39m
+[32mCJS[39m [1mdist/components/tabs.cjs               [22m[32m921.00 B[39m
+[32mCJS[39m [1mdist/components/skeleton.cjs           [22m[32m1.01 KB[39m
+[32mCJS[39m [1mdist/components/textarea.cjs           [22m[32m390.00 B[39m
+[32mCJS[39m [1mdist/components/toast.cjs              [22m[32m816.00 B[39m
+[32mCJS[39m [1mdist/components/tooltip.cjs            [22m[32m822.00 B[39m
+[32mCJS[39m [1mdist/components/icon.cjs               [22m[32m371.00 B[39m
+[32mCJS[39m [1mdist/components/helper-text.cjs        [22m[32m400.00 B[39m
+[32mCJS[39m [1mdist/components/input.cjs              [22m[32m378.00 B[39m
+[32mCJS[39m [1mdist/components/label.cjs              [22m[32m378.00 B[39m
+[32mCJS[39m [1mdist/components/pagination.cjs         [22m[32m1.15 KB[39m
+[32mCJS[39m [1mdist/components/progress.cjs           [22m[32m731.00 B[39m
+[32mCJS[39m [1mdist/components/radio-group.cjs        [22m[32m616.00 B[39m
+[32mCJS[39m [1mdist/components/select.cjs             [22m[32m1.33 KB[39m
+[32mCJS[39m [1mdist/components/card.cjs               [22m[32m904.00 B[39m
+[32mCJS[39m [1mdist/components/charts-lazy.cjs        [22m[32m319.00 B[39m
+[32mCJS[39m [1mdist/components/charts.cjs             [22m[32m389.00 B[39m
+[32mCJS[39m [1mdist/components/checkbox.cjs           [22m[32m390.00 B[39m
+[32mCJS[39m [1mdist/components/data-table.cjs         [22m[32m462.00 B[39m
+[32mCJS[39m [1mdist/components/dialog.cjs             [22m[32m926.00 B[39m
+[32mCJS[39m [1mdist/components/error-boundary.cjs     [22m[32m373.00 B[39m
+[32mCJS[39m [1mdist/components/error-message.cjs      [22m[32m408.00 B[39m
+[32mCJS[39m [1mdist/index.cjs.map                     [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/accordion.cjs.map      [22m[32m74.00 B[39m
+[32mCJS[39m [1mdist/chunk-5O75USCZ.cjs.map            [22m[32m5.61 KB[39m
+[32mCJS[39m [1mdist/chunk-QRGUDFMU.cjs.map            [22m[32m11.28 KB[39m
+[32mCJS[39m [1mdist/chunk-SAQM22WC.cjs.map            [22m[32m2.72 KB[39m
+[32mCJS[39m [1mdist/chunk-OGQFCGQO.cjs.map            [22m[32m6.66 KB[39m
+[32mCJS[39m [1mdist/chunk-7AKB3UGH.cjs.map            [22m[32m7.13 KB[39m
+[32mCJS[39m [1mdist/chunk-XMIUWPZ4.cjs.map            [22m[32m6.01 KB[39m
+[32mCJS[39m [1mdist/chunk-3F7IGQAQ.cjs.map            [22m[32m30.45 KB[39m
+[32mCJS[39m [1mdist/chunk-KFAFZX2E.cjs.map            [22m[32m15.70 KB[39m
+[32mCJS[39m [1mdist/chunk-EBMN3VAB.cjs.map            [22m[32m1.97 KB[39m
+[32mCJS[39m [1mdist/chunk-XSBJTOIQ.cjs.map            [22m[32m21.68 KB[39m
+[32mCJS[39m [1mdist/chunk-5URCFCXW.cjs.map            [22m[32m2.38 KB[39m
+[32mCJS[39m [1mdist/chunk-VMGDJLMW.cjs.map            [22m[32m16.54 KB[39m
+[32mCJS[39m [1mdist/chunk-TLOFGMVI.cjs.map            [22m[32m10.12 KB[39m
+[32mCJS[39m [1mdist/chunk-KF2JXIGV.cjs.map            [22m[32m7.28 KB[39m
+[32mCJS[39m [1mdist/chunk-BAOO5LJD.cjs.map            [22m[32m1.67 KB[39m
+[32mCJS[39m [1mdist/chunk-PWP6LLOI.cjs.map            [22m[32m11.91 KB[39m
+[32mCJS[39m [1mdist/chunk-7KFIARVW.cjs.map            [22m[32m18.85 KB[39m
+[32mCJS[39m [1mdist/chunk-IP3CDSUS.cjs.map            [22m[32m16.84 KB[39m
+[32mCJS[39m [1mdist/chunk-KRFB53IP.cjs.map            [22m[32m5.68 KB[39m
+[32mCJS[39m [1mdist/chunk-BOUIECUA.cjs.map            [22m[32m28.78 KB[39m
+[32mCJS[39m [1mdist/chunk-HPHY5AGH.cjs.map            [22m[32m8.87 KB[39m
+[32mCJS[39m [1mdist/chunk-FAJIAILM.cjs.map            [22m[32m2.13 KB[39m
+[32mCJS[39m [1mdist/chunk-WSFJ5VUI.cjs.map            [22m[32m5.22 KB[39m
+[32mCJS[39m [1mdist/chunk-OYWWUAIH.cjs.map            [22m[32m17.77 KB[39m
+[32mCJS[39m [1mdist/chunk-OXTZ4XAG.cjs.map            [22m[32m6.20 KB[39m
+[32mCJS[39m [1mdist/components/alert.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/chunk-AYNBTCXH.cjs.map            [22m[32m31.35 KB[39m
+[32mCJS[39m [1mdist/components/avatar.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/chunk-H7EKD4TS.cjs.map            [22m[32m5.85 KB[39m
+[32mCJS[39m [1mdist/chunk-CDIYZKTU.cjs.map            [22m[32m8.18 KB[39m
+[32mCJS[39m [1mdist/components/button.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/components/calendar.cjs.map       [22m[32m73.00 B[39m
+[32mCJS[39m [1mdist/chunk-M5FBCBP4.cjs.map            [22m[32m21.03 KB[39m
+[32mCJS[39m [1mdist/chunk-DE77F5TI.cjs.map            [22m[32m3.81 KB[39m
+[32mCJS[39m [1mdist/chunk-SNQBW7HO.cjs.map            [22m[32m41.84 KB[39m
+[32mCJS[39m [1mdist/components/badge.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/breadcrumb.cjs.map     [22m[32m75.00 B[39m
+[32mCJS[39m [1mdist/chunk-ITRGJNWL.cjs.map            [22m[32m425.00 B[39m
+[32mCJS[39m [1mdist/chunk-D4PVJTPL.cjs.map            [22m[32m7.51 KB[39m
+[32mCJS[39m [1mdist/chunk-C3MLLP3Z.cjs.map            [22m[32m13.23 KB[39m
+[32mCJS[39m [1mdist/lib/lazy.cjs.map                  [22m[32m69.00 B[39m
+[32mCJS[39m [1mdist/components/separator.cjs.map      [22m[32m74.00 B[39m
+[32mCJS[39m [1mdist/lib/performance.cjs.map           [22m[32m76.00 B[39m
+[32mCJS[39m [1mdist/components/switch.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/components/table.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/tabs.cjs.map           [22m[32m69.00 B[39m
+[32mCJS[39m [1mdist/components/skeleton.cjs.map       [22m[32m73.00 B[39m
+[32mCJS[39m [1mdist/components/textarea.cjs.map       [22m[32m73.00 B[39m
+[32mCJS[39m [1mdist/components/toast.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/tooltip.cjs.map        [22m[32m72.00 B[39m
+[32mCJS[39m [1mdist/components/icon.cjs.map           [22m[32m69.00 B[39m
+[32mCJS[39m [1mdist/components/helper-text.cjs.map    [22m[32m76.00 B[39m
+[32mCJS[39m [1mdist/components/input.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/label.cjs.map          [22m[32m70.00 B[39m
+[32mCJS[39m [1mdist/components/pagination.cjs.map     [22m[32m75.00 B[39m
+[32mCJS[39m [1mdist/components/progress.cjs.map       [22m[32m73.00 B[39m
+[32mCJS[39m [1mdist/components/radio-group.cjs.map    [22m[32m76.00 B[39m
+[32mCJS[39m [1mdist/components/select.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/components/card.cjs.map           [22m[32m69.00 B[39m
+[32mCJS[39m [1mdist/components/charts-lazy.cjs.map    [22m[32m76.00 B[39m
+[32mCJS[39m [1mdist/components/charts.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/components/checkbox.cjs.map       [22m[32m73.00 B[39m
+[32mCJS[39m [1mdist/components/data-table.cjs.map     [22m[32m75.00 B[39m
+[32mCJS[39m [1mdist/components/dialog.cjs.map         [22m[32m71.00 B[39m
+[32mCJS[39m [1mdist/components/error-boundary.cjs.map [22m[32m79.00 B[39m
+[32mCJS[39m [1mdist/components/error-message.cjs.map  [22m[32m78.00 B[39m
+[32mCJS[39m ⚡️ Build success in 1099ms
+[32mDTS[39m ⚡️ Build success in 6952ms
+[32mDTS[39m [1mdist/index.d.cts                     [22m[32m4.97 KB[39m
+[32mDTS[39m [1mdist/components/accordion.d.cts      [22m[32m3.07 KB[39m
+[32mDTS[39m [1mdist/components/alert.d.cts          [22m[32m1.68 KB[39m
+[32mDTS[39m [1mdist/components/avatar.d.cts         [22m[32m1.18 KB[39m
+[32mDTS[39m [1mdist/components/badge.d.cts          [22m[32m1.53 KB[39m
+[32mDTS[39m [1mdist/components/breadcrumb.d.cts     [22m[32m2.38 KB[39m
+[32mDTS[39m [1mdist/components/button.d.cts         [22m[32m1.52 KB[39m
+[32mDTS[39m [1mdist/components/calendar.d.cts       [22m[32m1.64 KB[39m
+[32mDTS[39m [1mdist/components/card.d.cts           [22m[32m1.67 KB[39m
+[32mDTS[39m [1mdist/components/charts-lazy.d.cts    [22m[32m933.00 B[39m
+[32mDTS[39m [1mdist/components/charts.d.cts         [22m[32m1.28 KB[39m
+[32mDTS[39m [1mdist/components/checkbox.d.cts       [22m[32m1.06 KB[39m
+[32mDTS[39m [1mdist/components/data-table.d.cts     [22m[32m2.62 KB[39m
+[32mDTS[39m [1mdist/components/dialog.d.cts         [22m[32m2.02 KB[39m
+[32mDTS[39m [1mdist/components/error-boundary.d.cts [22m[32m1.41 KB[39m
+[32mDTS[39m [1mdist/components/error-message.d.cts  [22m[32m732.00 B[39m
+[32mDTS[39m [1mdist/components/helper-text.d.cts    [22m[32m726.00 B[39m
+[32mDTS[39m [1mdist/components/icon.d.cts           [22m[32m1.04 KB[39m
+[32mDTS[39m [1mdist/components/input.d.cts          [22m[32m846.00 B[39m
+[32mDTS[39m [1mdist/components/label.d.cts          [22m[32m780.00 B[39m
+[32mDTS[39m [1mdist/components/pagination.d.cts     [22m[32m2.47 KB[39m
+[32mDTS[39m [1mdist/components/progress.d.cts       [22m[32m2.38 KB[39m
+[32mDTS[39m [1mdist/components/radio-group.d.cts    [22m[32m2.24 KB[39m
+[32mDTS[39m [1mdist/components/select.d.cts         [22m[32m3.02 KB[39m
+[32mDTS[39m [1mdist/components/separator.d.cts      [22m[32m864.00 B[39m
+[32mDTS[39m [1mdist/components/skeleton.d.cts       [22m[32m2.71 KB[39m
+[32mDTS[39m [1mdist/components/switch.d.cts         [22m[32m1.02 KB[39m
+[32mDTS[39m [1mdist/components/table.d.cts          [22m[32m3.86 KB[39m
+[32mDTS[39m [1mdist/components/tabs.d.cts           [22m[32m1.92 KB[39m
+[32mDTS[39m [1mdist/components/textarea.d.cts       [22m[32m823.00 B[39m
+[32mDTS[39m [1mdist/components/toast.d.cts          [22m[32m2.31 KB[39m
+[32mDTS[39m [1mdist/components/tooltip.d.cts        [22m[32m3.27 KB[39m
+[32mDTS[39m [1mdist/lib/lazy.d.cts                  [22m[32m1.40 KB[39m
+[32mDTS[39m [1mdist/lib/performance.d.cts           [22m[32m1.83 KB[39m
+[32mDTS[39m [1mdist/index.d.ts                      [22m[32m4.94 KB[39m
+[32mDTS[39m [1mdist/components/accordion.d.ts       [22m[32m3.07 KB[39m
+[32mDTS[39m [1mdist/components/alert.d.ts           [22m[32m1.68 KB[39m
+[32mDTS[39m [1mdist/components/avatar.d.ts          [22m[32m1.18 KB[39m
+[32mDTS[39m [1mdist/components/badge.d.ts           [22m[32m1.53 KB[39m
+[32mDTS[39m [1mdist/components/breadcrumb.d.ts      [22m[32m2.38 KB[39m
+[32mDTS[39m [1mdist/components/button.d.ts          [22m[32m1.52 KB[39m
+[32mDTS[39m [1mdist/components/calendar.d.ts        [22m[32m1.64 KB[39m
+[32mDTS[39m [1mdist/components/card.d.ts            [22m[32m1.67 KB[39m
+[32mDTS[39m [1mdist/components/charts-lazy.d.ts     [22m[32m932.00 B[39m
+[32mDTS[39m [1mdist/components/charts.d.ts          [22m[32m1.28 KB[39m
+[32mDTS[39m [1mdist/components/checkbox.d.ts        [22m[32m1.06 KB[39m
+[32mDTS[39m [1mdist/components/data-table.d.ts      [22m[32m2.62 KB[39m
+[32mDTS[39m [1mdist/components/dialog.d.ts          [22m[32m2.02 KB[39m
+[32mDTS[39m [1mdist/components/error-boundary.d.ts  [22m[32m1.41 KB[39m
+[32mDTS[39m [1mdist/components/error-message.d.ts   [22m[32m732.00 B[39m
+[32mDTS[39m [1mdist/components/helper-text.d.ts     [22m[32m726.00 B[39m
+[32mDTS[39m [1mdist/components/icon.d.ts            [22m[32m1.04 KB[39m
+[32mDTS[39m [1mdist/components/input.d.ts           [22m[32m846.00 B[39m
+[32mDTS[39m [1mdist/components/label.d.ts           [22m[32m780.00 B[39m
+[32mDTS[39m [1mdist/components/pagination.d.ts      [22m[32m2.47 KB[39m
+[32mDTS[39m [1mdist/components/progress.d.ts        [22m[32m2.38 KB[39m
+[32mDTS[39m [1mdist/components/radio-group.d.ts     [22m[32m2.24 KB[39m
+[32mDTS[39m [1mdist/components/select.d.ts          [22m[32m3.02 KB[39m
+[32mDTS[39m [1mdist/components/separator.d.ts       [22m[32m864.00 B[39m
+[32mDTS[39m [1mdist/components/skeleton.d.ts        [22m[32m2.71 KB[39m
+[32mDTS[39m [1mdist/components/switch.d.ts          [22m[32m1.02 KB[39m
+[32mDTS[39m [1mdist/components/table.d.ts           [22m[32m3.86 KB[39m
+[32mDTS[39m [1mdist/components/tabs.d.ts            [22m[32m1.92 KB[39m
+[32mDTS[39m [1mdist/components/textarea.d.ts        [22m[32m823.00 B[39m
+[32mDTS[39m [1mdist/components/toast.d.ts           [22m[32m2.31 KB[39m
+[32mDTS[39m [1mdist/components/tooltip.d.ts         [22m[32m3.27 KB[39m
+[32mDTS[39m [1mdist/lib/lazy.d.ts                   [22m[32m1.40 KB[39m
+[32mDTS[39m [1mdist/lib/performance.d.ts            [22m[32m1.83 KB[39m
+::endgroup::
+::group::@nostromo/ui-marketing:build
+cache miss, executing a6dd40b0c848555e
+
+> @nostromo/ui-marketing@1.0.0 build /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-marketing
+> tsup
+
+[34mCLI[39m Building entry: src/index.ts, src/components/features.tsx, src/components/hero.tsx, src/components/pricing.tsx, src/components/testimonials.tsx
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.5.1
+[34mCLI[39m Using tsup config: /home/runner/work/nostromo-ui/nostromo-ui/packages/ui-marketing/tsup.config.ts
+[34mCLI[39m Target: es2022
+[34mCLI[39m Cleaning output folder
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[32mESM[39m [1mdist/index.js                       [22m[32m15.92 KB[39m
+[32mESM[39m [1mdist/components/hero.js             [22m[32m1.70 KB[39m
+[32mESM[39m [1mdist/components/features.js         [22m[32m2.09 KB[39m
+[32mESM[39m [1mdist/components/testimonials.js     [22m[32m2.05 KB[39m
+[32mESM[39m [1mdist/components/pricing.js          [22m[32m3.93 KB[39m
+[32mESM[39m [1mdist/index.js.map                   [22m[32m55.71 KB[39m
+[32mESM[39m [1mdist/components/hero.js.map         [22m[32m5.46 KB[39m
+[32mESM[39m [1mdist/components/features.js.map     [22m[32m6.60 KB[39m
+[32mESM[39m [1mdist/components/testimonials.js.map [22m[32m7.18 KB[39m
+[32mESM[39m [1mdist/components/pricing.js.map      [22m[32m12.26 KB[39m
+[32mESM[39m ⚡️ Build success in 327ms
+[32mCJS[39m [1mdist/index.cjs                       [22m[32m17.62 KB[39m
+[32mCJS[39m [1mdist/components/hero.cjs             [22m[32m1.91 KB[39m
+[32mCJS[39m [1mdist/components/pricing.cjs          [22m[32m4.39 KB[39m
+[32mCJS[39m [1mdist/components/testimonials.cjs     [22m[32m2.34 KB[39m
+[32mCJS[39m [1mdist/components/features.cjs         [22m[32m2.36 KB[39m
+[32mCJS[39m [1mdist/index.cjs.map                   [22m[32m55.74 KB[39m
+[32mCJS[39m [1mdist/components/hero.cjs.map         [22m[32m5.46 KB[39m
+[32mCJS[39m [1mdist/components/pricing.cjs.map      [22m[32m12.27 KB[39m
+[32mCJS[39m [1mdist/components/testimonials.cjs.map [22m[32m7.18 KB[39m
+[32mCJS[39m [1mdist/components/features.cjs.map     [22m[32m6.61 KB[39m
+[32mCJS[39m ⚡️ Build success in 329ms
+[34mDTS[39m Build start
+[32mDTS[39m ⚡️ Build success in 2421ms
+[32mDTS[39m [1mdist/index.d.cts                   [22m[32m3.49 KB[39m
+[32mDTS[39m [1mdist/components/features.d.cts     [22m[32m1.49 KB[39m
+[32mDTS[39m [1mdist/components/hero.d.cts         [22m[32m1.37 KB[39m
+[32mDTS[39m [1mdist/components/pricing.d.cts      [22m[32m1.65 KB[39m
+[32mDTS[39m [1mdist/components/testimonials.d.cts [22m[32m1.32 KB[39m
+[32mDTS[39m [1mdist/index.d.ts                    [22m[32m3.49 KB[39m
+[32mDTS[39m [1mdist/components/features.d.ts      [22m[32m1.49 KB[39m
+[32mDTS[39m [1mdist/components/hero.d.ts          [22m[32m1.37 KB[39m
+[32mDTS[39m [1mdist/components/pricing.d.ts       [22m[32m1.65 KB[39m
+[32mDTS[39m [1mdist/components/testimonials.d.ts  [22m[32m1.32 KB[39m
+::endgroup::
+::group::nostromo-ui-docs:build
+cache miss, executing 4233a319f7af05a6
+
+> nostromo-ui-docs@1.0.0 build /home/runner/work/nostromo-ui/nostromo-ui/docs
+> next build
+
+⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.35
+
+   Linting and checking validity of types ...
+   Creating an optimized production build ...
+[nextra] Found "_app.tsx" file, refactor it to "_app.mdx" for better performance.
+[nextra] The repository is shallow cloned, so the latest modified time will not be presented. See https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches to fetch all the history.
+ ✓ Compiled successfully
+   Collecting page data ...
+   Generating static pages (0/46) ...
+   Generating static pages (11/46) 
+   Generating static pages (22/46) 
+   Generating static pages (34/46) 
+ ✓ Generating static pages (46/46)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (pages)                             Size     First Load JS
+┌ ○ /                                     5.05 kB         178 kB
+├   /_app                                 0 B            81.8 kB
+├ ○ /404                                  184 B          81.9 kB
+├ ○ /api-reference                        8.5 kB          181 kB
+├ ○ /components                           12.7 kB         189 kB
+├ ○ /components/accordion                 3.18 kB         179 kB
+├ ○ /components/alert                     2.9 kB          179 kB
+├ ○ /components/avatar                    2.89 kB         179 kB
+├ ○ /components/badge                     3.37 kB         179 kB
+├ ○ /components/breadcrumb                2.91 kB         179 kB
+├ ○ /components/button                    4.62 kB         180 kB
+├ ○ /components/calendar                  5.16 kB         181 kB
+├ ○ /components/card                      3.78 kB         180 kB
+├ ○ /components/charts                    5.33 kB         181 kB
+├ ○ /components/checkbox                  3.21 kB         179 kB
+├ ○ /components/data-table                6.14 kB         182 kB
+├ ○ /components/dialog                    4.53 kB         180 kB
+├ ○ /components/error-boundary            3.01 kB         179 kB
+├ ○ /components/error-message             2.77 kB         179 kB
+├ ○ /components/features                  3.29 kB         179 kB
+├ ○ /components/gallery                   3.25 kB         179 kB
+├ ○ /components/helper-text               2.71 kB         179 kB
+├ ○ /components/hero                      3.02 kB         179 kB
+├ ○ /components/icon                      2.95 kB         179 kB
+├ ○ /components/input                     3.34 kB         179 kB
+├ ○ /components/label                     2.89 kB         179 kB
+├ ○ /components/logo-wall                 3.27 kB         179 kB
+├ ○ /components/pagination                2.92 kB         179 kB
+├ ○ /components/pricing                   3.39 kB         179 kB
+├ ○ /components/progress                  2.9 kB          179 kB
+├ ○ /components/radio-group               3.28 kB         179 kB
+├ ○ /components/select                    4.63 kB         180 kB
+├ ○ /components/separator                 2.73 kB         179 kB
+├ ○ /components/skeleton                  2.74 kB         179 kB
+├ ○ /components/switch                    3.14 kB         179 kB
+├ ○ /components/table                     4.32 kB         180 kB
+├ ○ /components/tabs                      3.94 kB         180 kB
+├ ○ /components/testimonials              3.35 kB         179 kB
+├ ○ /components/textarea                  3.4 kB          179 kB
+├ ○ /components/toast                     3.86 kB         180 kB
+├ ○ /components/tooltip                   3.4 kB          179 kB
+├ ○ /faq                                  7.93 kB         181 kB
+├ ○ /getting-started                      5.12 kB         178 kB
+├ ○ /simple                               2.79 kB         175 kB
+├ ○ /storybook                            3.5 kB          176 kB
+└ ○ /theming                              10 kB           186 kB
++ First Load JS shared by all             88.6 kB
+  ├ chunks/framework-02bc0cb5669a0314.js  44.9 kB
+  ├ chunks/main-ff71d50b7e51a094.js       34.3 kB
+  └ other shared chunks (total)           9.48 kB
+
+○  (Static)  prerendered as static content
+
+::endgroup::
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    1m21.695s 
+

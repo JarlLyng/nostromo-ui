@@ -234,17 +234,21 @@ For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-is
 
 ### GitHub Actions CI Workflow
 
-The CI pipeline runs on every push and pull request to `main` and `develop` branches. It includes two parallel jobs:
+The CI pipeline runs on every push and pull request to `main` and `develop` branches. It uses a **parallelized workflow** for faster feedback:
 
-#### 1. Lint and Test Job
-- **Linting**: Checks code quality (warnings are acceptable, errors fail CI)
-- **Type Checking**: Validates TypeScript types
-- **Unit Tests**: Runs all Vitest tests
-- **Build**: Compiles all packages
-- **Bundle Size**: Checks bundle sizes against limits
+#### Parallel Jobs
+1. **Setup Job**: Shared dependency installation (cached for reuse)
+2. **Lint Job**: ESLint checks (runs in parallel, warnings acceptable, errors fail)
+3. **Type-check Job**: TypeScript validation (runs in parallel)
+4. **Test Job**: Unit tests with Vitest (runs in parallel)
+5. **Build Job**: Compiles all packages (runs after all checks pass)
+6. **Accessibility Job**: axe-core tests (runs independently)
 
-#### 2. Accessibility Job
-- **Accessibility Tests**: Runs axe-core tests in parallel
+#### Workflow Benefits
+- **Faster feedback**: Parallel execution reduces CI time significantly
+- **Better error isolation**: Each job has separate error log artifacts
+- **Cache optimization**: Dependencies cached between runs
+- **Quality gates**: All checks must pass before build
 
 #### CI Configuration
 ```yaml
@@ -258,45 +262,41 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  lint-and-test:
+  setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          package_json_path: package.json
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-      
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        # ... cache configuration
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
       - name: Run linter
-        continue-on-error: true
         run: |
-          # Linter allows warnings, only fails on actual errors
-          pnpm lint 2>&1 | tee lint-output.txt
-          # ... error detection logic
-      
-      - name: Run type check
-        continue-on-error: true
-        run: pnpm type-check
-      
-      - name: Run tests
-        continue-on-error: true
-        run: |
-          cd packages/ui-core
-          pnpm test:run
-      
-      - name: Build packages
-        continue-on-error: true
-        run: pnpm build
+          pnpm lint 2>&1 | tee lint-output.txt || true
+          # Check for actual errors (not warnings)
+          if grep -E "✖ [0-9]+ problems \([1-9][0-9]* errors" lint-output.txt; then
+            exit 1
+          fi
+
+  type-check:
+    runs-on: ubuntu-latest
+    needs: setup
+    # ... runs in parallel with lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    # ... runs in parallel with lint and type-check
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, type-check, test]
+    # ... runs after all checks pass
       
       - name: Check bundle sizes
         continue-on-error: true

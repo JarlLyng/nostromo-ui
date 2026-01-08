@@ -193,17 +193,29 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 
 ## CI/CD Pipeline
 
-### GitHub Actions
-- **Lint**: ESLint + Prettier checks
-- **Test**: Unit tests (Vitest) + E2E (Playwright)
-- **Build**: All packages built and tested
-- **Release**: Automated publishing to npm
+### GitHub Actions Workflow
+The CI pipeline runs on every push and pull request to `main` and `develop` branches. It uses a parallelized workflow for faster feedback:
+
+#### Parallel Jobs
+- **Setup Job**: Shared dependency installation (cached)
+- **Lint Job**: ESLint checks (runs in parallel)
+- **Type-check Job**: TypeScript validation (runs in parallel)
+- **Test Job**: Unit tests with Vitest (runs in parallel)
+- **Build Job**: Compiles all packages (runs after all checks pass)
+- **Accessibility Job**: axe-core tests (runs independently)
+
+#### Workflow Benefits
+- **Faster feedback**: Parallel execution reduces CI time significantly
+- **Better error isolation**: Each job has separate error logs
+- **Cache optimization**: Dependencies cached between runs
+- **Quality gates**: All checks must pass before build
 
 ### Quality Gates
 - **Type checking**: TypeScript strict mode
+- **Linting**: ESLint (0 errors, warnings acceptable)
 - **Accessibility**: axe-core automated testing
-- **Visual regression**: Storybook + Chromatic
-- **Bundle size**: Size limit monitoring
+- **Bundle size**: Size limit monitoring (calendar.js: 35 KB, index.js: 420 KB)
+- **Pre-commit hooks**: Husky + lint-staged for code quality
 
 ## Scaling
 

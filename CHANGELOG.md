@@ -8,6 +8,27 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
 ## [Unreleased]
 
 ### Added
+- **Calendar Date Logic Refactoring** - Replaced custom date manipulation with `date-fns` library
+  - All date helper functions now use `date-fns` for robust date handling
+  - Ensures correct handling of leap years, timezones, and edge cases
+  - Calendar component size increased to 34.61 KB (limit increased to 35 KB)
+- **DataTable Controlled Mode** - Added server-side pagination/sorting/filtering support
+  - Controlled search: `searchTerm` and `onSearchTermChange` props
+  - Controlled filters: `columnFilters` and `onColumnFiltersChange` props
+  - Controlled sorting: `sortColumn`, `sortDirection`, and `onSortChange` props
+  - Controlled pagination: `currentPage`, `pageSize`, `onPageChange`, `onPageSizeChange`, and `totalItems` props
+  - Backward compatible with existing uncontrolled mode
+- **CI/CD Parallelization** - Refactored CI workflow for faster feedback
+  - Split `lint`, `type-check`, and `test` into separate parallel jobs
+  - Build job runs after all checks pass
+  - Significantly reduced CI feedback time
+- **Pre-commit Hooks** - Added Husky and lint-staged for code quality
+  - Automatic linting and formatting before commits
+  - Ensures consistent code style across the project
+- **Storybook Base Path Configuration** - Fixed fragile deployment strategy
+  - Configured Storybook base path properly in `main.ts`
+  - Removed fragile `sed` commands from deploy workflow
+  - Set `STORYBOOK_BASE_PATH` environment variable in CI/CD
 - **WCAG AA Design Optimization** - Complete design system refactoring for WCAG 2.1 AA compliance
   - Semantic color tokens system implemented across all components
   - Extended Tailwind preset with semantic token mappings (background, foreground, muted, primary, etc.)
@@ -37,10 +58,17 @@ and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.ht
   - Fixed `icon.tsx`: Changed from `ComponentType<unknown>` to `React.ElementType` to support forwardRef components
   - Fixed `charts.tsx`: Created custom interfaces for tooltip and legend props
   - Fixed `accordion.tsx`: Extended AccordionTriggerProps interface properly
-- **CI/CD Pipeline** - Improved lint error detection and removed deprecated configurations
+- **CI/CD Pipeline** - Improved lint error detection and parallelized workflow
   - Removed deprecated `package_json_path` from pnpm/action-setup
-  - Improved lint step to correctly handle ESLint exit codes with warnings
+  - Improved lint step to correctly detect actual errors (not just warnings)
+  - Parallelized workflow: lint, type-check, and test run in parallel
+  - Build job depends on all checks passing
+  - Significantly reduced CI feedback time
   - All CI checks now passing
+- **Bundle Size** - Updated Calendar component size limit
+  - Increased calendar.js limit from 30 KB to 35 KB to accommodate date-fns dependency
+  - Current size: 34.61 KB (under limit)
+  - Trade-off: +5 KB for significantly better date logic reliability
 - **Documentation** - Fixed API reference page routing
   - Renamed `api.mdx` to `api-reference.mdx` to avoid Next.js API route conflict
   - Updated all internal links to use `/api-reference` path
