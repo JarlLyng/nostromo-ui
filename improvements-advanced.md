@@ -38,6 +38,14 @@ The current `DataTable.tsx` is designed primarily for **client-side** usage. It 
 - Refactor `DataTable` to support a "Controlled Mode".
 - Allow `pagination`, `sorting`, and `filtering` states to be lifted up (passed as props) so they can be managed by a parent component (e.g., connected to React Query or a URL search params hook).
 
+**Status**: ✅ **FIXED** - Added controlled mode support to DataTable. Component now supports both controlled and uncontrolled modes for:
+- **Search**: `searchTerm` and `onSearchTermChange` props for controlled search
+- **Filters**: `columnFilters` and `onColumnFiltersChange` props for controlled filtering
+- **Sorting**: `sortColumn`, `sortDirection`, and `onSortChange` props for controlled sorting
+- **Pagination**: `currentPage`, `pageSize`, `onPageChange`, `onPageSizeChange`, and `totalItems` props for controlled pagination
+- When `totalItems` is provided, component assumes server-side pagination and uses provided data directly
+- All existing functionality remains backward compatible (uncontrolled mode still works)
+
 ### 4. CI/CD Optimization
 The `ci.yml` `lint-and-test` job runs everything sequentially in a single job.
 
@@ -45,6 +53,15 @@ The `ci.yml` `lint-and-test` job runs everything sequentially in a single job.
 **Recommendation**:
 - **Parallelize**: Split `lint`, `type-check`, and `test` into separate jobs in the GitHub Workflow. Since you use `pnpm` and `turbo`, they can run safely in parallel.
 - **Artifacts**: Current workflow uploads log files as artifacts on failure. Consider integrating a proper test reporter (like `vitest-github-action`) for inline PR annotations.
+
+**Status**: ✅ **FIXED** - Refactored CI workflow to run jobs in parallel:
+- **Setup job**: Shared dependency installation (can be cached)
+- **Lint job**: Runs independently in parallel
+- **Type-check job**: Runs independently in parallel
+- **Test job**: Runs independently in parallel
+- **Build job**: Runs after lint, type-check, and test pass (depends on all)
+- Each job has its own error log artifacts for better debugging
+- Significantly reduces CI feedback time by parallelizing checks
 
 ## 🟢 Architecture Observations (Good)
 

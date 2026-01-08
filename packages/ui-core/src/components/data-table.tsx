@@ -26,18 +26,38 @@ export interface DataTableProps<T = Record<string, unknown>>
   searchKeys?: Array<keyof T | string>;
   onSearch?: (searchTerm: string, filteredData: T[]) => void;
   
+  // Controlled search (for server-side filtering)
+  searchTerm?: string;
+  onSearchTermChange?: (searchTerm: string) => void;
+  
   // Filtering
   filterable?: boolean;
   filters?: ColumnFilter<T>[];
   onFilter?: (filters: Record<string, unknown>, filteredData: T[]) => void;
   
+  // Controlled filters (for server-side filtering)
+  columnFilters?: Record<string, unknown>;
+  onColumnFiltersChange?: (filters: Record<string, unknown>) => void;
+  
   // Sorting (enhanced)
   defaultSortColumn?: string;
   defaultSortDirection?: 'asc' | 'desc';
   
+  // Controlled sorting (for server-side sorting)
+  sortColumn?: string;
+  sortDirection?: 'asc' | 'desc';
+  onSortChange?: (column: string, direction: 'asc' | 'desc') => void;
+  
   // Pagination (enhanced)
   defaultPageSize?: number;
   showPagination?: boolean;
+  
+  // Controlled pagination (for server-side pagination)
+  currentPage?: number;
+  pageSize?: number;
+  onPageChange?: (page: number) => void;
+  onPageSizeChange?: (size: number) => void;
+  totalItems?: number; // Required for server-side pagination
   
   // UI
   showSearch?: boolean;
@@ -70,13 +90,25 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   searchPlaceholder = 'Search...',
   searchKeys,
   onSearch,
+  searchTerm: controlledSearchTerm,
+  onSearchTermChange,
   filterable = false,
   filters = [],
   onFilter,
+  columnFilters: controlledColumnFilters,
+  onColumnFiltersChange,
   defaultSortColumn,
   defaultSortDirection = 'asc',
+  sortColumn: controlledSortColumn,
+  sortDirection: controlledSortDirection,
+  onSortChange,
   defaultPageSize = 10,
   showPagination = true,
+  currentPage: controlledCurrentPage,
+  pageSize: controlledPageSize,
+  onPageChange,
+  onPageSizeChange,
+  totalItems,
   showSearch = true,
   showFilters = true,
   filterBarClassName,
@@ -85,19 +117,57 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   emptyText = 'No data found',
   ...tableProps
 }: DataTableProps<T>) {
-  // Search state
-  const [searchTerm, setSearchTerm] = useState('');
+  // Determine if component is in controlled mode
+  const isControlledSearch = controlledSearchTerm !== undefined;
+  const isControlledFilters = controlledColumnFilters !== undefined;
+  const isControlledSort = controlledSortColumn !== undefined;
+  const isControlledPagination = controlledCurrentPage !== undefined;
   
-  // Filter state
-  const [columnFilters, setColumnFilters] = useState<Record<string, unknown>>({});
+  // Search state (controlled or uncontrolled)
+  const [internalSearchTerm, setInternalSearchTerm] = useState('');
+  const searchTerm = isControlledSearch ? controlledSearchTerm : internalSearchTerm;
+  const setSearchTerm = isControlledSearch 
+    ? (value: string) => onSearchTermChange?.(value)
+    : setInternalSearchTerm;
   
-  // Sort state
-  const [sortColumn, setSortColumn] = useState<string | undefined>(defaultSortColumn);
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>(defaultSortDirection);
+  // Filter state (controlled or uncontrolled)
+  const [internalColumnFilters, setInternalColumnFilters] = useState<Record<string, unknown>>({});
+  const columnFilters = isControlledFilters ? controlledColumnFilters : internalColumnFilters;
+  const setColumnFilters = isControlledFilters
+    ? (filters: Record<string, unknown>) => onColumnFiltersChange?.(filters)
+    : setInternalColumnFilters;
   
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(defaultPageSize);
+  // Sort state (controlled or uncontrolled)
+  const [internalSortColumn, setInternalSortColumn] = useState<string | undefined>(defaultSortColumn);
+  const [internalSortDirection, setInternalSortDirection] = useState<'asc' | 'desc'>(defaultSortDirection);
+  const sortColumn = isControlledSort ? controlledSortColumn : internalSortColumn;
+  const sortDirection = isControlledSort ? controlledSortDirection : internalSortDirection;
+  const setSortColumn = isControlledSort
+    ? (column: string | undefined) => {
+        if (column && onSortChange) {
+          onSortChange(column, sortDirection);
+        }
+      }
+    : setInternalSortColumn;
+  const setSortDirection = isControlledSort
+    ? (dir: 'asc' | 'desc') => {
+        if (sortColumn && onSortChange) {
+          onSortChange(sortColumn, dir);
+        }
+      }
+    : setInternalSortDirection;
+  
+  // Pagination state (controlled or uncontrolled)
+  const [internalCurrentPage, setInternalCurrentPage] = useState(1);
+  const [internalPageSize, setInternalPageSize] = useState(defaultPageSize);
+  const currentPage = isControlledPagination ? controlledCurrentPage : internalCurrentPage;
+  const pageSize = controlledPageSize !== undefined ? controlledPageSize : internalPageSize;
+  const setCurrentPage = isControlledPagination
+    ? (page: number) => onPageChange?.(page)
+    : setInternalCurrentPage;
+  const setPageSize = onPageSizeChange
+    ? (size: number) => onPageSizeChange(size)
+    : setInternalPageSize;
   
   // Apply search
   const searchFilteredData = useMemo(() => {
@@ -200,35 +270,57 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   }, [filterFilteredData, sortColumn, sortDirection, columns]);
   
   // Apply pagination
+  // In controlled mode with server-side pagination, use provided data directly
+  // In uncontrolled mode, slice the data client-side
   const paginatedData = useMemo(() => {
     if (!showPagination) {
       return sortedData;
     }
     
+    // If in controlled pagination mode with totalItems, assume data is already paginated
+    if (isControlledPagination && totalItems !== undefined) {
+      return sortedData; // Data is already paginated server-side
+    }
+    
+    // Client-side pagination
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     
     return sortedData.slice(startIndex, endIndex);
-  }, [sortedData, currentPage, pageSize, showPagination]);
+  }, [sortedData, currentPage, pageSize, showPagination, isControlledPagination, totalItems]);
+  
+  // Calculate total pages
+  const totalPages = useMemo(() => {
+    if (!showPagination) return 1;
+    if (isControlledPagination && totalItems !== undefined) {
+      return Math.ceil(totalItems / pageSize);
+    }
+    return Math.ceil(sortedData.length / pageSize);
+  }, [showPagination, isControlledPagination, totalItems, pageSize, sortedData.length]);
   
   // Callbacks
   const handleSearch = useCallback((value: string) => {
     setSearchTerm(value);
-    setCurrentPage(1); // Reset to first page on search
-  }, []);
+    if (!isControlledPagination) {
+      setCurrentPage(1); // Reset to first page on search (only in uncontrolled mode)
+    }
+  }, [setSearchTerm, setCurrentPage, isControlledPagination]);
   
   const handleFilterChange = useCallback((key: string, value: unknown) => {
-    setColumnFilters(prev => ({
-      ...prev,
+    const newFilters = {
+      ...columnFilters,
       [key]: value
-    }));
-    setCurrentPage(1); // Reset to first page on filter
-  }, []);
+    };
+    setColumnFilters(newFilters);
+    if (!isControlledPagination) {
+      setCurrentPage(1); // Reset to first page on filter (only in uncontrolled mode)
+    }
+  }, [columnFilters, setColumnFilters, setCurrentPage, isControlledPagination]);
   
   const handleSort = useCallback((column: TableColumn<T>, direction: 'asc' | 'desc') => {
     setSortColumn(column.key);
     setSortDirection(direction);
-  }, []);
+  }, [setSortColumn, setSortDirection]);
   
   const handlePageChange = useCallback((page: number, newPageSize: number) => {
     setCurrentPage(page);
@@ -343,7 +435,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
           pagination: {
             current: currentPage,
             pageSize: pageSize,
-            total: sortedData.length,
+            total: isControlledPagination && totalItems !== undefined ? totalItems : sortedData.length,
             onChange: handlePageChange,
             showSizeChanger: true
           }
@@ -351,10 +443,19 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
       />
       
       {/* Results Summary */}
-      {showPagination && sortedData.length > 0 && (
+      {showPagination && (isControlledPagination && totalItems !== undefined ? totalItems > 0 : sortedData.length > 0) && (
         <div className="mt-2 px-4 py-2 text-sm text-muted-foreground">
-          Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results
-          {searchTerm && ` (filtered from ${initialData.length} total)`}
+          {isControlledPagination && totalItems !== undefined ? (
+            <>
+              Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, totalItems)} of {totalItems} results
+              {searchTerm && ' (filtered)'}
+            </>
+          ) : (
+            <>
+              Showing {((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, sortedData.length)} of {sortedData.length} results
+              {searchTerm && ` (filtered from ${initialData.length} total)`}
+            </>
+          )}
         </div>
       )}
     </div>
