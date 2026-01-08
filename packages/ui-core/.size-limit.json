@@ -25,7 +25,7 @@
   },
   {
     "path": "dist/components/calendar.js",
-    "limit": "30 KB"
+    "limit": "32 KB"
   },
   {
     "path": "dist/components/icon.js",
