@@ -74,8 +74,9 @@ jobs:
     - name: Run linter
       run: |
         pnpm lint 2>&1 | tee lint-output.txt || true
-        # Check if there are any errors (not just warnings)
-        if grep -q "error" lint-output.txt; then
+        # Check if there are any actual errors (not just warnings)
+        # Look for pattern like "✖ X problems (Y errors" where Y > 0
+        if grep -E "✖ [0-9]+ problems \([1-9][0-9]* errors" lint-output.txt; then
           echo "❌ Linter failed with errors"
           exit 1
         fi
