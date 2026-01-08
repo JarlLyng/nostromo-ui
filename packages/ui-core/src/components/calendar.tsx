@@ -134,11 +134,12 @@ const isDateDisabled = (
   return false;
 };
 
-const formatDate = (date: Date | undefined, locale: string = 'en-US'): string => {
+const formatDate = (date: Date | undefined, _locale: string = 'en-US'): string => {
   if (!date) return '';
   // Use date-fns format for consistent formatting
   // Note: date-fns uses locale objects, but we'll use a simple format for now
   // For full locale support, import locale from 'date-fns/locale'
+  // Locale parameter is kept for API compatibility but not yet used
   return dateFnsFormat(date, 'MMM d, yyyy');
 };
 

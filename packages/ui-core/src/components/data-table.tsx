@@ -289,7 +289,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, currentPage, pageSize, showPagination, isControlledPagination, totalItems]);
   
-  // Calculate total pages
+  // Calculate total pages (used in pagination component)
   const totalPages = useMemo(() => {
     if (!showPagination) return 1;
     if (isControlledPagination && totalItems !== undefined) {
@@ -297,6 +297,8 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
     }
     return Math.ceil(sortedData.length / pageSize);
   }, [showPagination, isControlledPagination, totalItems, pageSize, sortedData.length]);
+  
+  // Note: totalPages is used implicitly by the Table component's pagination prop
   
   // Callbacks
   const handleSearch = useCallback((value: string) => {
