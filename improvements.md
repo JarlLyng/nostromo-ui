@@ -60,6 +60,8 @@ In `packages/ui-core/package.json`, there is a very long list of manual `exports
   - Consider automated generation of these exports during the build step or using a wildcard export `"./*": "./dist/*.js"` if your build output structure supports it and you want to expose everything.
   - Alternatively, write a small script to validate that all files in `dist/components` are exported in `package.json` to prevent "missing export" bugs.
 
+**Status**: ✅ **FIXED** - Created validation script (`pnpm validate:exports`) to check that all component files in `src/components` are exported in `package.json`. Script compares source files with exports map and reports missing or extra exports. Fixed 3 missing exports (calendar, charts, data-table). Can be run manually or integrated into CI/CD pipeline to prevent "missing export" bugs.
+
 ### 5. Consolidated Configuration
 
 - **ESLint**: You have `eslint` config in root and in packages. Ensure you are using a shared config (e.g., `@nostromo/eslint-config` workspace package) to avoid duplicating rules and ensure consistency across the monorepo.

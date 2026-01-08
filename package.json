@@ -38,6 +38,7 @@
     "audit:contrast": "tsx scripts/audit-contrast.ts",
     "validate:theme-contrasts": "tsx scripts/validate-theme-contrasts.ts",
     "verify:tailwind-v4": "tsx scripts/verify-tailwind-v4.ts",
+    "validate:exports": "tsx scripts/validate-exports.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",
