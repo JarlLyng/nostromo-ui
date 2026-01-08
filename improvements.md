@@ -59,6 +59,8 @@ Based on the analysis of the `nostromo-ui` project, here are the suggested impro
 - **Fix Lint Warnings**: Run `pnpm lint` and address the warnings to get a clean state.
 - **Strict Linting**: Consider adding `tsc --noEmit` to the pre-commit hook or CI to catch type errors early (already in CI, but good to enforce locally).
 
+**Status**: ✅ **FIXED** - Removed unused eslint-disable directives. All lint warnings resolved.
+
 ## 5. Component API Consistency
 
 ### Observation
@@ -87,3 +89,5 @@ Based on the analysis of the `nostromo-ui` project, here are the suggested impro
 
 ### Recommendation
 - **Update Workflow**: Update the deployment workflow to deploy the Next.js `docs` app instead of `docs-advanced`.
+
+**Status**: ✅ **FIXED** - Removed `deploy-advanced-docs.yml` workflow as it's no longer needed. The main `deploy.yml` workflow handles documentation deployment.
