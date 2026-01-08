@@ -1,95 +1,70 @@
-# Project Improvements & Analysis
+# Project Review & Recommendations: Nostromo UI
 
-Based on the analysis of the `nostromo-ui` project, here are the suggested improvements and observations.
+After reviewing the `nostromo-ui` project, I have compiled a list of observations and recommendations. Overall, the project demonstrates a high level of quality, especially regarding accessibility and modern tooling standards.
 
-**Status**: Most improvements have been implemented. See status below.
+## 🟢 Strengths
 
-## 1. Documentation Structure & Scripts
+1.  **Accessibility First**: The explicit focus on accessibility (A11y) is excellent.
+    - Utilization of `@radix-ui` primitives ensures a solid accessible foundation.
+    - Integration of `axe-core` and `storybook-addon-a11y` in the testing pipeline is a best practice.
+    - `CONTRIBUTING.md` explicitly mentions WCAG 2.1 AA standards.
+2.  **Modern Tooling**:
+    - **Monorepo**: Using `pnpm` workspaces with `turbo` is the current gold standard for strict and fast monorepo management.
+    - **Testing**: `vitest` is significantly faster than Jest and integrates well with the Vite ecosystem.
+    - **Component Dev**: `Storybook` is correctly set up for component isolation.
+3.  **Documentation**:
+    - `CONTRIBUTING.md` is thorough and clear, setting good expectations for contributors.
+    - Clear branching and versioning strategies.
 
-### Observation
-- The project has a `docs` folder which appears to be a Next.js/Nextra application (the main documentation).
-- There is also a `packages/docs-advanced` directory which seems incomplete (missing `index.html` despite README claims) and is targeted by the root `docs:dev` script.
-- The root `package.json` scripts for documentation seem to point to `docs-advanced` instead of the main `docs` app.
+## 🟡 Areas for Improvement
 
-### Recommendation
-- **Fix Root Scripts**: Update `docs:dev`, `docs:build`, etc., in the root `package.json` to point to the `docs` folder (Next.js app) instead of `packages/docs-advanced`.
-  ```json
-  "scripts": {
-    "docs:dev": "pnpm --filter docs dev",
-    "docs:build": "pnpm --filter docs build",
-    ...
-  }
-  ```
-- **Cleanup**: If `packages/docs-advanced` is deprecated or unused, consider removing it to avoid confusion.
+### 1. Dependency Management (Clean Up)
 
-**Status**: ✅ **FIXED** - Root scripts now point to `docs` folder (Next.js app).
+The root `package.json` contains dependencies that appear to be misplaced or duplicated.
 
-## 2. Testing Coverage
+- **Issue**: `dependencies` in the root `package.json` includes libraries that should likely be `devDependencies` (e.g., `chai`, `vitest`, `@changesets/cli`) or are dependencies of specific packages (e.g., `@radix-ui/*`, `@floating-ui/*`).
+- **Recommendation**:
+  - Move build/test tools (`vitest`, `chai`, `eslint`, etc.) to `devDependencies`.
+  - Remove package-specific runtime dependencies (like `@radix-ui`) from the root unless they are truly shared across **all** workspace packages and you are using hoisting intentionally (which makes strict boundary checks harder). Ideally, each package in `packages/*` should declare its own dependencies.
+  - **Why**: This improves the correctness of the dependency graph and ensures that `pnpm`'s strict mode can catch missing peer dependencies or phantom dependencies.
 
-### Observation
-- `ui-core` has excellent test coverage (842 tests).
-- `ui-marketing` has minimal coverage (7 smoke tests) as noted in the README.
+**Status**: ✅ **FIXED** - All test/build tools moved to `devDependencies`. Removed package-specific runtime dependencies (`@radix-ui/*`, `@floating-ui/*`) from root as they are already declared in `ui-core` package.
 
-### Recommendation
-- **Expand Marketing Tests**: Add unit and accessibility tests for `ui-marketing` components (`Hero`, `Testimonials`, etc.) similar to `ui-core`.
-- **Visual Regression**: Consider adding visual regression testing (e.g., with Chromatic or Playwright) since this is a UI library.
+### 2. Pre-commit Hooks (Husky)
 
-**Status**: ✅ **FIXED** - Marketing components now have 197 comprehensive functional tests (Hero, Features, Testimonials, Pricing, Gallery, LogoWall).
+I did not observe a `.husky` directory or a `prepare` script in `package.json`.
 
-## 3. Package Publishing Preparation
+- **Recommendation**: Install `husky` and `lint-staged`.
+- **Why**: To enforce the quality standards (Linting, Testing, Commit Message format) automatically before code is committed. This prevents bad code from entering the repo and reduces CI failures.
 
-### Observation
-- The project is currently "Workspace-only".
-- `ui-core` has a valid `exports` map and `sideEffects: false`.
+```bash
+pnpm add -D husky lint-staged
+npx husky init
+```
 
-### Recommendation
-- **Pre-publish Checks**: Add a `prepublishOnly` script to ensure tests and linting pass before publishing.
-- **Provenance**: Enable npm provenance in GitHub Actions for secure publishing.
-- **Changesets**: Continue using changesets (already present) but ensure the release workflow is fully automated.
+**Status**: ✅ **FIXED** - Installed `husky` and `lint-staged`. Configured pre-commit hook to run lint-staged. Added `prepare` script to automatically set up husky on install. Lint-staged configured to run ESLint and Prettier on staged files.
 
-**Status**: ✅ **FIXED** - `prepublishOnly` script added to `ui-core` package.json. Runs type-check, lint, tests, and build before publishing.
+### 3. Tailwind CSS v4 Transition
 
-## 4. Linting & Code Quality
+You are using `@tailwindcss/vite` ^4.1.18, which indicates you are on the bleeding edge using Tailwind v4 (beta/alpha or early release).
 
-### Observation
-- The README mentions "Linting: ⚠️ Some warnings in stories/test files".
-- `Button` component uses `React.memo` by default. While good for performance, it might be premature optimization for simple atomic components unless they re-render often with same props.
+- **Recommendation**: Ensure that `packages/ui-tw` is fully compatible with v4. Tailwind v4 brings significant changes to the engine. Verify that the `peerDependencies` in `ui-tw` (`tailwindcss: ^3.0.0 || ^4.0.0`) are actually compatible with the code shipped in that package, as plugins and configuration formats have changed.
 
-### Recommendation
-- **Fix Lint Warnings**: Run `pnpm lint` and address the warnings to get a clean state.
-- **Strict Linting**: Consider adding `tsc --noEmit` to the pre-commit hook or CI to catch type errors early (already in CI, but good to enforce locally).
+### 4. Component Exports Strategy
 
-**Status**: ✅ **FIXED** - Removed unused eslint-disable directives. All lint warnings resolved.
+In `packages/ui-core/package.json`, there is a very long list of manual `exports`.
 
-## 5. Component API Consistency
+- **Recommendation**: While explicit exports are good for tree-shaking and API surface control, they are error-prone to maintain manually.
+  - Consider automated generation of these exports during the build step or using a wildcard export `"./*": "./dist/*.js"` if your build output structure supports it and you want to expose everything.
+  - Alternatively, write a small script to validate that all files in `dist/components` are exported in `package.json` to prevent "missing export" bugs.
 
-### Observation
-- `Button` component has both `loading` (boolean) and `state` ("loading" | "success" | "error" | "default") props.
-- There is logic to resolve `finalState`.
+### 5. Consolidated Configuration
 
-### Recommendation
-- **Simplify API**: Consider if `state` prop is necessary if `loading` exists, or make `loading` just one of the states. Having two sources of truth can lead to confusion.
+- **ESLint**: You have `eslint` config in root and in packages. Ensure you are using a shared config (e.g., `@nostromo/eslint-config` workspace package) to avoid duplicating rules and ensure consistency across the monorepo.
+- **TSConfig**: You have `tsconfig.base.json`, which is good. Ensure all packages extend it.
 
-**Status**: ✅ **IMPROVED** - Documentation clarified: `loading` prop takes precedence over `state` prop. `loading` shows spinner automatically, while `state` is used for success/error feedback. Updated JSDoc comments and documentation examples to clarify usage.
+## 🚀 Summary
 
-## 6. Bundle Size
+The project is in very good shape. The foundation is solid. The recommendations above are mostly "housekeeping" items to ensure scalability and maintainability as the project grows.
 
-### Observation
-- Bundle size is ~404 KB.
-- `ui-core` has `sideEffects: false` which is great.
-
-### Recommendation
-- **Analyze**: Run `pnpm analyze` to see if any large dependencies can be lazy-loaded or removed.
-- **Split Chunks**: Ensure the build config (tsup) is splitting chunks effectively if not already.
-
-**Status**: ✅ **ANALYZED** - Bundle analysis completed. Documentation site pages are ~175-186 KB (First Load JS: 88.6 KB shared). All pages are statically prerendered. Bundle size is reasonable for a documentation site.
-
-## 7. CI/CD Workflows
-
-### Observation
-- `deploy-advanced-docs.yml` exists but might be failing or deploying empty content if `docs-advanced` is empty.
-
-### Recommendation
-- **Update Workflow**: Update the deployment workflow to deploy the Next.js `docs` app instead of `docs-advanced`.
-
-**Status**: ✅ **FIXED** - Removed `deploy-advanced-docs.yml` workflow as it's no longer needed. The main `deploy.yml` workflow handles documentation deployment.
+**Immediate Next Step suggestion**: Clean up the root `package.json` to separate `dependencies` from `devDependencies`.
