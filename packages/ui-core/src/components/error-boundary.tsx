@@ -104,7 +104,7 @@ export function useErrorHandler() {
 
   React.useEffect(() => {
     if (error) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+       
       throw error;
     }
   }, [error]);

@@ -37,7 +37,7 @@ const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
 const ThrowErrorInEffect = ({ shouldThrow }: { shouldThrow: boolean }) => {
   React.useEffect(() => {
     if (shouldThrow) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+       
       throw new Error('Effect error');
     }
   }, [shouldThrow]);
