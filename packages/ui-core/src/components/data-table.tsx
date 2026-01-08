@@ -144,7 +144,7 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   const sortDirection = isControlledSort ? controlledSortDirection : internalSortDirection;
   const setSortColumn = isControlledSort
     ? (column: string | undefined) => {
-        if (column && onSortChange) {
+        if (column && onSortChange && sortDirection) {
           onSortChange(column, sortDirection);
         }
       }
