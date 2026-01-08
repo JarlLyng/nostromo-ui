@@ -125,3 +125,5 @@ playwright/.cache/
 .env.production.local
 *storybook.log
 lint-output.txt
+build-output.txt
+lint-check.txt
