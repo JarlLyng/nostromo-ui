@@ -50,6 +50,8 @@ You are using `@tailwindcss/vite` ^4.1.18, which indicates you are on the bleedi
 
 - **Recommendation**: Ensure that `packages/ui-tw` is fully compatible with v4. Tailwind v4 brings significant changes to the engine. Verify that the `peerDependencies` in `ui-tw` (`tailwindcss: ^3.0.0 || ^4.0.0`) are actually compatible with the code shipped in that package, as plugins and configuration formats have changed.
 
+**Status**: ✅ **VERIFIED** - Created verification script (`pnpm verify:tailwind-v4`) to check Tailwind v4 compatibility. Preset uses v3/v4 compatible syntax (`<alpha-value>` placeholder, Config type, plugins array). `ui-core` uses Tailwind v4.1.18 and `@tailwindcss/vite` v4.1.18. Builds and tests pass successfully. Preset is compatible with both Tailwind v3 and v4.
+
 ### 4. Component Exports Strategy
 
 In `packages/ui-core/package.json`, there is a very long list of manual `exports`.
