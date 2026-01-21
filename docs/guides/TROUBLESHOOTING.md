@@ -94,7 +94,7 @@ CSS variables not being applied
 **Solution:**
 ```tsx
 // Import base styles
-import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/base.css";
 
 // Set theme on document
 document.documentElement.setAttribute('data-theme', 'nostromo');

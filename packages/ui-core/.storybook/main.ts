@@ -16,9 +16,6 @@ const config: StorybookConfig = {
   },
   core: { builder: '@storybook/builder-vite' },
   // Configure base path for GitHub Pages deployment
-  // This is read from environment variable set in CI/CD
-  // Defaults to root path for local development
-  base: process.env.STORYBOOK_BASE_PATH || '/',
   viteFinal: async (config) => {
     // 1) React dedupe to avoid multiple React instances
     config.resolve = {

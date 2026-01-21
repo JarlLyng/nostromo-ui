@@ -904,7 +904,7 @@ module.exports = {
 
 ```tsx
 // In your entry file
-import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/base.css";
 ```
 
 ### 4. Start Migration

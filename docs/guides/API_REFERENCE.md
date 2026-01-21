@@ -1496,7 +1496,7 @@ import { Testimonials } from "@nostromo/ui-marketing/testimonials"
 
 3. **Import base styles**:
    ```tsx
-   import "@nostromo/ui-tw/styles/base.css";
+   import "@nostromo/ui-tw/base.css";
    ```
 
 4. **Start using components**:

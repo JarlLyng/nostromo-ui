@@ -64,7 +64,7 @@ module.exports = {
 2. **Import CSS** - Add base styles and theme in your entry file:
 ```ts
 // In your entry file (e.g. main.tsx or _app.tsx)
-import "@nostromo/ui-tw/styles/base.css";
+import "@nostromo/ui-tw/base.css";
 import "@nostromo/ui-tw/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
 ```
 

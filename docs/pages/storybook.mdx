@@ -14,13 +14,10 @@ Explore all components interactively in our Storybook environment.
 To start Storybook locally for development:
 
 ```bash
-npm run storybook
-```
+# From root directory
+pnpm --filter @nostromo/ui-core storybook
 
-**Live Storybook:** [https://jarllyng.github.io/nostromo-ui/storybook-static/](https://jarllyng.github.io/nostromo-ui/storybook-static/)
-
-For local development, run:
-```bash
+# Or from the ui-core package directory
 cd packages/ui-core
 pnpm storybook
 ```

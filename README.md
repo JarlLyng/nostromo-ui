@@ -120,7 +120,7 @@ All components are built with:
 | **Core Components** | ✅ | 30 components implemented |
 | **Marketing Components** | ✅ | 6 components implemented |
 | **Themes** | ✅ | 4 themes (Nostromo, Mother, LV-426, Sulaco) |
-| **Core Tests** | ✅ | 861 tests passing (61 test files) |
+| **Core Tests** | ✅ | 842 tests passing (unit + accessibility) |
 | **Marketing Tests** | ✅ | 197 tests passing (13 test files) |
 | **TypeScript** | ✅ | Zero errors, strict mode enabled |
 | **Linting** | ✅ | 0 errors, 8 warnings (acceptable) |
@@ -170,7 +170,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **Documentation** - All components now have live, interactive examples (StorybookEmbed + LiveCode)
 - **Live Examples** - Every component documentation page includes multiple live, editable examples
 - **Storybook Integration** - Interactive Storybook embeds for all core components with stories, proper base path configuration
-- **Accessibility** - Comprehensive accessibility testing with axe-core integration (1058 tests passing)
+- **Accessibility** - Comprehensive accessibility testing with axe-core integration (included in 842 tests)
 - **Performance** - Bundle size monitoring and optimization (~204 KB with tree-shaking support)
 - **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
 
