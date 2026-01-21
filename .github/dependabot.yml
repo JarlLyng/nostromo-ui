@@ -69,6 +69,13 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@tailwindcss/vite"
         update-types: ["version-update:semver-major"]
+      # Ignore major updates for Next.js and Nextra (require coordinated migration)
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra-theme-docs"
+        update-types: ["version-update:semver-major"]
 
   # UI Marketing package
   - package-ecosystem: "npm"
@@ -97,6 +104,13 @@ updates:
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@tailwindcss/vite"
+        update-types: ["version-update:semver-major"]
+      # Ignore major updates for Next.js and Nextra (require coordinated migration)
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra-theme-docs"
         update-types: ["version-update:semver-major"]
 
   # UI TW package
@@ -127,6 +141,13 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@tailwindcss/vite"
         update-types: ["version-update:semver-major"]
+      # Ignore major updates for Next.js and Nextra (require coordinated migration)
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra-theme-docs"
+        update-types: ["version-update:semver-major"]
 
   # Docs package
   - package-ecosystem: "npm"
@@ -156,6 +177,13 @@ updates:
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@tailwindcss/vite"
+        update-types: ["version-update:semver-major"]
+      # Ignore major updates for Next.js and Nextra (require coordinated migration)
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "nextra-theme-docs"
         update-types: ["version-update:semver-major"]
 
   # GitHub Actions
