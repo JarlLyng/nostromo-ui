@@ -10,6 +10,76 @@ After releasing 1.0.0, we follow a **hybrid workflow** that balances development
 - **Direct to main** for small fixes, documentation, and non-breaking changes
 - **Changesets** for version management
 - **Semantic versioning** for releases
+- **GitHub Issues** for tracking work and project management
+
+---
+
+## 📝 Issue Management
+
+### Creating Issues
+
+When creating new issues, follow these guidelines:
+
+1. **Assign to maintainer**: All issues should be assigned to `@JarlLyng` (or the project maintainer)
+2. **Add to project**: Add issues to the **IAMJARL** project
+3. **Set initial status**: New issues start with status **Backlog**
+4. **Add labels**: Use appropriate labels (bug, enhancement, documentation, etc.)
+5. **Set priority**: Add priority labels (priority:high, priority:medium, priority:low)
+
+### Issue Status Workflow
+
+Issues move through the following statuses in the IAMJARL project:
+
+- **Backlog** (default) - New issues start here. Ready to be worked on but not yet started.
+- **In Progress** - Issue is actively being worked on.
+- **On Hold** - Temporarily paused, needs discussion, or waiting for dependencies.
+- **Done** - Issue is completed and ready for review/merge.
+
+### Status Guidelines
+
+**When to move to "In Progress":**
+- You start actively working on the issue
+- Code changes are being made
+- Implementation has begun
+
+**When to move to "On Hold":**
+- Blocked by external dependencies
+- Needs discussion or decision
+- Waiting for feedback or approval
+- Temporarily deprioritized
+
+**When to move to "Done":**
+- All tasks in the issue are completed
+- Code is merged to main branch
+- Documentation is updated (if applicable)
+- Tests are passing
+
+### Example Issue Setup
+
+When creating a new issue:
+
+```markdown
+## Overview
+Brief description of the issue or feature
+
+## Current Status
+- What exists now
+- What's missing
+
+## Tasks
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
+
+## Priority
+High/Medium/Low - Brief explanation
+```
+
+Then:
+1. Assign to `@JarlLyng`
+2. Add to **IAMJARL** project
+3. Set status to **Backlog**
+4. Add relevant labels
 
 ---
 

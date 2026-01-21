@@ -87,6 +87,17 @@ pnpm changeset
 - Describe your changes clearly
 - Link to relevant issues
 
+### Issue Management
+
+When creating or working with issues:
+
+- **Assign issues** to `@JarlLyng` (project maintainer)
+- **Add to project**: IAMJARL project
+- **Set status**: Start with "Backlog", move to "In Progress" when working, "Done" when complete
+- **Use labels**: Add appropriate labels (bug, enhancement, documentation, priority, etc.)
+
+See [WORKFLOW.md](docs/guides/WORKFLOW.md#issue-management) for detailed issue management guidelines.
+
 ## Code Standards
 
 ### TypeScript
