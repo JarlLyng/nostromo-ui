@@ -17,21 +17,28 @@ export default defineConfig({
     // Limit concurrency to prevent resource exhaustion in CI
     // Increased from 2 to 4 to improve test performance while maintaining stability
     maxConcurrency: process.env.CI ? 4 : 5, // Increased concurrency in CI for better performance
-    // Disable coverage in CI to speed up tests (coverage can be run separately)
-    // Use conditional spread to only include coverage when not in CI
-    ...(process.env.CI ? {} : {
-      coverage: {
-        provider: 'v8',
-        reporter: ['text', 'json', 'html'],
-        exclude: [
-          'node_modules/',
-          'src/test/',
-          '**/*.d.ts',
-          '**/*.stories.*',
-          '**/*.test.*',
-        ],
+    // Coverage configuration - enabled in CI for reporting
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html', 'lcov'],
+      exclude: [
+        'node_modules/',
+        'src/test/',
+        '**/*.d.ts',
+        '**/*.stories.*',
+        '**/*.test.*',
+        'dist/**',
+      ],
+      // Coverage thresholds - minimum 80% for most metrics, 75% for branches (more realistic)
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75, // Branches are harder to cover, 75% is more realistic
+        statements: 80,
       },
-    }),
+      // Report uncovered files
+      reportOnFailure: true,
+    },
     // Stop on first failure in CI to prevent hanging
     bail: process.env.CI ? 1 : 0,
   },
