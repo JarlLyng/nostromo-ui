@@ -126,48 +126,66 @@ export function DataTable<T extends Record<string, unknown> = Record<string, unk
   // Search state (controlled or uncontrolled)
   const [internalSearchTerm, setInternalSearchTerm] = useState('');
   const searchTerm = isControlledSearch ? controlledSearchTerm : internalSearchTerm;
-  const setSearchTerm = isControlledSearch 
-    ? (value: string) => onSearchTermChange?.(value)
-    : setInternalSearchTerm;
+  const setSearchTerm = useMemo(
+    () => isControlledSearch 
+      ? (value: string) => onSearchTermChange?.(value)
+      : setInternalSearchTerm,
+    [isControlledSearch, onSearchTermChange]
+  );
   
   // Filter state (controlled or uncontrolled)
   const [internalColumnFilters, setInternalColumnFilters] = useState<Record<string, unknown>>({});
   const columnFilters = isControlledFilters ? controlledColumnFilters : internalColumnFilters;
-  const setColumnFilters = isControlledFilters
-    ? (filters: Record<string, unknown>) => onColumnFiltersChange?.(filters)
-    : setInternalColumnFilters;
+  const setColumnFilters = useMemo(
+    () => isControlledFilters
+      ? (filters: Record<string, unknown>) => onColumnFiltersChange?.(filters)
+      : setInternalColumnFilters,
+    [isControlledFilters, onColumnFiltersChange]
+  );
   
   // Sort state (controlled or uncontrolled)
   const [internalSortColumn, setInternalSortColumn] = useState<string | undefined>(defaultSortColumn);
   const [internalSortDirection, setInternalSortDirection] = useState<'asc' | 'desc'>(defaultSortDirection);
   const sortColumn = isControlledSort ? controlledSortColumn : internalSortColumn;
   const sortDirection = isControlledSort ? controlledSortDirection : internalSortDirection;
-  const setSortColumn = isControlledSort
-    ? (column: string | undefined) => {
-        if (column && onSortChange && sortDirection) {
-          onSortChange(column, sortDirection);
+  const setSortColumn = useMemo(
+    () => isControlledSort
+      ? (column: string | undefined) => {
+          if (column && onSortChange && sortDirection) {
+            onSortChange(column, sortDirection);
+          }
         }
-      }
-    : setInternalSortColumn;
-  const setSortDirection = isControlledSort
-    ? (dir: 'asc' | 'desc') => {
-        if (sortColumn && onSortChange) {
-          onSortChange(sortColumn, dir);
+      : setInternalSortColumn,
+    [isControlledSort, onSortChange, sortDirection]
+  );
+  const setSortDirection = useMemo(
+    () => isControlledSort
+      ? (dir: 'asc' | 'desc') => {
+          if (sortColumn && onSortChange) {
+            onSortChange(sortColumn, dir);
+          }
         }
-      }
-    : setInternalSortDirection;
+      : setInternalSortDirection,
+    [isControlledSort, onSortChange, sortColumn]
+  );
   
   // Pagination state (controlled or uncontrolled)
   const [internalCurrentPage, setInternalCurrentPage] = useState(1);
   const [internalPageSize, setInternalPageSize] = useState(defaultPageSize);
   const currentPage = isControlledPagination ? controlledCurrentPage : internalCurrentPage;
   const pageSize = controlledPageSize !== undefined ? controlledPageSize : internalPageSize;
-  const setCurrentPage = isControlledPagination
-    ? (page: number) => onPageChange?.(page)
-    : setInternalCurrentPage;
-  const setPageSize = onPageSizeChange
-    ? (size: number) => onPageSizeChange(size)
-    : setInternalPageSize;
+  const setCurrentPage = useMemo(
+    () => isControlledPagination
+      ? (page: number) => onPageChange?.(page)
+      : setInternalCurrentPage,
+    [isControlledPagination, onPageChange]
+  );
+  const setPageSize = useMemo(
+    () => onPageSizeChange
+      ? (size: number) => onPageSizeChange(size)
+      : setInternalPageSize,
+    [onPageSizeChange]
+  );
   
   // Apply search
   const searchFilteredData = useMemo(() => {
