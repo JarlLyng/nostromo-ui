@@ -7,6 +7,8 @@ dist/
 build/
 .next/
 out/
+test-app/dist/
+test-app/node_modules/
 
 # Environment variables
 .env

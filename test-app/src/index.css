@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(var(--color-background));
+  color: hsl(var(--color-foreground));
+}
