@@ -247,10 +247,10 @@
   --color-destructive: var(--color-error-400);
   --color-destructive-foreground: 0 0% 9%; /* Dark text on light destructive button */
   --color-success-foreground: 0 0% 9%; /* Dark text on light success */
-  --color-warning-foreground: hsl(var(--color-neutral-50));
+  --color-warning-foreground: var(--color-neutral-50);
   --color-error-foreground: 0 0% 9%; /* Dark text on light error */
   --color-info-foreground: 0 0% 9%; /* Dark text on light info */
-  --color-ring: hsl(var(--color-brand-400));
+  --color-ring: var(--color-brand-400);
 }
 
 /* System Preference Dark Mode */
@@ -278,28 +278,29 @@
 
     /* Semantic Colors - Dark mode overrides (system preference) */
     /* IMPORTANT: In dark mode, neutral-950 is 98% (light), so we use neutral-900 (95%) for dark background */
+    /* Note: Use raw HSL values or var() references, NOT hsl() wrapper */
     --color-background: 0 0% 9%; /* Dark background - using neutral-900 value directly */
-    --color-foreground: hsl(var(--color-neutral-50)); /* Light text on dark background */
-    --color-muted: hsl(var(--color-neutral-800));
-    --color-muted-foreground: hsl(0 0% 65%); /* Adjusted for 4.5:1 contrast with muted (85%) */
-    --color-popover: hsl(var(--color-neutral-800)); /* Dark popover background */
-    --color-popover-foreground: hsl(var(--color-neutral-50)); /* Light text on dark popover */
-    --color-card: hsl(var(--color-neutral-800));
-    --color-card-foreground: hsl(var(--color-neutral-50));
-    --color-border: hsl(var(--color-neutral-700));
-    --color-input: hsl(var(--color-neutral-700));
-    --color-primary: hsl(var(--color-brand-400));
+    --color-foreground: var(--color-neutral-50); /* Light text on dark background */
+    --color-muted: var(--color-neutral-800);
+    --color-muted-foreground: 0 0% 65%; /* Adjusted for 4.5:1 contrast with muted (85%) */
+    --color-popover: var(--color-neutral-800); /* Dark popover background */
+    --color-popover-foreground: var(--color-neutral-50); /* Light text on dark popover */
+    --color-card: var(--color-neutral-800);
+    --color-card-foreground: var(--color-neutral-50);
+    --color-border: var(--color-neutral-700);
+    --color-input: var(--color-neutral-700);
+    --color-primary: var(--color-brand-400);
     --color-primary-foreground: 0 0% 9%; /* Dark text on light primary button */
-    --color-secondary: hsl(var(--color-neutral-700));
-    --color-secondary-foreground: hsl(var(--color-neutral-50));
-    --color-accent: hsl(var(--color-brand-800));
-    --color-accent-foreground: hsl(var(--color-brand-100));
-    --color-destructive: hsl(var(--color-error-400));
+    --color-secondary: var(--color-neutral-700);
+    --color-secondary-foreground: var(--color-neutral-50);
+    --color-accent: var(--color-brand-800);
+    --color-accent-foreground: var(--color-brand-100);
+    --color-destructive: var(--color-error-400);
     --color-destructive-foreground: 0 0% 9%; /* Dark text on light destructive button */
     --color-success-foreground: 0 0% 9%; /* Dark text on light success */
-    --color-warning-foreground: hsl(var(--color-neutral-50));
+    --color-warning-foreground: var(--color-neutral-50);
     --color-error-foreground: 0 0% 9%; /* Dark text on light error */
     --color-info-foreground: 0 0% 9%; /* Dark text on light info */
-    --color-ring: hsl(var(--color-brand-400));
+    --color-ring: var(--color-brand-400);
   }
 }
