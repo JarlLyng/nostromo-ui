@@ -11,9 +11,9 @@ Welcome to Nostromo UI! This guide helps you get started with our UI library.
 
 ## Installation
 
-### From npm (when published)
+### From npm
 
-Once published to npm, install Nostromo UI in your project:
+Install Nostromo UI in your project:
 
 ```bash
 # npm
@@ -28,20 +28,14 @@ yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
 
 ### From GitHub (development/local)
 
-For local development or if packages aren't published yet, you can install directly from GitHub:
+For local development, you can clone the repository:
 
 ```bash
-# Using pnpm (recommended for monorepo)
-pnpm add @nostromo/ui-core@workspace:* @nostromo/ui-marketing@workspace:* @nostromo/ui-tw@workspace:*
-
-# Or clone the repository and link locally
 git clone https://github.com/JarlLyng/nostromo-ui.git
 cd nostromo-ui
 pnpm install
 pnpm build
 ```
-
-**Note**: Currently, packages are not published to npm. For production use, clone the repository and build locally, or wait for npm publication.
 
 ### Peer Dependencies
 
@@ -55,6 +49,7 @@ npm install -D tailwindcss
 ## Theming Setup
 
 ### 1. Import Base CSS
+
 ```ts
 // In your entry file (e.g. main.tsx)
 import "@nostromo/ui-tw/base.css";
@@ -62,6 +57,7 @@ import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 2. Apply Theme
+
 ```html
 <html data-theme="nostromo" data-color-scheme="light">
   <!-- Your content -->
@@ -69,10 +65,11 @@ import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 3. Customize Brand Colors (Optional)
+
 ```css
 [data-theme="mybrand"] {
-  --color-brand-500: 220 100% 50%;  /* Your brand blue */
-  --color-brand-600: 220 100% 40%;  /* Darker variant */
+  --color-brand-500: 220 100% 50%; /* Your brand blue */
+  --color-brand-600: 220 100% 40%; /* Darker variant */
 }
 ```
 
@@ -81,10 +78,10 @@ import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ## Basic Usage
 
 ```jsx
-import { Button } from '@nostromo/ui-core'
+import { Button } from "@nostromo/ui-core";
 
 export default function MyComponent() {
-  return <Button>Click me</Button>
+  return <Button>Click me</Button>;
 }
 ```
 
@@ -99,7 +96,7 @@ const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [nostromoPreset],
 };
@@ -108,6 +105,7 @@ module.exports = {
 ### Project Setup Examples
 
 **Next.js (App Router):**
+
 ```tsx
 // app/layout.tsx
 import "@nostromo/ui-tw/base.css";
@@ -123,6 +121,7 @@ export default function RootLayout({ children }) {
 ```
 
 **Vite:**
+
 ```tsx
 // main.tsx
 import "@nostromo/ui-tw/base.css";
@@ -134,26 +133,27 @@ import App from "./App";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
 **Dark Mode Toggle:**
+
 ```tsx
 // Theme toggle example
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
-  
+
   useEffect(() => {
     document.documentElement.setAttribute(
-      'data-color-scheme', 
-      isDark ? 'dark' : 'light'
+      "data-color-scheme",
+      isDark ? "dark" : "light",
     );
   }, [isDark]);
-  
+
   return (
     <button onClick={() => setIsDark(!isDark)}>
-      {isDark ? 'Light' : 'Dark'} Mode
+      {isDark ? "Light" : "Dark"} Mode
     </button>
   );
 }
