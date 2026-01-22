@@ -21,6 +21,8 @@ const badgeVariants = cva(
           "border-transparent bg-warning text-warning-foreground hover:bg-warning-600 shadow-badge hover:shadow-badge-hover",
         info:
           "border-transparent bg-info text-info-foreground hover:bg-info-600 shadow-badge hover:shadow-badge-hover",
+        error:
+          "border-transparent bg-error text-error-foreground hover:bg-error-600 shadow-badge hover:shadow-badge-hover",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
