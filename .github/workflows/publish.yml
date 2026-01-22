@@ -68,7 +68,7 @@ jobs:
           # Update ui-marketing dependency on ui-core from workspace:* to version
           cd packages/ui-marketing
           UI_CORE_VERSION=$(node -p "require('../ui-core/package.json').version")
-          pnpm pkg set "dependencies.@nostromo/ui-core=^$UI_CORE_VERSION"
+          pnpm pkg set "dependencies.@jarllyng/ui-core=^$UI_CORE_VERSION"
           cd ../..
 
       - name: Create Release Pull Request or Publish to npm
