@@ -98,6 +98,7 @@ nostromo-ui/
 
 ### Test Results
 - **Core Package**: 842 tests passing (unit + accessibility) - 100% pass rate
+- **Test Coverage**: 81% lines, 75% branches, 85% functions, 83% statements
 - **Marketing Package**: 7 smoke tests (export + render verification)
 - **Theme Package**: 3 smoke tests (preset structure validation)
 
@@ -162,11 +163,31 @@ export default defineConfig({
     globals: true,
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      reporter: ['text', 'json', 'html', 'lcov'],
+      exclude: [
+        'node_modules/',
+        'src/test/',
+        '**/*.d.ts',
+        '**/*.stories.*',
+        '**/*.test.*',
+        'dist/**',
+      ],
+      // Coverage thresholds - enforced in CI
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 75, // Branches are harder to cover
+        statements: 80,
+      },
     },
   },
 });
 ```
+
+**Coverage Requirements:**
+- **Minimum**: 80% lines, 80% functions, 80% statements, 75% branches
+- **CI**: Coverage is automatically checked in CI pipeline
+- **Reports**: Coverage reports (text, json, html, lcov) are generated and uploaded as CI artifacts
 
 ### Test Commands
 ```bash
@@ -193,9 +214,25 @@ For detailed testing examples and strategies, see [BEST_PRACTICES.md](./BEST_PRA
 
 ## Linting & Formatting
 
-We use **ESLint** for linting and **Prettier** for formatting. Configuration is shared via `tools/eslint-config/`.
+We use **ESLint** for linting and **Prettier** for formatting.
 
-Run `pnpm lint` to check code quality and `pnpm lint:fix` to auto-fix issues.
+### ESLint Configuration
+
+- **Root config**: `eslint.config.js` (ESLint v9 flat config format)
+- **Package configs**: Each package may have its own `eslint.config.js` for package-specific rules
+- **Pre-commit hooks**: ESLint runs automatically via Husky + lint-staged before commits
+
+### Commands
+
+```bash
+# Run linting
+pnpm lint
+
+# Auto-fix linting issues
+pnpm lint:fix
+```
+
+**Note**: Pre-commit hooks will automatically run ESLint on staged files. If you need to bypass (not recommended), use `git commit --no-verify`.
 
 ## Storybook
 
@@ -240,7 +277,10 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
 1. **Setup Job**: Shared dependency installation (cached for reuse)
 2. **Lint Job**: ESLint checks (runs in parallel, warnings acceptable, errors fail)
 3. **Type-check Job**: TypeScript validation (runs in parallel)
-4. **Test Job**: Unit tests with Vitest (runs in parallel)
+4. **Test Job**: Unit tests with Vitest + coverage reporting (runs in parallel)
+   - Coverage thresholds enforced: 80% lines/functions/statements, 75% branches
+   - Coverage reports generated (text, json, html, lcov)
+   - Coverage artifacts uploaded (30 days retention)
 5. **Build Job**: Compiles all packages (runs after all checks pass)
 6. **Accessibility Job**: axe-core tests (runs independently)
 

@@ -24,4 +24,7 @@ export default withNextra({
   trailingSlash: true,
   assetPrefix: basePath,
   basePath: basePath,
+  // Disable Turbopack temporarily - Nextra 2.x uses webpack config
+  // TODO: Remove this when upgrading to Nextra 4.x (issue #89, #91)
+  webpack: (config) => config, // Explicit webpack config to disable Turbopack
 })

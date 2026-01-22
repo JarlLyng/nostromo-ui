@@ -200,7 +200,9 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
 - **Setup Job**: Shared dependency installation (cached)
 - **Lint Job**: ESLint checks (runs in parallel)
 - **Type-check Job**: TypeScript validation (runs in parallel)
-- **Test Job**: Unit tests with Vitest (runs in parallel)
+- **Test Job**: Unit tests with Vitest + coverage reporting (runs in parallel)
+  - Coverage thresholds: 80% lines/functions/statements, 75% branches
+  - Coverage reports generated and uploaded as artifacts
 - **Build Job**: Compiles all packages (runs after all checks pass)
 - **Accessibility Job**: axe-core tests (runs independently)
 
@@ -213,6 +215,11 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
 ### Quality Gates
 - **Type checking**: TypeScript strict mode
 - **Linting**: ESLint (0 errors, warnings acceptable)
+  - Root-level `eslint.config.js` for pre-commit hooks
+  - Package-specific configs for specialized rules
+- **Test coverage**: Coverage thresholds enforced in CI
+  - 80% lines, 80% functions, 80% statements, 75% branches
+  - Coverage reports generated and uploaded as artifacts
 - **Accessibility**: axe-core automated testing
 - **Bundle size**: Size limit monitoring (calendar.js: 35 KB, index.js: 420 KB)
 - **Pre-commit hooks**: Husky + lint-staged for code quality
