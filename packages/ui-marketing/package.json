@@ -1,5 +1,5 @@
 {
-  "name": "@nostromo/ui-marketing",
+  "name": "@jarllyng/ui-marketing",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -61,7 +61,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@nostromo/ui-core": "workspace:*",
+    "@jarllyng/ui-core": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^3.4.0"

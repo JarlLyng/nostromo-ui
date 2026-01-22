@@ -7,15 +7,15 @@ The DataTable component is an advanced table with built-in search, filtering, so
 ## Import
 
 ```tsx
-import { DataTable } from '@nostromo/ui-core'
+import { DataTable } from '@jarllyng/ui-core'
 // or
-import { DataTable } from '@nostromo/ui-core/data-table'
+import { DataTable } from '@jarllyng/ui-core/data-table'
 ```
 
 ## Usage
 
 ```tsx
-import { DataTable } from '@nostromo/ui-core'
+import { DataTable } from '@jarllyng/ui-core'
 
 const data = [
   { id: 1, name: 'John Doe', email: 'john@example.com', department: 'Engineering' },
@@ -42,7 +42,7 @@ export default function Example() {
 
 ## Live Examples
 
-<LiveCode code={`import { DataTable } from '@nostromo/ui-core'
+<LiveCode code={`import { DataTable } from '@jarllyng/ui-core'
 
 const data = [
   { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, department: 'Engineering', status: 'Active' },
@@ -71,7 +71,7 @@ export default function DataTableExample() {
   )
 }`} noInline={true} />
 
-<LiveCode code={`import { DataTable } from '@nostromo/ui-core'
+<LiveCode code={`import { DataTable } from '@jarllyng/ui-core'
 
 const data = [
   { id: 1, name: 'John Doe', email: 'john@example.com', department: 'Engineering', status: 'Active' },
@@ -285,7 +285,7 @@ interface ColumnFilter<T = Record<string, unknown>> {
 
 ```tsx
 import { useState } from 'react'
-import { DataTable } from '@nostromo/ui-core'
+import { DataTable } from '@jarllyng/ui-core'
 
 export default function ServerSideDataTable() {
   const [currentPage, setCurrentPage] = useState(1)

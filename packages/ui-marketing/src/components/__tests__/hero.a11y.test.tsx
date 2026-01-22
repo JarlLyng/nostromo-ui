@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { toHaveNoViolations } from 'jest-axe';
 import { Hero } from '../hero';
-import { Button } from '@nostromo/ui-core';
+import { Button } from '@jarllyng/ui-core';
 
 expect.extend(toHaveNoViolations);
 

@@ -30,7 +30,7 @@ nostromo-ui/
 
 ## Package Descriptions
 
-### @nostromo/ui-core
+### @jarllyng/ui-core
 **Product and app components** for internal applications and dashboards.
 
 **Components:**
@@ -42,12 +42,12 @@ nostromo-ui/
 
 **API:**
 ```tsx
-import { Button } from "@nostromo/ui-core"
+import { Button } from "@jarllyng/ui-core"
 // or
-import { Button } from "@nostromo/ui-core/button"
+import { Button } from "@jarllyng/ui-core/button"
 ```
 
-### @nostromo/ui-marketing
+### @jarllyng/ui-marketing
 **Marketing components** for landing pages and marketing sites.
 
 **Components:**
@@ -60,12 +60,12 @@ import { Button } from "@nostromo/ui-core/button"
 
 **API:**
 ```tsx
-import { Hero } from "@nostromo/ui-marketing"
+import { Hero } from "@jarllyng/ui-marketing"
 // or
-import { Hero } from "@nostromo/ui-marketing/hero"
+import { Hero } from "@jarllyng/ui-marketing/hero"
 ```
 
-### @nostromo/ui-tw
+### @jarllyng/ui-tw
 **Tailwind preset and theming system**.
 
 **Contents:**
@@ -77,7 +77,7 @@ import { Hero } from "@nostromo/ui-marketing/hero"
 **API:**
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset");
 
 module.exports = {
   presets: [nostromoPreset],

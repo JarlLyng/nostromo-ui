@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@nostromo/ui-core';
+import { cn } from '@jarllyng/ui-core';
 
 const featuresVariants = cva(
   'py-16 md:py-24',

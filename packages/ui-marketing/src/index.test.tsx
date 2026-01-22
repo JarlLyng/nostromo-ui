@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import * as Marketing from './index';
 
-describe('@nostromo/ui-marketing', () => {
+describe('@jarllyng/ui-marketing', () => {
   it('should export all components', () => {
     expect(Marketing.Hero).toBeDefined();
     expect(Marketing.Testimonials).toBeDefined();

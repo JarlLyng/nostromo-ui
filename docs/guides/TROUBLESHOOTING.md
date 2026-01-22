@@ -21,7 +21,7 @@ This document provides solutions to common issues when using Nostromo UI, includ
 
 #### Issue: Package not found
 ```
-Error: Cannot resolve module '@nostromo/ui-core'
+Error: Cannot resolve module '@jarllyng/ui-core'
 ```
 
 **Solution:**
@@ -29,10 +29,10 @@ Error: Cannot resolve module '@nostromo/ui-core'
 
 ```bash
 # Check if packages are installed
-pnpm list @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm list @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 
 # Reinstall if missing
-pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 
 # Clear cache and reinstall
 pnpm store prune
@@ -51,14 +51,14 @@ Error: Conflicting peer dependencies
 npm ls
 
 # Install specific versions
-npm install @nostromo/ui-core@latest @nostromo/ui-marketing@latest @nostromo/ui-tw@latest
+npm install @jarllyng/ui-core@latest @jarllyng/ui-marketing@latest @jarllyng/ui-tw@latest
 
 # Use resolutions in package.json
 {
   "resolutions": {
-    "@nostromo/ui-core": "latest",
-    "@nostromo/ui-marketing": "latest",
-    "@nostromo/ui-tw": "latest"
+    "@jarllyng/ui-core": "latest",
+    "@jarllyng/ui-marketing": "latest",
+    "@jarllyng/ui-tw": "latest"
   }
 }
 ```
@@ -73,12 +73,12 @@ Components render but without styling
 **Solution:**
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
   presets: [nostromoPreset],
   // Don't override the preset
@@ -94,7 +94,7 @@ CSS variables not being applied
 **Solution:**
 ```tsx
 // Import base styles
-import "@nostromo/ui-tw/base.css";
+import "@jarllyng/ui-tw/base.css";
 
 // Set theme on document
 document.documentElement.setAttribute('data-theme', 'nostromo');
@@ -115,7 +115,7 @@ function App() {
 
 #### Issue: Type errors
 ```
-Cannot find module '@nostromo/ui-core/button'
+Cannot find module '@jarllyng/ui-core/button'
 ```
 
 **Solution:**
@@ -132,7 +132,7 @@ Cannot find module '@nostromo/ui-core/button'
   },
   "include": [
     "src/**/*",
-    "node_modules/@nostromo/**/*"
+    "node_modules/@jarllyng/**/*"
   ]
 }
 ```
@@ -145,7 +145,7 @@ Property 'variant' does not exist on type 'ButtonProps'
 **Solution:**
 ```tsx
 // Import types explicitly
-import type { ButtonProps } from '@nostromo/ui-core/button';
+import type { ButtonProps } from '@jarllyng/ui-core/button';
 
 // Use proper typing
 const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
@@ -161,7 +161,7 @@ const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
 
 #### Issue: Module resolution errors
 ```
-Module not found: Can't resolve '@nostromo/ui-core'
+Module not found: Can't resolve '@jarllyng/ui-core'
 ```
 
 **Solution:**
@@ -170,9 +170,9 @@ Module not found: Can't resolve '@nostromo/ui-core'
 module.exports = {
   resolve: {
     alias: {
-      '@nostromo/ui-core': path.resolve(__dirname, 'node_modules/@nostromo/ui-core'),
-      '@nostromo/ui-marketing': path.resolve(__dirname, 'node_modules/@nostromo/ui-marketing'),
-      '@nostromo/ui-tw': path.resolve(__dirname, 'node_modules/@nostromo/ui-tw'),
+      '@jarllyng/ui-core': path.resolve(__dirname, 'node_modules/@jarllyng/ui-core'),
+      '@jarllyng/ui-marketing': path.resolve(__dirname, 'node_modules/@jarllyng/ui-marketing'),
+      '@jarllyng/ui-tw': path.resolve(__dirname, 'node_modules/@jarllyng/ui-tw'),
     }
   }
 };
@@ -255,7 +255,7 @@ Styles work in development but not in production
 **Solution:**
 ```js
 // next.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   experimental: {
@@ -442,11 +442,11 @@ Bundle size is larger than expected
 **Solution:**
 ```tsx
 // Use individual imports
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
+import { Button } from '@jarllyng/ui-core/button';
+import { Input } from '@jarllyng/ui-core/input';
 
 // ❌ Avoid package imports
-import { Button, Input } from '@nostromo/ui-core';
+import { Button, Input } from '@jarllyng/ui-core';
 
 // Check bundle size
 npm run build
@@ -469,7 +469,7 @@ module.exports = {
 };
 
 // Check if components are tree-shakeable
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 // Only Button will be included in bundle
 ```
 
@@ -542,7 +542,7 @@ Lazy loaded components not rendering
 ```tsx
 // Use proper lazy loading
 import { lazy, Suspense } from 'react';
-import { Skeleton } from '@nostromo/ui-core/skeleton';
+import { Skeleton } from '@jarllyng/ui-core/skeleton';
 
 const LazyComponent = lazy(() => import('./LazyComponent'));
 
@@ -795,8 +795,8 @@ config.plugins = [...(config.plugins ?? []), tailwindVite()];
 
 And import CSS in `preview.css`:
 ```css
-@import '@nostromo/ui-tw/themes/nostromo.css';
-@import '@nostromo/ui-tw/base.css';
+@import '@jarllyng/ui-tw/themes/nostromo.css';
+@import '@jarllyng/ui-tw/base.css';
 @import "tailwindcss";
 ```
 

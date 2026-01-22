@@ -1,4 +1,4 @@
-import preset from '@nostromo/ui-tw/tailwind.preset.js';
+import preset from '@jarllyng/ui-tw/tailwind.preset.js';
 
 export default {
   presets: [preset],

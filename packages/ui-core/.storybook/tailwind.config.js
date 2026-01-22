@@ -1,4 +1,4 @@
-import nostromoPreset from '@nostromo/ui-tw/tailwind.preset.js';
+import nostromoPreset from '@jarllyng/ui-tw/tailwind.preset.js';
 import { join } from 'path';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     // Component source files - IMPORTANT: ensures all Tailwind classes are included
     join(__dirname, '../src/**/*.{js,jsx,ts,tsx}'),
     // Also scan node_modules for installed packages
-    join(__dirname, '../node_modules/@nostromo/**/*.{js,jsx,ts,tsx}'),
+    join(__dirname, '../node_modules/@jarllyng/**/*.{js,jsx,ts,tsx}'),
   ],
   presets: [nostromoPreset],
 }

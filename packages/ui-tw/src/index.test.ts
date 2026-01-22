@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import * as UITw from './index';
 import nostromoPreset from './tailwind.preset';
 
-describe('@nostromo/ui-tw', () => {
+describe('@jarllyng/ui-tw', () => {
   it('should export theme utilities', () => {
     expect(UITw).toBeDefined();
   });

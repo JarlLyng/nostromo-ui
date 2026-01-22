@@ -17,13 +17,13 @@ Install Nostromo UI in your project:
 
 ```bash
 # npm
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 
 # pnpm
-pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 
 # yarn
-yarn add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+yarn add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### From GitHub (development/local)
@@ -52,8 +52,8 @@ npm install -D tailwindcss
 
 ```ts
 // In your entry file (e.g. main.tsx)
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 2. Apply Theme
@@ -78,7 +78,7 @@ import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
 ## Basic Usage
 
 ```jsx
-import { Button } from "@nostromo/ui-core";
+import { Button } from "@jarllyng/ui-core";
 
 export default function MyComponent() {
   return <Button>Click me</Button>;
@@ -91,12 +91,12 @@ Nostromo UI uses Tailwind CSS. Configure Tailwind in your project:
 
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [nostromoPreset],
 };
@@ -108,8 +108,8 @@ module.exports = {
 
 ```tsx
 // app/layout.tsx
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css";
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -124,8 +124,8 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // main.tsx
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css";
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

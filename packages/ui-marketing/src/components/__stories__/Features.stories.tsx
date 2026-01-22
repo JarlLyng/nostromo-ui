@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Features } from '../features';
-import { Icon } from '@nostromo/ui-core';
+import { Icon } from '@jarllyng/ui-core';
 
 const sampleFeatures = [
   {

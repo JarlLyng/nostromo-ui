@@ -339,13 +339,13 @@ function useDarkMode() {
 ### Tailwind Preset
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset");
 
 module.exports = {
   presets: [nostromoPreset],
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
 };
 ```
@@ -386,7 +386,7 @@ function Button({ variant = "primary" }) {
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Input, HelperText, ErrorMessage } from '@nostromo/ui-core';
+import { Input, HelperText, ErrorMessage } from '@jarllyng/ui-core';
 
 const schema = z.object({
   email: z.string().email('Invalid email'),
@@ -521,27 +521,27 @@ The validation tools check all semantic token combinations in both light and dar
 ### Import Strategies
 ```tsx
 // ✅ Recommended: Per-component imports
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
+import { Button } from '@jarllyng/ui-core/button';
+import { Input } from '@jarllyng/ui-core/input';
 
 // ✅ Also OK: Barrel imports
-import { Button, Input } from '@nostromo/ui-core';
+import { Button, Input } from '@jarllyng/ui-core';
 
 // ❌ Avoid: Full library import
-import * as Nostromo from '@nostromo/ui-core';
+import * as Nostromo from '@jarllyng/ui-core';
 ```
 
 ### Bundle Size Optimization
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     // Scan your source files
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     // Include Nostromo UI components
-    './node_modules/@nostromo/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}',
   ],
   presets: [nostromoPreset],
 };

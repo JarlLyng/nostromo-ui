@@ -30,7 +30,7 @@ This file describes how to set up Nostromo UI for development, including install
 
 ```bash
 # Future npm installation (planned)
-# pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+# pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 #### For Developing Nostromo UI
@@ -50,12 +50,12 @@ pnpm dev
 
 1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`:
 ```js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
   presets: [nostromoPreset],
 };
@@ -64,13 +64,13 @@ module.exports = {
 2. **Import CSS** - Add base styles and theme in your entry file:
 ```ts
 // In your entry file (e.g. main.tsx or _app.tsx)
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
 ```
 
 3. **Use Components**:
 ```tsx
-import { Button } from "@nostromo/ui-core";
+import { Button } from "@jarllyng/ui-core";
 
 export default function App() {
   return <Button variant="default">Click me</Button>;
@@ -129,10 +129,10 @@ pnpm clean
 ### Package-specific Commands
 ```bash
 # Build specific package
-pnpm --filter @nostromo/ui-core build
+pnpm --filter @jarllyng/ui-core build
 
 # Test specific package
-pnpm --filter @nostromo/ui-core test
+pnpm --filter @jarllyng/ui-core test
 
 # Start dev server for docs
 cd docs && npm run dev

@@ -1,4 +1,4 @@
-// @nostromo/ui-marketing - Marketing components
+// @jarllyng/ui-marketing - Marketing components
 export * from './components/hero';
 export * from './components/testimonials';
 export * from './components/features';

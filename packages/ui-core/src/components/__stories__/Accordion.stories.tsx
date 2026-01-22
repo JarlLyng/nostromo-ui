@@ -51,7 +51,7 @@ export const Default: Story = {
         <AccordionContent>
           You can install Nostromo UI using npm, yarn, or pnpm:
           <pre className="mt-2 p-2 bg-gray-100 rounded text-sm">
-            npm install @nostromo/ui-core
+            npm install @jarllyng/ui-core
           </pre>
         </AccordionContent>
       </AccordionItem>
@@ -88,7 +88,7 @@ export const Multiple: Story = {
           <div className="space-y-2">
             <p>Install the core package:</p>
             <pre className="p-2 bg-gray-100 rounded text-sm">
-              npm install @nostromo/ui-core
+              npm install @jarllyng/ui-core
             </pre>
           </div>
         </AccordionContent>
@@ -99,7 +99,7 @@ export const Multiple: Story = {
         <AccordionContent>
           <p>Import and use components in your React application:</p>
           <pre className="mt-2 p-2 bg-gray-100 rounded text-sm">
-{`import { Button } from '@nostromo/ui-core';
+{`import { Button } from '@jarllyng/ui-core';
 
 function App() {
   return <Button>Click me</Button>;
@@ -275,7 +275,7 @@ export const RichContent: Story = {
           <div className="space-y-3">
             <p className="text-sm text-gray-600">Here&apos;s how to use the Accordion component:</p>
             <pre className="bg-gray-900 text-gray-100 p-4 rounded text-sm overflow-x-auto">
-{`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@nostromo/ui-core';
+{`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@jarllyng/ui-core';
 
 function FAQ() {
   return (

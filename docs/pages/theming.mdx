@@ -1,6 +1,6 @@
 import LiveCode from '../components/LiveCode'
 import TokenSwatch from '../components/TokenSwatch'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@nostromo/ui-core'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@jarllyng/ui-core'
 
 # Theming & Design Tokens
 
@@ -302,8 +302,8 @@ render(<ThemeDemo />)
 ### 1. Import Base CSS
 ```ts
 // In your entry file (e.g. main.tsx)
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css"; // choose or customize theme
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 2. Apply Theme
@@ -630,25 +630,25 @@ All colors are designed to meet WCAG 2.1 AA standards:
 ### Bundle Size Optimization
 ```tsx
 // ✅ Recommended: Per-component imports (smallest bundle)
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
+import { Button } from '@jarllyng/ui-core/button';
+import { Input } from '@jarllyng/ui-core/input';
 
 // ✅ Also OK: Barrel imports
-import { Button, Input } from '@nostromo/ui-core';
+import { Button, Input } from '@jarllyng/ui-core';
 
 // ❌ Avoid: Full library import
-import * as Nostromo from '@nostromo/ui-core';
+import * as Nostromo from '@jarllyng/ui-core';
 ```
 
 ### Tailwind Configuration
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
   presets: [nostromoPreset],
   // Purge unused CSS
@@ -666,7 +666,7 @@ module.exports = {
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Input, HelperText, ErrorMessage } from '@nostromo/ui-core';
+import { Input, HelperText, ErrorMessage } from '@jarllyng/ui-core';
 
 const schema = z.object({
   email: z.string().email('Invalid email'),

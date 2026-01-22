@@ -106,13 +106,13 @@ Each component should have:
 
 ```tsx
 // ✅ Good: Individual imports (tree-shakeable)
-import { Button } from "@nostromo/ui-core/button"
+import { Button } from "@jarllyng/ui-core/button"
 
 // ✅ Good: Named imports from main
-import { Button, Input } from "@nostromo/ui-core"
+import { Button, Input } from "@jarllyng/ui-core"
 
 // ❌ Bad: Default imports
-import Button from "@nostromo/ui-core/button"
+import Button from "@jarllyng/ui-core/button"
 ```
 
 ---

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@nostromo/ui-core';
-import { Button } from '@nostromo/ui-core';
+import { cn } from '@jarllyng/ui-core';
+import { Button } from '@jarllyng/ui-core';
 
 const galleryVariants = cva(
   'grid gap-4',

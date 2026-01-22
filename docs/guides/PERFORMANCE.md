@@ -20,14 +20,14 @@ Always use individual component imports for optimal tree-shaking:
 
 ```tsx
 // ✅ Recommended: Individual imports
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
+import { Button } from '@jarllyng/ui-core/button';
+import { Input } from '@jarllyng/ui-core/input';
 
 // ✅ Also OK: Barrel imports (still tree-shakeable)
-import { Button, Input } from '@nostromo/ui-core';
+import { Button, Input } from '@jarllyng/ui-core';
 
 // ❌ Avoid: Full library import
-import * as Nostromo from '@nostromo/ui-core';
+import * as Nostromo from '@jarllyng/ui-core';
 ```
 
 ### Bundle Size Limits
@@ -65,7 +65,7 @@ pnpm analyze
 
 All components are optimized with `React.memo` to prevent unnecessary re-renders:
 
-<LiveCode code={`import { Button, Input, Card } from '@nostromo/ui-core'
+<LiveCode code={`import { Button, Input, Card } from '@jarllyng/ui-core'
 import { useState } from 'react'
 
 const MemoizedComponents = () => {
@@ -118,7 +118,7 @@ pnpm test:performance
 For components with expensive calculations:
 
 <LiveCode code={`import { useMemo, useState } from 'react'
-import { Chart } from '@nostromo/ui-core'
+import { Chart } from '@jarllyng/ui-core'
 
 const OptimizedChart = () => {
   const [rawData] = useState([
@@ -187,7 +187,7 @@ Heavy components (Charts, DataTable, Calendar) should be lazy-loaded for optimal
 
 #### Option 1: Using LazyChart Component (Recommended)
 
-<LiveCode code={`import { LazyChart, Skeleton } from '@nostromo/ui-core'
+<LiveCode code={`import { LazyChart, Skeleton } from '@jarllyng/ui-core'
 
 const LazyChartExample = () => {
   const data = [
@@ -215,10 +215,10 @@ render(<LazyChartExample />)
 
 ```tsx
 import { lazy, Suspense } from 'react';
-import { Skeleton } from '@nostromo/ui-core';
+import { Skeleton } from '@jarllyng/ui-core';
 
 // Lazy load Chart component
-const Chart = lazy(() => import('@nostromo/ui-core/charts').then(m => ({ default: m.Chart })));
+const Chart = lazy(() => import('@jarllyng/ui-core/charts').then(m => ({ default: m.Chart })));
 
 function Dashboard() {
   return (
@@ -234,8 +234,8 @@ function Dashboard() {
 For components that should only load when visible:
 
 ```tsx
-import { LazyInView } from '@nostromo/ui-core';
-import { Chart } from '@nostromo/ui-core/charts';
+import { LazyInView } from '@jarllyng/ui-core';
+import { Chart } from '@jarllyng/ui-core/charts';
 
 function Dashboard() {
   return (
@@ -252,8 +252,8 @@ function Dashboard() {
 
 Monitor component render performance in development:
 
-<LiveCode code={`import { usePerformanceMonitor } from '@nostromo/ui-core'
-import { Button } from '@nostromo/ui-core'
+<LiveCode code={`import { usePerformanceMonitor } from '@jarllyng/ui-core'
+import { Button } from '@jarllyng/ui-core'
 import { useState } from 'react'
 
 const PerformanceMonitorExample = () => {
@@ -284,8 +284,8 @@ render(<PerformanceMonitorExample />)
 
 Monitor memory usage (development only):
 
-<LiveCode code={`import { useMemoryMonitor } from '@nostromo/ui-core'
-import { Card } from '@nostromo/ui-core'
+<LiveCode code={`import { useMemoryMonitor } from '@jarllyng/ui-core'
+import { Card } from '@jarllyng/ui-core'
 
 const MemoryMonitorExample = () => {
   const memoryInfo = useMemoryMonitor()

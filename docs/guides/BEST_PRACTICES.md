@@ -207,12 +207,12 @@ Use individual imports to enable tree shaking:
 
 ```tsx
 // ✅ Good: Individual imports
-import { Button } from '@nostromo/ui-core/button';
-import { Input } from '@nostromo/ui-core/input';
-import { Dialog } from '@nostromo/ui-core/dialog';
+import { Button } from '@jarllyng/ui-core/button';
+import { Input } from '@jarllyng/ui-core/input';
+import { Dialog } from '@jarllyng/ui-core/dialog';
 
 // ❌ Avoid: Package imports (larger bundle)
-import { Button, Input, Dialog } from '@nostromo/ui-core';
+import { Button, Input, Dialog } from '@jarllyng/ui-core';
 ```
 
 ### Lazy Loading
@@ -222,7 +222,7 @@ Implement lazy loading for heavy components:
 ```tsx
 // ✅ Good: Lazy loading
 import { lazy, Suspense } from 'react';
-import { Skeleton } from '@nostromo/ui-core/skeleton';
+import { Skeleton } from '@jarllyng/ui-core/skeleton';
 
 const HeavyChart = lazy(() => import('./HeavyChart'));
 

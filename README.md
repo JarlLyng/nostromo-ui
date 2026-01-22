@@ -29,7 +29,7 @@ cd nostromo-ui
 pnpm install
 
 # Future npm installation (planned)
-# pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+# pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Setup
@@ -39,18 +39,18 @@ pnpm install
 
 ```tsx
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 module.exports = {
   presets: [nostromoPreset],
-  content: ["./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"]
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"]
 };
 
 // main.tsx
-import "@nostromo/ui-tw/base.css";
-import "@nostromo/ui-tw/themes/nostromo.css";
+import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/ui-tw/themes/nostromo.css";
 
 // Component usage
-import { Button } from "@nostromo/ui-core";
+import { Button } from "@jarllyng/ui-core";
 <Button variant="default">Click me</Button>
 ```
 

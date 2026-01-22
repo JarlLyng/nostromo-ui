@@ -1,5 +1,5 @@
 {
-  "name": "@nostromo/ui-tw",
+  "name": "@jarllyng/ui-tw",
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.js",

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Hero } from '../hero';
-import { Button } from '@nostromo/ui-core';
+import { Button } from '@jarllyng/ui-core';
 
 describe('Hero Component', () => {
   describe('Rendering', () => {

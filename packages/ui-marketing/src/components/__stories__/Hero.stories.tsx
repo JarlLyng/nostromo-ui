@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Hero } from '../hero';
-import { Button } from '@nostromo/ui-core';
+import { Button } from '@jarllyng/ui-core';
 
 const meta: Meta<typeof Hero> = {
   title: 'Components/Hero',

@@ -7,7 +7,7 @@ Common questions and answers about Nostromo UI.
 ### How do I install Nostromo UI?
 
 ```bash
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Do I need to install Tailwind CSS?
@@ -23,8 +23,8 @@ npx tailwindcss init -p
 
 1. Import the base CSS and theme:
 ```tsx
-import "@nostromo/ui-tw/base.css"
-import "@nostromo/ui-tw/themes/nostromo.css"
+import "@jarllyng/ui-tw/base.css"
+import "@jarllyng/ui-tw/themes/nostromo.css"
 ```
 
 2. Apply the theme to your HTML:
@@ -38,13 +38,13 @@ import "@nostromo/ui-tw/themes/nostromo.css"
 
 **Recommended (tree-shakeable):**
 ```tsx
-import { Button } from '@nostromo/ui-core/button'
-import { Input } from '@nostromo/ui-core/input'
+import { Button } from '@jarllyng/ui-core/button'
+import { Input } from '@jarllyng/ui-core/input'
 ```
 
 **Also works:**
 ```tsx
-import { Button, Input } from '@nostromo/ui-core'
+import { Button, Input } from '@jarllyng/ui-core'
 ```
 
 ### Can I customize component styles?
@@ -65,7 +65,7 @@ Use with React Hook Form and Zod:
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Input, Button } from '@nostromo/ui-core'
+import { Input, Button } from '@jarllyng/ui-core'
 
 const schema = z.object({
   email: z.string().email(),
@@ -136,7 +136,7 @@ Yes! Extend the Nostromo preset:
 
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js")
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js")
 
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -157,8 +157,8 @@ Yes! Nostromo UI is fully compatible with Next.js:
 
 ```tsx
 // pages/_app.tsx
-import "@nostromo/ui-tw/base.css"
-import "@nostromo/ui-tw/themes/nostromo.css"
+import "@jarllyng/ui-tw/base.css"
+import "@jarllyng/ui-tw/themes/nostromo.css"
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
@@ -171,8 +171,8 @@ Yes! Import the CSS in your root file:
 
 ```tsx
 // app/root.tsx
-import "@nostromo/ui-tw/base.css"
-import "@nostromo/ui-tw/themes/nostromo.css"
+import "@jarllyng/ui-tw/base.css"
+import "@jarllyng/ui-tw/themes/nostromo.css"
 ```
 
 ### Does it work with Vite?
@@ -181,8 +181,8 @@ Yes! Just import the CSS in your main file:
 
 ```tsx
 // main.tsx
-import "@nostromo/ui-tw/base.css"
-import "@nostromo/ui-tw/themes/nostromo.css"
+import "@jarllyng/ui-tw/base.css"
+import "@jarllyng/ui-tw/themes/nostromo.css"
 ```
 
 ## Performance
@@ -200,10 +200,10 @@ Use tree-shaking by importing only what you need:
 
 ```tsx
 // ✅ Good - only imports Button
-import { Button } from '@nostromo/ui-core/button'
+import { Button } from '@jarllyng/ui-core/button'
 
 // ❌ Avoid - imports entire library
-import * as Nostromo from '@nostromo/ui-core'
+import * as Nostromo from '@jarllyng/ui-core'
 ```
 
 ### Is it SSR compatible?
@@ -254,7 +254,7 @@ test('should not have accessibility violations', async () => {
 Make sure you have the latest version and proper imports:
 
 ```tsx
-import type { ButtonProps } from '@nostromo/ui-core'
+import type { ButtonProps } from '@jarllyng/ui-core'
 ```
 
 ### Build errors?
@@ -305,7 +305,7 @@ useEffect(() => {
 
 1. Check that you've imported the theme CSS:
 ```tsx
-import "@nostromo/ui-tw/themes/nostromo.css"
+import "@jarllyng/ui-tw/themes/nostromo.css"
 ```
 
 2. Verify `data-theme` is set on the HTML element
@@ -317,10 +317,10 @@ import "@nostromo/ui-tw/themes/nostromo.css"
 Make sure you're using individual imports:
 ```tsx
 // ✅ Tree-shakeable
-import { Button } from '@nostromo/ui-core/button'
+import { Button } from '@jarllyng/ui-core/button'
 
 // ❌ Not tree-shakeable
-import * as Nostromo from '@nostromo/ui-core'
+import * as Nostromo from '@jarllyng/ui-core'
 ```
 
 ## Support

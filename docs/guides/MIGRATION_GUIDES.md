@@ -45,7 +45,7 @@ This document provides comprehensive migration guides for developers switching f
 npm uninstall @mui/material @emotion/react @emotion/styled
 
 # Install Nostromo UI
-pnpm add @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Component Mappings
@@ -89,7 +89,7 @@ import { Button } from '@mui/material';
 
 **Nostromo UI:**
 ```tsx
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 
 <Button 
   variant="default" 
@@ -118,7 +118,7 @@ import { TextField } from '@mui/material';
 
 **Nostromo UI:**
 ```tsx
-import { Input } from '@nostromo/ui-core/input';
+import { Input } from '@jarllyng/ui-core/input';
 
 <Input
   label="Email"
@@ -149,7 +149,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material
 
 **Nostromo UI:**
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/ui-core/dialog';
 
 <Dialog open={open} onOpenChange={setOpen}>
   <DialogContent>
@@ -213,7 +213,7 @@ const theme = createTheme({
 npm uninstall @chakra-ui/react @emotion/react @emotion/styled framer-motion
 
 # Install Nostromo UI
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Component Mappings
@@ -262,7 +262,7 @@ import { Button } from '@chakra-ui/react';
 
 **Nostromo UI:**
 ```tsx
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 
 <Button 
   variant="default" 
@@ -294,7 +294,7 @@ import { Input, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/reac
 
 **Nostromo UI:**
 ```tsx
-import { Input } from '@nostromo/ui-core/input';
+import { Input } from '@jarllyng/ui-core/input';
 
 <Input
   label="Email"
@@ -328,7 +328,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter 
 
 **Nostromo UI:**
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/ui-core/dialog';
 
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
   <DialogContent>
@@ -394,7 +394,7 @@ const theme = extendTheme({
 npm uninstall antd
 
 # Install Nostromo UI
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Component Mappings
@@ -440,7 +440,7 @@ import { Button } from 'antd';
 
 **Nostromo UI:**
 ```tsx
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 
 <Button 
   variant="default" 
@@ -472,7 +472,7 @@ import { Input, Form, Form.Item } from 'antd';
 
 **Nostromo UI:**
 ```tsx
-import { Input } from '@nostromo/ui-core/input';
+import { Input } from '@jarllyng/ui-core/input';
 
 <Input
   label="Email"
@@ -504,7 +504,7 @@ import { Modal } from 'antd';
 
 **Nostromo UI:**
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/ui-core/dialog';
 
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
   <DialogContent>
@@ -570,7 +570,7 @@ const theme = {
 npm uninstall @mantine/core @mantine/hooks @mantine/notifications @mantine/spotlight
 
 # Install Nostromo UI
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### Component Mappings
@@ -617,7 +617,7 @@ import { Button } from '@mantine/core';
 
 **Nostromo UI:**
 ```tsx
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 
 <Button 
   variant="default" 
@@ -647,7 +647,7 @@ import { TextInput, Stack } from '@mantine/core';
 
 **Nostromo UI:**
 ```tsx
-import { Input } from '@nostromo/ui-core/input';
+import { Input } from '@jarllyng/ui-core/input';
 
 <Input
   label="Email"
@@ -680,7 +680,7 @@ import { Modal, Stack, Button } from '@mantine/core';
 
 **Nostromo UI:**
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@nostromo/ui-core/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/ui-core/dialog';
 
 <Dialog open={opened} onOpenChange={setOpened}>
   <DialogContent>
@@ -753,7 +753,7 @@ Replace imports one component at a time:
 import { Button } from '@mui/material';
 
 // After
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 ```
 
 ### 3. Test Each Component
@@ -869,10 +869,10 @@ const NostromoInput = ({ field, ...props }) => (
 
 ```tsx
 // Good: Individual imports
-import { Button } from '@nostromo/ui-core/button';
+import { Button } from '@jarllyng/ui-core/button';
 
 // Avoid: Package imports
-import { Button } from '@nostromo/ui-core';
+import { Button } from '@jarllyng/ui-core';
 ```
 
 ---
@@ -882,19 +882,19 @@ import { Button } from '@nostromo/ui-core';
 ### 1. Install Packages
 
 ```bash
-npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
 ```
 
 ### 2. Configure Tailwind
 
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
   presets: [nostromoPreset],
 };
@@ -904,7 +904,7 @@ module.exports = {
 
 ```tsx
 // In your entry file
-import "@nostromo/ui-tw/base.css";
+import "@jarllyng/ui-tw/base.css";
 ```
 
 ### 4. Start Migration

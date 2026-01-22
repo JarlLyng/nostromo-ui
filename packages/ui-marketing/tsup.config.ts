@@ -14,7 +14,7 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@nostromo/ui-core'],
+  external: ['react', 'react-dom', '@jarllyng/ui-core'],
   treeshake: true,
   minify: true,
   target: 'es2022',

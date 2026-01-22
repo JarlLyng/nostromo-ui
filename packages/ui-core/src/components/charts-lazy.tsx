@@ -7,7 +7,7 @@ import { Skeleton } from './skeleton';
  * 
  * @example
  * ```tsx
- * import { LazyChart } from '@nostromo/ui-core/charts-lazy';
+ * import { LazyChart } from '@jarllyng/ui-core/charts-lazy';
  * 
  * function Dashboard() {
  *   return (

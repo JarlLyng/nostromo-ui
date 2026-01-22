@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@nostromo/ui-core';
+import { cn } from '@jarllyng/ui-core';
 
 const heroVariants = cva(
   'relative overflow-hidden bg-gradient-to-br from-background to-muted/20',

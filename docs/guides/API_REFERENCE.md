@@ -41,9 +41,9 @@ This document provides a comprehensive API reference for all Nostromo UI compone
 A versatile button component with multiple variants and states.
 
 ```tsx
-import { Button } from "@nostromo/ui-core"
+import { Button } from "@jarllyng/ui-core"
 // or
-import { Button } from "@nostromo/ui-core/button"
+import { Button } from "@jarllyng/ui-core/button"
 ```
 
 #### Props
@@ -92,9 +92,9 @@ import { Button } from "@nostromo/ui-core/button"
 A versatile input component with label, helper text, and error states.
 
 ```tsx
-import { Input } from "@nostromo/ui-core"
+import { Input } from "@jarllyng/ui-core"
 // or
-import { Input } from "@nostromo/ui-core/input"
+import { Input } from "@jarllyng/ui-core/input"
 ```
 
 #### Props
@@ -131,9 +131,9 @@ import { Input } from "@nostromo/ui-core/input"
 A modal dialog component with backdrop and focus management.
 
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@nostromo/ui-core"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@jarllyng/ui-core"
 // or
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@nostromo/ui-core/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@jarllyng/ui-core/dialog"
 ```
 
 #### Props
@@ -170,9 +170,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 A flexible card component with header, content, and footer sections.
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@nostromo/ui-core"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jarllyng/ui-core"
 // or
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@nostromo/ui-core/card"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jarllyng/ui-core/card"
 ```
 
 #### Props
@@ -206,9 +206,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 A status badge component with multiple variants.
 
 ```tsx
-import { Badge } from "@nostromo/ui-core"
+import { Badge } from "@jarllyng/ui-core"
 // or
-import { Badge } from "@nostromo/ui-core/badge"
+import { Badge } from "@jarllyng/ui-core/badge"
 ```
 
 #### Props
@@ -234,9 +234,9 @@ import { Badge } from "@nostromo/ui-core/badge"
 A user avatar component with image support and fallback.
 
 ```tsx
-import { Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core"
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/ui-core"
 // or
-import { Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/ui-core/avatar"
 ```
 
 #### Props
@@ -275,9 +275,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "@nostromo/ui-core/avatar"
 A flexible icon component using Phosphor Icons.
 
 ```tsx
-import { Icon } from "@nostromo/ui-core"
+import { Icon } from "@jarllyng/ui-core"
 // or
-import { Icon } from "@nostromo/ui-core/icon"
+import { Icon } from "@jarllyng/ui-core/icon"
 ```
 
 #### Props
@@ -322,9 +322,9 @@ The Icon component supports 200+ Phosphor icons including:
 A data table component with sorting, pagination, and selection.
 
 ```tsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@nostromo/ui-core"
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@jarllyng/ui-core"
 // or
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@nostromo/ui-core/table"
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@jarllyng/ui-core/table"
 ```
 
 #### Props
@@ -392,9 +392,9 @@ const columns = [
 An advanced data table component with built-in search, filtering, sorting, and pagination. Supports both client-side and server-side operations via controlled mode.
 
 ```tsx
-import { DataTable } from "@nostromo/ui-core"
+import { DataTable } from "@jarllyng/ui-core"
 // or
-import { DataTable } from "@nostromo/ui-core/data-table"
+import { DataTable } from "@jarllyng/ui-core/data-table"
 ```
 
 #### Props
@@ -459,9 +459,9 @@ import { DataTable } from "@nostromo/ui-core/data-table"
 A flexible date picker component with support for single date selection, date ranges, and multiple date selection. Uses `date-fns` library for robust date handling.
 
 ```tsx
-import { Calendar } from "@nostromo/ui-core"
+import { Calendar } from "@jarllyng/ui-core"
 // or
-import { Calendar } from "@nostromo/ui-core/calendar"
+import { Calendar } from "@jarllyng/ui-core/calendar"
 ```
 
 #### Props
@@ -515,9 +515,9 @@ import { Calendar } from "@nostromo/ui-core/calendar"
 A progress indicator component with multiple variants.
 
 ```tsx
-import { Progress } from "@nostromo/ui-core"
+import { Progress } from "@jarllyng/ui-core"
 // or
-import { Progress } from "@nostromo/ui-core/progress"
+import { Progress } from "@jarllyng/ui-core/progress"
 ```
 
 #### Props
@@ -544,9 +544,9 @@ import { Progress } from "@nostromo/ui-core/progress"
 A notification toast component with auto-dismiss and positioning.
 
 ```tsx
-import { Toast, ToastProvider, ToastViewport } from "@nostromo/ui-core"
+import { Toast, ToastProvider, ToastViewport } from "@jarllyng/ui-core"
 // or
-import { Toast, ToastProvider, ToastViewport } from "@nostromo/ui-core/toast"
+import { Toast, ToastProvider, ToastViewport } from "@jarllyng/ui-core/toast"
 ```
 
 #### Props
@@ -580,9 +580,9 @@ import { Toast, ToastProvider, ToastViewport } from "@nostromo/ui-core/toast"
 A tooltip component with positioning and triggers.
 
 ```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from "@nostromo/ui-core"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/ui-core"
 // or
-import { Tooltip, TooltipContent, TooltipTrigger } from "@nostromo/ui-core/tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/ui-core/tooltip"
 ```
 
 #### Props
@@ -612,9 +612,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@nostromo/ui-core/toolt
 A collapsible accordion component with keyboard navigation.
 
 ```tsx
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@nostromo/ui-core"
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@jarllyng/ui-core"
 // or
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@nostromo/ui-core/accordion"
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@jarllyng/ui-core/accordion"
 ```
 
 #### Props
@@ -647,9 +647,9 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@n
 A loading skeleton component with animations.
 
 ```tsx
-import { Skeleton } from "@nostromo/ui-core"
+import { Skeleton } from "@jarllyng/ui-core"
 // or
-import { Skeleton } from "@nostromo/ui-core/skeleton"
+import { Skeleton } from "@jarllyng/ui-core/skeleton"
 ```
 
 #### Props
@@ -674,9 +674,9 @@ import { Skeleton } from "@nostromo/ui-core/skeleton"
 A tab navigation component with keyboard support.
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@nostromo/ui-core"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/ui-core"
 // or
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@nostromo/ui-core/tabs"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/ui-core/tabs"
 ```
 
 #### Props
@@ -708,9 +708,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@nostromo/ui-core/tabs
 A dropdown select component with search and keyboard navigation.
 
 ```tsx
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@nostromo/ui-core"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@jarllyng/ui-core"
 // or
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@nostromo/ui-core/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@jarllyng/ui-core/select"
 ```
 
 #### Props
@@ -744,9 +744,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 A checkbox component with form integration.
 
 ```tsx
-import { Checkbox } from "@nostromo/ui-core"
+import { Checkbox } from "@jarllyng/ui-core"
 // or
-import { Checkbox } from "@nostromo/ui-core/checkbox"
+import { Checkbox } from "@jarllyng/ui-core/checkbox"
 ```
 
 #### Props
@@ -773,9 +773,9 @@ import { Checkbox } from "@nostromo/ui-core/checkbox"
 A toggle switch component with form integration.
 
 ```tsx
-import { Switch } from "@nostromo/ui-core"
+import { Switch } from "@jarllyng/ui-core"
 // or
-import { Switch } from "@nostromo/ui-core/switch"
+import { Switch } from "@jarllyng/ui-core/switch"
 ```
 
 #### Props
@@ -802,9 +802,9 @@ import { Switch } from "@nostromo/ui-core/switch"
 A multi-line text input component with auto-resize.
 
 ```tsx
-import { Textarea } from "@nostromo/ui-core"
+import { Textarea } from "@jarllyng/ui-core"
 // or
-import { Textarea } from "@nostromo/ui-core/textarea"
+import { Textarea } from "@jarllyng/ui-core/textarea"
 ```
 
 #### Props
@@ -840,9 +840,9 @@ import { Textarea } from "@nostromo/ui-core/textarea"
 A notification alert component with multiple variants.
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from "@nostromo/ui-core"
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/ui-core"
 // or
-import { Alert, AlertTitle, AlertDescription } from "@nostromo/ui-core/alert"
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/ui-core/alert"
 ```
 
 #### Props
@@ -872,9 +872,9 @@ import { Alert, AlertTitle, AlertDescription } from "@nostromo/ui-core/alert"
 A form label component with accessibility features.
 
 ```tsx
-import { Label } from "@nostromo/ui-core"
+import { Label } from "@jarllyng/ui-core"
 // or
-import { Label } from "@nostromo/ui-core/label"
+import { Label } from "@jarllyng/ui-core/label"
 ```
 
 #### Props
@@ -901,9 +901,9 @@ import { Label } from "@nostromo/ui-core/label"
 A helper text component for form fields.
 
 ```tsx
-import { HelperText } from "@nostromo/ui-core"
+import { HelperText } from "@jarllyng/ui-core"
 // or
-import { HelperText } from "@nostromo/ui-core/helper-text"
+import { HelperText } from "@jarllyng/ui-core/helper-text"
 ```
 
 #### Props
@@ -929,9 +929,9 @@ import { HelperText } from "@nostromo/ui-core/helper-text"
 An error message component for form validation.
 
 ```tsx
-import { ErrorMessage } from "@nostromo/ui-core"
+import { ErrorMessage } from "@jarllyng/ui-core"
 // or
-import { ErrorMessage } from "@nostromo/ui-core/error-message"
+import { ErrorMessage } from "@jarllyng/ui-core/error-message"
 ```
 
 #### Props
@@ -956,9 +956,9 @@ import { ErrorMessage } from "@nostromo/ui-core/error-message"
 A breadcrumb navigation component.
 
 ```tsx
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@nostromo/ui-core"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@jarllyng/ui-core"
 // or
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@nostromo/ui-core/breadcrumb"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@jarllyng/ui-core/breadcrumb"
 ```
 
 #### Props
@@ -992,9 +992,9 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from 
 A pagination component with page navigation.
 
 ```tsx
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@nostromo/ui-core"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@jarllyng/ui-core"
 // or
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@nostromo/ui-core/pagination"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@jarllyng/ui-core/pagination"
 ```
 
 #### Props
@@ -1029,9 +1029,9 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 A visual separator component.
 
 ```tsx
-import { Separator } from "@nostromo/ui-core"
+import { Separator } from "@jarllyng/ui-core"
 // or
-import { Separator } from "@nostromo/ui-core/separator"
+import { Separator } from "@jarllyng/ui-core/separator"
 ```
 
 #### Props
@@ -1057,9 +1057,9 @@ import { Separator } from "@nostromo/ui-core/separator"
 A hero section component for landing pages.
 
 ```tsx
-import { Hero } from "@nostromo/ui-marketing"
+import { Hero } from "@jarllyng/ui-marketing"
 // or
-import { Hero } from "@nostromo/ui-marketing/hero"
+import { Hero } from "@jarllyng/ui-marketing/hero"
 ```
 
 #### Props
@@ -1100,9 +1100,9 @@ import { Hero } from "@nostromo/ui-marketing/hero"
 A features showcase component.
 
 ```tsx
-import { Features } from "@nostromo/ui-marketing"
+import { Features } from "@jarllyng/ui-marketing"
 // or
-import { Features } from "@nostromo/ui-marketing/features"
+import { Features } from "@jarllyng/ui-marketing/features"
 ```
 
 #### Props
@@ -1155,9 +1155,9 @@ interface Feature {
 A testimonials component for customer reviews.
 
 ```tsx
-import { Testimonials } from "@nostromo/ui-marketing"
+import { Testimonials } from "@jarllyng/ui-marketing"
 // or
-import { Testimonials } from "@nostromo/ui-marketing/testimonials"
+import { Testimonials } from "@jarllyng/ui-marketing/testimonials"
 ```
 
 #### Props
@@ -1210,9 +1210,9 @@ interface Testimonial {
 An image gallery component with lightbox functionality.
 
 ```tsx
-import { Gallery } from "@nostromo/ui-marketing"
+import { Gallery } from "@jarllyng/ui-marketing"
 // or
-import { Gallery } from "@nostromo/ui-marketing/gallery"
+import { Gallery } from "@jarllyng/ui-marketing/gallery"
 ```
 
 #### Props
@@ -1259,9 +1259,9 @@ interface GalleryImage {
 A pricing table component.
 
 ```tsx
-import { Pricing } from "@nostromo/ui-marketing"
+import { Pricing } from "@jarllyng/ui-marketing"
 // or
-import { Pricing } from "@nostromo/ui-marketing/pricing"
+import { Pricing } from "@jarllyng/ui-marketing/pricing"
 ```
 
 #### Props
@@ -1318,9 +1318,9 @@ interface PricingPlan {
 A client logos component with hover effects.
 
 ```tsx
-import { LogoWall } from "@nostromo/ui-marketing"
+import { LogoWall } from "@jarllyng/ui-marketing"
 // or
-import { LogoWall } from "@nostromo/ui-marketing/logo-wall"
+import { LogoWall } from "@jarllyng/ui-marketing/logo-wall"
 ```
 
 #### Props
@@ -1421,7 +1421,7 @@ Interactive components support these state variants:
 All components are fully typed with TypeScript interfaces. Import types like this:
 
 ```tsx
-import type { ButtonProps, InputProps, DialogProps } from "@nostromo/ui-core"
+import type { ButtonProps, InputProps, DialogProps } from "@jarllyng/ui-core"
 ```
 
 ### Generic Components
@@ -1429,7 +1429,7 @@ import type { ButtonProps, InputProps, DialogProps } from "@nostromo/ui-core"
 Some components like Table support generics:
 
 ```tsx
-import type { TableProps, TableColumn } from "@nostromo/ui-core"
+import type { TableProps, TableColumn } from "@jarllyng/ui-core"
 
 interface User {
   id: string;
@@ -1452,23 +1452,23 @@ const columns: TableColumn<User>[] = [
 ### Individual Imports (Recommended)
 
 ```tsx
-import { Button } from "@nostromo/ui-core/button"
-import { Input } from "@nostromo/ui-core/input"
-import { Dialog } from "@nostromo/ui-core/dialog"
+import { Button } from "@jarllyng/ui-core/button"
+import { Input } from "@jarllyng/ui-core/input"
+import { Dialog } from "@jarllyng/ui-core/dialog"
 ```
 
 ### Package Imports
 
 ```tsx
-import { Button, Input, Dialog } from "@nostromo/ui-core"
+import { Button, Input, Dialog } from "@jarllyng/ui-core"
 ```
 
 ### Marketing Components
 
 ```tsx
-import { Hero } from "@nostromo/ui-marketing/hero"
-import { Features } from "@nostromo/ui-marketing/features"
-import { Testimonials } from "@nostromo/ui-marketing/testimonials"
+import { Hero } from "@jarllyng/ui-marketing/hero"
+import { Features } from "@jarllyng/ui-marketing/features"
+import { Testimonials } from "@jarllyng/ui-marketing/testimonials"
 ```
 
 ---
@@ -1477,18 +1477,18 @@ import { Testimonials } from "@nostromo/ui-marketing/testimonials"
 
 1. **Install the packages**:
    ```bash
-   npm install @nostromo/ui-core @nostromo/ui-marketing @nostromo/ui-tw
+   npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
    ```
 
 2. **Configure Tailwind**:
    ```js
    // tailwind.config.js
-   const nostromoPreset = require("@nostromo/ui-tw/tailwind.preset.js");
+   const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
    
    module.exports = {
      content: [
        "./src/**/*.{js,ts,jsx,tsx,mdx}",
-       "./node_modules/@nostromo/**/*.{js,ts,jsx,tsx}"
+       "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
      ],
      presets: [nostromoPreset],
    };
@@ -1496,12 +1496,12 @@ import { Testimonials } from "@nostromo/ui-marketing/testimonials"
 
 3. **Import base styles**:
    ```tsx
-   import "@nostromo/ui-tw/base.css";
+   import "@jarllyng/ui-tw/base.css";
    ```
 
 4. **Start using components**:
    ```tsx
-   import { Button } from "@nostromo/ui-core/button"
+   import { Button } from "@jarllyng/ui-core/button"
    
    function App() {
      return <Button>Hello World</Button>
@@ -1602,7 +1602,7 @@ import { Testimonials } from "@nostromo/ui-marketing/testimonials"
 ### Unit Tests
 ```tsx
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Button } from "@nostromo/ui-core";
+import { Button } from "@jarllyng/ui-core";
 
 test("Button renders with correct variant", () => {
   render(<Button variant="primary">Click me</Button>);
@@ -1624,7 +1624,7 @@ test("Button handles click events", () => {
 ```tsx
 import { axe, toHaveNoViolations } from "jest-axe";
 import { render } from "@testing-library/react";
-import { Button } from "@nostromo/ui-core";
+import { Button } from "@jarllyng/ui-core";
 
 expect.extend(toHaveNoViolations);
 
