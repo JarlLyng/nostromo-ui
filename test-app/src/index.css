@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +12,4 @@ html {
 
 body {
   min-height: 100vh;
-  background: hsl(var(--color-background));
-  color: hsl(var(--color-foreground));
 }
