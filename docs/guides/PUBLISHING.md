@@ -79,9 +79,9 @@ If you need to publish manually:
 pnpm build
 
 # 2. Update workspace dependencies
-cd packages/ui-marketing
+cd packages/nostromo
 UI_CORE_VERSION=$(node -p "require('../ui-core/package.json').version")
-pnpm pkg set "dependencies.@jarllyng/ui-core=^$UI_CORE_VERSION"
+pnpm pkg set "dependencies.@jarllyng/nostromo=^$UI_CORE_VERSION"
 cd ../..
 
 # 3. Version packages (if using changesets)
@@ -105,9 +105,9 @@ All packages include:
 After publishing, verify packages are available:
 
 ```bash
-npm view @jarllyng/ui-core
-npm view @jarllyng/ui-marketing
-npm view @jarllyng/ui-tw
+npm view @jarllyng/nostromo
+npm view @jarllyng/nostromo
+npm view @jarllyng/nostromo
 ```
 
 ## Troubleshooting

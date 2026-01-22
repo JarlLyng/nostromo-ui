@@ -21,7 +21,7 @@ This document provides solutions to common issues when using Nostromo UI, includ
 
 #### Issue: Package not found
 ```
-Error: Cannot resolve module '@jarllyng/ui-core'
+Error: Cannot resolve module '@jarllyng/nostromo'
 ```
 
 **Solution:**
@@ -29,10 +29,10 @@ Error: Cannot resolve module '@jarllyng/ui-core'
 
 ```bash
 # Check if packages are installed
-pnpm list @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+pnpm list @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 # Reinstall if missing
-pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+pnpm add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 # Clear cache and reinstall
 pnpm store prune
@@ -51,14 +51,14 @@ Error: Conflicting peer dependencies
 npm ls
 
 # Install specific versions
-npm install @jarllyng/ui-core@latest @jarllyng/ui-marketing@latest @jarllyng/ui-tw@latest
+npm install @jarllyng/nostromo@latest @jarllyng/nostromo@latest @jarllyng/nostromo@latest
 
 # Use resolutions in package.json
 {
   "resolutions": {
-    "@jarllyng/ui-core": "latest",
-    "@jarllyng/ui-marketing": "latest",
-    "@jarllyng/ui-tw": "latest"
+    "@jarllyng/nostromo": "latest",
+    "@jarllyng/nostromo": "latest",
+    "@jarllyng/nostromo": "latest"
   }
 }
 ```
@@ -73,7 +73,7 @@ Components render but without styling
 **Solution:**
 ```js
 // tailwind.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
 
 module.exports = {
   content: [
@@ -94,7 +94,7 @@ CSS variables not being applied
 **Solution:**
 ```tsx
 // Import base styles
-import "@jarllyng/ui-tw/base.css";
+import "@jarllyng/nostromo/base.css";
 
 // Set theme on document
 document.documentElement.setAttribute('data-theme', 'nostromo');
@@ -115,7 +115,7 @@ function App() {
 
 #### Issue: Type errors
 ```
-Cannot find module '@jarllyng/ui-core/button'
+Cannot find module '@jarllyng/nostromo/button'
 ```
 
 **Solution:**
@@ -145,7 +145,7 @@ Property 'variant' does not exist on type 'ButtonProps'
 **Solution:**
 ```tsx
 // Import types explicitly
-import type { ButtonProps } from '@jarllyng/ui-core/button';
+import type { ButtonProps } from '@jarllyng/nostromo/button';
 
 // Use proper typing
 const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
@@ -161,7 +161,7 @@ const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
 
 #### Issue: Module resolution errors
 ```
-Module not found: Can't resolve '@jarllyng/ui-core'
+Module not found: Can't resolve '@jarllyng/nostromo'
 ```
 
 **Solution:**
@@ -170,9 +170,9 @@ Module not found: Can't resolve '@jarllyng/ui-core'
 module.exports = {
   resolve: {
     alias: {
-      '@jarllyng/ui-core': path.resolve(__dirname, 'node_modules/@jarllyng/ui-core'),
-      '@jarllyng/ui-marketing': path.resolve(__dirname, 'node_modules/@jarllyng/ui-marketing'),
-      '@jarllyng/ui-tw': path.resolve(__dirname, 'node_modules/@jarllyng/ui-tw'),
+      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
+      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
+      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
     }
   }
 };
@@ -255,7 +255,7 @@ Styles work in development but not in production
 **Solution:**
 ```js
 // next.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
 
 module.exports = {
   experimental: {
@@ -442,11 +442,11 @@ Bundle size is larger than expected
 **Solution:**
 ```tsx
 // Use individual imports
-import { Button } from '@jarllyng/ui-core/button';
-import { Input } from '@jarllyng/ui-core/input';
+import { Button } from '@jarllyng/nostromo/button';
+import { Input } from '@jarllyng/nostromo/input';
 
 // ❌ Avoid package imports
-import { Button, Input } from '@jarllyng/ui-core';
+import { Button, Input } from '@jarllyng/nostromo';
 
 // Check bundle size
 npm run build
@@ -469,7 +469,7 @@ module.exports = {
 };
 
 // Check if components are tree-shakeable
-import { Button } from '@jarllyng/ui-core/button';
+import { Button } from '@jarllyng/nostromo/button';
 // Only Button will be included in bundle
 ```
 
@@ -542,7 +542,7 @@ Lazy loaded components not rendering
 ```tsx
 // Use proper lazy loading
 import { lazy, Suspense } from 'react';
-import { Skeleton } from '@jarllyng/ui-core/skeleton';
+import { Skeleton } from '@jarllyng/nostromo/skeleton';
 
 const LazyComponent = lazy(() => import('./LazyComponent'));
 
@@ -752,7 +752,7 @@ ReferenceError: require is not defined at client.js:2:9
 This error occurs when CommonJS code is served to the browser. Add React dependencies to `optimizeDeps.include` in Storybook config:
 
 ```ts
-// packages/ui-core/.storybook/main.ts
+// packages/nostromo/.storybook/main.ts
 config.optimizeDeps = {
   ...(config.optimizeDeps ?? {}),
   force: true,
@@ -788,15 +788,15 @@ Components render but without Tailwind CSS styling
 Ensure Tailwind CSS v4 Vite plugin is configured:
 
 ```ts
-// packages/ui-core/.storybook/main.ts
+// packages/nostromo/.storybook/main.ts
 const tailwindVite = (await import('@tailwindcss/vite')).default;
 config.plugins = [...(config.plugins ?? []), tailwindVite()];
 ```
 
 And import CSS in `preview.css`:
 ```css
-@import '@jarllyng/ui-tw/themes/nostromo.css';
-@import '@jarllyng/ui-tw/base.css';
+@import '@jarllyng/nostromo/themes/nostromo.css';
+@import '@jarllyng/nostromo/base.css';
 @import "tailwindcss";
 ```
 

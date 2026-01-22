@@ -48,10 +48,10 @@ import { withBasePath } from "../utils/withBasePath";
           </svg>
         </Link>
         <a
-          href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
+          href="/components"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => track("cta_storybook", { placement: "hero" })}
+          onClick={() => track("cta_components", { placement: "hero" })}
           className="group inline-flex items-center px-6 py-3.5 bg-background/80 backdrop-blur-sm text-foreground rounded-xl font-semibold border-2 border-border hover:border-primary/50 transition-all shadow-md hover:shadow-lg"
         >
           <svg
@@ -67,7 +67,7 @@ import { withBasePath } from "../utils/withBasePath";
               d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
             />
           </svg>
-          <span>Open Storybook</span>
+          <span>Open Components</span>
         </a>
       </div>
 
@@ -92,13 +92,13 @@ import { withBasePath } from "../utils/withBasePath";
 
 ```bash
 # npm
-npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
 
 # pnpm
-pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+pnpm add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
 
 # yarn
-yarn add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+yarn add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
 ```
 
 For local development, clone the repository:
@@ -116,11 +116,11 @@ pnpm install
   <span className="text-muted-foreground">|</span>
   <a
     className="hover:text-primary/80"
-    href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
+    href="/components"
     target="_blank"
     rel="noreferrer"
   >
-    <span>View Storybook →</span>
+    <span>View Components →</span>
   </a>
 </div>
 
@@ -159,7 +159,7 @@ pnpm install
     <div className="flex items-center gap-2 mt-3">
       <Link href="/components/button" className="text-xs text-primary group-hover:underline">View docs →</Link>
       <span className="text-xs text-muted-foreground">•</span>
-      <a href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-button--default" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Storybook →</a>
+      <a href="/components" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Components →</a>
     </div>
   </div>
 
@@ -182,12 +182,12 @@ pnpm install
     </Link>
     <span className="text-xs text-muted-foreground">•</span>
     <a
-      href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-badge--default"
+      href="/components"
       target="_blank"
       rel="noopener noreferrer"
       className="text-xs text-muted-foreground hover:text-primary transition-colors"
     >
-      Storybook →
+      Components →
     </a>
   </div>
 </div>
@@ -211,12 +211,12 @@ pnpm install
     </Link>
     <span className="text-xs text-muted-foreground">•</span>
     <a
-      href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-input--default"
+      href="/components"
       target="_blank"
       rel="noopener noreferrer"
       className="text-xs text-muted-foreground hover:text-primary transition-colors"
     >
-      Storybook →
+      Components →
     </a>
   </div>
 </div>
@@ -240,12 +240,12 @@ pnpm install
     </Link>
     <span className="text-xs text-muted-foreground">•</span>
     <a
-      href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-card--default"
+      href="/components"
       target="_blank"
       rel="noopener noreferrer"
       className="text-xs text-muted-foreground hover:text-primary transition-colors"
     >
-      Storybook →
+      Components →
     </a>
   </div>
 </div>
@@ -269,12 +269,12 @@ pnpm install
     </Link>
     <span className="text-xs text-muted-foreground">•</span>
     <a
-      href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-calendar--default"
+      href="/components"
       target="_blank"
       rel="noopener noreferrer"
       className="text-xs text-muted-foreground hover:text-primary transition-colors"
     >
-      Storybook →
+      Components →
     </a>
   </div>
 </div>
@@ -288,7 +288,7 @@ pnpm install
     <div className="flex items-center gap-2 mt-3">
       <Link href="/components/charts" className="text-xs text-primary group-hover:underline">View docs →</Link>
       <span className="text-xs text-muted-foreground">•</span>
-      <a href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-charts--default" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Storybook →</a>
+      <a href="/components" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Components →</a>
     </div>
   </div>
 </div>
@@ -305,7 +305,7 @@ pnpm install
     <div className="flex items-center gap-2 mt-3">
       <Link href="/components/hero" className="text-xs text-primary group-hover:underline">View docs →</Link>
       <span className="text-xs text-muted-foreground">•</span>
-      <a href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-hero--default" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Storybook →</a>
+      <a href="/components" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Components →</a>
     </div>
   </div>
 
@@ -328,12 +328,12 @@ pnpm install
     </Link>
     <span className="text-xs text-muted-foreground">•</span>
     <a
-      href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-features--default"
+      href="/components"
       target="_blank"
       rel="noopener noreferrer"
       className="text-xs text-muted-foreground hover:text-primary transition-colors"
     >
-      Storybook →
+      Components →
     </a>
   </div>
 </div>
@@ -347,7 +347,7 @@ pnpm install
     <div className="flex items-center gap-2 mt-3">
       <Link href="/components/pricing" className="text-xs text-primary group-hover:underline">View docs →</Link>
       <span className="text-xs text-muted-foreground">•</span>
-      <a href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/components-pricing--default" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Storybook →</a>
+      <a href="/components" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors">Components →</a>
     </div>
   </div>
 </div>
@@ -368,11 +368,11 @@ pnpm install
 - <Link href="/theming">**Theming Guide**</Link> - Customize themes and design
   tokens
 - <a
-    href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
+    href="/components"
     target="_blank"
     rel="noopener noreferrer"
   >
-    **Storybook**
+    **Components**
   </a>
   - Interactive component playground
 - <Link href="/faq">**FAQ**</Link> - Frequently asked questions

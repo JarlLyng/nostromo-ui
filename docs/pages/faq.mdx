@@ -7,7 +7,7 @@ Common questions and answers about Nostromo UI.
 ### How do I install Nostromo UI?
 
 ```bash
-npm install @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
 ```
 
 ### Do I need to install Tailwind CSS?
@@ -38,13 +38,13 @@ import "@jarllyng/ui-tw/themes/nostromo.css"
 
 **Recommended (tree-shakeable):**
 ```tsx
-import { Button } from '@jarllyng/ui-core/button'
-import { Input } from '@jarllyng/ui-core/input'
+import { Button } from '@jarllyng/nostromo/button'
+import { Input } from '@jarllyng/nostromo/input'
 ```
 
 **Also works:**
 ```tsx
-import { Button, Input } from '@jarllyng/ui-core'
+import { Button, Input } from '@jarllyng/nostromo'
 ```
 
 ### Can I customize component styles?
@@ -65,7 +65,7 @@ Use with React Hook Form and Zod:
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Input, Button } from '@jarllyng/ui-core'
+import { Input, Button } from '@jarllyng/nostromo'
 
 const schema = z.object({
   email: z.string().email(),
@@ -200,10 +200,10 @@ Use tree-shaking by importing only what you need:
 
 ```tsx
 // ✅ Good - only imports Button
-import { Button } from '@jarllyng/ui-core/button'
+import { Button } from '@jarllyng/nostromo/button'
 
 // ❌ Avoid - imports entire library
-import * as Nostromo from '@jarllyng/ui-core'
+import * as Nostromo from '@jarllyng/nostromo'
 ```
 
 ### Is it SSR compatible?
@@ -254,7 +254,7 @@ test('should not have accessibility violations', async () => {
 Make sure you have the latest version and proper imports:
 
 ```tsx
-import type { ButtonProps } from '@jarllyng/ui-core'
+import type { ButtonProps } from '@jarllyng/nostromo'
 ```
 
 ### Build errors?
@@ -317,10 +317,10 @@ import "@jarllyng/ui-tw/themes/nostromo.css"
 Make sure you're using individual imports:
 ```tsx
 // ✅ Tree-shakeable
-import { Button } from '@jarllyng/ui-core/button'
+import { Button } from '@jarllyng/nostromo/button'
 
 // ❌ Not tree-shakeable
-import * as Nostromo from '@jarllyng/ui-core'
+import * as Nostromo from '@jarllyng/nostromo'
 ```
 
 ## Support

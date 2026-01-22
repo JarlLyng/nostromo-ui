@@ -106,13 +106,13 @@ Each component should have:
 
 ```tsx
 // ✅ Good: Individual imports (tree-shakeable)
-import { Button } from "@jarllyng/ui-core/button"
+import { Button } from "@jarllyng/nostromo/button"
 
 // ✅ Good: Named imports from main
-import { Button, Input } from "@jarllyng/ui-core"
+import { Button, Input } from "@jarllyng/nostromo"
 
 // ❌ Bad: Default imports
-import Button from "@jarllyng/ui-core/button"
+import Button from "@jarllyng/nostromo/button"
 ```
 
 ---
@@ -504,10 +504,10 @@ A PR is ready to merge when:
 
 ### Key Files to Review
 
-- **Component code**: `packages/ui-core/src/components/[component]/[component].tsx`
-- **Tests**: `packages/ui-core/src/components/[component]/[component].test.tsx`
-- **Stories**: `packages/ui-core/src/components/__stories__/[component].stories.tsx`
-- **Exports**: `packages/ui-core/src/index.ts`
+- **Component code**: `packages/nostromo/src/components/[component]/[component].tsx`
+- **Tests**: `packages/nostromo/src/components/[component]/[component].test.tsx`
+- **Stories**: `packages/nostromo/src/components/__stories__/[component].stories.tsx`
+- **Exports**: `packages/nostromo/src/index.ts`
 - **Documentation**: `docs/pages/components/[component].mdx`
 
 ### Key Commands
@@ -526,7 +526,7 @@ pnpm type-check
 pnpm build
 
 # Check bundle size
-cd packages/ui-core && pnpm size
+cd packages/nostromo && pnpm size
 ```
 
 ### Useful Links

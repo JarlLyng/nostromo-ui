@@ -90,7 +90,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 - [ ] **npm Publishing** - Publish packages to npm registry
   - [ ] Set up npm account and organization
   - [ ] Configure package publishing
-  - [ ] Publish @jarllyng/ui-core, @jarllyng/ui-marketing, @jarllyng/ui-tw
+  - [ ] Publish @jarllyng/nostromo, @jarllyng/nostromo, @jarllyng/nostromo
   - [ ] Set up automated publishing workflow
 
 - [ ] **Release Announcement** - Announce 1.0.0 release publicly
@@ -231,9 +231,9 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Configure access tokens for CI/CD
 
 - [ ] **Package Publishing**
-  - [ ] Publish @jarllyng/ui-core to npm
-  - [ ] Publish @jarllyng/ui-marketing to npm
-  - [ ] Publish @jarllyng/ui-tw to npm
+  - [ ] Publish @jarllyng/nostromo to npm
+  - [ ] Publish @jarllyng/nostromo to npm
+  - [ ] Publish @jarllyng/nostromo to npm
   - [ ] Verify packages are installable
   - [ ] Test in clean project environment
 

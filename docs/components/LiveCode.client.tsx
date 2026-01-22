@@ -1,22 +1,22 @@
 'use client'
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import * as Nostromo from '@nostromo/ui-core'
-import * as NostromoMarketing from '@nostromo/ui-marketing'
+import * as Nostromo from '@jarllyng/nostromo'
+import * as  from '@jarllyng/nostromo'
 import React, { useState, useEffect, useRef } from 'react'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
   React,
   ...Nostromo,
-  ...NostromoMarketing,
+  ...,
   // Explicitly add commonly used components for better IDE support
-  Hero: NostromoMarketing.Hero,
-  Features: NostromoMarketing.Features,
-  Testimonials: NostromoMarketing.Testimonials,
-  Pricing: NostromoMarketing.Pricing,
-  Gallery: NostromoMarketing.Gallery,
-  LogoWall: NostromoMarketing.LogoWall,
+  Hero: .Hero,
+  Features: .Features,
+  Testimonials: .Testimonials,
+  Pricing: .Pricing,
+  Gallery: .Gallery,
+  LogoWall: .LogoWall,
   Button: Nostromo.Button,
   Input: Nostromo.Input,
   // React hooks

@@ -230,7 +230,7 @@ Changesets are stored in `.changeset/` directory:
 
 ```markdown
 ---
-"@jarllyng/ui-core": minor
+"@jarllyng/nostromo": minor
 ---
 
 Add DataTable component with sorting and filtering
@@ -406,7 +406,7 @@ pnpm build
 
 # Create changeset
 pnpm changeset
-# Select: @jarllyng/ui-core
+# Select: @jarllyng/nostromo
 # Version: minor
 # Description: Add DataTable component
 

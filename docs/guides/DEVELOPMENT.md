@@ -30,7 +30,7 @@ This file describes how to set up Nostromo UI for development, including install
 
 ```bash
 # Future npm installation (planned)
-# pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+# pnpm add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 ```
 
 #### For Developing Nostromo UI
@@ -50,7 +50,7 @@ pnpm dev
 
 1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`:
 ```js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
+const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
 
 module.exports = {
   content: [
@@ -64,13 +64,13 @@ module.exports = {
 2. **Import CSS** - Add base styles and theme in your entry file:
 ```ts
 // In your entry file (e.g. main.tsx or _app.tsx)
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css"; // Choose theme: nostromo, mother, lv-426, or sulaco
 ```
 
 3. **Use Components**:
 ```tsx
-import { Button } from "@jarllyng/ui-core";
+import { Button } from "@jarllyng/nostromo";
 
 export default function App() {
   return <Button variant="default">Click me</Button>;
@@ -129,10 +129,10 @@ pnpm clean
 ### Package-specific Commands
 ```bash
 # Build specific package
-pnpm --filter @jarllyng/ui-core build
+pnpm --filter @jarllyng/nostromo build
 
 # Test specific package
-pnpm --filter @jarllyng/ui-core test
+pnpm --filter @jarllyng/nostromo test
 
 # Start dev server for docs
 cd docs && npm run dev
@@ -243,7 +243,7 @@ Nostromo UI har to separate Storybook instanser:
 #### React Storybook
 ```bash
 # Start React Storybook
-cd packages/ui-core
+cd packages/nostromo
 pnpm storybook
 # Kører på http://localhost:6006
 ```
@@ -251,7 +251,7 @@ pnpm storybook
 
 ### Storybook Configuration
 
-Storybook uses React + Vite with Tailwind CSS v4. Configuration is in `packages/ui-core/.storybook/`.
+Storybook uses React + Vite with Tailwind CSS v4. Configuration is in `packages/nostromo/.storybook/`.
 
 For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-issues).
 
@@ -341,7 +341,7 @@ jobs:
       - name: Check bundle sizes
         continue-on-error: true
         run: |
-          cd packages/ui-core
+          cd packages/nostromo
           pnpm size
       
       - name: Upload error logs
@@ -354,7 +354,7 @@ jobs:
             typecheck-output.txt
             test-output.txt
             build-output.txt
-            packages/ui-core/size-output.txt
+            packages/nostromo/size-output.txt
 
   accessibility:
     runs-on: ubuntu-latest
@@ -378,7 +378,7 @@ jobs:
       - name: Run accessibility tests
         continue-on-error: true
         run: |
-          cd packages/ui-core
+          cd packages/nostromo
           pnpm test:a11y
 ```
 

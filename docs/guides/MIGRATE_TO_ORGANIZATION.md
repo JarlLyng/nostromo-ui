@@ -23,7 +23,7 @@ Update all `package.json` files:
 
 ```json
 {
-  "name": "@jarllyng/ui-core"  // Change to
+  "name": "@jarllyng/nostromo"  // Change to
   "name": "@nostromo/ui-core"
 }
 ```
@@ -35,7 +35,7 @@ Update workspace dependencies:
 ```json
 {
   "dependencies": {
-    "@jarllyng/ui-core": "workspace:*"  // Change to
+    "@jarllyng/nostromo": "workspace:*"  // Change to
     "@nostromo/ui-core": "workspace:*"
   }
 }
@@ -69,9 +69,9 @@ pnpm changeset publish
 Deprecate old packages to guide users to new scope:
 
 ```bash
-npm deprecate @jarllyng/ui-core@* "This package has moved to @nostromo/ui-core. Please update your dependencies."
-npm deprecate @jarllyng/ui-marketing@* "This package has moved to @nostromo/ui-marketing. Please update your dependencies."
-npm deprecate @jarllyng/ui-tw@* "This package has moved to @nostromo/ui-tw. Please update your dependencies."
+npm deprecate @jarllyng/nostromo@* "This package has moved to @nostromo/ui-core. Please update your dependencies."
+npm deprecate @jarllyng/nostromo@* "This package has moved to @nostromo/ui-marketing. Please update your dependencies."
+npm deprecate @jarllyng/nostromo@* "This package has moved to @nostromo/ui-tw. Please update your dependencies."
 ```
 
 ### 7. Update Documentation

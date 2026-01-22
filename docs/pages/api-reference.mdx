@@ -4,7 +4,7 @@
 
 Complete API documentation for all Nostromo UI components.
 
-> **Tip**: Import components from `@jarllyng/ui-core` or `@jarllyng/ui-marketing` to get full TypeScript support and autocomplete.
+> **Tip**: Import components from `@jarllyng/nostromo` or `@jarllyng/nostromo` to get full TypeScript support and autocomplete.
 
 ## Core Components
 
@@ -559,7 +559,7 @@ interface TestimonialsProps {
 All components are fully typed with TypeScript. Import types directly:
 
 ```tsx
-import type { ButtonProps, InputProps } from '@jarllyng/ui-core'
+import type { ButtonProps, InputProps } from '@jarllyng/nostromo'
 ```
 
 ## Common Patterns
@@ -567,7 +567,7 @@ import type { ButtonProps, InputProps } from '@jarllyng/ui-core'
 ### Form Integration
 ```tsx
 import { useForm } from 'react-hook-form'
-import { Button, Input, Label } from '@jarllyng/ui-core'
+import { Button, Input, Label } from '@jarllyng/nostromo'
 
 function ContactForm() {
   const { register, handleSubmit } = useForm()
@@ -585,7 +585,7 @@ function ContactForm() {
 ### State Management
 ```tsx
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogTrigger } from '@jarllyng/ui-core'
+import { Dialog, DialogContent, DialogTrigger } from '@jarllyng/nostromo'
 
 function MyDialog() {
   const [open, setOpen] = useState(false)

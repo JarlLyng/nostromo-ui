@@ -7,15 +7,15 @@ The Table component provides you with data tables with sorting, pagination, and 
 ## Import
 
 ```tsx
-import { Table } from '@jarllyng/ui-core'
+import { Table } from '@jarllyng/nostromo'
 // or
-import { Table } from '@jarllyng/ui-core/table'
+import { Table } from '@jarllyng/nostromo/table'
 ```
 
 ## Usage
 
 ```tsx
-import { Table } from '@jarllyng/ui-core'
+import { Table } from '@jarllyng/nostromo'
 
 interface User {
   id: string
@@ -40,7 +40,7 @@ export default function Example() {
 
 ## Live Examples
 
-<LiveCode code={`import { Table } from '@jarllyng/ui-core'
+<LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 export default function TableDefault() {
   const data = [
@@ -57,7 +57,7 @@ export default function TableDefault() {
   return <Table data={data} columns={columns} />
 }`} />
 
-<LiveCode code={`import { Table } from '@jarllyng/ui-core'
+<LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 export default function TableStriped() {
   const data = [
@@ -74,7 +74,7 @@ export default function TableStriped() {
   return <Table data={data} columns={columns} variant="striped" />
 }`} />
 
-<LiveCode code={`import { Table } from '@jarllyng/ui-core'
+<LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 export default function TableBordered() {
   const data = [
@@ -95,7 +95,7 @@ export default function TableBordered() {
 
 ### With Sorting
 
-<LiveCode code={`import { Table } from '@jarllyng/ui-core'
+<LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 interface User {
   id: string
@@ -146,7 +146,7 @@ export default function SortableTable() {
 
 ### With Pagination
 
-<LiveCode code={`import { Table } from '@jarllyng/ui-core'
+<LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 export default function PaginatedTable() {
   const [currentPage, setCurrentPage] = React.useState(1)

@@ -1,12 +1,12 @@
 import LiveCode from '../components/LiveCode'
 import TokenSwatch from '../components/TokenSwatch'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@jarllyng/ui-core'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@jarllyng/nostromo'
 
 # Theming & Design Tokens
 
 Nostromo UI's theming system is built around **CSS variables in HSL format** that integrate directly with Tailwind CSS. This provides maximum flexibility and performance without runtime overhead.
 
-> **💡 Live Examples**: See all themes in action in [Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--all-themes)
+> **💡 Live Examples**: See all themes in action in [Storybook](https://jarllyng.github.io/nostromo-ui/components--all-themes)
 
 ## 🎨 Predefined Themes
 
@@ -85,12 +85,12 @@ Nostromo UI includes 4 complete themes, each with a unique aesthetic:
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-lg font-semibold">Nostromo</h3>
       <a 
-        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--nostromo"
+        href="https://jarllyng.github.io/nostromo-ui/components--nostromo"
         target="_blank"
         rel="noopener noreferrer"
         className="text-xs text-primary hover:underline"
       >
-        View in Storybook →
+        View Components →
       </a>
     </div>
     <div className="space-y-2 mb-4">
@@ -127,12 +127,12 @@ Nostromo UI includes 4 complete themes, each with a unique aesthetic:
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-lg font-semibold">Mother</h3>
       <a 
-        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--mother"
+        href="https://jarllyng.github.io/nostromo-ui/components--mother"
         target="_blank"
         rel="noopener noreferrer"
         className="text-xs text-primary hover:underline"
       >
-        View in Storybook →
+        View Components →
       </a>
     </div>
     <div className="space-y-2 mb-4">
@@ -169,12 +169,12 @@ Nostromo UI includes 4 complete themes, each with a unique aesthetic:
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-lg font-semibold">LV-426</h3>
       <a 
-        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--lv-426"
+        href="https://jarllyng.github.io/nostromo-ui/components--lv-426"
         target="_blank"
         rel="noopener noreferrer"
         className="text-xs text-primary hover:underline"
       >
-        View in Storybook →
+        View Components →
       </a>
     </div>
     <div className="space-y-2 mb-4">
@@ -211,12 +211,12 @@ Nostromo UI includes 4 complete themes, each with a unique aesthetic:
     <div className="flex items-center justify-between mb-3">
       <h3 className="text-lg font-semibold">Sulaco</h3>
       <a 
-        href="https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/theming--sulaco"
+        href="https://jarllyng.github.io/nostromo-ui/components--sulaco"
         target="_blank"
         rel="noopener noreferrer"
         className="text-xs text-primary hover:underline"
       >
-        View in Storybook →
+        View Components →
       </a>
     </div>
     <div className="space-y-2 mb-4">
@@ -302,8 +302,8 @@ render(<ThemeDemo />)
 ### 1. Import Base CSS
 ```ts
 // In your entry file (e.g. main.tsx)
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css"; // choose or customize theme
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 2. Apply Theme
@@ -630,27 +630,27 @@ All colors are designed to meet WCAG 2.1 AA standards:
 ### Bundle Size Optimization
 ```tsx
 // ✅ Recommended: Per-component imports (smallest bundle)
-import { Button } from '@jarllyng/ui-core/button';
-import { Input } from '@jarllyng/ui-core/input';
+import { Button } from '@jarllyng/nostromo/button';
+import { Input } from '@jarllyng/nostromo/input';
 
 // ✅ Also OK: Barrel imports
-import { Button, Input } from '@jarllyng/ui-core';
+import { Button, Input } from '@jarllyng/nostromo';
 
 // ❌ Avoid: Full library import
-import * as Nostromo from '@jarllyng/ui-core';
+import * as Nostromo from '@jarllyng/nostromo';
 ```
 
 ### Tailwind Configuration
 ```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
+// CSS @plugin syntax
+const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
   ],
-  presets: [nostromoPreset],
+  @plugin "nostromo",
   // Purge unused CSS
   purge: {
     enabled: true,
@@ -666,7 +666,7 @@ module.exports = {
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Input, HelperText, ErrorMessage } from '@jarllyng/ui-core';
+import { Input, HelperText, ErrorMessage } from '@jarllyng/nostromo';
 
 const schema = z.object({
   email: z.string().email('Invalid email'),
