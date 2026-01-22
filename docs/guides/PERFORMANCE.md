@@ -32,17 +32,19 @@ import * as Nostromo from '@nostromo/ui-core';
 
 ### Bundle Size Limits
 
-We monitor bundle sizes with size-limit. Current limits:
+We monitor bundle sizes with size-limit. Current sizes (minified + brotlied):
 
-- **Button**: 10 KB
-- **Input**: 10 KB
-- **Dialog**: 12 KB
-- **Select**: 35 KB
-- **Charts**: 80 KB (includes recharts library)
-- **DataTable**: 25 KB
-- **Calendar**: 20 KB
-- **Icon**: 50 KB (includes Phosphor icon library)
-- **Main bundle**: 420 KB
+- **Button**: 8.5 KB (limit: 10 KB)
+- **Input**: 8.27 KB (limit: 10 KB)
+- **Dialog**: 8.61 KB (limit: 12 KB)
+- **Select**: 31.29 KB (limit: 35 KB)
+- **Charts**: 104.71 KB (limit: 105 KB, includes recharts library)
+- **DataTable**: 11.73 KB (limit: 25 KB)
+- **Calendar**: 34.61 KB (limit: 35 KB, includes date-fns library)
+- **Icon**: 50.59 KB (limit: 51 KB, includes Phosphor icon library)
+- **Main bundle (index.js)**: 204.08 KB (limit: 420 KB, with tree-shaking)
+
+**Note**: These sizes are measured with all dependencies, minified and brotlied. Individual component imports enable tree-shaking for optimal bundle sizes.
 
 ### Analyzing Bundle Size
 

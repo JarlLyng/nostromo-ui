@@ -128,7 +128,7 @@ All components are built with:
 | **CI/CD** | ✅ | All critical checks passing (parallelized) |
 | **Documentation** | ✅ | 12 guides + live examples |
 | **Distribution** | ⚠️ | Workspace-only (npm publishing planned) |
-| **Bundle Size** | ✅ | ~204 KB (with tree-shaking) |
+| **Bundle Size** | ✅ | 204.08 KB main bundle (minified + brotlied, with tree-shaking) |
 
 > **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
 
