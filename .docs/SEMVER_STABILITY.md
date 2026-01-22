@@ -62,8 +62,8 @@ MAJOR.MINOR.PATCH
 + className="nostromo-button" // primary class removed
 
 // ❌ Changing import paths
-- import { Button } from '@nostromo/ui-core'
-+ import { Button } from '@nostromo/ui-core/button'
+- import { Button } from '@jarllyng/ui-core'
++ import { Button } from '@jarllyng/ui-core/button'
 ```
 
 #### ✅ **Non-Breaking Changes (MINOR/PATCH)**
@@ -85,15 +85,15 @@ export { Button, Input, Card } // new components exported
 
 ### Current Package Structure
 ```
-@nostromo/ui-core: 0.1.0
-@nostromo/ui-marketing: 0.1.0  
-@nostromo/ui-tw: 0.1.0
+@jarllyng/ui-core: 1.0.0
+@jarllyng/ui-marketing: 1.0.0  
+@jarllyng/ui-tw: 1.0.0
 ```
 
 ### Version Alignment Strategy
-- **Core Package** - `@nostromo/ui-core` drives major versions
-- **Marketing Package** - `@nostromo/ui-marketing` follows core version
-- **Tailwind Package** - `@nostromo/ui-tw` follows core version
+- **Core Package** - `@jarllyng/ui-core` drives major versions
+- **Marketing Package** - `@jarllyng/ui-marketing` follows core version
+- **Tailwind Package** - `@jarllyng/ui-tw` follows core version
 
 ### Changeset Configuration
 ```javascript
@@ -103,9 +103,9 @@ module.exports = {
   commit: false,
   fixed: [],
   linked: [
-    '@nostromo/ui-core',
-    '@nostromo/ui-marketing', 
-    '@nostromo/ui-tw'
+    '@jarllyng/ui-core',
+    '@jarllyng/ui-marketing', 
+    '@jarllyng/ui-tw'
   ],
   access: 'public',
   baseBranch: 'main',
@@ -206,9 +206,9 @@ const buttonClasses = {
 ### Import Path Stability
 ```typescript
 // ✅ Stable - These import paths won't change
-import { Button } from '@nostromo/ui-core';
-import { Button } from '@nostromo/ui-core/button';
-import { Hero } from '@nostromo/ui-marketing';
+import { Button } from '@jarllyng/ui-core';
+import { Button } from '@jarllyng/ui-core/button';
+import { Hero } from '@jarllyng/ui-marketing';
 ```
 
 ## 📊 Version History

@@ -26,8 +26,8 @@ Bundle sizes are measured using `size-limit` with:
 
 ## Notes
 
-- **Main bundle**: 204.08 KB includes all components when imported from `@nostromo/ui-core`
-- **Individual imports**: Use `@nostromo/ui-core/button` for tree-shaking (only imports what you need)
+- **Main bundle**: 204.08 KB includes all components when imported from `@jarllyng/ui-core`
+- **Individual imports**: Use `@jarllyng/ui-core/button` for tree-shaking (only imports what you need)
 - **Code splitting**: Main bundle reduced from 107KB to 8KB with code splitting (96% reduction)
 - **Heavy components**: Charts (104.71 KB) and Icon (50.59 KB) include their dependencies (recharts, phosphor-icons)
 
