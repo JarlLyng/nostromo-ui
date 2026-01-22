@@ -289,6 +289,65 @@ Fra `packages/ui-tw/src/themes/nostromo.css`:
 6. ✅ Verificeret at `data-theme="nostromo"` er sat korrekt på HTML elementet
 7. ✅ Verificeret at theme CSS-filer importeres korrekt
 
+## Løsningsforslag (anbefalet)
+
+### 1) Ret semantiske CSS-variabler i temaet (root cause)
+
+I `packages/ui-tw/src/themes/nostromo.css` er flere semantiske variabler defineret som `hsl(...)`, men Tailwind preset’et forventer **rå HSL-værdier** (f.eks. `262 84% 52%`) eller en `var(...)`-reference uden `hsl()`. Resultatet bliver `hsl(hsl(...))`, som er ugyldigt CSS, så farver bliver ikke anvendt. Det matcher observationen hvor `success/warning/error` virker (de bruger `--color-success-500` direkte), mens f.eks. `secondary` og `primary` mangler baggrund.
+
+**Retning: fjern `hsl(...)` inde i de semantiske variabler.** Eksempel:
+
+```css
+/* packages/ui-tw/src/themes/nostromo.css */
+[data-theme="nostromo"] {
+  /* Semantic Colors - Light mode defaults (rettet) */
+  --color-background: var(--color-neutral-50);
+  --color-foreground: var(--color-neutral-900);
+  --color-muted: var(--color-neutral-100);
+  --color-muted-foreground: var(--color-neutral-600);
+  --color-popover: var(--color-neutral-50);
+  --color-popover-foreground: var(--color-neutral-900);
+  --color-card: var(--color-neutral-50);
+  --color-card-foreground: var(--color-neutral-900);
+  --color-border: var(--color-neutral-200);
+  --color-input: var(--color-neutral-200);
+  --color-primary: var(--color-brand-500);
+  --color-primary-foreground: var(--color-neutral-50);
+  --color-secondary: var(--color-neutral-100);
+  --color-secondary-foreground: var(--color-neutral-900);
+  --color-accent: var(--color-brand-100);
+  --color-accent-foreground: var(--color-brand-900);
+  --color-destructive: var(--color-error-500);
+  --color-destructive-foreground: var(--color-neutral-50);
+  --color-ring: var(--color-brand-500);
+}
+```
+
+Dette gør, at Tailwind’s `hsl(var(--color-...))` igen bliver gyldigt.
+
+### 2) Verificer hurtigt i DevTools
+
+- Tjek computed style for en knap: `background-color` på `.bg-primary` bør være en rigtig farve og ikke “invalid property value”.
+- Tjek `--color-primary` i `:root`/`html` (eller `[data-theme]`): den skal være en rå HSL-streng (`262 84% 52%`) eller `var(--color-brand-500)`.
+
+### 3) Hvis spacing/padding stadig ikke virker (sekundært)
+
+Tailwind v4 bruger bl.a. `--spacing` i output (`calc(var(--spacing) * 4)`). Hvis `--spacing` ikke er defineret, bliver padding/height ugyldig.
+
+**Check i DevTools** om `--spacing` findes. Hvis ikke, kan du tilføje i en global base (fx `test-app/src/index.css` eller et globalt theme):
+
+```css
+:root {
+  --spacing: 0.25rem;
+}
+```
+
+Dette bør kun være nødvendigt hvis `@import "tailwindcss";` ikke injicerer default theme tokens.
+
+### 4) Oprydning (valgfrit)
+
+Den manuelle `@layer utilities`-blok i `test-app/src/index.css` er en workaround og kan fjernes når farver/spacings virker, så Tailwind får lov at styre utilities 100%.
+
 ## Mulige årsager
 
 1. **Tailwind v4 JIT scanning virker ikke korrekt med workspace dependencies**: Selvom klasserne bliver genereret (måske pga. safelist), kan det være at Tailwind v4's JIT scanning ikke opdager klasserne i workspace dependencies korrekt.
