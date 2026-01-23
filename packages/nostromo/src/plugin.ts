@@ -17,10 +17,11 @@
  * @import "@jarllyng/nostromo/plugin.css";
  */
 
-import type { PluginCreator } from 'tailwindcss/types/config';
+import type { Config } from 'tailwindcss';
 import nostromoPreset from './preset';
 
-const plugin: PluginCreator = () => {
+// Tailwind CSS v4 plugin - returns a config object
+const plugin = (): Partial<Config> => {
   return {
     ...nostromoPreset,
   };
