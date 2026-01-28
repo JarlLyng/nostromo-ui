@@ -236,7 +236,7 @@
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
-    "test:a11y": "vitest run -t 'a11y'",
+    "test:a11y": "vitest run -t 'accessibility'",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
