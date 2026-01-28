@@ -72,7 +72,7 @@ function extractHSLValue(cssContent: string, varName: string, visited = new Set<
 
 describe('Contrast Accessibility Tests', () => {
   // Test the default theme (mother) which is used by components
-  const themePath = join(__dirname, '../../../../ui-tw/src/themes/mother.css');
+  const themePath = join(__dirname, '../../../themes/mother.css');
   const themeContent = readFileSync(themePath, 'utf-8');
 
   describe('Theme Color Contrast (Light Mode)', () => {
