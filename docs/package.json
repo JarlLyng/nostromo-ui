@@ -10,6 +10,7 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@jarllyng/nostromo": "workspace:*",
     "next": "^16.1.6",
     "nextra": "2.13.4",
     "nextra-theme-docs": "2.13.4",
