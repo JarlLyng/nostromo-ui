@@ -240,6 +240,7 @@
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
+    "size": "size-limit",
     "clean": "rm -rf dist",
     "prepublishOnly": "pnpm run type-check && pnpm run lint && pnpm run test:run && pnpm run build"
   },
@@ -323,5 +324,43 @@
   "engines": {
     "node": ">=20.0.0",
     "pnpm": ">=9.0.0"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "420 KB"
+    },
+    {
+      "path": "dist/components/core/button.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/components/core/input.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/components/core/dialog.js",
+      "limit": "12 KB"
+    },
+    {
+      "path": "dist/components/core/select.js",
+      "limit": "35 KB"
+    },
+    {
+      "path": "dist/components/core/charts.js",
+      "limit": "105 KB"
+    },
+    {
+      "path": "dist/components/core/data-table.js",
+      "limit": "25 KB"
+    },
+    {
+      "path": "dist/components/core/calendar.js",
+      "limit": "35 KB"
+    },
+    {
+      "path": "dist/components/core/icon.js",
+      "limit": "51 KB"
+    }
+  ]
 }
