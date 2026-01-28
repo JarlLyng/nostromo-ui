@@ -224,6 +224,13 @@ jobs:
     - name: Build packages
       timeout-minutes: 15
       run: |
+        # Build nostromo package first to ensure workspace dependencies are available
+        echo "Building @jarllyng/nostromo package first..."
+        cd packages/nostromo
+        pnpm build
+        cd ../..
+        # Then build all packages (turbo will handle dependencies)
+        echo "Building all packages..."
         pnpm build 2>&1 | tee build-output.txt
         BUILD_EXIT=${PIPESTATUS[0]}
         if [ $BUILD_EXIT -ne 0 ]; then

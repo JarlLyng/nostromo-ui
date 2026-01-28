@@ -36,6 +36,8 @@ jobs:
         
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
+      with:
+        version: 9.0.0
       
     - name: Get pnpm store directory
       id: pnpm-cache
@@ -74,8 +76,14 @@ jobs:
         pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@nostromo/ui-core/package.json'))\"" || echo "Workspace resolution failed"
       
     - name: Build all workspaces in graph order
-      timeout-minutes: 10
+      timeout-minutes: 15
       run: |
+        # Build nostromo package first to ensure workspace dependencies are available
+        echo "Building @jarllyng/nostromo package first..."
+        cd packages/nostromo
+        pnpm build
+        cd ../..
+        # Then build all packages (turbo will handle dependencies)
         echo "Building all packages..."
         pnpm -r build
         echo "Build completed successfully!"

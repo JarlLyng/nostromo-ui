@@ -38,7 +38,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.0.0
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -65,11 +65,10 @@ jobs:
 
       - name: Update workspace dependencies before publishing
         run: |
-          # Update ui-marketing dependency on ui-core from workspace:* to version
-          cd packages/ui-marketing
-          UI_CORE_VERSION=$(node -p "require('../ui-core/package.json').version")
-          pnpm pkg set "dependencies.@jarllyng/ui-core=^$UI_CORE_VERSION"
-          cd ../..
+          # Update workspace dependencies to version numbers before publishing
+          # This ensures published packages reference npm versions, not workspace:*
+          echo "Workspace dependencies are already using workspace:* protocol"
+          echo "Changesets will handle version updates during publish"
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
