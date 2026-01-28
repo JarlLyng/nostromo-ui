@@ -73,7 +73,7 @@ jobs:
     - name: Verify workspace links
       run: |
         echo "Testing workspace resolution..."
-        pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@nostromo/ui-core/package.json'))\"" || echo "Workspace resolution failed"
+        pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@jarllyng/nostromo/package.json'))\"" || echo "Workspace resolution failed"
       
     - name: Build all workspaces in graph order
       timeout-minutes: 15
@@ -83,6 +83,9 @@ jobs:
         cd packages/nostromo
         pnpm build
         cd ../..
+        # Reinstall to ensure workspace links are correct after build
+        echo "Reinstalling to update workspace links..."
+        pnpm install --frozen-lockfile
         # Then build all packages (turbo will handle dependencies)
         echo "Building all packages..."
         pnpm -r build

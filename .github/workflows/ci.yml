@@ -239,6 +239,9 @@ jobs:
         cd packages/nostromo
         pnpm build
         cd ../..
+        # Reinstall to ensure workspace links are correct after build
+        echo "Reinstalling to update workspace links..."
+        pnpm install --frozen-lockfile
         # Then build all packages (turbo will handle dependencies)
         echo "Building all packages..."
         pnpm build 2>&1 | tee build-output.txt

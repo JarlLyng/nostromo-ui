@@ -58,7 +58,15 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: pnpm build
+        run: |
+          # Build nostromo package first
+          cd packages/nostromo
+          pnpm build
+          cd ../..
+          # Reinstall to ensure workspace links are correct
+          pnpm install --frozen-lockfile
+          # Then build all packages
+          pnpm build
 
       - name: Run tests
         run: pnpm test:run
