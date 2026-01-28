@@ -167,7 +167,7 @@ jobs:
     - name: Run tests with coverage
       timeout-minutes: 10
       run: |
-        cd packages/ui-core
+        cd packages/nostromo
         pnpm test:coverage 2>&1 | tee ../../test-output.txt
         TEST_EXIT=${PIPESTATUS[0]}
         if [ $TEST_EXIT -ne 0 ]; then
@@ -181,7 +181,7 @@ jobs:
       with:
         name: coverage-reports
         path: |
-          packages/ui-core/coverage/**
+          packages/nostromo/coverage/**
         if-no-files-found: ignore
         retention-days: 30
       
@@ -234,7 +234,7 @@ jobs:
       
     - name: Check bundle sizes
       run: |
-        cd packages/ui-core
+        cd packages/nostromo
         pnpm size 2>&1 | tee size-output.txt
         SIZE_EXIT=${PIPESTATUS[0]}
         if [ $SIZE_EXIT -ne 0 ]; then
@@ -250,7 +250,7 @@ jobs:
         name: build-error-logs
         path: |
           build-output.txt
-          packages/ui-core/size-output.txt
+          packages/nostromo/size-output.txt
         if-no-files-found: ignore
         retention-days: 7
 
@@ -276,7 +276,7 @@ jobs:
     - name: Run accessibility tests
       timeout-minutes: 10
       run: |
-        cd packages/ui-core
+        cd packages/nostromo
         pnpm test:a11y 2>&1 | tee a11y-output.txt
         A11Y_EXIT=${PIPESTATUS[0]}
         if [ $A11Y_EXIT -ne 0 ]; then
@@ -291,7 +291,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: a11y-error-logs
-        path: packages/ui-core/a11y-output.txt
+        path: packages/nostromo/a11y-output.txt
         if-no-files-found: ignore
         retention-days: 7
 

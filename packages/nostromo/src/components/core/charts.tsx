@@ -292,12 +292,15 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
                 outerRadius={chartHeight / 4}
                 label={(props: { name?: string; percent?: number }) => `${props.name ?? ''}: ${((props.percent ?? 0) * 100).toFixed(0)}%`}
               >
-                {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={colors[index % colors.length] || defaultColors[index % defaultColors.length]}
-                  />
-                ))}
+                {data.map((entry, index) => {
+                  const fillColor = colors[index % colors.length] || defaultColors[index % defaultColors.length];
+                  return (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={fillColor ?? '#8884d8'}
+                    />
+                  );
+                })}
               </Pie>
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {showLegend && <Legend content={<CustomLegend />} />}

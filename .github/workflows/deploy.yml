@@ -65,8 +65,8 @@ jobs:
         node --version
         echo "Workspace packages:"
         pnpm list --depth=0
-        echo "ui-core dist contents:"
-        ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
+        echo "nostromo dist contents:"
+        ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
         
     - name: Verify workspace links
       run: |
@@ -80,9 +80,7 @@ jobs:
         pnpm -r build
         echo "Build completed successfully!"
         echo "Checking build outputs..."
-        ls -la packages/ui-core/dist/ || echo "ui-core dist not found"
-        ls -la packages/ui-marketing/dist/ || echo "ui-marketing dist not found"
-        ls -la packages/ui-tw/dist/ || echo "ui-tw dist not found"
+        ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
         
     - name: Build Storybook
       timeout-minutes: 15
@@ -93,8 +91,8 @@ jobs:
         echo "Building Storybook with base path: ${STORYBOOK_BASE_PATH}"
         echo "Checking @tailwindcss/vite availability..."
         pnpm list @tailwindcss/vite || echo "@tailwindcss/vite not found"
-        echo "Installing @tailwindcss/vite in ui-core if needed..."
-        cd packages/ui-core
+        echo "Installing @tailwindcss/vite in nostromo if needed..."
+        cd packages/nostromo
         pnpm add -D @tailwindcss/vite || echo "Plugin already installed"
         echo "Building Storybook..."
         pnpm run build-storybook
@@ -119,7 +117,7 @@ jobs:
         pnpm run build
         BASE_PATH="${NEXT_PUBLIC_BASE_PATH:-/nostromo-ui}"
         echo "Copying Storybook to docs output..."
-        cp -r ../packages/ui-core/storybook-static out/storybook-static
+        cp -r ../packages/nostromo/storybook-static out/storybook-static
         echo "Storybook base path is configured in Storybook config - no sed patching needed!"
         echo "Verifying Storybook paths are correct..."
         grep -o "src=\".*vite-inject-mocker-entry.js\"" out/storybook-static/index.html | head -1 || echo "vite-inject path not found"
