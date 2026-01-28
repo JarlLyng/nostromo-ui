@@ -2,21 +2,19 @@
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import * as Nostromo from '@jarllyng/nostromo'
-import * as  from '@jarllyng/nostromo'
 import React, { useState, useEffect, useRef } from 'react'
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
   React,
   ...Nostromo,
-  ...,
   // Explicitly add commonly used components for better IDE support
-  Hero: .Hero,
-  Features: .Features,
-  Testimonials: .Testimonials,
-  Pricing: .Pricing,
-  Gallery: .Gallery,
-  LogoWall: .LogoWall,
+  Hero: Nostromo.Hero,
+  Features: Nostromo.Features,
+  Testimonials: Nostromo.Testimonials,
+  Pricing: Nostromo.Pricing,
+  Gallery: Nostromo.Gallery,
+  LogoWall: Nostromo.LogoWall,
   Button: Nostromo.Button,
   Input: Nostromo.Input,
   // React hooks
