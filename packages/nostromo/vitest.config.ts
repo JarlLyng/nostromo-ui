@@ -9,6 +9,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     globals: true,
+    include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)', '**/*.a11y.test.tsx'],
     // Timeout configuration to prevent hanging tests
     // Higher timeout in CI due to resource constraints
     testTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
