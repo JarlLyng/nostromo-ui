@@ -2,7 +2,7 @@ name: Deploy Documentation to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 # Prevent concurrent deployments to avoid conflicts
 concurrency:
@@ -24,139 +24,104 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-      
-    - name: Get pnpm store directory
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-        
-    - name: Setup pnpm cache
-      uses: actions/cache@v4
-      with:
-        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-v2
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-
-          ${{ runner.os }}-pnpm-store-
-        # Cache retention: GitHub automatically evicts unused caches after 7 days
-        # To reduce cache storage, we can manually delete old caches via GitHub UI or CLI
-          
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Debug workspace info
-      run: |
-        echo "pnpm version:"
-        pnpm --version
-        echo "Node version:"
-        node --version
-        echo "Workspace packages:"
-        pnpm list --depth=0
-        echo "nostromo dist contents:"
-        ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
-        
-    - name: Verify workspace links
-      run: |
-        echo "Testing workspace resolution..."
-        pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@jarllyng/nostromo/package.json'))\"" || echo "Workspace resolution failed"
-      
-    - name: Build all workspaces in graph order
-      timeout-minutes: 15
-      run: |
-        # Build nostromo package first to ensure workspace dependencies are available
-        echo "Building @jarllyng/nostromo package first..."
-        cd packages/nostromo
-        pnpm build
-        cd ../..
-        # Reinstall to ensure workspace links are correct after build
-        echo "Reinstalling to update workspace links..."
-        pnpm install --frozen-lockfile
-        # Then build all packages (turbo will handle dependencies)
-        echo "Building all packages..."
-        pnpm -r build
-        echo "Build completed successfully!"
-        echo "Checking build outputs..."
-        ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
-        
-    - name: Build Storybook
-      timeout-minutes: 15
-      env:
-        # Set Storybook base path to match GitHub Pages subpath
-        STORYBOOK_BASE_PATH: "/nostromo-ui/storybook-static"
-      run: |
-        echo "Building Storybook with base path: ${STORYBOOK_BASE_PATH}"
-        echo "Checking @tailwindcss/vite availability..."
-        pnpm list @tailwindcss/vite || echo "@tailwindcss/vite not found"
-        echo "Installing @tailwindcss/vite in nostromo if needed..."
-        cd packages/nostromo
-        pnpm add -D @tailwindcss/vite || echo "Plugin already installed"
-        echo "Building Storybook..."
-        pnpm run build-storybook
-        echo "Storybook build completed!"
-        echo "Checking Storybook output..."
-        ls -la storybook-static/ || echo "storybook-static not found"
-        echo "Checking for vite-inject-mocker-entry.js..."
-        find storybook-static -name "*vite*" -o -name "*inject*" -o -name "*mocker*" || echo "vite files not found"
-        echo "Checking storybook-static structure..."
-        ls -la storybook-static/ | head -20
-        echo "Checking CSS files for theme variables..."
-        grep -o "data-theme=nostromo\|--color-brand-500" storybook-static/assets/*.css | head -5 || echo "Theme variables not found"
-        echo "Verifying base path in built HTML..."
-        grep -o "src=\".*vite-inject-mocker-entry.js\"" storybook-static/index.html | head -1 || echo "vite-inject path not found"
-      
-    - name: Build documentation
-      timeout-minutes: 15
-      run: |
-        echo "Building documentation..."
-        echo "Building docs..."
-        cd docs
-        pnpm run build
-        BASE_PATH="${NEXT_PUBLIC_BASE_PATH:-/nostromo-ui}"
-        echo "Copying Storybook to docs output..."
-        cp -r ../packages/nostromo/storybook-static out/storybook-static
-        echo "Storybook base path is configured in Storybook config - no sed patching needed!"
-        echo "Verifying Storybook paths are correct..."
-        grep -o "src=\".*vite-inject-mocker-entry.js\"" out/storybook-static/index.html | head -1 || echo "vite-inject path not found"
-        echo "Copying favicon files..."
-        cp public/favicon.ico out/
-        cp public/favicon.svg out/
-        echo "Creating .nojekyll file to disable Jekyll processing..."
-        touch out/.nojekyll
-        echo "Checking docs build output..."
-        ls -la out/ || echo "docs out directory not found"
-        ls -la out/storybook-static/ || echo "storybook-static directory not found"
-        echo "Checking for vite-inject-mocker-entry.js..."
-        ls -la out/storybook-static/vite-inject-mocker-entry.js || echo "vite-inject-mocker-entry.js not found"
-        echo "Documentation build completed!"
-        
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      if: github.ref == 'refs/heads/main'
-      
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        path: ./docs/out
-        
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-      if: github.ref == 'refs/heads/main'
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-v2
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-pnpm-store-
+          # Cache retention: GitHub automatically evicts unused caches after 7 days
+          # To reduce cache storage, we can manually delete old caches via GitHub UI or CLI
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Debug workspace info
+        run: |
+          echo "pnpm version:"
+          pnpm --version
+          echo "Node version:"
+          node --version
+          echo "Workspace packages:"
+          pnpm list --depth=0
+          echo "nostromo dist contents:"
+          ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
+
+      - name: Verify workspace links
+        run: |
+          echo "Testing workspace resolution..."
+          pnpm -r exec -c "node -e \"console.log('RESOLVE', process.cwd(), '->', require.resolve('@jarllyng/nostromo/package.json'))\"" || echo "Workspace resolution failed"
+
+      - name: Build all workspaces in graph order
+        timeout-minutes: 15
+        run: |
+          # Build nostromo package first to ensure workspace dependencies are available
+          echo "Building @jarllyng/nostromo package first..."
+          cd packages/nostromo
+          pnpm build
+          cd ../..
+          # Reinstall to ensure workspace links are correct after build
+          echo "Reinstalling to update workspace links..."
+          pnpm install --frozen-lockfile
+          # Then build all packages (turbo will handle dependencies)
+          echo "Building all packages..."
+          pnpm -r build
+          echo "Build completed successfully!"
+          echo "Checking build outputs..."
+          ls -la packages/nostromo/dist/ || echo "nostromo dist not found"
+
+      - name: Build documentation
+        timeout-minutes: 15
+        run: |
+          echo "Building documentation..."
+          echo "Building docs..."
+          cd docs
+          pnpm run build
+          echo "Copying favicon files..."
+          cp public/favicon.ico out/
+          cp public/favicon.svg out/
+          echo "Creating .nojekyll file to disable Jekyll processing..."
+          touch out/.nojekyll
+          echo "Checking docs build output..."
+          ls -la out/ || echo "docs out directory not found"
+          echo "Documentation build completed!"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        if: github.ref == 'refs/heads/main'
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: ./docs/out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
