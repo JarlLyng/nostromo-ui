@@ -9,7 +9,7 @@ const LiveCodeClient = dynamic(() => import('./LiveCode.client'), {
   ssr: false,
 })
 
-function LiveCodeFallback({ code, theme = 'nostromo', colorScheme = 'light', storyId }: LiveCodeProps) {
+function LiveCodeFallback({ code, theme = 'nostromo', colorScheme = 'light' }: LiveCodeProps) {
   const codePreview = (code || '').split('\n').slice(0, 10).join('\n')
 
   return (
@@ -31,18 +31,6 @@ function LiveCodeFallback({ code, theme = 'nostromo', colorScheme = 'light', sto
             <div className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border text-foreground">
               Copy
             </div>
-            <a
-              href={
-                storyId
-                  ? `https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(storyId)}`
-                  : 'https://jarllyng.github.io/nostromo-ui/storybook-static/'
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
-            >
-              Storybook →
-            </a>
           </div>
         </div>
         <div className="p-6 bg-background relative min-h-[100px]">

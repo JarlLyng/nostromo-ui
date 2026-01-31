@@ -33,15 +33,13 @@ export interface LiveCodeProps {
   noInline?: boolean
   theme?: 'nostromo' | 'mother' | 'lv-426' | 'sulaco'
   colorScheme?: 'light' | 'dark'
-  storyId?: string
 }
 
 export default function LiveCodeClient({
   code,
   noInline = false,
   theme = 'nostromo',
-  colorScheme = 'light',
-  storyId
+  colorScheme = 'light'
 }: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
@@ -464,25 +462,6 @@ export default function LiveCodeClient({
               >
                 {copied ? 'Copied!' : 'Copy'}
               </button>
-              {storyId ? (
-                <a
-                  href={`https://jarllyng.github.io/nostromo-ui/storybook-static/?path=/story/${encodeURIComponent(storyId)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
-                >
-                  Storybook →
-                </a>
-              ) : (
-                <a
-                  href="https://jarllyng.github.io/nostromo-ui/storybook-static/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground"
-                >
-                  Storybook →
-                </a>
-              )}
             </div>
           </div>
           <div className="p-6 bg-background relative min-h-[100px]">
