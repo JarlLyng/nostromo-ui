@@ -6,28 +6,14 @@ import { Hero } from "../components/Hero";
 import { Features } from "../components/Features";
 import { QuickStart } from "../components/QuickStart";
 
-<Hero />
+import { FooterAccent } from "../components/FooterAccent";
 
-<Features />
+import { LandingPageContainer } from "../components/LandingPageContainer";
 
-{/* Interactive Theme Showcase Integration */}
-
-<ThemeShowcase />
-
-{/* Quick Start Grid */}
-
-<QuickStart />
-
-{/* Footer Accent */}
-
-<div className="py-24 border-t border-border bg-muted/20">
-  <div className="max-w-6xl mx-auto px-4 text-center space-y-8">
-    <div className="text-6xl font-black opacity-10 select-none uppercase tracking-[0.5em]">
-      Nostromo
-    </div>
-    <p className="text-muted-foreground">
-      MIT © 2025 Nostromo UI Group. Engineered for the deep space of digital
-      interfaces.
-    </p>
-  </div>
-</div>
+<LandingPageContainer>
+  <Hero />
+  <Features />
+  <ThemeShowcase />
+  <QuickStart />
+  <FooterAccent />
+</LandingPageContainer>

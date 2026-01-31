@@ -49,7 +49,6 @@ const config: DocsThemeConfig = {
   footer: {
     text: (
       <div className="flex flex-col gap-4">
-        <ScrollProgress />
         <span>MIT © 2025 Nostromo UI. Built with Nextra.</span>
       </div>
     ),

@@ -7,6 +7,8 @@ import '@jarllyng/nostromo/themes/nostromo.css'
 import '../styles/globals.css'
 import '../styles/themes.css'
 
+import { ScrollProgress } from '../components/ScrollProgress'
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (typeof document === 'undefined') return
@@ -33,6 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <ScrollProgress />
       <Script
         src="https://umami-iamjarl.vercel.app/script.js"
         data-website-id="f4f9ada2-3819-4174-8018-2b99801b39b4"
