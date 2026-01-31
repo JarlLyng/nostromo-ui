@@ -12,7 +12,7 @@ The library is divided into two areas:
 1. **Core** – product and app components (buttons, inputs, dialogs, etc.).
 2. **Marketing** – blocks for marketing sites (hero sections, testimonials, galleries, quotes, etc.).
 
-The name is inspired by the spaceship *USCSS Nostromo* from the movie **Alien** (1979).
+The name is inspired by the spaceship _USCSS Nostromo_ from the movie **Alien** (1979).
 
 ---
 
@@ -29,29 +29,33 @@ cd nostromo-ui
 pnpm install
 
 # Future npm installation (planned)
-# pnpm add @jarllyng/ui-core @jarllyng/ui-marketing @jarllyng/ui-tw
+# pnpm add @jarllyng/nostromo
 ```
 
 ### Setup
-1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`
+
+1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.mjs`
 2. **Import CSS** - Add base styles and theme in your entry file
 3. **Start using components** - Import and use components
 
 ```tsx
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
-module.exports = {
+// tailwind.config.mjs
+import nostromoPreset from "@jarllyng/nostromo/preset";
+export default {
   presets: [nostromoPreset],
-  content: ["./src/**/*.{js,ts,jsx,tsx}", "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"]
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@jarllyng/nostromo/dist/**/*.{js,ts,jsx,tsx}",
+  ],
 };
 
 // main.tsx
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css";
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 
 // Component usage
-import { Button } from "@jarllyng/ui-core";
-<Button variant="default">Click me</Button>
+import { Button } from "@jarllyng/nostromo";
+<Button variant="default">Click me</Button>;
 ```
 
 > 📖 **Read more**: [Complete setup guide](docs/guides/DEVELOPMENT.md)
@@ -59,6 +63,7 @@ import { Button } from "@jarllyng/ui-core";
 ## 🧩 Available Components
 
 ### Core Components (30 components)
+
 - **Button** - Interactive buttons with loading states and variants
 - **Input** - Text input fields with validation and form integration
 - **Dialog** - Modal dialogs with accessibility and focus management
@@ -90,6 +95,7 @@ import { Button } from "@jarllyng/ui-core";
 - **Charts** - Data visualization with line, bar, area, and pie charts
 
 ### Marketing Components (6 components)
+
 - **Hero** - Hero sections with customizable layouts and call-to-action buttons
 - **Testimonials** - Customer testimonials with ratings, avatars and responsive grids
 - **Features** - Feature showcase grids with icons and hover effects
@@ -98,12 +104,12 @@ import { Button } from "@jarllyng/ui-core";
 - **Logo Wall** - Client logos with hover effects and responsive layouts
 
 All components are built with:
+
 - ♿ **WCAG 2.1 AA compliance**
 - 🎯 **TypeScript** with full type safety
 - 🎨 **Tailwind CSS** with custom themes
 - 📱 **Responsive design**
 - 🌙 **Dark mode support**
-
 
 ---
 
@@ -115,34 +121,36 @@ All components are built with:
 
 ### 📋 Factual Status Table
 
-| Metric | Status | Details |
-|--------|--------|---------|
-| **Core Components** | ✅ | 30 components implemented |
-| **Marketing Components** | ✅ | 6 components implemented |
-| **Themes** | ✅ | 4 themes (Nostromo, Mother, LV-426, Sulaco) |
-| **Core Tests** | ✅ | 842 tests passing (unit + accessibility) |
-| **Test Coverage** | ✅ | 81% lines, 75% branches, 85% functions, 83% statements |
-| **Marketing Tests** | ✅ | 197 tests passing (13 test files) |
-| **TypeScript** | ✅ | Zero errors, strict mode enabled |
-| **Linting** | ✅ | 0 errors, 0 warnings |
-| **CI/CD** | ✅ | All critical checks passing (parallelized) |
-| **Documentation** | ✅ | 12 guides + live examples |
-| **Distribution** | ⚠️ | Workspace-only (npm publishing planned) |
-| **Bundle Size** | ✅ | 204.08 KB main bundle (minified + brotlied, with tree-shaking) |
+| Metric                   | Status | Details                                                      |
+| ------------------------ | ------ | ------------------------------------------------------------ |
+| **Core Components**      | ✅     | 30 components implemented                                    |
+| **Marketing Components** | ✅     | 6 components implemented                                     |
+| **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                  |
+| **Total Tests**          | ✅     | 1089 tests passing (unit + accessibility)                    |
+| **Test Coverage**        | ✅     | 81% lines, 75% branches, 85% functions, 83% statements       |
+| **TypeScript**           | ✅     | Zero errors, strict mode enabled                             |
+| **Linting**              | ✅     | 0 errors, 0 warnings                                         |
+| **CI/CD**                | ✅     | All critical checks passing (parallelized)                   |
+| **Documentation**        | ✅     | 12 guides + live examples                                    |
+| **Distribution**         | ⚠️     | Workspace-only (npm publishing planned)                      |
+| **Bundle Size**          | ✅     | ~210 KB main bundle (minified + brotlied, with tree-shaking) |
 
 > **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
 
 ### 🎉 **Stable Release**
+
 Nostromo UI 1.0.0 is now production-ready! After extensive testing and community feedback, we're proud to offer a complete, stable component library.
 
 **What's New in 1.0.0:**
+
 - ✅ **Stable API** - No breaking changes planned
 - ✅ **Production Ready** - Fully tested and documented
 - ✅ **Complete Component Set** - 30 core + 6 marketing components
-- ✅ **Comprehensive Testing** - 842 tests passing (unit + accessibility)
+- ✅ **Comprehensive Testing** - 1089 tests passing (unit + accessibility)
 - ✅ **WCAG 2.1 AA Compliant** - Full accessibility support
 
 ### ✅ **Completed Features**
+
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables with HSL colors and 4 complete themes
 - **Tailwind Preset** - Complete preset with Nostromo theme
@@ -153,14 +161,15 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, sorting, and server-side support (controlled mode); Charts with line, bar, area, and pie visualizations
 - **Feedback Components** - Toast, Tooltip, Progress with accessibility
 - **Layout Components** - Accordion, Skeleton with animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (842 tests passing - unit + accessibility)
+- **Test Infrastructure** - Vitest + Testing Library + axe-core (1089 tests passing - unit + accessibility)
 - **Storybook Setup** - React with dark theme
 - **Build System** - tsup with ESM + CJS output and type definitions
 - **Nextra Documentation Site** - Modern documentation with all 30 components, interactive Storybook examples and live previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
-- **Code Quality** - TypeScript strict mode, CI/CD pipeline (some lint warnings remain - see status table below)
+- **Code Quality** - TypeScript strict mode, CI/CD pipeline, zero lint errors/warnings
 
 ### 🎯 **Latest Improvements**
+
 - **WCAG AA Compliance** - All components optimized for WCAG 2.1 AA contrast requirements in both light and dark modes
 - **Semantic Color Tokens** - Complete refactoring to semantic color tokens (background, foreground, muted, primary, etc.) for better theming and accessibility
 - **Advanced Components** - DataTable, Calendar, and Charts components fully implemented and tested
@@ -184,6 +193,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 **Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) | **Storybook**: [https://jarllyng.github.io/nostromo-ui/storybook-static/](https://jarllyng.github.io/nostromo-ui/storybook-static/)
 
 ### Main Guides
+
 - **[Architecture](docs/guides/ARCHITECTURE.md)** - Monorepo structure and build system
 - **[Theming](docs/guides/THEMING.md)** - CSS variables and custom themes
 - **[API Reference](docs/guides/API_REFERENCE.md)** - Complete component API
@@ -193,6 +203,7 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **[Troubleshooting](docs/guides/TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### Project Info
+
 - **[Roadmap](docs/guides/ROADMAP.md)** - Project milestones and plans
 - **[Contributing](CONTRIBUTING.md)** - How to contribute
 - **[Code Review](docs/guides/CODE_REVIEW.md)** - Review guidelines
@@ -207,4 +218,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Nostromo UI** - *"In space, no one can hear you scream... but everyone can see your beautiful UI"* 🚀
+**Nostromo UI** - _"In space, no one can hear you scream... but everyone can see your beautiful UI"_ 🚀

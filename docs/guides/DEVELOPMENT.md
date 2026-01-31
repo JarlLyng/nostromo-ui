@@ -18,6 +18,7 @@ This file describes how to set up Nostromo UI for development, including install
 ## Quick Start
 
 ### Prerequisites
+
 - **Node.js**: >= 20.0.0
 - **pnpm**: >= 9.0.0
 - **Git**: Latest version
@@ -34,6 +35,7 @@ This file describes how to set up Nostromo UI for development, including install
 ```
 
 #### For Developing Nostromo UI
+
 ```bash
 # Clone repository
 git clone https://github.com/JarlLyng/nostromo-ui.git
@@ -49,19 +51,21 @@ pnpm dev
 ### Setup in Your Project
 
 1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`:
+
 ```js
 const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
 
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [nostromoPreset],
 };
 ```
 
 2. **Import CSS** - Add base styles and theme in your entry file:
+
 ```ts
 // In your entry file (e.g. main.tsx or _app.tsx)
 import "@jarllyng/nostromo/base.css";
@@ -69,6 +73,7 @@ import "@jarllyng/nostromo/themes/nostromo.css"; // Choose theme: nostromo, moth
 ```
 
 3. **Use Components**:
+
 ```tsx
 import { Button } from "@jarllyng/nostromo";
 
@@ -86,9 +91,7 @@ For detailed architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/          # Core components
-│   ├── ui-marketing/     # Marketing components
-│   └── ui-tw/            # Tailwind preset & themes
+│   └── nostromo/         # Unified package (Core + Marketing + Themes)
 ├── docs/                 # Nextra documentation site
 ├── tools/                # Shared configs
 └── .github/              # CI/CD workflows
@@ -97,12 +100,12 @@ nostromo-ui/
 ## Development Commands
 
 ### Test Results
-- **Core Package**: 842 tests passing (unit + accessibility) - 100% pass rate
+
+- **Core Coverage**: 1089 tests passing (unit + accessibility) - 100% pass rate
 - **Test Coverage**: 81% lines, 75% branches, 85% functions, 83% statements
-- **Marketing Package**: 7 smoke tests (export + render verification)
-- **Theme Package**: 3 smoke tests (preset structure validation)
 
 ### Root Commands
+
 ```bash
 # Install dependencies
 pnpm install
@@ -127,6 +130,7 @@ pnpm clean
 ```
 
 ### Package-specific Commands
+
 ```bash
 # Build specific package
 pnpm --filter @jarllyng/nostromo build
@@ -150,27 +154,28 @@ Packages use **tsup** for building with ESM + CJS output and TypeScript definiti
 ## Testing
 
 ### Test Setup
+
 ```ts
 // vitest.config.ts
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
     globals: true,
     coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html', 'lcov'],
+      provider: "v8",
+      reporter: ["text", "json", "html", "lcov"],
       exclude: [
-        'node_modules/',
-        'src/test/',
-        '**/*.d.ts',
-        '**/*.stories.*',
-        '**/*.test.*',
-        'dist/**',
+        "node_modules/",
+        "src/test/",
+        "**/*.d.ts",
+        "**/*.stories.*",
+        "**/*.test.*",
+        "dist/**",
       ],
       // Coverage thresholds - enforced in CI
       thresholds: {
@@ -185,11 +190,13 @@ export default defineConfig({
 ```
 
 **Coverage Requirements:**
+
 - **Minimum**: 80% lines, 80% functions, 80% statements, 75% branches
 - **CI**: Coverage is automatically checked in CI pipeline
 - **Reports**: Coverage reports (text, json, html, lcov) are generated and uploaded as CI artifacts
 
 ### Test Commands
+
 ```bash
 # Kør alle tests
 pnpm test
@@ -241,13 +248,13 @@ pnpm lint:fix
 Nostromo UI har to separate Storybook instanser:
 
 #### React Storybook
+
 ```bash
 # Start React Storybook
 cd packages/nostromo
 pnpm storybook
 # Kører på http://localhost:6006
 ```
-
 
 ### Storybook Configuration
 
@@ -274,6 +281,7 @@ For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-is
 The CI pipeline runs on every push and pull request to `main` and `develop` branches. It uses a **parallelized workflow** for faster feedback:
 
 #### Parallel Jobs
+
 1. **Setup Job**: Shared dependency installation (cached for reuse)
 2. **Lint Job**: ESLint checks (runs in parallel, warnings acceptable, errors fail)
 3. **Type-check Job**: TypeScript validation (runs in parallel)
@@ -285,12 +293,14 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
 6. **Accessibility Job**: axe-core tests (runs independently)
 
 #### Workflow Benefits
+
 - **Faster feedback**: Parallel execution reduces CI time significantly
 - **Better error isolation**: Each job has separate error log artifacts
 - **Cache optimization**: Dependencies cached between runs
 - **Quality gates**: All checks must pass before build
 
 #### CI Configuration
+
 ```yaml
 # .github/workflows/ci.yml
 name: CI
@@ -337,13 +347,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [lint, type-check, test]
     # ... runs after all checks pass
-      
+
       - name: Check bundle sizes
         continue-on-error: true
         run: |
           cd packages/nostromo
           pnpm size
-      
+
       - name: Upload error logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -360,21 +370,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           package_json_path: package.json
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'pnpm'
-      
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      
+
       - name: Run accessibility tests
         continue-on-error: true
         run: |
@@ -401,6 +411,7 @@ For debugging CI failures, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
 For detailed contribution guidelines, see [CONTRIBUTING.md](../../CONTRIBUTING.md) and [CODE_REVIEW.md](./CODE_REVIEW.md).
 
 ### Quick Workflow
+
 1. Fork repository and create feature branch
 2. Make changes with tests and documentation
 3. Create changeset: `pnpm changeset`
@@ -411,6 +422,7 @@ For detailed contribution guidelines, see [CONTRIBUTING.md](../../CONTRIBUTING.m
 For detailed troubleshooting, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
 
 ### Quick Fixes
+
 ```bash
 # Clear cache and reinstall
 pnpm clean && rm -rf node_modules && pnpm install

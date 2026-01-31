@@ -20,66 +20,43 @@ This file describes the technical architecture for Nostromo UI, including monore
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/           # Product and app components
-│   ├── ui-marketing/      # Marketing components
-│   └── ui-tw/            # Tailwind preset + themes
+│   └── nostromo/         # Unified package (Core + Marketing + Themes)
 ├── docs/                 # Nextra documentation site
-├── tools/                # Shared configs (if any)
+├── tools/                # Shared configs
 └── .github/              # CI/CD workflows
 ```
 
 ## Package Descriptions
 
 ### @jarllyng/nostromo
-**Product and app components** for internal applications and dashboards.
+
+**Unified UI Library** containing all components and themes.
 
 **Components:**
-- **Primitives**: Button, Input, Label, Form, Select, Checkbox, Radio
-- **Navigation**: Tabs, Dropdown, Popover, Dialog, Sheet
-- **Feedback**: Toast, Alert, Skeleton, Spinner, Progress, Tooltip
-- **Data**: Table, Badge, Card, List, Accordion
-- **Layout**: Skeleton, Progress, Accordion
 
-**API:**
-```tsx
-import { Button } from "@jarllyng/nostromo"
-// or
-import { Button } from "@jarllyng/nostromo/button"
-```
+- **Core**: Primitives (Button, Input, Form), Navigation (Tabs, Dialog), Feedback (Toast, Skeleton), Data (Table, Calendar, Charts)
+- **Marketing**: Hero, Features, Testimonials, Gallery, Pricing, Logo Wall
 
-### @jarllyng/nostromo
-**Marketing components** for landing pages and marketing sites.
+**Theming:**
 
-**Components:**
-- **Hero** (headline, media, CTA)
-- **Features** (grid with icons + text)
-- **Testimonials/Quotes**
-- **Gallery** (image grid with lightbox)
-- **Pricing Table**
-- **Logo Wall** (client logos with hover effects)
-
-**API:**
-```tsx
-import { Hero } from "@jarllyng/nostromo"
-// or
-import { Hero } from "@jarllyng/nostromo/hero"
-```
-
-### @jarllyng/nostromo
-**Tailwind preset and theming system**.
-
-**Contents:**
 - Tailwind preset with Nostromo tokens
-- Base CSS with reset and utility classes
-- Predefined themes (Nostromo, Mother, LV-426, Sulaco) - 4 complete themes
+- 4 complete themes (Nostromo, Mother, LV-426, Sulaco)
 - CSS variable system for custom theming
 
 **API:**
-```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset");
 
-module.exports = {
+```tsx
+import { Button } from "@jarllyng/nostromo";
+import { Hero } from "@jarllyng/nostromo";
+```
+
+**Tailwind Setup:**
+
+```js
+// tailwind.config.mjs
+import nostromoPreset from "@jarllyng/nostromo/preset";
+
+export default {
   presets: [nostromoPreset],
 };
 ```
@@ -87,12 +64,14 @@ module.exports = {
 ## Build System
 
 ### Library Packages
+
 - **Build tool**: tsup (esbuild-based)
 - **Output**: ESM + CJS + .d.ts
 - **Tree shaking**: `sideEffects: false`
 - **TypeScript**: Strict mode, bundler resolution
 
 ### Documentation
+
 - **Framework**: Nextra (Next.js + MDX)
 - **Features**: Storybook integration, live previews, interactive examples
 - **Development**: Local server at http://localhost:3000
@@ -100,6 +79,7 @@ module.exports = {
 ## TypeScript Configuration
 
 ### Base Config (`tsconfig.base.json`)
+
 ```json
 {
   "compilerOptions": {
@@ -122,7 +102,9 @@ module.exports = {
 ```
 
 ### Package-specific Configs
+
 Each package has its own `tsconfig.json` that `extends` base config and defines:
+
 - `outDir` for build output
 - `include`/`exclude` patterns
 - Package-specific compiler options
@@ -130,10 +112,12 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 ## Dependencies
 
 ### Peer Dependencies
+
 - **React packages**: `react`, `react-dom`
 - **Headless primitives**: `@radix-ui/*` (React)
 
 ### Dev Dependencies (Shared)
+
 - **Build**: `tsup`, `typescript`
 - **Linting**: `eslint`, `prettier`
 - **Testing**: `vitest`, `@testing-library/*`, `@playwright/test`
@@ -143,16 +127,19 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 ## Monorepo Tools
 
 ### pnpm Workspaces
+
 - **Fast install**: Shared dependencies cached
 - **Hoisting**: Optimal node_modules structure
 - **Workspace protocol**: Internal package dependencies
 
 ### Turborepo
+
 - **Build caching**: Incremental builds
 - **Task orchestration**: Parallel execution
 - **Remote caching**: Team-wide build cache
 
 ### Changesets
+
 - **Version management**: Independent versioning per package
 - **Changelog**: Automatic changelog generation
 - **Release**: Semver-compliant releases
@@ -160,12 +147,14 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 ## Performance Considerations
 
 ### Bundle Optimization
+
 - **ESM-first**: Modern bundler support
 - **Tree shaking**: Dead code elimination
 - **Code splitting**: Lazy loading for heavy components
 - **CSS optimization**: Critical CSS inlining
 
 ### Runtime Performance
+
 - **SSR compatibility**: No window/document dependencies
 - **Hydration**: Consistent IDs via Radix/Ark patterns
 - **Memory**: Minimal runtime overhead
@@ -173,12 +162,14 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 ## Development Workflow
 
 ### Local Development
+
 1. **Clone repo**: `git clone <repo>`
 2. **Install dependencies**: `pnpm install`
 3. **Start dev server**: `pnpm dev`
 4. **Build packages**: `pnpm build`
 
 ### Package Development
+
 1. **Create feature branch**: `git checkout -b feature/button-component`
 2. **Develop in packages/**: Make changes to relevant packages
 3. **Test locally**: `pnpm test`
@@ -186,6 +177,7 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 5. **Submit PR**: GitHub pull request
 
 ### Release Process
+
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
@@ -194,9 +186,11 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 ## CI/CD Pipeline
 
 ### GitHub Actions Workflow
+
 The CI pipeline runs on every push and pull request to `main` and `develop` branches. It uses a parallelized workflow for faster feedback:
 
 #### Parallel Jobs
+
 - **Setup Job**: Shared dependency installation (cached)
 - **Lint Job**: ESLint checks (runs in parallel)
 - **Type-check Job**: TypeScript validation (runs in parallel)
@@ -207,12 +201,14 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
 - **Accessibility Job**: axe-core tests (runs independently)
 
 #### Workflow Benefits
+
 - **Faster feedback**: Parallel execution reduces CI time significantly
 - **Better error isolation**: Each job has separate error logs
 - **Cache optimization**: Dependencies cached between runs
 - **Quality gates**: All checks must pass before build
 
 ### Quality Gates
+
 - **Type checking**: TypeScript strict mode
 - **Linting**: ESLint (0 errors, warnings acceptable)
   - Root-level `eslint.config.js` for pre-commit hooks
@@ -221,12 +217,13 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
   - 80% lines, 80% functions, 80% statements, 75% branches
   - Coverage reports generated and uploaded as artifacts
 - **Accessibility**: axe-core automated testing
-- **Bundle size**: Size limit monitoring (calendar.js: 35 KB, index.js: 420 KB)
+- **Bundle size**: Size limit monitoring (calendar.js: 40 KB, index.js: 420 KB)
 - **Pre-commit hooks**: Husky + lint-staged for code quality
 
 ## Scaling
 
 ### Future Considerations
+
 - **Additional packages**: Charts, Data visualization, Mobile components
 - **Platform support**: React Native, Solid.js
 - **Internationalization**: i18n utilities
@@ -252,6 +249,7 @@ We use CSS variables with namespacing, in HSL format to support Tailwind's `hsl(
 ```
 
 ### Theme Implementation
+
 - **HSL format** for all colors to support Tailwind's `hsl(var(--...))` pattern
 - **Semantic naming** (brand, neutral, success, warning, error)
 - **Consistent scale** (50, 100, 200... 900, 950)
@@ -260,18 +258,19 @@ We use CSS variables with namespacing, in HSL format to support Tailwind's `hsl(
 ## Component API Design
 
 ### Standard Props
+
 All components support these standard props:
 
 ```tsx
 interface BaseComponentProps {
   // Styling
   className?: string;
-  
+
   // Accessibility
   id?: string;
   "aria-label"?: string;
   "aria-describedby"?: string;
-  
+
   // State
   disabled?: boolean;
   loading?: boolean;
@@ -279,11 +278,12 @@ interface BaseComponentProps {
 ```
 
 ### Variant System
+
 ```tsx
 // Size variants
 type Size = "sm" | "md" | "lg";
 
-// Color variants  
+// Color variants
 type Variant = "primary" | "secondary" | "ghost" | "destructive";
 
 // State variants
