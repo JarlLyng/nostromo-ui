@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import * as React from 'react';
-import { ErrorBoundary, useErrorHandler } from '../error-boundary';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen, fireEvent, cleanup } from "@testing-library/react";
+import * as React from "react";
+import { ErrorBoundary, useErrorHandler } from "../error-boundary";
 
 // Mock console.error to avoid noise in tests
 const originalConsoleError = console.error;
@@ -22,13 +22,8 @@ afterEach(() => {
 // This prevents infinite loops when ErrorBoundary re-renders after catching error
 // Each component instance gets its own closure variable that persists across renders
 const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
-  // Use useState to track if error has been thrown (avoids refs during render rule)
-  const [hasThrown, setHasThrown] = React.useState(false);
-  
-  if (shouldThrow && !hasThrown) {
-    // Use setTimeout to avoid setState during render
-    setTimeout(() => setHasThrown(true), 0);
-    throw new Error('Test error');
+  if (shouldThrow) {
+    throw new Error("Test error");
   }
   return <div>No error</div>;
 };
@@ -37,39 +32,48 @@ const ThrowError = ({ shouldThrow }: { shouldThrow: boolean }) => {
 const ThrowErrorInEffect = ({ shouldThrow }: { shouldThrow: boolean }) => {
   React.useEffect(() => {
     if (shouldThrow) {
-       
-      throw new Error('Effect error');
+      throw new Error("Effect error");
     }
   }, [shouldThrow]);
 
   return <div>Effect component</div>;
 };
 
-describe('ErrorBoundary', () => {
-  it('renders children when there is no error', () => {
+describe("ErrorBoundary", () => {
+  it("renders children when there is no error", () => {
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={false} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('No error')).toBeInTheDocument();
+    expect(screen.getByText("No error")).toBeInTheDocument();
   });
 
-  it('renders fallback UI when there is an error', () => {
+  it("renders fallback UI when there is an error", () => {
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
-    expect(screen.getByText('An unexpected error occurred. Please try again.')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /try again/i })).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
+    expect(
+      screen.getByText("An unexpected error occurred. Please try again."),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /try again/i }),
+    ).toBeInTheDocument();
   });
 
-  it('renders custom fallback component when provided', () => {
-    const CustomFallback = ({ error, resetError }: { error?: Error; resetError: () => void }) => (
+  it("renders custom fallback component when provided", () => {
+    const CustomFallback = ({
+      error,
+      resetError,
+    }: {
+      error?: Error;
+      resetError: () => void;
+    }) => (
       <div>
         <h1>Custom Error: {error?.message}</h1>
         <button onClick={resetError}>Custom Reset</button>
@@ -79,91 +83,97 @@ describe('ErrorBoundary', () => {
     render(
       <ErrorBoundary fallback={CustomFallback}>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Custom Error: Test error')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /custom reset/i })).toBeInTheDocument();
+    expect(screen.getByText("Custom Error: Test error")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /custom reset/i }),
+    ).toBeInTheDocument();
   });
 
-  it('calls onError callback when error occurs', () => {
+  it("calls onError callback when error occurs", () => {
     const onError = vi.fn();
-    
+
     render(
       <ErrorBoundary onError={onError}>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     expect(onError).toHaveBeenCalledWith(
       expect.any(Error),
       expect.objectContaining({
         componentStack: expect.any(String),
-      })
+      }),
     );
   });
 
   // Note: ErrorBoundary reset test removed due to complex state management
   // The ErrorBoundary component works correctly in practice
 
-  it('shows error details in development mode', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'development';
+  it("shows error details in development mode", () => {
+    vi.stubEnv("NODE_ENV", "development");
 
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Error Details (Development)')).toBeInTheDocument();
+    expect(screen.getByText("Error Details (Development)")).toBeInTheDocument();
     expect(screen.getByText(/Test error/)).toBeInTheDocument();
 
-    process.env.NODE_ENV = originalEnv;
+    vi.unstubAllEnvs();
   });
 
-  it('does not show error details when not on localhost', () => {
+  it("does not show error details when not on localhost", () => {
     // Mock window.location.hostname to simulate production environment
     const originalLocation = window.location;
-    delete (window as Window & { location?: Location }).location;
-    window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
+    vi.stubGlobal("location", {
+      ...originalLocation,
+      hostname: "production.example.com",
+    });
 
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.queryByText('Error Details (Development)')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Error Details (Development)"),
+    ).not.toBeInTheDocument();
 
     // Restore original location
-    window.location = originalLocation;
+    vi.unstubAllGlobals();
   });
 
-  it('logs error to console in development mode', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'development';
+  it("logs error to console in development mode", () => {
+    vi.stubEnv("NODE_ENV", "development");
 
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     expect(console.error).toHaveBeenCalledWith(
-      'ErrorBoundary caught an error:',
+      "ErrorBoundary caught an error:",
       expect.any(Error),
-      expect.any(Object)
+      expect.any(Object),
     );
 
-    process.env.NODE_ENV = originalEnv;
+    vi.unstubAllEnvs();
   });
 
-  it('does not log error to console when not on localhost', () => {
+  it("does not log error to console when not on localhost", () => {
     // Mock window.location.hostname to simulate production environment
     const originalLocation = window.location;
-    delete (window as Window & { location?: Location }).location;
-    window.location = { ...originalLocation, hostname: 'production.example.com' } as Location;
+    vi.stubGlobal("location", {
+      ...originalLocation,
+      hostname: "production.example.com",
+    });
 
     // Clear any previous calls
     vi.clearAllMocks();
@@ -171,62 +181,62 @@ describe('ErrorBoundary', () => {
     render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     // When not on localhost, our ErrorBoundary should not log to console
     // But React itself might still log, so we check for our specific log
     expect(console.error).not.toHaveBeenCalledWith(
-      'ErrorBoundary caught an error:',
+      "ErrorBoundary caught an error:",
       expect.any(Error),
-      expect.any(Object)
+      expect.any(Object),
     );
 
     // Restore original location
-    window.location = originalLocation;
+    vi.unstubAllGlobals();
   });
 
-  it('handles errors in useEffect', () => {
+  it("handles errors in useEffect", () => {
     render(
       <ErrorBoundary>
         <ThrowErrorInEffect shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
   });
 
-  it('updates error state when new error occurs', () => {
+  it("updates error state when new error occurs", () => {
     const { rerender } = render(
       <ErrorBoundary>
         <ThrowError shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
 
     // Reset error
-    const resetButton = screen.getByRole('button', { name: /try again/i });
+    const resetButton = screen.getByRole("button", { name: /try again/i });
     fireEvent.click(resetButton);
 
     // Trigger new error
     rerender(
       <ErrorBoundary>
         <ThrowErrorInEffect shouldThrow={true} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
   });
 });
 
-describe('useErrorHandler', () => {
-  it('captures and throws error when captureError is called', () => {
+describe("useErrorHandler", () => {
+  it("captures and throws error when captureError is called", () => {
     const TestComponent = () => {
       const { captureError } = useErrorHandler();
-      
+
       const handleClick = () => {
-        captureError(new Error('Captured error'));
+        captureError(new Error("Captured error"));
       };
 
       return <button onClick={handleClick}>Trigger Error</button>;
@@ -235,21 +245,21 @@ describe('useErrorHandler', () => {
     render(
       <ErrorBoundary>
         <TestComponent />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
-    const button = screen.getByRole('button', { name: /trigger error/i });
+    const button = screen.getByRole("button", { name: /trigger error/i });
     fireEvent.click(button);
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
   });
 
-  it('resets error when resetError is called', () => {
+  it("resets error when resetError is called", () => {
     const TestComponent = () => {
       const { captureError, resetError } = useErrorHandler();
-      
+
       const handleError = () => {
-        captureError(new Error('Captured error'));
+        captureError(new Error("Captured error"));
       };
 
       const handleReset = () => {
@@ -267,19 +277,19 @@ describe('useErrorHandler', () => {
     render(
       <ErrorBoundary>
         <TestComponent />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
 
     // Trigger error
-    const errorButton = screen.getByRole('button', { name: /trigger error/i });
+    const errorButton = screen.getByRole("button", { name: /trigger error/i });
     fireEvent.click(errorButton);
 
-    expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
 
     // Reset error
-    const resetButton = screen.getByRole('button', { name: /try again/i });
+    const resetButton = screen.getByRole("button", { name: /try again/i });
     fireEvent.click(resetButton);
 
-    expect(screen.getByText('Trigger Error')).toBeInTheDocument();
+    expect(screen.getByText("Trigger Error")).toBeInTheDocument();
   });
 });

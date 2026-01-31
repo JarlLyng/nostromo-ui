@@ -2,29 +2,29 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
-const radioGroupVariants = cva(
-  "grid gap-2",
-  {
-    variants: {
-      orientation: {
-        vertical: "grid-cols-1",
-        horizontal: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4",
-      },
+const radioGroupVariants = cva("grid gap-2", {
+  variants: {
+    orientation: {
+      vertical: "grid-cols-1",
+      horizontal: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4",
     },
-    defaultVariants: {
-      orientation: "vertical",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    orientation: "vertical",
+  },
+});
 
 const radioItemVariants = cva(
   "peer h-4 w-4 shrink-0 rounded-full border border-border shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary transition-all duration-200",
   {
     variants: {
       variant: {
-        default: "border-border hover:border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary",
-        error: "border-destructive focus-visible:ring-destructive data-[state=checked]:bg-destructive data-[state=checked]:border-destructive",
-        success: "border-success-500 focus-visible:ring-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:border-success-500",
+        default:
+          "border-border hover:border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary",
+        error:
+          "border-destructive focus-visible:ring-destructive data-[state=checked]:bg-destructive data-[state=checked]:border-destructive",
+        success:
+          "border-success-500 focus-visible:ring-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:border-success-500",
       },
       size: {
         default: "h-4 w-4",
@@ -36,11 +36,12 @@ const radioItemVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface RadioGroupProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof radioGroupVariants> {
   /**
    * Whether the radio group is in an error state
@@ -84,7 +85,8 @@ export interface RadioGroupProps
 }
 
 export interface RadioItemProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+  extends
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof radioItemVariants> {
   /**
    * The value of the radio item
@@ -102,21 +104,24 @@ export interface RadioItemProps
 }
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
-  ({ 
-    className, 
-    error, 
-    helperText, 
-    label, 
-    required, 
-    orientation,
-    name,
-    defaultValue,
-    value,
-    onValueChange,
-    disabled,
-    children,
-    ...props 
-  }, ref) => {
+  (
+    {
+      className,
+      error,
+      helperText,
+      label,
+      required,
+      orientation,
+      name,
+      defaultValue,
+      value,
+      onValueChange,
+      disabled,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const radioGroupId = React.useId();
     const labelId = label ? `${radioGroupId}-label` : undefined;
     const helperTextId = helperText ? `${radioGroupId}-helper` : undefined;
@@ -131,7 +136,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label 
+          <label
             id={labelId}
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
@@ -144,10 +149,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           className={cn(radioGroupVariants({ orientation, className }))}
           role="radiogroup"
           aria-labelledby={labelId}
-          aria-describedby={cn(
-            helperTextId,
-            errorId
-          ) || undefined}
+          aria-describedby={cn(helperTextId, errorId) || undefined}
           aria-invalid={error}
           {...props}
         >
@@ -155,18 +157,17 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
             if (React.isValidElement<RadioItemProps>(child)) {
               // Use controlled mode if value is provided, otherwise use uncontrolled
               const isControlled = value !== undefined;
-              
+
               const childProps: Partial<RadioItemProps> = {
                 name,
                 disabled: Boolean(disabled ?? child.props.disabled),
                 variant: error ? "error" : child.props.variant,
-                ...(isControlled 
+                ...(isControlled
                   ? { checked: value === child.props.value }
-                  : { defaultChecked: defaultValue === child.props.value }
-                ),
+                  : { defaultChecked: defaultValue === child.props.value }),
                 onChange: handleChange,
               };
-              
+
               return React.cloneElement(child, childProps);
             }
             return child;
@@ -177,7 +178,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
             id={helperTextId}
             className={cn(
               "text-sm text-muted-foreground",
-              error && "text-destructive"
+              error && "text-destructive",
             )}
           >
             {helperText}
@@ -185,23 +186,27 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         )}
       </div>
     );
-  }
+  },
 );
 RadioGroup.displayName = "RadioGroup";
 
 const RadioItem = React.forwardRef<HTMLInputElement, RadioItemProps>(
-  ({ 
-    className, 
-    variant, 
-    size: radioSize, 
-    value,
-    label,
-    disabled,
-    id,
-    onChange,
-    ...props 
-  }, ref) => {
-    const radioId = id || React.useId();
+  (
+    {
+      className,
+      variant,
+      size: radioSize,
+      value,
+      label,
+      disabled,
+      id,
+      onChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const generatedId = React.useId();
+    const radioId = id || generatedId;
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -213,7 +218,9 @@ const RadioItem = React.forwardRef<HTMLInputElement, RadioItemProps>(
       <div className="flex items-center space-x-2">
         <input
           type="radio"
-          className={cn(radioItemVariants({ variant, size: radioSize, className }))}
+          className={cn(
+            radioItemVariants({ variant, size: radioSize, className }),
+          )}
           ref={ref}
           id={radioId}
           value={value}
@@ -231,7 +238,7 @@ const RadioItem = React.forwardRef<HTMLInputElement, RadioItemProps>(
         )}
       </div>
     );
-  }
+  },
 );
 RadioItem.displayName = "RadioItem";
 

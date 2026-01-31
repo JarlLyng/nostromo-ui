@@ -1,4 +1,10 @@
 import nextra from 'nextra'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 
 const withNextra = nextra({
   theme: 'nextra-theme-docs',
@@ -18,6 +24,8 @@ const basePath =
 
 /** @type {import('next').NextConfig} */
 export default withNextra({
+  outputFileTracingRoot: path.join(__dirname, '../'),
+  transpilePackages: ['@jarllyng/nostromo'],
   images: { unoptimized: true },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   output: 'export',

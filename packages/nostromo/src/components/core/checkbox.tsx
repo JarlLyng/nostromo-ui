@@ -7,9 +7,12 @@ const checkboxVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border hover:border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary",
-        error: "border-destructive focus-visible:ring-destructive data-[state=checked]:bg-destructive data-[state=checked]:border-destructive",
-        success: "border-success-500 focus-visible:ring-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:border-success-500",
+        default:
+          "border-border hover:border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary",
+        error:
+          "border-destructive focus-visible:ring-destructive data-[state=checked]:bg-destructive data-[state=checked]:border-destructive",
+        success:
+          "border-success-500 focus-visible:ring-success-500 data-[state=checked]:bg-success-500 data-[state=checked]:border-success-500",
       },
       size: {
         default: "h-4 w-4",
@@ -21,11 +24,12 @@ const checkboxVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+  extends
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof checkboxVariants> {
   /**
    * Whether the checkbox is in an error state
@@ -48,18 +52,22 @@ export interface CheckboxProps
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ 
-    className, 
-    error, 
-    helperText, 
-    label, 
-    required, 
-    id, 
-    variant, 
-    size, 
-    ...props 
-  }, ref) => {
-    const checkboxId = id || React.useId();
+  (
+    {
+      className,
+      error,
+      helperText,
+      label,
+      required,
+      id,
+      variant,
+      size,
+      ...props
+    },
+    ref,
+  ) => {
+    const generatedId = React.useId();
+    const checkboxId = id || generatedId;
     const helperTextId = helperText ? `${checkboxId}-helper` : undefined;
     const errorId = error ? `${checkboxId}-error` : undefined;
 
@@ -72,14 +80,11 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <input
             type="checkbox"
             className={cn(
-              checkboxVariants({ variant: checkboxVariant, size, className })
+              checkboxVariants({ variant: checkboxVariant, size, className }),
             )}
             ref={ref}
             id={checkboxId}
-            aria-describedby={cn(
-              helperTextId,
-              errorId
-            ) || undefined}
+            aria-describedby={cn(helperTextId, errorId) || undefined}
             aria-invalid={error}
             required={required}
             {...props}
@@ -99,7 +104,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             id={helperTextId}
             className={cn(
               "text-sm text-muted-foreground",
-              error && "text-destructive"
+              error && "text-destructive",
             )}
           >
             {helperText}
@@ -107,7 +112,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </div>
     );
-  }
+  },
 );
 Checkbox.displayName = "Checkbox";
 

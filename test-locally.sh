@@ -57,7 +57,7 @@ print_status "Build completed"
 # 6. Check bundle sizes
 echo ""
 echo "📊 Checking bundle sizes..."
-cd packages/ui-core
+cd packages/nostromo
 pnpm size
 print_status "Bundle size checks passed"
 

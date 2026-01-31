@@ -13,46 +13,47 @@ const inputVariants = cva(
           "border-border shadow-sm",
           "hover:border-border hover:shadow-sm",
           "focus-visible:ring-ring/20 focus-visible:border-ring",
-          "focus-visible:shadow-md"
+          "focus-visible:shadow-md",
         ],
         // Enhanced error with better feedback
         error: [
           "border-destructive shadow-sm",
           "hover:border-destructive/80 hover:shadow-sm",
           "focus-visible:ring-destructive/20 focus-visible:border-destructive",
-          "focus-visible:shadow-md"
+          "focus-visible:shadow-md",
         ],
         // Enhanced success with better feedback
         success: [
           "border-success-500 shadow-sm",
           "hover:border-success-600 hover:shadow-sm",
           "focus-visible:ring-success-500/20 focus-visible:border-success-500",
-          "focus-visible:shadow-md"
+          "focus-visible:shadow-md",
         ],
         // Subtle variant for less prominent inputs
         subtle: [
           "border-border bg-muted/50",
           "hover:border-border hover:bg-muted/80",
           "focus-visible:ring-ring/10 focus-visible:border-ring",
-          "focus-visible:bg-background"
-        ]
+          "focus-visible:bg-background",
+        ],
       },
       inputSize: {
         // Improved spacing for consistency
         sm: "h-8 px-2.5 text-xs",
         default: "h-10 px-3 text-sm",
-        lg: "h-11 px-4 text-base"
-      }
+        lg: "h-11 px-4 text-base",
+      },
     },
     defaultVariants: {
       variant: "default",
-      inputSize: "default"
-    }
-  }
+      inputSize: "default",
+    },
+  },
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+  extends
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
     VariantProps<typeof inputVariants> {
   error?: boolean;
   success?: boolean;
@@ -61,13 +62,32 @@ export interface InputProps
 }
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, success, helperText, label, id, variant, inputSize, ...props }, ref) => {
-    const inputId = id || React.useId();
+  (
+    {
+      className,
+      type,
+      error,
+      success,
+      helperText,
+      label,
+      id,
+      variant,
+      inputSize,
+      ...props
+    },
+    ref,
+  ) => {
+    const generatedId = React.useId();
+    const inputId = id || generatedId;
     const helperTextId = helperText ? `${inputId}-helper` : undefined;
     const errorId = error ? `${inputId}-error` : undefined;
 
     // Determine variant based on state
-    const inputVariant = error ? "error" : success ? "success" : variant || "default";
+    const inputVariant = error
+      ? "error"
+      : success
+        ? "success"
+        : variant || "default";
 
     return (
       <div className="space-y-2">
@@ -81,7 +101,9 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           type={type}
-          className={cn(inputVariants({ variant: inputVariant, inputSize, className }))}
+          className={cn(
+            inputVariants({ variant: inputVariant, inputSize, className }),
+          )}
           ref={ref}
           id={inputId}
           aria-describedby={cn(helperTextId, errorId) || undefined}
@@ -94,7 +116,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               "text-sm text-muted-foreground",
               error && "text-destructive",
-              success && "text-success"
+              success && "text-success",
             )}
           >
             {helperText}
@@ -102,7 +124,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 InputComponent.displayName = "Input";
 

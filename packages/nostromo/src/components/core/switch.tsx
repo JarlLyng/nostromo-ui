@@ -25,7 +25,7 @@ const switchVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const switchThumbVariants = cva(
@@ -41,11 +41,12 @@ const switchThumbVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export interface SwitchProps
-  extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
+  extends
+    React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
     VariantProps<typeof switchVariants> {
   label?: string;
   helperText?: string;
@@ -70,9 +71,10 @@ const Switch = React.forwardRef<
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const switchId = id || React.useId();
+    const generatedId = React.useId();
+    const switchId = id || generatedId;
     const helperTextId = helperText ? `${switchId}-helper` : undefined;
     const errorId = error ? `${switchId}-error` : undefined;
 
@@ -83,7 +85,10 @@ const Switch = React.forwardRef<
         <SwitchPrimitive.Root
           ref={ref}
           id={switchId}
-          className={cn(switchVariants({ variant: switchVariant, size }), className)}
+          className={cn(
+            switchVariants({ variant: switchVariant, size }),
+            className,
+          )}
           aria-describedby={cn(helperTextId, errorId) || undefined}
           aria-invalid={error}
           aria-required={required}
@@ -108,7 +113,7 @@ const Switch = React.forwardRef<
               id={helperTextId}
               className={cn(
                 "text-sm text-muted-foreground",
-                error && "text-destructive"
+                error && "text-destructive",
               )}
             >
               {helperText}
@@ -117,7 +122,7 @@ const Switch = React.forwardRef<
         </div>
       </div>
     );
-  }
+  },
 );
 Switch.displayName = SwitchPrimitive.Root.displayName;
 

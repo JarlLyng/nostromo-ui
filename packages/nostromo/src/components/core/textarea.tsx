@@ -24,11 +24,12 @@ const textareaVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  extends
+    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     VariantProps<typeof textareaVariants> {
   label?: string;
   helperText?: string;
@@ -51,9 +52,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const textareaId = id || React.useId();
+    const generatedId = React.useId();
+    const textareaId = id || generatedId;
     const helperTextId = helperText ? `${textareaId}-helper` : undefined;
     const errorId = error ? `${textareaId}-error` : undefined;
 
@@ -113,7 +115,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={cn(
             textareaVariants({ variant: textareaVariant, size }),
             autoResize && "resize-none",
-            className
+            className,
           )}
           aria-describedby={cn(helperTextId, errorId) || undefined}
           aria-invalid={error}
@@ -126,7 +128,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             id={helperTextId}
             className={cn(
               "text-sm text-muted-foreground",
-              error && "text-destructive"
+              error && "text-destructive",
             )}
           >
             {helperText}
@@ -134,7 +136,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  }
+  },
 );
 Textarea.displayName = "Textarea";
 

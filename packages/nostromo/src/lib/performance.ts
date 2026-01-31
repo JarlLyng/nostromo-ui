@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 interface PerformanceMetrics {
   renderTime: number;
@@ -19,47 +19,53 @@ interface PerformanceOptions {
  */
 export function usePerformanceMonitor(
   componentName: string,
-  options: PerformanceOptions = {}
+  options: PerformanceOptions = {},
 ) {
   const {
-    enabled = typeof window !== 'undefined' && window.location?.hostname === 'localhost',
+    enabled = typeof window !== "undefined" &&
+      window.location?.hostname === "localhost",
     logToConsole = true,
     onMetric,
     threshold = 0,
   } = options;
 
   const renderCount = React.useRef<number>(0);
-  const markName = React.useRef<string>(`${componentName}-render-${Date.now()}`);
+  const markName = React.useRef<string>(
+    `${componentName}-render-${Date.now()}`,
+  );
 
   React.useEffect(() => {
-    if (!enabled || typeof window === 'undefined' || !window.performance) return;
+    if (!enabled || typeof window === "undefined" || !window.performance)
+      return;
 
     renderCount.current += 1;
     const currentMark = `${markName.current}-${renderCount.current}`;
-    
+
     // Mark start of render
     performance.mark(`${currentMark}-start`);
 
     return () => {
       // Mark end of render
       performance.mark(`${currentMark}-end`);
-      
+
       try {
         // Measure the time between marks
         performance.measure(
           `${currentMark}-measure`,
           `${currentMark}-start`,
-          `${currentMark}-end`
+          `${currentMark}-end`,
         );
 
-        const measure = performance.getEntriesByName(`${currentMark}-measure`)[0];
+        const measure = performance.getEntriesByName(
+          `${currentMark}-measure`,
+        )[0];
         const renderTime = measure ? measure.duration : 0;
 
         // Clean up marks and measures
         performance.clearMarks(`${currentMark}-start`);
         performance.clearMarks(`${currentMark}-end`);
         performance.clearMeasures(`${currentMark}-measure`);
-        
+
         if (renderTime > threshold) {
           const metric: PerformanceMetrics = {
             renderTime,
@@ -68,7 +74,9 @@ export function usePerformanceMonitor(
           };
 
           if (logToConsole) {
-            console.log(`[Performance] ${componentName}: ${renderTime.toFixed(2)}ms (render #${renderCount.current})`);
+            console.log(
+              `[Performance] ${componentName}: ${renderTime.toFixed(2)}ms (render #${renderCount.current})`,
+            );
           }
 
           onMetric?.(metric);
@@ -76,7 +84,10 @@ export function usePerformanceMonitor(
       } catch (error) {
         // Silently fail if performance API is not available
         if (logToConsole && enabled) {
-          console.warn(`[Performance] Failed to measure ${componentName}:`, error);
+          console.warn(
+            `[Performance] Failed to measure ${componentName}:`,
+            error,
+          );
         }
       }
     };
@@ -94,26 +105,34 @@ export function usePerformanceMonitor(
 export function withPerformanceMonitoring<P extends object>(
   Component: React.ComponentType<P>,
   componentName?: string,
-  options?: PerformanceOptions
+  options?: PerformanceOptions,
 ) {
   const WrappedComponent = React.forwardRef<unknown, P>((props, ref) => {
-    const name = componentName || Component.displayName || Component.name || 'Unknown';
+    const name =
+      componentName || Component.displayName || Component.name || "Unknown";
     usePerformanceMonitor(name, options);
-    
+
     // Use callback ref to avoid accessing ref.current during render
-    const refCallback = React.useCallback((instance: unknown) => {
-      if (typeof ref === 'function') {
-        ref(instance);
-      } else if (ref && 'current' in ref) {
-        (ref as React.MutableRefObject<unknown>).current = instance;
-      }
-    }, [ref]);
-    
-    return React.createElement(Component, { ...(props as P), ref: refCallback } as P & { ref?: React.Ref<unknown> });
+    const refCallback = React.useCallback(
+      (instance: unknown) => {
+        if (typeof ref === "function") {
+          ref(instance);
+        } else if (ref && "current" in ref) {
+          (ref as React.MutableRefObject<unknown>).current = instance;
+        }
+      },
+      [ref],
+    );
+
+    // eslint-disable-next-line react-hooks/refs
+    return React.createElement(Component, {
+      ...(props as P),
+      ref: refCallback,
+    } as P & { ref?: React.Ref<unknown> });
   });
-  
+
   WrappedComponent.displayName = `withPerformanceMonitoring(${Component.displayName || Component.name})`;
-  
+
   return WrappedComponent;
 }
 
@@ -124,17 +143,17 @@ export function useBundleSize() {
   const [bundleSize, setBundleSize] = React.useState<number | null>(null);
 
   React.useEffect(() => {
-    if (typeof window !== 'undefined' && 'performance' in window) {
+    if (typeof window !== "undefined" && "performance" in window) {
       // This is a simplified approach - in a real app you'd use webpack-bundle-analyzer
       const scripts = Array.from(document.scripts);
       const totalSize = scripts.reduce((acc, script) => {
         if (script.src) {
           // This is just an estimate - actual bundle analysis would be more accurate
-          return acc + (script.src.includes('nostromo') ? 10000 : 0);
+          return acc + (script.src.includes("nostromo") ? 10000 : 0);
         }
         return acc;
       }, 0);
-      
+
       setBundleSize(totalSize);
     }
   }, []);
@@ -153,11 +172,23 @@ export function useMemoryMonitor() {
   } | null>(null);
 
   React.useEffect(() => {
-    if (typeof window === 'undefined' || window.location?.hostname !== 'localhost') return;
-    if (typeof window === 'undefined' || !('memory' in performance)) return;
+    if (
+      typeof window === "undefined" ||
+      window.location?.hostname !== "localhost"
+    )
+      return;
+    if (typeof window === "undefined" || !("memory" in performance)) return;
 
     const updateMemoryInfo = () => {
-      const memory = (performance as Performance & { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+      const memory = (
+        performance as Performance & {
+          memory?: {
+            usedJSHeapSize: number;
+            totalJSHeapSize: number;
+            jsHeapSizeLimit: number;
+          };
+        }
+      ).memory;
       if (memory) {
         setMemoryInfo({
           usedJSHeapSize: memory.usedJSHeapSize,
@@ -185,7 +216,7 @@ export const performanceUtils = {
    */
   debounce: <T extends (...args: unknown[]) => unknown>(
     func: T,
-    wait: number
+    wait: number,
   ): ((...args: Parameters<T>) => void) => {
     let timeout: ReturnType<typeof setTimeout>;
     return (...args: Parameters<T>) => {
@@ -199,7 +230,7 @@ export const performanceUtils = {
    */
   throttle: <T extends (...args: unknown[]) => unknown>(
     func: T,
-    limit: number
+    limit: number,
   ): ((...args: Parameters<T>) => void) => {
     let inThrottle: boolean;
     return (...args: Parameters<T>) => {

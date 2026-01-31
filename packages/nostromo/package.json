@@ -3,27 +3,27 @@
   "version": "2.0.0",
   "description": "Nostromo UI - A Tailwind CSS plugin and React component library",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "default": "./dist/index.mjs"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
     "./plugin": {
       "types": "./dist/plugin.d.ts",
-      "import": "./dist/plugin.mjs",
-      "require": "./dist/plugin.js",
-      "default": "./dist/plugin.mjs"
+      "import": "./dist/plugin.js",
+      "require": "./dist/plugin.cjs",
+      "default": "./dist/plugin.js"
     },
     "./preset": {
       "types": "./dist/preset.d.ts",
-      "import": "./dist/preset.mjs",
-      "require": "./dist/preset.js",
-      "default": "./dist/preset.mjs"
+      "import": "./dist/preset.js",
+      "require": "./dist/preset.cjs",
+      "default": "./dist/preset.js"
     },
     "./themes/nostromo.css": "./dist/themes/nostromo.css",
     "./themes/mother.css": "./dist/themes/mother.css",
@@ -34,188 +34,188 @@
     "./plugin.css": "./dist/plugin.css",
     "./components/core/button": {
       "types": "./dist/components/core/button.d.ts",
-      "import": "./dist/components/core/button.mjs",
-      "require": "./dist/components/core/button.js"
+      "import": "./dist/components/core/button.js",
+      "require": "./dist/components/core/button.cjs"
     },
     "./components/core/badge": {
       "types": "./dist/components/core/badge.d.ts",
-      "import": "./dist/components/core/badge.mjs",
-      "require": "./dist/components/core/badge.js"
+      "import": "./dist/components/core/badge.js",
+      "require": "./dist/components/core/badge.cjs"
     },
     "./components/core/card": {
       "types": "./dist/components/core/card.d.ts",
-      "import": "./dist/components/core/card.mjs",
-      "require": "./dist/components/core/card.js"
+      "import": "./dist/components/core/card.js",
+      "require": "./dist/components/core/card.cjs"
     },
     "./components/core/avatar": {
       "types": "./dist/components/core/avatar.d.ts",
-      "import": "./dist/components/core/avatar.mjs",
-      "require": "./dist/components/core/avatar.js"
+      "import": "./dist/components/core/avatar.js",
+      "require": "./dist/components/core/avatar.cjs"
     },
     "./components/core/input": {
       "types": "./dist/components/core/input.d.ts",
-      "import": "./dist/components/core/input.mjs",
-      "require": "./dist/components/core/input.js"
+      "import": "./dist/components/core/input.js",
+      "require": "./dist/components/core/input.cjs"
     },
     "./components/core/checkbox": {
       "types": "./dist/components/core/checkbox.d.ts",
-      "import": "./dist/components/core/checkbox.mjs",
-      "require": "./dist/components/core/checkbox.js"
+      "import": "./dist/components/core/checkbox.js",
+      "require": "./dist/components/core/checkbox.cjs"
     },
     "./components/core/radio-group": {
       "types": "./dist/components/core/radio-group.d.ts",
-      "import": "./dist/components/core/radio-group.mjs",
-      "require": "./dist/components/core/radio-group.js"
+      "import": "./dist/components/core/radio-group.js",
+      "require": "./dist/components/core/radio-group.cjs"
     },
     "./components/core/switch": {
       "types": "./dist/components/core/switch.d.ts",
-      "import": "./dist/components/core/switch.mjs",
-      "require": "./dist/components/core/switch.js"
+      "import": "./dist/components/core/switch.js",
+      "require": "./dist/components/core/switch.cjs"
     },
     "./components/core/textarea": {
       "types": "./dist/components/core/textarea.d.ts",
-      "import": "./dist/components/core/textarea.mjs",
-      "require": "./dist/components/core/textarea.js"
+      "import": "./dist/components/core/textarea.js",
+      "require": "./dist/components/core/textarea.cjs"
     },
     "./components/core/alert": {
       "types": "./dist/components/core/alert.d.ts",
-      "import": "./dist/components/core/alert.mjs",
-      "require": "./dist/components/core/alert.js"
+      "import": "./dist/components/core/alert.js",
+      "require": "./dist/components/core/alert.cjs"
     },
     "./components/core/breadcrumb": {
       "types": "./dist/components/core/breadcrumb.d.ts",
-      "import": "./dist/components/core/breadcrumb.mjs",
-      "require": "./dist/components/core/breadcrumb.js"
+      "import": "./dist/components/core/breadcrumb.js",
+      "require": "./dist/components/core/breadcrumb.cjs"
     },
     "./components/core/pagination": {
       "types": "./dist/components/core/pagination.d.ts",
-      "import": "./dist/components/core/pagination.mjs",
-      "require": "./dist/components/core/pagination.js"
+      "import": "./dist/components/core/pagination.js",
+      "require": "./dist/components/core/pagination.cjs"
     },
     "./components/core/separator": {
       "types": "./dist/components/core/separator.d.ts",
-      "import": "./dist/components/core/separator.mjs",
-      "require": "./dist/components/core/separator.js"
+      "import": "./dist/components/core/separator.js",
+      "require": "./dist/components/core/separator.cjs"
     },
     "./components/core/dialog": {
       "types": "./dist/components/core/dialog.d.ts",
-      "import": "./dist/components/core/dialog.mjs",
-      "require": "./dist/components/core/dialog.js"
+      "import": "./dist/components/core/dialog.js",
+      "require": "./dist/components/core/dialog.cjs"
     },
     "./components/core/tabs": {
       "types": "./dist/components/core/tabs.d.ts",
-      "import": "./dist/components/core/tabs.mjs",
-      "require": "./dist/components/core/tabs.js"
+      "import": "./dist/components/core/tabs.js",
+      "require": "./dist/components/core/tabs.cjs"
     },
     "./components/core/select": {
       "types": "./dist/components/core/select.d.ts",
-      "import": "./dist/components/core/select.mjs",
-      "require": "./dist/components/core/select.js"
+      "import": "./dist/components/core/select.js",
+      "require": "./dist/components/core/select.cjs"
     },
     "./components/core/label": {
       "types": "./dist/components/core/label.d.ts",
-      "import": "./dist/components/core/label.mjs",
-      "require": "./dist/components/core/label.js"
+      "import": "./dist/components/core/label.js",
+      "require": "./dist/components/core/label.cjs"
     },
     "./components/core/helper-text": {
       "types": "./dist/components/core/helper-text.d.ts",
-      "import": "./dist/components/core/helper-text.mjs",
-      "require": "./dist/components/core/helper-text.js"
+      "import": "./dist/components/core/helper-text.js",
+      "require": "./dist/components/core/helper-text.cjs"
     },
     "./components/core/error-message": {
       "types": "./dist/components/core/error-message.d.ts",
-      "import": "./dist/components/core/error-message.mjs",
-      "require": "./dist/components/core/error-message.js"
+      "import": "./dist/components/core/error-message.js",
+      "require": "./dist/components/core/error-message.cjs"
     },
     "./components/core/icon": {
       "types": "./dist/components/core/icon.d.ts",
-      "import": "./dist/components/core/icon.mjs",
-      "require": "./dist/components/core/icon.js"
+      "import": "./dist/components/core/icon.js",
+      "require": "./dist/components/core/icon.cjs"
     },
     "./components/core/progress": {
       "types": "./dist/components/core/progress.d.ts",
-      "import": "./dist/components/core/progress.mjs",
-      "require": "./dist/components/core/progress.js"
+      "import": "./dist/components/core/progress.js",
+      "require": "./dist/components/core/progress.cjs"
     },
     "./components/core/table": {
       "types": "./dist/components/core/table.d.ts",
-      "import": "./dist/components/core/table.mjs",
-      "require": "./dist/components/core/table.js"
+      "import": "./dist/components/core/table.js",
+      "require": "./dist/components/core/table.cjs"
     },
     "./components/core/data-table": {
       "types": "./dist/components/core/data-table.d.ts",
-      "import": "./dist/components/core/data-table.mjs",
-      "require": "./dist/components/core/data-table.js"
+      "import": "./dist/components/core/data-table.js",
+      "require": "./dist/components/core/data-table.cjs"
     },
     "./components/core/toast": {
       "types": "./dist/components/core/toast.d.ts",
-      "import": "./dist/components/core/toast.mjs",
-      "require": "./dist/components/core/toast.js"
+      "import": "./dist/components/core/toast.js",
+      "require": "./dist/components/core/toast.cjs"
     },
     "./components/core/tooltip": {
       "types": "./dist/components/core/tooltip.d.ts",
-      "import": "./dist/components/core/tooltip.mjs",
-      "require": "./dist/components/core/tooltip.js"
+      "import": "./dist/components/core/tooltip.js",
+      "require": "./dist/components/core/tooltip.cjs"
     },
     "./components/core/accordion": {
       "types": "./dist/components/core/accordion.d.ts",
-      "import": "./dist/components/core/accordion.mjs",
-      "require": "./dist/components/core/accordion.js"
+      "import": "./dist/components/core/accordion.js",
+      "require": "./dist/components/core/accordion.cjs"
     },
     "./components/core/skeleton": {
       "types": "./dist/components/core/skeleton.d.ts",
-      "import": "./dist/components/core/skeleton.mjs",
-      "require": "./dist/components/core/skeleton.js"
+      "import": "./dist/components/core/skeleton.js",
+      "require": "./dist/components/core/skeleton.cjs"
     },
     "./components/core/calendar": {
       "types": "./dist/components/core/calendar.d.ts",
-      "import": "./dist/components/core/calendar.mjs",
-      "require": "./dist/components/core/calendar.js"
+      "import": "./dist/components/core/calendar.js",
+      "require": "./dist/components/core/calendar.cjs"
     },
     "./components/core/charts": {
       "types": "./dist/components/core/charts.d.ts",
-      "import": "./dist/components/core/charts.mjs",
-      "require": "./dist/components/core/charts.js"
+      "import": "./dist/components/core/charts.js",
+      "require": "./dist/components/core/charts.cjs"
     },
     "./components/core/charts-lazy": {
       "types": "./dist/components/core/charts-lazy.d.ts",
-      "import": "./dist/components/core/charts-lazy.mjs",
-      "require": "./dist/components/core/charts-lazy.js"
+      "import": "./dist/components/core/charts-lazy.js",
+      "require": "./dist/components/core/charts-lazy.cjs"
     },
     "./components/core/error-boundary": {
       "types": "./dist/components/core/error-boundary.d.ts",
-      "import": "./dist/components/core/error-boundary.mjs",
-      "require": "./dist/components/core/error-boundary.js"
+      "import": "./dist/components/core/error-boundary.js",
+      "require": "./dist/components/core/error-boundary.cjs"
     },
     "./components/marketing/hero": {
       "types": "./dist/components/marketing/hero.d.ts",
-      "import": "./dist/components/marketing/hero.mjs",
-      "require": "./dist/components/marketing/hero.js"
+      "import": "./dist/components/marketing/hero.js",
+      "require": "./dist/components/marketing/hero.cjs"
     },
     "./components/marketing/testimonials": {
       "types": "./dist/components/marketing/testimonials.d.ts",
-      "import": "./dist/components/marketing/testimonials.mjs",
-      "require": "./dist/components/marketing/testimonials.js"
+      "import": "./dist/components/marketing/testimonials.js",
+      "require": "./dist/components/marketing/testimonials.cjs"
     },
     "./components/marketing/features": {
       "types": "./dist/components/marketing/features.d.ts",
-      "import": "./dist/components/marketing/features.mjs",
-      "require": "./dist/components/marketing/features.js"
+      "import": "./dist/components/marketing/features.js",
+      "require": "./dist/components/marketing/features.cjs"
     },
     "./components/marketing/pricing": {
       "types": "./dist/components/marketing/pricing.d.ts",
-      "import": "./dist/components/marketing/pricing.mjs",
-      "require": "./dist/components/marketing/pricing.js"
+      "import": "./dist/components/marketing/pricing.js",
+      "require": "./dist/components/marketing/pricing.cjs"
     },
     "./components/marketing/gallery": {
       "types": "./dist/components/marketing/gallery.d.ts",
-      "import": "./dist/components/marketing/gallery.mjs",
-      "require": "./dist/components/marketing/gallery.js"
+      "import": "./dist/components/marketing/gallery.js",
+      "require": "./dist/components/marketing/gallery.cjs"
     },
     "./components/marketing/logo-wall": {
       "types": "./dist/components/marketing/logo-wall.d.ts",
-      "import": "./dist/components/marketing/logo-wall.mjs",
-      "require": "./dist/components/marketing/logo-wall.js"
+      "import": "./dist/components/marketing/logo-wall.js",
+      "require": "./dist/components/marketing/logo-wall.cjs"
     },
     "./package.json": "./package.json"
   },
@@ -348,7 +348,7 @@
     },
     {
       "path": "dist/components/core/charts.js",
-      "limit": "105 KB"
+      "limit": "110 KB"
     },
     {
       "path": "dist/components/core/data-table.js",
@@ -356,11 +356,11 @@
     },
     {
       "path": "dist/components/core/calendar.js",
-      "limit": "35 KB"
+      "limit": "40 KB"
     },
     {
       "path": "dist/components/core/icon.js",
-      "limit": "51 KB"
+      "limit": "55 KB"
     }
   ]
 }

@@ -4,6 +4,8 @@
 # This script runs the same commands as CI to catch errors before pushing
 
 set -e  # Exit on error
+export CI=true  # Simulate CI environment to enable higher performance thresholds and other CI-specific behavior
+
 
 echo "🔧 Simulating GitHub Actions CI Environment"
 echo "=========================================="
@@ -53,7 +55,7 @@ print_status "Type check passed"
 
 echo ""
 echo "🧪 Step 4: Running tests..."
-cd packages/ui-core
+cd packages/nostromo
 pnpm test:run
 print_status "Tests passed"
 cd ../..
@@ -65,14 +67,14 @@ print_status "Build completed"
 
 echo ""
 echo "📊 Step 6: Checking bundle sizes..."
-cd packages/ui-core
+cd packages/nostromo
 pnpm size
 print_status "Bundle size checks passed"
 cd ../..
 
 echo ""
 echo "♿ Step 7: Running accessibility tests..."
-cd packages/ui-core
+cd packages/nostromo
 pnpm test:a11y
 print_status "Accessibility tests passed"
 cd ../..
