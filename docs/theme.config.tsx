@@ -15,7 +15,6 @@ const basePath =
 const config: DocsThemeConfig = {
   logo: (
     <div className="flex items-center gap-2">
-      <ScrollProgress />
       <img
         src={`${basePath}/logo-black.svg`}
         alt="Nostromo UI"
@@ -48,7 +47,12 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/JarlLyng/nostromo-ui',
   footer: {
-    text: 'MIT © 2025 Nostromo UI. Built with Nextra.',
+    text: (
+      <div className="flex flex-col gap-4">
+        <ScrollProgress />
+        <span>MIT © 2025 Nostromo UI. Built with Nextra.</span>
+      </div>
+    ),
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
