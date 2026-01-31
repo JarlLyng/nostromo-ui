@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 
 export function ScrollProgress() {
     const [progress, setProgress] = useState(0);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        setIsMounted(true);
         const handleScroll = () => {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight - windowHeight;
             const scrollTop = window.scrollY;
-            const scrollPercent = (scrollTop / documentHeight) * 100;
-            setProgress(scrollPercent);
+            const scrollPercent = (scrollTop / (documentHeight || 1)) * 100;
+            setProgress(Math.min(100, Math.max(0, scrollPercent)));
         };
 
         window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    if (!isMounted) return null;
 
     return (
         <div
