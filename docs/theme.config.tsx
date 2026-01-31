@@ -1,3 +1,4 @@
+import { ScrollProgress } from './components/ScrollProgress'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 // basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
@@ -14,6 +15,7 @@ const basePath =
 const config: DocsThemeConfig = {
   logo: (
     <div className="flex items-center gap-2">
+      <ScrollProgress />
       <img
         src={`${basePath}/logo-black.svg`}
         alt="Nostromo UI"
@@ -32,6 +34,9 @@ const config: DocsThemeConfig = {
       />
       <span style={{ fontWeight: 600, fontSize: '1.2rem' }}>
         Nostromo UI
+      </span>
+      <span className="ml-2 px-2 py-0.5 text-[10px] font-bold rounded-full bg-success/10 text-success border border-success/30 uppercase tracking-tighter">
+        v1.0.0 Stable
       </span>
     </div>
   ),

@@ -36,35 +36,36 @@ export interface LiveCodeProps {
   storyId?: string
 }
 
-export default function LiveCodeClient({ 
-  code, 
-  noInline = false, 
+export default function LiveCodeClient({
+  code,
+  noInline = false,
   theme = 'nostromo',
   colorScheme = 'light',
-  storyId 
+  storyId
 }: LiveCodeProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [mounted, setMounted] = useState(false)
   const [copied, setCopied] = useState(false)
   const [currentColorScheme, setCurrentColorScheme] = useState(colorScheme)
+  const [resetKey, setResetKey] = useState(0)
   const previewRef = useRef<HTMLDivElement>(null)
   const styleInjectedRef = useRef(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
-  
+
   // Inject CSS on client side only to avoid hydration errors
   useEffect(() => {
     if (!mounted || styleInjectedRef.current || typeof document === 'undefined') return
-    
+
     // Check if style already exists
     const existingStyle = document.getElementById('livecode-preview-styles')
     if (existingStyle) {
       styleInjectedRef.current = true
       return
     }
-    
+
     // Inject comprehensive CSS directly - Tailwind CSS classes need to be available
     const style = document.createElement('style')
     style.id = 'livecode-preview-styles'
@@ -228,7 +229,7 @@ export default function LiveCodeClient({
     document.head.appendChild(style)
     styleInjectedRef.current = true
   }, [mounted])
-  
+
   useEffect(() => {
     // Reset loading state when code changes
     setIsLoading(true)
@@ -240,11 +241,11 @@ export default function LiveCodeClient({
   // Set theme attributes on preview container and ensure CSS variables are available
   useEffect(() => {
     if (!previewRef.current || !mounted) return
-    
+
     // Copy CSS variables from document root to preview container
     const rootStyles = getComputedStyle(document.documentElement)
     const container = previewRef.current
-    
+
     // Get all CSS custom properties (variables)
     const cssVariables: string[] = []
     for (let i = 0; i < rootStyles.length; i++) {
@@ -253,17 +254,17 @@ export default function LiveCodeClient({
         cssVariables.push(prop)
       }
     }
-    
+
     // Apply CSS variables to preview container
     cssVariables.forEach((varName) => {
       const value = rootStyles.getPropertyValue(varName)
       container.style.setProperty(varName, value)
     })
-    
+
     // Set theme attributes
     container.setAttribute('data-theme', theme)
     container.setAttribute('data-color-scheme', currentColorScheme)
-    
+
     // Also set on any nested elements that might need it
     const nestedElements = container.querySelectorAll('[data-theme]')
     nestedElements.forEach((el) => {
@@ -283,11 +284,11 @@ export default function LiveCodeClient({
       console.error('Failed to copy code:', err)
     }
   }
-  
+
   // Transform code to work with react-live
   // Remove import statements since components are already in scope
   let transformedCode = code.trim()
-  
+
   // Remove all import statements (they're not needed since components are in scope)
   // Split by lines and filter out import lines
   const lines = transformedCode.split('\n')
@@ -297,27 +298,27 @@ export default function LiveCodeClient({
     return !trimmed.startsWith('import ') && !trimmed.startsWith('import\t')
   })
   transformedCode = filteredLines.join('\n').trim()
-  
+
   // Auto-detect if code needs noInline (has export default or complex JSX)
   const needsNoInline = noInline || code.includes('export default') || code.includes('React.Fragment')
-  
+
   // Handle export default functions - must check BEFORE removing export default
   if (needsNoInline && transformedCode.includes('export default')) {
     // Extract component name from "export default function ComponentName() { ... }"
     const functionMatch = transformedCode.match(/export\s+default\s+function\s+(\w+)\s*\([^)]*\)\s*{/);
-    
+
     if (functionMatch) {
       const componentName = functionMatch[1];
       // Remove "export default" and keep the function
       transformedCode = transformedCode
         .replace(/export\s+default\s+function\s+(\w+)/g, 'function $1')
         .trim();
-      
+
       // For noInline mode, react-live expects the last expression to be what gets rendered
       // We need to ensure the component is returned as the last expression
       // Extract the return statement and use it directly
       const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
-      
+
       if (returnMatch) {
         // Use the return value directly
         transformedCode = returnMatch[1].trim();
@@ -333,7 +334,7 @@ export default function LiveCodeClient({
       transformedCode = transformedCode
         .replace(/export\s+default\s+/g, '')
         .trim();
-      
+
       // If we still have a function, try to extract it
       const fallbackMatch = transformedCode.match(/function\s+(\w+)\s*\(/);
       if (fallbackMatch) {
@@ -356,7 +357,7 @@ export default function LiveCodeClient({
     // Check if it's a function declaration or arrow function
     const functionMatch = transformedCode.match(/function\s+(\w+)\s*\([^)]*\)\s*{/);
     const arrowFunctionMatch = transformedCode.match(/const\s+(\w+)\s*=\s*(\([^)]*\)|\(\))\s*=>\s*{/);
-    
+
     if (functionMatch) {
       const componentName = functionMatch[1];
       const returnMatch = transformedCode.match(/return\s+\(?([\s\S]*?)\)?\s*;?\s*}/);
@@ -373,16 +374,16 @@ export default function LiveCodeClient({
       // For noInline mode, react-live needs the last expression to be what gets rendered
       // We always wrap arrow functions in an IIFE to ensure proper evaluation
       const componentName = arrowFunctionMatch[1];
-      
+
       // Remove any render() calls or component calls at the end
       // Split by lines and remove the last line if it's a component call
       const lines = transformedCode.split('\n');
       const lastLine = lines[lines.length - 1]?.trim() || '';
-      
+
       // Check if last line is a component call or render() call
       const isComponentCall = lastLine.match(new RegExp(`^<${componentName}\\s*/?>\\s*;?$`));
       const isRenderCall = lastLine.match(/^render\s*\(\s*<\w+\s*\/?>\s*\)\s*;?$/);
-      
+
       if (isComponentCall || isRenderCall) {
         // Remove the last line
         lines.pop();
@@ -394,7 +395,7 @@ export default function LiveCodeClient({
           .replace(new RegExp(`<${componentName}\\s*/?>\\s*;?\\s*$`, 'm'), '')
           .trim();
       }
-      
+
       // Always wrap arrow functions in IIFE for noInline mode
       // This ensures react-live can properly evaluate the code
       // The IIFE will execute the function definition and return the component call
@@ -405,7 +406,7 @@ export default function LiveCodeClient({
     }
     // If no function found, assume it's already JSX and use as-is
   }
-  
+
   // In noInline mode, react-live expects the last expression to be what gets rendered
   // Even though render() is in scope, we should still remove render() calls and replace
   // them with the component directly, as this is cleaner and more explicit
@@ -429,7 +430,7 @@ export default function LiveCodeClient({
 
   return (
     <div className="my-6">
-      <LiveProvider code={transformedCode} scope={scope} noInline={needsNoInline}>
+      <LiveProvider key={resetKey} code={transformedCode} scope={scope} noInline={needsNoInline}>
         <div className="border border-border rounded-xl overflow-hidden shadow-lg bg-card">
           <div className="flex items-center justify-between px-4 py-3 bg-muted/50 border-b border-border">
             <div className="flex items-center gap-2">
@@ -447,6 +448,14 @@ export default function LiveCodeClient({
                 title="Toggle theme"
               >
                 {currentColorScheme === 'light' ? '🌙' : '☀️'}
+              </button>
+              <button
+                onClick={() => setResetKey(prev => prev + 1)}
+                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background border border-border hover:bg-muted transition-colors text-foreground flex items-center gap-1.5"
+                title="Reset code"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                Reset
               </button>
               <button
                 onClick={handleCopy}

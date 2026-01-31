@@ -17,13 +17,13 @@ Install Nostromo UI in your project:
 
 ```bash
 # npm
-npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
+npm install @jarllyng/nostromo
 
 # pnpm
-pnpm add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
+pnpm add @jarllyng/nostromo
 
 # yarn
-yarn add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
+yarn add @jarllyng/nostromo
 ```
 
 ### From GitHub (development/local)
@@ -52,8 +52,8 @@ npm install -D tailwindcss
 
 ```ts
 // In your entry file (e.g. main.tsx)
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css"; // choose or customize theme
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css"; // choose or customize theme
 ```
 
 ### 2. Apply Theme
@@ -90,13 +90,13 @@ export default function MyComponent() {
 Nostromo UI uses Tailwind CSS. Configure Tailwind in your project:
 
 ```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js");
+// tailwind.config.mjs
+import nostromoPreset from "@jarllyng/nostromo/preset";
 
-module.exports = {
+export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@jarllyng/nostromo/dist/**/*.{js,ts,jsx,tsx}",
   ],
   presets: [nostromoPreset],
 };
@@ -108,8 +108,8 @@ module.exports = {
 
 ```tsx
 // app/layout.tsx
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css";
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -124,8 +124,8 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // main.tsx
-import "@jarllyng/ui-tw/base.css";
-import "@jarllyng/ui-tw/themes/nostromo.css";
+import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
