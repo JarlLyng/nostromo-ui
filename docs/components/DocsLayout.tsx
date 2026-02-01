@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import * as NostromoImport from '@jarllyng/nostromo';
 const {
     Button,
     Card,
@@ -11,7 +12,7 @@ const {
     AccordionContent,
     Separator,
     Badge
-} = require('@jarllyng/nostromo') as any;
+} = NostromoImport as any;
 import { withBasePath } from '../utils/withBasePath';
 
 interface DocsLayoutProps {

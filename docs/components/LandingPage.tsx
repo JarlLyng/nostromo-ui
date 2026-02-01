@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { withBasePath } from '../utils/withBasePath';
+import * as NostromoImport from '@jarllyng/nostromo';
 const {
     Hero,
     Features,
     Button,
     Badge,
     Card
-} = require('@jarllyng/nostromo') as any;
+} = NostromoImport as any;
 
 export function LandingPage() {
     return (

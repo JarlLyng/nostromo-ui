@@ -11,7 +11,7 @@ const {
   Card,
   Separator,
   Icon
-} = require('@jarllyng/nostromo') as any;
+} = Nostromo as any;
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
