@@ -8,6 +8,7 @@ import '../styles/globals.css'
 import '../styles/themes.css'
 
 import { ScrollProgress } from '../components/ScrollProgress'
+import { DocsLayout } from '../components/DocsLayout'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         data-website-id="f4f9ada2-3819-4174-8018-2b99801b39b4"
         strategy="afterInteractive"
       />
-      <Component {...pageProps} />
+      <DocsLayout>
+        <Component {...pageProps} />
+      </DocsLayout>
     </>
   )
 }
