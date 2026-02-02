@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   LineChart,
   Line,
@@ -14,43 +14,42 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Cell
-} from 'recharts';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../../lib/utils';
+  Cell,
+} from "recharts";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils";
 
 // Chart container variants
-const chartContainerVariants = cva(
-  'w-full',
-  {
-    variants: {
-      variant: {
-        default: '',
-        minimal: '',
-        detailed: ''
-      },
-      size: {
-        sm: 'h-48',
-        md: 'h-64',
-        lg: 'h-96',
-        xl: 'h-[500px]'
-      }
+const chartContainerVariants = cva("w-full", {
+  variants: {
+    variant: {
+      default: "",
+      minimal: "",
+      detailed: "",
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'md'
-    }
-  }
-);
+    size: {
+      sm: "h-48",
+      md: "h-64",
+      lg: "h-96",
+      xl: "h-[500px]",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+  },
+});
 
-export type ChartType = 'line' | 'bar' | 'pie' | 'area';
+export type ChartType = "line" | "bar" | "pie" | "area";
 
 export interface ChartDataPoint {
   name: string;
   [key: string]: string | number;
 }
 
-export interface ChartProps extends VariantProps<typeof chartContainerVariants> {
+export interface ChartProps extends VariantProps<
+  typeof chartContainerVariants
+> {
   type: ChartType;
   data: ChartDataPoint[];
   dataKeys: string[];
@@ -73,14 +72,14 @@ export interface ChartProps extends VariantProps<typeof chartContainerVariants> 
 
 // Default color palette matching Nostromo theme
 const defaultColors = [
-  'hsl(var(--color-brand-500))',
-  'hsl(var(--color-brand-600))',
-  'hsl(var(--color-success-500))',
-  'hsl(var(--color-warning-500))',
-  'hsl(var(--color-error-500))',
-  'hsl(var(--color-info-500))',
-  'hsl(var(--color-brand-400))',
-  'hsl(var(--color-brand-700))'
+  "hsl(var(--color-brand-500))",
+  "hsl(var(--color-brand-600))",
+  "hsl(var(--color-success-500))",
+  "hsl(var(--color-warning-500))",
+  "hsl(var(--color-error-500))",
+  "hsl(var(--color-info-500))",
+  "hsl(var(--color-brand-400))",
+  "hsl(var(--color-brand-700))",
 ];
 
 // Custom tooltip component with Tailwind styling
@@ -98,14 +97,12 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-border bg-popover p-3 shadow-lg">
-        <p className="mb-2 font-semibold text-popover-foreground">{String(label ?? '')}</p>
+        <p className="mb-2 font-semibold text-popover-foreground">
+          {String(label ?? "")}
+        </p>
         {payload.map((entry, index: number) => (
-          <p
-            key={index}
-            className="text-sm"
-            style={{ color: entry.color }}
-          >
-            {`${entry.name ?? ''}: ${entry.value ?? ''}`}
+          <p key={index} className="text-sm" style={{ color: entry.color }}>
+            {`${entry.name ?? ""}: ${entry.value ?? ""}`}
           </p>
         ))}
       </div>
@@ -132,9 +129,7 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
             style={{ backgroundColor: entry.color }}
             aria-hidden="true"
           />
-          <span className="text-sm text-popover-foreground">
-            {entry.value}
-          </span>
+          <span className="text-sm text-popover-foreground">{entry.value}</span>
         </div>
       ))}
     </div>
@@ -147,7 +142,7 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
       type,
       data,
       dataKeys,
-      xAxisKey = 'name',
+      xAxisKey = "name",
       colors = defaultColors,
       showGrid = true,
       showLegend = true,
@@ -164,13 +159,15 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
       fillOpacity = 0.6,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const chartHeight = height || (size === 'sm' ? 192 : size === 'lg' ? 384 : size === 'xl' ? 500 : 256);
+    const chartHeight =
+      height ||
+      (size === "sm" ? 192 : size === "lg" ? 384 : size === "xl" ? 500 : 256);
 
     const renderChart = () => {
       // SSR guard: recharts requires browser environment
-      if (typeof window === 'undefined') {
+      if (typeof window === "undefined") {
         return (
           <div className="flex items-center justify-center h-full text-muted-foreground">
             <p>Chart loading...</p>
@@ -180,27 +177,33 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
 
       const commonProps = {
         data,
-        margin: { top: 5, right: 5, left: 5, bottom: 5 }
+        margin: { top: 5, right: 5, left: 5, bottom: 5 },
       };
 
       switch (type) {
-        case 'line':
+        case "line":
           return (
             <LineChart {...commonProps}>
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--color-neutral-300))" />}
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="hsl(var(--color-neutral-300))"
+                />
+              )}
               <XAxis
                 dataKey={xAxisKey}
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               <YAxis
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {
                 const colorIndex = index % colors.length;
-                const color = (colors[colorIndex] ?? defaultColors[colorIndex % defaultColors.length]) as string;
+                const color = (colors[colorIndex] ??
+                  defaultColors[colorIndex % defaultColors.length]) as string;
                 return (
                   <Line
                     key={key}
@@ -217,52 +220,58 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
             </LineChart>
           );
 
-        case 'bar':
+        case "bar":
           return (
             <BarChart {...commonProps}>
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--color-neutral-300))" />}
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="hsl(var(--color-neutral-300))"
+                />
+              )}
               <XAxis
                 dataKey={xAxisKey}
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               <YAxis
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {
                 const colorIndex = index % colors.length;
-                const color = (colors[colorIndex] ?? defaultColors[colorIndex % defaultColors.length]) as string;
-                return (
-                  <Bar
-                    key={key}
-                    dataKey={key}
-                    fill={color}
-                  />
-                );
+                const color = (colors[colorIndex] ??
+                  defaultColors[colorIndex % defaultColors.length]) as string;
+                return <Bar key={key} dataKey={key} fill={color} />;
               })}
               {showLegend && <Legend content={<CustomLegend />} />}
             </BarChart>
           );
 
-        case 'area':
+        case "area":
           return (
             <AreaChart {...commonProps}>
-              {showGrid && <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--color-neutral-300))" />}
+              {showGrid && (
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="hsl(var(--color-neutral-300))"
+                />
+              )}
               <XAxis
                 dataKey={xAxisKey}
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               <YAxis
                 stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: 'hsl(var(--color-neutral-700))', fontSize: 12 }}
+                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {
                 const colorIndex = index % colors.length;
-                const color = (colors[colorIndex] ?? defaultColors[colorIndex % defaultColors.length]) as string;
+                const color = (colors[colorIndex] ??
+                  defaultColors[colorIndex % defaultColors.length]) as string;
                 return (
                   <Area
                     key={key}
@@ -279,8 +288,8 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
             </AreaChart>
           );
 
-        case 'pie': {
-          const pieDataKey = dataKeys[0] || 'value';
+        case "pie": {
+          const pieDataKey = dataKeys[0] || "value";
           return (
             <PieChart>
               <Pie
@@ -290,15 +299,16 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
                 cx="50%"
                 cy="50%"
                 outerRadius={chartHeight / 4}
-                label={(props: { name?: string; percent?: number }) => `${props.name ?? ''}: ${((props.percent ?? 0) * 100).toFixed(0)}%`}
+                label={(props: { name?: string; percent?: number }) =>
+                  `${props.name ?? ""}: ${((props.percent ?? 0) * 100).toFixed(0)}%`
+                }
               >
                 {data.map((entry, index) => {
-                  const fillColor = colors[index % colors.length] || defaultColors[index % defaultColors.length];
+                  const fillColor =
+                    colors[index % colors.length] ||
+                    defaultColors[index % defaultColors.length];
                   return (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={fillColor ?? '#8884d8'}
-                    />
+                    <Cell key={`cell-${index}`} fill={fillColor ?? "#8884d8"} />
                   );
                 })}
               </Pie>
@@ -328,23 +338,20 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
           </h3>
         )}
         {description && (
-          <p className="mb-4 text-sm text-muted-foreground">
-            {description}
-          </p>
+          <p className="mb-4 text-sm text-muted-foreground">{description}</p>
         )}
         <ResponsiveContainer width="100%" height={chartHeight}>
           {renderChart()}
         </ResponsiveContainer>
       </div>
     );
-  }
+  },
 );
 
-ChartComponent.displayName = 'Chart';
+ChartComponent.displayName = "Chart";
 
 // Memoize Chart component for performance optimization
 // Charts are expensive to render, so memoization helps prevent unnecessary re-renders
-export const Chart = React.memo(ChartComponent) as typeof ChartComponent;
+export const Chart = React.memo(ChartComponent) as any as typeof ChartComponent;
 
 export { chartContainerVariants };
-

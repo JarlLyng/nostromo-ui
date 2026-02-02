@@ -166,6 +166,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
 ButtonComponent.displayName = "Button";
 
 // Memoize Button for performance optimization
-const Button = React.memo(ButtonComponent) as typeof ButtonComponent;
+const Button = React.memo(ButtonComponent) as any as typeof ButtonComponent;
 
 export { Button, buttonVariants };

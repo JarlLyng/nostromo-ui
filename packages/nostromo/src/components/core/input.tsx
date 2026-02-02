@@ -129,6 +129,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
 InputComponent.displayName = "Input";
 
 // Memoize Input for performance optimization
-const Input = React.memo(InputComponent) as typeof InputComponent;
+const Input = React.memo(InputComponent) as any as typeof InputComponent;
 
 export { Input, inputVariants };

@@ -5,13 +5,11 @@ import * as Nostromo from '@jarllyng/nostromo'
 import React, { useState, useEffect, useRef } from 'react'
 import { withBasePath } from '../utils/withBasePath'
 
-const {
-  Button,
-  Badge,
-  Card,
-  Separator,
-  Icon
-} = Nostromo as any;
+import { Button } from '@jarllyng/nostromo/components/core/button';
+import { Badge } from '@jarllyng/nostromo/components/core/badge';
+import { Card } from '@jarllyng/nostromo/components/core/card';
+import { Separator } from '@jarllyng/nostromo/components/core/separator';
+import { Icon } from '@jarllyng/nostromo/components/core/icon';
 
 // Scope for live code examples - includes all Nostromo components
 const scope = {
@@ -165,7 +163,7 @@ export default function LiveCodeClient({
                 </svg>
                 <span>Code Inspector</span>
               </div>
-              <Badge variant="subtle" className="text-[9px] opacity-60">Editable</Badge>
+              <Badge variant="secondary" className="text-[9px] opacity-60">Editable</Badge>
             </summary>
 
             <div className="bg-neutral-950/95 backdrop-blur-sm border-t border-border/50">

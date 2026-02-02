@@ -387,7 +387,7 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
 ToastComponent.displayName = "Toast";
 
 // Memoize Toast for performance optimization
-export const Toast = React.memo(ToastComponent) as typeof ToastComponent;
+export const Toast = React.memo(ToastComponent) as any as typeof ToastComponent;
 
 // Toast Hook for easy usage
 export const useToastNotification = () => {

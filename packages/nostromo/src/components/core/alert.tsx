@@ -15,8 +15,7 @@ const alertVariants = cva(
           "bg-warning-50 text-warning-900 border-warning-200 [&>svg]:text-warning-600",
         error:
           "bg-error-50 text-error-900 border-error-200 [&>svg]:text-error-600",
-        info:
-          "bg-info-50 text-info-900 border-info-200 [&>svg]:text-info-600",
+        info: "bg-info-50 text-info-900 border-info-200 [&>svg]:text-info-600",
       },
       size: {
         sm: "p-3 text-sm [&>svg]:h-4 [&>svg]:w-4",
@@ -28,7 +27,7 @@ const alertVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const alertTitleVariants = cva("mb-1 font-medium leading-none tracking-tight");
@@ -48,11 +47,12 @@ const alertCloseVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export interface AlertProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof alertVariants> {
   title?: string;
   description?: string;
@@ -75,7 +75,7 @@ const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
 
@@ -88,14 +88,22 @@ const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
 
     const getDefaultIcon = () => {
       switch (variant) {
-        case "success":
-          return <CheckCircle className="h-5 w-5" />;
-        case "warning":
-          return <Warning className="h-5 w-5" />;
-        case "error":
-          return <XCircle className="h-5 w-5" />;
-        case "info":
-          return <Info className="h-5 w-5" />;
+        case "success": {
+          const Icon = CheckCircle as any;
+          return <Icon className="h-5 w-5" />;
+        }
+        case "warning": {
+          const Icon = Warning as any;
+          return <Icon className="h-5 w-5" />;
+        }
+        case "error": {
+          const Icon = XCircle as any;
+          return <Icon className="h-5 w-5" />;
+        }
+        case "info": {
+          const Icon = Info as any;
+          return <Icon className="h-5 w-5" />;
+        }
         default:
           return null;
       }
@@ -120,23 +128,20 @@ const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
             onClick={handleDismiss}
             aria-label="Dismiss alert"
           >
-            <X className="h-4 w-4" />
+            {(() => {
+              const Icon = X as any;
+              return <Icon className="h-4 w-4" />;
+            })()}
           </button>
         )}
-        {title && (
-          <div className={cn(alertTitleVariants())}>
-            {title}
-          </div>
-        )}
+        {title && <div className={cn(alertTitleVariants())}>{title}</div>}
         {description && (
-          <div className={cn(alertDescriptionVariants())}>
-            {description}
-          </div>
+          <div className={cn(alertDescriptionVariants())}>{description}</div>
         )}
         {children}
       </div>
     );
-  }
+  },
 );
 AlertComponent.displayName = "Alert";
 
@@ -144,11 +149,7 @@ const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h5
-    ref={ref}
-    className={cn(alertTitleVariants(), className)}
-    {...props}
-  />
+  <h5 ref={ref} className={cn(alertTitleVariants(), className)} {...props} />
 ));
 AlertTitle.displayName = "AlertTitle";
 
@@ -165,7 +166,7 @@ const AlertDescription = React.forwardRef<
 AlertDescription.displayName = "AlertDescription";
 
 // Memoize Alert for performance optimization (after all subcomponents are defined)
-const Alert = React.memo(AlertComponent) as typeof AlertComponent & {
+const Alert = React.memo(AlertComponent) as any as typeof AlertComponent & {
   Title: typeof AlertTitle;
   Description: typeof AlertDescription;
 };
@@ -174,12 +175,12 @@ const Alert = React.memo(AlertComponent) as typeof AlertComponent & {
 Alert.Title = AlertTitle;
 Alert.Description = AlertDescription;
 
-export { 
-  Alert, 
-  AlertTitle, 
-  AlertDescription, 
-  alertVariants, 
-  alertTitleVariants, 
+export {
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  alertVariants,
+  alertTitleVariants,
   alertDescriptionVariants,
-  alertCloseVariants 
+  alertCloseVariants,
 };

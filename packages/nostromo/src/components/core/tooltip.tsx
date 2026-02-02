@@ -339,11 +339,11 @@ export const TooltipTrigger = React.forwardRef<
 
   const triggerProps = {
     ref: (node: HTMLElement) => {
-      triggerRef.current = node;
+      (triggerRef as React.MutableRefObject<HTMLElement | null>).current = node;
       if (typeof ref === "function") {
         ref(node);
       } else if (ref) {
-        (ref as React.MutableRefObject<HTMLElement>).current = node;
+        (ref as React.MutableRefObject<HTMLElement | null>).current = node;
       }
     },
     className: cn(className),
@@ -557,11 +557,14 @@ export const TooltipContent = React.forwardRef<
     return (
       <div
         ref={(node) => {
-          contentRef.current = node;
+          (
+            contentRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = node;
           if (typeof ref === "function") {
             ref(node);
           } else if (ref) {
-            ref.current = node;
+            (ref as React.MutableRefObject<HTMLDivElement | null>).current =
+              node;
           }
         }}
         role="tooltip"
@@ -602,7 +605,9 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({
 };
 
 // Memoize Tooltip for performance optimization (after all subcomponents are defined)
-const Tooltip = React.memo(TooltipComponent) as typeof TooltipComponent & {
+const Tooltip = React.memo(
+  TooltipComponent,
+) as any as typeof TooltipComponent & {
   Trigger: typeof TooltipTrigger;
   Content: typeof TooltipContent;
   Provider: typeof TooltipProvider;

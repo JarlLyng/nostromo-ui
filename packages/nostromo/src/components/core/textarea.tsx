@@ -64,19 +64,16 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     // Auto-resize functionality
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
     const combinedRef = React.useMemo(() => {
-      if (typeof ref === "function") {
-        return (node: HTMLTextAreaElement | null) => {
-          textareaRef.current = node;
-          ref(node);
-        };
-      } else if (ref) {
-        return (node: HTMLTextAreaElement | null) => {
-          textareaRef.current = node;
-          ref.current = node;
-        };
-      }
       return (node: HTMLTextAreaElement | null) => {
-        textareaRef.current = node;
+        (
+          textareaRef as React.MutableRefObject<HTMLTextAreaElement | null>
+        ).current = node;
+        if (typeof ref === "function") {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLTextAreaElement | null>).current =
+            node;
+        }
       };
     }, [ref]);
 

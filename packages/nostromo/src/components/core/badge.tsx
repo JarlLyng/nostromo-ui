@@ -13,14 +13,13 @@ const badgeVariants = cva(
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-badge hover:shadow-badge-hover",
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-badge hover:shadow-badge-hover",
-        outline: 
+        outline:
           "border-2 border-border text-foreground hover:border-primary hover:text-primary hover:shadow-badge",
         success:
           "border-transparent bg-success text-success-foreground hover:bg-success-600 shadow-badge hover:shadow-badge-hover",
         warning:
           "border-transparent bg-warning text-warning-foreground hover:bg-warning-600 shadow-badge hover:shadow-badge-hover",
-        info:
-          "border-transparent bg-info text-info-foreground hover:bg-info-600 shadow-badge hover:shadow-badge-hover",
+        info: "border-transparent bg-info text-info-foreground hover:bg-info-600 shadow-badge hover:shadow-badge-hover",
         error:
           "border-transparent bg-error text-error-foreground hover:bg-error-600 shadow-badge hover:shadow-badge-hover",
       },
@@ -34,20 +33,28 @@ const badgeVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 /**
  * Props for the Badge component
  */
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {
   /**
    * The visual variant of the badge
    * @default "default"
    */
-  variant?: "default" | "secondary" | "destructive" | "outline" | "success" | "warning" | "info";
+  variant?:
+    | "default"
+    | "secondary"
+    | "destructive"
+    | "outline"
+    | "success"
+    | "warning"
+    | "info";
   /**
    * The size of the badge
    * @default "default"
@@ -57,7 +64,7 @@ export interface BadgeProps
 
 /**
  * Badge component for displaying small status indicators or labels
- * 
+ *
  * @example
  * ```tsx
  * <Badge variant="default">New</Badge>
@@ -73,11 +80,14 @@ export interface BadgeProps
  */
 function BadgeComponent({ className, variant, size, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant, size }), className)} {...props} />
+    <div
+      className={cn(badgeVariants({ variant, size }), className)}
+      {...props}
+    />
   );
 }
 
 // Memoize Badge for performance optimization
-const Badge = React.memo(BadgeComponent) as typeof BadgeComponent;
+const Badge = React.memo(BadgeComponent) as any as typeof BadgeComponent;
 
 export { Badge, badgeVariants };

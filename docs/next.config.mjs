@@ -34,5 +34,12 @@ export default withNextra({
   basePath: basePath,
   // Disable Turbopack temporarily - Nextra 2.x uses webpack config
   // TODO: Remove this when upgrading to Nextra 4.x (issue #89, #91)
-  webpack: (config) => config, // Explicit webpack config to disable Turbopack
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+    };
+    return config;
+  },
 })

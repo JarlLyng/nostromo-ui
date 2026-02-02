@@ -1,50 +1,47 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../../lib/utils';
+import React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils";
 
 // Skeleton variants
-const skeletonVariants = cva(
-  'animate-pulse rounded-md bg-muted',
-  {
-    variants: {
-      variant: {
-        default: 'bg-muted',
-        light: 'bg-muted/50',
-        dark: 'bg-muted',
-        primary: 'bg-primary/10',
-        success: 'bg-success-200',
-        warning: 'bg-warning-200',
-        error: 'bg-error-200'
-      },
-      size: {
-        xs: 'h-2',
-        sm: 'h-3',
-        md: 'h-4',
-        lg: 'h-6',
-        xl: 'h-8',
-        '2xl': 'h-12',
-        '3xl': 'h-16'
-      },
-      shape: {
-        rectangle: 'rounded-md',
-        circle: 'rounded-full',
-        square: 'rounded-lg',
-        pill: 'rounded-full'
-      },
-      animation: {
-        pulse: 'animate-pulse',
-        wave: 'animate-wave',
-        none: 'animate-none'
-      }
+const skeletonVariants = cva("animate-pulse rounded-md bg-muted", {
+  variants: {
+    variant: {
+      default: "bg-muted",
+      light: "bg-muted/50",
+      dark: "bg-muted",
+      primary: "bg-primary/10",
+      success: "bg-success-200",
+      warning: "bg-warning-200",
+      error: "bg-error-200",
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'md',
-      shape: 'rectangle',
-      animation: 'pulse'
-    }
-  }
-);
+    size: {
+      xs: "h-2",
+      sm: "h-3",
+      md: "h-4",
+      lg: "h-6",
+      xl: "h-8",
+      "2xl": "h-12",
+      "3xl": "h-16",
+    },
+    shape: {
+      rectangle: "rounded-md",
+      circle: "rounded-full",
+      square: "rounded-lg",
+      pill: "rounded-full",
+    },
+    animation: {
+      pulse: "animate-pulse",
+      wave: "animate-wave",
+      none: "animate-none",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "md",
+    shape: "rectangle",
+    animation: "pulse",
+  },
+});
 
 // Types
 export interface SkeletonProps extends VariantProps<typeof skeletonVariants> {
@@ -53,43 +50,58 @@ export interface SkeletonProps extends VariantProps<typeof skeletonVariants> {
   width?: string | number;
   height?: string | number;
   lines?: number;
-  spacing?: 'none' | 'sm' | 'md' | 'lg';
+  spacing?: "none" | "sm" | "md" | "lg";
   loading?: boolean;
 }
 
-export interface SkeletonTextProps extends Omit<SkeletonProps, 'shape' | 'size'> {
+export interface SkeletonTextProps extends Omit<
+  SkeletonProps,
+  "shape" | "size"
+> {
   lines?: number;
   lastLineWidth?: string | number;
 }
 
-export interface SkeletonAvatarProps extends Omit<SkeletonProps, 'shape' | 'size'> {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export interface SkeletonAvatarProps extends Omit<
+  SkeletonProps,
+  "shape" | "size"
+> {
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 }
 
-export interface SkeletonButtonProps extends Omit<SkeletonProps, 'shape' | 'size' | 'variant'> {
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'default' | 'primary' | 'secondary' | 'outline' | 'ghost';
+export interface SkeletonButtonProps extends Omit<
+  SkeletonProps,
+  "shape" | "size" | "variant"
+> {
+  size?: "sm" | "md" | "lg";
+  variant?: "default" | "primary" | "secondary" | "outline" | "ghost";
 }
 
-export interface SkeletonCardProps extends Omit<SkeletonProps, 'shape' | 'size'> {
+export interface SkeletonCardProps extends Omit<
+  SkeletonProps,
+  "shape" | "size"
+> {
   showAvatar?: boolean;
   showActions?: boolean;
 }
 
 // Main Skeleton Component
 const SkeletonComponent = React.forwardRef<HTMLDivElement, SkeletonProps>(
-  ({
-    className,
-    children,
-    width,
-    height,
-    variant = 'default',
-    size = 'md',
-    shape = 'rectangle',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      children,
+      width,
+      height,
+      variant = "default",
+      size = "md",
+      shape = "rectangle",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading && children) {
       return <>{children}</>;
     }
@@ -104,7 +116,7 @@ const SkeletonComponent = React.forwardRef<HTMLDivElement, SkeletonProps>(
         ref={ref}
         className={cn(
           skeletonVariants({ variant, size, shape, animation }),
-          className
+          className,
         )}
         style={style}
         aria-label="Loading content"
@@ -112,41 +124,46 @@ const SkeletonComponent = React.forwardRef<HTMLDivElement, SkeletonProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
-SkeletonComponent.displayName = 'Skeleton';
+SkeletonComponent.displayName = "Skeleton";
 
 // Memoize Skeleton for performance optimization
-export const Skeleton = React.memo(SkeletonComponent) as typeof SkeletonComponent;
+export const Skeleton = React.memo(
+  SkeletonComponent,
+) as any as typeof SkeletonComponent;
 
 // Skeleton Text Component
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
-  ({
-    className,
-    lines = 3,
-    lastLineWidth = '75%',
-    spacing = 'md',
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      lines = 3,
+      lastLineWidth = "75%",
+      spacing = "md",
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
 
     const spacingClasses = {
-      none: 'space-y-0',
-      sm: 'space-y-1',
-      md: 'space-y-2',
-      lg: 'space-y-3'
+      none: "space-y-0",
+      sm: "space-y-1",
+      md: "space-y-2",
+      lg: "space-y-3",
     };
 
     return (
       <div
         ref={ref}
-        className={cn('space-y-2', spacingClasses[spacing], className)}
+        className={cn("space-y-2", spacingClasses[spacing], className)}
         aria-label="Loading text content"
         role="status"
         {...props}
@@ -156,42 +173,48 @@ export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
             key={index}
             className={cn(
               skeletonVariants({ variant, animation }),
-              'h-4 rounded-md',
-              index === lines - 1 && 'w-3/4'
+              "h-4 rounded-md",
+              index === lines - 1 && "w-3/4",
             )}
             style={{
-              width: index === lines - 1 ? lastLineWidth : '100%'
+              width: index === lines - 1 ? lastLineWidth : "100%",
             }}
           />
         ))}
       </div>
     );
-  }
+  },
 );
 
-SkeletonText.displayName = 'SkeletonText';
+SkeletonText.displayName = "SkeletonText";
 
 // Skeleton Avatar Component
-export const SkeletonAvatar = React.forwardRef<HTMLDivElement, SkeletonAvatarProps>(
-  ({
-    className,
-    size = 'md',
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+export const SkeletonAvatar = React.forwardRef<
+  HTMLDivElement,
+  SkeletonAvatarProps
+>(
+  (
+    {
+      className,
+      size = "md",
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
 
     const sizeClasses = {
-      xs: 'h-6 w-6',
-      sm: 'h-8 w-8',
-      md: 'h-10 w-10',
-      lg: 'h-12 w-12',
-      xl: 'h-16 w-16',
-      '2xl': 'h-20 w-20'
+      xs: "h-6 w-6",
+      sm: "h-8 w-8",
+      md: "h-10 w-10",
+      lg: "h-12 w-12",
+      xl: "h-16 w-16",
+      "2xl": "h-20 w-20",
     };
 
     return (
@@ -199,81 +222,90 @@ export const SkeletonAvatar = React.forwardRef<HTMLDivElement, SkeletonAvatarPro
         ref={ref}
         className={cn(
           skeletonVariants({ variant, animation }),
-          'rounded-full',
+          "rounded-full",
           sizeClasses[size],
-          className
+          className,
         )}
         aria-label="Loading avatar"
         role="status"
         {...props}
       />
     );
-  }
+  },
 );
 
-SkeletonAvatar.displayName = 'SkeletonAvatar';
+SkeletonAvatar.displayName = "SkeletonAvatar";
 
 // Skeleton Button Component
-export const SkeletonButton = React.forwardRef<HTMLDivElement, SkeletonButtonProps>(
-  ({
-    className,
-    size = 'md',
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+export const SkeletonButton = React.forwardRef<
+  HTMLDivElement,
+  SkeletonButtonProps
+>(
+  (
+    {
+      className,
+      size = "md",
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
 
     const sizeClasses = {
-      sm: 'h-8 px-3',
-      md: 'h-10 px-4',
-      lg: 'h-12 px-6'
+      sm: "h-8 px-3",
+      md: "h-10 px-4",
+      lg: "h-12 px-6",
     };
 
     const variantClasses = {
-      default: 'bg-muted',
-      primary: 'bg-primary/10',
-      secondary: 'bg-secondary',
-      outline: 'bg-muted/50 border border-border',
-      ghost: 'bg-muted/50'
+      default: "bg-muted",
+      primary: "bg-primary/10",
+      secondary: "bg-secondary",
+      outline: "bg-muted/50 border border-border",
+      ghost: "bg-muted/50",
     };
 
-    const finalVariant = variant || 'default';
+    const finalVariant = variant || "default";
 
     return (
       <div
         ref={ref}
         className={cn(
           skeletonVariants({ animation }),
-          'rounded-md',
+          "rounded-md",
           sizeClasses[size],
           variantClasses[finalVariant],
-          className
+          className,
         )}
         aria-label="Loading button"
         role="status"
         {...props}
       />
     );
-  }
+  },
 );
 
-SkeletonButton.displayName = 'SkeletonButton';
+SkeletonButton.displayName = "SkeletonButton";
 
 // Skeleton Card Component
 export const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
-  ({
-    className,
-    showAvatar = true,
-    showActions = true,
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      showAvatar = true,
+      showActions = true,
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
@@ -281,10 +313,7 @@ export const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          'p-6 border border-border rounded-lg bg-card',
-          className
-        )}
+        className={cn("p-6 border border-border rounded-lg bg-card", className)}
         aria-label="Loading card content"
         role="status"
         {...props}
@@ -293,19 +322,43 @@ export const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
           {/* Header with avatar and title */}
           <div className="flex items-center space-x-3">
             {showAvatar && (
-              <SkeletonAvatar size="md" variant={variant} animation={animation} />
+              <SkeletonAvatar
+                size="md"
+                variant={variant}
+                animation={animation}
+              />
             )}
             <div className="flex-1 space-y-2">
-              <Skeleton className="h-4 w-3/4" variant={variant} animation={animation} />
-              <Skeleton className="h-3 w-1/2" variant={variant} animation={animation} />
+              <Skeleton
+                className="h-4 w-3/4"
+                variant={variant}
+                animation={animation}
+              />
+              <Skeleton
+                className="h-3 w-1/2"
+                variant={variant}
+                animation={animation}
+              />
             </div>
           </div>
 
           {/* Content */}
           <div className="space-y-2">
-            <Skeleton className="h-4 w-full" variant={variant} animation={animation} />
-            <Skeleton className="h-4 w-5/6" variant={variant} animation={animation} />
-            <Skeleton className="h-4 w-4/5" variant={variant} animation={animation} />
+            <Skeleton
+              className="h-4 w-full"
+              variant={variant}
+              animation={animation}
+            />
+            <Skeleton
+              className="h-4 w-5/6"
+              variant={variant}
+              animation={animation}
+            />
+            <Skeleton
+              className="h-4 w-4/5"
+              variant={variant}
+              animation={animation}
+            />
           </div>
 
           {/* Actions */}
@@ -318,20 +371,23 @@ export const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
-SkeletonCard.displayName = 'SkeletonCard';
+SkeletonCard.displayName = "SkeletonCard";
 
 // Skeleton Table Component
 export const SkeletonTable = React.forwardRef<HTMLDivElement, SkeletonProps>(
-  ({
-    className,
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+  (
+    {
+      className,
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
@@ -339,7 +395,7 @@ export const SkeletonTable = React.forwardRef<HTMLDivElement, SkeletonProps>(
     return (
       <div
         ref={ref}
-        className={cn('space-y-3', className)}
+        className={cn("space-y-3", className)}
         aria-label="Loading table content"
         role="status"
         {...props}
@@ -363,21 +419,27 @@ export const SkeletonTable = React.forwardRef<HTMLDivElement, SkeletonProps>(
         ))}
       </div>
     );
-  }
+  },
 );
 
-SkeletonTable.displayName = 'SkeletonTable';
+SkeletonTable.displayName = "SkeletonTable";
 
 // Skeleton List Component
-export const SkeletonList = React.forwardRef<HTMLDivElement, SkeletonProps & { items?: number }>(
-  ({
-    className,
-    items = 5,
-    variant = 'default',
-    animation = 'pulse',
-    loading = true,
-    ...props
-  }, ref) => {
+export const SkeletonList = React.forwardRef<
+  HTMLDivElement,
+  SkeletonProps & { items?: number }
+>(
+  (
+    {
+      className,
+      items = 5,
+      variant = "default",
+      animation = "pulse",
+      loading = true,
+      ...props
+    },
+    ref,
+  ) => {
     if (!loading) {
       return null;
     }
@@ -385,7 +447,7 @@ export const SkeletonList = React.forwardRef<HTMLDivElement, SkeletonProps & { i
     return (
       <div
         ref={ref}
-        className={cn('space-y-3', className)}
+        className={cn("space-y-3", className)}
         aria-label="Loading list content"
         role="status"
         {...props}
@@ -394,17 +456,25 @@ export const SkeletonList = React.forwardRef<HTMLDivElement, SkeletonProps & { i
           <div key={index} className="flex items-center space-x-3">
             <SkeletonAvatar size="sm" variant={variant} animation={animation} />
             <div className="flex-1 space-y-2">
-              <Skeleton className="h-4 w-3/4" variant={variant} animation={animation} />
-              <Skeleton className="h-3 w-1/2" variant={variant} animation={animation} />
+              <Skeleton
+                className="h-4 w-3/4"
+                variant={variant}
+                animation={animation}
+              />
+              <Skeleton
+                className="h-3 w-1/2"
+                variant={variant}
+                animation={animation}
+              />
             </div>
           </div>
         ))}
       </div>
     );
-  }
+  },
 );
 
-SkeletonList.displayName = 'SkeletonList';
+SkeletonList.displayName = "SkeletonList";
 
 // Export variants for external use
 export { skeletonVariants };

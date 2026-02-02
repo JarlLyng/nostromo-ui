@@ -15,20 +15,23 @@ const avatarVariants = cva(
       variant: {
         default: "shadow-avatar hover:shadow-avatar-hover",
         elevated: "shadow-lg hover:shadow-xl",
-        outline: "border-2 border-border shadow-sm hover:border-primary hover:shadow-avatar",
+        outline:
+          "border-2 border-border shadow-sm hover:border-primary hover:shadow-avatar",
         filled: "bg-muted shadow-sm hover:shadow-avatar",
-        interactive: "shadow-avatar hover:shadow-avatar-hover cursor-pointer hover:scale-105",
+        interactive:
+          "shadow-avatar hover:shadow-avatar-hover cursor-pointer hover:scale-105",
       },
     },
     defaultVariants: {
       size: "default",
       variant: "default",
     },
-  }
+  },
 );
 
 export interface AvatarProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof avatarVariants> {
   src?: string;
   alt?: string;
@@ -36,14 +39,17 @@ export interface AvatarProps
 }
 
 const AvatarComponent = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, size, variant, src, alt, fallback, children, ...props }, ref) => {
+  (
+    { className, size, variant, src, alt, fallback, children, ...props },
+    ref,
+  ) => {
     const [imageError, setImageError] = React.useState(false);
-    
+
     // Reset image error when src changes
     React.useEffect(() => {
       setImageError(false);
     }, [src]);
-    
+
     // If using compound component API (children), render children
     if (children) {
       return (
@@ -56,7 +62,7 @@ const AvatarComponent = React.forwardRef<HTMLDivElement, AvatarProps>(
         </div>
       );
     }
-    
+
     // If using simple prop API
     return (
       <div
@@ -78,7 +84,7 @@ const AvatarComponent = React.forwardRef<HTMLDivElement, AvatarProps>(
         )}
       </div>
     );
-  }
+  },
 );
 AvatarComponent.displayName = "Avatar";
 
@@ -102,7 +108,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground",
-      className
+      className,
     )}
     {...props}
   />
@@ -110,7 +116,7 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = "AvatarFallback";
 
 // Memoize Avatar for performance optimization (after all subcomponents are defined)
-const Avatar = React.memo(AvatarComponent) as typeof AvatarComponent & {
+const Avatar = React.memo(AvatarComponent) as any as typeof AvatarComponent & {
   Image: typeof AvatarImage;
   Fallback: typeof AvatarFallback;
 };
