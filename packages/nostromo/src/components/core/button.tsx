@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
@@ -125,6 +125,15 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // Determine final state: loading prop takes precedence over state prop
     const finalState = loading ? "loading" : state;
 
+    const label = loading && loadingText ? loadingText : children;
+    // With `asChild` the caller's element is what actually renders, so
+    // loadingText has to replace the content *inside* it - swapping the element
+    // itself for a string would leave Slot with nothing to clone.
+    const slotted =
+      asChild && label !== children && React.isValidElement(children)
+        ? React.cloneElement(children, undefined, label)
+        : label;
+
     return (
       <Component
         className={cn(
@@ -158,7 +167,10 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {loading && loadingText ? loadingText : children}
+        {/* Slottable marks the target element for `asChild`, so the spinner can
+            sit alongside it. Without it, Slot sees more than one child (the
+            falsy spinner expression counts too) and throws Children.only. */}
+        <Slottable>{slotted}</Slottable>
       </Component>
     );
   },
