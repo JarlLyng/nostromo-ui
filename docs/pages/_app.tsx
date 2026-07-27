@@ -2,7 +2,13 @@ import type { AppProps } from 'next/app'
 import Script from 'next/script'
 import { useEffect } from 'react'
 import { track } from '../lib/analytics'
-import '@jarllyng/nostromo/base.css'
+// Order matters: layers.css must come first to fix cascade layer precedence,
+// then the library entry registers Tailwind and the @theme bridge, the theme
+// file supplies the token values, and the docs stylesheets layer their own
+// chrome on top.
+import '../styles/layers.css'
+import '../styles/nextra-layered.css'
+import '@jarllyng/nostromo/tailwind.css'
 import '@jarllyng/nostromo/themes/nostromo.css'
 import '../styles/globals.css'
 import '../styles/themes.css'

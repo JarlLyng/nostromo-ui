@@ -50,18 +50,13 @@ pnpm dev
 
 ### Setup in Your Project
 
-1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.js`:
+1. **Import the CSS** - no `tailwind.config.js` is needed on Tailwind v4; the
+   tokens are registered via `@theme` and the library declares its own
+   `@source`:
 
-```js
-const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
-
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}",
-  ],
-  presets: [nostromoPreset],
-};
+```css
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 2. **Import CSS** - Add base styles and theme in your entry file:

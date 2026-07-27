@@ -2,232 +2,263 @@
 
 [data-theme="lv-426"] {
   /* Brand Colors - Warm orange/rust inspired by the planet's atmosphere */
-  --color-brand-50: 25 95% 95%;
-  --color-brand-100: 25 95% 90%;
-  --color-brand-200: 25 95% 80%;
-  --color-brand-300: 25 95% 70%;
-  --color-brand-400: 25 95% 60%;
-  --color-brand-500: 25 95% 50%;
-  --color-brand-600: 25 95% 40%;
-  --color-brand-700: 25 95% 30%;
-  --color-brand-800: 25 95% 20%;
-  --color-brand-900: 25 95% 10%;
-  --color-brand-950: 25 95% 5%;
+  --nostromo-color-brand-50: 25 95% 95%;
+  --nostromo-color-brand-100: 25 95% 90%;
+  --nostromo-color-brand-200: 25 95% 80%;
+  --nostromo-color-brand-300: 25 95% 70%;
+  --nostromo-color-brand-400: 25 95% 60%;
+  --nostromo-color-brand-500: 25 95% 50%;
+  --nostromo-color-brand-600: 25 95% 40%;
+  --nostromo-color-brand-700: 25 95% 30%;
+  --nostromo-color-brand-800: 25 95% 20%;
+  --nostromo-color-brand-900: 25 95% 10%;
+  --nostromo-color-brand-950: 25 95% 5%;
 
   /* Neutral Colors - Warm earth tones */
-  --color-neutral-50: 30 20% 98%;
-  --color-neutral-100: 30 20% 95%;
-  --color-neutral-200: 30 20% 90%;
-  --color-neutral-300: 30 20% 80%;
-  --color-neutral-400: 30 20% 60%;
-  --color-neutral-500: 30 20% 40%;
-  --color-neutral-600: 30 20% 30%;
-  --color-neutral-700: 30 20% 20%;
-  --color-neutral-800: 30 20% 15%;
-  --color-neutral-900: 30 20% 10%;
-  --color-neutral-950: 30 20% 5%;
+  --nostromo-color-neutral-50: 30 20% 98%;
+  --nostromo-color-neutral-100: 30 20% 95%;
+  --nostromo-color-neutral-200: 30 20% 90%;
+  --nostromo-color-neutral-300: 30 20% 80%;
+  --nostromo-color-neutral-400: 30 20% 60%;
+  --nostromo-color-neutral-500: 30 20% 40%;
+  --nostromo-color-neutral-600: 30 20% 30%;
+  --nostromo-color-neutral-700: 30 20% 20%;
+  --nostromo-color-neutral-800: 30 20% 15%;
+  --nostromo-color-neutral-900: 30 20% 10%;
+  --nostromo-color-neutral-950: 30 20% 5%;
 
   /* Success Colors - Green for life/vegetation */
-  --color-success-50: 120 60% 95%;
-  --color-success-100: 120 60% 90%;
-  --color-success-200: 120 60% 80%;
-  --color-success-300: 120 60% 70%;
-  --color-success-400: 120 60% 60%;
-  --color-success-500: 120 60% 40%;
-  --color-success-600: 120 60% 30%;
-  --color-success-700: 120 60% 20%;
-  --color-success-800: 120 60% 15%;
-  --color-success-900: 120 60% 10%;
-  --color-success-950: 120 60% 5%;
+  --nostromo-color-success-50: 120 60% 95%;
+  --nostromo-color-success-100: 120 60% 90%;
+  --nostromo-color-success-200: 120 60% 80%;
+  --nostromo-color-success-300: 120 60% 70%;
+  --nostromo-color-success-400: 120 60% 60%;
+  --nostromo-color-success-500: 120 60% 40%;
+  --nostromo-color-success-600: 120 60% 30%;
+  --nostromo-color-success-700: 120 60% 20%;
+  --nostromo-color-success-800: 120 60% 15%;
+  --nostromo-color-success-900: 120 60% 10%;
+  --nostromo-color-success-950: 120 60% 5%;
 
   /* Warning Colors - Amber for danger alerts */
-  --color-warning-50: 45 100% 95%;
-  --color-warning-100: 45 100% 90%;
-  --color-warning-200: 45 100% 80%;
-  --color-warning-300: 45 100% 70%;
-  --color-warning-400: 45 100% 60%;
-  --color-warning-500: 45 100% 50%;
-  --color-warning-600: 45 100% 40%;
-  --color-warning-700: 45 100% 30%;
-  --color-warning-800: 45 100% 20%;
-  --color-warning-900: 45 100% 10%;
-  --color-warning-950: 45 100% 5%;
+  --nostromo-color-warning-50: 45 100% 95%;
+  --nostromo-color-warning-100: 45 100% 90%;
+  --nostromo-color-warning-200: 45 100% 80%;
+  --nostromo-color-warning-300: 45 100% 70%;
+  --nostromo-color-warning-400: 45 100% 60%;
+  --nostromo-color-warning-500: 45 100% 50%;
+  --nostromo-color-warning-600: 45 100% 40%;
+  --nostromo-color-warning-700: 45 100% 30%;
+  --nostromo-color-warning-800: 45 100% 20%;
+  --nostromo-color-warning-900: 45 100% 10%;
+  --nostromo-color-warning-950: 45 100% 5%;
 
   /* Error Colors - Deep red for critical danger */
-  --color-error-50: 0 80% 95%;
-  --color-error-100: 0 80% 90%;
-  --color-error-200: 0 80% 80%;
-  --color-error-300: 0 80% 70%;
-  --color-error-400: 0 80% 60%;
-  --color-error-500: 0 80% 50%;
-  --color-error-600: 0 80% 40%;
-  --color-error-700: 0 80% 30%;
-  --color-error-800: 0 80% 20%;
-  --color-error-900: 0 80% 10%;
-  --color-error-950: 0 80% 5%;
+  --nostromo-color-error-50: 0 80% 95%;
+  --nostromo-color-error-100: 0 80% 90%;
+  --nostromo-color-error-200: 0 80% 80%;
+  --nostromo-color-error-300: 0 80% 70%;
+  --nostromo-color-error-400: 0 80% 60%;
+  --nostromo-color-error-500: 0 80% 50%;
+  --nostromo-color-error-600: 0 80% 40%;
+  --nostromo-color-error-700: 0 80% 30%;
+  --nostromo-color-error-800: 0 80% 20%;
+  --nostromo-color-error-900: 0 80% 10%;
+  --nostromo-color-error-950: 0 80% 5%;
 
   /* Info Colors - Blue for information */
-  --color-info-50: 210 80% 95%;
-  --color-info-100: 210 80% 90%;
-  --color-info-200: 210 80% 80%;
-  --color-info-300: 210 80% 70%;
-  --color-info-400: 210 80% 60%;
-  --color-info-500: 210 80% 50%;
-  --color-info-600: 210 80% 40%;
-  --color-info-700: 210 80% 30%;
-  --color-info-800: 210 80% 20%;
-  --color-info-900: 210 80% 10%;
-  --color-info-950: 210 80% 5%;
+  --nostromo-color-info-50: 210 80% 95%;
+  --nostromo-color-info-100: 210 80% 90%;
+  --nostromo-color-info-200: 210 80% 80%;
+  --nostromo-color-info-300: 210 80% 70%;
+  --nostromo-color-info-400: 210 80% 60%;
+  --nostromo-color-info-500: 210 80% 50%;
+  --nostromo-color-info-600: 210 80% 40%;
+  --nostromo-color-info-700: 210 80% 30%;
+  --nostromo-color-info-800: 210 80% 20%;
+  --nostromo-color-info-900: 210 80% 10%;
+  --nostromo-color-info-950: 210 80% 5%;
 
   /* Semantic Colors */
-  --color-background: hsl(var(--color-neutral-50));
-  --color-foreground: hsl(var(--color-neutral-900));
-  --color-muted: hsl(var(--color-neutral-100));
-  --color-muted-foreground: hsl(var(--color-neutral-600));
-  --color-popover: hsl(var(--color-neutral-50));
-  --color-popover-foreground: hsl(var(--color-neutral-900));
-  --color-card: hsl(var(--color-neutral-50));
-  --color-card-foreground: hsl(var(--color-neutral-900));
-  --color-border: hsl(var(--color-neutral-200));
-  --color-input: hsl(var(--color-neutral-200));
+  --nostromo-color-background: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-muted: hsl(var(--nostromo-color-neutral-100));
+  --nostromo-color-muted-foreground: hsl(var(--nostromo-color-neutral-600));
+  --nostromo-color-popover: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-popover-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-card: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-card-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-border: hsl(var(--nostromo-color-neutral-200));
+  --nostromo-color-input: hsl(var(--nostromo-color-neutral-200));
   /* Contrast validated: primary-foreground/primary 4.52:1 */
-  --color-primary: hsl(var(--color-brand-500));
-  --color-primary-foreground: hsl(0 0% 100%); /* White for better contrast */
-  --color-secondary: hsl(var(--color-neutral-100));
-  --color-secondary-foreground: hsl(var(--color-neutral-900));
-  --color-accent: hsl(var(--color-brand-100));
-  --color-accent-foreground: hsl(var(--color-brand-900));
-  --color-destructive: hsl(var(--color-error-500));
-  --color-destructive-foreground: hsl(var(--color-neutral-50));
-  --color-success-foreground: hsl(var(--color-neutral-50));
-  --color-warning-foreground: hsl(var(--color-neutral-900));
-  --color-error-foreground: hsl(var(--color-neutral-50));
-  --color-info-foreground: hsl(var(--color-neutral-50));
-  --color-ring: hsl(var(--color-brand-500));
+  --nostromo-color-primary: hsl(var(--nostromo-color-brand-500));
+  --nostromo-color-primary-foreground: hsl(
+    0 0% 100%
+  ); /* White for better contrast */
+  --nostromo-color-secondary: hsl(var(--nostromo-color-neutral-100));
+  --nostromo-color-secondary-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-accent: hsl(var(--nostromo-color-brand-100));
+  --nostromo-color-accent-foreground: hsl(var(--nostromo-color-brand-900));
+  --nostromo-color-destructive: hsl(var(--nostromo-color-error-500));
+  --nostromo-color-destructive-foreground: hsl(
+    var(--nostromo-color-neutral-50)
+  );
+  --nostromo-color-success-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-warning-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-error-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-info-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-ring: hsl(var(--nostromo-color-brand-500));
 
   /* Typography */
-  --font-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
-  --font-heading: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --nostromo-font-sans:
+    "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  --nostromo-font-mono:
+    "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro",
+    monospace;
+  --nostromo-font-heading:
+    "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
 
   /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
+  --nostromo-spacing-xs: 0.25rem;
+  --nostromo-spacing-sm: 0.5rem;
+  --nostromo-spacing-md: 1rem;
+  --nostromo-spacing-lg: 1.5rem;
+  --nostromo-spacing-xl: 2rem;
+  --nostromo-spacing-2xl: 3rem;
+  --nostromo-spacing-3xl: 4rem;
 
   /* Border Radius */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
-  --radius-full: 9999px;
+  --nostromo-radius-sm: 0.25rem;
+  --nostromo-radius-md: 0.375rem;
+  --nostromo-radius-lg: 0.5rem;
+  --nostromo-radius-xl: 0.75rem;
+  --nostromo-radius-2xl: 1rem;
+  --nostromo-radius-full: 9999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --nostromo-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --nostromo-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --nostromo-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --nostromo-shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --nostromo-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
   /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 250ms ease-in-out;
-  --transition-slow: 350ms ease-in-out;
+  --nostromo-transition-fast: 150ms ease-in-out;
+  --nostromo-transition-normal: 250ms ease-in-out;
+  --nostromo-transition-slow: 350ms ease-in-out;
 
   /* Z-Index */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal-backdrop: 1040;
-  --z-modal: 1050;
-  --z-popover: 1060;
-  --z-tooltip: 1070;
-  --z-toast: 1080;
+  --nostromo-z-dropdown: 1000;
+  --nostromo-z-sticky: 1020;
+  --nostromo-z-fixed: 1030;
+  --nostromo-z-modal-backdrop: 1040;
+  --nostromo-z-modal: 1050;
+  --nostromo-z-popover: 1060;
+  --nostromo-z-tooltip: 1070;
+  --nostromo-z-toast: 1080;
 }
 
 /* Dark mode overrides for LV-426 theme */
 [data-theme="lv-426"][data-color-scheme="dark"] {
-  --color-background: hsl(var(--color-neutral-900));
-  --color-foreground: hsl(var(--color-neutral-50));
-  --color-muted: hsl(var(--color-neutral-800));
-  --color-muted-foreground: hsl(var(--color-neutral-400));
-  --color-popover: hsl(var(--color-neutral-800));
-  --color-popover-foreground: hsl(var(--color-neutral-50));
-  --color-card: hsl(var(--color-neutral-800));
-  --color-card-foreground: hsl(var(--color-neutral-50));
-  --color-border: hsl(var(--color-neutral-700));
-  --color-input: hsl(var(--color-neutral-700));
-  --color-primary: hsl(var(--color-brand-400));
-  --color-primary-foreground: hsl(var(--color-neutral-900));
-  --color-secondary: hsl(var(--color-neutral-700));
-  --color-secondary-foreground: hsl(var(--color-neutral-50));
-  --color-accent: hsl(var(--color-brand-800));
-  --color-accent-foreground: hsl(var(--color-brand-100));
-  --color-destructive: hsl(var(--color-error-400));
-  --color-destructive-foreground: hsl(var(--color-neutral-900));
-  --color-success-foreground: hsl(var(--color-neutral-50));
-  --color-warning-foreground: hsl(var(--color-neutral-900));
-  --color-error-foreground: hsl(var(--color-neutral-900));
-  --color-info-foreground: hsl(var(--color-neutral-50));
-  --color-ring: hsl(var(--color-brand-400));
+  --nostromo-color-background: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-muted: hsl(var(--nostromo-color-neutral-800));
+  --nostromo-color-muted-foreground: hsl(var(--nostromo-color-neutral-400));
+  --nostromo-color-popover: hsl(var(--nostromo-color-neutral-800));
+  --nostromo-color-popover-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-card: hsl(var(--nostromo-color-neutral-800));
+  --nostromo-color-card-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-border: hsl(var(--nostromo-color-neutral-700));
+  --nostromo-color-input: hsl(var(--nostromo-color-neutral-700));
+  --nostromo-color-primary: hsl(var(--nostromo-color-brand-400));
+  --nostromo-color-primary-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-secondary: hsl(var(--nostromo-color-neutral-700));
+  --nostromo-color-secondary-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-accent: hsl(var(--nostromo-color-brand-800));
+  --nostromo-color-accent-foreground: hsl(var(--nostromo-color-brand-100));
+  --nostromo-color-destructive: hsl(var(--nostromo-color-error-400));
+  --nostromo-color-destructive-foreground: hsl(
+    var(--nostromo-color-neutral-900)
+  );
+  --nostromo-color-success-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-warning-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-error-foreground: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-color-info-foreground: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-color-ring: hsl(var(--nostromo-color-brand-400));
 }
 
 /* LV-426 theme specific styles */
 [data-theme="lv-426"] {
   /* Warm, earthy aesthetic */
-  font-family: var(--font-sans);
+  font-family: var(--nostromo-font-sans);
   line-height: 1.6;
-  color: var(--color-foreground);
-  background-color: var(--color-background);
+  color: var(--nostromo-color-foreground);
+  background-color: var(--nostromo-color-background);
 }
 
 [data-theme="lv-426"] .font-mono {
-  font-family: var(--font-mono);
+  font-family: var(--nostromo-font-mono);
 }
 
 [data-theme="lv-426"] .font-heading {
-  font-family: var(--font-heading);
+  font-family: var(--nostromo-font-heading);
   font-weight: 600;
   letter-spacing: -0.025em;
 }
 
 /* LV-426 theme component overrides */
 [data-theme="lv-426"] .btn {
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  background: linear-gradient(135deg, var(--color-primary), hsl(var(--color-brand-600)));
+  border-radius: var(--nostromo-radius-md);
+  transition: all var(--nostromo-transition-fast);
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-primary),
+    hsl(var(--nostromo-color-brand-600))
+  );
 }
 
 [data-theme="lv-426"] .btn:hover {
   transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, hsl(var(--color-brand-600)), hsl(var(--color-brand-700)));
+  box-shadow: var(--nostromo-shadow-lg);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-brand-600)),
+    hsl(var(--nostromo-color-brand-700))
+  );
 }
 
 [data-theme="lv-426"] .card {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
-  background-color: var(--color-card);
-  box-shadow: var(--shadow-md);
-  background: linear-gradient(135deg, var(--color-card), hsl(var(--color-neutral-100)));
+  border-radius: var(--nostromo-radius-lg);
+  border: 1px solid var(--nostromo-color-border);
+  background-color: var(--nostromo-color-card);
+  box-shadow: var(--nostromo-shadow-md);
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-card),
+    hsl(var(--nostromo-color-neutral-100))
+  );
 }
 
 [data-theme="lv-426"] .input {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-input);
-  transition: all var(--transition-fast);
-  background: linear-gradient(135deg, var(--color-background), hsl(var(--color-neutral-100)));
+  border-radius: var(--nostromo-radius-md);
+  border: 1px solid var(--nostromo-color-input);
+  transition: all var(--nostromo-transition-fast);
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-background),
+    hsl(var(--nostromo-color-neutral-100))
+  );
 }
 
 [data-theme="lv-426"] .input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px hsl(var(--color-primary) / 0.2);
-  background: var(--color-background);
+  border-color: var(--nostromo-color-primary);
+  box-shadow: 0 0 0 3px hsl(var(--nostromo-color-primary) / 0.2);
+  background: var(--nostromo-color-background);
 }
 
 /* LV-426 theme animations */
@@ -236,7 +267,8 @@
 }
 
 @keyframes lv426-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
@@ -261,34 +293,50 @@
 
 /* LV-426 theme special effects */
 [data-theme="lv-426"] .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), hsl(var(--color-brand-600)));
-  border: 1px solid hsl(var(--color-brand-700));
-  box-shadow: 0 4px 14px 0 hsl(var(--color-brand-500) / 0.3);
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-primary),
+    hsl(var(--nostromo-color-brand-600))
+  );
+  border: 1px solid hsl(var(--nostromo-color-brand-700));
+  box-shadow: 0 4px 14px 0 hsl(var(--nostromo-color-brand-500) / 0.3);
 }
 
 [data-theme="lv-426"] .btn-primary:hover {
-  background: linear-gradient(135deg, hsl(var(--color-brand-600)), hsl(var(--color-brand-700)));
-  box-shadow: 0 6px 20px 0 hsl(var(--color-brand-500) / 0.4);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-brand-600)),
+    hsl(var(--nostromo-color-brand-700))
+  );
+  box-shadow: 0 6px 20px 0 hsl(var(--nostromo-color-brand-500) / 0.4);
 }
 
 [data-theme="lv-426"] .card-elevated {
-  background: linear-gradient(135deg, var(--color-card), hsl(var(--color-neutral-100)));
-  box-shadow: var(--shadow-xl);
-  border: 1px solid hsl(var(--color-brand-200));
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-card),
+    hsl(var(--nostromo-color-neutral-100))
+  );
+  box-shadow: var(--nostromo-shadow-xl);
+  border: 1px solid hsl(var(--nostromo-color-brand-200));
 }
 
 /* LV-426 theme text effects */
 [data-theme="lv-426"] .text-gradient {
-  background: linear-gradient(135deg, var(--color-primary), hsl(var(--color-brand-600)));
+  background: linear-gradient(
+    135deg,
+    var(--nostromo-color-primary),
+    hsl(var(--nostromo-color-brand-600))
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 [data-theme="lv-426"] .text-warm {
-  color: hsl(var(--color-brand-600));
+  color: hsl(var(--nostromo-color-brand-600));
 }
 
 [data-theme="lv-426"] .text-earth {
-  color: hsl(var(--color-neutral-600));
+  color: hsl(var(--nostromo-color-neutral-600));
 }

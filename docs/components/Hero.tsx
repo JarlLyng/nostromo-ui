@@ -52,7 +52,7 @@ export function Hero() {
                         <Link
                             href="/getting-started"
                             onClick={() => track("cta_get_started", { placement: "hero" })}
-                            className="group relative px-10 py-5 bg-primary text-primary-foreground rounded-2xl font-bold text-lg hover:bg-primary/95 transition-all shadow-[0_20px_40px_-15px_rgba(var(--color-primary-500),0.3)] hover:scale-[1.02] active:scale-95 overflow-hidden"
+                            className="group relative px-10 py-5 bg-primary text-primary-foreground rounded-2xl font-bold text-lg hover:bg-primary/95 transition-all shadow-[0_20px_40px_-15px_rgba(var(--nostromo-color-primary-500),0.3)] hover:scale-[1.02] active:scale-95 overflow-hidden"
                         >
                             <span className="relative z-10">Start Building</span>
                             <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12"></div>

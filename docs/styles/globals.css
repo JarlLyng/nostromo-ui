@@ -9,26 +9,26 @@
 
 /* Typography - shadcn-inspired */
 
-[data-theme="docs"] {
+[data-theme="nostromo"] {
   /* Typography Stack */
-  --font-sans: "Inter", "Geist", system-ui, -apple-system, sans-serif;
-  --font-mono:
+  --nostromo-font-sans: "Inter", "Geist", system-ui, -apple-system, sans-serif;
+  --nostromo-font-mono:
     "Fira Code", "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
 
   /* Tighter leading for better readability */
-  --leading-tight: 1.25;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.75;
+  --nostromo-leading-tight: 1.25;
+  --nostromo-leading-normal: 1.5;
+  --nostromo-leading-relaxed: 1.75;
 
   /* Container max-width */
   --container-max: 85rem;
 
   /* Enhanced radius */
-  --radius-sm: 0.375rem; /* 6px */
-  --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1.25rem; /* 20px */
-  --radius-2xl: 1.5rem; /* 24px */
+  --nostromo-radius-sm: 0.375rem; /* 6px */
+  --nostromo-radius-md: 0.5rem; /* 8px */
+  --nostromo-radius-lg: 0.75rem; /* 12px */
+  --nostromo-radius-xl: 1.25rem; /* 20px */
+  --nostromo-radius-2xl: 1.5rem; /* 24px */
 
   /* Premium Gradients */
   --gradient-mesh:
@@ -52,7 +52,7 @@
 /* Bind fonts to body and code */
 body,
 .nx-body {
-  font-family: var(--font-sans);
+  font-family: var(--nostromo-font-sans);
   line-height: 1.6;
 }
 
@@ -60,7 +60,7 @@ code,
 pre,
 .nx-code,
 .nx-code-block pre {
-  font-family: var(--font-mono);
+  font-family: var(--nostromo-font-mono);
 }
 
 /* Main content container */
@@ -85,7 +85,7 @@ main article {
 /* Enhanced code blocks with toolbar */
 .nx-code-block {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--nostromo-radius-lg);
   overflow: hidden;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -98,13 +98,13 @@ main article {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background: hsl(var(--color-neutral-900));
-  border-bottom: 1px solid hsl(var(--color-neutral-800));
+  background: hsl(var(--nostromo-color-neutral-900));
+  border-bottom: 1px solid hsl(var(--nostromo-color-neutral-800));
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-code-block-header {
-  background: hsl(var(--color-neutral-950));
-  border-bottom-color: hsl(var(--color-neutral-800));
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-code-block-header {
+  background: hsl(var(--nostromo-color-neutral-950));
+  border-bottom-color: hsl(var(--nostromo-color-neutral-800));
 }
 
 .nx-code-block-actions {
@@ -115,23 +115,23 @@ main article {
 .nx-code-block-copy {
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
-  background: hsl(var(--color-neutral-800));
-  border: 1px solid hsl(var(--color-neutral-700));
-  border-radius: var(--radius-sm);
-  color: hsl(var(--color-neutral-200));
+  background: hsl(var(--nostromo-color-neutral-800));
+  border: 1px solid hsl(var(--nostromo-color-neutral-700));
+  border-radius: var(--nostromo-radius-sm);
+  color: hsl(var(--nostromo-color-neutral-200));
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .nx-code-block-copy:hover {
-  background: hsl(var(--color-neutral-700));
-  border-color: hsl(var(--color-neutral-600));
+  background: hsl(var(--nostromo-color-neutral-700));
+  border-color: hsl(var(--nostromo-color-neutral-600));
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-code-block-copy {
-  background: hsl(var(--color-neutral-800));
-  border-color: hsl(var(--color-neutral-700));
-  color: hsl(var(--color-neutral-200));
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-code-block-copy {
+  background: hsl(var(--nostromo-color-neutral-800));
+  border-color: hsl(var(--nostromo-color-neutral-700));
+  color: hsl(var(--nostromo-color-neutral-200));
 }
 
 .nx-code-block > pre {
@@ -149,7 +149,7 @@ pre > code {
 /* Add wrapper styling to Nextra pre blocks */
 pre {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--nostromo-radius-lg);
   overflow: hidden;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -164,9 +164,9 @@ pre::before {
   right: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
-  background: hsl(var(--color-neutral-800));
-  border: 1px solid hsl(var(--color-neutral-700));
-  border-radius: var(--radius-sm);
+  background: hsl(var(--nostromo-color-neutral-800));
+  border: 1px solid hsl(var(--nostromo-color-neutral-700));
+  border-radius: var(--nostromo-radius-sm);
   z-index: 10;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -178,9 +178,9 @@ pre:hover::before {
 
 /* Card surfaces with gradients/shadows */
 .nx-card {
-  background: hsl(var(--color-neutral-50));
-  border: 1px solid hsl(var(--color-neutral-200));
-  border-radius: var(--radius-lg);
+  background: hsl(var(--nostromo-color-neutral-50));
+  border: 1px solid hsl(var(--nostromo-color-neutral-200));
+  border-radius: var(--nostromo-radius-lg);
   padding: 1.5rem;
   box-shadow:
     0 1px 3px 0 rgba(0, 0, 0, 0.1),
@@ -194,22 +194,22 @@ pre:hover::before {
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-color: hsl(var(--color-neutral-300));
+  border-color: hsl(var(--nostromo-color-neutral-300));
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-card {
-  background: hsl(var(--color-neutral-900));
-  border-color: hsl(var(--color-neutral-800));
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-card {
+  background: hsl(var(--nostromo-color-neutral-900));
+  border-color: hsl(var(--nostromo-color-neutral-800));
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-card:hover {
-  border-color: hsl(var(--color-neutral-700));
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-card:hover {
+  border-color: hsl(var(--nostromo-color-neutral-700));
 }
 
 /* Callout styles */
 .nx-callout {
   padding: 1rem 1.25rem;
-  border-radius: var(--radius-lg);
+  border-radius: var(--nostromo-radius-lg);
   border-left: 4px solid;
   margin: 1.5rem 0;
 }
@@ -232,17 +232,17 @@ pre:hover::before {
   color: hsl(142 76% 20%);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-callout-info {
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-info {
   background: hsl(199 89% 48% / 0.15);
   color: hsl(199 89% 70%);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-callout-warning {
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-warning {
   background: hsl(38 92% 50% / 0.15);
   color: hsl(38 92% 70%);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .nx-callout-success {
+[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-success {
   background: hsl(142 76% 36% / 0.15);
   color: hsl(142 76% 60%);
 }
@@ -301,8 +301,8 @@ pre:hover::before {
   height: 3px;
   background: linear-gradient(
     to right,
-    hsl(var(--color-primary-500)),
-    hsl(var(--color-primary-300))
+    hsl(var(--nostromo-color-primary-500)),
+    hsl(var(--nostromo-color-primary-300))
   );
   z-index: 9999;
   transition: width 0.1s ease-out;

@@ -1,8 +1,8 @@
 /**
  * Contrast Validator
- * 
+ *
  * Utilities for validating WCAG AA contrast compliance (4.5:1 for normal text, 3:1 for large text)
- * 
+ *
  * @module contrast-validator
  */
 
@@ -13,16 +13,16 @@
  */
 function hslToRgb(hslString: string): [number, number, number] {
   // Remove hsl() wrapper if present
-  const cleaned = hslString.replace(/^hsl\(|\)$/g, '').trim();
+  const cleaned = hslString.replace(/^hsl\(|\)$/g, "").trim();
   const parts = cleaned.split(/\s+/);
-  
+
   if (parts.length < 3 || !parts[0] || !parts[1] || !parts[2]) {
     throw new Error(`Invalid HSL format: ${hslString}`);
   }
 
   const h = parseFloat(parts[0]) / 360;
-  const s = parseFloat(parts[1].replace('%', '')) / 100;
-  const l = parseFloat(parts[2].replace('%', '')) / 100;
+  const s = parseFloat(parts[1].replace("%", "")) / 100;
+  const l = parseFloat(parts[2].replace("%", "")) / 100;
 
   let r: number, g: number, b: number;
 
@@ -56,7 +56,7 @@ function hslToRgb(hslString: string): [number, number, number] {
  * @returns Relative luminance (0-1)
  */
 function getRelativeLuminance(r: number, g: number, b: number): number {
-  const [rs, gs, bs] = [r, g, b].map(val => {
+  const [rs, gs, bs] = [r, g, b].map((val) => {
     val = val / 255;
     return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
   });
@@ -88,8 +88,11 @@ export function calculateContrastRatio(color1: string, color2: string): number {
  * @param textSize - Text size: 'normal' (4.5:1) or 'large' (3:1)
  * @returns true if meets WCAG AA requirements
  */
-export function meetsWCAGAA(contrastRatio: number, textSize: 'normal' | 'large' = 'normal'): boolean {
-  const requiredRatio = textSize === 'large' ? 3 : 4.5;
+export function meetsWCAGAA(
+  contrastRatio: number,
+  textSize: "normal" | "large" = "normal",
+): boolean {
+  const requiredRatio = textSize === "large" ? 3 : 4.5;
   return contrastRatio >= requiredRatio;
 }
 
@@ -103,15 +106,15 @@ export function meetsWCAGAA(contrastRatio: number, textSize: 'normal' | 'large' 
 export function validateContrast(
   foreground: string,
   background: string,
-  textSize: 'normal' | 'large' = 'normal'
+  textSize: "normal" | "large" = "normal",
 ): {
   contrastRatio: number;
   meetsWCAGAA: boolean;
   requiredRatio: number;
-  textSize: 'normal' | 'large';
+  textSize: "normal" | "large";
 } {
   const contrastRatio = calculateContrastRatio(foreground, background);
-  const requiredRatio = textSize === 'large' ? 3 : 4.5;
+  const requiredRatio = textSize === "large" ? 3 : 4.5;
   const meetsWCAG = contrastRatio >= requiredRatio;
 
   return {
@@ -124,11 +127,14 @@ export function validateContrast(
 
 /**
  * Extracts HSL color value from CSS variable reference
- * @param cssVar - CSS variable like "hsl(var(--color-neutral-900))"
+ * @param cssVar - CSS variable like "hsl(var(--nostromo-color-neutral-900))"
  * @param computedValue - Computed HSL value like "262 84% 52%"
  * @returns HSL string in format "h h% l%" or throws if invalid
  */
-export function parseColorValue(cssVar: string, computedValue?: string): string {
+export function parseColorValue(
+  cssVar: string,
+  computedValue?: string,
+): string {
   // If we have a computed value, use it
   if (computedValue) {
     return computedValue;
@@ -141,10 +147,12 @@ export function parseColorValue(cssVar: string, computedValue?: string): string 
   }
 
   // Try to extract from var() format - this requires runtime resolution
-  const varMatch = cssVar.match(/var\(--color-([^)]+)\)/);
+  const varMatch = cssVar.match(/var\(--nostromo-color-([^)]+)\)/);
   if (varMatch) {
     // This would need to be resolved at runtime
-    throw new Error(`Cannot resolve CSS variable at build time: ${cssVar}. Provide computedValue.`);
+    throw new Error(
+      `Cannot resolve CSS variable at build time: ${cssVar}. Provide computedValue.`,
+    );
   }
 
   throw new Error(`Invalid color format: ${cssVar}`);
@@ -156,7 +164,7 @@ export function parseColorValue(cssVar: string, computedValue?: string): string 
 export interface ColorCombination {
   foreground: string;
   background: string;
-  textSize?: 'normal' | 'large';
+  textSize?: "normal" | "large";
   context?: string;
 }
 
@@ -168,7 +176,7 @@ export interface ContrastValidationResult {
   contrastRatio: number;
   meetsWCAGAA: boolean;
   requiredRatio: number;
-  textSize: 'normal' | 'large';
+  textSize: "normal" | "large";
   pass: boolean;
 }
 
@@ -178,11 +186,15 @@ export interface ContrastValidationResult {
  * @returns Array of validation results
  */
 export function validateColorCombinations(
-  combinations: ColorCombination[]
+  combinations: ColorCombination[],
 ): ContrastValidationResult[] {
-  return combinations.map(combo => {
-    const textSize = combo.textSize || 'normal';
-    const validation = validateContrast(combo.foreground, combo.background, textSize);
+  return combinations.map((combo) => {
+    const textSize = combo.textSize || "normal";
+    const validation = validateContrast(
+      combo.foreground,
+      combo.background,
+      textSize,
+    );
 
     return {
       combination: combo,
@@ -197,9 +209,11 @@ export function validateColorCombinations(
  * @param results - Array of validation results
  * @returns Report string
  */
-export function generateContrastReport(results: ContrastValidationResult[]): string {
-  const failures = results.filter(r => !r.pass);
-  const passes = results.filter(r => r.pass);
+export function generateContrastReport(
+  results: ContrastValidationResult[],
+): string {
+  const failures = results.filter((r) => !r.pass);
+  const passes = results.filter((r) => r.pass);
 
   let report = `# Contrast Validation Report\n\n`;
   report += `Total combinations: ${results.length}\n`;
@@ -209,7 +223,7 @@ export function generateContrastReport(results: ContrastValidationResult[]): str
   if (failures.length > 0) {
     report += `## Failures\n\n`;
     failures.forEach((failure, index) => {
-      report += `### ${index + 1}. ${failure.combination.context || 'Unknown'}\n`;
+      report += `### ${index + 1}. ${failure.combination.context || "Unknown"}\n`;
       report += `- Foreground: ${failure.combination.foreground}\n`;
       report += `- Background: ${failure.combination.background}\n`;
       report += `- Text Size: ${failure.textSize}\n`;
@@ -221,4 +235,3 @@ export function generateContrastReport(results: ContrastValidationResult[]): str
 
   return report;
 }
-

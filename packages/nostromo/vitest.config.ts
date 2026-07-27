@@ -1,15 +1,16 @@
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [
-    react(),
-  ],
+  plugins: [react()],
   test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.ts'],
+    environment: "jsdom",
+    setupFiles: ["./src/test/setup.ts"],
     globals: true,
-    include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)', '**/*.a11y.test.tsx'],
+    include: ["src/**/*.{test,spec}.?(c|m)[jt]s?(x)", "src/**/*.a11y.test.tsx"],
+    // dist/ contains copies of the theme tests after a build; without this the
+    // suite runs them twice and the test count depends on whether dist exists.
+    exclude: ["**/node_modules/**", "dist/**"],
     // Timeout configuration to prevent hanging tests
     // Higher timeout in CI due to resource constraints
     testTimeout: process.env.CI ? 20000 : 10000, // 20s in CI, 10s locally
@@ -19,15 +20,15 @@ export default defineConfig({
     maxConcurrency: process.env.CI ? 4 : 5,
     // Coverage configuration - enabled in CI for reporting
     coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json', 'html', 'lcov'],
+      provider: "v8",
+      reporter: ["text", "json", "html", "lcov"],
       exclude: [
-        'node_modules/',
-        'src/test/',
-        '**/*.d.ts',
-        '**/*.stories.*',
-        '**/*.test.*',
-        'dist/**',
+        "node_modules/",
+        "src/test/",
+        "**/*.d.ts",
+        "**/*.stories.*",
+        "**/*.test.*",
+        "dist/**",
       ],
       // Coverage thresholds - minimum 80% for most metrics, 75% for branches
       thresholds: {
@@ -43,7 +44,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': './src',
+      "@": "./src",
     },
   },
   css: {

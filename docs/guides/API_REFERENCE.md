@@ -20,16 +20,19 @@ This document provides a comprehensive API reference for all Nostromo UI compone
 ## 🎯 API Design Principles
 
 ### Consistency
+
 - **Consistent prop names** across all components
 - **Unified variant system** for all components
 - **Standardized variant systems** (size, variant, state)
 
 ### Flexibility
+
 - **Composable**: Components can be combined and extended
 - **Customizable**: Support for custom styling via className/class
 - **Accessible**: WCAG 2.1 AA compliance out of the box
 
 ### Performance
+
 - **Tree-shakeable**: Individual component imports
 - **Minimal bundle**: No runtime overhead
 - **SSR compatible**: No client-side dependencies
@@ -41,23 +44,23 @@ This document provides a comprehensive API reference for all Nostromo UI compone
 A versatile button component with multiple variants and states.
 
 ```tsx
-import { Button } from "@jarllyng/nostromo"
+import { Button } from "@jarllyng/nostromo";
 // or
-import { Button } from "@jarllyng/nostromo/button"
+import { Button } from "@jarllyng/nostromo/button";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "subtle"` | `"default"` | Visual variant of the button |
-| `size` | `"sm" \| "default" \| "lg" \| "xl" \| "icon"` | `"default"` | Size of the button |
-| `state` | `"default" \| "loading" \| "success" \| "error"` | `"default"` | Visual state of the button |
-| `loading` | `boolean` | `false` | Whether the button is in a loading state |
-| `loadingText` | `string` | `undefined` | The loading text to display when loading is true |
-| `disabled` | `boolean` | `false` | Whether the button is disabled |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Button content |
+| Prop          | Type                                                                                      | Default     | Description                                      |
+| ------------- | ----------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------ |
+| `variant`     | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link" \| "subtle"` | `"default"` | Visual variant of the button                     |
+| `size`        | `"sm" \| "default" \| "lg" \| "xl" \| "icon"`                                             | `"default"` | Size of the button                               |
+| `state`       | `"default" \| "loading" \| "success" \| "error"`                                          | `"default"` | Visual state of the button                       |
+| `loading`     | `boolean`                                                                                 | `false`     | Whether the button is in a loading state         |
+| `loadingText` | `string`                                                                                  | `undefined` | The loading text to display when loading is true |
+| `disabled`    | `boolean`                                                                                 | `false`     | Whether the button is disabled                   |
+| `className`   | `string`                                                                                  | `undefined` | Additional CSS classes                           |
+| `children`    | `ReactNode`                                                                               | `undefined` | Button content                                   |
 
 #### Variants
 
@@ -92,25 +95,25 @@ import { Button } from "@jarllyng/nostromo/button"
 A versatile input component with label, helper text, and error states.
 
 ```tsx
-import { Input } from "@jarllyng/nostromo"
+import { Input } from "@jarllyng/nostromo";
 // or
-import { Input } from "@jarllyng/nostromo/input"
+import { Input } from "@jarllyng/nostromo/input";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the input |
-| `inputSize` | `"sm" \| "default" \| "lg"` | `"default"` | Size of the input |
-| `type` | `string` | `"text"` | HTML input type |
-| `placeholder` | `string` | `undefined` | Placeholder text |
-| `label` | `string` | `undefined` | Label text |
-| `helperText` | `string` | `undefined` | Helper text below input |
-| `error` | `boolean` | `false` | Whether the input has an error |
-| `success` | `boolean` | `false` | Whether the input has success state |
-| `disabled` | `boolean` | `false` | Whether the input is disabled |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type                                | Default     | Description                         |
+| ------------- | ----------------------------------- | ----------- | ----------------------------------- |
+| `variant`     | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the input         |
+| `inputSize`   | `"sm" \| "default" \| "lg"`         | `"default"` | Size of the input                   |
+| `type`        | `string`                            | `"text"`    | HTML input type                     |
+| `placeholder` | `string`                            | `undefined` | Placeholder text                    |
+| `label`       | `string`                            | `undefined` | Label text                          |
+| `helperText`  | `string`                            | `undefined` | Helper text below input             |
+| `error`       | `boolean`                           | `false`     | Whether the input has an error      |
+| `success`     | `boolean`                           | `false`     | Whether the input has success state |
+| `disabled`    | `boolean`                           | `false`     | Whether the input is disabled       |
+| `className`   | `string`                            | `undefined` | Additional CSS classes              |
 
 #### Example
 
@@ -131,21 +134,33 @@ import { Input } from "@jarllyng/nostromo/input"
 A modal dialog component with backdrop and focus management.
 
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@jarllyng/nostromo"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo";
 // or
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@jarllyng/nostromo/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo/dialog";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `false` | Whether the dialog is open |
-| `onOpenChange` | `(open: boolean) => void` | `undefined` | Callback when open state changes |
-| `variant` | `"default" \| "centered" \| "fullscreen"` | `"default"` | Visual variant of the dialog |
-| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `"default"` | Size of the dialog |
-| `backdropVariant` | `"default" \| "blur" \| "transparent"` | `"default"` | Backdrop variant |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop              | Type                                      | Default     | Description                      |
+| ----------------- | ----------------------------------------- | ----------- | -------------------------------- |
+| `open`            | `boolean`                                 | `false`     | Whether the dialog is open       |
+| `onOpenChange`    | `(open: boolean) => void`                 | `undefined` | Callback when open state changes |
+| `variant`         | `"default" \| "centered" \| "fullscreen"` | `"default"` | Visual variant of the dialog     |
+| `size`            | `"sm" \| "default" \| "lg" \| "xl"`       | `"default"` | Size of the dialog               |
+| `backdropVariant` | `"default" \| "blur" \| "transparent"`    | `"default"` | Backdrop variant                 |
+| `className`       | `string`                                  | `undefined` | Additional CSS classes           |
 
 #### Example
 
@@ -170,17 +185,31 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 A flexible card component with header, content, and footer sections.
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jarllyng/nostromo"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@jarllyng/nostromo";
 // or
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@jarllyng/nostromo/card"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@jarllyng/nostromo/card";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "outlined" \| "elevated"` | `"default"` | Visual variant of the card |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop        | Type                                    | Default     | Description                |
+| ----------- | --------------------------------------- | ----------- | -------------------------- |
+| `variant`   | `"default" \| "outlined" \| "elevated"` | `"default"` | Visual variant of the card |
+| `className` | `string`                                | `undefined` | Additional CSS classes     |
 
 #### Example
 
@@ -206,19 +235,19 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 A status badge component with multiple variants.
 
 ```tsx
-import { Badge } from "@jarllyng/nostromo"
+import { Badge } from "@jarllyng/nostromo";
 // or
-import { Badge } from "@jarllyng/nostromo/badge"
+import { Badge } from "@jarllyng/nostromo/badge";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "secondary" \| "destructive" \| "outline"` | `"default"` | Visual variant of the badge |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Size of the badge |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Badge content |
+| Prop        | Type                                                     | Default     | Description                 |
+| ----------- | -------------------------------------------------------- | ----------- | --------------------------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline"` | `"default"` | Visual variant of the badge |
+| `size`      | `"sm" \| "default" \| "lg"`                              | `"default"` | Size of the badge           |
+| `className` | `string`                                                 | `undefined` | Additional CSS classes      |
+| `children`  | `ReactNode`                                              | `undefined` | Badge content               |
 
 #### Example
 
@@ -234,29 +263,29 @@ import { Badge } from "@jarllyng/nostromo/badge"
 A user avatar component with image support and fallback.
 
 ```tsx
-import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo"
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo";
 // or
-import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo/avatar"
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo/avatar";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `"sm" \| "default" \| "lg" \| "xl"` | `"default"` | Size of the avatar |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop        | Type                                | Default     | Description            |
+| ----------- | ----------------------------------- | ----------- | ---------------------- |
+| `size`      | `"sm" \| "default" \| "lg" \| "xl"` | `"default"` | Size of the avatar     |
+| `className` | `string`                            | `undefined` | Additional CSS classes |
 
 #### AvatarImage Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `src` | `string` | `undefined` | Image source URL |
+| Prop  | Type     | Default     | Description            |
+| ----- | -------- | ----------- | ---------------------- |
+| `src` | `string` | `undefined` | Image source URL       |
 | `alt` | `string` | `undefined` | Alt text for the image |
 
 #### AvatarFallback Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop       | Type        | Default     | Description      |
+| ---------- | ----------- | ----------- | ---------------- |
 | `children` | `ReactNode` | `undefined` | Fallback content |
 
 #### Example
@@ -275,20 +304,20 @@ import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo/avatar"
 A flexible icon component using Phosphor Icons.
 
 ```tsx
-import { Icon } from "@jarllyng/nostromo"
+import { Icon } from "@jarllyng/nostromo";
 // or
-import { Icon } from "@jarllyng/nostromo/icon"
+import { Icon } from "@jarllyng/nostromo/icon";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | `undefined` | Name of the icon (see available icons) |
-| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl"` | `"md"` | Size of the icon |
-| `weight` | `"thin" \| "light" \| "regular" \| "bold" \| "fill" \| "duotone"` | `"regular"` | Weight/style of the icon |
-| `color` | `"current" \| "primary" \| "secondary" \| "success" \| "warning" \| "error" \| "muted"` | `"current"` | Color of the icon |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop        | Type                                                                                    | Default     | Description                            |
+| ----------- | --------------------------------------------------------------------------------------- | ----------- | -------------------------------------- |
+| `name`      | `string`                                                                                | `undefined` | Name of the icon (see available icons) |
+| `size`      | `"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "3xl"`                                | `"md"`      | Size of the icon                       |
+| `weight`    | `"thin" \| "light" \| "regular" \| "bold" \| "fill" \| "duotone"`                       | `"regular"` | Weight/style of the icon               |
+| `color`     | `"current" \| "primary" \| "secondary" \| "success" \| "warning" \| "error" \| "muted"` | `"current"` | Color of the icon                      |
+| `className` | `string`                                                                                | `undefined` | Additional CSS classes                 |
 
 #### Available Icons
 
@@ -322,28 +351,42 @@ The Icon component supports 200+ Phosphor icons including:
 A data table component with sorting, pagination, and selection.
 
 ```tsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@jarllyng/nostromo"
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@jarllyng/nostromo";
 // or
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@jarllyng/nostromo/table"
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@jarllyng/nostromo/table";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data` | `T[]` | `undefined` | Array of data objects |
-| `columns` | `TableColumn<T>[]` | `undefined` | Column definitions |
-| `loading` | `boolean` | `false` | Whether the table is loading |
-| `emptyText` | `string` | `"No data"` | Text to show when no data |
-| `caption` | `string` | `undefined` | Table caption |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `rowKey` | `keyof T \| ((record: T) => string \| number)` | `undefined` | Unique key for each row |
-| `onRowClick` | `(record: T, index: number) => void` | `undefined` | Callback when row is clicked |
-| `onSort` | `(column: TableColumn<T>, direction: 'asc' \| 'desc') => void` | `undefined` | Callback when column is sorted |
-| `sortColumn` | `string` | `undefined` | Currently sorted column |
-| `sortDirection` | `'asc' \| 'desc'` | `undefined` | Sort direction |
-| `pagination` | `PaginationProps` | `undefined` | Pagination configuration |
-| `selection` | `SelectionProps` | `undefined` | Row selection configuration |
+| Prop            | Type                                                           | Default     | Description                    |
+| --------------- | -------------------------------------------------------------- | ----------- | ------------------------------ |
+| `data`          | `T[]`                                                          | `undefined` | Array of data objects          |
+| `columns`       | `TableColumn<T>[]`                                             | `undefined` | Column definitions             |
+| `loading`       | `boolean`                                                      | `false`     | Whether the table is loading   |
+| `emptyText`     | `string`                                                       | `"No data"` | Text to show when no data      |
+| `caption`       | `string`                                                       | `undefined` | Table caption                  |
+| `className`     | `string`                                                       | `undefined` | Additional CSS classes         |
+| `rowKey`        | `keyof T \| ((record: T) => string \| number)`                 | `undefined` | Unique key for each row        |
+| `onRowClick`    | `(record: T, index: number) => void`                           | `undefined` | Callback when row is clicked   |
+| `onSort`        | `(column: TableColumn<T>, direction: 'asc' \| 'desc') => void` | `undefined` | Callback when column is sorted |
+| `sortColumn`    | `string`                                                       | `undefined` | Currently sorted column        |
+| `sortDirection` | `'asc' \| 'desc'`                                              | `undefined` | Sort direction                 |
+| `pagination`    | `PaginationProps`                                              | `undefined` | Pagination configuration       |
+| `selection`     | `SelectionProps`                                               | `undefined` | Row selection configuration    |
 
 #### TableColumn Interface
 
@@ -355,7 +398,7 @@ interface TableColumn<T = any> {
   render?: (value: any, record: T, index: number) => ReactNode;
   sortable?: boolean;
   width?: string | number;
-  align?: 'left' | 'center' | 'right';
+  align?: "left" | "center" | "right";
   className?: string;
 }
 ```
@@ -364,11 +407,13 @@ interface TableColumn<T = any> {
 
 ```tsx
 const columns = [
-  { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
-  { key: 'email', title: 'Email', dataIndex: 'email' },
-  { key: 'actions', title: 'Actions', render: (_, record) => (
-    <Button size="sm">Edit</Button>
-  ) }
+  { key: "name", title: "Name", dataIndex: "name", sortable: true },
+  { key: "email", title: "Email", dataIndex: "email" },
+  {
+    key: "actions",
+    title: "Actions",
+    render: (_, record) => <Button size="sm">Edit</Button>,
+  },
 ];
 
 <Table
@@ -380,9 +425,9 @@ const columns = [
     current: 1,
     pageSize: 10,
     total: 100,
-    onChange: handlePageChange
+    onChange: handlePageChange,
   }}
-/>
+/>;
 ```
 
 ---
@@ -392,34 +437,34 @@ const columns = [
 An advanced data table component with built-in search, filtering, sorting, and pagination. Supports both client-side and server-side operations via controlled mode.
 
 ```tsx
-import { DataTable } from "@jarllyng/nostromo"
+import { DataTable } from "@jarllyng/nostromo";
 // or
-import { DataTable } from "@jarllyng/nostromo/data-table"
+import { DataTable } from "@jarllyng/nostromo/data-table";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `data` | `T[]` | - | **Required** - Array of data objects to display |
-| `columns` | `TableColumn<T>[]` | - | **Required** - Column definitions |
-| `searchable` | `boolean` | `true` | Enable global search functionality |
-| `searchTerm` | `string` | `undefined` | Controlled search term (for server-side search) |
-| `onSearchTermChange` | `(searchTerm: string) => void` | `undefined` | Callback when search term changes (controlled mode) |
-| `filterable` | `boolean` | `false` | Enable column filtering |
-| `columnFilters` | `Record<string, unknown>` | `undefined` | Controlled column filters (for server-side filtering) |
-| `onColumnFiltersChange` | `(filters: Record<string, unknown>) => void` | `undefined` | Callback when filters change (controlled mode) |
-| `sortColumn` | `string` | `undefined` | Controlled sort column (for server-side sorting) |
-| `sortDirection` | `"asc" \| "desc"` | `undefined` | Controlled sort direction (for server-side sorting) |
-| `onSortChange` | `(column: string, direction: "asc" \| "desc") => void` | `undefined` | Callback when sort changes (controlled mode) |
-| `currentPage` | `number` | `undefined` | Controlled current page (for server-side pagination) |
-| `pageSize` | `number` | `undefined` | Controlled page size (for server-side pagination) |
-| `onPageChange` | `(page: number) => void` | `undefined` | Callback when page changes (controlled mode) |
-| `onPageSizeChange` | `(size: number) => void` | `undefined` | Callback when page size changes (controlled mode) |
-| `totalItems` | `number` | `undefined` | Total number of items (required for server-side pagination) |
-| `defaultPageSize` | `number` | `10` | Default number of items per page |
-| `showPagination` | `boolean` | `true` | Show pagination controls |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop                    | Type                                                   | Default     | Description                                                 |
+| ----------------------- | ------------------------------------------------------ | ----------- | ----------------------------------------------------------- |
+| `data`                  | `T[]`                                                  | -           | **Required** - Array of data objects to display             |
+| `columns`               | `TableColumn<T>[]`                                     | -           | **Required** - Column definitions                           |
+| `searchable`            | `boolean`                                              | `true`      | Enable global search functionality                          |
+| `searchTerm`            | `string`                                               | `undefined` | Controlled search term (for server-side search)             |
+| `onSearchTermChange`    | `(searchTerm: string) => void`                         | `undefined` | Callback when search term changes (controlled mode)         |
+| `filterable`            | `boolean`                                              | `false`     | Enable column filtering                                     |
+| `columnFilters`         | `Record<string, unknown>`                              | `undefined` | Controlled column filters (for server-side filtering)       |
+| `onColumnFiltersChange` | `(filters: Record<string, unknown>) => void`           | `undefined` | Callback when filters change (controlled mode)              |
+| `sortColumn`            | `string`                                               | `undefined` | Controlled sort column (for server-side sorting)            |
+| `sortDirection`         | `"asc" \| "desc"`                                      | `undefined` | Controlled sort direction (for server-side sorting)         |
+| `onSortChange`          | `(column: string, direction: "asc" \| "desc") => void` | `undefined` | Callback when sort changes (controlled mode)                |
+| `currentPage`           | `number`                                               | `undefined` | Controlled current page (for server-side pagination)        |
+| `pageSize`              | `number`                                               | `undefined` | Controlled page size (for server-side pagination)           |
+| `onPageChange`          | `(page: number) => void`                               | `undefined` | Callback when page changes (controlled mode)                |
+| `onPageSizeChange`      | `(size: number) => void`                               | `undefined` | Callback when page size changes (controlled mode)           |
+| `totalItems`            | `number`                                               | `undefined` | Total number of items (required for server-side pagination) |
+| `defaultPageSize`       | `number`                                               | `10`        | Default number of items per page                            |
+| `showPagination`        | `boolean`                                              | `true`      | Show pagination controls                                    |
+| `className`             | `string`                                               | `undefined` | Additional CSS classes                                      |
 
 #### Example
 
@@ -459,27 +504,27 @@ import { DataTable } from "@jarllyng/nostromo/data-table"
 A flexible date picker component with support for single date selection, date ranges, and multiple date selection. Uses `date-fns` library for robust date handling.
 
 ```tsx
-import { Calendar } from "@jarllyng/nostromo"
+import { Calendar } from "@jarllyng/nostromo";
 // or
-import { Calendar } from "@jarllyng/nostromo/calendar"
+import { Calendar } from "@jarllyng/nostromo/calendar";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `mode` | `"single" \| "range" \| "multiple"` | `"single"` | Selection mode |
-| `value` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | Controlled value |
-| `defaultValue` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | Uncontrolled default value |
-| `onChange` | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined` | Callback when value changes |
-| `minDate` | `Date` | `undefined` | Minimum selectable date |
-| `maxDate` | `Date` | `undefined` | Maximum selectable date |
-| `disabledDates` | `Date[]` | `undefined` | Array of disabled dates |
-| `disabledDays` | `number[]` | `undefined` | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
-| `locale` | `string` | `"en-US"` | Locale for date formatting |
-| `placeholder` | `string` | `"Select date..."` | Input placeholder text |
-| `label` | `string` | `undefined` | Input label |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop            | Type                                                                         | Default            | Description                                     |
+| --------------- | ---------------------------------------------------------------------------- | ------------------ | ----------------------------------------------- |
+| `mode`          | `"single" \| "range" \| "multiple"`                                          | `"single"`         | Selection mode                                  |
+| `value`         | `Date \| Date[] \| { from?: Date; to?: Date }`                               | `undefined`        | Controlled value                                |
+| `defaultValue`  | `Date \| Date[] \| { from?: Date; to?: Date }`                               | `undefined`        | Uncontrolled default value                      |
+| `onChange`      | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined`        | Callback when value changes                     |
+| `minDate`       | `Date`                                                                       | `undefined`        | Minimum selectable date                         |
+| `maxDate`       | `Date`                                                                       | `undefined`        | Maximum selectable date                         |
+| `disabledDates` | `Date[]`                                                                     | `undefined`        | Array of disabled dates                         |
+| `disabledDays`  | `number[]`                                                                   | `undefined`        | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
+| `locale`        | `string`                                                                     | `"en-US"`          | Locale for date formatting                      |
+| `placeholder`   | `string`                                                                     | `"Select date..."` | Input placeholder text                          |
+| `label`         | `string`                                                                     | `undefined`        | Input label                                     |
+| `className`     | `string`                                                                     | `undefined`        | Additional CSS classes                          |
 
 #### Features
 
@@ -515,20 +560,20 @@ import { Calendar } from "@jarllyng/nostromo/calendar"
 A progress indicator component with multiple variants.
 
 ```tsx
-import { Progress } from "@jarllyng/nostromo"
+import { Progress } from "@jarllyng/nostromo";
 // or
-import { Progress } from "@jarllyng/nostromo/progress"
+import { Progress } from "@jarllyng/nostromo/progress";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `number` | `0` | Current progress value (0-100) |
-| `variant` | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Visual variant of the progress |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Size of the progress |
-| `showValue` | `boolean` | `false` | Whether to show the percentage value |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop        | Type                                             | Default     | Description                          |
+| ----------- | ------------------------------------------------ | ----------- | ------------------------------------ |
+| `value`     | `number`                                         | `0`         | Current progress value (0-100)       |
+| `variant`   | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Visual variant of the progress       |
+| `size`      | `"sm" \| "default" \| "lg"`                      | `"default"` | Size of the progress                 |
+| `showValue` | `boolean`                                        | `false`     | Whether to show the percentage value |
+| `className` | `string`                                         | `undefined` | Additional CSS classes               |
 
 #### Example
 
@@ -544,21 +589,21 @@ import { Progress } from "@jarllyng/nostromo/progress"
 A notification toast component with auto-dismiss and positioning.
 
 ```tsx
-import { Toast, ToastProvider, ToastViewport } from "@jarllyng/nostromo"
+import { Toast, ToastProvider, ToastViewport } from "@jarllyng/nostromo";
 // or
-import { Toast, ToastProvider, ToastViewport } from "@jarllyng/nostromo/toast"
+import { Toast, ToastProvider, ToastViewport } from "@jarllyng/nostromo/toast";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Visual variant of the toast |
-| `title` | `string` | `undefined` | Toast title |
-| `description` | `string` | `undefined` | Toast description |
-| `duration` | `number` | `5000` | Auto-dismiss duration in ms |
-| `position` | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"top-right"` | Toast position |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type                                                                                              | Default       | Description                 |
+| ------------- | ------------------------------------------------------------------------------------------------- | ------------- | --------------------------- |
+| `variant`     | `"default" \| "success" \| "warning" \| "error"`                                                  | `"default"`   | Visual variant of the toast |
+| `title`       | `string`                                                                                          | `undefined`   | Toast title                 |
+| `description` | `string`                                                                                          | `undefined`   | Toast description           |
+| `duration`    | `number`                                                                                          | `5000`        | Auto-dismiss duration in ms |
+| `position`    | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"top-right"` | Toast position              |
+| `className`   | `string`                                                                                          | `undefined`   | Additional CSS classes      |
 
 #### Example
 
@@ -580,20 +625,24 @@ import { Toast, ToastProvider, ToastViewport } from "@jarllyng/nostromo/toast"
 A tooltip component with positioning and triggers.
 
 ```tsx
-import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/nostromo"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/nostromo";
 // or
-import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/nostromo/tooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@jarllyng/nostromo/tooltip";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `content` | `string` | `undefined` | Tooltip content |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | Tooltip side |
-| `align` | `"start" \| "center" \| "end"` | `"center"` | Tooltip alignment |
-| `delayDuration` | `number` | `700` | Delay before showing tooltip |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop            | Type                                     | Default     | Description                  |
+| --------------- | ---------------------------------------- | ----------- | ---------------------------- |
+| `content`       | `string`                                 | `undefined` | Tooltip content              |
+| `side`          | `"top" \| "right" \| "bottom" \| "left"` | `"top"`     | Tooltip side                 |
+| `align`         | `"start" \| "center" \| "end"`           | `"center"`  | Tooltip alignment            |
+| `delayDuration` | `number`                                 | `700`       | Delay before showing tooltip |
+| `className`     | `string`                                 | `undefined` | Additional CSS classes       |
 
 #### Example
 
@@ -612,20 +661,30 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@jarllyng/nostromo/tool
 A collapsible accordion component with keyboard navigation.
 
 ```tsx
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@jarllyng/nostromo"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@jarllyng/nostromo";
 // or
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@jarllyng/nostromo/accordion"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@jarllyng/nostromo/accordion";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `"single" \| "multiple"` | `"single"` | Whether single or multiple items can be open |
-| `collapsible` | `boolean` | `true` | Whether items can be collapsed |
-| `value` | `string \| string[]` | `undefined` | Currently open items |
-| `onValueChange` | `(value: string \| string[]) => void` | `undefined` | Callback when value changes |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop            | Type                                  | Default     | Description                                  |
+| --------------- | ------------------------------------- | ----------- | -------------------------------------------- |
+| `type`          | `"single" \| "multiple"`              | `"single"`  | Whether single or multiple items can be open |
+| `collapsible`   | `boolean`                             | `true`      | Whether items can be collapsed               |
+| `value`         | `string \| string[]`                  | `undefined` | Currently open items                         |
+| `onValueChange` | `(value: string \| string[]) => void` | `undefined` | Callback when value changes                  |
+| `className`     | `string`                              | `undefined` | Additional CSS classes                       |
 
 #### Example
 
@@ -633,9 +692,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@j
 <Accordion type="multiple">
   <AccordionItem value="item1">
     <AccordionTrigger>Section 1</AccordionTrigger>
-    <AccordionContent>
-      Content for section 1
-    </AccordionContent>
+    <AccordionContent>Content for section 1</AccordionContent>
   </AccordionItem>
 </Accordion>
 ```
@@ -647,17 +704,17 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@j
 A loading skeleton component with animations.
 
 ```tsx
-import { Skeleton } from "@jarllyng/nostromo"
+import { Skeleton } from "@jarllyng/nostromo";
 // or
-import { Skeleton } from "@jarllyng/nostromo/skeleton"
+import { Skeleton } from "@jarllyng/nostromo/skeleton";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "pulse" \| "wave"` | `"default"` | Animation variant |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop        | Type                             | Default     | Description            |
+| ----------- | -------------------------------- | ----------- | ---------------------- |
+| `variant`   | `"default" \| "pulse" \| "wave"` | `"default"` | Animation variant      |
+| `className` | `string`                         | `undefined` | Additional CSS classes |
 
 #### Example
 
@@ -674,19 +731,24 @@ import { Skeleton } from "@jarllyng/nostromo/skeleton"
 A tab navigation component with keyboard support.
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo";
 // or
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo/tabs"
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@jarllyng/nostromo/tabs";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | `undefined` | Currently active tab |
-| `onValueChange` | `(value: string) => void` | `undefined` | Callback when tab changes |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Tab orientation |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop            | Type                         | Default        | Description               |
+| --------------- | ---------------------------- | -------------- | ------------------------- |
+| `value`         | `string`                     | `undefined`    | Currently active tab      |
+| `onValueChange` | `(value: string) => void`    | `undefined`    | Callback when tab changes |
+| `orientation`   | `"horizontal" \| "vertical"` | `"horizontal"` | Tab orientation           |
+| `className`     | `string`                     | `undefined`    | Additional CSS classes    |
 
 #### Example
 
@@ -708,20 +770,32 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo/tab
 A dropdown select component with search and keyboard navigation.
 
 ```tsx
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@jarllyng/nostromo"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@jarllyng/nostromo";
 // or
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@jarllyng/nostromo/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@jarllyng/nostromo/select";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | `undefined` | Selected value |
-| `onValueChange` | `(value: string) => void` | `undefined` | Callback when value changes |
-| `placeholder` | `string` | `undefined` | Placeholder text |
-| `disabled` | `boolean` | `false` | Whether the select is disabled |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop            | Type                      | Default     | Description                    |
+| --------------- | ------------------------- | ----------- | ------------------------------ |
+| `value`         | `string`                  | `undefined` | Selected value                 |
+| `onValueChange` | `(value: string) => void` | `undefined` | Callback when value changes    |
+| `placeholder`   | `string`                  | `undefined` | Placeholder text               |
+| `disabled`      | `boolean`                 | `false`     | Whether the select is disabled |
+| `className`     | `string`                  | `undefined` | Additional CSS classes         |
 
 #### Example
 
@@ -744,19 +818,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 A checkbox component with form integration.
 
 ```tsx
-import { Checkbox } from "@jarllyng/nostromo"
+import { Checkbox } from "@jarllyng/nostromo";
 // or
-import { Checkbox } from "@jarllyng/nostromo/checkbox"
+import { Checkbox } from "@jarllyng/nostromo/checkbox";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Whether the checkbox is checked |
+| Prop              | Type                         | Default     | Description                         |
+| ----------------- | ---------------------------- | ----------- | ----------------------------------- |
+| `checked`         | `boolean`                    | `false`     | Whether the checkbox is checked     |
 | `onCheckedChange` | `(checked: boolean) => void` | `undefined` | Callback when checked state changes |
-| `disabled` | `boolean` | `false` | Whether the checkbox is disabled |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| `disabled`        | `boolean`                    | `false`     | Whether the checkbox is disabled    |
+| `className`       | `string`                     | `undefined` | Additional CSS classes              |
 
 #### Example
 
@@ -773,19 +847,19 @@ import { Checkbox } from "@jarllyng/nostromo/checkbox"
 A toggle switch component with form integration.
 
 ```tsx
-import { Switch } from "@jarllyng/nostromo"
+import { Switch } from "@jarllyng/nostromo";
 // or
-import { Switch } from "@jarllyng/nostromo/switch"
+import { Switch } from "@jarllyng/nostromo/switch";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Whether the switch is checked |
+| Prop              | Type                         | Default     | Description                         |
+| ----------------- | ---------------------------- | ----------- | ----------------------------------- |
+| `checked`         | `boolean`                    | `false`     | Whether the switch is checked       |
 | `onCheckedChange` | `(checked: boolean) => void` | `undefined` | Callback when checked state changes |
-| `disabled` | `boolean` | `false` | Whether the switch is disabled |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| `disabled`        | `boolean`                    | `false`     | Whether the switch is disabled      |
+| `className`       | `string`                     | `undefined` | Additional CSS classes              |
 
 #### Example
 
@@ -802,25 +876,25 @@ import { Switch } from "@jarllyng/nostromo/switch"
 A multi-line text input component with auto-resize.
 
 ```tsx
-import { Textarea } from "@jarllyng/nostromo"
+import { Textarea } from "@jarllyng/nostromo";
 // or
-import { Textarea } from "@jarllyng/nostromo/textarea"
+import { Textarea } from "@jarllyng/nostromo/textarea";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the textarea |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | Size of the textarea |
-| `placeholder` | `string` | `undefined` | Placeholder text |
-| `label` | `string` | `undefined` | Label text |
-| `helperText` | `string` | `undefined` | Helper text below textarea |
-| `error` | `boolean` | `false` | Whether the textarea has an error |
-| `success` | `boolean` | `false` | Whether the textarea has success state |
-| `disabled` | `boolean` | `false` | Whether the textarea is disabled |
-| `autoResize` | `boolean` | `true` | Whether to auto-resize based on content |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type                                | Default     | Description                             |
+| ------------- | ----------------------------------- | ----------- | --------------------------------------- |
+| `variant`     | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the textarea          |
+| `size`        | `"sm" \| "default" \| "lg"`         | `"default"` | Size of the textarea                    |
+| `placeholder` | `string`                            | `undefined` | Placeholder text                        |
+| `label`       | `string`                            | `undefined` | Label text                              |
+| `helperText`  | `string`                            | `undefined` | Helper text below textarea              |
+| `error`       | `boolean`                           | `false`     | Whether the textarea has an error       |
+| `success`     | `boolean`                           | `false`     | Whether the textarea has success state  |
+| `disabled`    | `boolean`                           | `false`     | Whether the textarea is disabled        |
+| `autoResize`  | `boolean`                           | `true`      | Whether to auto-resize based on content |
+| `className`   | `string`                            | `undefined` | Additional CSS classes                  |
 
 #### Example
 
@@ -840,19 +914,19 @@ import { Textarea } from "@jarllyng/nostromo/textarea"
 A notification alert component with multiple variants.
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo"
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
 // or
-import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert"
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Visual variant of the alert |
-| `dismissible` | `boolean` | `false` | Whether the alert can be dismissed |
-| `onDismiss` | `() => void` | `undefined` | Callback when alert is dismissed |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type                                             | Default     | Description                        |
+| ------------- | ------------------------------------------------ | ----------- | ---------------------------------- |
+| `variant`     | `"default" \| "success" \| "warning" \| "error"` | `"default"` | Visual variant of the alert        |
+| `dismissible` | `boolean`                                        | `false`     | Whether the alert can be dismissed |
+| `onDismiss`   | `() => void`                                     | `undefined` | Callback when alert is dismissed   |
+| `className`   | `string`                                         | `undefined` | Additional CSS classes             |
 
 #### Example
 
@@ -872,19 +946,19 @@ import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert"
 A form label component with accessibility features.
 
 ```tsx
-import { Label } from "@jarllyng/nostromo"
+import { Label } from "@jarllyng/nostromo";
 // or
-import { Label } from "@jarllyng/nostromo/label"
+import { Label } from "@jarllyng/nostromo/label";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `htmlFor` | `string` | `undefined` | ID of the associated form element |
-| `required` | `boolean` | `false` | Whether the field is required |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Label content |
+| Prop        | Type        | Default     | Description                       |
+| ----------- | ----------- | ----------- | --------------------------------- |
+| `htmlFor`   | `string`    | `undefined` | ID of the associated form element |
+| `required`  | `boolean`   | `false`     | Whether the field is required     |
+| `className` | `string`    | `undefined` | Additional CSS classes            |
+| `children`  | `ReactNode` | `undefined` | Label content                     |
 
 #### Example
 
@@ -901,25 +975,23 @@ import { Label } from "@jarllyng/nostromo/label"
 A helper text component for form fields.
 
 ```tsx
-import { HelperText } from "@jarllyng/nostromo"
+import { HelperText } from "@jarllyng/nostromo";
 // or
-import { HelperText } from "@jarllyng/nostromo/helper-text"
+import { HelperText } from "@jarllyng/nostromo/helper-text";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the helper text |
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Helper text content |
+| Prop        | Type                                | Default     | Description                       |
+| ----------- | ----------------------------------- | ----------- | --------------------------------- |
+| `variant`   | `"default" \| "error" \| "success"` | `"default"` | Visual variant of the helper text |
+| `className` | `string`                            | `undefined` | Additional CSS classes            |
+| `children`  | `ReactNode`                         | `undefined` | Helper text content               |
 
 #### Example
 
 ```tsx
-<HelperText variant="error">
-  This field is required
-</HelperText>
+<HelperText variant="error">This field is required</HelperText>
 ```
 
 ---
@@ -929,24 +1001,22 @@ import { HelperText } from "@jarllyng/nostromo/helper-text"
 An error message component for form validation.
 
 ```tsx
-import { ErrorMessage } from "@jarllyng/nostromo"
+import { ErrorMessage } from "@jarllyng/nostromo";
 // or
-import { ErrorMessage } from "@jarllyng/nostromo/error-message"
+import { ErrorMessage } from "@jarllyng/nostromo/error-message";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Error message content |
+| Prop        | Type        | Default     | Description            |
+| ----------- | ----------- | ----------- | ---------------------- |
+| `className` | `string`    | `undefined` | Additional CSS classes |
+| `children`  | `ReactNode` | `undefined` | Error message content  |
 
 #### Example
 
 ```tsx
-<ErrorMessage>
-  Please enter a valid email address
-</ErrorMessage>
+<ErrorMessage>Please enter a valid email address</ErrorMessage>
 ```
 
 ---
@@ -956,15 +1026,25 @@ import { ErrorMessage } from "@jarllyng/nostromo/error-message"
 A breadcrumb navigation component.
 
 ```tsx
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@jarllyng/nostromo"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from "@jarllyng/nostromo";
 // or
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@jarllyng/nostromo/breadcrumb"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+} from "@jarllyng/nostromo/breadcrumb";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop        | Type     | Default     | Description            |
+| ----------- | -------- | ----------- | ---------------------- |
 | `className` | `string` | `undefined` | Additional CSS classes |
 
 #### Example
@@ -992,22 +1072,36 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from 
 A pagination component with page navigation.
 
 ```tsx
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@jarllyng/nostromo"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@jarllyng/nostromo";
 // or
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@jarllyng/nostromo/pagination"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@jarllyng/nostromo/pagination";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `current` | `number` | `1` | Current page number |
-| `total` | `number` | `0` | Total number of pages |
-| `pageSize` | `number` | `10` | Number of items per page |
-| `onChange` | `(page: number) => void` | `undefined` | Callback when page changes |
-| `showSizeChanger` | `boolean` | `false` | Whether to show page size changer |
-| `showQuickJumper` | `boolean` | `false` | Whether to show quick jumper |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop              | Type                     | Default     | Description                       |
+| ----------------- | ------------------------ | ----------- | --------------------------------- |
+| `current`         | `number`                 | `1`         | Current page number               |
+| `total`           | `number`                 | `0`         | Total number of pages             |
+| `pageSize`        | `number`                 | `10`        | Number of items per page          |
+| `onChange`        | `(page: number) => void` | `undefined` | Callback when page changes        |
+| `showSizeChanger` | `boolean`                | `false`     | Whether to show page size changer |
+| `showQuickJumper` | `boolean`                | `false`     | Whether to show quick jumper      |
+| `className`       | `string`                 | `undefined` | Additional CSS classes            |
 
 #### Example
 
@@ -1029,17 +1123,17 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 A visual separator component.
 
 ```tsx
-import { Separator } from "@jarllyng/nostromo"
+import { Separator } from "@jarllyng/nostromo";
 // or
-import { Separator } from "@jarllyng/nostromo/separator"
+import { Separator } from "@jarllyng/nostromo/separator";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop          | Type                         | Default        | Description                  |
+| ------------- | ---------------------------- | -------------- | ---------------------------- |
 | `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Orientation of the separator |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| `className`   | `string`                     | `undefined`    | Additional CSS classes       |
 
 #### Example
 
@@ -1057,25 +1151,25 @@ import { Separator } from "@jarllyng/nostromo/separator"
 A hero section component for landing pages.
 
 ```tsx
-import { Hero } from "@jarllyng/nostromo"
+import { Hero } from "@jarllyng/nostromo";
 // or
-import { Hero } from "@jarllyng/nostromo/hero"
+import { Hero } from "@jarllyng/nostromo/hero";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Hero title |
-| `subtitle` | `string` | `undefined` | Hero subtitle |
-| `description` | `string` | `undefined` | Hero description |
-| `ctaText` | `string` | `undefined` | Call-to-action button text |
-| `ctaHref` | `string` | `undefined` | Call-to-action button link |
-| `secondaryCtaText` | `string` | `undefined` | Secondary CTA button text |
-| `secondaryCtaHref` | `string` | `undefined` | Secondary CTA button link |
-| `image` | `string` | `undefined` | Hero image URL |
-| `variant` | `"default" \| "centered" \| "split"` | `"default"` | Hero layout variant |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop               | Type                                 | Default     | Description                |
+| ------------------ | ------------------------------------ | ----------- | -------------------------- |
+| `title`            | `string`                             | `undefined` | Hero title                 |
+| `subtitle`         | `string`                             | `undefined` | Hero subtitle              |
+| `description`      | `string`                             | `undefined` | Hero description           |
+| `ctaText`          | `string`                             | `undefined` | Call-to-action button text |
+| `ctaHref`          | `string`                             | `undefined` | Call-to-action button link |
+| `secondaryCtaText` | `string`                             | `undefined` | Secondary CTA button text  |
+| `secondaryCtaHref` | `string`                             | `undefined` | Secondary CTA button link  |
+| `image`            | `string`                             | `undefined` | Hero image URL             |
+| `variant`          | `"default" \| "centered" \| "split"` | `"default"` | Hero layout variant        |
+| `className`        | `string`                             | `undefined` | Additional CSS classes     |
 
 #### Example
 
@@ -1100,20 +1194,20 @@ import { Hero } from "@jarllyng/nostromo/hero"
 A features showcase component.
 
 ```tsx
-import { Features } from "@jarllyng/nostromo"
+import { Features } from "@jarllyng/nostromo";
 // or
-import { Features } from "@jarllyng/nostromo/features"
+import { Features } from "@jarllyng/nostromo/features";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Features section title |
-| `description` | `string` | `undefined` | Features section description |
-| `features` | `Feature[]` | `undefined` | Array of feature objects |
-| `columns` | `number` | `3` | Number of columns in the grid |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type        | Default     | Description                   |
+| ------------- | ----------- | ----------- | ----------------------------- |
+| `title`       | `string`    | `undefined` | Features section title        |
+| `description` | `string`    | `undefined` | Features section description  |
+| `features`    | `Feature[]` | `undefined` | Array of feature objects      |
+| `columns`     | `number`    | `3`         | Number of columns in the grid |
+| `className`   | `string`    | `undefined` | Additional CSS classes        |
 
 #### Feature Interface
 
@@ -1136,13 +1230,13 @@ interface Feature {
     {
       title: "Accessible",
       description: "WCAG 2.1 AA compliant components",
-      icon: "shield-check"
+      icon: "shield-check",
     },
     {
       title: "Customizable",
       description: "Easy theming with CSS variables",
-      icon: "paint-brush"
-    }
+      icon: "paint-brush",
+    },
   ]}
   columns={3}
 />
@@ -1155,20 +1249,20 @@ interface Feature {
 A testimonials component for customer reviews.
 
 ```tsx
-import { Testimonials } from "@jarllyng/nostromo"
+import { Testimonials } from "@jarllyng/nostromo";
 // or
-import { Testimonials } from "@jarllyng/nostromo/testimonials"
+import { Testimonials } from "@jarllyng/nostromo/testimonials";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Testimonials section title |
-| `description` | `string` | `undefined` | Testimonials section description |
-| `testimonials` | `Testimonial[]` | `undefined` | Array of testimonial objects |
-| `columns` | `number` | `3` | Number of columns in the grid |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop           | Type            | Default     | Description                      |
+| -------------- | --------------- | ----------- | -------------------------------- |
+| `title`        | `string`        | `undefined` | Testimonials section title       |
+| `description`  | `string`        | `undefined` | Testimonials section description |
+| `testimonials` | `Testimonial[]` | `undefined` | Array of testimonial objects     |
+| `columns`      | `number`        | `3`         | Number of columns in the grid    |
+| `className`    | `string`        | `undefined` | Additional CSS classes           |
 
 #### Testimonial Interface
 
@@ -1196,8 +1290,8 @@ interface Testimonial {
       role: "Frontend Developer",
       company: "Acme Corp",
       avatar: "/avatar1.jpg",
-      rating: 5
-    }
+      rating: 5,
+    },
   ]}
   columns={3}
 />
@@ -1210,19 +1304,19 @@ interface Testimonial {
 An image gallery component with lightbox functionality.
 
 ```tsx
-import { Gallery } from "@jarllyng/nostromo"
+import { Gallery } from "@jarllyng/nostromo";
 // or
-import { Gallery } from "@jarllyng/nostromo/gallery"
+import { Gallery } from "@jarllyng/nostromo/gallery";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `images` | `GalleryImage[]` | `undefined` | Array of image objects |
-| `columns` | `number` | `3` | Number of columns in the grid |
-| `showLightbox` | `boolean` | `true` | Whether to show lightbox on click |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop           | Type             | Default     | Description                       |
+| -------------- | ---------------- | ----------- | --------------------------------- |
+| `images`       | `GalleryImage[]` | `undefined` | Array of image objects            |
+| `columns`      | `number`         | `3`         | Number of columns in the grid     |
+| `showLightbox` | `boolean`        | `true`      | Whether to show lightbox on click |
+| `className`    | `string`         | `undefined` | Additional CSS classes            |
 
 #### GalleryImage Interface
 
@@ -1244,8 +1338,8 @@ interface GalleryImage {
       src: "/image1.jpg",
       alt: "Image 1",
       title: "Beautiful Landscape",
-      description: "A stunning view of the mountains"
-    }
+      description: "A stunning view of the mountains",
+    },
   ]}
   columns={4}
   showLightbox
@@ -1259,20 +1353,20 @@ interface GalleryImage {
 A pricing table component.
 
 ```tsx
-import { Pricing } from "@jarllyng/nostromo"
+import { Pricing } from "@jarllyng/nostromo";
 // or
-import { Pricing } from "@jarllyng/nostromo/pricing"
+import { Pricing } from "@jarllyng/nostromo/pricing";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Pricing section title |
-| `description` | `string` | `undefined` | Pricing section description |
-| `plans` | `PricingPlan[]` | `undefined` | Array of pricing plan objects |
-| `showToggle` | `boolean` | `true` | Whether to show monthly/yearly toggle |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| Prop          | Type            | Default     | Description                           |
+| ------------- | --------------- | ----------- | ------------------------------------- |
+| `title`       | `string`        | `undefined` | Pricing section title                 |
+| `description` | `string`        | `undefined` | Pricing section description           |
+| `plans`       | `PricingPlan[]` | `undefined` | Array of pricing plan objects         |
+| `showToggle`  | `boolean`       | `true`      | Whether to show monthly/yearly toggle |
+| `className`   | `string`        | `undefined` | Additional CSS classes                |
 
 #### PricingPlan Interface
 
@@ -1304,8 +1398,8 @@ interface PricingPlan {
       price: { monthly: 9, yearly: 90 },
       features: ["Up to 5 projects", "Basic support"],
       ctaText: "Get Started",
-      ctaHref: "/signup"
-    }
+      ctaHref: "/signup",
+    },
   ]}
   showToggle
 />
@@ -1318,20 +1412,20 @@ interface PricingPlan {
 A client logos component with hover effects.
 
 ```tsx
-import { LogoWall } from "@jarllyng/nostromo"
+import { LogoWall } from "@jarllyng/nostromo";
 // or
-import { LogoWall } from "@jarllyng/nostromo/logo-wall"
+import { LogoWall } from "@jarllyng/nostromo/logo-wall";
 ```
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | `undefined` | Logo wall section title |
+| Prop          | Type     | Default     | Description                   |
+| ------------- | -------- | ----------- | ----------------------------- |
+| `title`       | `string` | `undefined` | Logo wall section title       |
 | `description` | `string` | `undefined` | Logo wall section description |
-| `logos` | `Logo[]` | `undefined` | Array of logo objects |
-| `columns` | `number` | `6` | Number of columns in the grid |
-| `className` | `string` | `undefined` | Additional CSS classes |
+| `logos`       | `Logo[]` | `undefined` | Array of logo objects         |
+| `columns`     | `number` | `6`         | Number of columns in the grid |
+| `className`   | `string` | `undefined` | Additional CSS classes        |
 
 #### Logo Interface
 
@@ -1351,7 +1445,7 @@ interface Logo {
   description="Join thousands of developers using Nostromo UI"
   logos={[
     { src: "/logo1.png", alt: "Company 1", href: "https://company1.com" },
-    { src: "/logo2.png", alt: "Company 2", href: "https://company2.com" }
+    { src: "/logo2.png", alt: "Company 2", href: "https://company2.com" },
   ]}
   columns={6}
 />
@@ -1365,21 +1459,21 @@ interface Logo {
 
 All components support these common props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `className` | `string` | `undefined` | Additional CSS classes |
-| `children` | `ReactNode` | `undefined` | Component content |
+| Prop        | Type        | Default     | Description            |
+| ----------- | ----------- | ----------- | ---------------------- |
+| `className` | `string`    | `undefined` | Additional CSS classes |
+| `children`  | `ReactNode` | `undefined` | Component content      |
 
 ### Form Props
 
 Form components support these additional props:
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `disabled` | `boolean` | `false` | Whether the component is disabled |
-| `required` | `boolean` | `false` | Whether the field is required |
-| `error` | `boolean` | `false` | Whether the component has an error |
-| `success` | `boolean` | `false` | Whether the component has success state |
+| Prop       | Type      | Default | Description                             |
+| ---------- | --------- | ------- | --------------------------------------- |
+| `disabled` | `boolean` | `false` | Whether the component is disabled       |
+| `required` | `boolean` | `false` | Whether the field is required           |
+| `error`    | `boolean` | `false` | Whether the component has an error      |
+| `success`  | `boolean` | `false` | Whether the component has success state |
 
 ---
 
@@ -1421,7 +1515,7 @@ Interactive components support these state variants:
 All components are fully typed with TypeScript interfaces. Import types like this:
 
 ```tsx
-import type { ButtonProps, InputProps, DialogProps } from "@jarllyng/nostromo"
+import type { ButtonProps, InputProps, DialogProps } from "@jarllyng/nostromo";
 ```
 
 ### Generic Components
@@ -1429,7 +1523,7 @@ import type { ButtonProps, InputProps, DialogProps } from "@jarllyng/nostromo"
 Some components like Table support generics:
 
 ```tsx
-import type { TableProps, TableColumn } from "@jarllyng/nostromo"
+import type { TableProps, TableColumn } from "@jarllyng/nostromo";
 
 interface User {
   id: string;
@@ -1438,11 +1532,11 @@ interface User {
 }
 
 const columns: TableColumn<User>[] = [
-  { key: 'name', title: 'Name', dataIndex: 'name' },
-  { key: 'email', title: 'Email', dataIndex: 'email' }
+  { key: "name", title: "Name", dataIndex: "name" },
+  { key: "email", title: "Email", dataIndex: "email" },
 ];
 
-<Table<User> data={users} columns={columns} />
+<Table<User> data={users} columns={columns} />;
 ```
 
 ---
@@ -1452,23 +1546,23 @@ const columns: TableColumn<User>[] = [
 ### Individual Imports (Recommended)
 
 ```tsx
-import { Button } from "@jarllyng/nostromo/button"
-import { Input } from "@jarllyng/nostromo/input"
-import { Dialog } from "@jarllyng/nostromo/dialog"
+import { Button } from "@jarllyng/nostromo/button";
+import { Input } from "@jarllyng/nostromo/input";
+import { Dialog } from "@jarllyng/nostromo/dialog";
 ```
 
 ### Package Imports
 
 ```tsx
-import { Button, Input, Dialog } from "@jarllyng/nostromo"
+import { Button, Input, Dialog } from "@jarllyng/nostromo";
 ```
 
 ### Marketing Components
 
 ```tsx
-import { Hero } from "@jarllyng/nostromo/hero"
-import { Features } from "@jarllyng/nostromo/features"
-import { Testimonials } from "@jarllyng/nostromo/testimonials"
+import { Hero } from "@jarllyng/nostromo/hero";
+import { Features } from "@jarllyng/nostromo/features";
+import { Testimonials } from "@jarllyng/nostromo/testimonials";
 ```
 
 ---
@@ -1476,35 +1570,28 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ## 🚀 Getting Started
 
 1. **Install the packages**:
+
    ```bash
    npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
    ```
 
-2. **Configure Tailwind**:
-   ```js
-   // tailwind.config.js
-   const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
-   
-   module.exports = {
-     content: [
-       "./src/**/*.{js,ts,jsx,tsx,mdx}",
-       "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
-     ],
-     presets: [nostromoPreset],
-   };
-   ```
+2. **Configure Tailwind**: nothing to configure. Tokens are registered in CSS via
+   `@theme`, and the library declares its own `@source`, so there is no
+   `tailwind.config.js` and no content glob to maintain.
 
 3. **Import base styles**:
+
    ```tsx
-   import "@jarllyng/nostromo/base.css";
+   import "@jarllyng/nostromo/tailwind.css";
    ```
 
 4. **Start using components**:
+
    ```tsx
-   import { Button } from "@jarllyng/nostromo/button"
-   
+   import { Button } from "@jarllyng/nostromo/button";
+
    function App() {
-     return <Button>Hello World</Button>
+     return <Button>Hello World</Button>;
    }
    ```
 
@@ -1518,6 +1605,7 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ## 🔧 Composition Patterns
 
 ### Compound Components
+
 ```tsx
 // Dialog with compound components
 <Dialog>
@@ -1536,6 +1624,7 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ```
 
 ### Render Props / Slots
+
 ```tsx
 // React with render props
 <Popover>
@@ -1556,9 +1645,10 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ## ♿ Accessibility
 
 ### ARIA Patterns
+
 ```tsx
 // Button with loading state
-<Button 
+<Button
   loading={isLoading}
   aria-label={isLoading ? "Loading..." : "Submit form"}
   disabled={isLoading}
@@ -1585,6 +1675,7 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ```
 
 ### Keyboard Navigation
+
 ```tsx
 // Tabs with keyboard navigation
 <Tabs defaultValue="tab1">
@@ -1600,13 +1691,14 @@ import { Testimonials } from "@jarllyng/nostromo/testimonials"
 ## 🧪 Testing
 
 ### Unit Tests
+
 ```tsx
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Button } from "@jarllyng/nostromo";
 
 test("Button renders with correct variant", () => {
   render(<Button variant="primary">Click me</Button>);
-  
+
   const button = screen.getByRole("button");
   expect(button).toHaveClass("bg-brand-500");
 });
@@ -1614,13 +1706,14 @@ test("Button renders with correct variant", () => {
 test("Button handles click events", () => {
   const handleClick = jest.fn();
   render(<Button onClick={handleClick}>Click me</Button>);
-  
+
   fireEvent.click(screen.getByRole("button"));
   expect(handleClick).toHaveBeenCalledTimes(1);
 });
 ```
 
 ### Accessibility Tests
+
 ```tsx
 import { axe, toHaveNoViolations } from "jest-axe";
 import { render } from "@testing-library/react";
@@ -1637,4 +1730,4 @@ test("Button has no accessibility violations", async () => {
 
 ---
 
-*This API reference is automatically generated from TypeScript interfaces and component definitions.*
+_This API reference is automatically generated from TypeScript interfaces and component definitions._

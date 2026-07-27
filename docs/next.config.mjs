@@ -6,8 +6,14 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 
+// The theme is referenced under an alias (mapped in the webpack config below)
+// rather than by its real name on purpose: nextra's loader auto-injects
+// `import 'nextra-theme-docs/style.css'` for its two official theme names, and
+// that import is unlayered, which breaks Tailwind v4's cascade. Under an alias
+// the injection is skipped and _app.tsx imports the CSS wrapped in a layer
+// instead. See styles/nextra-layered.css.
 const withNextra = nextra({
-  theme: 'nextra-theme-docs',
+  theme: 'nextra-theme-docs-layered',
   themeConfig: './theme.config.tsx',
 })
 
@@ -39,6 +45,11 @@ export default withNextra({
       ...config.resolve.alias,
       react: path.resolve(__dirname, 'node_modules/react'),
       'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+      // Resolves the aliased theme name below to the real theme component.
+      'nextra-theme-docs-layered': path.resolve(
+        __dirname,
+        'node_modules/nextra-theme-docs/dist/index.js'
+      ),
     };
     return config;
   },

@@ -34,24 +34,22 @@ pnpm install
 
 ### Setup
 
-1. **Configure Tailwind** - Add Nostromo preset to `tailwind.config.mjs`
-2. **Import CSS** - Add base styles and theme in your entry file
+1. **Import CSS** - One import for Tailwind + tokens, one for the theme
+2. **Set the theme attribute** - `data-theme` on `<html>`
 3. **Start using components** - Import and use components
 
-```tsx
-// tailwind.config.mjs
-import nostromoPreset from "@jarllyng/nostromo/preset";
-export default {
-  presets: [nostromoPreset],
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@jarllyng/nostromo/dist/**/*.{js,ts,jsx,tsx}",
-  ],
-};
+Theming is CSS-first on Tailwind v4, so there is no `tailwind.config.js` and no
+preset to register.
 
-// main.tsx
-import "@jarllyng/nostromo/base.css";
-import "@jarllyng/nostromo/themes/nostromo.css";
+```css
+/* Your main stylesheet */
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
+```
+
+```tsx
+// index.html / layout
+<html data-theme="nostromo" data-color-scheme="light">
 
 // Component usage
 import { Button } from "@jarllyng/nostromo";

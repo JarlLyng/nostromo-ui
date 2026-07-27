@@ -72,14 +72,14 @@ export interface ChartProps extends VariantProps<
 
 // Default color palette matching Nostromo theme
 const defaultColors = [
-  "hsl(var(--color-brand-500))",
-  "hsl(var(--color-brand-600))",
-  "hsl(var(--color-success-500))",
-  "hsl(var(--color-warning-500))",
-  "hsl(var(--color-error-500))",
-  "hsl(var(--color-info-500))",
-  "hsl(var(--color-brand-400))",
-  "hsl(var(--color-brand-700))",
+  "hsl(var(--nostromo-color-brand-500))",
+  "hsl(var(--nostromo-color-brand-600))",
+  "hsl(var(--nostromo-color-success-500))",
+  "hsl(var(--nostromo-color-warning-500))",
+  "hsl(var(--nostromo-color-error-500))",
+  "hsl(var(--nostromo-color-info-500))",
+  "hsl(var(--nostromo-color-brand-400))",
+  "hsl(var(--nostromo-color-brand-700))",
 ];
 
 // Custom tooltip component with Tailwind styling
@@ -187,17 +187,23 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
               {showGrid && (
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="hsl(var(--color-neutral-300))"
+                  stroke="hsl(var(--nostromo-color-neutral-300))"
                 />
               )}
               <XAxis
                 dataKey={xAxisKey}
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               <YAxis
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {
@@ -226,17 +232,23 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
               {showGrid && (
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="hsl(var(--color-neutral-300))"
+                  stroke="hsl(var(--nostromo-color-neutral-300))"
                 />
               )}
               <XAxis
                 dataKey={xAxisKey}
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               <YAxis
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {
@@ -255,17 +267,23 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
               {showGrid && (
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="hsl(var(--color-neutral-300))"
+                  stroke="hsl(var(--nostromo-color-neutral-300))"
                 />
               )}
               <XAxis
                 dataKey={xAxisKey}
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               <YAxis
-                stroke="hsl(var(--color-neutral-600))"
-                tick={{ fill: "hsl(var(--color-neutral-700))", fontSize: 12 }}
+                stroke="hsl(var(--nostromo-color-neutral-600))"
+                tick={{
+                  fill: "hsl(var(--nostromo-color-neutral-700))",
+                  fontSize: 12,
+                }}
               />
               {showTooltip && <Tooltip content={<CustomTooltip />} />}
               {dataKeys.map((key, index) => {

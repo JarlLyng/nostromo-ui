@@ -1,9 +1,5 @@
 /* Nostromo UI - Base Styles */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* CSS Reset */
 *,
 *::before,
@@ -59,11 +55,11 @@ h6 {
 
 /* Base Typography */
 body {
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  color: hsl(var(--color-neutral-900));
-  background-color: hsl(var(--color-neutral-50));
+  font-family: var(--nostromo-font-body);
+  font-size: var(--nostromo-text-base);
+  line-height: var(--nostromo-leading-normal);
+  color: hsl(var(--nostromo-color-neutral-900));
+  background-color: hsl(var(--nostromo-color-neutral-50));
 }
 
 h1,
@@ -72,46 +68,46 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
-  font-weight: var(--font-semibold);
-  line-height: var(--leading-tight);
-  color: hsl(var(--color-neutral-900));
+  font-family: var(--nostromo-font-heading);
+  font-weight: var(--nostromo-font-semibold);
+  line-height: var(--nostromo-leading-tight);
+  color: hsl(var(--nostromo-color-neutral-900));
 }
 
 h1 {
-  font-size: var(--text-4xl);
+  font-size: var(--nostromo-text-4xl);
 }
 
 h2 {
-  font-size: var(--text-3xl);
+  font-size: var(--nostromo-text-3xl);
 }
 
 h3 {
-  font-size: var(--text-2xl);
+  font-size: var(--nostromo-text-2xl);
 }
 
 h4 {
-  font-size: var(--text-xl);
+  font-size: var(--nostromo-text-xl);
 }
 
 h5 {
-  font-size: var(--text-lg);
+  font-size: var(--nostromo-text-lg);
 }
 
 h6 {
-  font-size: var(--text-base);
+  font-size: var(--nostromo-text-base);
 }
 
 /* Focus Styles */
 :focus-visible {
-  outline: 2px solid hsl(var(--color-brand-500));
+  outline: 2px solid hsl(var(--nostromo-color-brand-500));
   outline-offset: 2px;
 }
 
 /* Selection Styles */
 ::selection {
-  background-color: hsl(var(--color-brand-100));
-  color: hsl(var(--color-brand-900));
+  background-color: hsl(var(--nostromo-color-brand-100));
+  color: hsl(var(--nostromo-color-brand-900));
 }
 
 /* Scrollbar Styles */
@@ -121,16 +117,16 @@ h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--color-neutral-100));
+  background: hsl(var(--nostromo-color-neutral-100));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--color-neutral-300));
-  border-radius: var(--radius-md);
+  background: hsl(var(--nostromo-color-neutral-300));
+  border-radius: var(--nostromo-radius-md);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--color-neutral-400));
+  background: hsl(var(--nostromo-color-neutral-400));
 }
 
 /* Utility Classes */
@@ -162,8 +158,8 @@ h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  font-weight: var(--font-medium);
+  border-radius: var(--nostromo-radius-md);
+  font-weight: var(--nostromo-font-medium);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   border: none;
@@ -173,7 +169,7 @@ h6 {
 }
 
 .btn:focus-visible {
-  outline: 2px solid hsl(var(--color-brand-500));
+  outline: 2px solid hsl(var(--nostromo-color-brand-500));
   outline-offset: 2px;
 }
 
@@ -184,77 +180,77 @@ h6 {
 
 /* Button Variants */
 .btn-primary {
-  background-color: hsl(var(--color-brand-500));
-  color: hsl(var(--color-neutral-50));
+  background-color: hsl(var(--nostromo-color-brand-500));
+  color: hsl(var(--nostromo-color-neutral-50));
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: hsl(var(--color-brand-600));
+  background-color: hsl(var(--nostromo-color-brand-600));
 }
 
 .btn-secondary {
-  background-color: hsl(var(--color-neutral-200));
-  color: hsl(var(--color-neutral-900));
+  background-color: hsl(var(--nostromo-color-neutral-200));
+  color: hsl(var(--nostromo-color-neutral-900));
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: hsl(var(--color-neutral-300));
+  background-color: hsl(var(--nostromo-color-neutral-300));
 }
 
 .btn-ghost {
   background-color: transparent;
-  color: hsl(var(--color-neutral-900));
+  color: hsl(var(--nostromo-color-neutral-900));
 }
 
 .btn-ghost:hover:not(:disabled) {
-  background-color: hsl(var(--color-neutral-100));
+  background-color: hsl(var(--nostromo-color-neutral-100));
 }
 
 .btn-destructive {
-  background-color: hsl(var(--color-error-500));
-  color: hsl(var(--color-neutral-50));
+  background-color: hsl(var(--nostromo-color-error-500));
+  color: hsl(var(--nostromo-color-neutral-50));
 }
 
 .btn-destructive:hover:not(:disabled) {
-  background-color: hsl(var(--color-error-600));
+  background-color: hsl(var(--nostromo-color-error-600));
 }
 
 /* Button Sizes */
 .btn-sm {
   height: 2rem;
   padding: 0 0.75rem;
-  font-size: var(--text-sm);
+  font-size: var(--nostromo-text-sm);
 }
 
 .btn-md {
   height: 2.5rem;
   padding: 0 1rem;
-  font-size: var(--text-base);
+  font-size: var(--nostromo-text-base);
 }
 
 .btn-lg {
   height: 3rem;
   padding: 0 1.5rem;
-  font-size: var(--text-lg);
+  font-size: var(--nostromo-text-lg);
 }
 
 /* Hero Component Base */
 .hero {
   text-align: center;
-  padding: var(--spacing-3xl) var(--spacing-lg);
+  padding: var(--nostromo-spacing-3xl) var(--nostromo-spacing-lg);
 }
 
 .hero-title {
-  font-size: var(--text-5xl);
-  font-weight: var(--font-bold);
-  margin-bottom: var(--spacing-lg);
-  color: hsl(var(--color-neutral-900));
+  font-size: var(--nostromo-text-5xl);
+  font-weight: var(--nostromo-font-bold);
+  margin-bottom: var(--nostromo-spacing-lg);
+  color: hsl(var(--nostromo-color-neutral-900));
 }
 
 .hero-subtitle {
-  font-size: var(--text-xl);
-  color: hsl(var(--color-neutral-600));
-  margin-bottom: var(--spacing-2xl);
+  font-size: var(--nostromo-text-xl);
+  color: hsl(var(--nostromo-color-neutral-600));
+  margin-bottom: var(--nostromo-spacing-2xl);
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -262,7 +258,7 @@ h6 {
 
 .hero-cta {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--nostromo-spacing-md);
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -270,8 +266,8 @@ h6 {
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   body {
-    color: hsl(var(--color-neutral-50));
-    background-color: hsl(var(--color-neutral-900));
+    color: hsl(var(--nostromo-color-neutral-50));
+    background-color: hsl(var(--nostromo-color-neutral-900));
   }
 
   h1,
@@ -280,22 +276,22 @@ h6 {
   h4,
   h5,
   h6 {
-    color: hsl(var(--color-neutral-50));
+    color: hsl(var(--nostromo-color-neutral-50));
   }
 
   .hero-title {
-    color: hsl(var(--color-neutral-50));
+    color: hsl(var(--nostromo-color-neutral-50));
   }
 
   .hero-subtitle {
-    color: hsl(var(--color-neutral-400));
+    color: hsl(var(--nostromo-color-neutral-400));
   }
 }
 
 /* Manual Dark Mode */
 [data-color-scheme="dark"] {
-  color: hsl(var(--color-neutral-50));
-  background-color: hsl(var(--color-neutral-900));
+  color: hsl(var(--nostromo-color-neutral-50));
+  background-color: hsl(var(--nostromo-color-neutral-900));
 }
 
 [data-color-scheme="dark"] h1,
@@ -304,13 +300,13 @@ h6 {
 [data-color-scheme="dark"] h4,
 [data-color-scheme="dark"] h5,
 [data-color-scheme="dark"] h6 {
-  color: hsl(var(--color-neutral-50));
+  color: hsl(var(--nostromo-color-neutral-50));
 }
 
 [data-color-scheme="dark"] .hero-title {
-  color: hsl(var(--color-neutral-50));
+  color: hsl(var(--nostromo-color-neutral-50));
 }
 
 [data-color-scheme="dark"] .hero-subtitle {
-  color: hsl(var(--color-neutral-400));
+  color: hsl(var(--nostromo-color-neutral-400));
 }

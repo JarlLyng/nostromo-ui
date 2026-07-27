@@ -50,61 +50,55 @@ pnpm add @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 ### Component Mappings
 
-| Material-UI | Nostromo UI | Notes |
-|-------------|-------------|-------|
-| `Button` | `Button` | Similar API, different variants |
-| `TextField` | `Input` | Different prop structure |
-| `Dialog` | `Dialog` | Similar API, different backdrop options |
-| `Card` | `Card` | Similar structure, different styling |
-| `Chip` | `Badge` | Different API, similar functionality |
-| `Avatar` | `Avatar` | Similar API, different fallback handling |
-| `Switch` | `Switch` | Similar API, different styling |
-| `Checkbox` | `Checkbox` | Similar API, different styling |
-| `Radio` | `RadioGroup` | Different component structure |
-| `Select` | `Select` | Similar API, different styling |
-| `Tabs` | `Tabs` | Similar API, different styling |
-| `Accordion` | `Accordion` | Similar API, different styling |
-| `Alert` | `Alert` | Similar API, different variants |
-| `Progress` | `Progress` | Similar API, different styling |
-| `Table` | `Table` | Different API, more features |
-| `Pagination` | `Pagination` | Similar API, different styling |
+| Material-UI  | Nostromo UI  | Notes                                    |
+| ------------ | ------------ | ---------------------------------------- |
+| `Button`     | `Button`     | Similar API, different variants          |
+| `TextField`  | `Input`      | Different prop structure                 |
+| `Dialog`     | `Dialog`     | Similar API, different backdrop options  |
+| `Card`       | `Card`       | Similar structure, different styling     |
+| `Chip`       | `Badge`      | Different API, similar functionality     |
+| `Avatar`     | `Avatar`     | Similar API, different fallback handling |
+| `Switch`     | `Switch`     | Similar API, different styling           |
+| `Checkbox`   | `Checkbox`   | Similar API, different styling           |
+| `Radio`      | `RadioGroup` | Different component structure            |
+| `Select`     | `Select`     | Similar API, different styling           |
+| `Tabs`       | `Tabs`       | Similar API, different styling           |
+| `Accordion`  | `Accordion`  | Similar API, different styling           |
+| `Alert`      | `Alert`      | Similar API, different variants          |
+| `Progress`   | `Progress`   | Similar API, different styling           |
+| `Table`      | `Table`      | Different API, more features             |
+| `Pagination` | `Pagination` | Similar API, different styling           |
 
 ### API Differences
 
 #### Button Component
 
 **Material-UI:**
-```tsx
-import { Button } from '@mui/material';
 
-<Button 
-  variant="contained" 
-  color="primary" 
-  size="large"
-  disabled={false}
->
+```tsx
+import { Button } from "@mui/material";
+
+<Button variant="contained" color="primary" size="large" disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 **Nostromo UI:**
-```tsx
-import { Button } from '@jarllyng/nostromo/button';
 
-<Button 
-  variant="default" 
-  size="lg" 
-  disabled={false}
->
+```tsx
+import { Button } from "@jarllyng/nostromo/button";
+
+<Button variant="default" size="lg" disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 #### TextField Component
 
 **Material-UI:**
+
 ```tsx
-import { TextField } from '@mui/material';
+import { TextField } from "@mui/material";
 
 <TextField
   label="Email"
@@ -113,12 +107,13 @@ import { TextField } from '@mui/material';
   error={hasError}
   helperText="Enter your email"
   fullWidth
-/>
+/>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Input } from '@jarllyng/nostromo/input';
+import { Input } from "@jarllyng/nostromo/input";
 
 <Input
   label="Email"
@@ -126,30 +121,41 @@ import { Input } from '@jarllyng/nostromo/input';
   inputSize="default"
   helperText="Enter your email"
   error={hasError}
-/>
+/>;
 ```
 
 #### Dialog Component
 
 **Material-UI:**
+
 ```tsx
-import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 
 <Dialog open={open} onClose={handleClose}>
   <DialogTitle>Title</DialogTitle>
-  <DialogContent>
-    Content here
-  </DialogContent>
+  <DialogContent>Content here</DialogContent>
   <DialogActions>
     <Button onClick={handleClose}>Cancel</Button>
     <Button onClick={handleSave}>Save</Button>
   </DialogActions>
-</Dialog>
+</Dialog>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/nostromo/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo/dialog";
 
 <Dialog open={open} onOpenChange={setOpen}>
   <DialogContent>
@@ -159,37 +165,39 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
     </DialogHeader>
     Content here
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ### Theming Migration
 
 **Material-UI Theme:**
+
 ```tsx
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: "#1976d2",
     },
     secondary: {
-      main: '#dc004e',
+      main: "#dc004e",
     },
   },
   typography: {
-    fontFamily: 'Roboto, Arial, sans-serif',
+    fontFamily: "Roboto, Arial, sans-serif",
   },
 });
 ```
 
 **Nostromo UI Theme:**
+
 ```css
 /* CSS Variables */
 [data-theme="nostromo"] {
-  --color-brand-500: 262 84% 52%;
-  --color-brand-600: 262 84% 42%;
-  --font-heading: "Inter", sans-serif;
+  --nostromo-color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-600: 262 84% 42%;
+  --nostromo-font-heading: "Inter", sans-serif;
 }
 ```
 
@@ -218,83 +226,92 @@ npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 ### Component Mappings
 
-| Chakra UI | Nostromo UI | Notes |
-|-----------|-------------|-------|
-| `Button` | `Button` | Similar API, different variants |
-| `Input` | `Input` | Similar API, different styling |
-| `Modal` | `Dialog` | Different API structure |
-| `Box` | `div` | Use regular HTML elements |
-| `Flex` | `div` | Use Tailwind classes |
-| `Grid` | `div` | Use Tailwind classes |
-| `Stack` | `div` | Use Tailwind classes |
-| `Text` | `p`, `span` | Use semantic HTML |
-| `Heading` | `h1`, `h2`, etc. | Use semantic HTML |
-| `Badge` | `Badge` | Similar API, different styling |
-| `Avatar` | `Avatar` | Similar API, different styling |
-| `Switch` | `Switch` | Similar API, different styling |
-| `Checkbox` | `Checkbox` | Similar API, different styling |
-| `Radio` | `RadioGroup` | Different component structure |
-| `Select` | `Select` | Similar API, different styling |
-| `Tabs` | `Tabs` | Similar API, different styling |
-| `Accordion` | `Accordion` | Similar API, different styling |
-| `Alert` | `Alert` | Similar API, different styling |
-| `Progress` | `Progress` | Similar API, different styling |
-| `Table` | `Table` | Different API, more features |
+| Chakra UI   | Nostromo UI      | Notes                           |
+| ----------- | ---------------- | ------------------------------- |
+| `Button`    | `Button`         | Similar API, different variants |
+| `Input`     | `Input`          | Similar API, different styling  |
+| `Modal`     | `Dialog`         | Different API structure         |
+| `Box`       | `div`            | Use regular HTML elements       |
+| `Flex`      | `div`            | Use Tailwind classes            |
+| `Grid`      | `div`            | Use Tailwind classes            |
+| `Stack`     | `div`            | Use Tailwind classes            |
+| `Text`      | `p`, `span`      | Use semantic HTML               |
+| `Heading`   | `h1`, `h2`, etc. | Use semantic HTML               |
+| `Badge`     | `Badge`          | Similar API, different styling  |
+| `Avatar`    | `Avatar`         | Similar API, different styling  |
+| `Switch`    | `Switch`         | Similar API, different styling  |
+| `Checkbox`  | `Checkbox`       | Similar API, different styling  |
+| `Radio`     | `RadioGroup`     | Different component structure   |
+| `Select`    | `Select`         | Similar API, different styling  |
+| `Tabs`      | `Tabs`           | Similar API, different styling  |
+| `Accordion` | `Accordion`      | Similar API, different styling  |
+| `Alert`     | `Alert`          | Similar API, different styling  |
+| `Progress`  | `Progress`       | Similar API, different styling  |
+| `Table`     | `Table`          | Different API, more features    |
 
 ### API Differences
 
 #### Button Component
 
 **Chakra UI:**
-```tsx
-import { Button } from '@chakra-ui/react';
 
-<Button 
-  colorScheme="blue" 
-  variant="solid" 
+```tsx
+import { Button } from "@chakra-ui/react";
+
+<Button
+  colorScheme="blue"
+  variant="solid"
   size="lg"
   isLoading={isLoading}
   loadingText="Loading..."
 >
   Click me
-</Button>
+</Button>;
 ```
 
 **Nostromo UI:**
-```tsx
-import { Button } from '@jarllyng/nostromo/button';
 
-<Button 
-  variant="default" 
-  size="lg" 
+```tsx
+import { Button } from "@jarllyng/nostromo/button";
+
+<Button
+  variant="default"
+  size="lg"
   loading={isLoading}
   loadingText="Loading..."
 >
   Click me
-</Button>
+</Button>;
 ```
 
 #### Input Component
 
 **Chakra UI:**
+
 ```tsx
-import { Input, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
+import {
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+} from "@chakra-ui/react";
 
 <FormControl isInvalid={hasError}>
   <FormLabel>Email</FormLabel>
-  <Input 
-    type="email" 
+  <Input
+    type="email"
     placeholder="Enter your email"
     value={email}
     onChange={handleChange}
   />
   <FormErrorMessage>Email is required</FormErrorMessage>
-</FormControl>
+</FormControl>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Input } from '@jarllyng/nostromo/input';
+import { Input } from "@jarllyng/nostromo/input";
 
 <Input
   label="Email"
@@ -302,33 +319,46 @@ import { Input } from '@jarllyng/nostromo/input';
   placeholder="Enter your email"
   error={hasError}
   helperText={hasError ? "Email is required" : undefined}
-/>
+/>;
 ```
 
 #### Modal Component
 
 **Chakra UI:**
+
 ```tsx
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@chakra-ui/react';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@chakra-ui/react";
 
 <Modal isOpen={isOpen} onClose={onClose}>
   <ModalOverlay />
   <ModalContent>
     <ModalHeader>Title</ModalHeader>
-    <ModalBody>
-      Content here
-    </ModalBody>
+    <ModalBody>Content here</ModalBody>
     <ModalFooter>
       <Button onClick={onClose}>Cancel</Button>
       <Button onClick={onSave}>Save</Button>
     </ModalFooter>
   </ModalContent>
-</Modal>
+</Modal>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/nostromo/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo/dialog";
 
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
   <DialogContent>
@@ -338,39 +368,41 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
     </DialogHeader>
     Content here
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ### Theming Migration
 
 **Chakra UI Theme:**
+
 ```tsx
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   colors: {
     brand: {
-      50: '#e3f2fd',
-      500: '#1976d2',
-      900: '#0d47a1',
+      50: "#e3f2fd",
+      500: "#1976d2",
+      900: "#0d47a1",
     },
   },
   fonts: {
-    heading: 'Inter, sans-serif',
-    body: 'Inter, sans-serif',
+    heading: "Inter, sans-serif",
+    body: "Inter, sans-serif",
   },
 });
 ```
 
 **Nostromo UI Theme:**
+
 ```css
 /* CSS Variables */
 [data-theme="nostromo"] {
-  --color-brand-50: 262 84% 95%;
-  --color-brand-500: 262 84% 52%;
-  --color-brand-900: 262 84% 15%;
-  --font-heading: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --nostromo-color-brand-50: 262 84% 95%;
+  --nostromo-color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-900: 262 84% 15%;
+  --nostromo-font-heading: "Inter", sans-serif;
+  --nostromo-font-body: "Inter", sans-serif;
 }
 ```
 
@@ -399,80 +431,74 @@ npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 ### Component Mappings
 
-| Ant Design | Nostromo UI | Notes |
-|------------|-------------|-------|
-| `Button` | `Button` | Similar API, different variants |
-| `Input` | `Input` | Similar API, different styling |
-| `Modal` | `Dialog` | Different API structure |
-| `Card` | `Card` | Similar structure, different styling |
-| `Tag` | `Badge` | Different API, similar functionality |
-| `Avatar` | `Avatar` | Similar API, different styling |
-| `Switch` | `Switch` | Similar API, different styling |
-| `Checkbox` | `Checkbox` | Similar API, different styling |
-| `Radio` | `RadioGroup` | Different component structure |
-| `Select` | `Select` | Similar API, different styling |
-| `Tabs` | `Tabs` | Similar API, different styling |
-| `Collapse` | `Accordion` | Similar API, different styling |
-| `Alert` | `Alert` | Similar API, different styling |
-| `Progress` | `Progress` | Similar API, different styling |
-| `Table` | `Table` | Different API, more features |
-| `Pagination` | `Pagination` | Similar API, different styling |
-| `Breadcrumb` | `Breadcrumb` | Similar API, different styling |
-| `Divider` | `Separator` | Similar API, different styling |
+| Ant Design   | Nostromo UI  | Notes                                |
+| ------------ | ------------ | ------------------------------------ |
+| `Button`     | `Button`     | Similar API, different variants      |
+| `Input`      | `Input`      | Similar API, different styling       |
+| `Modal`      | `Dialog`     | Different API structure              |
+| `Card`       | `Card`       | Similar structure, different styling |
+| `Tag`        | `Badge`      | Different API, similar functionality |
+| `Avatar`     | `Avatar`     | Similar API, different styling       |
+| `Switch`     | `Switch`     | Similar API, different styling       |
+| `Checkbox`   | `Checkbox`   | Similar API, different styling       |
+| `Radio`      | `RadioGroup` | Different component structure        |
+| `Select`     | `Select`     | Similar API, different styling       |
+| `Tabs`       | `Tabs`       | Similar API, different styling       |
+| `Collapse`   | `Accordion`  | Similar API, different styling       |
+| `Alert`      | `Alert`      | Similar API, different styling       |
+| `Progress`   | `Progress`   | Similar API, different styling       |
+| `Table`      | `Table`      | Different API, more features         |
+| `Pagination` | `Pagination` | Similar API, different styling       |
+| `Breadcrumb` | `Breadcrumb` | Similar API, different styling       |
+| `Divider`    | `Separator`  | Similar API, different styling       |
 
 ### API Differences
 
 #### Button Component
 
 **Ant Design:**
-```tsx
-import { Button } from 'antd';
 
-<Button 
-  type="primary" 
-  size="large"
-  loading={isLoading}
-  disabled={false}
->
+```tsx
+import { Button } from "antd";
+
+<Button type="primary" size="large" loading={isLoading} disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 **Nostromo UI:**
-```tsx
-import { Button } from '@jarllyng/nostromo/button';
 
-<Button 
-  variant="default" 
-  size="lg" 
-  loading={isLoading}
-  disabled={false}
->
+```tsx
+import { Button } from "@jarllyng/nostromo/button";
+
+<Button variant="default" size="lg" loading={isLoading} disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 #### Input Component
 
 **Ant Design:**
+
 ```tsx
 import { Input, Form, Form.Item } from 'antd';
 
-<Form.Item 
-  label="Email" 
+<Form.Item
+  label="Email"
   name="email"
   rules={[{ required: true, message: 'Please input your email!' }]}
 >
-  <Input 
-    type="email" 
+  <Input
+    type="email"
     placeholder="Enter your email"
   />
 </Form.Item>
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Input } from '@jarllyng/nostromo/input';
+import { Input } from "@jarllyng/nostromo/input";
 
 <Input
   label="Email"
@@ -481,14 +507,15 @@ import { Input } from '@jarllyng/nostromo/input';
   required
   error={hasError}
   helperText={hasError ? "Please input your email!" : undefined}
-/>
+/>;
 ```
 
 #### Modal Component
 
 **Ant Design:**
+
 ```tsx
-import { Modal } from 'antd';
+import { Modal } from "antd";
 
 <Modal
   title="Title"
@@ -499,12 +526,19 @@ import { Modal } from 'antd';
   cancelText="Cancel"
 >
   Content here
-</Modal>
+</Modal>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/nostromo/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo/dialog";
 
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
   <DialogContent>
@@ -514,39 +548,41 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
     </DialogHeader>
     Content here
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ### Theming Migration
 
 **Ant Design Theme:**
+
 ```tsx
-import { ConfigProvider } from 'antd';
+import { ConfigProvider } from "antd";
 
 const theme = {
   token: {
-    colorPrimary: '#1976d2',
-    colorSuccess: '#52c41a',
-    colorWarning: '#faad14',
-    colorError: '#ff4d4f',
-    fontFamily: 'Inter, sans-serif',
+    colorPrimary: "#1976d2",
+    colorSuccess: "#52c41a",
+    colorWarning: "#faad14",
+    colorError: "#ff4d4f",
+    fontFamily: "Inter, sans-serif",
   },
 };
 
 <ConfigProvider theme={theme}>
   <App />
-</ConfigProvider>
+</ConfigProvider>;
 ```
 
 **Nostromo UI Theme:**
+
 ```css
 /* CSS Variables */
 [data-theme="nostromo"] {
-  --color-brand-500: 262 84% 52%;
-  --color-success-500: 142 76% 36%;
-  --color-warning-500: 38 92% 50%;
-  --color-error-500: 0 84% 60%;
-  --font-heading: "Inter", sans-serif;
+  --nostromo-color-brand-500: 262 84% 52%;
+  --nostromo-color-success-500: 142 76% 36%;
+  --nostromo-color-warning-500: 38 92% 50%;
+  --nostromo-color-error-500: 0 84% 60%;
+  --nostromo-font-heading: "Inter", sans-serif;
 }
 ```
 
@@ -575,65 +611,63 @@ npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 
 ### Component Mappings
 
-| Mantine | Nostromo UI | Notes |
-|---------|-------------|-------|
-| `Button` | `Button` | Similar API, different variants |
-| `TextInput` | `Input` | Similar API, different styling |
-| `Modal` | `Dialog` | Different API structure |
-| `Card` | `Card` | Similar structure, different styling |
-| `Badge` | `Badge` | Similar API, different styling |
-| `Avatar` | `Avatar` | Similar API, different styling |
-| `Switch` | `Switch` | Similar API, different styling |
-| `Checkbox` | `Checkbox` | Similar API, different styling |
-| `Radio` | `RadioGroup` | Different component structure |
-| `Select` | `Select` | Similar API, different styling |
-| `Tabs` | `Tabs` | Similar API, different styling |
-| `Accordion` | `Accordion` | Similar API, different styling |
-| `Alert` | `Alert` | Similar API, different styling |
-| `Progress` | `Progress` | Similar API, different styling |
-| `Table` | `Table` | Different API, more features |
-| `Pagination` | `Pagination` | Similar API, different styling |
-| `Breadcrumbs` | `Breadcrumb` | Similar API, different styling |
-| `Divider` | `Separator` | Similar API, different styling |
+| Mantine       | Nostromo UI  | Notes                                |
+| ------------- | ------------ | ------------------------------------ |
+| `Button`      | `Button`     | Similar API, different variants      |
+| `TextInput`   | `Input`      | Similar API, different styling       |
+| `Modal`       | `Dialog`     | Different API structure              |
+| `Card`        | `Card`       | Similar structure, different styling |
+| `Badge`       | `Badge`      | Similar API, different styling       |
+| `Avatar`      | `Avatar`     | Similar API, different styling       |
+| `Switch`      | `Switch`     | Similar API, different styling       |
+| `Checkbox`    | `Checkbox`   | Similar API, different styling       |
+| `Radio`       | `RadioGroup` | Different component structure        |
+| `Select`      | `Select`     | Similar API, different styling       |
+| `Tabs`        | `Tabs`       | Similar API, different styling       |
+| `Accordion`   | `Accordion`  | Similar API, different styling       |
+| `Alert`       | `Alert`      | Similar API, different styling       |
+| `Progress`    | `Progress`   | Similar API, different styling       |
+| `Table`       | `Table`      | Different API, more features         |
+| `Pagination`  | `Pagination` | Similar API, different styling       |
+| `Breadcrumbs` | `Breadcrumb` | Similar API, different styling       |
+| `Divider`     | `Separator`  | Similar API, different styling       |
 
 ### API Differences
 
 #### Button Component
 
 **Mantine:**
-```tsx
-import { Button } from '@mantine/core';
 
-<Button 
-  variant="filled" 
-  color="blue" 
+```tsx
+import { Button } from "@mantine/core";
+
+<Button
+  variant="filled"
+  color="blue"
   size="lg"
   loading={isLoading}
   disabled={false}
 >
   Click me
-</Button>
+</Button>;
 ```
 
 **Nostromo UI:**
-```tsx
-import { Button } from '@jarllyng/nostromo/button';
 
-<Button 
-  variant="default" 
-  size="lg" 
-  loading={isLoading}
-  disabled={false}
->
+```tsx
+import { Button } from "@jarllyng/nostromo/button";
+
+<Button variant="default" size="lg" loading={isLoading} disabled={false}>
   Click me
-</Button>
+</Button>;
 ```
 
 #### TextInput Component
 
 **Mantine:**
+
 ```tsx
-import { TextInput, Stack } from '@mantine/core';
+import { TextInput, Stack } from "@mantine/core";
 
 <Stack>
   <TextInput
@@ -642,12 +676,13 @@ import { TextInput, Stack } from '@mantine/core';
     required
     error={hasError ? "Email is required" : undefined}
   />
-</Stack>
+</Stack>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Input } from '@jarllyng/nostromo/input';
+import { Input } from "@jarllyng/nostromo/input";
 
 <Input
   label="Email"
@@ -655,32 +690,35 @@ import { Input } from '@jarllyng/nostromo/input';
   required
   error={hasError}
   helperText={hasError ? "Email is required" : undefined}
-/>
+/>;
 ```
 
 #### Modal Component
 
 **Mantine:**
-```tsx
-import { Modal, Stack, Button } from '@mantine/core';
 
-<Modal
-  opened={opened}
-  onClose={close}
-  title="Title"
-  size="md"
->
+```tsx
+import { Modal, Stack, Button } from "@mantine/core";
+
+<Modal opened={opened} onClose={close} title="Title" size="md">
   <Stack>
     Content here
     <Button onClick={close}>Cancel</Button>
     <Button onClick={save}>Save</Button>
   </Stack>
-</Modal>
+</Modal>;
 ```
 
 **Nostromo UI:**
+
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@jarllyng/nostromo/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@jarllyng/nostromo/dialog";
 
 <Dialog open={opened} onOpenChange={setOpened}>
   <DialogContent>
@@ -690,36 +728,38 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
     </DialogHeader>
     Content here
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ### Theming Migration
 
 **Mantine Theme:**
+
 ```tsx
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider } from "@mantine/core";
 
 const theme = {
-  primaryColor: 'blue',
+  primaryColor: "blue",
   colors: {
-    blue: ['#e3f2fd', '#1976d2', '#0d47a1'],
+    blue: ["#e3f2fd", "#1976d2", "#0d47a1"],
   },
-  fontFamily: 'Inter, sans-serif',
+  fontFamily: "Inter, sans-serif",
 };
 
 <MantineProvider theme={theme}>
   <App />
-</MantineProvider>
+</MantineProvider>;
 ```
 
 **Nostromo UI Theme:**
+
 ```css
 /* CSS Variables */
 [data-theme="nostromo"] {
-  --color-brand-50: 262 84% 95%;
-  --color-brand-500: 262 84% 52%;
-  --color-brand-900: 262 84% 15%;
-  --font-heading: "Inter", sans-serif;
+  --nostromo-color-brand-50: 262 84% 95%;
+  --nostromo-color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-900: 262 84% 15%;
+  --nostromo-font-heading: "Inter", sans-serif;
 }
 ```
 
@@ -739,6 +779,7 @@ const theme = {
 ### 1. Start with Core Components
 
 Begin migration with the most commonly used components:
+
 - Button
 - Input
 - Dialog
@@ -748,17 +789,19 @@ Begin migration with the most commonly used components:
 ### 2. Update Imports Gradually
 
 Replace imports one component at a time:
+
 ```tsx
 // Before
-import { Button } from '@mui/material';
+import { Button } from "@mui/material";
 
 // After
-import { Button } from '@jarllyng/nostromo/button';
+import { Button } from "@jarllyng/nostromo/button";
 ```
 
 ### 3. Test Each Component
 
 After migrating each component:
+
 - Test functionality
 - Check accessibility
 - Verify styling
@@ -767,6 +810,7 @@ After migrating each component:
 ### 4. Update Theming
 
 Replace JavaScript-based theming with CSS variables:
+
 ```css
 /* Before: JavaScript theme */
 const theme = {
@@ -777,13 +821,14 @@ const theme = {
 
 /* After: CSS variables */
 [data-theme="nostromo"] {
-  --color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-500: 262 84% 52%;
 }
 ```
 
 ### 5. Use Tailwind for Layout
 
 Replace layout components with Tailwind classes:
+
 ```tsx
 // Before: Layout components
 <Stack spacing="md">
@@ -811,9 +856,7 @@ Replace layout components with Tailwind classes:
 
 ```tsx
 // Add custom classes
-<Button className="bg-blue-500 hover:bg-blue-600">
-  Custom Button
-</Button>
+<Button className="bg-blue-500 hover:bg-blue-600">Custom Button</Button>
 ```
 
 ### 2. Missing Components
@@ -858,7 +901,7 @@ const NostromoInput = ({ field, ...props }) => (
 ```css
 /* Scoped theming */
 .nostromo-theme {
-  --color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-500: 262 84% 52%;
 }
 ```
 
@@ -869,10 +912,10 @@ const NostromoInput = ({ field, ...props }) => (
 
 ```tsx
 // Good: Individual imports
-import { Button } from '@jarllyng/nostromo/button';
+import { Button } from "@jarllyng/nostromo/button";
 
 // Avoid: Package imports
-import { Button } from '@jarllyng/nostromo';
+import { Button } from "@jarllyng/nostromo";
 ```
 
 ---
@@ -885,26 +928,21 @@ import { Button } from '@jarllyng/nostromo';
 npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 ```
 
-### 2. Configure Tailwind
+### 2. Import the CSS
 
-```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
+Tailwind v4 is configured in CSS, so delete any `tailwind.config.js` that only
+existed to register the preset.
 
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
-  ],
-  presets: [nostromoPreset],
-};
+```css
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 ### 3. Import Base Styles
 
 ```tsx
 // In your entry file
-import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/tailwind.css";
 ```
 
 ### 4. Start Migration
@@ -918,4 +956,4 @@ Begin with one component at a time, testing thoroughly at each step.
 
 ---
 
-*These migration guides are based on the latest versions of each library. Always check for updates and breaking changes.*
+_These migration guides are based on the latest versions of each library. Always check for updates and breaking changes._

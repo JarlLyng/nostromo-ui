@@ -13,7 +13,7 @@ const basePath =
 
 export default function Document() {
   return (
-    <Html lang="en" data-theme="docs" data-color-scheme="light" suppressHydrationWarning>
+    <Html lang="en" data-theme="nostromo" data-color-scheme="light" suppressHydrationWarning>
       <Head>
         {/* Favicon */}
         <link rel="icon" href={`${basePath}/favicon.ico`} />

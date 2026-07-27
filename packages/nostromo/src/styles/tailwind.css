@@ -1,0 +1,29 @@
+/* Nostromo UI - Tailwind v4 entry point
+ *
+ * Single import that pulls in Tailwind, the theme bridge and the base layer in
+ * the right order. Consumers add one theme on top:
+ *
+ *   @import "@jarllyng/nostromo/tailwind.css";
+ *   @import "@jarllyng/nostromo/themes/nostromo.css";
+ *
+ * Owning the order here is deliberate - the bridge has to be registered before
+ * the base layer uses the tokens, and leaving that to consumers is how the
+ * ordering bugs crept in previously.
+ */
+
+@import "tailwindcss";
+
+/* Tailwind v4 skips node_modules when scanning for class names, so the
+   library has to point at its own compiled output explicitly. Paths are
+   relative to this file's location in dist/. */
+@source "./**/*.js";
+
+/* Unlayered: @theme / @utility are Tailwind at-rules and it handles their
+   layering itself. */
+@import "./tokens.css";
+
+/* The reset and base typography go into Tailwind's `base` layer. Left
+   unlayered they would outrank every layered rule in the document - including
+   utility classes - and a blanket `* { margin: 0 }` beating utilities is not
+   something a consumer can work around. */
+@import "./base.css" layer(base);

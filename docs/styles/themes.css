@@ -2,83 +2,86 @@
 /* This file provides documentation-specific styling that extends the base Nostromo UI themes */
 
 /* Documentation Theme - Uses Nostromo theme as base */
-[data-theme="docs"] {
+[data-theme="nostromo"] {
   /* Color Palette */
-  --color-primary: 262 84% 52%;
-  --color-secondary: 262 84% 45%;
-  --color-accent: 262 84% 60%;
-  --color-success: 142 76% 36%;
-  --color-warning: 38 92% 50%;
-  --color-error: 0 84% 60%;
-  --color-info: 199 89% 48%;
+  --nostromo-color-primary: 262 84% 52%;
+  --nostromo-color-secondary: 262 84% 45%;
+  --nostromo-color-accent: 262 84% 60%;
+  --nostromo-color-success: 142 76% 36%;
+  --nostromo-color-warning: 38 92% 50%;
+  --nostromo-color-error: 0 84% 60%;
+  --nostromo-color-info: 199 89% 48%;
 
   /* Neutral Colors */
-  --color-neutral-50: 0 0% 98%;
-  --color-neutral-100: 0 0% 96%;
-  --color-neutral-200: 0 0% 90%;
-  --color-neutral-300: 0 0% 83%;
-  --color-neutral-400: 0 0% 64%;
-  --color-neutral-500: 0 0% 45%;
-  --color-neutral-600: 0 0% 32%;
-  --color-neutral-700: 0 0% 25%;
-  --color-neutral-800: 0 0% 15%;
-  --color-neutral-900: 0 0% 9%;
-  --color-neutral-950: 0 0% 4%;
+  --nostromo-color-neutral-50: 0 0% 98%;
+  --nostromo-color-neutral-100: 0 0% 96%;
+  --nostromo-color-neutral-200: 0 0% 90%;
+  --nostromo-color-neutral-300: 0 0% 83%;
+  --nostromo-color-neutral-400: 0 0% 64%;
+  --nostromo-color-neutral-500: 0 0% 45%;
+  --nostromo-color-neutral-600: 0 0% 32%;
+  --nostromo-color-neutral-700: 0 0% 25%;
+  --nostromo-color-neutral-800: 0 0% 15%;
+  --nostromo-color-neutral-900: 0 0% 9%;
+  --nostromo-color-neutral-950: 0 0% 4%;
 
   /* Background Colors */
-  --bg-primary: hsl(var(--color-neutral-50));
-  --bg-secondary: hsl(var(--color-neutral-100));
-  --bg-tertiary: hsl(var(--color-neutral-200));
-  --bg-quaternary: hsl(var(--color-neutral-300));
+  --bg-primary: hsl(var(--nostromo-color-neutral-50));
+  --bg-secondary: hsl(var(--nostromo-color-neutral-100));
+  --bg-tertiary: hsl(var(--nostromo-color-neutral-200));
+  --bg-quaternary: hsl(var(--nostromo-color-neutral-300));
 
   /* Text Colors */
-  --text-primary: hsl(var(--color-neutral-900));
-  --text-secondary: hsl(var(--color-neutral-700));
-  --text-tertiary: hsl(var(--color-neutral-500));
-  --text-muted: hsl(var(--color-neutral-400));
-  --text-inverse: hsl(var(--color-neutral-50));
+  --nostromo-text-primary: hsl(var(--nostromo-color-neutral-900));
+  --nostromo-text-secondary: hsl(var(--nostromo-color-neutral-700));
+  --nostromo-text-tertiary: hsl(var(--nostromo-color-neutral-500));
+  --nostromo-text-muted: hsl(var(--nostromo-color-neutral-400));
+  --nostromo-text-inverse: hsl(var(--nostromo-color-neutral-50));
 
   /* Border Colors */
-  --border-light: hsl(var(--color-neutral-200));
-  --border-medium: hsl(var(--color-neutral-300));
-  --border-dark: hsl(var(--color-neutral-400));
+  --border-light: hsl(var(--nostromo-color-neutral-200));
+  --border-medium: hsl(var(--nostromo-color-neutral-300));
+  --border-dark: hsl(var(--nostromo-color-neutral-400));
 
   /* Shadow Colors */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --nostromo-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --nostromo-shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --nostromo-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --nostromo-shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* Component Colors */
-  --btn-primary-bg: hsl(var(--color-primary));
-  --btn-primary-text: hsl(var(--color-neutral-50));
-  --btn-primary-hover: hsl(var(--color-secondary));
-  --btn-secondary-bg: hsl(var(--color-neutral-100));
-  --btn-secondary-text: hsl(var(--color-neutral-900));
-  --btn-secondary-hover: hsl(var(--color-neutral-200));
+  --btn-primary-bg: hsl(var(--nostromo-color-primary));
+  --btn-primary-text: hsl(var(--nostromo-color-neutral-50));
+  --btn-primary-hover: hsl(var(--nostromo-color-secondary));
+  --btn-secondary-bg: hsl(var(--nostromo-color-neutral-100));
+  --btn-secondary-text: hsl(var(--nostromo-color-neutral-900));
+  --btn-secondary-hover: hsl(var(--nostromo-color-neutral-200));
 
   /* Form Colors */
-  --form-bg: hsl(var(--color-neutral-50));
-  --form-border: hsl(var(--color-neutral-300));
-  --form-border-focus: hsl(var(--color-primary));
-  --form-border-error: hsl(var(--color-error));
-  --form-border-success: hsl(var(--color-success));
+  --form-bg: hsl(var(--nostromo-color-neutral-50));
+  --form-border: hsl(var(--nostromo-color-neutral-300));
+  --form-border-focus: hsl(var(--nostromo-color-primary));
+  --form-border-error: hsl(var(--nostromo-color-error));
+  --form-border-success: hsl(var(--nostromo-color-success));
 
   /* Code Colors */
-  --code-bg: hsl(var(--color-neutral-100));
-  --code-text: hsl(var(--color-neutral-800));
-  --code-border: hsl(var(--color-neutral-200));
-  --code-comment: hsl(var(--color-neutral-500));
-  --code-keyword: hsl(var(--color-primary));
-  --code-string: hsl(var(--color-success));
-  --code-number: hsl(var(--color-warning));
-  --code-function: hsl(var(--color-info));
+  --code-bg: hsl(var(--nostromo-color-neutral-100));
+  --code-text: hsl(var(--nostromo-color-neutral-800));
+  --code-border: hsl(var(--nostromo-color-neutral-200));
+  --code-comment: hsl(var(--nostromo-color-neutral-500));
+  --code-keyword: hsl(var(--nostromo-color-primary));
+  --code-string: hsl(var(--nostromo-color-success));
+  --code-number: hsl(var(--nostromo-color-warning));
+  --code-function: hsl(var(--nostromo-color-info));
 
   /* Status Colors */
-  --status-success: hsl(var(--color-success));
-  --status-warning: hsl(var(--color-warning));
-  --status-error: hsl(var(--color-error));
-  --status-info: hsl(var(--color-info));
+  --status-success: hsl(var(--nostromo-color-success));
+  --status-warning: hsl(var(--nostromo-color-warning));
+  --status-error: hsl(var(--nostromo-color-error));
+  --status-info: hsl(var(--nostromo-color-info));
 
   /* Overlay Colors */
   --overlay-light: rgba(0, 0, 0, 0.1);
@@ -87,98 +90,121 @@
   --overlay-darker: rgba(0, 0, 0, 0.7);
 
   /* Gradient Colors */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-secondary)));
-  --gradient-neutral: linear-gradient(135deg, hsl(var(--color-neutral-100)), hsl(var(--color-neutral-200)));
-  --gradient-success: linear-gradient(135deg, hsl(var(--color-success)), hsl(142 76% 30%));
-  --gradient-warning: linear-gradient(135deg, hsl(var(--color-warning)), hsl(38 92% 40%));
-  --gradient-error: linear-gradient(135deg, hsl(var(--color-error)), hsl(0 84% 50%));
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-primary)),
+    hsl(var(--nostromo-color-secondary))
+  );
+  --gradient-neutral: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-neutral-100)),
+    hsl(var(--nostromo-color-neutral-200))
+  );
+  --gradient-success: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-success)),
+    hsl(142 76% 30%)
+  );
+  --gradient-warning: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-warning)),
+    hsl(38 92% 40%)
+  );
+  --gradient-error: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-error)),
+    hsl(0 84% 50%)
+  );
 
   /* Animation Colors */
-  --animation-primary: hsl(var(--color-primary));
-  --animation-secondary: hsl(var(--color-secondary));
-  --animation-success: hsl(var(--color-success));
-  --animation-warning: hsl(var(--color-warning));
-  --animation-error: hsl(var(--color-error));
+  --animation-primary: hsl(var(--nostromo-color-primary));
+  --animation-secondary: hsl(var(--nostromo-color-secondary));
+  --animation-success: hsl(var(--nostromo-color-success));
+  --animation-warning: hsl(var(--nostromo-color-warning));
+  --animation-error: hsl(var(--nostromo-color-error));
 }
 
 /* Dark Theme - Documentation specific */
-[data-theme="docs"][data-color-scheme="dark"] {
+[data-theme="nostromo"][data-color-scheme="dark"] {
   /* Color Palette (same as light) */
-  --color-primary: 262 84% 52%;
-  --color-secondary: 262 84% 45%;
-  --color-accent: 262 84% 60%;
-  --color-success: 142 76% 36%;
-  --color-warning: 38 92% 50%;
-  --color-error: 0 84% 60%;
-  --color-info: 199 89% 48%;
+  --nostromo-color-primary: 262 84% 52%;
+  --nostromo-color-secondary: 262 84% 45%;
+  --nostromo-color-accent: 262 84% 60%;
+  --nostromo-color-success: 142 76% 36%;
+  --nostromo-color-warning: 38 92% 50%;
+  --nostromo-color-error: 0 84% 60%;
+  --nostromo-color-info: 199 89% 48%;
 
   /* Neutral Colors (inverted) */
-  --color-neutral-50: 0 0% 4%;
-  --color-neutral-100: 0 0% 9%;
-  --color-neutral-200: 0 0% 15%;
-  --color-neutral-300: 0 0% 25%;
-  --color-neutral-400: 0 0% 32%;
-  --color-neutral-500: 0 0% 45%;
-  --color-neutral-600: 0 0% 64%;
-  --color-neutral-700: 0 0% 83%;
-  --color-neutral-800: 0 0% 90%;
-  --color-neutral-900: 0 0% 96%;
-  --color-neutral-950: 0 0% 98%;
+  --nostromo-color-neutral-50: 0 0% 4%;
+  --nostromo-color-neutral-100: 0 0% 9%;
+  --nostromo-color-neutral-200: 0 0% 15%;
+  --nostromo-color-neutral-300: 0 0% 25%;
+  --nostromo-color-neutral-400: 0 0% 32%;
+  --nostromo-color-neutral-500: 0 0% 45%;
+  --nostromo-color-neutral-600: 0 0% 64%;
+  --nostromo-color-neutral-700: 0 0% 83%;
+  --nostromo-color-neutral-800: 0 0% 90%;
+  --nostromo-color-neutral-900: 0 0% 96%;
+  --nostromo-color-neutral-950: 0 0% 98%;
 
   /* Background Colors */
-  --bg-primary: hsl(var(--color-neutral-950));
-  --bg-secondary: hsl(var(--color-neutral-900));
-  --bg-tertiary: hsl(var(--color-neutral-800));
-  --bg-quaternary: hsl(var(--color-neutral-700));
+  --bg-primary: hsl(var(--nostromo-color-neutral-950));
+  --bg-secondary: hsl(var(--nostromo-color-neutral-900));
+  --bg-tertiary: hsl(var(--nostromo-color-neutral-800));
+  --bg-quaternary: hsl(var(--nostromo-color-neutral-700));
 
   /* Text Colors */
-  --text-primary: hsl(var(--color-neutral-50));
-  --text-secondary: hsl(var(--color-neutral-200));
-  --text-tertiary: hsl(var(--color-neutral-400));
-  --text-muted: hsl(var(--color-neutral-500));
-  --text-inverse: hsl(var(--color-neutral-900));
+  --nostromo-text-primary: hsl(var(--nostromo-color-neutral-50));
+  --nostromo-text-secondary: hsl(var(--nostromo-color-neutral-200));
+  --nostromo-text-tertiary: hsl(var(--nostromo-color-neutral-400));
+  --nostromo-text-muted: hsl(var(--nostromo-color-neutral-500));
+  --nostromo-text-inverse: hsl(var(--nostromo-color-neutral-900));
 
   /* Border Colors */
-  --border-light: hsl(var(--color-neutral-800));
-  --border-medium: hsl(var(--color-neutral-700));
-  --border-dark: hsl(var(--color-neutral-600));
+  --border-light: hsl(var(--nostromo-color-neutral-800));
+  --border-medium: hsl(var(--nostromo-color-neutral-700));
+  --border-dark: hsl(var(--nostromo-color-neutral-600));
 
   /* Shadow Colors (inverted) */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --nostromo-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --nostromo-shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --nostromo-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --nostromo-shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 
   /* Component Colors */
-  --btn-primary-bg: hsl(var(--color-primary));
-  --btn-primary-text: hsl(var(--color-neutral-50));
-  --btn-primary-hover: hsl(var(--color-secondary));
-  --btn-secondary-bg: hsl(var(--color-neutral-800));
-  --btn-secondary-text: hsl(var(--color-neutral-50));
-  --btn-secondary-hover: hsl(var(--color-neutral-700));
+  --btn-primary-bg: hsl(var(--nostromo-color-primary));
+  --btn-primary-text: hsl(var(--nostromo-color-neutral-50));
+  --btn-primary-hover: hsl(var(--nostromo-color-secondary));
+  --btn-secondary-bg: hsl(var(--nostromo-color-neutral-800));
+  --btn-secondary-text: hsl(var(--nostromo-color-neutral-50));
+  --btn-secondary-hover: hsl(var(--nostromo-color-neutral-700));
 
   /* Form Colors */
-  --form-bg: hsl(var(--color-neutral-900));
-  --form-border: hsl(var(--color-neutral-700));
-  --form-border-focus: hsl(var(--color-primary));
-  --form-border-error: hsl(var(--color-error));
-  --form-border-success: hsl(var(--color-success));
+  --form-bg: hsl(var(--nostromo-color-neutral-900));
+  --form-border: hsl(var(--nostromo-color-neutral-700));
+  --form-border-focus: hsl(var(--nostromo-color-primary));
+  --form-border-error: hsl(var(--nostromo-color-error));
+  --form-border-success: hsl(var(--nostromo-color-success));
 
   /* Code Colors */
-  --code-bg: hsl(var(--color-neutral-950));
-  --code-text: hsl(var(--color-neutral-100));
-  --code-border: hsl(var(--color-neutral-800));
-  --code-comment: hsl(var(--color-neutral-500));
-  --code-keyword: hsl(var(--color-primary));
-  --code-string: hsl(var(--color-success));
-  --code-number: hsl(var(--color-warning));
-  --code-function: hsl(var(--color-info));
+  --code-bg: hsl(var(--nostromo-color-neutral-950));
+  --code-text: hsl(var(--nostromo-color-neutral-100));
+  --code-border: hsl(var(--nostromo-color-neutral-800));
+  --code-comment: hsl(var(--nostromo-color-neutral-500));
+  --code-keyword: hsl(var(--nostromo-color-primary));
+  --code-string: hsl(var(--nostromo-color-success));
+  --code-number: hsl(var(--nostromo-color-warning));
+  --code-function: hsl(var(--nostromo-color-info));
 
   /* Status Colors (same as light) */
-  --status-success: hsl(var(--color-success));
-  --status-warning: hsl(var(--color-warning));
-  --status-error: hsl(var(--color-error));
-  --status-info: hsl(var(--color-info));
+  --status-success: hsl(var(--nostromo-color-success));
+  --status-warning: hsl(var(--nostromo-color-warning));
+  --status-error: hsl(var(--nostromo-color-error));
+  --status-info: hsl(var(--nostromo-color-info));
 
   /* Overlay Colors */
   --overlay-light: rgba(255, 255, 255, 0.1);
@@ -187,88 +213,131 @@
   --overlay-darker: rgba(255, 255, 255, 0.7);
 
   /* Gradient Colors */
-  --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-secondary)));
-  --gradient-neutral: linear-gradient(135deg, hsl(var(--color-neutral-800)), hsl(var(--color-neutral-700)));
-  --gradient-success: linear-gradient(135deg, hsl(var(--color-success)), hsl(142 76% 30%));
-  --gradient-warning: linear-gradient(135deg, hsl(var(--color-warning)), hsl(38 92% 40%));
-  --gradient-error: linear-gradient(135deg, hsl(var(--color-error)), hsl(0 84% 50%));
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-primary)),
+    hsl(var(--nostromo-color-secondary))
+  );
+  --gradient-neutral: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-neutral-800)),
+    hsl(var(--nostromo-color-neutral-700))
+  );
+  --gradient-success: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-success)),
+    hsl(142 76% 30%)
+  );
+  --gradient-warning: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-warning)),
+    hsl(38 92% 40%)
+  );
+  --gradient-error: linear-gradient(
+    135deg,
+    hsl(var(--nostromo-color-error)),
+    hsl(0 84% 50%)
+  );
 
   /* Animation Colors (same as light) */
-  --animation-primary: hsl(var(--color-primary));
-  --animation-secondary: hsl(var(--color-secondary));
-  --animation-success: hsl(var(--color-success));
-  --animation-warning: hsl(var(--color-warning));
-  --animation-error: hsl(var(--color-error));
+  --animation-primary: hsl(var(--nostromo-color-primary));
+  --animation-secondary: hsl(var(--nostromo-color-secondary));
+  --animation-success: hsl(var(--nostromo-color-success));
+  --animation-warning: hsl(var(--nostromo-color-warning));
+  --animation-error: hsl(var(--nostromo-color-error));
 }
 
 /* Auto Theme (System Preference) - Documentation specific */
 @media (prefers-color-scheme: dark) {
-  [data-theme="docs"] {
+  [data-theme="nostromo"] {
     /* Dark theme variables */
-    --color-neutral-50: 0 0% 4%;
-    --color-neutral-100: 0 0% 9%;
-    --color-neutral-200: 0 0% 15%;
-    --color-neutral-300: 0 0% 25%;
-    --color-neutral-400: 0 0% 32%;
-    --color-neutral-500: 0 0% 45%;
-    --color-neutral-600: 0 0% 64%;
-    --color-neutral-700: 0 0% 83%;
-    --color-neutral-800: 0 0% 90%;
-    --color-neutral-900: 0 0% 96%;
-    --color-neutral-950: 0 0% 98%;
+    --nostromo-color-neutral-50: 0 0% 4%;
+    --nostromo-color-neutral-100: 0 0% 9%;
+    --nostromo-color-neutral-200: 0 0% 15%;
+    --nostromo-color-neutral-300: 0 0% 25%;
+    --nostromo-color-neutral-400: 0 0% 32%;
+    --nostromo-color-neutral-500: 0 0% 45%;
+    --nostromo-color-neutral-600: 0 0% 64%;
+    --nostromo-color-neutral-700: 0 0% 83%;
+    --nostromo-color-neutral-800: 0 0% 90%;
+    --nostromo-color-neutral-900: 0 0% 96%;
+    --nostromo-color-neutral-950: 0 0% 98%;
 
-    --bg-primary: hsl(var(--color-neutral-950));
-    --bg-secondary: hsl(var(--color-neutral-900));
-    --bg-tertiary: hsl(var(--color-neutral-800));
-    --bg-quaternary: hsl(var(--color-neutral-700));
+    --bg-primary: hsl(var(--nostromo-color-neutral-950));
+    --bg-secondary: hsl(var(--nostromo-color-neutral-900));
+    --bg-tertiary: hsl(var(--nostromo-color-neutral-800));
+    --bg-quaternary: hsl(var(--nostromo-color-neutral-700));
 
-    --text-primary: hsl(var(--color-neutral-50));
-    --text-secondary: hsl(var(--color-neutral-200));
-    --text-tertiary: hsl(var(--color-neutral-400));
-    --text-muted: hsl(var(--color-neutral-500));
-    --text-inverse: hsl(var(--color-neutral-900));
+    --nostromo-text-primary: hsl(var(--nostromo-color-neutral-50));
+    --nostromo-text-secondary: hsl(var(--nostromo-color-neutral-200));
+    --nostromo-text-tertiary: hsl(var(--nostromo-color-neutral-400));
+    --nostromo-text-muted: hsl(var(--nostromo-color-neutral-500));
+    --nostromo-text-inverse: hsl(var(--nostromo-color-neutral-900));
 
-    --border-light: hsl(var(--color-neutral-800));
-    --border-medium: hsl(var(--color-neutral-700));
-    --border-dark: hsl(var(--color-neutral-600));
+    --border-light: hsl(var(--nostromo-color-neutral-800));
+    --border-medium: hsl(var(--nostromo-color-neutral-700));
+    --border-dark: hsl(var(--nostromo-color-neutral-600));
 
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    --nostromo-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --nostromo-shadow-md:
+      0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --nostromo-shadow-lg:
+      0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --nostromo-shadow-xl:
+      0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 
-    --btn-primary-bg: hsl(var(--color-primary));
-    --btn-primary-text: hsl(var(--color-neutral-50));
-    --btn-primary-hover: hsl(var(--color-secondary));
-    --btn-secondary-bg: hsl(var(--color-neutral-800));
-    --btn-secondary-text: hsl(var(--color-neutral-50));
-    --btn-secondary-hover: hsl(var(--color-neutral-700));
+    --btn-primary-bg: hsl(var(--nostromo-color-primary));
+    --btn-primary-text: hsl(var(--nostromo-color-neutral-50));
+    --btn-primary-hover: hsl(var(--nostromo-color-secondary));
+    --btn-secondary-bg: hsl(var(--nostromo-color-neutral-800));
+    --btn-secondary-text: hsl(var(--nostromo-color-neutral-50));
+    --btn-secondary-hover: hsl(var(--nostromo-color-neutral-700));
 
-    --form-bg: hsl(var(--color-neutral-900));
-    --form-border: hsl(var(--color-neutral-700));
-    --form-border-focus: hsl(var(--color-primary));
-    --form-border-error: hsl(var(--color-error));
-    --form-border-success: hsl(var(--color-success));
+    --form-bg: hsl(var(--nostromo-color-neutral-900));
+    --form-border: hsl(var(--nostromo-color-neutral-700));
+    --form-border-focus: hsl(var(--nostromo-color-primary));
+    --form-border-error: hsl(var(--nostromo-color-error));
+    --form-border-success: hsl(var(--nostromo-color-success));
 
-    --code-bg: hsl(var(--color-neutral-950));
-    --code-text: hsl(var(--color-neutral-100));
-    --code-border: hsl(var(--color-neutral-800));
-    --code-comment: hsl(var(--color-neutral-500));
-    --code-keyword: hsl(var(--color-primary));
-    --code-string: hsl(var(--color-success));
-    --code-number: hsl(var(--color-warning));
-    --code-function: hsl(var(--color-info));
+    --code-bg: hsl(var(--nostromo-color-neutral-950));
+    --code-text: hsl(var(--nostromo-color-neutral-100));
+    --code-border: hsl(var(--nostromo-color-neutral-800));
+    --code-comment: hsl(var(--nostromo-color-neutral-500));
+    --code-keyword: hsl(var(--nostromo-color-primary));
+    --code-string: hsl(var(--nostromo-color-success));
+    --code-number: hsl(var(--nostromo-color-warning));
+    --code-function: hsl(var(--nostromo-color-info));
 
     --overlay-light: rgba(255, 255, 255, 0.1);
     --overlay-medium: rgba(255, 255, 255, 0.3);
     --overlay-dark: rgba(255, 255, 255, 0.5);
     --overlay-darker: rgba(255, 255, 255, 0.7);
 
-    --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-secondary)));
-    --gradient-neutral: linear-gradient(135deg, hsl(var(--color-neutral-800)), hsl(var(--color-neutral-700)));
-    --gradient-success: linear-gradient(135deg, hsl(var(--color-success)), hsl(142 76% 30%));
-    --gradient-warning: linear-gradient(135deg, hsl(var(--color-warning)), hsl(38 92% 40%));
-    --gradient-error: linear-gradient(135deg, hsl(var(--color-error)), hsl(0 84% 50%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(var(--nostromo-color-primary)),
+      hsl(var(--nostromo-color-secondary))
+    );
+    --gradient-neutral: linear-gradient(
+      135deg,
+      hsl(var(--nostromo-color-neutral-800)),
+      hsl(var(--nostromo-color-neutral-700))
+    );
+    --gradient-success: linear-gradient(
+      135deg,
+      hsl(var(--nostromo-color-success)),
+      hsl(142 76% 30%)
+    );
+    --gradient-warning: linear-gradient(
+      135deg,
+      hsl(var(--nostromo-color-warning)),
+      hsl(38 92% 40%)
+    );
+    --gradient-error: linear-gradient(
+      135deg,
+      hsl(var(--nostromo-color-error)),
+      hsl(0 84% 50%)
+    );
   }
 }
 
@@ -279,7 +348,11 @@
 .theme-status,
 .theme-persist,
 .theme-debug {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Theme Toggle Button */
@@ -291,9 +364,9 @@
   width: 44px;
   height: 44px;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--nostromo-radius-md);
   background: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -301,11 +374,11 @@
 
 .theme-toggle:hover {
   background: var(--bg-secondary);
-  border-color: var(--color-primary);
+  border-color: var(--nostromo-color-primary);
 }
 
 .theme-toggle:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--nostromo-color-primary);
   outline-offset: 2px;
 }
 
@@ -328,12 +401,12 @@
   transform: translate(-50%, -50%) rotate(180deg);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .theme-toggle-icon.light {
+[data-theme="nostromo"][data-color-scheme="dark"] .theme-toggle-icon.light {
   opacity: 0;
   transform: translate(-50%, -50%) rotate(-180deg);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] .theme-toggle-icon.dark {
+[data-theme="nostromo"][data-color-scheme="dark"] .theme-toggle-icon.dark {
   opacity: 1;
   transform: translate(-50%, -50%) rotate(0deg);
 }
@@ -347,23 +420,23 @@
 .theme-dropdown-trigger {
   display: flex;
   align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--nostromo-spacing-xs);
+  padding: var(--nostromo-spacing-sm) var(--nostromo-spacing-md);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--nostromo-radius-md);
   background: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .theme-dropdown-trigger:hover {
   background: var(--bg-secondary);
-  border-color: var(--color-primary);
+  border-color: var(--nostromo-color-primary);
 }
 
 .theme-dropdown-trigger:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--nostromo-color-primary);
   outline-offset: 2px;
 }
 
@@ -374,10 +447,10 @@
   min-width: 160px;
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--nostromo-radius-md);
+  box-shadow: var(--nostromo-shadow-lg);
   z-index: 1000;
-  margin-top: var(--spacing-xs);
+  margin-top: var(--nostromo-spacing-xs);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -393,17 +466,17 @@
 .theme-dropdown-item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--nostromo-spacing-sm);
   width: 100%;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--nostromo-spacing-sm) var(--nostromo-spacing-md);
   border: none;
   background: none;
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
-  border-radius: var(--radius-sm);
-  margin: var(--spacing-xs);
+  border-radius: var(--nostromo-radius-sm);
+  margin: var(--nostromo-spacing-xs);
 }
 
 .theme-dropdown-item:hover {
@@ -411,13 +484,13 @@
 }
 
 .theme-dropdown-item:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--nostromo-color-primary);
   outline-offset: -2px;
 }
 
 .theme-dropdown-item.active {
   background: var(--bg-secondary);
-  color: var(--color-primary);
+  color: var(--nostromo-color-primary);
   font-weight: 600;
 }
 
@@ -434,13 +507,13 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--nostromo-spacing-sm) var(--nostromo-spacing-md);
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--nostromo-radius-md);
+  box-shadow: var(--nostromo-shadow-lg);
   font-size: 0.875rem;
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -476,13 +549,13 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--nostromo-spacing-sm) var(--nostromo-spacing-md);
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--nostromo-radius-md);
+  box-shadow: var(--nostromo-shadow-lg);
   font-size: 0.875rem;
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -501,13 +574,13 @@
   position: fixed;
   bottom: 20px;
   left: 20px;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--nostromo-spacing-sm) var(--nostromo-spacing-md);
   background: var(--bg-primary);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--nostromo-radius-md);
+  box-shadow: var(--nostromo-shadow-lg);
   font-size: 0.75rem;
-  color: var(--text-primary);
+  color: var(--nostromo-text-primary);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -526,53 +599,60 @@
 .theme-debug-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--nostromo-spacing-xs);
 }
 
 .theme-debug-label {
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--nostromo-text-secondary);
 }
 
 .theme-debug-value {
-  color: var(--text-primary);
-  font-family: var(--font-mono);
+  color: var(--nostromo-text-primary);
+  font-family: var(--nostromo-font-mono);
 }
 
 /* Enhanced documentation surfaces */
-[data-theme="docs"] {
+[data-theme="nostromo"] {
   /* Layered card backgrounds */
-  --card-bg-1: hsl(var(--color-neutral-50));
-  --card-bg-2: hsl(var(--color-neutral-100));
-  --card-border: hsl(var(--color-neutral-200));
-  --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  
+  --card-bg-1: hsl(var(--nostromo-color-neutral-50));
+  --card-bg-2: hsl(var(--nostromo-color-neutral-100));
+  --card-border: hsl(var(--nostromo-color-neutral-200));
+  --card-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --card-shadow-hover:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
   /* Focus rings */
-  --focus-ring: 0 0 0 2px hsl(var(--color-primary) / 0.2);
-  --focus-ring-offset: 0 0 0 2px hsl(var(--color-neutral-50)), 0 0 0 4px hsl(var(--color-primary) / 0.2);
+  --focus-ring: 0 0 0 2px hsl(var(--nostromo-color-primary) / 0.2);
+  --focus-ring-offset:
+    0 0 0 2px hsl(var(--nostromo-color-neutral-50)),
+    0 0 0 4px hsl(var(--nostromo-color-primary) / 0.2);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] {
-  --card-bg-1: hsl(var(--color-neutral-950));
-  --card-bg-2: hsl(var(--color-neutral-900));
-  --card-border: hsl(var(--color-neutral-800));
+[data-theme="nostromo"][data-color-scheme="dark"] {
+  --card-bg-1: hsl(var(--nostromo-color-neutral-950));
+  --card-bg-2: hsl(var(--nostromo-color-neutral-900));
+  --card-border: hsl(var(--nostromo-color-neutral-800));
   --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  --card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --focus-ring-offset: 0 0 0 2px hsl(var(--color-neutral-950)), 0 0 0 4px hsl(var(--color-primary) / 0.2);
+  --card-shadow-hover:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --focus-ring-offset:
+    0 0 0 2px hsl(var(--nostromo-color-neutral-950)),
+    0 0 0 4px hsl(var(--nostromo-color-primary) / 0.2);
 }
 
 /* Table row styling for better scanability */
-[data-theme="docs"] table tbody tr {
+[data-theme="nostromo"] table tbody tr {
   transition: background-color 0.15s ease;
 }
 
-[data-theme="docs"] table tbody tr:hover {
-  background-color: hsl(var(--color-neutral-100) / 0.5);
+[data-theme="nostromo"] table tbody tr:hover {
+  background-color: hsl(var(--nostromo-color-neutral-100) / 0.5);
 }
 
-[data-theme="docs"][data-color-scheme="dark"] table tbody tr:hover {
-  background-color: hsl(var(--color-neutral-800) / 0.5);
+[data-theme="nostromo"][data-color-scheme="dark"] table tbody tr:hover {
+  background-color: hsl(var(--nostromo-color-neutral-800) / 0.5);
 }
 
 /* Section backgrounds with subtle mesh/gradient */
@@ -581,11 +661,20 @@
 }
 
 .nx-section::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 50%, hsl(var(--color-primary) / 0.03), transparent 50%),
-              radial-gradient(circle at 80% 50%, hsl(var(--color-primary) / 0.02), transparent 50%);
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      hsl(var(--nostromo-color-primary) / 0.03),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 50%,
+      hsl(var(--nostromo-color-primary) / 0.02),
+      transparent 50%
+    );
   pointer-events: none;
   z-index: 0;
 }
@@ -611,7 +700,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: hsl(var(--color-primary));
+  background: hsl(var(--nostromo-color-primary));
   transform-origin: left;
   z-index: 9999;
   animation: scroll-progress linear;

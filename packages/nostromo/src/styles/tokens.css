@@ -1,0 +1,212 @@
+/* Nostromo UI - Tailwind v4 theme bridge
+ *
+ * Maps the private --nostromo-* token layer (defined by the theme files in
+ * ./themes/) onto the namespaces Tailwind v4 reads to generate utilities.
+ *
+ * `inline` keeps the var() reference in the utility itself, so switching
+ * [data-theme] at runtime re-resolves every utility. The token layer is
+ * deliberately namespaced: naming it --color-* directly would collide with
+ * the variables Tailwind emits here and create a circular reference.
+ */
+
+@theme inline {
+  /* ---- Color scales ---- */
+  --color-brand-50: hsl(var(--nostromo-color-brand-50));
+  --color-brand-100: hsl(var(--nostromo-color-brand-100));
+  --color-brand-200: hsl(var(--nostromo-color-brand-200));
+  --color-brand-300: hsl(var(--nostromo-color-brand-300));
+  --color-brand-400: hsl(var(--nostromo-color-brand-400));
+  --color-brand-500: hsl(var(--nostromo-color-brand-500));
+  --color-brand-600: hsl(var(--nostromo-color-brand-600));
+  --color-brand-700: hsl(var(--nostromo-color-brand-700));
+  --color-brand-800: hsl(var(--nostromo-color-brand-800));
+  --color-brand-900: hsl(var(--nostromo-color-brand-900));
+  --color-brand-950: hsl(var(--nostromo-color-brand-950));
+
+  --color-neutral-50: hsl(var(--nostromo-color-neutral-50));
+  --color-neutral-100: hsl(var(--nostromo-color-neutral-100));
+  --color-neutral-200: hsl(var(--nostromo-color-neutral-200));
+  --color-neutral-300: hsl(var(--nostromo-color-neutral-300));
+  --color-neutral-400: hsl(var(--nostromo-color-neutral-400));
+  --color-neutral-500: hsl(var(--nostromo-color-neutral-500));
+  --color-neutral-600: hsl(var(--nostromo-color-neutral-600));
+  --color-neutral-700: hsl(var(--nostromo-color-neutral-700));
+  --color-neutral-800: hsl(var(--nostromo-color-neutral-800));
+  --color-neutral-900: hsl(var(--nostromo-color-neutral-900));
+  --color-neutral-950: hsl(var(--nostromo-color-neutral-950));
+
+  --color-success-50: hsl(var(--nostromo-color-success-50));
+  --color-success-100: hsl(var(--nostromo-color-success-100));
+  --color-success-200: hsl(var(--nostromo-color-success-200));
+  --color-success-300: hsl(var(--nostromo-color-success-300));
+  --color-success-400: hsl(var(--nostromo-color-success-400));
+  --color-success-500: hsl(var(--nostromo-color-success-500));
+  --color-success-600: hsl(var(--nostromo-color-success-600));
+  --color-success-700: hsl(var(--nostromo-color-success-700));
+  --color-success-800: hsl(var(--nostromo-color-success-800));
+  --color-success-900: hsl(var(--nostromo-color-success-900));
+  --color-success-950: hsl(var(--nostromo-color-success-950));
+
+  --color-warning-50: hsl(var(--nostromo-color-warning-50));
+  --color-warning-100: hsl(var(--nostromo-color-warning-100));
+  --color-warning-200: hsl(var(--nostromo-color-warning-200));
+  --color-warning-300: hsl(var(--nostromo-color-warning-300));
+  --color-warning-400: hsl(var(--nostromo-color-warning-400));
+  --color-warning-500: hsl(var(--nostromo-color-warning-500));
+  --color-warning-600: hsl(var(--nostromo-color-warning-600));
+  --color-warning-700: hsl(var(--nostromo-color-warning-700));
+  --color-warning-800: hsl(var(--nostromo-color-warning-800));
+  --color-warning-900: hsl(var(--nostromo-color-warning-900));
+  --color-warning-950: hsl(var(--nostromo-color-warning-950));
+
+  --color-error-50: hsl(var(--nostromo-color-error-50));
+  --color-error-100: hsl(var(--nostromo-color-error-100));
+  --color-error-200: hsl(var(--nostromo-color-error-200));
+  --color-error-300: hsl(var(--nostromo-color-error-300));
+  --color-error-400: hsl(var(--nostromo-color-error-400));
+  --color-error-500: hsl(var(--nostromo-color-error-500));
+  --color-error-600: hsl(var(--nostromo-color-error-600));
+  --color-error-700: hsl(var(--nostromo-color-error-700));
+  --color-error-800: hsl(var(--nostromo-color-error-800));
+  --color-error-900: hsl(var(--nostromo-color-error-900));
+  --color-error-950: hsl(var(--nostromo-color-error-950));
+
+  --color-info-50: hsl(var(--nostromo-color-info-50));
+  --color-info-100: hsl(var(--nostromo-color-info-100));
+  --color-info-200: hsl(var(--nostromo-color-info-200));
+  --color-info-300: hsl(var(--nostromo-color-info-300));
+  --color-info-400: hsl(var(--nostromo-color-info-400));
+  --color-info-500: hsl(var(--nostromo-color-info-500));
+  --color-info-600: hsl(var(--nostromo-color-info-600));
+  --color-info-700: hsl(var(--nostromo-color-info-700));
+  --color-info-800: hsl(var(--nostromo-color-info-800));
+  --color-info-900: hsl(var(--nostromo-color-info-900));
+  --color-info-950: hsl(var(--nostromo-color-info-950));
+
+  /* ---- Semantic colors ---- */
+  --color-primary: hsl(var(--nostromo-color-primary));
+  --color-primary-foreground: hsl(var(--nostromo-color-primary-foreground));
+  --color-secondary: hsl(var(--nostromo-color-secondary));
+  --color-secondary-foreground: hsl(var(--nostromo-color-secondary-foreground));
+  --color-accent: hsl(var(--nostromo-color-accent));
+  --color-accent-foreground: hsl(var(--nostromo-color-accent-foreground));
+  --color-destructive: hsl(var(--nostromo-color-destructive));
+  --color-destructive-foreground: hsl(
+    var(--nostromo-color-destructive-foreground)
+  );
+  --color-muted: hsl(var(--nostromo-color-muted));
+  --color-muted-foreground: hsl(var(--nostromo-color-muted-foreground));
+  --color-popover: hsl(var(--nostromo-color-popover));
+  --color-popover-foreground: hsl(var(--nostromo-color-popover-foreground));
+  --color-card: hsl(var(--nostromo-color-card));
+  --color-card-foreground: hsl(var(--nostromo-color-card-foreground));
+  --color-background: hsl(var(--nostromo-color-background));
+  --color-foreground: hsl(var(--nostromo-color-foreground));
+  --color-border: hsl(var(--nostromo-color-border));
+  --color-input: hsl(var(--nostromo-color-input));
+  --color-ring: hsl(var(--nostromo-color-ring));
+
+  /* Status colors resolve to their 500 step, with a paired foreground */
+  --color-success: hsl(var(--nostromo-color-success-500));
+  --color-success-foreground: hsl(var(--nostromo-color-success-foreground));
+  --color-warning: hsl(var(--nostromo-color-warning-500));
+  --color-warning-foreground: hsl(var(--nostromo-color-warning-foreground));
+  --color-error: hsl(var(--nostromo-color-error-500));
+  --color-error-foreground: hsl(var(--nostromo-color-error-foreground));
+  --color-info: hsl(var(--nostromo-color-info-500));
+  --color-info-foreground: hsl(var(--nostromo-color-info-foreground));
+
+  /* ---- Radius ---- */
+  --radius-none: var(--nostromo-radius-none);
+  --radius-sm: var(--nostromo-radius-sm);
+  --radius-md: var(--nostromo-radius-md);
+  --radius-lg: var(--nostromo-radius-lg);
+  --radius-xl: var(--nostromo-radius-xl);
+  --radius-full: var(--nostromo-radius-full);
+
+  /* ---- Font families ---- */
+  --font-heading: var(--nostromo-font-heading);
+  --font-body: var(--nostromo-font-body);
+  --font-mono: var(--nostromo-font-mono);
+
+  /* ---- Font weights ---- */
+  --font-weight-normal: var(--nostromo-font-normal);
+  --font-weight-medium: var(--nostromo-font-medium);
+  --font-weight-semibold: var(--nostromo-font-semibold);
+  --font-weight-bold: var(--nostromo-font-bold);
+
+  /* ---- Font sizes ---- */
+  --text-xs: var(--nostromo-text-xs);
+  --text-sm: var(--nostromo-text-sm);
+  --text-base: var(--nostromo-text-base);
+  --text-lg: var(--nostromo-text-lg);
+  --text-xl: var(--nostromo-text-xl);
+  --text-2xl: var(--nostromo-text-2xl);
+  --text-3xl: var(--nostromo-text-3xl);
+  --text-4xl: var(--nostromo-text-4xl);
+  --text-5xl: var(--nostromo-text-5xl);
+
+  /* ---- Line heights ---- */
+  --leading-tight: var(--nostromo-leading-tight);
+  --leading-normal: var(--nostromo-leading-normal);
+  --leading-relaxed: var(--nostromo-leading-relaxed);
+
+  /* ---- Shadows ---- */
+  --shadow-xs: var(--nostromo-shadow-xs);
+  --shadow-sm: var(--nostromo-shadow-sm);
+  --shadow-md: var(--nostromo-shadow-md);
+  --shadow-lg: var(--nostromo-shadow-lg);
+  --shadow-xl: var(--nostromo-shadow-xl);
+  --shadow-2xl: var(--nostromo-shadow-2xl);
+  --shadow-inner: var(--nostromo-shadow-inner);
+  --shadow-button: var(--nostromo-shadow-button);
+  --shadow-button-hover: var(--nostromo-shadow-button-hover);
+  --shadow-card: var(--nostromo-shadow-card);
+  --shadow-card-hover: var(--nostromo-shadow-card-hover);
+  --shadow-input: var(--nostromo-shadow-input);
+  --shadow-input-focus: var(--nostromo-shadow-input-focus);
+
+  /* ---- Spacing ----
+     Deliberately NOT mapped into Tailwind's --spacing-* namespace. On v4 a
+     named spacing key also becomes a valid width/max-width key, so
+     --spacing-2xl would shadow --container-2xl and turn `max-w-2xl` into 48px.
+     The --nostromo-spacing-* tokens stay available to consumers via var(). */
+
+  /* ---- Easing ---- */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Utilities that carry a whole transition shorthand rather than a single
+   token, kept from the v3 preset so component classes keep working. */
+@utility transition-button {
+  transition: var(--nostromo-transition-button);
+}
+
+@utility transition-input {
+  transition: var(--nostromo-transition-input);
+}
+
+@utility transition-card {
+  transition: var(--nostromo-transition-card);
+}
+
+@utility transition-modal {
+  transition: var(--nostromo-transition-modal);
+}
+
+/* Brand shorthands from the v3 preset. */
+@utility text-brand {
+  color: hsl(var(--nostromo-color-brand-500));
+}
+
+@utility bg-brand {
+  background-color: hsl(var(--nostromo-color-brand-500));
+}
+
+@utility border-brand {
+  border-color: hsl(var(--nostromo-color-brand-500));
+}
+
+@utility rounded-theme {
+  border-radius: var(--nostromo-radius-md);
+}

@@ -13,25 +13,14 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
-    "./plugin": {
-      "types": "./dist/plugin.d.ts",
-      "import": "./dist/plugin.js",
-      "require": "./dist/plugin.cjs",
-      "default": "./dist/plugin.js"
-    },
-    "./preset": {
-      "types": "./dist/preset.d.ts",
-      "import": "./dist/preset.js",
-      "require": "./dist/preset.cjs",
-      "default": "./dist/preset.js"
-    },
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tokens.css": "./dist/tokens.css",
     "./themes/nostromo.css": "./dist/themes/nostromo.css",
     "./themes/mother.css": "./dist/themes/mother.css",
     "./themes/lv-426.css": "./dist/themes/lv-426.css",
     "./themes/sulaco.css": "./dist/themes/sulaco.css",
     "./themes/*": "./dist/themes/*.css",
     "./base.css": "./dist/base.css",
-    "./plugin.css": "./dist/plugin.css",
     "./components/core/button": {
       "types": "./dist/components/core/button.d.ts",
       "import": "./dist/components/core/button.js",

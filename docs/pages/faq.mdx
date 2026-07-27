@@ -7,7 +7,7 @@ Common questions and answers about Nostromo UI.
 ### How do I install Nostromo UI?
 
 ```bash
-npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/ui-tw
+npm install @jarllyng/nostromo @jarllyng/nostromo @jarllyng/nostromo
 ```
 
 ### Do I need to install Tailwind CSS?
@@ -22,14 +22,16 @@ npx tailwindcss init -p
 ### How do I set up theming?
 
 1. Import the base CSS and theme:
+
 ```tsx
-import "@jarllyng/ui-tw/base.css"
-import "@jarllyng/ui-tw/themes/nostromo.css"
+import "@jarllyng/nostromo/tailwind.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 2. Apply the theme to your HTML:
+
 ```html
-<html data-theme="nostromo" data-color-scheme="light">
+<html data-theme="nostromo" data-color-scheme="light"></html>
 ```
 
 ## Components
@@ -37,14 +39,16 @@ import "@jarllyng/ui-tw/themes/nostromo.css"
 ### How do I import components?
 
 **Recommended (tree-shakeable):**
+
 ```tsx
-import { Button } from '@jarllyng/nostromo/button'
-import { Input } from '@jarllyng/nostromo/input'
+import { Button } from "@jarllyng/nostromo/button";
+import { Input } from "@jarllyng/nostromo/input";
 ```
 
 **Also works:**
+
 ```tsx
-import { Button, Input } from '@jarllyng/nostromo'
+import { Button, Input } from "@jarllyng/nostromo";
 ```
 
 ### Can I customize component styles?
@@ -52,9 +56,7 @@ import { Button, Input } from '@jarllyng/nostromo'
 Yes! All components accept a `className` prop for custom styling:
 
 ```tsx
-<Button className="bg-red-500 hover:bg-red-600">
-  Custom Button
-</Button>
+<Button className="bg-red-500 hover:bg-red-600">Custom Button</Button>
 ```
 
 ### How do I handle form validation?
@@ -62,28 +64,32 @@ Yes! All components accept a `className` prop for custom styling:
 Use with React Hook Form and Zod:
 
 ```tsx
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Input, Button } from '@jarllyng/nostromo'
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Input, Button } from "@jarllyng/nostromo";
 
 const schema = z.object({
   email: z.string().email(),
-  password: z.string().min(8)
-})
+  password: z.string().min(8),
+});
 
 function MyForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: zodResolver(schema)
-  })
-  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Input {...register('email')} />
+      <Input {...register("email")} />
       {errors.email && <span>{errors.email.message}</span>}
       <Button type="submit">Submit</Button>
     </form>
-  )
+  );
 }
 ```
 
@@ -95,16 +101,17 @@ Create a CSS file with your custom variables:
 
 ```css
 [data-theme="mybrand"] {
-  --color-brand-500: 220 100% 50%;  /* Your brand color */
-  --color-brand-600: 220 100% 40%;
-  --font-heading: "Poppins", sans-serif;
-  --radius-md: 0.75rem;
+  --nostromo-color-brand-500: 220 100% 50%; /* Your brand color */
+  --nostromo-color-brand-600: 220 100% 40%;
+  --nostromo-font-heading: "Poppins", sans-serif;
+  --nostromo-radius-md: 0.75rem;
 }
 ```
 
 Then apply it:
+
 ```html
-<html data-theme="mybrand">
+<html data-theme="mybrand"></html>
 ```
 
 ### How do I implement dark mode?
@@ -113,39 +120,45 @@ Use the `data-color-scheme` attribute:
 
 ```tsx
 function DarkModeToggle() {
-  const [isDark, setIsDark] = useState(false)
-  
+  const [isDark, setIsDark] = useState(false);
+
   useEffect(() => {
     document.documentElement.setAttribute(
-      'data-color-scheme', 
-      isDark ? 'dark' : 'light'
-    )
-  }, [isDark])
-  
+      "data-color-scheme",
+      isDark ? "dark" : "light",
+    );
+  }, [isDark]);
+
   return (
     <button onClick={() => setIsDark(!isDark)}>
-      {isDark ? 'Light' : 'Dark'} Mode
+      {isDark ? "Light" : "Dark"} Mode
     </button>
-  )
+  );
 }
 ```
 
 ### Can I use my own Tailwind config?
 
-Yes! Extend the Nostromo preset:
+Yes. On Tailwind v4 there is nothing to extend — the library registers its tokens
+through `@theme`, and you add your own in CSS alongside it:
 
-```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/ui-tw/tailwind.preset.js")
+```css
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
 
-module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
-  presets: [nostromoPreset],
-  theme: {
-    extend: {
-      // Your custom extensions
-    }
-  }
+@theme {
+  /* Your own additions, in Tailwind's namespaces */
+  --color-avocado: oklch(0.84 0.18 117.33);
+  --font-display: "Satoshi", sans-serif;
+}
+```
+
+To change what the library's own components look like, override the theme tokens
+rather than the Tailwind namespace:
+
+```css
+[data-theme="nostromo"] {
+  --nostromo-color-primary: 220 100% 50%;
 }
 ```
 
@@ -157,11 +170,11 @@ Yes! Nostromo UI is fully compatible with Next.js:
 
 ```tsx
 // pages/_app.tsx
-import "@jarllyng/ui-tw/base.css"
-import "@jarllyng/ui-tw/themes/nostromo.css"
+import "@jarllyng/nostromo/tailwind.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 ```
 
@@ -171,8 +184,8 @@ Yes! Import the CSS in your root file:
 
 ```tsx
 // app/root.tsx
-import "@jarllyng/ui-tw/base.css"
-import "@jarllyng/ui-tw/themes/nostromo.css"
+import "@jarllyng/nostromo/tailwind.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 ### Does it work with Vite?
@@ -181,8 +194,8 @@ Yes! Just import the CSS in your main file:
 
 ```tsx
 // main.tsx
-import "@jarllyng/ui-tw/base.css"
-import "@jarllyng/ui-tw/themes/nostromo.css"
+import "@jarllyng/nostromo/tailwind.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 ## Performance
@@ -200,10 +213,10 @@ Use tree-shaking by importing only what you need:
 
 ```tsx
 // ✅ Good - only imports Button
-import { Button } from '@jarllyng/nostromo/button'
+import { Button } from "@jarllyng/nostromo/button";
 
 // ❌ Avoid - imports entire library
-import * as Nostromo from '@jarllyng/nostromo'
+import * as Nostromo from "@jarllyng/nostromo";
 ```
 
 ### Is it SSR compatible?
@@ -230,15 +243,15 @@ npm install -D @axe-core/react
 ```
 
 ```tsx
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { axe, toHaveNoViolations } from "jest-axe";
 
-expect.extend(toHaveNoViolations)
+expect.extend(toHaveNoViolations);
 
-test('should not have accessibility violations', async () => {
-  const { container } = render(<Button>Test</Button>)
-  const results = await axe(container)
-  expect(results).toHaveNoViolations()
-})
+test("should not have accessibility violations", async () => {
+  const { container } = render(<Button>Test</Button>);
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
 ```
 
 ## Troubleshooting
@@ -254,7 +267,7 @@ test('should not have accessibility violations', async () => {
 Make sure you have the latest version and proper imports:
 
 ```tsx
-import type { ButtonProps } from '@jarllyng/nostromo'
+import type { ButtonProps } from "@jarllyng/nostromo";
 ```
 
 ### Build errors?
@@ -270,6 +283,7 @@ MIT License - see [LICENSE](https://github.com/JarlLyng/nostromo-ui/blob/main/LI
 ### What browsers are supported?
 
 Nostromo UI supports all modern browsers:
+
 - **Chrome/Edge**: Latest 2 versions
 - **Firefox**: Latest 2 versions
 - **Safari**: Latest 2 versions
@@ -278,6 +292,7 @@ Nostromo UI supports all modern browsers:
 ### Is it SSR or CSR compatible?
 
 Both! Nostromo UI works with:
+
 - **SSR (Server-Side Rendering)**: Next.js, Remix, SvelteKit
 - **CSR (Client-Side Rendering)**: Vite, Create React App
 - **Static Site Generation**: Next.js, Astro
@@ -291,21 +306,23 @@ All components are SSR-compatible with no client-side dependencies.
 If you forget to set `data-theme` on your HTML element, components will use default browser styles. Always set:
 
 ```html
-<html data-theme="nostromo" data-color-scheme="light">
+<html data-theme="nostromo" data-color-scheme="light"></html>
 ```
 
 Or in your root component:
+
 ```tsx
 useEffect(() => {
-  document.documentElement.setAttribute('data-theme', 'nostromo')
-}, [])
+  document.documentElement.setAttribute("data-theme", "nostromo");
+}, []);
 ```
 
 ### Why aren't my theme colors applying?
 
 1. Check that you've imported the theme CSS:
+
 ```tsx
-import "@jarllyng/ui-tw/themes/nostromo.css"
+import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 2. Verify `data-theme` is set on the HTML element
@@ -315,12 +332,13 @@ import "@jarllyng/ui-tw/themes/nostromo.css"
 ### Tree-shaking not working?
 
 Make sure you're using individual imports:
+
 ```tsx
 // ✅ Tree-shakeable
-import { Button } from '@jarllyng/nostromo/button'
+import { Button } from "@jarllyng/nostromo/button";
 
 // ❌ Not tree-shakeable
-import * as Nostromo from '@jarllyng/nostromo'
+import * as Nostromo from "@jarllyng/nostromo";
 ```
 
 ## Support
@@ -334,6 +352,7 @@ import * as Nostromo from '@jarllyng/nostromo'
 ### How do I report a bug?
 
 Create a GitHub issue with:
+
 - **Description**: Clear description of the bug
 - **Steps to reproduce**: How to reproduce the issue
 - **Expected behavior**: What should happen
@@ -348,6 +367,7 @@ See our [Contributing Guide](https://github.com/JarlLyng/nostromo-ui/blob/main/C
 ### Can I request new components?
 
 Yes! Create a feature request on GitHub with:
+
 - Component description
 - Use cases
 - Design mockups (if available)

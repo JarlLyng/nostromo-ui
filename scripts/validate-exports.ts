@@ -16,9 +16,9 @@ const rootDir = join(__dirname, "..");
 function validateExports() {
   console.log("🔍 Validating component exports...\n");
 
-  const packageJsonPath = join(rootDir, "packages/ui-core/package.json");
-  const distComponentsPath = join(rootDir, "packages/ui-core/dist/components");
-  const srcComponentsPath = join(rootDir, "packages/ui-core/src/components");
+  const packageJsonPath = join(rootDir, "packages/nostromo/package.json");
+  const distComponentsPath = join(rootDir, "packages/nostromo/dist/components");
+  const srcComponentsPath = join(rootDir, "packages/nostromo/src/components");
 
   // Read package.json
   if (!existsSync(packageJsonPath)) {
@@ -35,24 +35,30 @@ function validateExports() {
     process.exit(1);
   }
 
-  const srcFiles = readdirSync(srcComponentsPath, { withFileTypes: true })
-    .filter(
-      (file) =>
-        file.isFile() &&
-        file.name.endsWith(".tsx") &&
-        !file.name.includes("__tests__") &&
-        !file.name.includes("__stories__") &&
-        !file.name.includes(".test.") &&
-        !file.name.includes(".stories."),
-    )
-    .map((file) => basename(file.name, ".tsx"));
+  // Components are grouped: src/components/<group>/<name>.tsx, and the matching
+  // export keys are "./components/<group>/<name>".
+  const groups = readdirSync(srcComponentsPath, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("__"))
+    .map((entry) => entry.name);
+
+  const srcFiles = groups.flatMap((group) =>
+    readdirSync(join(srcComponentsPath, group), { withFileTypes: true })
+      .filter(
+        (file) =>
+          file.isFile() &&
+          file.name.endsWith(".tsx") &&
+          !file.name.includes(".test.") &&
+          !file.name.includes(".stories."),
+      )
+      .map((file) => `components/${group}/${basename(file.name, ".tsx")}`),
+  );
 
   console.log(`📦 Found ${srcFiles.length} component files in src/components:`);
   srcFiles.forEach((file) => console.log(`   - ${file}`));
 
   // Get all exported components from package.json
   const exportedComponents = Object.keys(exports)
-    .filter((key) => key.startsWith("./") && key !== "./package.json")
+    .filter((key) => key.startsWith("./components/"))
     .map((key) => key.replace("./", ""));
 
   console.log(
@@ -72,11 +78,7 @@ function validateExports() {
 
   exportedComponents.forEach((exported) => {
     if (!srcFiles.includes(exported)) {
-      // Check if it's a special export (like charts-lazy)
-      const srcFile = join(srcComponentsPath, `${exported}.tsx`);
-      if (!existsSync(srcFile)) {
-        extraExports.push(exported);
-      }
+      extraExports.push(exported);
     }
   });
 

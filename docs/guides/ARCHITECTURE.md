@@ -52,13 +52,13 @@ import { Hero } from "@jarllyng/nostromo";
 
 **Tailwind Setup:**
 
-```js
-// tailwind.config.mjs
-import nostromoPreset from "@jarllyng/nostromo/preset";
+CSS-first, no JS config. `tailwind.css` imports Tailwind, registers the design
+tokens via `@theme inline`, declares an `@source` for the library's own compiled
+output, and adds the base layer.
 
-export default {
-  presets: [nostromoPreset],
-};
+```css
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 ## Build System
@@ -235,16 +235,16 @@ We use CSS variables with namespacing, in HSL format to support Tailwind's `hsl(
 
 ```css
 [data-theme="nostromo"] {
-  --color-brand-50: 262 84% 95%;
-  --color-brand-500: 262 84% 52%;
-  --color-brand-900: 262 84% 15%;
+  --nostromo-color-brand-50: 262 84% 95%;
+  --nostromo-color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-900: 262 84% 15%;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --nostromo-radius-sm: 4px;
+  --nostromo-radius-md: 8px;
+  --nostromo-radius-lg: 12px;
 
-  --font-heading: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --nostromo-font-heading: "Inter", sans-serif;
+  --nostromo-font-body: "Inter", sans-serif;
 }
 ```
 

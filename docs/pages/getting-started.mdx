@@ -7,7 +7,7 @@ Welcome to Nostromo UI! This guide helps you get started with our UI library.
 - **Node.js**: >= 20.0.0
 - **React**: >= 18.0.0
 - **TypeScript**: >= 5.0.0 (recommended)
-- **Tailwind CSS**: >= 3.0.0 or >= 4.0.0
+- **Tailwind CSS**: >= 4.0.0 (theming is CSS-first; there is no JS preset)
 
 ## Installation
 
@@ -48,12 +48,23 @@ npm install -D tailwindcss
 
 ## Theming Setup
 
-### 1. Import Base CSS
+### 1. Import the CSS
+
+One import pulls in Tailwind, the design tokens and the base layer; the second
+picks a theme.
+
+```css
+/* In your main stylesheet */
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css"; /* or mother / lv-426 / sulaco */
+```
+
+If your setup imports CSS from JavaScript instead:
 
 ```ts
 // In your entry file (e.g. main.tsx)
-import "@jarllyng/nostromo/base.css";
-import "@jarllyng/nostromo/themes/nostromo.css"; // choose or customize theme
+import "@jarllyng/nostromo/tailwind.css";
+import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 ### 2. Apply Theme
@@ -68,10 +79,14 @@ import "@jarllyng/nostromo/themes/nostromo.css"; // choose or customize theme
 
 ```css
 [data-theme="mybrand"] {
-  --color-brand-500: 220 100% 50%; /* Your brand blue */
-  --color-brand-600: 220 100% 40%; /* Darker variant */
+  --nostromo-color-brand-500: 220 100% 50%; /* Your brand blue */
+  --nostromo-color-brand-600: 220 100% 40%; /* Darker variant */
 }
 ```
+
+Tokens live in the `--nostromo-*` namespace and hold bare HSL channels. The
+library maps them onto Tailwind's `--color-*` namespace internally, so
+`bg-brand-500` picks your value up automatically.
 
 [**Complete Theming Guide →**](/theming)
 
@@ -87,20 +102,13 @@ export default function MyComponent() {
 
 ## Tailwind CSS Configuration
 
-Nostromo UI uses Tailwind CSS. Configure Tailwind in your project:
+There isn't any. On Tailwind v4 the design tokens are registered through
+`@theme` inside `@jarllyng/nostromo/tailwind.css`, so importing that file is the
+whole setup — no `tailwind.config.js`, no preset, no `content` array.
 
-```js
-// tailwind.config.mjs
-import nostromoPreset from "@jarllyng/nostromo/preset";
-
-export default {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/nostromo/dist/**/*.{js,ts,jsx,tsx}",
-  ],
-  presets: [nostromoPreset],
-};
-```
+The import also declares an `@source` pointing at the library's own compiled
+output, because Tailwind v4 skips `node_modules` when scanning for class names.
+That means you do not need to add the package to a content glob yourself.
 
 ### Project Setup Examples
 
@@ -108,7 +116,7 @@ export default {
 
 ```tsx
 // app/layout.tsx
-import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/tailwind.css";
 import "@jarllyng/nostromo/themes/nostromo.css";
 
 export default function RootLayout({ children }) {
@@ -124,7 +132,7 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // main.tsx
-import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/tailwind.css";
 import "@jarllyng/nostromo/themes/nostromo.css";
 import React from "react";
 import ReactDOM from "react-dom/client";

@@ -20,11 +20,13 @@ This document provides solutions to common issues when using Nostromo UI, includ
 ### Installation Problems
 
 #### Issue: Package not found
+
 ```
 Error: Cannot resolve module '@jarllyng/nostromo'
 ```
 
 **Solution:**
+
 > 📖 **For complete installation instructions, see [Development Guide](DEVELOPMENT.md#quick-start)**
 
 ```bash
@@ -41,11 +43,13 @@ pnpm install
 ```
 
 #### Issue: Version conflicts
+
 ```
 Error: Conflicting peer dependencies
 ```
 
 **Solution:**
+
 ```bash
 # Check for version conflicts
 npm ls
@@ -66,41 +70,59 @@ npm install @jarllyng/nostromo@latest @jarllyng/nostromo@latest @jarllyng/nostro
 ### Tailwind Configuration Issues
 
 #### Issue: Styles not applying
+
 ```
 Components render but without styling
 ```
 
-**Solution:**
-```js
-// tailwind.config.js
-const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
+**Solution:** check both imports are present, and in this order:
 
-module.exports = {
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@jarllyng/**/*.{js,ts,jsx,tsx}"
-  ],
-  presets: [nostromoPreset],
-  // Don't override the preset
-  // theme: { ... } // ❌ Avoid this
-};
+```css
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
+```
+
+`tailwind.css` registers the tokens; the theme file supplies their values. With
+only the first, every utility resolves against an undefined variable and the
+components render unstyled.
+
+Then check `<html>` carries a matching `data-theme`:
+
+```html
+<html data-theme="nostromo" data-color-scheme="light"></html>
+```
+
+The theme files scope their tokens to `[data-theme="<name>"]`, so a missing or
+misspelled attribute has the same effect as a missing theme import.
+
+If some utilities apply and others don't, the cause is usually cascade layers:
+Tailwind v4 emits utilities inside `@layer utilities`, and **any unlayered CSS in
+your app outranks all of it**. A precompiled stylesheet from another library
+(older Tailwind builds ship an unlayered preflight) will beat every utility
+class. Wrap that import in a layer:
+
+```css
+@import "some-library/style.css" layer(vendor);
+@layer vendor, theme, base, components, utilities;
 ```
 
 #### Issue: CSS variables not working
+
 ```
 CSS variables not being applied
 ```
 
 **Solution:**
+
 ```tsx
 // Import base styles
-import "@jarllyng/nostromo/base.css";
+import "@jarllyng/nostromo/tailwind.css";
 
 // Set theme on document
-document.documentElement.setAttribute('data-theme', 'nostromo');
+document.documentElement.setAttribute("data-theme", "nostromo");
 
 // Or use theme provider
-import { ThemeProvider } from './theme-provider';
+import { ThemeProvider } from "./theme-provider";
 
 function App() {
   return (
@@ -114,11 +136,13 @@ function App() {
 ### TypeScript Configuration Issues
 
 #### Issue: Type errors
+
 ```
 Cannot find module '@jarllyng/nostromo/button'
 ```
 
 **Solution:**
+
 ```json
 // tsconfig.json
 {
@@ -130,22 +154,21 @@ Cannot find module '@jarllyng/nostromo/button'
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src/**/*",
-    "node_modules/@jarllyng/**/*"
-  ]
+  "include": ["src/**/*", "node_modules/@jarllyng/**/*"]
 }
 ```
 
 #### Issue: Missing type definitions
+
 ```
 Property 'variant' does not exist on type 'ButtonProps'
 ```
 
 **Solution:**
+
 ```tsx
 // Import types explicitly
-import type { ButtonProps } from '@jarllyng/nostromo/button';
+import type { ButtonProps } from "@jarllyng/nostromo/button";
 
 // Use proper typing
 const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
@@ -160,30 +183,43 @@ const MyButton: React.FC<ButtonProps> = ({ variant, size, ...props }) => {
 ### Webpack Issues
 
 #### Issue: Module resolution errors
+
 ```
 Module not found: Can't resolve '@jarllyng/nostromo'
 ```
 
 **Solution:**
+
 ```js
 // webpack.config.js
 module.exports = {
   resolve: {
     alias: {
-      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
-      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
-      '@jarllyng/nostromo': path.resolve(__dirname, 'node_modules/@jarllyng/nostromo'),
-    }
-  }
+      "@jarllyng/nostromo": path.resolve(
+        __dirname,
+        "node_modules/@jarllyng/nostromo",
+      ),
+      "@jarllyng/nostromo": path.resolve(
+        __dirname,
+        "node_modules/@jarllyng/nostromo",
+      ),
+      "@jarllyng/nostromo": path.resolve(
+        __dirname,
+        "node_modules/@jarllyng/nostromo",
+      ),
+    },
+  },
 };
 ```
 
 #### Issue: CSS not being processed
+
 ```
 Tailwind classes not being applied
 ```
 
 **Solution:**
+
 ```js
 // webpack.config.js
 module.exports = {
@@ -191,49 +227,46 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ]
-      }
-    ]
-  }
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+    ],
+  },
 };
 ```
 
 ### Vite Issues
 
 #### Issue: CSS variables not working
+
 ```
 CSS variables not being processed by Vite
 ```
 
 **Solution:**
+
 ```js
 // vite.config.js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
   css: {
     postcss: {
-      plugins: [
-        require('tailwindcss'),
-        require('autoprefixer')
-      ]
-    }
-  }
+      plugins: [require("tailwindcss"), require("autoprefixer")],
+    },
+  },
 });
 ```
 
 #### Issue: Build errors with TypeScript
+
 ```
 Type errors during build
 ```
 
 **Solution:**
+
 ```json
 // tsconfig.json
 {
@@ -248,44 +281,45 @@ Type errors during build
 ### Next.js Issues
 
 #### Issue: CSS not loading in production
+
 ```
 Styles work in development but not in production
 ```
 
 **Solution:**
+
 ```js
 // next.config.js
-const nostromoPreset = require("@jarllyng/nostromo/tailwind.preset.js");
-
 module.exports = {
   experimental: {
-    appDir: true
+    appDir: true,
   },
   // Ensure CSS is processed
   webpack: (config) => {
     config.module.rules.push({
       test: /\.css$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader']
+      use: ["style-loader", "css-loader", "postcss-loader"],
     });
     return config;
-  }
+  },
 };
 ```
 
 #### Issue: Server-side rendering errors
+
 ```
 Hydration mismatch errors
 ```
 
 **Solution:**
+
 ```tsx
 // Use dynamic imports for client-only components
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const ClientOnlyComponent = dynamic(
-  () => import('./ClientOnlyComponent'),
-  { ssr: false }
-);
+const ClientOnlyComponent = dynamic(() => import("./ClientOnlyComponent"), {
+  ssr: false,
+});
 
 // Or use useEffect for client-side only code
 useEffect(() => {
@@ -300,20 +334,22 @@ useEffect(() => {
 ### CSS Variables Not Working
 
 #### Issue: Theme not applying
+
 ```
 Components render with default styles instead of theme
 ```
 
 **Solution:**
+
 ```tsx
 // Check if theme is set
-console.log(document.documentElement.getAttribute('data-theme'));
+console.log(document.documentElement.getAttribute("data-theme"));
 
 // Set theme explicitly
-document.documentElement.setAttribute('data-theme', 'nostromo');
+document.documentElement.setAttribute("data-theme", "nostromo");
 
 // Or use theme provider
-import { ThemeProvider } from './theme-provider';
+import { ThemeProvider } from "./theme-provider";
 
 function App() {
   return (
@@ -325,99 +361,107 @@ function App() {
 ```
 
 #### Issue: Custom theme not working
+
 ```
 Custom theme variables not being applied
 ```
 
 **Solution:**
+
 ```css
 /* Ensure custom theme is defined correctly */
 [data-theme="custom"] {
-  --color-brand-500: 200 100% 50%;
-  --color-brand-600: 200 100% 40%;
-  --color-brand-700: 200 100% 30%;
+  --nostromo-color-brand-500: 200 100% 50%;
+  --nostromo-color-brand-600: 200 100% 40%;
+  --nostromo-color-brand-700: 200 100% 30%;
 }
 
 /* Check if theme is applied */
 [data-theme="custom"] .bg-brand-500 {
-  background-color: hsl(var(--color-brand-500));
+  background-color: hsl(var(--nostromo-color-brand-500));
 }
 ```
 
 ### Dark Mode Issues
 
 #### Issue: Dark mode not switching
+
 ```
 Dark mode toggle not working
 ```
 
 **Solution:**
+
 ```tsx
 // Check if dark mode is properly implemented
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
-  
+
   useEffect(() => {
     const root = document.documentElement;
-    root.setAttribute('data-color-scheme', isDark ? 'dark' : 'light');
+    root.setAttribute("data-color-scheme", isDark ? "dark" : "light");
   }, [isDark]);
-  
+
   return (
     <Button onClick={() => setIsDark(!isDark)}>
-      {isDark ? 'Light' : 'Dark'} Mode
+      {isDark ? "Light" : "Dark"} Mode
     </Button>
   );
 }
 ```
 
 #### Issue: Dark mode styles not applying
+
 ```
 Dark mode styles not being applied
 ```
 
 **Solution:**
+
 ```css
 /* Ensure dark mode styles are defined */
 [data-color-scheme="dark"] {
-  --color-background: 0 0% 3%;
-  --color-foreground: 0 0% 98%;
-  --color-muted: 0 0% 14%;
-  --color-muted-foreground: 0 0% 63%;
+  --nostromo-color-background: 0 0% 3%;
+  --nostromo-color-foreground: 0 0% 98%;
+  --nostromo-color-muted: 0 0% 14%;
+  --nostromo-color-muted-foreground: 0 0% 63%;
 }
 
 /* Check if dark mode is applied */
 [data-color-scheme="dark"] .bg-background {
-  background-color: hsl(var(--color-background));
+  background-color: hsl(var(--nostromo-color-background));
 }
 ```
 
 ### Theme Switching Issues
 
 #### Issue: Theme switching not working
+
 ```
 Theme switching between different themes not working
 ```
 
 **Solution:**
+
 ```tsx
 // Implement proper theme switching
 function ThemeSwitcher() {
-  const [theme, setTheme] = useState('nostromo');
-  
-  const themes = ['nostromo', 'mother', 'lv-426', 'sulaco'];
-  
+  const [theme, setTheme] = useState("nostromo");
+
+  const themes = ["nostromo", "mother", "lv-426", "sulaco"];
+
   const switchTheme = (newTheme: string) => {
     setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
   };
-  
+
   return (
     <Select value={theme} onValueChange={switchTheme}>
       <SelectTrigger>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {themes.map(themeName => (
+        {themes.map((themeName) => (
           <SelectItem key={themeName} value={themeName}>
             {themeName}
           </SelectItem>
@@ -435,11 +479,13 @@ function ThemeSwitcher() {
 ### Bundle Size Issues
 
 #### Issue: Bundle size too large
+
 ```
 Bundle size is larger than expected
 ```
 
 **Solution:**
+
 ```tsx
 // Use individual imports
 import { Button } from '@jarllyng/nostromo/button';
@@ -454,39 +500,43 @@ npx bundle-analyzer dist/
 ```
 
 #### Issue: Tree shaking not working
+
 ```
 Unused components still included in bundle
 ```
 
 **Solution:**
+
 ```js
 // webpack.config.js
 module.exports = {
   optimization: {
     usedExports: true,
-    sideEffects: false
-  }
+    sideEffects: false,
+  },
 };
 
 // Check if components are tree-shakeable
-import { Button } from '@jarllyng/nostromo/button';
+import { Button } from "@jarllyng/nostromo/button";
 // Only Button will be included in bundle
 ```
 
 ### Runtime Performance Issues
 
 #### Issue: Components rendering slowly
+
 ```
 Components are slow to render
 ```
 
 **Solution:**
+
 ```tsx
 // Use React.memo for expensive components
 const ExpensiveComponent = React.memo(function ExpensiveComponent({ data }) {
   return (
     <div>
-      {data.map(item => (
+      {data.map((item) => (
         <div key={item.id}>{item.name}</div>
       ))}
     </div>
@@ -500,22 +550,24 @@ const expensiveValue = useMemo(() => {
 ```
 
 #### Issue: Memory leaks
+
 ```
 Memory usage increasing over time
 ```
 
 **Solution:**
+
 ```tsx
 // Clean up event listeners
 useEffect(() => {
   const handleResize = () => {
     // Handle resize
   };
-  
-  window.addEventListener('resize', handleResize);
-  
+
+  window.addEventListener("resize", handleResize);
+
   return () => {
-    window.removeEventListener('resize', handleResize);
+    window.removeEventListener("resize", handleResize);
   };
 }, []);
 
@@ -524,7 +576,7 @@ useEffect(() => {
   const timer = setInterval(() => {
     // Do something
   }, 1000);
-  
+
   return () => {
     clearInterval(timer);
   };
@@ -534,17 +586,19 @@ useEffect(() => {
 ### Lazy Loading Issues
 
 #### Issue: Lazy loading not working
+
 ```
 Lazy loaded components not rendering
 ```
 
 **Solution:**
+
 ```tsx
 // Use proper lazy loading
-import { lazy, Suspense } from 'react';
-import { Skeleton } from '@jarllyng/nostromo/skeleton';
+import { lazy, Suspense } from "react";
+import { Skeleton } from "@jarllyng/nostromo/skeleton";
 
-const LazyComponent = lazy(() => import('./LazyComponent'));
+const LazyComponent = lazy(() => import("./LazyComponent"));
 
 function App() {
   return (
@@ -575,16 +629,18 @@ For detailed accessibility troubleshooting, see [ACCESSIBILITY_GUIDE.md](./ACCES
 ### Button Issues
 
 #### Issue: Button not responding to clicks
+
 ```
 Button onClick not working
 ```
 
 **Solution:**
+
 ```tsx
 // Check if button is disabled
 <Button disabled={isLoading} onClick={handleClick}>
   Click me
-</Button>
+</Button>;
 
 // Check if event is being prevented
 const handleClick = (e: React.MouseEvent) => {
@@ -598,18 +654,20 @@ const handleClick = (e: React.MouseEvent) => {
   <Button type="button" onClick={handleClick}>
     Click me
   </Button>
-</form>
+</form>;
 ```
 
 #### Issue: Button loading state not working
+
 ```
 Button loading state not showing
 ```
 
 **Solution:**
+
 ```tsx
 // Use proper loading state
-<Button 
+<Button
   loading={isLoading}
   loadingText="Loading..."
   disabled={isLoading}
@@ -618,7 +676,7 @@ Button loading state not showing
 </Button>
 
 // Or use state variants
-<Button 
+<Button
   state={isLoading ? "loading" : "default"}
   disabled={isLoading}
 >
@@ -629,22 +687,24 @@ Button loading state not showing
 ### Input Issues
 
 #### Issue: Input validation not working
+
 ```
 Input validation not showing errors
 ```
 
 **Solution:**
+
 ```tsx
 // Implement proper validation
 const [errors, setErrors] = useState<Record<string, string>>({});
 
 const validateInput = (value: string) => {
   if (!value) {
-    setErrors(prev => ({ ...prev, email: 'Email is required' }));
+    setErrors((prev) => ({ ...prev, email: "Email is required" }));
   } else if (!/\S+@\S+\.\S+/.test(value)) {
-    setErrors(prev => ({ ...prev, email: 'Email is invalid' }));
+    setErrors((prev) => ({ ...prev, email: "Email is invalid" }));
   } else {
-    setErrors(prev => ({ ...prev, email: '' }));
+    setErrors((prev) => ({ ...prev, email: "" }));
   }
 };
 
@@ -654,15 +714,17 @@ const validateInput = (value: string) => {
   error={!!errors.email}
   helperText={errors.email}
   onChange={(e) => validateInput(e.target.value)}
-/>
+/>;
 ```
 
 #### Issue: Input focus not working
+
 ```
 Input not receiving focus
 ```
 
 **Solution:**
+
 ```tsx
 // Use refs for focus management
 const inputRef = useRef<HTMLInputElement>(null);
@@ -673,21 +735,19 @@ useEffect(() => {
   }
 }, []);
 
-<Input
-  ref={inputRef}
-  label="Email"
-  type="email"
-/>
+<Input ref={inputRef} label="Email" type="email" />;
 ```
 
 ### Dialog Issues
 
 #### Issue: Dialog not closing
+
 ```
 Dialog not closing when clicking outside
 ```
 
 **Solution:**
+
 ```tsx
 // Use proper dialog props
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -714,11 +774,13 @@ Dialog not closing when clicking outside
 ```
 
 #### Issue: Dialog backdrop not working
+
 ```
 Dialog backdrop not preventing clicks
 ```
 
 **Solution:**
+
 ```tsx
 // Check if backdrop is enabled
 <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -744,6 +806,7 @@ Dialog backdrop not preventing clicks
 ### Common Storybook Problems
 
 #### Issue: `ReferenceError: require is not defined`
+
 ```
 ReferenceError: require is not defined at client.js:2:9
 ```
@@ -757,29 +820,35 @@ config.optimizeDeps = {
   ...(config.optimizeDeps ?? {}),
   force: true,
   include: [
-    'react', 'react-dom',
-    'react-dom/client',
-    'react/jsx-runtime',
-    'react/jsx-dev-runtime',
-    'aria-hidden', 'react-remove-scroll',
-    '@floating-ui/core', '@floating-ui/dom', '@floating-ui/react-dom',
-    'phosphor-react',
-    'tailwind-merge',
-    'class-variance-authority', 'clsx',
+    "react",
+    "react-dom",
+    "react-dom/client",
+    "react/jsx-runtime",
+    "react/jsx-dev-runtime",
+    "aria-hidden",
+    "react-remove-scroll",
+    "@floating-ui/core",
+    "@floating-ui/dom",
+    "@floating-ui/react-dom",
+    "phosphor-react",
+    "tailwind-merge",
+    "class-variance-authority",
+    "clsx",
     // Radix packages used in stories
-    '@radix-ui/react-accordion',
-    '@radix-ui/react-avatar',
-    '@radix-ui/react-checkbox',
-    '@radix-ui/react-label',
-    '@radix-ui/react-radio-group',
-    '@radix-ui/react-select',
-    '@radix-ui/react-switch',
-    '@radix-ui/react-toggle'
+    "@radix-ui/react-accordion",
+    "@radix-ui/react-avatar",
+    "@radix-ui/react-checkbox",
+    "@radix-ui/react-label",
+    "@radix-ui/react-radio-group",
+    "@radix-ui/react-select",
+    "@radix-ui/react-switch",
+    "@radix-ui/react-toggle",
   ],
 };
 ```
 
 #### Issue: Components not styled in Storybook
+
 ```
 Components render but without Tailwind CSS styling
 ```
@@ -789,18 +858,20 @@ Ensure Tailwind CSS v4 Vite plugin is configured:
 
 ```ts
 // packages/nostromo/.storybook/main.ts
-const tailwindVite = (await import('@tailwindcss/vite')).default;
+const tailwindVite = (await import("@tailwindcss/vite")).default;
 config.plugins = [...(config.plugins ?? []), tailwindVite()];
 ```
 
 And import CSS in `preview.css`:
+
 ```css
-@import '@jarllyng/nostromo/themes/nostromo.css';
-@import '@jarllyng/nostromo/base.css';
+@import "@jarllyng/nostromo/themes/nostromo.css";
+@import "@jarllyng/nostromo/tailwind.css";
 @import "tailwindcss";
 ```
 
 #### Issue: Storybook cache problems
+
 ```bash
 # Clear Storybook cache
 rm -rf .storybook/cache
@@ -810,12 +881,14 @@ pnpm storybook
 ```
 
 #### Issue: Missing dependencies in Storybook
+
 ```
 Module not found: Can't resolve 'aria-hidden'
 ```
 
 **Solution:**
 Install missing dependencies:
+
 ```bash
 pnpm add aria-hidden react-remove-scroll @floating-ui/core @floating-ui/dom @floating-ui/react-dom
 ```
@@ -828,9 +901,9 @@ pnpm add aria-hidden react-remove-scroll @floating-ui/core @floating-ui/dom @flo
 
 ```tsx
 // Add debug logging
-console.log('Component props:', props);
-console.log('Component state:', state);
-console.log('Component refs:', refs);
+console.log("Component props:", props);
+console.log("Component state:", state);
+console.log("Component refs:", refs);
 
 // Use React DevTools
 // Install React Developer Tools browser extension
@@ -848,12 +921,12 @@ console.log('Component refs:', refs);
 
 /* Check if styles are applied */
 .bg-brand-500 {
-  background-color: hsl(var(--color-brand-500)) !important;
+  background-color: hsl(var(--nostromo-color-brand-500)) !important;
 }
 
 /* Check if theme is applied */
 [data-theme="nostromo"] {
-  --color-brand-500: 262 84% 52%;
+  --nostromo-color-brand-500: 262 84% 52%;
 }
 ```
 
@@ -863,7 +936,7 @@ console.log('Component refs:', refs);
 // Use React DevTools Profiler
 // Check for unnecessary re-renders
 // Use why-did-you-render
-import whyDidYouRender from '@welldone-software/why-did-you-render';
+import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 whyDidYouRender(React, {
   trackAllPureComponents: true,
@@ -909,7 +982,7 @@ npx madge --circular src/
 ### Professional Support
 
 - **Enterprise Support**: Create a GitHub issue with "enterprise" label
-- **Custom Development**: Create a GitHub issue with "custom" label  
+- **Custom Development**: Create a GitHub issue with "custom" label
 - **Training**: Create a GitHub issue with "training" label
 
 ### Reporting Issues
@@ -927,6 +1000,7 @@ When reporting issues, please include:
 ### Issue Templates
 
 Use our issue templates for:
+
 - **Bug Reports**: [Bug report template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=bug_report.yml)
 - **Feature Requests**: [Feature request template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=feature_request.yml)
 - **Questions**: [Support request template](https://github.com/JarlLyng/nostromo-ui/issues/new?template=support_request.yml)
@@ -938,4 +1012,4 @@ Use our issue templates for:
 
 ---
 
-*This troubleshooting guide is continuously updated based on community feedback and common issues.*
+_This troubleshooting guide is continuously updated based on community feedback and common issues._
