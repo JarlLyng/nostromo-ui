@@ -1,6 +1,6 @@
 {
   "name": "@jarllyng/nostromo",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Nostromo UI - A Tailwind CSS plugin and React component library",
   "type": "module",
   "main": "./dist/index.cjs",
