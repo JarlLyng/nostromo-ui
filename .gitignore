@@ -110,7 +110,10 @@ Thumbs.db
 .turbo
 
 # Changesets
-.changeset
+# .changeset/ is source, not build output - config.json and the pending
+# changeset files have to be committed or `changeset version` cannot run in CI.
+# Only the generated release-plan cache is disposable.
+.changeset/.cache
 
 # Playwright
 test-results/

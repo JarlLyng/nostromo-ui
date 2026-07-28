@@ -12,6 +12,9 @@ on:
 
 permissions:
   contents: write
+  # changesets/action opens the "chore: version packages" PR; without this it
+  # fails with a 403 on the create call.
+  pull-requests: write
   id-token: write
 
 concurrency:
@@ -70,13 +73,6 @@ jobs:
 
       - name: Run tests
         run: pnpm test:run
-
-      - name: Update workspace dependencies before publishing
-        run: |
-          # Update workspace dependencies to version numbers before publishing
-          # This ensures published packages reference npm versions, not workspace:*
-          echo "Workspace dependencies are already using workspace:* protocol"
-          echo "Changesets will handle version updates during publish"
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
