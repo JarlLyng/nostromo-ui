@@ -1,0 +1,5 @@
+/* Exactly what the published setup instructions tell a consumer to write.
+   If this pair of imports is not enough to style the components, the smoke
+   tests fail - which is the whole point of this app. */
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";

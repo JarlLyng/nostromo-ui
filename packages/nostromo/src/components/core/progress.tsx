@@ -166,7 +166,7 @@ const ProgressComponent = React.forwardRef<HTMLDivElement, ProgressProps>(
                   "bg-gradient-to-r from-green-400 to-emerald-400",
                 variant === "alien" &&
                   "bg-gradient-to-r from-purple-400 to-pink-400",
-                variant === "primary" && "bg-primary-400",
+                variant === "primary" && "bg-brand-400",
                 variant === "success" && "bg-success-400",
                 variant === "warning" && "bg-warning-400",
                 variant === "error" && "bg-error-400",

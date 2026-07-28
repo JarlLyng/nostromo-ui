@@ -3,25 +3,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-badge hover:shadow-badge-hover",
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 shadow-xs hover:shadow-sm",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/90 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-primary text-primary-foreground hover:bg-primary/90 shadow-xs hover:shadow-sm",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-xs hover:shadow-sm",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-xs hover:shadow-sm",
         outline:
-          "border-2 border-border text-foreground hover:border-primary hover:text-primary hover:shadow-badge",
+          "border-2 border-border text-foreground hover:border-primary hover:text-primary hover:shadow-sm",
         success:
-          "border-transparent bg-success text-success-foreground hover:bg-success-600 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-success text-success-foreground hover:bg-success-600 shadow-xs hover:shadow-sm",
         warning:
-          "border-transparent bg-warning text-warning-foreground hover:bg-warning-600 shadow-badge hover:shadow-badge-hover",
-        info: "border-transparent bg-info text-info-foreground hover:bg-info-600 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-warning text-warning-foreground hover:bg-warning-600 shadow-xs hover:shadow-sm",
+        info: "border-transparent bg-info text-info-foreground hover:bg-info-600 shadow-xs hover:shadow-sm",
         error:
-          "border-transparent bg-error text-error-foreground hover:bg-error-600 shadow-badge hover:shadow-badge-hover",
+          "border-transparent bg-error text-error-foreground hover:bg-error-600 shadow-xs hover:shadow-sm",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
