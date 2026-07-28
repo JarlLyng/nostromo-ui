@@ -117,7 +117,12 @@ function usedTokenClasses(): string[] {
         // Reject prose and CSS properties: a utility either has a hyphen or is
         // one of the standalone family names.
         if (!base.includes("-") && !BARE_OK.has(base)) continue;
-        if (!/^[a-z][a-z0-9]*(?:[-:/][a-z0-9.%[\]()_=-]+)*$/i.test(full)) continue;
+        // One character class, one quantifier. An earlier version separated the
+        // delimiter from the body, but both sets contained "-", so a "-" could
+        // match either way and the regex backtracked exponentially on input like
+        // "a-%-%-%-…". It runs over every string literal in dist, so that is a
+        // real way to hang CI rather than a theoretical one.
+        if (!/^[a-z][a-z0-9.%:/[\]()_=-]*$/i.test(full)) continue;
         found.add(full);
       }
     }
