@@ -1,6 +1,9 @@
 # Nostromo UI
 
-> **🎉 STABLE RELEASE** - Version 1.0.0 is now available! Production-ready component library with 30 core components, 6 marketing components, and 4 complete themes.
+> **Status** - The library is feature-complete and tested, and the first npm
+> release is being prepared. Until it lands, install from the workspace. Version
+> numbers live in `packages/nostromo/package.json` and nowhere else, so nothing
+> here can drift out of date.
 
 ![Human in the Loop](https://jarllyng.github.io/madebyhuman/badges/loop-white.svg)
 
@@ -60,7 +63,7 @@ import { Button } from "@jarllyng/nostromo";
 
 ## 🧩 Available Components
 
-### Core Components (30 components)
+### Core Components
 
 - **Button** - Interactive buttons with loading states and variants
 - **Input** - Text input fields with validation and form integration
@@ -90,9 +93,11 @@ import { Button } from "@jarllyng/nostromo";
 - **Pagination** - Page navigation with keyboard accessibility
 - **Separator** - Visual separators with horizontal and vertical variants
 - **Calendar** - Date picker with single, range, and multiple selection modes (uses `date-fns` for robust date handling)
-- **Charts** - Data visualization with line, bar, area, and pie charts
+- **Charts** - Data visualization with line, bar, area, and pie charts (also
+  available as a lazy-loaded entry point for deferring `recharts`)
+- **ErrorBoundary** - Catches render errors in a subtree and shows a fallback
 
-### Marketing Components (6 components)
+### Marketing Components
 
 - **Hero** - Hero sections with customizable layouts and call-to-action buttons
 - **Testimonials** - Customer testimonials with ratings, avatars and responsive grids
@@ -113,45 +118,51 @@ All components are built with:
 
 ## 📊 Project Status
 
-**Current Phase**: Stable Release (1.0.0) 🎉  
-**Next Milestone**: Performance & Optimization (1.2.0)  
-**Current Focus**: Code quality improvements and npm publishing
+**Current focus**: first npm release. The library builds, is tested against its
+own published entry points, and has no known broken components.
 
 ### 📋 Factual Status Table
 
-| Metric                   | Status | Details                                                      |
-| ------------------------ | ------ | ------------------------------------------------------------ |
-| **Core Components**      | ✅     | 30 components implemented                                    |
-| **Marketing Components** | ✅     | 6 components implemented                                     |
-| **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                  |
-| **Total Tests**          | ✅     | 1089 tests passing (unit + accessibility)                    |
-| **Test Coverage**        | ✅     | 81% lines, 75% branches, 85% functions, 83% statements       |
-| **TypeScript**           | ✅     | Zero errors, strict mode enabled                             |
-| **Linting**              | ✅     | 0 errors, 0 warnings                                         |
-| **CI/CD**                | ✅     | All critical checks passing (parallelized)                   |
-| **Documentation**        | ✅     | 12 guides + live examples                                    |
-| **Distribution**         | ⚠️     | Workspace-only (npm publishing planned)                      |
-| **Bundle Size**          | ✅     | ~210 KB main bundle (minified + brotlied, with tree-shaking) |
+| Metric                   | Status | Details                                                    |
+| ------------------------ | ------ | ---------------------------------------------------------- |
+| **Core Components**      | ✅     | 30 components (Charts also has a lazy-loading entry point) |
+| **Marketing Components** | ✅     | 6 components implemented                                   |
+| **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                |
+| **Total Tests**          | ✅     | 1077 unit + accessibility, plus 10 consumer smoke tests    |
+| **Test Coverage**        | ✅     | 84% lines, 78% branches, 86% functions, 83% statements     |
+| **TypeScript**           | ✅     | Zero errors, strict mode enabled                           |
+| **Linting**              | ✅     | 0 errors, 18 warnings                                      |
+| **CI/CD**                | ✅     | All critical checks passing (parallelized)                 |
+| **Documentation**        | ✅     | 12 guides + live examples                                  |
+| **Distribution**         | ⚠️     | Workspace-only (npm publishing planned)                    |
+| **Bundle Size**          | ✅     | 209 KB main bundle (minified + brotlied, tree-shakeable)   |
 
 > **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
 
-### 🎉 **Stable Release**
+### What is actually true
 
-Nostromo UI 1.0.0 is now production-ready! After extensive testing and community feedback, we're proud to offer a complete, stable component library.
+- **Tested** - 1077 unit and accessibility tests, 36 dedicated accessibility
+  test files using `jest-axe`, and a consumer smoke test that compiles the
+  published stylesheet and mounts components from `dist`
+- **Accessible** - built on Radix primitives, with contrast validated against
+  WCAG 2.1 AA in the test suite
+- **Tree-shakeable** - per-component entry points with enforced size budgets
+- **Themeable** - four themes, switchable at runtime via `data-theme`
 
-**What's New in 1.0.0:**
+### What is not
 
-- ✅ **Stable API** - No breaking changes planned
-- ✅ **Production Ready** - Fully tested and documented
-- ✅ **Complete Component Set** - 30 core + 6 marketing components
-- ✅ **Comprehensive Testing** - 1089 tests passing (unit + accessibility)
-- ✅ **WCAG 2.1 AA Compliant** - Full accessibility support
+- **Not yet on npm.** The publishing pipeline works and the first release is
+  queued, but nothing is installable from the registry yet
+- **No production users that we know of.** The API has not been through the kind
+  of external use that would justify calling it battle-tested
+- **The API is not frozen.** Migrating theming to Tailwind v4 was a breaking
+  change, and others may follow before things settle
 
 ### ✅ **Completed Features**
 
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables with HSL colors and 4 complete themes
-- **Tailwind Preset** - Complete preset with Nostromo theme
+- **Tailwind v4 Bridge** - design tokens registered in CSS via `@theme`, no JS preset
 - **30 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, DataTable, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator, Calendar, Charts
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall with full design system integration
 - **Form Components** - Complete set of form-related components
@@ -159,7 +170,8 @@ Nostromo UI 1.0.0 is now production-ready! After extensive testing and community
 - **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, sorting, and server-side support (controlled mode); Charts with line, bar, area, and pie visualizations
 - **Feedback Components** - Toast, Tooltip, Progress with accessibility
 - **Layout Components** - Accordion, Skeleton with animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (1089 tests passing - unit + accessibility)
+- **Test Infrastructure** - Vitest + Testing Library + axe-core (1077 unit and
+  accessibility tests, plus a consumer smoke test against the built package)
 - **Storybook Setup** - React with dark theme
 - **Build System** - tsup with ESM + CJS output and type definitions
 - **Nextra Documentation Site** - Modern documentation with all 30 components, interactive Storybook examples and live previews

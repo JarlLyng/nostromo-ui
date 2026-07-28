@@ -1,5 +1,8 @@
 import { ScrollProgress } from './components/ScrollProgress'
 import { DocsThemeConfig } from 'nextra-theme-docs'
+// Read from the package rather than hardcoding. The sidebar said "v1.0.0 Stable"
+// and the header said "v2.0" while package.json said something else again.
+import { version } from '@jarllyng/nostromo/package.json'
 
 // basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
 // IMPORTANT: allow empty string as a valid value (custom domain)
@@ -35,7 +38,7 @@ const config: DocsThemeConfig = {
         Nostromo UI
       </span>
       <span className="ml-2 px-2 py-0.5 text-[10px] font-bold rounded-full bg-success/10 text-success border border-success/30 uppercase tracking-tighter">
-        v1.0.0 Stable
+        v{version}
       </span>
     </div>
   ),
