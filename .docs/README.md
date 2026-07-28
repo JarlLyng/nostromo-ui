@@ -1,14 +1,24 @@
 # Internal Documentation
 
-This directory contains internal documentation and reference materials that are not part of the main user-facing documentation.
+Reference material for maintainers. Not part of the user-facing documentation in
+`docs/`.
 
 ## Contents
 
-### Reference Documentation
-- `PERFORMANCE_AUDIT.md` - Performance analysis and metrics
-- `SEMVER_STABILITY.md` - Versioning strategy and API stability guarantees
+- `SEMVER_STABILITY.md` - versioning policy and what counts as a breaking change
 
 ## Note
 
-These files are for reference purposes and may contain technical details useful for contributors and maintainers.
+Anything in here that states a measurement will rot. Living numbers belong in the
+tooling that produces them:
 
+- **Bundle sizes** - `pnpm size` in `packages/nostromo`, with budgets enforced in
+  CI by `size-limit`
+- **Coverage** - `pnpm test:coverage`, with thresholds enforced in CI
+- **What the published package actually does** - the consumer smoke test in
+  `test-app/`
+
+A `PERFORMANCE_AUDIT.md` and a `TAILWIND_STYLING_ISSUE.md` used to live here. Both
+were removed: the audit quoted measurements against package names that no longer
+exist, and the styling issue described a problem in the pre-merge `ui-tw` package
+that the Tailwind v4 migration resolved.
