@@ -34,7 +34,7 @@ export function Hero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                         </span>
-                        Project Status: v1.0.0 Stable Release
+                        Project Status: preparing the first npm release
                     </div>
 
                     <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9]">

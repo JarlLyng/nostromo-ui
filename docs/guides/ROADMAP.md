@@ -14,37 +14,40 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 
 ## 🎯 Current Status
 
-**Current Phase**: Performance & Optimization (1.2.0) ✅  
-**Next Milestone**: Distribution & Publishing (1.3.0)  
-**Last Updated**: January 2025  
-**Progress**: Phase 3 Completed - All Performance Optimizations Implemented! ✅  
-**Current Focus**: Ready for npm publishing and public release
+**Current focus**: getting the first release onto npm.
 
-### 🧪 **Beta Testing Phase (0.1.0)** ✅ **COMPLETED**
-- **Status**: ✅ **COMPLETED**
-- **Goal**: Gather community feedback and test components in real projects
-- **Timeline**: Completed in 2024
-- **Key Activities**:
-  - ✅ Public GitHub repository for community access
-  - ✅ GitHub Pages documentation site deployment
-  - ✅ Community feedback collection via GitHub Issues
-  - ✅ Component testing in various project setups
-  - ✅ API refinement based on user feedback
-- **Success Criteria**:
-  - ✅ 10+ community testers
-  - ✅ 20+ GitHub issues with feedback
-  - ✅ Components tested in 5+ different project setups
-  - ✅ API stability confirmed
+The library is feature-complete and tested, the docs site is deployed, and the
+publishing pipeline works end to end. Nothing is installable from the registry
+yet.
+
+### 🧪 Community feedback - not started
+
+This section previously claimed a completed beta phase with 10+ testers, 20+
+issues of feedback, testing across 5+ project setups and confirmed API
+stability. None of that happened. The repository has no external users, and the
+one bug report it has received came from someone finding the docs site broken.
+
+Removing the claim rather than restating it: a roadmap that marks unstarted work
+as done is worse than no roadmap, because it stops you looking at the thing that
+actually needs doing.
+
+Real prerequisites for gathering feedback:
+
+- [ ] Publish to npm so the library can be installed at all
+- [ ] Confirm the documented setup works in a project nobody here wrote
+- [ ] Decide whether the API is stable enough to ask people to build on
 
 ---
 
 ## 🚀 What's Next
 
 ### **Phase 1: Stable Release (1.0.0)** ✅ **RELEASED**
+
 **Target**: ✅ **COMPLETED** (January 2025)  
 **Goal**: Production-ready release
 
 #### **Quality Assurance** ✅ **COMPLETED**
+
 - [x] **Full Documentation** ✅ **COMPLETED**
   - [x] Complete API reference (API_REFERENCE.md)
   - [x] Migration guides (MIGRATION_GUIDES.md)
@@ -64,6 +67,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Loading times
 
 #### **Stability & Support** ✅ **COMPLETED**
+
 - [x] **Semver Stability** ✅ **COMPLETED**
   - [x] API stability guarantees
   - [x] Breaking change policy
@@ -83,10 +87,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Simplified packages/docs-advanced/ folder
 
 ### **Phase 2: Advanced Features (1.1.0)**
+
 **Target**: 🎯 **CURRENT FOCUS**  
 **Goal**: Advanced tooling and features
 
 #### **Distribution & Marketing**
+
 - [ ] **npm Publishing** - Publish packages to npm registry
   - [ ] Set up npm account and organization
   - [ ] Configure package publishing
@@ -100,6 +106,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Community engagement
 
 #### **Advanced Components** ✅ **COMPLETED**
+
 - [x] **Data Table Component** ✅ **COMPLETED**
   - [x] Advanced table with sorting/filtering
   - [x] Pagination integration
@@ -129,10 +136,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Storybook stories and documentation
 
 ### **Phase 2.5: Code Quality & Stability** ✅ **COMPLETED**
+
 **Target**: ✅ **COMPLETED**  
 **Goal**: Ensure production-ready code quality
 
 #### **Code Quality Improvements** ✅ **COMPLETED**
+
 - [x] **ESLint Warnings** ✅ **COMPLETED**
   - [x] Resolved all 22 ESLint warnings
   - [x] Replaced all `any` types with proper TypeScript types
@@ -163,10 +172,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Documented bundle size strategy
 
 ### **Phase 2.6: WCAG AA Design Optimization** ✅ **COMPLETED**
+
 **Target**: ✅ **COMPLETED**  
 **Goal**: Ensure all components meet WCAG 2.1 AA contrast requirements
 
 #### **Design System Improvements** ✅ **COMPLETED**
+
 - [x] **Semantic Color Tokens** ✅ **COMPLETED**
   - [x] Refactored all components to use semantic tokens (background, foreground, muted, primary, etc.)
   - [x] Extended Tailwind preset with semantic token mappings
@@ -193,10 +204,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Created contrast validation scripts and documentation
 
 ### **Phase 3: Performance & Optimization (1.2.0)**
+
 **Target**: ✅ **COMPLETED**  
 **Goal**: Performance optimization and bundle size reduction
 
 #### **Performance Optimization**
+
 - [x] **Bundle Analysis** ✅ **COMPLETED**
   - [x] Size monitoring with size-limit
   - [x] Bundle analyzer script (analyze-bundle.js)
@@ -214,10 +227,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [x] Memory leak test suite created and passing
 
 ### **Phase 4: Distribution & Publishing (1.3.0)**
+
 **Target**: 🎯 **NEXT FOCUS**  
 **Goal**: Publish packages to npm and prepare for public release
 
 #### **npm Publishing**
+
 - [ ] **Package Preparation**
   - [ ] Verify all package.json configurations
   - [ ] Ensure proper exports and entry points
@@ -238,6 +253,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Test in clean project environment
 
 #### **Release Preparation**
+
 - [ ] **Version Management**
   - [ ] Set up Changesets for versioning
   - [ ] Create release workflow
@@ -261,11 +277,12 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## 📊 Key Metrics
 
 ### **Current Status**
+
 - **Components**: ✅ **30 Core Components** + **6 Marketing Components** completed
   - 27 base components + 3 advanced components (DataTable, Calendar, Charts)
 - **Themes**: ✅ **4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
 - **Documentation**: ✅ **Complete** (Nextra-based documentation site with all components)
-- **Tests**: 
+- **Tests**:
   - Core package: 842 tests (unit + accessibility) - 100% pass rate
   - Marketing package: 7 smoke tests (export + render verification)
   - Theme package: 3 smoke tests (preset structure validation)
@@ -274,6 +291,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 - **Build System**: ✅ **Complete** (ESM/CJS output with type definitions)
 
 ### **Phase Progress**
+
 - **Phase 1 (MVP 0.1.0)**: ✅ **Complete**
 - **Phase 2 (0.2.0)**: ✅ **Complete**
 - **Phase 3 (0.3.0)**: ✅ **Complete**
@@ -288,6 +306,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## 🔮 Future Roadmap
 
 ### **Potential Features**
+
 - [ ] **Additional Frameworks**
   - [ ] React Native support
   - [ ] Solid.js support
@@ -306,6 +325,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
   - [ ] Design token system
 
 ### **Community Features**
+
 - [ ] **Plugin System**
   - [ ] Third-party components
   - [ ] Theme marketplace
@@ -322,6 +342,7 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## ✅ Success Criteria
 
 ### **Quality Assurance**
+
 - [x] All components pass accessibility tests ✅
 - [x] WCAG 2.1 AA contrast compliance verified ✅
 - [x] Bundle size optimized ✅
@@ -330,8 +351,9 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 - [x] Production-ready documentation ✅
 
 ### **Community Engagement**
-- [ ] 10+ community testers
-- [ ] 20+ GitHub issues with feedback
+
+- [ ] Any external user at all
+- [ ] Feedback from someone who did not write the library
 - [ ] Components tested in 5+ different project setups
 - [ ] API stability confirmed
 
@@ -340,12 +362,14 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 ## 📝 Notes
 
 ### **Development Principles**
+
 - **Accessibility First**: All components must be accessible
 - **Performance Focused**: Minimal bundle impact
 - **Developer Experience**: Excellent DX and documentation
 - **Community Driven**: Open to feedback and contributions
 
 ### **Risk Mitigation**
+
 - **Technical Risks**: Regular architecture reviews
 - **Timeline Risks**: Buffer time in estimates
 - **Quality Risks**: Automated testing and CI/CD
@@ -353,9 +377,9 @@ This file describes Nostromo UI's development plan, milestones and priorities. I
 
 ---
 
-**Last Updated**: January 2025  
+**Last reviewed**: July 2026  
 **Next Review**: February 2025
 
 ---
 
-*This roadmap is a living document and will be updated regularly to reflect project progress and changing priorities.*
+_This roadmap is a living document and will be updated regularly to reflect project progress and changing priorities._

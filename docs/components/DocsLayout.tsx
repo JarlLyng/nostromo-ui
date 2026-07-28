@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { withBasePath } from '../utils/withBasePath';
 import { Separator } from '@jarllyng/nostromo/components/core/separator';
+// Derived, not hardcoded - this badge said v2.0 while the sidebar said v1.0.0.
+import { version } from '@jarllyng/nostromo/package.json';
 
 interface DocsLayoutProps {
     children: React.ReactNode;
@@ -30,7 +32,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
                         <img src={withBasePath('/logo-white.svg')} alt="Logo" width={32} height={32} className="hidden dark:block" />
                         <img src={withBasePath('/logo-black.svg')} alt="Logo" width={32} height={32} className="block dark:hidden" />
                         <span className="font-bold text-xl tracking-tighter">NOSTROMO</span>
-                        <span className="ml-2 px-2 py-0.5 text-[10px] font-bold border border-primary/20 rounded-full bg-primary/10 text-primary">v2.0</span>
+                        <span className="ml-2 px-2 py-0.5 text-[10px] font-bold border border-primary/20 rounded-full bg-primary/10 text-primary">v{version}</span>
                     </Link>
 
                     <div className="hidden md:flex items-center gap-6">

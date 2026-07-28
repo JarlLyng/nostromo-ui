@@ -36,7 +36,7 @@ export function Features() {
                     </div>
 
                     <div className="md:col-span-4 nx-card bg-muted/30 p-8 flex flex-col justify-center border-border/50">
-                        <div className="text-4xl font-black text-foreground mb-4 tabular-nums">1089+</div>
+                        <div className="text-4xl font-black text-foreground mb-4 tabular-nums">1077</div>
                         <h3 className="text-xl font-bold mb-1">Total Tests Passing</h3>
                         <p className="text-muted-foreground text-sm">Every push is validated for logic, design, and accessibility regressions.</p>
                     </div>
