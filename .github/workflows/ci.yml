@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 # Prevent concurrent CI runs to avoid conflicts and save resources
 concurrency:
@@ -19,301 +19,335 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Cache dependencies
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          packages/*/node_modules
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-deps-
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-deps-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
   lint:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Restore dependencies cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          packages/*/node_modules
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Run linter
-      run: |
-        pnpm lint 2>&1 | tee lint-output.txt || true
-        # Check if there are any actual errors (not just warnings)
-        # Look for pattern like "✖ X problems (Y errors" where Y > 0
-        if grep -E "✖ [0-9]+ problems \([1-9][0-9]* errors" lint-output.txt; then
-          echo "❌ Linter failed with errors"
-          exit 1
-        fi
-        echo "✅ Linter passed (warnings are acceptable)"
-      
-    - name: Upload error logs
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: lint-error-logs
-        path: lint-output.txt
-        if-no-files-found: ignore
-        retention-days: 7
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run linter
+        run: |
+          pnpm lint 2>&1 | tee lint-output.txt || true
+          # Check if there are any actual errors (not just warnings)
+          # Look for pattern like "✖ X problems (Y errors" where Y > 0
+          if grep -E "✖ [0-9]+ problems \([1-9][0-9]* errors" lint-output.txt; then
+            echo "❌ Linter failed with errors"
+            exit 1
+          fi
+          echo "✅ Linter passed (warnings are acceptable)"
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-error-logs
+          path: lint-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
 
   type-check:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Restore dependencies cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          packages/*/node_modules
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Run type check
-      run: |
-        pnpm type-check 2>&1 | tee typecheck-output.txt
-        TYPE_CHECK_EXIT=${PIPESTATUS[0]}
-        if [ $TYPE_CHECK_EXIT -ne 0 ]; then
-          echo "❌ Type check failed"
-          exit 1
-        fi
-        echo "✅ Type check passed"
-      
-    - name: Upload error logs
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: typecheck-error-logs
-        path: typecheck-output.txt
-        if-no-files-found: ignore
-        retention-days: 7
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run type check
+        run: |
+          pnpm type-check 2>&1 | tee typecheck-output.txt
+          TYPE_CHECK_EXIT=${PIPESTATUS[0]}
+          if [ $TYPE_CHECK_EXIT -ne 0 ]; then
+            echo "❌ Type check failed"
+            exit 1
+          fi
+          echo "✅ Type check passed"
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-error-logs
+          path: typecheck-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
 
   test:
     runs-on: ubuntu-latest
     needs: setup
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Restore dependencies cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          packages/*/node_modules
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Run tests with coverage
-      timeout-minutes: 10
-      run: |
-        cd packages/nostromo
-        pnpm test:coverage 2>&1 | tee ../../test-output.txt
-        TEST_EXIT=${PIPESTATUS[0]}
-        if [ $TEST_EXIT -ne 0 ]; then
-          echo "❌ Tests failed or coverage below threshold"
-          exit 1
-        fi
-        echo "✅ All tests passed with coverage above threshold"
-      
-    - name: Upload coverage reports
-      uses: actions/upload-artifact@v4
-      with:
-        name: coverage-reports
-        path: |
-          packages/nostromo/coverage/**
-        if-no-files-found: ignore
-        retention-days: 30
-      
-    - name: Upload error logs
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-error-logs
-        path: test-output.txt
-        if-no-files-found: ignore
-        retention-days: 7
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run tests with coverage
+        timeout-minutes: 10
+        run: |
+          cd packages/nostromo
+          pnpm test:coverage 2>&1 | tee ../../test-output.txt
+          TEST_EXIT=${PIPESTATUS[0]}
+          if [ $TEST_EXIT -ne 0 ]; then
+            echo "❌ Tests failed or coverage below threshold"
+            exit 1
+          fi
+          echo "✅ All tests passed with coverage above threshold"
+
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-reports
+          path: |
+            packages/nostromo/coverage/**
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-error-logs
+          path: test-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
 
   build:
     runs-on: ubuntu-latest
     needs: [lint, type-check, test]
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Restore dependencies cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          packages/*/node_modules
-        key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Build packages
-      timeout-minutes: 15
-      run: |
-        # Build nostromo package first to ensure workspace dependencies are available
-        echo "Building @jarllyng/nostromo package first..."
-        cd packages/nostromo
-        pnpm build
-        cd ../..
-        # Reinstall to ensure workspace links are correct after build
-        echo "Reinstalling to update workspace links..."
-        pnpm install --frozen-lockfile
-        # Then build all packages (turbo will handle dependencies)
-        echo "Building all packages..."
-        pnpm build 2>&1 | tee build-output.txt
-        BUILD_EXIT=${PIPESTATUS[0]}
-        if [ $BUILD_EXIT -ne 0 ]; then
-          echo "❌ Build failed"
-          exit 1
-        fi
-        echo "✅ Build succeeded"
-      
-    - name: Check bundle sizes
-      run: |
-        cd packages/nostromo
-        pnpm size 2>&1 | tee size-output.txt
-        SIZE_EXIT=${PIPESTATUS[0]}
-        if [ $SIZE_EXIT -ne 0 ]; then
-          echo "❌ Bundle size check failed - bundle exceeds limits"
-          exit 1
-        fi
-        echo "✅ Bundle sizes within limits"
-      
-    - name: Upload error logs
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-error-logs
-        path: |
-          build-output.txt
-          packages/nostromo/size-output.txt
-        if-no-files-found: ignore
-        retention-days: 7
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        timeout-minutes: 15
+        run: |
+          # Build nostromo package first to ensure workspace dependencies are available
+          echo "Building @jarllyng/nostromo package first..."
+          cd packages/nostromo
+          pnpm build
+          cd ../..
+          # Reinstall to ensure workspace links are correct after build
+          echo "Reinstalling to update workspace links..."
+          pnpm install --frozen-lockfile
+          # Then build all packages (turbo will handle dependencies)
+          echo "Building all packages..."
+          pnpm build 2>&1 | tee build-output.txt
+          BUILD_EXIT=${PIPESTATUS[0]}
+          if [ $BUILD_EXIT -ne 0 ]; then
+            echo "❌ Build failed"
+            exit 1
+          fi
+          echo "✅ Build succeeded"
+
+      - name: Check bundle sizes
+        run: |
+          cd packages/nostromo
+          pnpm size 2>&1 | tee size-output.txt
+          SIZE_EXIT=${PIPESTATUS[0]}
+          if [ $SIZE_EXIT -ne 0 ]; then
+            echo "❌ Bundle size check failed - bundle exceeds limits"
+            exit 1
+          fi
+          echo "✅ Bundle sizes within limits"
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-error-logs
+          path: |
+            build-output.txt
+            packages/nostromo/size-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
 
   accessibility:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.0.0
-        
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'pnpm'
-      
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
-      
-    - name: Run accessibility tests
-      timeout-minutes: 10
-      run: |
-        cd packages/nostromo
-        pnpm test:a11y 2>&1 | tee a11y-output.txt
-        A11Y_EXIT=${PIPESTATUS[0]}
-        if [ $A11Y_EXIT -ne 0 ]; then
-          echo "❌ Accessibility tests failed"
-          exit 1
-        fi
-        echo "✅ Accessibility tests passed"
-      id: a11y
-      
-    - name: Upload error logs
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: a11y-error-logs
-        path: packages/nostromo/a11y-output.txt
-        if-no-files-found: ignore
-        retention-days: 7
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run accessibility tests
+        timeout-minutes: 10
+        run: |
+          cd packages/nostromo
+          pnpm test:a11y 2>&1 | tee a11y-output.txt
+          A11Y_EXIT=${PIPESTATUS[0]}
+          if [ $A11Y_EXIT -ne 0 ]; then
+            echo "❌ Accessibility tests failed"
+            exit 1
+          fi
+          echo "✅ Accessibility tests passed"
+        id: a11y
+
+      - name: Upload error logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: a11y-error-logs
+          path: packages/nostromo/a11y-output.txt
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # Consumes the built package the way a real project does. The library's own
+  # suite runs against src in jsdom and stayed green through a total CSS failure
+  # and an unconditionally-throwing Button prop; this job is what catches that
+  # class of bug.
+  smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run consumer smoke tests
+        timeout-minutes: 10
+        # turbo, not pnpm --filter: the test:run task declares dependsOn ^build,
+        # so this builds @jarllyng/nostromo first. Without that there is no dist
+        # for the smoke app to resolve through its exports map.
+        run: pnpm turbo run test:run --filter=nostromo-ui-smoke
+
+      - name: Type-check the consumer app
+        run: pnpm --filter nostromo-ui-smoke run type-check

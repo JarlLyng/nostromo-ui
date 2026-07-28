@@ -1,0 +1,15 @@
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  // Deliberately no alias to ../packages/nostromo/src. Imports must resolve
+  // through the package `exports` map into dist, because dist is what ships.
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./tests/setup.ts"],
+    include: ["tests/**/*.test.{ts,tsx}"],
+    testTimeout: 30000,
+  },
+});

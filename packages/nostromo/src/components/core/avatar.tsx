@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full transition-all duration-200 shadow-avatar hover:shadow-avatar-hover",
+  "relative flex shrink-0 overflow-hidden rounded-full transition-all duration-200 shadow-sm hover:shadow-md",
   {
     variants: {
       size: {
@@ -13,13 +13,12 @@ const avatarVariants = cva(
         xl: "h-16 w-16",
       },
       variant: {
-        default: "shadow-avatar hover:shadow-avatar-hover",
+        default: "shadow-sm hover:shadow-md",
         elevated: "shadow-lg hover:shadow-xl",
         outline:
-          "border-2 border-border shadow-sm hover:border-primary hover:shadow-avatar",
-        filled: "bg-muted shadow-sm hover:shadow-avatar",
-        interactive:
-          "shadow-avatar hover:shadow-avatar-hover cursor-pointer hover:scale-105",
+          "border-2 border-border shadow-sm hover:border-primary hover:shadow-md",
+        filled: "bg-muted shadow-sm hover:shadow-md",
+        interactive: "shadow-sm hover:shadow-md cursor-pointer hover:scale-105",
       },
     },
     defaultVariants: {

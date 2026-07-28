@@ -9,14 +9,14 @@ const toastVariants = cva(
     variants: {
       variant: {
         default:
-          "border-border bg-card text-card-foreground shadow-toast hover:shadow-toast-hover",
+          "border-border bg-card text-card-foreground shadow-lg hover:shadow-xl",
         success:
-          "border-success-200 bg-success-50 text-success-900 shadow-toast hover:shadow-toast-hover",
+          "border-success-200 bg-success-50 text-success-900 shadow-lg hover:shadow-xl",
         error:
-          "border-destructive/20 bg-destructive/10 text-destructive shadow-toast hover:shadow-toast-hover",
+          "border-destructive/20 bg-destructive/10 text-destructive shadow-lg hover:shadow-xl",
         warning:
-          "border-warning-200 bg-warning-50 text-warning-900 shadow-toast hover:shadow-toast-hover",
-        info: "border-info-200 bg-info-50 text-info-900 shadow-toast hover:shadow-toast-hover",
+          "border-warning-200 bg-warning-50 text-warning-900 shadow-lg hover:shadow-xl",
+        info: "border-info-200 bg-info-50 text-info-900 shadow-lg hover:shadow-xl",
       },
       position: {
         "top-left": "fixed top-4 left-4 z-50",

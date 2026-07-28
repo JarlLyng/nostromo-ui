@@ -541,7 +541,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   "disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 text-left",
                   error
                     ? "border-error-500 shadow-sm hover:border-error-600 focus-visible:ring-error-500/20 focus-visible:border-error-500"
-                    : "border-border shadow-sm hover:border-border-medium focus-visible:ring-ring/20 focus-visible:border-primary",
+                    : "border-border shadow-sm hover:border-primary focus-visible:ring-ring/20 focus-visible:border-primary",
                   "h-10",
                   inputClassName,
                 )}
