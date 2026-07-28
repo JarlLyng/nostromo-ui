@@ -8,12 +8,39 @@ This guide explains how to publish Nostromo UI packages to npm.
 2. **2FA**: Enable two-factor authentication on your npm account
 3. **NPM_TOKEN**: Create an npm access token with publish permissions (or use Trusted Publishing - recommended)
 4. **GitHub Secret**: Add `NPM_TOKEN` as a secret in GitHub repository settings
+5. **RELEASE_PAT**: Add a fine-grained personal access token as a secret - see below
+
+### Why RELEASE_PAT is required
+
+`main` requires status checks to pass before merging. GitHub deliberately does
+not fire workflows for events caused by `GITHUB_TOKEN`, so a release PR opened
+with it never gets a CI run - and a PR with no CI run can never satisfy a
+required check. The release PR would sit unmergeable forever.
+
+A PAT acts as an ordinary user, so its PR triggers CI normally.
+
+Create it at **Settings → Developer settings → Personal access tokens →
+Fine-grained tokens**, scoped to this repository only, with:
+
+| Permission    | Access         |
+| ------------- | -------------- |
+| Contents      | Read and write |
+| Pull requests | Read and write |
+| Workflows     | Read and write |
+
+Then add it as the repository secret `RELEASE_PAT`. `publish.yml` falls back to
+`GITHUB_TOKEN` when the secret is absent, so the workflow still runs without it -
+it just cannot produce a mergeable release PR.
+
+Fine-grained tokens expire. When releases start failing with a 403 on the PR
+creation call, an expired `RELEASE_PAT` is the first thing to check.
 
 ### Option 1: Trusted Publishing (Recommended for CI/CD)
 
 Trusted Publishing is the most secure method for automated publishing from GitHub Actions. **Note**: This feature may only be available for Pro/Teams accounts or may be under a different path.
 
 Try these paths:
+
 - https://www.npmjs.com/org/nostromo/automation
 - https://www.npmjs.com/settings/nostromo/automation
 - Or navigate to https://www.npmjs.com/org/nostromo and look for "Automation" or "Trusted Publishers" in the menu
@@ -29,6 +56,7 @@ If you can access it:
 4. Click "Add"
 
 **Benefits:**
+
 - No token management needed
 - More secure (no long-lived tokens)
 - No 2FA warnings

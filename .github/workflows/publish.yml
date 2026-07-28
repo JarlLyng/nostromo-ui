@@ -30,7 +30,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # RELEASE_PAT so the release PR is authored by a real user and
+          # therefore triggers CI - see the changesets step below. Falls back to
+          # GITHUB_TOKEN so the workflow still runs if the secret is absent.
+          token: ${{ secrets.RELEASE_PAT || secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -84,5 +87,10 @@ jobs:
           title: "chore: version packages"
           setupGitUser: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Must be RELEASE_PAT, not GITHUB_TOKEN. GitHub deliberately does not
+          # fire workflows for events caused by GITHUB_TOKEN, so a release PR it
+          # opens never gets a CI run - and with required status checks on main
+          # that PR can then never be merged. A PAT is an ordinary user, so its
+          # PR triggers CI normally.
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PAT || secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
