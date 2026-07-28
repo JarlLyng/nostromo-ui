@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 import { Table, TableColumn, TableProps } from "./table";
 import { Input } from "./input";
 
@@ -572,6 +573,4 @@ DataTable.displayName = "DataTable";
 
 // Memoize DataTable for performance optimization
 // DataTable is a complex component with filtering, sorting, and pagination
-export const DataTableMemoized = React.memo(
-  DataTable,
-) as any as typeof DataTable;
+export const DataTableMemoized = memo(DataTable) as typeof DataTable;

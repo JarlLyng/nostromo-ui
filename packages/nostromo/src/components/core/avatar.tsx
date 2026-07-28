@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 const avatarVariants = cva(
   "relative flex shrink-0 overflow-hidden rounded-full transition-all duration-200 shadow-sm hover:shadow-md",
@@ -115,7 +116,7 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = "AvatarFallback";
 
 // Memoize Avatar for performance optimization (after all subcomponents are defined)
-const Avatar = React.memo(AvatarComponent) as any as typeof AvatarComponent & {
+const Avatar = memo(AvatarComponent) as typeof AvatarComponent & {
   Image: typeof AvatarImage;
   Fallback: typeof AvatarFallback;
 };

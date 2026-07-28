@@ -1,6 +1,7 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 // Skeleton variants
 const skeletonVariants = cva("animate-pulse rounded-md bg-muted", {
@@ -130,9 +131,7 @@ const SkeletonComponent = React.forwardRef<HTMLDivElement, SkeletonProps>(
 SkeletonComponent.displayName = "Skeleton";
 
 // Memoize Skeleton for performance optimization
-export const Skeleton = React.memo(
-  SkeletonComponent,
-) as any as typeof SkeletonComponent;
+export const Skeleton = memo(SkeletonComponent) as typeof SkeletonComponent;
 
 // Skeleton Text Component
 export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(

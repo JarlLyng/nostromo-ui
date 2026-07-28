@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 const cardVariants = cva(
   // Base styles with improved spacing and transitions
@@ -143,7 +144,7 @@ export {
 };
 
 // Memoize Card for performance optimization (after all subcomponents are defined)
-const Card = React.memo(CardComponent) as any as typeof CardComponent & {
+const Card = memo(CardComponent) as typeof CardComponent & {
   Header: typeof CardHeader;
   Title: typeof CardTitle;
   Description: typeof CardDescription;
