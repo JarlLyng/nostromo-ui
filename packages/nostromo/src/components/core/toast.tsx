@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 // Toast variants
 const toastVariants = cva(
@@ -387,7 +388,7 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
 ToastComponent.displayName = "Toast";
 
 // Memoize Toast for performance optimization
-export const Toast = React.memo(ToastComponent) as any as typeof ToastComponent;
+export const Toast = memo(ToastComponent) as typeof ToastComponent;
 
 // Toast Hook for easy usage
 export const useToastNotification = () => {

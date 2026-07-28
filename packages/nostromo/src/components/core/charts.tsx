@@ -18,6 +18,7 @@ import {
 } from "recharts";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 // Chart container variants
 const chartContainerVariants = cva("w-full", {
@@ -370,6 +371,6 @@ ChartComponent.displayName = "Chart";
 
 // Memoize Chart component for performance optimization
 // Charts are expensive to render, so memoization helps prevent unnecessary re-renders
-export const Chart = React.memo(ChartComponent) as any as typeof ChartComponent;
+export const Chart = memo(ChartComponent) as typeof ChartComponent;
 
 export { chartContainerVariants };

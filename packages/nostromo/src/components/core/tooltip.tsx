@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 // Tooltip variants
 const tooltipVariants = cva(
@@ -605,9 +606,7 @@ export const TooltipProvider: React.FC<TooltipProviderProps> = ({
 };
 
 // Memoize Tooltip for performance optimization (after all subcomponents are defined)
-const Tooltip = React.memo(
-  TooltipComponent,
-) as any as typeof TooltipComponent & {
+const Tooltip = memo(TooltipComponent) as typeof TooltipComponent & {
   Trigger: typeof TooltipTrigger;
   Content: typeof TooltipContent;
   Provider: typeof TooltipProvider;

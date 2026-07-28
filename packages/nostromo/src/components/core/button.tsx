@@ -2,6 +2,7 @@ import * as React from "react";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 const buttonVariants = cva(
   // Base styles with improved spacing and transitions
@@ -178,6 +179,6 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
 ButtonComponent.displayName = "Button";
 
 // Memoize Button for performance optimization
-const Button = React.memo(ButtonComponent) as any as typeof ButtonComponent;
+const Button = memo(ButtonComponent) as typeof ButtonComponent;
 
 export { Button, buttonVariants };

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 const inputVariants = cva(
   // Base styles with improved spacing and transitions
@@ -129,6 +130,6 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
 InputComponent.displayName = "Input";
 
 // Memoize Input for performance optimization
-const Input = React.memo(InputComponent) as any as typeof InputComponent;
+const Input = memo(InputComponent) as typeof InputComponent;
 
 export { Input, inputVariants };

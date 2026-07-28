@@ -1,6 +1,7 @@
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 
 const progressVariants = cva("relative overflow-hidden rounded-full bg-muted", {
   variants: {
@@ -186,9 +187,7 @@ const ProgressComponent = React.forwardRef<HTMLDivElement, ProgressProps>(
 ProgressComponent.displayName = "Progress";
 
 // Memoize Progress for performance optimization
-const Progress = React.memo(
-  ProgressComponent,
-) as any as typeof ProgressComponent;
+const Progress = memo(ProgressComponent) as typeof ProgressComponent;
 
 // Circular Progress Component
 const circularProgressVariants = cva(
@@ -377,9 +376,9 @@ const CircularProgressComponent = React.forwardRef<
 CircularProgressComponent.displayName = "CircularProgress";
 
 // Memoize CircularProgress for performance optimization
-const CircularProgress = React.memo(
+const CircularProgress = memo(
   CircularProgressComponent,
-) as any as typeof CircularProgressComponent;
+) as typeof CircularProgressComponent;
 
 export {
   Progress,

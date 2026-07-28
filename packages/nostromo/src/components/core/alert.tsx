@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
+import { memo } from "../../lib/memo";
 import { X, CheckCircle, Warning, Info, XCircle } from "phosphor-react";
 
 const alertVariants = cva(
@@ -88,22 +89,14 @@ const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
 
     const getDefaultIcon = () => {
       switch (variant) {
-        case "success": {
-          const Icon = CheckCircle as any;
-          return <Icon className="h-5 w-5" />;
-        }
-        case "warning": {
-          const Icon = Warning as any;
-          return <Icon className="h-5 w-5" />;
-        }
-        case "error": {
-          const Icon = XCircle as any;
-          return <Icon className="h-5 w-5" />;
-        }
-        case "info": {
-          const Icon = Info as any;
-          return <Icon className="h-5 w-5" />;
-        }
+        case "success":
+          return <CheckCircle className="h-5 w-5" />;
+        case "warning":
+          return <Warning className="h-5 w-5" />;
+        case "error":
+          return <XCircle className="h-5 w-5" />;
+        case "info":
+          return <Info className="h-5 w-5" />;
         default:
           return null;
       }
@@ -128,10 +121,7 @@ const AlertComponent = React.forwardRef<HTMLDivElement, AlertProps>(
             onClick={handleDismiss}
             aria-label="Dismiss alert"
           >
-            {(() => {
-              const Icon = X as any;
-              return <Icon className="h-4 w-4" />;
-            })()}
+            <X className="h-4 w-4" />
           </button>
         )}
         {title && <div className={cn(alertTitleVariants())}>{title}</div>}
@@ -166,7 +156,7 @@ const AlertDescription = React.forwardRef<
 AlertDescription.displayName = "AlertDescription";
 
 // Memoize Alert for performance optimization (after all subcomponents are defined)
-const Alert = React.memo(AlertComponent) as any as typeof AlertComponent & {
+const Alert = memo(AlertComponent) as typeof AlertComponent & {
   Title: typeof AlertTitle;
   Description: typeof AlertDescription;
 };
