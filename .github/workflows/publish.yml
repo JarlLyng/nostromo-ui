@@ -46,6 +46,21 @@ jobs:
         with:
           version: 9.0.0
 
+      # Fail in seconds rather than four minutes into a build. npm answers 404,
+      # not 401, for scoped packages when the token is bad, so an expired or
+      # under-scoped token is indistinguishable from a missing package unless you
+      # check the credentials directly.
+      - name: Verify npm credentials
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if ! WHO=$(npm whoami 2>&1); then
+            echo "npm said: $WHO"
+            echo "::error::npm rejected NPM_TOKEN. Check https://www.npmjs.com/settings/~/tokens - the token must not be expired, and it needs read-and-write on the whole @jarllyng scope. A granular token limited to selected packages cannot create a package that does not exist yet."
+            exit 1
+          fi
+          echo "Authenticated to npm as $WHO"
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
