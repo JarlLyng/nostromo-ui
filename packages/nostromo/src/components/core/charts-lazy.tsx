@@ -1,14 +1,14 @@
-import React, { Suspense } from 'react';
-import { Skeleton } from './skeleton';
+import React, { Suspense } from "react";
+import { Skeleton } from "./skeleton";
 
 /**
  * Lazy-loaded Chart component wrapper
  * Use this for better code splitting when Charts are not immediately needed
- * 
+ *
  * @example
  * ```tsx
- * import { LazyChart } from '@jarllyng/ui-core/charts-lazy';
- * 
+ * import { LazyChart } from '@jarllyng/nostromo/components/core/charts-lazy';
+ *
  * function Dashboard() {
  *   return (
  *     <LazyChart
@@ -22,19 +22,19 @@ import { Skeleton } from './skeleton';
  */
 
 // Dynamic import for Chart component with recharts
-const ChartLazy = React.lazy(() => 
-  import('./charts').then(module => ({ 
-    default: module.Chart 
-  }))
+const ChartLazy = React.lazy(() =>
+  import("./charts").then((module) => ({
+    default: module.Chart,
+  })),
 );
 
 export interface LazyChartProps extends React.ComponentProps<typeof ChartLazy> {
   fallback?: React.ReactNode;
 }
 
-export const LazyChart: React.FC<LazyChartProps> = ({ 
+export const LazyChart: React.FC<LazyChartProps> = ({
   fallback = <Skeleton className="h-64 w-full" />,
-  ...props 
+  ...props
 }) => {
   return (
     <Suspense fallback={fallback}>
@@ -43,5 +43,4 @@ export const LazyChart: React.FC<LazyChartProps> = ({
   );
 };
 
-LazyChart.displayName = 'LazyChart';
-
+LazyChart.displayName = "LazyChart";
