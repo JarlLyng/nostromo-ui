@@ -150,7 +150,10 @@ pre > code {
 pre {
   position: relative;
   border-radius: var(--nostromo-radius-lg);
-  overflow: hidden;
+  /* auto, not hidden: long lines are common in import examples, and on a phone
+     `hidden` clipped them with no way to reach the rest. */
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
