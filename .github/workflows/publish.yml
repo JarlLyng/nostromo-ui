@@ -46,20 +46,37 @@ jobs:
         with:
           version: 9.0.0
 
-      # Fail in seconds rather than four minutes into a build. npm answers 404,
-      # not 401, for scoped packages when the token is bad, so an expired or
-      # under-scoped token is indistinguishable from a missing package unless you
-      # check the credentials directly.
+      # Two paths through this workflow: with pending changesets it only opens
+      # the release PR, which needs no npm access at all; with none it publishes.
+      - name: Check for pending changesets
+        id: changesets_pending
+        run: |
+          if ls .changeset/*.md >/dev/null 2>&1 && \
+             [ -n "$(find .changeset -name '*.md' ! -name 'README.md' -print -quit)" ]; then
+            echo "pending=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "pending=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Checked early because npm answers 404, not 401, on a publish with a bad
+      # token - so the real error points at a missing package instead of the
+      # credentials. Only fatal on the publishing path: gating the release PR on
+      # npm access stopped changesets from being versioned at all.
       - name: Verify npm credentials
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PUBLISHING: ${{ steps.changesets_pending.outputs.pending == 'false' }}
         run: |
-          if ! WHO=$(npm whoami 2>&1); then
+          if WHO=$(npm whoami 2>&1); then
+            echo "Authenticated to npm as $WHO"
+          elif [ "$PUBLISHING" = "true" ]; then
             echo "npm said: $WHO"
-            echo "::error::npm rejected NPM_TOKEN. Check https://www.npmjs.com/settings/~/tokens - the token must not be expired, and it needs read-and-write on the whole @jarllyng scope. A granular token limited to selected packages cannot create a package that does not exist yet."
+            echo "::error::npm rejected NPM_TOKEN, and this run would publish. Check https://www.npmjs.com/settings/~/tokens - the token must not be expired, and needs read-and-write on the whole @jarllyng scope. A granular token limited to selected packages cannot create a package that does not exist yet."
             exit 1
+          else
+            echo "npm said: $WHO"
+            echo "::warning::npm rejected NPM_TOKEN. Not fatal here - there are pending changesets, so this run only opens the release PR. Merging that PR is what publishes, and it will fail unless the token is fixed first."
           fi
-          echo "Authenticated to npm as $WHO"
 
       - name: Get pnpm store directory
         id: pnpm-cache
