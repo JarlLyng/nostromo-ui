@@ -24,7 +24,6 @@ const config: DocsThemeConfig = {
         width={32}
         height={32}
         className="dark:hidden"
-        style={{ display: 'inline-block' }}
       />
       <img
         src={`${basePath}/logo-white.svg`}
@@ -32,9 +31,11 @@ const config: DocsThemeConfig = {
         width={32}
         height={32}
         className="hidden dark:block"
-        style={{ display: 'inline-block' }}
       />
-      <span style={{ fontWeight: 600, fontSize: '1.2rem' }}>
+      {/* Hidden on the narrowest screens: at 375px the wordmark, badge and the
+          GitHub/Discord/menu icons together forced the title onto two lines and
+          made the header twice as tall. The logo mark still identifies it. */}
+      <span className="hidden sm:inline whitespace-nowrap" style={{ fontWeight: 600, fontSize: '1.2rem' }}>
         Nostromo UI
       </span>
       <span className="ml-2 px-2 py-0.5 text-[10px] font-bold rounded-full bg-success/10 text-success border border-success/30 uppercase tracking-tighter">
