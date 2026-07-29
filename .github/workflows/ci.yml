@@ -271,3 +271,36 @@ jobs:
 
       - name: Type-check the consumer app
         run: pnpm --filter nostromo-ui-smoke run type-check
+
+  # Installs the packed tarball into a throwaway project for each supported React
+  # version. peerDependencies shipped as an exact pin once, which made
+  # `npm install` fail with ERESOLVE for anyone not on that precise version -
+  # and nothing in the workspace could see it, because pnpm overrides pin the
+  # same version locally.
+  react-compat:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build the library
+        run: pnpm --filter @jarllyng/nostromo run build
+
+      - name: Install and render against each supported React version
+        timeout-minutes: 10
+        run: pnpm verify:react-compat

@@ -45,7 +45,8 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",
-    "prepare": "husky"
+    "prepare": "husky",
+    "verify:react-compat": "node scripts/verify-react-compat.mjs"
   },
   "lint-staged": {
     "packages/**/*.{ts,tsx,js,jsx}": [
