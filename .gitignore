@@ -109,6 +109,12 @@ Thumbs.db
 # Turborepo
 .turbo
 
+# Editor and AI-assistant state - personal configuration, not project source.
+# .cursor/debug.log full of committed debug output is how this earned its line.
+.cursor/
+.idea/
+.vscode/
+
 # Changesets
 # .changeset/ is source, not build output - config.json and the pending
 # changeset files have to be committed or `changeset version` cannot run in CI.
