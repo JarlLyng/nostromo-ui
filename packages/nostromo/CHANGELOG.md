@@ -1,5 +1,42 @@
 # @jarllyng/nostromo
 
+## 3.1.0
+
+### Minor Changes
+
+- 9ed10a1: Refresh dependency resolutions and remove `useBundleSize`
+
+  All in-range dependency resolutions updated (Radix, recharts, date-fns and the
+  rest), clearing the bulk of the open security advisories - including `next`
+  16.2.12 for the docs site.
+
+  `useBundleSize` is removed. It did not measure anything: it counted script tags
+  containing "nostromo" and multiplied by 10000. An API that returns fabricated
+  data is worse than no API. Nothing has been published yet, so no consumer can be
+  depending on it. Real bundle numbers live in the size-limit budgets enforced in
+  CI.
+
+- 1b7870f: Support React 19, and stop blocking React 18.3
+
+  `peerDependencies` shipped as an exact pin - `react: "18.2.0"` - so `npm install`
+  failed outright with `ERESOLVE` for anyone not on that precise version. That
+  included React 18.3.1 and all of React 19, i.e. most of the ecosystem:
+
+  ```
+  npm error Found: react@19.2.8
+  npm error Could not resolve dependency:
+  npm error peer react@"18.2.0" from @jarllyng/nostromo@3.0.0
+  ```
+
+  The range is now `^18.2.0 || ^19.0.0`. Nothing in the code needed changing - the
+  Radix primitives underneath already support React 16.8 through 19, so the
+  restriction was entirely self-imposed.
+
+  Verified by installing the packed tarball into a clean project on React 18.2.0,
+  18.3.1 and 19.2.8 and server-rendering a cross-section of components: 11/11 render
+  on all three. That check now runs in CI, because the workspace pins React 18.2.0
+  via pnpm overrides and therefore cannot notice this class of problem on its own.
+
 ## 3.0.0
 
 ### Major Changes
