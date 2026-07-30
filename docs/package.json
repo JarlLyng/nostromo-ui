@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@jarllyng/nostromo": "workspace:*",
-    "next": "^16.1.6",
+    "next": "^16.2.12",
     "nextra": "2.13.4",
     "nextra-theme-docs": "2.13.4",
     "react": "18.2.0",
