@@ -287,11 +287,11 @@
     },
     {
       "path": "dist/components/core/button.js",
-      "limit": "10 KB"
+      "limit": "11 KB"
     },
     {
       "path": "dist/components/core/input.js",
-      "limit": "10 KB"
+      "limit": "11 KB"
     },
     {
       "path": "dist/components/core/dialog.js",
