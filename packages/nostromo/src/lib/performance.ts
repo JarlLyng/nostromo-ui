@@ -98,6 +98,7 @@ export function usePerformanceMonitor(
   });
 
   return {
+    // eslint-disable-next-line react-hooks/refs -- informational only: the count is for dev logging, and being one render behind is acceptable there
     renderCount: renderCount.current,
     isMonitoring: enabled,
   };
@@ -138,31 +139,6 @@ export function withPerformanceMonitoring<P extends object>(
   WrappedComponent.displayName = `withPerformanceMonitoring(${Component.displayName || Component.name})`;
 
   return WrappedComponent;
-}
-
-/**
- * Hook for measuring bundle size impact
- */
-export function useBundleSize() {
-  const [bundleSize, setBundleSize] = React.useState<number | null>(null);
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined" && "performance" in window) {
-      // This is a simplified approach - in a real app you'd use webpack-bundle-analyzer
-      const scripts = Array.from(document.scripts);
-      const totalSize = scripts.reduce((acc, script) => {
-        if (script.src) {
-          // This is just an estimate - actual bundle analysis would be more accurate
-          return acc + (script.src.includes("nostromo") ? 10000 : 0);
-        }
-        return acc;
-      }, 0);
-
-      setBundleSize(totalSize);
-    }
-  }, []);
-
-  return bundleSize;
 }
 
 /**
