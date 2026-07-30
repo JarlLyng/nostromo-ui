@@ -393,7 +393,7 @@ export const TooltipTrigger = React.forwardRef<
   };
 
   if (asChild && React.isValidElement(children)) {
-    // eslint-disable-next-line react-hooks/refs
+    // eslint-disable-next-line react-hooks/refs -- cloneElement merges triggerProps (incl. ref) onto the child; the ref is not read here
     return React.cloneElement(children, {
       ...(children.props || {}),
       ...triggerProps,
