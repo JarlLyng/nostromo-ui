@@ -30,8 +30,12 @@ export function usePerformanceMonitor(
   } = options;
 
   const renderCount = React.useRef<number>(0);
+  // The mark name only needs to be unique per mounted instance. useId gives
+  // that without calling Date.now() during render, which is impure and flagged
+  // by react-hooks 7.1+ (components must be idempotent).
+  const instanceId = React.useId();
   const markName = React.useRef<string>(
-    `${componentName}-render-${Date.now()}`,
+    `${componentName}-render-${instanceId}`,
   );
 
   React.useEffect(() => {
@@ -124,7 +128,7 @@ export function withPerformanceMonitoring<P extends object>(
       [ref],
     );
 
-    // eslint-disable-next-line react-hooks/refs
+    // eslint-disable-next-line react-hooks/refs -- the ref is forwarded as a prop, not dereferenced during render
     return React.createElement(Component, {
       ...(props as P),
       ref: refCallback,
