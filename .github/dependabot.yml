@@ -28,11 +28,17 @@ updates:
         update-types: ["minor", "patch"]
     # Ignore major version updates for critical packages
     ignore:
-      # Ignore major updates for React (breaking changes)
+      # React is pinned exactly via pnpm.overrides in the root package.json -
+      # the workspace deliberately develops against one version while the
+      # published peer range stays ^18.2 || ^19 (verified by the react-compat
+      # CI job). Dependabot cannot bump a dependency that overrides pin: it
+      # half-updates the lockfile's overrides section and every install after
+      # that fails with ERR_PNPM_LOCKFILE_CONFIG_MISMATCH. Ignore entirely; the
+      # pin moves by editing the overrides, not by dependency PR.
       - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/react"
+      - dependency-name: "@types/react-dom"
       # Ignore major updates for TypeScript (breaking changes)
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
@@ -61,10 +67,11 @@ updates:
         dependency-type: "production"
         update-types: ["minor", "patch"]
     ignore:
+      # Pinned via root pnpm.overrides - see the note on the root entry.
       - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
       - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/react"
+      - dependency-name: "@types/react-dom"
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
       - dependency-name: "@tailwindcss/vite"
