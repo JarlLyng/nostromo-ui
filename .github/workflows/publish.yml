@@ -44,15 +44,28 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      # Node 20 bundles npm 10.9, and tokenless publishing via a Trusted
+      # Node 20 bundles npm 10.8, and tokenless publishing via a Trusted
       # Publisher needs 11.5.1 or newer. Without this the registry never sees an
       # OIDC exchange, so NPM_TOKEN is silently required however npm's Trusted
       # Publisher page is configured. Kept separate from the Node version so
       # bumping Node cannot quietly undo it.
+      #
+      # Pinned to 11, not latest: npm 12 requires node >=22.22.2, so `npm@latest`
+      # is an EBADENGINE on the Node this workflow runs. Every 11.x supports
+      # node ^20.17.0, and the newest is far past 11.5.1. Raising node-version
+      # above is what unlocks moving this forward.
       - name: Use an npm that supports Trusted Publishing
         run: |
-          npm install -g npm@latest
-          npm --version
+          npm install -g npm@11
+          INSTALLED=$(npm --version)
+          echo "npm $INSTALLED"
+          # Assert rather than trust the tag. The version this resolves to is
+          # exactly the assumption that broke the previous attempt, and too old
+          # an npm fails silently: it just never attempts the OIDC exchange.
+          if [ "$(printf '%s\n11.5.1\n' "$INSTALLED" | sort -V | head -1)" != "11.5.1" ]; then
+            echo "::error::npm $INSTALLED cannot do Trusted Publishing - 11.5.1 or newer is required. Either the pin above resolved to something older, or the install silently failed."
+            exit 1
+          fi
 
       # Two paths through this workflow: with pending changesets it only opens
       # the release PR, which needs no npm access at all; with none it publishes.
