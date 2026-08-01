@@ -1,7 +1,33 @@
 {
   "name": "@jarllyng/nostromo",
   "version": "3.1.0",
-  "description": "Nostromo UI - A Tailwind CSS plugin and React component library",
+  "description": "Accessible React component library with CSS-first Tailwind v4 theming",
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "component-library",
+    "design-system",
+    "tailwind",
+    "tailwindcss",
+    "tailwind-v4",
+    "accessibility",
+    "a11y",
+    "wcag",
+    "radix-ui",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Jarl Lyng",
+  "homepage": "https://jarllyng.github.io/nostromo-ui/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JarlLyng/nostromo-ui.git",
+    "directory": "packages/nostromo"
+  },
+  "bugs": {
+    "url": "https://github.com/JarlLyng/nostromo-ui/issues"
+  },
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
