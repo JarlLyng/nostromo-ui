@@ -59,6 +59,13 @@ execFileSync(
     // Attaches a signed build attestation naming this workflow and commit.
     // Needs `id-token: write`, which publish.yml grants.
     "--provenance",
+    // Every failure path in npm's Trusted Publishing exchange is
+    // `log.verbose('oidc', ...)` followed by `return undefined`
+    // (npm/lib/utils/oidc.js), so at the default loglevel a rejected exchange
+    // is indistinguishable from no exchange - you just get ENEEDAUTH with no
+    // reason. This is the only way to see the registry's own explanation.
+    "--loglevel",
+    "verbose",
   ],
   { cwd: packageDir, stdio: "inherit" },
 );
