@@ -44,6 +44,16 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      # Node 20 bundles npm 10.9, and tokenless publishing via a Trusted
+      # Publisher needs 11.5.1 or newer. Without this the registry never sees an
+      # OIDC exchange, so NPM_TOKEN is silently required however npm's Trusted
+      # Publisher page is configured. Kept separate from the Node version so
+      # bumping Node cannot quietly undo it.
+      - name: Use an npm that supports Trusted Publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
+
       # Two paths through this workflow: with pending changesets it only opens
       # the release PR, which needs no npm access at all; with none it publishes.
       - name: Check for pending changesets
@@ -56,25 +66,51 @@ jobs:
             echo "pending=false" >> "$GITHUB_OUTPUT"
           fi
 
-      # Checked early because npm answers 404, not 401, on a publish with a bad
-      # token - so the real error points at a missing package instead of the
-      # credentials. Only fatal on the publishing path: gating the release PR on
-      # npm access stopped changesets from being versioned at all.
+      # npm answers 404 - not 401 or 403 - when a token authenticates fine but
+      # may not write the package, so the raw failure reads as "the package does
+      # not exist" and sends you hunting for the wrong thing. That cost the
+      # 3.1.1 release. Check write access by name here so the log says which of
+      # the two it is. Only fatal on the publishing path: gating the release PR
+      # on npm access stopped changesets from being versioned at all.
       - name: Verify npm credentials
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          HAVE_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
           PUBLISHING: ${{ steps.changesets_pending.outputs.pending == 'false' }}
         run: |
-          if WHO=$(npm whoami 2>&1); then
-            echo "Authenticated to npm as $WHO"
-          elif [ "$PUBLISHING" = "true" ]; then
-            echo "npm said: $WHO"
-            echo "::error::npm rejected NPM_TOKEN, and this run would publish. Check https://www.npmjs.com/settings/~/tokens - the token must not be expired, and needs read-and-write on the whole @jarllyng scope. A granular token limited to selected packages cannot create a package that does not exist yet."
-            exit 1
-          else
-            echo "npm said: $WHO"
-            echo "::warning::npm rejected NPM_TOKEN. Not fatal here - there are pending changesets, so this run only opens the release PR. Merging that PR is what publishes, and it will fail unless the token is fixed first."
+          fail() {
+            if [ "$PUBLISHING" = "true" ]; then
+              echo "::error::$1"
+              exit 1
+            fi
+            echo "::warning::$1 Not fatal here - this run only opens the release PR, but merging that PR will fail until it is fixed."
+          }
+
+          if [ "$HAVE_TOKEN" != "true" ]; then
+            echo "No NPM_TOKEN set - this run relies on Trusted Publishing (OIDC)."
+            exit 0
           fi
+
+          if ! WHO=$(npm whoami 2>&1); then
+            echo "npm said: $WHO"
+            fail "npm rejected NPM_TOKEN outright - it is missing or expired. Regenerate it at https://www.npmjs.com/settings/~/tokens and update the NPM_TOKEN secret."
+            exit 0
+          fi
+          echo "Authenticated to npm as $WHO"
+
+          # read-write on the package itself is what publishing actually needs.
+          # A read-only token, or one scoped to other packages, passes whoami and
+          # then 404s on the PUT.
+          ACCESS=$(npm access list packages @jarllyng --json 2>&1 || true)
+          case "$ACCESS" in
+            *'"@jarllyng/nostromo"'*'read-write'*) echo "Token has read-write on @jarllyng/nostromo." ;;
+            *'"@jarllyng/nostromo"'*)
+              echo "npm reported: $ACCESS"
+              fail "NPM_TOKEN can read @jarllyng/nostromo but not write it. Open the token at https://www.npmjs.com/settings/~/tokens and set Permissions to Read and write." ;;
+            *)
+              echo "npm reported: $ACCESS"
+              echo "::warning::Could not confirm NPM_TOKEN's access to @jarllyng/nostromo. If the publish fails with a 404, that is this - the token does not cover the package." ;;
+          esac
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -111,7 +147,10 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish
+          # Not `changeset publish`: it sniffs the workspace, finds pnpm, and
+          # runs `pnpm publish`, which cannot do OIDC on pnpm 9. See
+          # scripts/publish-package.mjs.
+          publish: pnpm release
           version: pnpm changeset version
           commit: "chore: version packages"
           title: "chore: version packages"

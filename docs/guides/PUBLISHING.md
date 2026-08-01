@@ -66,6 +66,23 @@ If you can reach the setting:
 - No 2FA warnings
 - Automatically scoped to your repository
 
+**The client side has to support it too, and this bit is easy to miss.** Setting
+up the Trusted Publisher on npm.com does nothing on its own - the publishing
+client has to perform the OIDC exchange, and only recent versions can:
+
+- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.9, so `publish.yml`
+  installs `npm@latest` explicitly.
+- **pnpm** needs 10.12 or newer. This workspace is pinned to 9.15.9, which is why
+  `pnpm release` publishes via `scripts/publish-package.mjs` (npm) instead of
+  `changeset publish` (which would pick pnpm).
+
+With too old a client there is no error - the exchange simply never happens and
+npm falls back to `NPM_TOKEN`. Every release before 3.1.1 went out this way, so a
+successful release is not evidence that Trusted Publishing is working. The check
+that actually distinguishes them: delete the `NPM_TOKEN` secret and release. If
+it still publishes, the OIDC path is live. Provenance attestations do **not**
+distinguish them - `--provenance` attaches those on the token path too.
+
 **If Trusted Publishing is not available**, use Option 2 below.
 
 ### Option 2: Granular Access Token (Alternative)
@@ -100,8 +117,9 @@ whether any changesets are pending:
 2. **Merge it to main**: the workflow runs `changeset version`, which applies the
    bump, writes `CHANGELOG.md` and deletes the changeset file. It commits that to
    a `changeset-release/main` branch and opens a **"chore: version packages"** PR
-3. **Merge that PR**: with no changesets left, the next run calls
-   `changeset publish`, which publishes to npm and pushes git tags
+3. **Merge that PR**: with no changesets left, the next run calls `pnpm release`,
+   which publishes to npm; `changesets/action` then creates the git tag and
+   GitHub release
 
 Step 3 is the point of no return - merging the version PR is what publishes.
 Nothing before it touches npm.
@@ -129,15 +147,17 @@ pnpm changeset version
 
 # Publish. prepublishOnly runs type-check, lint, tests and build first,
 # so a broken tree cannot reach npm
-pnpm changeset publish
+pnpm release
 
-# changeset publish creates the tags but does not push them
+# pnpm release creates the tag but does not push it
 git push --follow-tags
 ```
 
-Run this from a clean checkout of `main`. `changeset publish` only publishes
-versions that are not already on the registry, so it is safe to re-run if the
-network drops partway.
+Tags are `@jarllyng/nostromo@<version>` - the format changesets uses for a
+workspace. The older `v3.1.0` tag predates this and was made by hand.
+
+Run this from a clean checkout of `main`. `pnpm release` skips versions already on
+the registry, so it is safe to re-run if the network drops partway.
 
 ## Package Configuration
 
@@ -203,3 +223,24 @@ The root `package.json` script exists but the task is not declared in
 - Ensure the `NPM_TOKEN` secret is set and has not expired
 - Verify the token covers the `@jarllyng` scope with read-and-write
 - Use an automation token; an interactive one will block on a 2FA prompt in CI
+
+### `E404 Not Found - PUT .../@jarllyng%2fnostromo`
+
+Almost never a missing package. npm answers 404 rather than 403 when a token
+authenticates but is not allowed to write the package, so the error names the
+wrong problem - this is what stalled 3.1.1. The token is read-only, or scoped to
+packages that do not include this one. Open it at
+https://www.npmjs.com/settings/~/tokens and set **Permissions** to
+**Read and write** for the `@jarllyng` scope.
+
+The `Verify npm credentials` step now checks this up front with
+`npm access list packages @jarllyng`, so the log should say so before the publish
+is attempted.
+
+Two other settings can produce the same 404:
+
+- The package's **Settings → Publishing access** on npm.com. If it is set to
+  require 2FA and disallow tokens, no token can publish; it must permit
+  "granular access tokens with bypass 2FA enabled".
+- A token created before the package existed and limited to _selected packages_
+  rather than the whole scope - there was nothing to select at the time.
