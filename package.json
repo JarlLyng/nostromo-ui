@@ -47,7 +47,7 @@
     "validate:exports": "tsx scripts/validate-exports.ts",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish",
+    "release": "node scripts/publish-package.mjs",
     "prepare": "husky",
     "verify:react-compat": "node scripts/verify-react-compat.mjs"
   },

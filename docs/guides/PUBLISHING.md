@@ -66,6 +66,23 @@ If you can reach the setting:
 - No 2FA warnings
 - Automatically scoped to your repository
 
+**The client side has to support it too, and this bit is easy to miss.** Setting
+up the Trusted Publisher on npm.com does nothing on its own - the publishing
+client has to perform the OIDC exchange, and only recent versions can:
+
+- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.9, so `publish.yml`
+  installs `npm@latest` explicitly.
+- **pnpm** needs 10.12 or newer. This workspace is pinned to 9.15.9, which is why
+  `pnpm release` publishes via `scripts/publish-package.mjs` (npm) instead of
+  `changeset publish` (which would pick pnpm).
+
+With too old a client there is no error - the exchange simply never happens and
+npm falls back to `NPM_TOKEN`. Every release before 3.1.1 went out this way, so a
+successful release is not evidence that Trusted Publishing is working. The check
+that actually distinguishes them: delete the `NPM_TOKEN` secret and release. If
+it still publishes, the OIDC path is live. Provenance attestations do **not**
+distinguish them - `--provenance` attaches those on the token path too.
+
 **If Trusted Publishing is not available**, use Option 2 below.
 
 ### Option 2: Granular Access Token (Alternative)
@@ -203,3 +220,24 @@ The root `package.json` script exists but the task is not declared in
 - Ensure the `NPM_TOKEN` secret is set and has not expired
 - Verify the token covers the `@jarllyng` scope with read-and-write
 - Use an automation token; an interactive one will block on a 2FA prompt in CI
+
+### `E404 Not Found - PUT .../@jarllyng%2fnostromo`
+
+Almost never a missing package. npm answers 404 rather than 403 when a token
+authenticates but is not allowed to write the package, so the error names the
+wrong problem - this is what stalled 3.1.1. The token is read-only, or scoped to
+packages that do not include this one. Open it at
+https://www.npmjs.com/settings/~/tokens and set **Permissions** to
+**Read and write** for the `@jarllyng` scope.
+
+The `Verify npm credentials` step now checks this up front with
+`npm access list packages @jarllyng`, so the log should say so before the publish
+is attempted.
+
+Two other settings can produce the same 404:
+
+- The package's **Settings → Publishing access** on npm.com. If it is set to
+  require 2FA and disallow tokens, no token can publish; it must permit
+  "granular access tokens with bypass 2FA enabled".
+- A token created before the package existed and limited to _selected packages_
+  rather than the whole scope - there was nothing to select at the time.
