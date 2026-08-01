@@ -9,9 +9,12 @@
  * Publisher page was configured. Publishing through npm directly decouples that
  * from the pnpm version we install and build with.
  *
- * Prints `New tag: <name>@<version>` on success because changesets/action
+ * Prints `New tag: <name>@<version>` on success because changesets/action v1
  * scrapes stdout for that line to decide which git tags and GitHub releases to
- * create. Dropping it would leave releases untagged.
+ * create. Dropping it would leave releases untagged. The `<name>@<version>` form
+ * is required: the action's regex demands an `@version`, and it is also what
+ * `changeset publish` emits for a workspace (the bare `v<version>` form is only
+ * for single-package repos, which is why the older v3.1.0 tag looks different).
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -57,4 +60,22 @@ execFileSync(
   { cwd: packageDir, stdio: "inherit" },
 );
 
-console.log(`New tag: ${name}@${version}`);
+const tag = `${name}@${version}`;
+
+// In CI the action creates this ref through the GitHub API and only warns if it
+// already exists, so tagging here is belt-and-braces there - but it is what makes
+// a hand-run `pnpm release` leave the same trail as an automated one.
+try {
+  execFileSync("git", ["tag", tag], { cwd: repoRoot, stdio: "pipe" });
+} catch (err) {
+  // Only an existing tag is benign. Catching everything here would hide a real
+  // git failure behind a reassuring message - which it did, the first time.
+  const stderr = String(err.stderr ?? "");
+  if (!/already exists/.test(stderr)) {
+    console.error(stderr.trim() || err.message);
+    throw new Error(`Published ${tag}, but could not tag the commit.`);
+  }
+  console.log(`Tag ${tag} already exists locally - leaving it alone.`);
+}
+
+console.log(`New tag: ${tag}`);

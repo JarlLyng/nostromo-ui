@@ -117,8 +117,9 @@ whether any changesets are pending:
 2. **Merge it to main**: the workflow runs `changeset version`, which applies the
    bump, writes `CHANGELOG.md` and deletes the changeset file. It commits that to
    a `changeset-release/main` branch and opens a **"chore: version packages"** PR
-3. **Merge that PR**: with no changesets left, the next run calls
-   `changeset publish`, which publishes to npm and pushes git tags
+3. **Merge that PR**: with no changesets left, the next run calls `pnpm release`,
+   which publishes to npm; `changesets/action` then creates the git tag and
+   GitHub release
 
 Step 3 is the point of no return - merging the version PR is what publishes.
 Nothing before it touches npm.
@@ -146,15 +147,17 @@ pnpm changeset version
 
 # Publish. prepublishOnly runs type-check, lint, tests and build first,
 # so a broken tree cannot reach npm
-pnpm changeset publish
+pnpm release
 
-# changeset publish creates the tags but does not push them
+# pnpm release creates the tag but does not push it
 git push --follow-tags
 ```
 
-Run this from a clean checkout of `main`. `changeset publish` only publishes
-versions that are not already on the registry, so it is safe to re-run if the
-network drops partway.
+Tags are `@jarllyng/nostromo@<version>` - the format changesets uses for a
+workspace. The older `v3.1.0` tag predates this and was made by hand.
+
+Run this from a clean checkout of `main`. `pnpm release` skips versions already on
+the registry, so it is safe to re-run if the network drops partway.
 
 ## Package Configuration
 
