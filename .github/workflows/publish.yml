@@ -35,11 +35,18 @@ jobs:
           # GITHUB_TOKEN so the workflow still runs if the secret is absent.
           token: ${{ secrets.RELEASE_PAT || secrets.GITHUB_TOKEN }}
 
+      # Deliberately no `registry-url`. With it, setup-node writes an .npmrc
+      # containing `_authToken=${NODE_AUTH_TOKEN}` and then defaults
+      # NODE_AUTH_TOKEN to the literal string XXXXX-XXXXX-XXXXX-XXXXX when the
+      # secret is absent (actions/setup-node src/authutil.ts). npm sees
+      # configured credentials, so it never attempts the Trusted Publishing
+      # exchange - it sends the placeholder and the registry answers 404. That
+      # placeholder is visible in the failed run's env dump. registry.npmjs.org
+      # is npm's default anyway, so nothing is lost by leaving it out.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          registry-url: "https://registry.npmjs.org"
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -79,6 +86,21 @@ jobs:
             echo "pending=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # Written by hand rather than by setup-node's registry-url, so that "no
+      # token" really means no credentials at all - which is the condition npm
+      # requires before it will try Trusted Publishing. An .npmrc holding a
+      # placeholder is worse than none.
+      - name: Configure npm authentication
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            echo "Wrote token auth to ~/.npmrc - publishing will use NPM_TOKEN, not OIDC."
+          else
+            echo "No NPM_TOKEN. Leaving npm unauthenticated so it performs the Trusted Publishing exchange."
+          fi
+
       # npm answers 404 - not 401 or 403 - when a token authenticates fine but
       # may not write the package, so the raw failure reads as "the package does
       # not exist" and sends you hunting for the wrong thing. That cost the
@@ -87,7 +109,6 @@ jobs:
       # on npm access stopped changesets from being versioned at all.
       - name: Verify npm credentials
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           HAVE_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
           PUBLISHING: ${{ steps.changesets_pending.outputs.pending == 'false' }}
         run: |
