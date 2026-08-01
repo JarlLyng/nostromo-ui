@@ -28,8 +28,11 @@ const { name, version } = JSON.parse(
 );
 
 const alreadyPublished = async () => {
+  // encodeURIComponent, not a hand-rolled slash swap: the scoped name is one
+  // path segment, and CodeQL is right that replacing only the first "/" is the
+  // kind of thing that holds until the input changes shape.
   const res = await fetch(
-    `https://registry.npmjs.org/${name.replace("/", "%2f")}/${version}`,
+    `https://registry.npmjs.org/${encodeURIComponent(name)}/${version}`,
     { headers: { accept: "application/json" } },
   );
   if (res.status === 200) return true;
