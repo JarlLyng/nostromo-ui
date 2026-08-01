@@ -2,7 +2,7 @@
 
 Accessible React component library with CSS-first Tailwind v4 theming.
 
-37 components — 31 for products and apps, 6 for marketing pages — themed entirely
+36 components — 30 for products and apps, 6 for marketing pages — themed entirely
 through CSS custom properties. No `tailwind.config.js`, no plugin to register.
 
 The name comes from the _USCSS Nostromo_ in **Alien** (1979).
@@ -52,14 +52,18 @@ compiled. Four ship with the package:
 | `lv-426`   | `@jarllyng/nostromo/themes/lv-426.css`   |
 | `sulaco`   | `@jarllyng/nostromo/themes/sulaco.css`   |
 
-Override any token to make your own:
+Override any token to make your own. Colour tokens hold bare HSL channels rather
+than a finished colour - the library wraps them in `hsl()` itself:
 
 ```css
 [data-theme="mine"] {
-  --nostromo-brand-500: oklch(0.6 0.2 250);
-  --nostromo-radius-md: 0.75rem;
+  --nostromo-color-brand-500: 262 84% 52%; /* h s% l% - no hsl() */
+  --nostromo-radius-md: 0.5rem;
 }
 ```
+
+Colour families are `brand`, `neutral`, `success`, `warning`, `error` and `info`,
+each in steps from 50 to 950.
 
 Switch theme and colour scheme independently with `data-theme` and
 `data-color-scheme` on `<html>`.
@@ -72,6 +76,9 @@ helper-text, icon, input, label, pagination, progress, radio-group, select,
 separator, skeleton, switch, table, tabs, textarea, toast, tooltip
 
 **Marketing** — hero, features, pricing, gallery, logo-wall, testimonials
+
+`charts` also has a `charts-lazy` entry point that code-splits the charting
+library out of your main bundle.
 
 Every component is also a separate entry point, so you can import just one:
 
