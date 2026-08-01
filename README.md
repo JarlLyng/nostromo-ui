@@ -1,9 +1,9 @@
 # Nostromo UI
 
-> **Status** - The library is feature-complete and tested, and the first npm
-> release is being prepared. Until it lands, install from the workspace. Version
-> numbers live in `packages/nostromo/package.json` and nowhere else, so nothing
-> here can drift out of date.
+> **Status** - Published on npm as
+> [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo).
+> Version numbers live in `packages/nostromo/package.json` and nowhere else, so
+> nothing here can drift out of date.
 
 ![Human in the Loop](https://jarllyng.github.io/madebyhuman/badges/loop-white.svg)
 
@@ -23,16 +23,19 @@ The name is inspired by the spaceship _USCSS Nostromo_ from the movie **Alien** 
 
 ### Installation
 
-> **⚠️ Note**: Packages are currently workspace-only. For development setup, see [Development Guide](docs/guides/DEVELOPMENT.md). npm publishing is planned for future release.
+```bash
+pnpm add @jarllyng/nostromo
+```
+
+Peer dependencies: React 18.2+ or 19, and Tailwind CSS 4.
+
+To work on the library itself instead, see the
+[Development Guide](docs/guides/DEVELOPMENT.md):
 
 ```bash
-# Workspace setup (for development)
 git clone https://github.com/JarlLyng/nostromo-ui.git
 cd nostromo-ui
 pnpm install
-
-# Future npm installation (planned)
-# pnpm add @jarllyng/nostromo
 ```
 
 ### Setup
