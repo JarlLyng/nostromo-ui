@@ -218,6 +218,27 @@ them without failing.
 The root `package.json` script exists but the task is not declared in
 `turbo.json`. Both files need the entry.
 
+### `ENEEDAUTH` with no NPM_TOKEN set
+
+The Trusted Publishing exchange was refused. npm gives no reason at the default
+loglevel - every failure path in `npm/lib/utils/oidc.js` is
+`log.verbose('oidc', ...)` followed by `return undefined`, so a rejected exchange
+is indistinguishable from no exchange at all, and you get a bare "This command
+requires you to be logged in". `scripts/publish-package.mjs` passes
+`--loglevel verbose` for exactly this reason. Look for:
+
+```
+npm http fetch POST 404 https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/@jarllyng%2fnostromo
+npm verbose oidc Failed token exchange request with body message: OIDC token exchange error - package not found
+```
+
+**"package not found" does not mean the package is missing.** The exchange
+endpoint is per-package, and the registry answers this when the package has no
+Trusted Publisher registered - the publisher config is what it cannot find. Add
+it on the package's **Settings → Trusted Publisher** with provider GitHub
+Actions, owner `JarlLyng`, repository `nostromo-ui`, workflow file `publish.yml`,
+and no environment. The workflow filename must match exactly.
+
 ### Authentication errors
 
 - Ensure the `NPM_TOKEN` secret is set and has not expired
