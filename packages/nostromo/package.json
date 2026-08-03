@@ -22,7 +22,7 @@
   "homepage": "https://jarllyng.github.io/nostromo-ui/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JarlLyng/nostromo-ui.git",
+    "url": "https://github.com/JarlLyng/nostromo-ui.git",
     "directory": "packages/nostromo"
   },
   "bugs": {
