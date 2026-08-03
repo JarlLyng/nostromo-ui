@@ -232,12 +232,43 @@ npm http fetch POST 404 https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/
 npm verbose oidc Failed token exchange request with body message: OIDC token exchange error - package not found
 ```
 
-**"package not found" does not mean the package is missing.** The exchange
-endpoint is per-package, and the registry answers this when the package has no
-Trusted Publisher registered - the publisher config is what it cannot find. Add
-it on the package's **Settings → Trusted Publisher** with provider GitHub
-Actions, owner `JarlLyng`, repository `nostromo-ui`, workflow file `publish.yml`,
-and no environment. The workflow filename must match exactly.
+**"package not found" does not mean the package is missing, and it does not mean
+no Trusted Publisher is configured.** The exchange endpoint is per-package, and
+the registry answers this whenever it cannot match the run to a publisher config.
+It names neither what it received nor what it expected, so a config that looks
+right cannot be checked by inspection.
+
+The `Show the OIDC identity npm is asked to trust` step prints the claims GitHub
+actually mints. The Trusted Publisher must agree with those exactly:
+
+```
+repository             JarlLyng/nostromo-ui
+repository_owner       JarlLyng
+workflow_ref           JarlLyng/nostromo-ui/.github/workflows/publish.yml@refs/heads/main
+environment            (not set)
+```
+
+Known causes, each reported as producing this same error:
+
+- **Owner casing.** npm compares case-sensitively and the settings page shows
+  what was typed, so `jarllyng` will never match GitHub's canonical `JarlLyng`.
+  ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
+- **Environment mismatch.** If the publisher sets an Environment name, the job
+  must declare a matching `environment:`; if the job declares none, the publisher
+  field must be empty. ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
+- **`registry-url` on `actions/setup-node`.** Covered above - it writes a
+  placeholder token that npm prefers over OIDC.
+  ([npm/cli#8730](https://github.com/npm/cli/issues/8730),
+  [actions/setup-node#1477](https://github.com/actions/setup-node/pull/1477))
+- **`contents: read` in `permissions`.** Narrows the job token even when repo
+  settings allow writing, and breaks tagging after the publish.
+  ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
+- **`git+` prefix on `repository.url`.** Reported as affecting OIDC matching, so
+  this package uses `https://github.com/...git`.
+  ([npm/cli#8976](https://github.com/npm/cli/issues/8976))
+- **Provenance on a private repo.** npm refuses, and the real 422 is usually
+  masked. Not applicable here - the repo is public.
+  ([npm/cli#8976](https://github.com/npm/cli/issues/8976))
 
 ### Authentication errors
 
