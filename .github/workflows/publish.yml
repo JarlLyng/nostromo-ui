@@ -86,6 +86,45 @@ jobs:
             echo "pending=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # npm answers "OIDC token exchange error - package not found" when the
+      # Trusted Publisher config does not match this run, and names neither side
+      # of the comparison - so a config that merely looks right is unfalsifiable.
+      # These are the values npm matches against; the Trusted Publisher on
+      # npmjs.com has to agree with them exactly, casing included.
+      #
+      # Claims only. The token itself is a credential and is never printed.
+      - name: Show the OIDC identity npm is asked to trust
+        if: steps.changesets_pending.outputs.pending == 'false'
+        run: |
+          curl -sS -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm:registry.npmjs.org" \
+            | node -e '
+              let s = "";
+              process.stdin.on("data", d => (s += d)).on("end", () => {
+                const { value } = JSON.parse(s);
+                if (!value) {
+                  console.log("No id_token returned - check the id-token: write permission.");
+                  process.exit(0);
+                }
+                const c = JSON.parse(
+                  Buffer.from(value.split(".")[1], "base64url").toString("utf8"),
+                );
+                for (const k of [
+                  "aud",
+                  "repository",
+                  "repository_owner",
+                  "repository_visibility",
+                  "workflow_ref",
+                  "job_workflow_ref",
+                  "ref",
+                  "event_name",
+                  "environment",
+                ]) {
+                  console.log(`${k.padEnd(22)} ${c[k] ?? "(not set)"}`);
+                }
+              });
+            '
+
       # Written by hand rather than by setup-node's registry-url, so that "no
       # token" really means no credentials at all - which is the condition npm
       # requires before it will try Trusted Publishing. An .npmrc holding a
