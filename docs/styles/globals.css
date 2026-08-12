@@ -50,94 +50,23 @@
 }
 
 /* Bind fonts to body and code */
-body,
-.nx-body {
+body {
   font-family: var(--nostromo-font-sans);
   line-height: 1.6;
 }
 
 code,
-pre,
-.nx-code,
-.nx-code-block pre {
+pre {
   font-family: var(--nostromo-font-mono);
 }
 
 /* Main content container */
-.nx-container,
 main article {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-/* Global container constraints */
-.nx-container {
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-/* Enhanced code blocks with toolbar */
-.nx-code-block {
-  position: relative;
-  border-radius: var(--nostromo-radius-lg);
-  overflow: hidden;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  margin: 1.5rem 0;
-}
-
-.nx-code-block-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background: hsl(var(--nostromo-color-neutral-900));
-  border-bottom: 1px solid hsl(var(--nostromo-color-neutral-800));
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-code-block-header {
-  background: hsl(var(--nostromo-color-neutral-950));
-  border-bottom-color: hsl(var(--nostromo-color-neutral-800));
-}
-
-.nx-code-block-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.nx-code-block-copy {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  background: hsl(var(--nostromo-color-neutral-800));
-  border: 1px solid hsl(var(--nostromo-color-neutral-700));
-  border-radius: var(--nostromo-radius-sm);
-  color: hsl(var(--nostromo-color-neutral-200));
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.nx-code-block-copy:hover {
-  background: hsl(var(--nostromo-color-neutral-700));
-  border-color: hsl(var(--nostromo-color-neutral-600));
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-code-block-copy {
-  background: hsl(var(--nostromo-color-neutral-800));
-  border-color: hsl(var(--nostromo-color-neutral-700));
-  color: hsl(var(--nostromo-color-neutral-200));
-}
-
-.nx-code-block > pre {
-  margin: 0;
-  border-radius: 0;
-  padding: 1rem 1.25rem;
 }
 
 /* Style Nextra's default code blocks */
@@ -179,76 +108,6 @@ pre:hover::before {
   opacity: 1;
 }
 
-/* Card surfaces with gradients/shadows */
-.nx-card {
-  background: hsl(var(--nostromo-color-neutral-50));
-  border: 1px solid hsl(var(--nostromo-color-neutral-200));
-  border-radius: var(--nostromo-radius-lg);
-  padding: 1.5rem;
-  box-shadow:
-    0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  transition:
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.nx-card:hover {
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-color: hsl(var(--nostromo-color-neutral-300));
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-card {
-  background: hsl(var(--nostromo-color-neutral-900));
-  border-color: hsl(var(--nostromo-color-neutral-800));
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-card:hover {
-  border-color: hsl(var(--nostromo-color-neutral-700));
-}
-
-/* Callout styles */
-.nx-callout {
-  padding: 1rem 1.25rem;
-  border-radius: var(--nostromo-radius-lg);
-  border-left: 4px solid;
-  margin: 1.5rem 0;
-}
-
-.nx-callout-info {
-  background: hsl(199 89% 48% / 0.1);
-  border-color: hsl(199 89% 48%);
-  color: hsl(199 89% 20%);
-}
-
-.nx-callout-warning {
-  background: hsl(38 92% 50% / 0.1);
-  border-color: hsl(38 92% 50%);
-  color: hsl(38 92% 20%);
-}
-
-.nx-callout-success {
-  background: hsl(142 76% 36% / 0.1);
-  border-color: hsl(142 76% 36%);
-  color: hsl(142 76% 20%);
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-info {
-  background: hsl(199 89% 48% / 0.15);
-  color: hsl(199 89% 70%);
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-warning {
-  background: hsl(38 92% 50% / 0.15);
-  color: hsl(38 92% 70%);
-}
-
-[data-theme="nostromo"][data-color-scheme="dark"] .nx-callout-success {
-  background: hsl(142 76% 36% / 0.15);
-  color: hsl(142 76% 60%);
-}
 /* Glassmorphism & Premium Utilities */
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);
@@ -318,14 +177,4 @@ h3,
 h4 {
   letter-spacing: -0.02em;
   font-weight: 700;
-}
-
-.nx-card {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.nx-card:hover {
-  transform: translateY(-2px);
 }

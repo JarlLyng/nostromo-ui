@@ -1,13 +1,14 @@
 /* Establishes cascade layer order for the docs site. Layer precedence is fixed
- * by first declaration, so this has to be the first stylesheet _app.tsx imports.
- * Tailwind's own @layer blocks then slot into the order declared here.
+ * by first declaration, so this has to be the first stylesheet app/layout.tsx
+ * imports. Tailwind's own @layer blocks then slot into the order declared here.
  *
- * `nextra` sits deliberately between base and utilities:
- *   - above base, so the theme's own preflight still wins over Tailwind v4's
- *     and nextra's chrome keeps its intended reset;
- *   - below utilities, so Tailwind v4 utility classes win over that preflight
- *     and library components keep their type scale and borders.
+ * Nextra 2 needed a `nextra` layer wedged between base and utilities, because it
+ * shipped a precompiled Tailwind v3 sheet whose preflight was unlayered and
+ * therefore outranked every layered utility. Nextra 4 is built on Tailwind v4
+ * and declares `@layer theme, base, components, utilities` itself - the same
+ * order as below - so it needs no layer of its own.
  *
- * See styles/nextra-layered.css.
+ * `properties` stays first: Tailwind v4 emits its @property fallbacks there, and
+ * pinning it ahead of everything keeps that independent of import order.
  */
-@layer properties, theme, base, components, nextra, utilities;
+@layer properties, theme, base, components, utilities;

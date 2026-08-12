@@ -88,7 +88,14 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       adjustHeight();
     }, [adjustHeight]);
 
-    const handleInput = (event: React.FormEvent<HTMLTextAreaElement>) => {
+    // Derived from the prop rather than named outright: @types/react 18 declares
+    // onInput as FormEvent and 19 as InputEvent, so spelling either one out
+    // breaks the build against the other. This tracks whichever is installed.
+    const handleInput = (
+      event: Parameters<
+        NonNullable<React.ComponentProps<"textarea">["onInput"]>
+      >[0],
+    ) => {
       adjustHeight();
       if (props.onInput) {
         props.onInput(event);
