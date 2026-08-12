@@ -1,5 +1,11 @@
 import { defineConfig } from "tsup";
-import { copyFileSync, mkdirSync, readdirSync } from "fs";
+import {
+  copyFileSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "fs";
 import { join } from "path";
 
 // Cross-platform copy function
@@ -104,6 +110,46 @@ export default defineConfig({
           }
         } catch (error) {
           console.error("Error copying CSS files:", error);
+        }
+      },
+    },
+    {
+      // Written after the bundler has finished, not before it. esbuild strips
+      // top-level directives, so a `"use client"` in the source never survives,
+      // and tsup's `banner` option is dropped by the minifier - both verified by
+      // building and grepping dist. Prepending here is the only placement
+      // nothing downstream can remove.
+      //
+      // Applied to every emitted module, chunks included: entry files are thin
+      // re-exports, so marking only the entries would leave the actual component
+      // code in an unmarked chunk.
+      name: "use-client-directive",
+      buildEnd() {
+        const DIRECTIVE = '"use client";\n';
+        const dist = join(process.cwd(), "dist");
+        let marked = 0;
+
+        const visit = (dir: string) => {
+          for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            const full = join(dir, entry.name);
+            if (entry.isDirectory()) {
+              visit(full);
+              continue;
+            }
+            if (!/\.(js|cjs)$/.test(entry.name)) continue;
+            const source = readFileSync(full, "utf8");
+            if (source.startsWith(DIRECTIVE)) continue;
+            writeFileSync(full, DIRECTIVE + source);
+            marked++;
+          }
+        };
+
+        try {
+          visit(dist);
+          console.log(`use-client-directive: marked ${marked} modules`);
+        } catch (error) {
+          console.error("Error adding use client directives:", error);
+          throw error;
         }
       },
     },
