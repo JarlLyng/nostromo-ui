@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * @deprecated This component is deprecated. Use LiveCode component instead for better rendering and performance.
  * StorybookEmbed uses iframes which cause rendering issues, CORS problems, and inconsistent styling.

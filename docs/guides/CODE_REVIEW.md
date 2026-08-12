@@ -508,7 +508,7 @@ A PR is ready to merge when:
 - **Tests**: `packages/nostromo/src/components/[component]/[component].test.tsx`
 - **Stories**: `packages/nostromo/src/components/__stories__/[component].stories.tsx`
 - **Exports**: `packages/nostromo/src/index.ts`
-- **Documentation**: `docs/pages/components/[component].mdx`
+- **Documentation**: `docs/content/components/[component].mdx`
 
 ### Key Commands
 
