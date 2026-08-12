@@ -12,7 +12,7 @@ import {
   validateColorCombinations,
   generateContrastReport,
   type ColorCombination,
-} from '../packages/ui-core/src/lib/contrast-validator';
+} from '../packages/nostromo/src/lib/contrast-validator';
 
 interface AuditResult {
   file: string;
@@ -137,12 +137,12 @@ function runAudit(): void {
   const results: AuditResult[] = [];
   
   // Scan core components
-  const coreComponentsPath = join(process.cwd(), 'packages/ui-core/src/components');
+  const coreComponentsPath = join(process.cwd(), 'packages/nostromo/src/components/core');
   console.log(`Scanning: ${coreComponentsPath}`);
   scanDirectory(coreComponentsPath, results);
   
   // Scan marketing components
-  const marketingComponentsPath = join(process.cwd(), 'packages/ui-marketing/src/components');
+  const marketingComponentsPath = join(process.cwd(), 'packages/nostromo/src/components/marketing');
   console.log(`Scanning: ${marketingComponentsPath}`);
   scanDirectory(marketingComponentsPath, results);
   
@@ -188,9 +188,9 @@ function runAudit(): void {
 }
 
 // Run audit if executed directly
-if (require.main === module) {
-  runAudit();
-}
+// The repo is "type": "module", so require.main does not exist. These scripts
+// are only ever run as a CLI entry point, so just invoke it.
+runAudit();
 
 export { runAudit };
 

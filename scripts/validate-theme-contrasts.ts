@@ -10,7 +10,7 @@ import { join } from "path";
 import {
   validateContrast,
   type ColorCombination,
-} from "../packages/ui-core/src/lib/contrast-validator";
+} from "../packages/nostromo/src/lib/contrast-validator";
 
 interface ThemeValidation {
   theme: string;
@@ -261,10 +261,10 @@ function runValidation(): void {
   console.log("🎨 Validating theme contrasts...\n");
 
   const themes = [
-    { name: "nostromo", path: "packages/ui-tw/src/themes/nostromo.css" },
-    { name: "mother", path: "packages/ui-tw/src/themes/mother.css" },
-    { name: "lv-426", path: "packages/ui-tw/src/themes/lv-426.css" },
-    { name: "sulaco", path: "packages/ui-tw/src/themes/sulaco.css" },
+    { name: "nostromo", path: "packages/nostromo/src/themes/nostromo.css" },
+    { name: "mother", path: "packages/nostromo/src/themes/mother.css" },
+    { name: "lv-426", path: "packages/nostromo/src/themes/lv-426.css" },
+    { name: "sulaco", path: "packages/nostromo/src/themes/sulaco.css" },
   ];
 
   const allResults: ThemeValidation[] = [];
@@ -321,8 +321,8 @@ function runValidation(): void {
   console.log(`   - Failed: ${totalFailed}`);
 }
 
-if (require.main === module) {
-  runValidation();
-}
+// The repo is "type": "module", so require.main does not exist. These scripts
+// are only ever run as a CLI entry point, so just invoke it.
+runValidation();
 
 export { runValidation };
