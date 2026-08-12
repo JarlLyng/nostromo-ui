@@ -6,9 +6,13 @@ This guide explains how to publish Nostromo UI packages to npm.
 
 1. **npm scope**: Ensure you can publish under the `@jarllyng` scope on npm
 2. **2FA**: Enable two-factor authentication on your npm account
-3. **NPM_TOKEN**: Create an npm access token with publish permissions (or use Trusted Publishing - recommended)
-4. **GitHub Secret**: Add `NPM_TOKEN` as a secret in GitHub repository settings
-5. **RELEASE_PAT**: Add a fine-grained personal access token as a secret - see below
+3. **Trusted Publishing**: how releases authenticate today - no token involved.
+   See [Option 1](#option-1-trusted-publishing-recommended-for-cicd). There is
+   deliberately no `NPM_TOKEN` secret; if you add one, the workflow uses it
+   instead of OIDC ([Option 2](#option-2-granular-access-token-alternative) is
+   the fallback).
+4. **RELEASE_PAT**: Add a fine-grained personal access token as a secret - see
+   below
 
 ### Why RELEASE_PAT is required
 
@@ -80,8 +84,10 @@ carries `dist.attestations` from a real OIDC exchange.
 up the Trusted Publisher on npm.com does nothing on its own - the publishing
 client has to perform the OIDC exchange, and only recent versions can:
 
-- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.9, so `publish.yml`
-  installs `npm@latest` explicitly.
+- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.8, so `publish.yml`
+  installs npm explicitly - pinned to `npm@11`, because `npm@latest` is now 12
+  and requires Node 22.22+. The step asserts the resolved version rather than
+  trusting the tag.
 - **pnpm** needs 10.12 or newer. This workspace is pinned to 9.15.9, which is why
   `pnpm release` publishes via `scripts/publish-package.mjs` (npm) instead of
   `changeset publish` (which would pick pnpm).
