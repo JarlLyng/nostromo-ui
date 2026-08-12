@@ -6,9 +6,13 @@ This guide explains how to publish Nostromo UI packages to npm.
 
 1. **npm scope**: Ensure you can publish under the `@jarllyng` scope on npm
 2. **2FA**: Enable two-factor authentication on your npm account
-3. **NPM_TOKEN**: Create an npm access token with publish permissions (or use Trusted Publishing - recommended)
-4. **GitHub Secret**: Add `NPM_TOKEN` as a secret in GitHub repository settings
-5. **RELEASE_PAT**: Add a fine-grained personal access token as a secret - see below
+3. **Trusted Publishing**: how releases authenticate today - no token involved.
+   See [Option 1](#option-1-trusted-publishing-recommended-for-cicd). There is
+   deliberately no `NPM_TOKEN` secret; if you add one, the workflow uses it
+   instead of OIDC ([Option 2](#option-2-granular-access-token-alternative) is
+   the fallback).
+4. **RELEASE_PAT**: Add a fine-grained personal access token as a secret - see
+   below
 
 ### Why RELEASE_PAT is required
 
@@ -54,10 +58,20 @@ If you can reach the setting:
 1. Click "Add Trusted Publisher"
 2. Select "GitHub Actions"
 3. Enter:
-   - **Repository**: `JarlLyng/nostromo-ui`
-   - **Workflow file**: `publish.yml` (just the filename, not the full path)
-   - **Environment**: (leave empty or use `production`)
-4. Click "Add"
+   - **Organization or user**: `JarlLyng` - **type the casing exactly**. npm
+     compares case-sensitively and shows back whatever was entered, so a
+     lowercased owner produces a config that looks right and never matches. This
+     is what blocked 3.1.1.
+   - **Repository**: `nostromo-ui`
+   - **Workflow filename**: `publish.yml` (just the filename, not the full path)
+   - **Environment name**: leave empty. If you set one, the job in `publish.yml`
+     must declare a matching `environment:`.
+4. Under **Allowed actions**, tick **`Allow npm publish`** only. `npm stage
+publish` is npm's staging flow, which this project does not use.
+5. Click "Set up connection"
+
+3.1.1 was the first release published this way, so anything from 3.1.1 onwards
+carries `dist.attestations` from a real OIDC exchange.
 
 **Benefits:**
 
@@ -70,8 +84,10 @@ If you can reach the setting:
 up the Trusted Publisher on npm.com does nothing on its own - the publishing
 client has to perform the OIDC exchange, and only recent versions can:
 
-- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.9, so `publish.yml`
-  installs `npm@latest` explicitly.
+- **npm** needs 11.5.1 or newer. Node 20 bundles npm 10.8, so `publish.yml`
+  installs npm explicitly - pinned to `npm@11`, because `npm@latest` is now 12
+  and requires Node 22.22+. The step asserts the resolved version rather than
+  trusting the tag.
 - **pnpm** needs 10.12 or newer. This workspace is pinned to 9.15.9, which is why
   `pnpm release` publishes via `scripts/publish-package.mjs` (npm) instead of
   `changeset publish` (which would pick pnpm).
@@ -248,11 +264,20 @@ workflow_ref           JarlLyng/nostromo-ui/.github/workflows/publish.yml@refs/h
 environment            (not set)
 ```
 
-Known causes, each reported as producing this same error:
+**What it was, the one time this happened here: owner casing.** The Trusted
+Publisher had been entered as `jarllyng/nostromo-ui`. npm compares
+case-sensitively, GitHub mints the canonical `JarlLyng`, and the settings page
+displays what was typed - so the config looked correct and never matched.
+Deleting the entry and re-adding it with `JarlLyng` fixed it, and the proof is
+the same endpoint answering `201` instead of `404`:
 
-- **Owner casing.** npm compares case-sensitively and the settings page shows
-  what was typed, so `jarllyng` will never match GitHub's canonical `JarlLyng`.
-  ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
+```
+npm http fetch POST 201 https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/@jarllyng%2fnostromo
+npm verbose oidc Successfully retrieved and set token
+```
+
+Other causes reported for this same error, worth checking in this order:
+
 - **Environment mismatch.** If the publisher sets an Environment name, the job
   must declare a matching `environment:`; if the job declares none, the publisher
   field must be empty. ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
@@ -263,12 +288,16 @@ Known causes, each reported as producing this same error:
 - **`contents: read` in `permissions`.** Narrows the job token even when repo
   settings allow writing, and breaks tagging after the publish.
   ([npm/cli#8678](https://github.com/npm/cli/issues/8678))
-- **`git+` prefix on `repository.url`.** Reported as affecting OIDC matching, so
-  this package uses `https://github.com/...git`.
-  ([npm/cli#8976](https://github.com/npm/cli/issues/8976))
 - **Provenance on a private repo.** npm refuses, and the real 422 is usually
   masked. Not applicable here - the repo is public.
   ([npm/cli#8976](https://github.com/npm/cli/issues/8976))
+
+**Not a cause: the `git+` prefix on `repository.url`.**
+[npm/cli#8976](https://github.com/npm/cli/issues/8976) suggests stripping it. It
+was stripped here and the exchange still failed; and the registry stored
+`git+https://github.com/JarlLyng/nostromo-ui.git` for 3.1.1 regardless, because
+npm normalizes the field on publish. The prefix cannot influence matching when
+npm puts it back itself.
 
 ### Authentication errors
 
