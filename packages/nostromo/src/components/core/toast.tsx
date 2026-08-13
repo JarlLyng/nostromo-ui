@@ -360,7 +360,7 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
           <button
             type="button"
             onClick={action.onClick}
-            className="ml-4 text-sm font-medium underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="ml-4 text-sm font-medium underline hover:no-underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"
           >
             {action.label}
           </button>
@@ -369,7 +369,7 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
         <button
           type="button"
           onClick={handleClose}
-          className="absolute top-2 right-2 p-1 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="absolute top-2 right-2 p-1 rounded-md hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"
           aria-label="Close notification"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
