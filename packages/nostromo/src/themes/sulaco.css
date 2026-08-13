@@ -80,34 +80,32 @@
   --nostromo-color-info-950: 210 100% 5%;
 
   /* Semantic Colors */
-  --nostromo-color-background: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-muted: hsl(var(--nostromo-color-neutral-100));
-  --nostromo-color-muted-foreground: hsl(var(--nostromo-color-neutral-600));
-  --nostromo-color-popover: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-popover-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-card: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-card-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-border: hsl(var(--nostromo-color-neutral-200));
-  --nostromo-color-input: hsl(var(--nostromo-color-neutral-200));
+  --nostromo-color-background: var(--nostromo-color-neutral-50);
+  --nostromo-color-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-muted: var(--nostromo-color-neutral-100);
+  --nostromo-color-muted-foreground: var(--nostromo-color-neutral-600);
+  --nostromo-color-popover: var(--nostromo-color-neutral-50);
+  --nostromo-color-popover-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-card: var(--nostromo-color-neutral-50);
+  --nostromo-color-card-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-border: var(--nostromo-color-neutral-200);
+  --nostromo-color-input: var(--nostromo-color-neutral-200);
   /* Contrast validated: primary-foreground/primary 4.52:1 */
-  --nostromo-color-primary: hsl(var(--nostromo-color-brand-500));
-  --nostromo-color-primary-foreground: hsl(
-    0 0% 100%
+  --nostromo-color-primary: var(--nostromo-color-brand-600);
+  --nostromo-color-primary-foreground: var(
+    --nostromo-color-neutral-50
   ); /* White for better contrast */
-  --nostromo-color-secondary: hsl(var(--nostromo-color-neutral-100));
-  --nostromo-color-secondary-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-accent: hsl(var(--nostromo-color-brand-100));
-  --nostromo-color-accent-foreground: hsl(var(--nostromo-color-brand-900));
-  --nostromo-color-destructive: hsl(var(--nostromo-color-error-500));
-  --nostromo-color-destructive-foreground: hsl(
-    var(--nostromo-color-neutral-50)
-  );
-  --nostromo-color-success-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-warning-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-error-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-info-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-ring: hsl(var(--nostromo-color-brand-500));
+  --nostromo-color-secondary: var(--nostromo-color-neutral-100);
+  --nostromo-color-secondary-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-accent: var(--nostromo-color-brand-100);
+  --nostromo-color-accent-foreground: var(--nostromo-color-brand-900);
+  --nostromo-color-destructive: var(--nostromo-color-error-600);
+  --nostromo-color-destructive-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-success-foreground: 0 0% 9%;
+  --nostromo-color-warning-foreground: 0 0% 9%;
+  --nostromo-color-error-foreground: 0 0% 98%;
+  --nostromo-color-info-foreground: 0 0% 9%;
+  --nostromo-color-ring: var(--nostromo-color-brand-500);
 
   /* Typography */
   --nostromo-font-sans:
@@ -165,31 +163,29 @@
 
 /* Dark mode overrides for Sulaco theme */
 [data-theme="sulaco"][data-color-scheme="dark"] {
-  --nostromo-color-background: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-muted: hsl(var(--nostromo-color-neutral-800));
-  --nostromo-color-muted-foreground: hsl(var(--nostromo-color-neutral-400));
-  --nostromo-color-popover: hsl(var(--nostromo-color-neutral-800));
-  --nostromo-color-popover-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-card: hsl(var(--nostromo-color-neutral-800));
-  --nostromo-color-card-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-border: hsl(var(--nostromo-color-neutral-700));
-  --nostromo-color-input: hsl(var(--nostromo-color-neutral-700));
-  --nostromo-color-primary: hsl(var(--nostromo-color-brand-400));
-  --nostromo-color-primary-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-secondary: hsl(var(--nostromo-color-neutral-700));
-  --nostromo-color-secondary-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-accent: hsl(var(--nostromo-color-brand-800));
-  --nostromo-color-accent-foreground: hsl(var(--nostromo-color-brand-100));
-  --nostromo-color-destructive: hsl(var(--nostromo-color-error-400));
-  --nostromo-color-destructive-foreground: hsl(
-    var(--nostromo-color-neutral-900)
-  );
-  --nostromo-color-success-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-warning-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-error-foreground: hsl(var(--nostromo-color-neutral-900));
-  --nostromo-color-info-foreground: hsl(var(--nostromo-color-neutral-50));
-  --nostromo-color-ring: hsl(var(--nostromo-color-brand-400));
+  --nostromo-color-background: var(--nostromo-color-neutral-900);
+  --nostromo-color-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-muted: var(--nostromo-color-neutral-800);
+  --nostromo-color-muted-foreground: var(--nostromo-color-neutral-400);
+  --nostromo-color-popover: var(--nostromo-color-neutral-800);
+  --nostromo-color-popover-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-card: var(--nostromo-color-neutral-800);
+  --nostromo-color-card-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-border: var(--nostromo-color-neutral-700);
+  --nostromo-color-input: var(--nostromo-color-neutral-700);
+  --nostromo-color-primary: var(--nostromo-color-brand-400);
+  --nostromo-color-primary-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-secondary: var(--nostromo-color-neutral-700);
+  --nostromo-color-secondary-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-accent: var(--nostromo-color-brand-800);
+  --nostromo-color-accent-foreground: var(--nostromo-color-brand-100);
+  --nostromo-color-destructive: var(--nostromo-color-error-400);
+  --nostromo-color-destructive-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-success-foreground: 0 0% 9%;
+  --nostromo-color-warning-foreground: 0 0% 9%;
+  --nostromo-color-error-foreground: 0 0% 98%;
+  --nostromo-color-info-foreground: 0 0% 9%;
+  --nostromo-color-ring: var(--nostromo-color-brand-400);
 }
 
 /* Sulaco theme specific styles */

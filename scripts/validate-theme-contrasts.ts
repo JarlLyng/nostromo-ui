@@ -11,6 +11,10 @@ import {
   validateContrast,
   type ColorCombination,
 } from "../packages/nostromo/src/lib/contrast-validator";
+import {
+  extractBlock,
+  resolveToken,
+} from "../packages/nostromo/src/test/theme-tokens";
 
 interface ThemeValidation {
   theme: string;
@@ -21,68 +25,6 @@ interface ThemeValidation {
     background: string;
     result: ReturnType<typeof validateContrast>;
   }>;
-}
-
-/**
- * Extracts HSL values from CSS variable definitions
- */
-function extractHSLValue(
-  cssContent: string,
-  varName: string,
-  visited = new Set<string>(),
-): string | null {
-  if (visited.has(varName)) {
-    return null; // Prevent infinite recursion
-  }
-  visited.add(varName);
-
-  // Look for --nostromo-color-varName: hsl(var(--nostromo-color-...)) or --nostromo-color-varName: 262 84% 52%;
-  const patterns = [
-    new RegExp(
-      `--nostromo-color-${varName}:\\s*hsl\\(var\\(--nostromo-color-([^)]+)\\)\\)`,
-      "g",
-    ),
-    new RegExp(`--nostromo-color-${varName}:\\s*([^;]+);`, "g"),
-  ];
-
-  for (const pattern of patterns) {
-    const match = pattern.exec(cssContent);
-    if (match) {
-      let value = match[1].trim();
-
-      // If it's a reference to another variable, resolve it
-      if (value.includes("var(--nostromo-color-")) {
-        const refVar = value.match(/var\(--nostromo-color-([^)]+)\)/)?.[1];
-        if (refVar) {
-          const resolved = extractHSLValue(cssContent, refVar, visited);
-          if (resolved) {
-            return resolved;
-          }
-        }
-      }
-
-      // If it's a direct HSL value (like "262 84% 52%"), return it
-      if (/^\d+\s+\d+%\s+\d+%$/.test(value)) {
-        return value;
-      }
-
-      // If it's a color name like "neutral-900", try to find the actual HSL value
-      if (value.includes("-")) {
-        // Try to find the base color definition (e.g., --nostromo-color-neutral-900: 0 0% 9%;)
-        const baseColorMatch = cssContent.match(
-          new RegExp(`--nostromo-color-${value}:\\s*([^;]+);`),
-        );
-        if (baseColorMatch) {
-          const hslValue = baseColorMatch[1].trim();
-          if (/^\d+\s+\d+%\s+\d+%$/.test(hslValue)) {
-            return hslValue;
-          }
-        }
-      }
-    }
-  }
-
-  return null;
 }
 
 /**
@@ -99,23 +41,34 @@ function validateTheme(
   const lightCombinations: ThemeValidation["combinations"] = [];
 
   // Get semantic token values for light mode
-  const lightForeground = extractHSLValue(content, "foreground") || "0 0% 9%";
-  const lightBackground = extractHSLValue(content, "background") || "0 0% 98%";
-  const lightMutedForeground =
-    extractHSLValue(content, "muted-foreground") || "0 0% 32%";
-  const lightMuted = extractHSLValue(content, "muted") || "0 0% 96%";
-  const lightCardForeground =
-    extractHSLValue(content, "card-foreground") || "0 0% 9%";
-  const lightCard = extractHSLValue(content, "card") || "0 0% 98%";
-  const lightPopoverForeground =
-    extractHSLValue(content, "popover-foreground") || "0 0% 9%";
-  const lightPopover = extractHSLValue(content, "popover") || "0 0% 98%";
-  const lightPrimaryForeground =
-    extractHSLValue(content, "primary-foreground") || "0 0% 98%";
-  const lightPrimary = extractHSLValue(content, "primary") || "262 84% 52%";
-  const lightSecondaryForeground =
-    extractHSLValue(content, "secondary-foreground") || "0 0% 9%";
-  const lightSecondary = extractHSLValue(content, "secondary") || "0 0% 96%";
+  const lightForeground = resolveToken(content, content, "foreground");
+  const lightBackground = resolveToken(content, content, "background");
+  const lightMutedForeground = resolveToken(
+    content,
+    content,
+    "muted-foreground",
+  );
+  const lightMuted = resolveToken(content, content, "muted");
+  const lightCardForeground = resolveToken(content, content, "card-foreground");
+  const lightCard = resolveToken(content, content, "card");
+  const lightPopoverForeground = resolveToken(
+    content,
+    content,
+    "popover-foreground",
+  );
+  const lightPopover = resolveToken(content, content, "popover");
+  const lightPrimaryForeground = resolveToken(
+    content,
+    content,
+    "primary-foreground",
+  );
+  const lightPrimary = resolveToken(content, content, "primary");
+  const lightSecondaryForeground = resolveToken(
+    content,
+    content,
+    "secondary-foreground",
+  );
+  const lightSecondary = resolveToken(content, content, "secondary");
 
   // Validate key combinations
   lightCombinations.push({
@@ -172,31 +125,44 @@ function validateTheme(
 
   // Validate dark mode (if dark mode section exists)
   if (content.includes('[data-color-scheme="dark"]')) {
-    const darkSection =
-      content.split('[data-color-scheme="dark"]')[1]?.split("}")[0] || "";
+    // The whole declaration block, not up to the first '}': these files nest
+    // media queries, and cutting early left the neutral scale outside the slice
+    // so every var() reference silently fell back to a default.
+    const darkSection = extractBlock(content, '[data-color-scheme="dark"]');
     const darkCombinations: ThemeValidation["combinations"] = [];
 
-    const darkForeground =
-      extractHSLValue(darkSection, "foreground") || "0 0% 95%";
-    const darkBackground =
-      extractHSLValue(darkSection, "background") || "0 0% 9%";
-    const darkMutedForeground =
-      extractHSLValue(darkSection, "muted-foreground") || "0 0% 45%";
-    const darkMuted = extractHSLValue(darkSection, "muted") || "0 0% 85%";
-    const darkCardForeground =
-      extractHSLValue(darkSection, "card-foreground") || "0 0% 95%";
-    const darkCard = extractHSLValue(darkSection, "card") || "0 0% 85%";
-    const darkPopoverForeground =
-      extractHSLValue(darkSection, "popover-foreground") || "0 0% 95%";
-    const darkPopover = extractHSLValue(darkSection, "popover") || "0 0% 85%";
-    const darkPrimaryForeground =
-      extractHSLValue(darkSection, "primary-foreground") || "0 0% 9%";
-    const darkPrimary =
-      extractHSLValue(darkSection, "primary") || "262 84% 60%";
-    const darkSecondaryForeground =
-      extractHSLValue(darkSection, "secondary-foreground") || "0 0% 95%";
-    const darkSecondary =
-      extractHSLValue(darkSection, "secondary") || "0 0% 75%";
+    const darkForeground = resolveToken(darkSection, content, "foreground");
+    const darkBackground = resolveToken(darkSection, content, "background");
+    const darkMutedForeground = resolveToken(
+      darkSection,
+      content,
+      "muted-foreground",
+    );
+    const darkMuted = resolveToken(darkSection, content, "muted");
+    const darkCardForeground = resolveToken(
+      darkSection,
+      content,
+      "card-foreground",
+    );
+    const darkCard = resolveToken(darkSection, content, "card");
+    const darkPopoverForeground = resolveToken(
+      darkSection,
+      content,
+      "popover-foreground",
+    );
+    const darkPopover = resolveToken(darkSection, content, "popover");
+    const darkPrimaryForeground = resolveToken(
+      darkSection,
+      content,
+      "primary-foreground",
+    );
+    const darkPrimary = resolveToken(darkSection, content, "primary");
+    const darkSecondaryForeground = resolveToken(
+      darkSection,
+      content,
+      "secondary-foreground",
+    );
+    const darkSecondary = resolveToken(darkSection, content, "secondary");
 
     darkCombinations.push({
       name: "foreground/background",
