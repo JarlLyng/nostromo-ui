@@ -246,8 +246,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         setOpen(false);
       } else if (mode === "range") {
         const rangeValue = calendarValue as
-          | { from?: Date; to?: Date }
-          | undefined;
+          { from?: Date; to?: Date } | undefined;
         if (!rangeValue?.from || (rangeValue.from && rangeValue.to)) {
           // Start new range
           handleValueChange({ from: date });
@@ -545,8 +544,11 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   "h-10",
                   inputClassName,
                 )}
+                // No onFocus handler here. Radix returns focus to the trigger
+                // when the popover closes, so opening on focus meant selecting a
+                // date closed it and immediately reopened it - the flicker. It
+                // also popped the calendar open when tabbing past the field.
                 onClick={() => setOpen(true)}
-                onFocus={() => setOpen(true)}
                 aria-label={label || "Open calendar"}
                 aria-invalid={error}
               >
@@ -723,8 +725,11 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                                 1,
                               ),
                             );
-                            // Then select the date
-                            setTimeout(() => handleDateClick(day.date), 0);
+                            // Synchronously: React batches both updates into one
+                            // render. Deferring the selection by a tick showed the
+                            // new month first and selected a frame later, which
+                            // read as a flash.
+                            handleDateClick(day.date);
                           } else {
                             handleDateClick(day.date);
                           }

@@ -73,14 +73,17 @@ export interface ChartProps extends VariantProps<
 
 // Default color palette matching Nostromo theme
 const defaultColors = [
+  // Ordered for distinguishability. It used to open with brand-500 and
+  // brand-600 - two neighbouring shades of the same purple - so a two-series
+  // chart was two near-identical lines. Distinct hues first, brand variants last.
   "hsl(var(--nostromo-color-brand-500))",
-  "hsl(var(--nostromo-color-brand-600))",
+  "hsl(var(--nostromo-color-info-500))",
   "hsl(var(--nostromo-color-success-500))",
   "hsl(var(--nostromo-color-warning-500))",
   "hsl(var(--nostromo-color-error-500))",
-  "hsl(var(--nostromo-color-info-500))",
-  "hsl(var(--nostromo-color-brand-400))",
-  "hsl(var(--nostromo-color-brand-700))",
+  "hsl(var(--nostromo-color-brand-300))",
+  "hsl(var(--nostromo-color-info-700))",
+  "hsl(var(--nostromo-color-success-700))",
 ];
 
 // Custom tooltip component with Tailwind styling
@@ -256,7 +259,14 @@ const ChartComponent = React.forwardRef<HTMLDivElement, ChartProps>(
                 const colorIndex = index % colors.length;
                 const color = (colors[colorIndex] ??
                   defaultColors[colorIndex % defaultColors.length]) as string;
-                return <Bar key={key} dataKey={key} fill={color} />;
+                return (
+                  <Bar
+                    key={key}
+                    dataKey={key}
+                    fill={color}
+                    radius={[4, 4, 0, 0]}
+                  />
+                );
               })}
               {showLegend && <Legend content={<CustomLegend />} />}
             </BarChart>
