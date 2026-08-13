@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@adobe/css-tools": "^4.5.0",
-    "@babel/runtime": "^7.29.7",
+    "@babel/runtime": "^8.0.0",
     "@changesets/cli": "^2.31.1",
     "@eslint/js": "^9.39.5",
     "@jest/diff-sequences": "^30.4.0",
