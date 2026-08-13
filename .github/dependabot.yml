@@ -42,9 +42,6 @@ updates:
       # Ignore major updates for TypeScript (breaking changes)
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
-      # Ignore major updates for Tailwind (breaking changes)
-      - dependency-name: "@tailwindcss/vite"
-        update-types: ["version-update:semver-major"]
 
   # Docs package
   - package-ecosystem: "npm"
@@ -81,8 +78,6 @@ updates:
       - dependency-name: "@types/react"
       - dependency-name: "@types/react-dom"
       - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "@tailwindcss/vite"
         update-types: ["version-update:semver-major"]
       # Ignore major updates for Next.js and Nextra (require coordinated migration)
       - dependency-name: "next"
