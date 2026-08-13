@@ -20,11 +20,13 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
 ## Getting Started
 
 ### Prerequisites
+
 - **Node.js**: >= 20.0.0
 - **pnpm**: >= 9.0.0
 - **Git**: Latest version
 
 ### Setup
+
 ```bash
 # Fork and clone repository
 git clone https://github.com/JarlLyng/nostromo-ui.git
@@ -44,12 +46,14 @@ For detailed setup instructions, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md
 ### Branching Strategy
 
 We use a **hybrid workflow**:
+
 - **Feature branches** for new features and significant changes
 - **Direct to main** for small fixes, documentation, and non-breaking changes
 
 See [WORKFLOW.md](docs/guides/WORKFLOW.md) for detailed guidelines.
 
 ### 1. Create Feature Branch (for new features)
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
@@ -57,12 +61,14 @@ git checkout -b feature/your-feature-name
 **Or push directly to main** (for small fixes and documentation)
 
 ### 2. Make Changes
+
 - Implement your feature or fix
 - Follow our [code standards](#code-standards)
 - Write tests for your code
 - Update documentation
 
 ### 3. Test Your Changes
+
 ```bash
 # Run all tests
 pnpm test
@@ -78,11 +84,13 @@ pnpm build
 ```
 
 ### 4. Create Changeset
+
 ```bash
 pnpm changeset
 ```
 
 ### 5. Submit Pull Request
+
 - Create a pull request against `main` branch
 - Describe your changes clearly
 - Link to relevant issues
@@ -101,39 +109,44 @@ See [WORKFLOW.md](docs/guides/WORKFLOW.md#issue-management) for detailed issue m
 ## Code Standards
 
 ### TypeScript
+
 - **Strict mode**: Always use strict TypeScript
 - **No any**: Avoid `any` types
 - **Proper typing**: Define types for all props and functions
 
 ### React Components
+
 ```tsx
 // ✅ Good
 interface ButtonProps {
-  variant?: 'default' | 'secondary' | 'ghost' | 'destructive';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "default" | "secondary" | "ghost" | "destructive";
+  size?: "sm" | "md" | "lg";
   children: React.ReactNode;
 }
 
-export const Button = ({ variant = 'default', size = 'md', children, ...props }: ButtonProps) => {
+export const Button = ({
+  variant = "default",
+  size = "md",
+  children,
+  ...props
+}: ButtonProps) => {
   return (
-    <button 
-      className={cn(buttonVariants({ variant, size }))}
-      {...props}
-    >
+    <button className={cn(buttonVariants({ variant, size }))} {...props}>
       {children}
     </button>
   );
 };
 ```
 
-
 ### Accessibility
+
 - **WCAG 2.1 AA**: All components must be accessible
 - **ARIA attributes**: Use correct ARIA attributes
 - **Keyboard navigation**: Support keyboard navigation
 - **Screen readers**: Test with screen readers
 
 ### Performance
+
 - **Tree shaking**: Components must be tree-shakeable
 - **Bundle size**: Minimal bundle impact
 - **SSR compatible**: No client-side dependencies
@@ -141,35 +154,37 @@ export const Button = ({ variant = 'default', size = 'md', children, ...props }:
 ## Testing
 
 ### Unit Tests
+
 ```tsx
 // src/components/Button.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "./Button";
 
-describe('Button', () => {
-  it('renders with correct text', () => {
+describe("Button", () => {
+  it("renders with correct text", () => {
     render(<Button>Click me</Button>);
-    expect(screen.getByRole('button')).toHaveTextContent('Click me');
+    expect(screen.getByRole("button")).toHaveTextContent("Click me");
   });
 
-  it('handles click events', () => {
+  it("handles click events", () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
-    fireEvent.click(screen.getByRole('button'));
+
+    fireEvent.click(screen.getByRole("button"));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 });
 ```
 
 ### Accessibility Tests
+
 ```tsx
 // src/components/Button.a11y.test.tsx
-import { render } from '@testing-library/react';
-import { Button } from './Button';
+import { render } from "@testing-library/react";
+import { Button } from "./Button";
 
-describe('Button Accessibility', () => {
-  it('has no accessibility violations', async () => {
+describe("Button Accessibility", () => {
+  it("has no accessibility violations", async () => {
     const { container } = render(<Button>Click me</Button>);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
@@ -178,6 +193,7 @@ describe('Button Accessibility', () => {
 ```
 
 ### Test Requirements
+
 - **Coverage**: Minimum 80% code coverage
 - **Accessibility**: All components must have a11y tests
 - **Edge cases**: Test edge cases and error states
@@ -187,42 +203,52 @@ For detailed testing examples, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md#t
 ## Documentation
 
 ### Component Documentation
+
 - **JSDoc**: Document all public APIs
 - **Examples**: Include practical examples
 - **Props table**: Auto-generated from TypeScript
 
-### Storybook Stories
-```tsx
-// src/components/Button.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+### Documentation Pages
 
-const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
-  component: Button,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: { type: 'select' },
-      options: ['default', 'secondary', 'ghost', 'destructive'],
-    },
-  },
-};
+Every component has a page under `docs/content/components/`, and the sidebar
+entry that puts it in order lives in `docs/content/components/_meta.ts`. Adding a
+component means adding both.
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+Examples are written with `LiveCode`, which compiles the snippet in the browser
+and renders the result directly under it, so the code on the page is the code
+that ran:
 
-export const Default: Story = {
-  args: {
-    children: 'Button',
-  },
-};
+```mdx
+import LiveCode from "../../components/LiveCode";
+
+# Button
+
+## Live Examples
+
+<LiveCode code={`
+import { Button } from '@jarllyng/nostromo'
+
+export default function ButtonVariants() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <Button>Default</Button>
+      <Button variant="secondary">Secondary</Button>
+    </div>
+  )
+}
+`} />
 ```
 
+The snippet must declare a component and export it as `default` - `LiveCode`
+falls back to the last top-level PascalCase declaration, but relying on that is
+how several examples ended up throwing at runtime.
+
+These pages are not type-checked. Nothing catches a prop you imagined, so check
+your example against the component's actual props before you push, and open the
+page locally with `pnpm docs:dev`.
+
 ### README Updates
+
 - Update README.md if you add new features
 - Update installation instructions
 - Update examples
@@ -230,18 +256,21 @@ export const Default: Story = {
 ## Pull Request Process
 
 ### PR Requirements
+
 - [ ] All tests pass
 - [ ] No linting errors
 - [ ] TypeScript compilation succeeds
 - [ ] Accessibility tests pass
 - [ ] Documentation updated
 - [ ] Changeset created
-- [ ] Storybook stories added
+- [ ] Docs page and `_meta.ts` entry added (for new components)
 
 ### PR Template
+
 Use the [PR template](.github/pull_request_template.md) when creating your pull request.
 
 ### Review Process
+
 1. **Automated checks**: CI/CD pipeline runs automatically
 2. **Code review**: At least one approver required
 3. **Testing**: Manual testing of changes
@@ -252,12 +281,15 @@ Use the [PR template](.github/pull_request_template.md) when creating your pull 
 ## Release Process
 
 ### Versioning
+
 We follow [Semantic Versioning](https://semver.org/):
+
 - **MAJOR**: Breaking changes
 - **MINOR**: New features (backward compatible)
 - **PATCH**: Bug fixes (backward compatible)
 
 ### Changesets
+
 ```bash
 # Create changeset
 pnpm changeset
@@ -266,6 +298,7 @@ pnpm changeset
 ```
 
 ### Release Workflow
+
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
@@ -274,12 +307,15 @@ pnpm changeset
 ## Getting Help
 
 ### Resources
+
 - **GitHub Issues**: Bug reports and feature requests
 - **GitHub Discussions**: General questions
 - **Discord**: Real-time community support (coming soon)
 
 ### Questions?
+
 If you have questions, feel free to:
+
 - Open a GitHub issue
 - Participate in GitHub discussions
 - Contact maintainers directly
@@ -287,6 +323,7 @@ If you have questions, feel free to:
 ## Recognition
 
 Thank you to all contributors! We acknowledge contributions in:
+
 - Release notes
 - Contributors list
 - Special mentions for significant contributions

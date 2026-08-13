@@ -38,17 +38,20 @@ Issues move through the following statuses in the IAMJARL project:
 ### Status Guidelines
 
 **When to move to "In Progress":**
+
 - You start actively working on the issue
 - Code changes are being made
 - Implementation has begun
 
 **When to move to "On Hold":**
+
 - Blocked by external dependencies
 - Needs discussion or decision
 - Waiting for feedback or approval
 - Temporarily deprioritized
 
 **When to move to "Done":**
+
 - All tasks in the issue are completed
 - Code is merged to main branch
 - Documentation is updated (if applicable)
@@ -60,22 +63,27 @@ When creating a new issue:
 
 ```markdown
 ## Overview
+
 Brief description of the issue or feature
 
 ## Current Status
+
 - What exists now
 - What's missing
 
 ## Tasks
+
 - [ ] Task 1
 - [ ] Task 2
 - [ ] Task 3
 
 ## Priority
+
 High/Medium/Low - Brief explanation
 ```
 
 Then:
+
 1. Assign to `@JarlLyng`
 2. Add to **IAMJARL** project
 3. Set status to **Backlog**
@@ -86,16 +94,19 @@ Then:
 ## 🌿 Branching Strategy
 
 ### Main Branch
+
 - **Purpose**: Always stable and deployable
 - **Protection**: CI/CD runs on every push
 - **Direct pushes allowed**: Yes, for small changes (see guidelines below)
 
 ### Feature Branches
+
 - **Naming**: `feature/component-name` or `feature/description`
 - **Purpose**: New features, major refactors, breaking changes
 - **Workflow**: Create branch → Develop → Test → PR → Merge
 
 ### Release Branches (Optional)
+
 - **Naming**: `release/1.1.0`
 - **Purpose**: Prepare for major releases
 - **When to use**: Major version bumps or complex releases
@@ -107,6 +118,7 @@ Then:
 ### For Small Changes (Direct to Main) ✅
 
 **What counts as "small":**
+
 - Bug fixes (non-breaking)
 - Documentation updates
 - Typo fixes
@@ -115,6 +127,7 @@ Then:
 - Dependency updates (patch/minor)
 
 **Workflow:**
+
 ```bash
 # Make changes directly on main
 git checkout main
@@ -140,6 +153,7 @@ git push origin main
 ### For New Features (Feature Branch) 🌟
 
 **What counts as "new feature":**
+
 - New components
 - New props or API changes
 - Major refactoring
@@ -148,6 +162,7 @@ git push origin main
 - New themes
 
 **Workflow:**
+
 ```bash
 # Create feature branch
 git checkout -b feature/data-table
@@ -180,12 +195,14 @@ git push origin feature/data-table
 ### For Bug Fixes (Feature Branch or Direct) 🐛
 
 **Minor bugs (direct to main):**
+
 - Small typos
 - CSS tweaks
 - Minor accessibility fixes
 - Test fixes
 
 **Major bugs (feature branch):**
+
 - Security issues
 - Critical functionality bugs
 - Breaking bugs
@@ -198,6 +215,7 @@ git push origin feature/data-table
 ### When to Create Changesets
 
 **Always create changeset for:**
+
 - ✅ New features
 - ✅ Bug fixes that affect users
 - ✅ Breaking changes
@@ -205,6 +223,7 @@ git push origin feature/data-table
 - ✅ New components
 
 **No changeset needed for:**
+
 - ❌ Documentation-only changes
 - ❌ Test-only changes
 - ❌ Build/config changes (unless they affect users)
@@ -217,8 +236,9 @@ pnpm changeset
 ```
 
 Follow the prompts:
+
 1. **Select packages**: Choose which packages are affected
-2. **Version bump**: 
+2. **Version bump**:
    - `patch` (1.0.0 → 1.0.1) - Bug fixes
    - `minor` (1.0.0 → 1.1.0) - New features
    - `major` (1.0.0 → 2.0.0) - Breaking changes
@@ -251,9 +271,11 @@ When you're ready to release:
 
 1. **Merge all PRs** with changesets to main
 2. **Create version PR**:
+
    ```bash
    pnpm version-packages
    ```
+
    This will:
    - Update package.json versions
    - Update CHANGELOG.md
@@ -318,7 +340,7 @@ Is this a new feature or major change?
 3. **Accessibility tests**: `pnpm test:a11y` (if component changes)
 4. **Documentation updated**: Update relevant docs
 5. **Changeset created**: If needed
-6. **Storybook updated**: If component changes
+6. **Docs page updated**: If component changes
 
 ### Commit Messages
 
@@ -339,15 +361,18 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 Based on ROADMAP.md, current focus areas:
 
 ### Distribution & Marketing
+
 - npm Publishing
 - Release Announcement
 
 ### Advanced Components
+
 - DataTable Component
 - Calendar Component
 - Charts Component
 
 ### Performance Optimization
+
 - Bundle Analysis
 - Runtime Optimization
 
@@ -453,4 +478,3 @@ git push origin main
 
 **Last Updated**: January 2025  
 **Next Review**: As needed
-

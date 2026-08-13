@@ -14,6 +14,7 @@
 ## Related Issues
 
 <!-- Link to related issues -->
+
 Closes #<!-- issue number -->
 
 ## Testing
@@ -27,9 +28,9 @@ Closes #<!-- issue number -->
 
 - [ ] Code follows project standards (TypeScript strict mode, no `any` types)
 - [ ] Self-review completed
-- [ ] Documentation updated (JSDoc, Storybook, README if needed)
+- [ ] Documentation updated (JSDoc, docs page, README if needed)
 - [ ] Changeset created (if applicable)
-- [ ] Storybook stories added/updated (for component changes)
+- [ ] Docs page and `_meta.ts` entry added/updated (for component changes)
 - [ ] No linting errors
 - [ ] No TypeScript errors
 - [ ] Accessibility requirements met (WCAG 2.1 AA)
@@ -47,4 +48,3 @@ Closes #<!-- issue number -->
 ---
 
 **For reviewers**: Please see [Code Review Guide](docs/guides/CODE_REVIEW.md) for detailed review instructions.
-

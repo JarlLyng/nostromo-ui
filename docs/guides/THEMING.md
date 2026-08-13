@@ -614,6 +614,6 @@ const Button = ({ className, ...props }) => (
 
 ## Theme Playground
 
-You can see live examples of all themes in our [documentation site](https://jarllyng.github.io/nostromo-ui/theming) and [Storybook](https://jarllyng.github.io/nostromo-ui/storybook-static/).
+The four themes and their token values are documented on the [theming page](https://jarllyng.github.io/nostromo-ui/theming). The documentation site itself renders in Nostromo - you select a theme in your own app by importing its stylesheet.
 
 This theming system gives you maximum flexibility to create consistent, performant, and beautiful user interfaces.

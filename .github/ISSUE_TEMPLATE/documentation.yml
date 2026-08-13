@@ -21,7 +21,7 @@ body:
         - Migration Guide
         - Best Practices
         - Troubleshooting
-        - Storybook
+        - Component pages
         - README
         - Other
       multiple: false
@@ -87,7 +87,7 @@ body:
         ```tsx
         // Example code that should be documented
         import { Button } from '@nostromo/ui-core';
-        
+
         function MyComponent() {
           return <Button variant="primary">Click me</Button>;
         }
