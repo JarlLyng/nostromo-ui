@@ -1,5 +1,110 @@
 # @jarllyng/nostromo
 
+## 3.2.0
+
+### Minor Changes
+
+- bcae0a5: Ship `"use client"` directives, so the package can be imported from a React
+  Server Component.
+
+  Until now it could not be used in the Next.js App Router at all. Server
+  Components are the default there, and importing any component that uses hooks
+  failed the consumer's build outright:
+
+  ```
+  You're importing a module that depends on `useState` into a React Server
+  Component module. This API is only available in Client Components.
+  ```
+
+  The directive is added by a post-build step rather than written into the source
+  files, because neither of the obvious placements survives: esbuild strips
+  top-level directives from source, and tsup's `banner` option is removed by the
+  minifier - both confirmed by building and inspecting `dist`. It is applied to
+  every emitted module including the shared chunks, since the per-component entry
+  files are thin re-exports and marking only those would leave the actual component
+  code unmarked.
+
+  A consumer-side test now asserts the contract against the built package, so the
+  directive cannot go missing without a test failing.
+
+  One consequence worth knowing: this marks the whole bundle as a client boundary,
+  so `cn` from `./themes/utils` is client-bound too and cannot be called from a
+  server component. A dedicated server-safe entry point for the utilities would be
+  a separate change.
+
+### Patch Changes
+
+- be5be89: Fix dark mode inverting twice, so `base.css` no longer produces light backgrounds
+  with light text.
+
+  The theme files already flip the neutral scale for dark mode - `neutral-50` is 98%
+  in light and 9% in dark, `neutral-900` is 9% in light and 95% in dark. So
+  `background: neutral-50; color: neutral-900` is correct in both modes with no
+  extra rules. `base.css` nevertheless carried two blocks,
+  `@media (prefers-color-scheme: dark)` and `[data-color-scheme="dark"]`, that
+  swapped which token was used - inverting an already-inverted scale and landing
+  back on light. In dark mode `body` came out with a 95% background and 9% text.
+
+  Both blocks are removed. The `@media` one was doubly wrong: it keyed off the OS
+  preference while the tokens key off `data-color-scheme`, so toggling the theme
+  without changing the OS setting produced a mismatch of its own.
+
+  Also derives the internal `onInput` handler type in `Textarea` from the prop
+  instead of naming `React.FormEvent` outright. `@types/react` 18 declares that
+  handler as `FormEvent` and 19 as `InputEvent`, so the hardcoded name failed the
+  declaration build against React 19's types.
+
+- b32d914: Fix three of the four themes producing no colour at all, and bring every
+  theme/scheme combination up to WCAG AA.
+
+  `mother`, `lv-426` and `sulaco` declared their semantic tokens as
+  `--nostromo-color-card: hsl(var(--nostromo-color-neutral-50))`, but `tokens.css`
+  wraps them again - `hsl(var(--nostromo-color-card))`. The result is
+  `hsl(hsl(0 0% 95%))`, which is invalid, so the declaration was dropped and the
+  colour computed to `rgba(0, 0, 0, 0)`. 138 declarations were affected across the
+  three themes: background, foreground, card, popover, primary, secondary, border,
+  input, destructive and the status colours. Only `nostromo` used bare channels,
+  which is why the default theme worked and the other three had gone unnoticed. The
+  tokens now hold channels, as the convention requires, and alpha modifiers such as
+  `bg-card/50` work with them again.
+
+  Fixing that revealed contrast problems the invalid CSS had been masking. All are
+  resolved, and no brand hue changed:
+
+  - `nostromo` dark mode had light surfaces: `card` and `popover` at 85% and
+    `secondary` at 75% against a 9% background, so a card was a light grey panel
+    carrying 95% text at 1.26:1. Now 15%, 15% and 20%.
+  - `nostromo` `primary-foreground` was dark on a mid purple (3.41:1), now light.
+  - `destructive` was too light for its own light text in every theme, and moves one
+    step darker - keeping white on red rather than switching to dark text.
+  - `mother`, `lv-426` and `sulaco` used white text on bright cyan, orange and blue
+    primaries, as low as 2.12:1. Those carry dark text now; `sulaco` also moves to
+    `brand-600`, because `brand-500` failed against both light and dark text.
+  - `mother` dark mode had a 38% muted foreground on a 15% surface (1.39:1),
+    now 65%.
+  - The status foregrounds referenced the neutral scale, which inverts between
+    schemes - while `success-500` and friends do not. Light text therefore landed on
+    light yellow in dark mode at 1.91:1. They are fixed values now, dark on
+    green/yellow/blue and light on red.
+  - `--color-error` maps to `error-600` rather than `error-500`, because a saturated
+    red at 50% lightness clears 4.5:1 against neither black nor white. `error-500`
+    remains available for borders and tints.
+
+  Also removes an `@media (prefers-color-scheme: dark)` block in `nostromo` that had
+  the same specificity as the base rule but came later in the file, so on a dark-OS
+  machine it overrode an explicit `data-color-scheme="light"` and the light scheme
+  could not be selected at all. OS preference still applies as a default, now
+  guarded by `:not([data-color-scheme])`.
+
+  The contrast test used to check one theme - with a comment calling `mother` the
+  default, which it is not - and resolved tokens with an extractor that fell back to
+  hardcoded values, so an unreadable token was silently compared against the
+  fallback instead. It now covers all four themes in both schemes across the twelve
+  pairs components actually render together: 96 assertions, up from 6. Resolution is
+  shared with `pnpm validate:theme-contrasts` instead of duplicated, since the
+  duplication is why both copies carried the same bug, and it throws rather than
+  guessing.
+
 ## 3.1.1
 
 ### Patch Changes
