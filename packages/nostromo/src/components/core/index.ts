@@ -11,6 +11,9 @@ export type { CheckboxProps } from "./checkbox";
 export {
   RadioGroup,
   RadioItem,
+  // RadioGroupItem is the name shadcn uses and the name every example here
+  // already used - it just was not exported, so the docs threw a ReferenceError.
+  RadioItem as RadioGroupItem,
   radioGroupVariants,
   radioItemVariants,
 } from "./radio-group";
@@ -80,6 +83,7 @@ export type { AvatarProps } from "./avatar";
 
 export {
   Dialog,
+  DialogTrigger,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -87,6 +91,7 @@ export {
 } from "./dialog";
 export type {
   DialogProps,
+  DialogTriggerProps,
   DialogContentProps,
   DialogHeaderProps,
   DialogTitleProps,
@@ -190,6 +195,7 @@ export type { LazyChartProps } from "./charts-lazy";
 export {
   Toast,
   ToastProvider,
+  useToast,
   useToastNotification,
   toastVariants,
   toastIconVariants,
