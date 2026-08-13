@@ -111,7 +111,7 @@
   --color-success-foreground: hsl(var(--nostromo-color-success-foreground));
   --color-warning: hsl(var(--nostromo-color-warning-500));
   --color-warning-foreground: hsl(var(--nostromo-color-warning-foreground));
-  --color-error: hsl(var(--nostromo-color-error-500));
+  --color-error: hsl(var(--nostromo-color-error-600));
   --color-error-foreground: hsl(var(--nostromo-color-error-foreground));
   --color-info: hsl(var(--nostromo-color-info-500));
   --color-info-foreground: hsl(var(--nostromo-color-info-foreground));
