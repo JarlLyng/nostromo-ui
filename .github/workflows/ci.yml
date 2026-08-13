@@ -170,7 +170,10 @@ jobs:
           pnpm size 2>&1 | tee size-output.txt
           SIZE_EXIT=${PIPESTATUS[0]}
           if [ $SIZE_EXIT -ne 0 ]; then
-            echo "❌ Bundle size check failed - bundle exceeds limits"
+            # Not necessarily over budget: size-limit exits non-zero when it
+            # crashes too, and reporting that as "exceeds limits" sent me looking
+            # at bundle sizes when the tool had failed to start.
+            echo "❌ Bundle size check failed - see output above (over budget, or size-limit itself errored)"
             exit 1
           fi
           echo "✅ Bundle sizes within limits"
