@@ -1,5 +1,107 @@
 # @jarllyng/nostromo
 
+## 3.3.0
+
+### Minor Changes
+
+- 1f5dd42: Fix four components that threw as soon as you followed their own documentation.
+
+  - **`RadioGroupItem` was never exported.** The component exists as `RadioItem`,
+    but every example - and shadcn's convention - uses `RadioGroupItem`, so the
+    RadioGroup page threw a ReferenceError. Exported under both names.
+  - **`useToast` was never re-exported.** It existed in `toast.tsx`; `index.ts`
+    exported `useToastNotification` and not the hook the docs called for.
+  - **`DialogTrigger` did not exist at all.** `Dialog` was controlled-only and
+    returned `null` while closed, so a trigger nested inside it was unmounted
+    exactly when you needed to click it. `Dialog` now holds the open state on
+    context and always renders its children; the overlay moved to `DialogContent`,
+    which is the part that knows it is being shown. Works controlled (`open` +
+    `onOpenChange`) as before, or uncontrolled via `defaultOpen` and a trigger.
+  - **`Breadcrumb` required an `items` array.** The sub-components
+    (`BreadcrumbList`, `BreadcrumbItem`, `BreadcrumbLink`, …) were exported from the
+    start but unused by `Breadcrumb` itself, so the composable form every example
+    showed threw on `items.map`. `items` is optional now and children render when it
+    is absent; the data-driven form is unchanged.
+
+  `DialogContent` also gained `role="dialog"`, `aria-modal` and an `aria-labelledby`
+  wired to `DialogTitle`. Adding the role surfaced that the dialog had no accessible
+  name - axe's `aria-dialog-name` rule caught it immediately, which is why the role
+  is worth having.
+
+### Patch Changes
+
+- a9626fb: Stop `Calendar` flickering when a date is picked, and make multi-series charts
+  distinguishable.
+
+  `Calendar`'s trigger had both `onClick` and `onFocus` opening the popover. Radix
+  returns focus to the trigger when the popover closes, so selecting a date closed it
+  and the focus handler reopened it immediately - the flicker. Opening on focus also
+  popped the calendar open when tabbing past the field, so it is gone; the click
+  handler covers mouse and keyboard alike.
+
+  Picking a day outside the current month also deferred the selection with
+  `setTimeout(..., 0)`, which rendered the new month in one frame and the selection in
+  the next. Both updates are applied together now.
+
+  `Chart`'s default palette opened with `brand-500` followed by `brand-600` - two
+  neighbouring shades of the same purple - so a two-series chart drew two nearly
+  identical lines. Reordered so distinct hues come first and brand variants last.
+  Bars also get rounded tops.
+
+- 1f5dd42: Fix components that ignored the theme and rendered raw Tailwind palette colours.
+
+  `Table`, `Icon` and `Toast` carried hardcoded `gray-*` and `blue-*` classes, so
+  they did not follow the active theme, did not respond to the dark-mode switch, and
+  looked off-brand next to the components that did. Measured in the browser: table
+  rows rendered `border-gray-200 hover:bg-gray-50` rather than any token.
+
+  - **`Icon`'s `color` prop was wrong at the API level.** `color="primary"` produced
+    Tailwind blue instead of the brand colour, `success` produced Tailwind green
+    rather than the theme's, and so on. All seven now map to semantic tokens.
+  - **`Table`'s `striped` variant did nothing.** It was doubly broken: `TableRow`
+    never accepted a variant, and the `even:bg-muted/50` modifier sat on the _cell_
+    variant - where `even:` selects the even cell within a row, so it would have
+    striped columns rather than rows. There is a row-level variant now, and rows are
+    themed.
+  - `Table`'s sort indicators, selection checkbox, loading spinner, empty state and
+    pagination buttons all used fixed greys and blues; they use tokens now.
+  - `Toast`'s focus ring and close-button hover were fixed blue and grey.
+
+  Left alone deliberately: `Progress`'s `energy`, `health` and `alien` variants are
+  two-colour decorative gradients that no single token can express, and
+  `Testimonials`' gold rating stars are a convention rather than a theme colour.
+
+- 0f95811: Fix a permanently visible tooltip, an invisible vertical separator, and a skeleton
+  you could not see in light mode.
+
+  - **`Tooltip` was always showing.** `TooltipContent` never read the open state -
+    `data-open` was written on the wrapper and nothing acted on it, no CSS, no
+    conditional render. So every tooltip rendered on page load, sitting on top of its
+    own trigger. It now binds to the context's open state through opacity, which is
+    what the `transition-opacity` in the variants was always for, and sets
+    `data-state` plus `aria-hidden`. Reading the context is optional, so
+    `TooltipContent` still works rendered on its own.
+  - **`Separator orientation="vertical"` rendered nothing.** It was `h-full w-[1px]`,
+    and `height: 100%` against an auto-height flex row resolves to nothing - with the
+    usual `items-center` the item does not stretch either, so it came out 1px wide
+    and 0px tall. It stretches along the cross axis now.
+  - **`Skeleton` was invisible in light mode.** `bg-muted` is 96% lightness against a
+    98% background: two points apart. It uses `neutral-200`, which is 90% in light and
+    25% in dark, so it reads against both.
+  - **`Checkbox`** had no surface of its own, so the box inherited whatever was behind
+    it and the border disappeared on muted backgrounds. It has an explicit
+    `bg-background` and uses the form-control border token.
+
+- c2a44a3: Add `code`, `terminal`, `palette` and `accessibility` to the icon map, plus `home`
+  as an alias for `house`.
+
+  `Icon` resolves its `name` through a lookup and only `console.warn`s on a miss, so
+  an unknown name renders nothing and the page simply looks empty. The Features
+  example asked for code, accessibility and palette - none of which existed - and the
+  Icon documentation page itself shipped `<Icon name="home" />` against a map that
+  only had `house`. `home` is the name people reach for first, so it is an alias
+  rather than a correction.
+
 ## 3.2.0
 
 ### Minor Changes
