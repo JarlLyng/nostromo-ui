@@ -437,6 +437,11 @@ export const TooltipContent = React.forwardRef<
     },
     ref,
   ) => {
+    // Read the context directly rather than through useTooltipContext: that
+    // throws without a provider, and TooltipContent was usable standalone before
+    // this. Absent a Tooltip parent there is nothing to open it, so treat it as
+    // shown - which is also what it did previously.
+    const open = React.useContext(TooltipContext)?.open ?? true;
     const contentRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -553,7 +558,9 @@ export const TooltipContent = React.forwardRef<
         window.removeEventListener("resize", handleResize);
         window.removeEventListener("scroll", handleResize);
       };
-    }, [updatePosition, updatePositionDeps]);
+      //  is a dependency: the box is measured to place it, and measuring
+      // it while closed gave a stale position on the first show.
+    }, [updatePosition, updatePositionDeps, open]);
 
     return (
       <div
@@ -570,7 +577,18 @@ export const TooltipContent = React.forwardRef<
         }}
         role="tooltip"
         data-tooltip-instance="nostromo"
-        className={cn(tooltipVariants({ variant, size, placement }), className)}
+        data-state={open ? "open" : "closed"}
+        aria-hidden={open ? undefined : true}
+        className={cn(
+          tooltipVariants({ variant, size, placement }),
+          // The content never read the open state. `data-open` was written on the
+          // wrapper and nothing - no CSS, no conditional render - ever acted on
+          // it, so the tooltip was permanently visible, sitting on top of its own
+          // trigger. Bound to opacity rather than unmounted so the
+          // `transition-opacity` the variants already declare still runs.
+          open ? "opacity-100" : "pointer-events-none opacity-0",
+          className,
+        )}
         style={{
           position: "fixed",
           top: position.top,

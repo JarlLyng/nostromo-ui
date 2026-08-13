@@ -4,10 +4,10 @@ import { cn } from "../../lib/utils";
 import { memo } from "../../lib/memo";
 
 // Skeleton variants
-const skeletonVariants = cva("animate-pulse rounded-md bg-muted", {
+const skeletonVariants = cva("animate-pulse rounded-md bg-neutral-200", {
   variants: {
     variant: {
-      default: "bg-muted",
+      default: "bg-neutral-200",
       light: "bg-muted/50",
       dark: "bg-muted",
       primary: "bg-primary/10",
@@ -262,7 +262,7 @@ export const SkeletonButton = React.forwardRef<
     };
 
     const variantClasses = {
-      default: "bg-muted",
+      default: "bg-neutral-200",
       primary: "bg-primary/10",
       secondary: "bg-secondary",
       outline: "bg-muted/50 border border-border",

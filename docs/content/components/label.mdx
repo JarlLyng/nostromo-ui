@@ -6,23 +6,32 @@ The Label component provides you with form labels and descriptions.
 
 ## Live Examples
 
-<LiveCode code={`import { Label } from '@jarllyng/nostromo'
+<LiveCode code={`
+import { Label, Input, HelperText } from '@jarllyng/nostromo'
 
 export default function LabelExample() {
   return (
-    <div className="space-y-4">
-      <div>
+    <div className="w-full max-w-sm space-y-6">
+      <div className="grid gap-2">
         <Label htmlFor="email">Email</Label>
-        <input id="email" type="email" className="mt-1" />
+        <Input id="email" type="email" placeholder="you@example.com" />
       </div>
-      
-      <div>
+
+      <div className="grid gap-2">
         <Label htmlFor="password">Password</Label>
-        <input id="password" type="password" className="mt-1" />
+        <Input id="password" type="password" placeholder="••••••••" />
+        <HelperText>At least 12 characters.</HelperText>
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="muted" variant="muted">Optional field</Label>
+        <Input id="muted" placeholder="Nickname" />
       </div>
     </div>
-  )
-}`} />
+
+)
+}
+`} />
 
 ## Import
 
