@@ -4,35 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Testimonials component provides you with customer testimonials and reviews.
 
-## Import
-
-```tsx
-import { Testimonials } from "@jarllyng/nostromo";
-// or
-import { Testimonials } from "@jarllyng/nostromo/testimonials";
-```
-
-## Usage
-
-```tsx
-import { Testimonials } from "@jarllyng/nostromo";
-
-export default function Example() {
-  return (
-    <Testimonials
-      title="What Our Customers Say"
-      testimonials={[
-        {
-          content: "Great product!",
-          author: "John Doe",
-          role: "Developer",
-        },
-      ]}
-    />
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Testimonials } from '@jarllyng/nostromo'
@@ -43,14 +14,16 @@ export default function TestimonialsExample() {
       title="What Our Customers Say"
       testimonials={[
         {
+          id: 't2',
           content: "Nostromo UI has transformed our development workflow. The components are beautiful and easy to use.",
-          author: "Sarah Johnson",
+          name: "Sarah Johnson",
           role: "Frontend Developer",
           company: "TechCorp"
         },
         {
+          id: 't3',
           content: "The accessibility features are outstanding. Our users love the improved experience.",
-          author: "Mike Chen",
+          name: "Mike Chen",
           role: "Product Manager",
           company: "StartupXYZ"
         }
@@ -70,15 +43,17 @@ export default function TestimonialsCardsExample() {
       columns={2}
       testimonials={[
         {
+          id: 't4',
           content: "The best UI library we've used. It saved us weeks of development time.",
-          author: "Alex Thompson",
+          name: "Alex Thompson",
           role: "CTO",
           company: "TechStart",
           rating: 5
         },
         {
+          id: 't5',
           content: "Outstanding documentation and support. Highly recommended!",
-          author: "Maria Garcia",
+          name: "Maria Garcia",
           role: "Lead Developer",
           company: "DesignCo",
           rating: 5
@@ -99,8 +74,9 @@ export default function TestimonialsMinimalExample() {
       columns={1}
       testimonials={[
         {
+          id: 't6',
           content: "Nostromo UI has transformed how we build interfaces. The components are beautiful, accessible, and easy to customize.",
-          author: "David Kim",
+          name: "David Kim",
           role: "Product Designer",
           company: "Creative Labs"
         }
@@ -108,6 +84,36 @@ export default function TestimonialsMinimalExample() {
     />
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { Testimonials } from "@jarllyng/nostromo";
+// or
+import { Testimonials } from "@jarllyng/nostromo/testimonials";
+```
+
+## Usage
+
+```tsx
+import { Testimonials } from "@jarllyng/nostromo";
+
+export default function Example() {
+  return (
+    <Testimonials
+      title="What Our Customers Say"
+      testimonials={[
+        {
+          id: 't1',
+          content: "Great product!",
+          name: "John Doe",
+          role: "Developer",
+        },
+      ]}
+    />
+  );
+}
+```
 
 ## Code Examples
 

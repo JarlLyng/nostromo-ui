@@ -4,6 +4,66 @@ import LiveCode from "../../components/LiveCode";
 
 The Logo Wall component provides you with client/partner logo displays.
 
+## Live Examples
+
+<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
+
+export default function LogoWallExample() {
+  return (
+    <LogoWall
+      title="Trusted by leading companies"
+      logos={[
+        { id: 'logo1', name: 'Company 1', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
+        { id: 'logo2', name: 'Company 2', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
+        { id: 'logo3', name: 'Company 3', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
+        { id: 'logo4', name: 'Company 4', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
+        { id: 'logo5', name: 'Company 5', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" },
+        { id: 'logo6', name: 'Company 6', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%206%3C/text%3E%3C/svg%3E", alt: "Company 6" }
+      ]}
+      variant="grid"
+      columns={3}
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
+
+export default function LogoWallCarouselExample() {
+  return (
+    <LogoWall
+      title="Trusted by industry leaders"
+      variant="carousel"
+      logos={[
+        { id: 'logo7', name: 'Company 7', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
+        { id: 'logo8', name: 'Company 8', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
+        { id: 'logo9', name: 'Company 9', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
+        { id: 'logo10', name: 'Company 10', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
+        { id: 'logo11', name: 'Company 11', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" }
+      ]}
+      itemHover="opacity"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
+
+export default function LogoWallMinimalExample() {
+  return (
+    <LogoWall
+      variant="default"
+      logos={[
+        { id: 'logo12', name: 'Company 12', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%201%3C/text%3E%3C/svg%3E", alt: "Logo 1" },
+        { id: 'logo13', name: 'Company 13', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%202%3C/text%3E%3C/svg%3E", alt: "Logo 2" },
+        { id: 'logo14', name: 'Company 14', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%203%3C/text%3E%3C/svg%3E", alt: "Logo 3" },
+        { id: 'logo15', name: 'Company 15', logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%204%3C/text%3E%3C/svg%3E", alt: "Logo 4" }
+      ]}
+      itemSize="sm"
+      imageFilter="grayscale"
+      showTitle={false}
+    />
+  )
+}`} noInline={true} />
+
 ## Import
 
 ```tsx
@@ -35,66 +95,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
-
-export default function LogoWallExample() {
-  return (
-    <LogoWall
-      title="Trusted by leading companies"
-      logos={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%206%3C/text%3E%3C/svg%3E", alt: "Company 6" }
-      ]}
-      variant="grid"
-      columns={3}
-    />
-  )
-}`} noInline={true} />
-
-<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
-
-export default function LogoWallCarouselExample() {
-  return (
-    <LogoWall
-      title="Trusted by industry leaders"
-      variant="carousel"
-      logos={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" }
-      ]}
-      itemHover="opacity"
-    />
-  )
-}`} noInline={true} />
-
-<LiveCode code={`import { LogoWall } from '@jarllyng/nostromo'
-
-export default function LogoWallMinimalExample() {
-  return (
-    <LogoWall
-      variant="default"
-      logos={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%201%3C/text%3E%3C/svg%3E", alt: "Logo 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%202%3C/text%3E%3C/svg%3E", alt: "Logo 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%203%3C/text%3E%3C/svg%3E", alt: "Logo 3" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%204%3C/text%3E%3C/svg%3E", alt: "Logo 4" }
-      ]}
-      itemSize="sm"
-      imageFilter="grayscale"
-      showTitle={false}
-    />
-  )
-}`} noInline={true} />
 
 ## Code Examples
 

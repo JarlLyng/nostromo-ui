@@ -4,26 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Calendar component provides a flexible date picker with support for single date selection, date ranges, and multiple date selection. Built with accessibility in mind and full keyboard navigation support.
 
-## Import
-
-```tsx
-import { Calendar } from "@jarllyng/nostromo";
-// or
-import { Calendar } from "@jarllyng/nostromo/calendar";
-```
-
-## Usage
-
-```tsx
-import { Calendar } from "@jarllyng/nostromo";
-
-export default function Example() {
-  return (
-    <Calendar mode="single" label="Select Date" placeholder="Choose a date" />
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Calendar } from '@jarllyng/nostromo'
@@ -61,6 +41,26 @@ export default function CalendarMultipleExample() {
     />
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { Calendar } from "@jarllyng/nostromo";
+// or
+import { Calendar } from "@jarllyng/nostromo/calendar";
+```
+
+## Usage
+
+```tsx
+import { Calendar } from "@jarllyng/nostromo";
+
+export default function Example() {
+  return (
+    <Calendar mode="single" label="Select Date" placeholder="Choose a date" />
+  );
+}
+```
 
 ## Features
 

@@ -4,6 +4,22 @@ import LiveCode from "../../components/LiveCode";
 
 The Pagination component provides you with page navigation and pagination.
 
+## Live Examples
+
+<LiveCode code={`import { Pagination } from '@jarllyng/nostromo'
+
+export default function PaginationExample() {
+  const [currentPage, setCurrentPage] = React.useState(1)
+  
+  return (
+    <Pagination
+      currentPage={currentPage}
+      totalPages={10}
+      onPageChange={setCurrentPage}
+    />
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -29,22 +45,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Pagination } from '@jarllyng/nostromo'
-
-export default function PaginationExample() {
-  const [currentPage, setCurrentPage] = React.useState(1)
-  
-  return (
-    <Pagination
-      currentPage={currentPage}
-      totalPages={10}
-      onPageChange={setCurrentPage}
-    />
-  )
-}`} />
 
 ## Props
 

@@ -4,6 +4,26 @@ import LiveCode from "../../components/LiveCode";
 
 The Dialog component provides you with modals and overlays for your application.
 
+## Live Examples
+
+<LiveCode code={`import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button } from '@jarllyng/nostromo'
+
+export default function DialogExample() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+        </DialogHeader>
+        <p>This action cannot be undone.</p>
+      </DialogContent>
+    </Dialog>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -53,26 +73,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Button } from '@jarllyng/nostromo'
-
-export default function DialogExample() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Are you sure?</DialogTitle>
-        </DialogHeader>
-        <p>This action cannot be undone.</p>
-      </DialogContent>
-    </Dialog>
-  )
-}`} />
 
 ## With Form
 

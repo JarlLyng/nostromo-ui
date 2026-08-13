@@ -4,6 +4,26 @@ import LiveCode from "../../components/LiveCode";
 
 The Switch component provides you with toggle switches.
 
+## Live Examples
+
+<LiveCode code={`import { Switch } from '@jarllyng/nostromo'
+
+export default function SwitchExample() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Switch id="notifications" />
+        <label htmlFor="notifications">Notifications</label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Switch id="dark-mode" />
+        <label htmlFor="dark-mode">Dark mode</label>
+      </div>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -32,26 +52,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Switch } from '@jarllyng/nostromo'
-
-export default function SwitchExample() {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center space-x-2">
-        <Switch id="notifications" />
-        <label htmlFor="notifications">Notifications</label>
-      </div>
-      
-      <div className="flex items-center space-x-2">
-        <Switch id="dark-mode" />
-        <label htmlFor="dark-mode">Dark mode</label>
-      </div>
-    </div>
-  )
-}`} />
 
 ## With Label
 

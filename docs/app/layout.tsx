@@ -60,6 +60,18 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * logo-black.svg and logo-white.svg are 91x15 *wordmarks*, not square marks.
+ *
+ * They used to be rendered at width 32 / height 32 next to the words "Nostromo
+ * UI". Two things went wrong: the aspect ratio squeezed the wordmark to 32x5px,
+ * illegible - and since the artwork already spells the name, the name then
+ * appeared twice in the corner. Rendered at its own ratio now, and the duplicate
+ * text is gone.
+ */
+const LOGO_HEIGHT = 18;
+const LOGO_WIDTH = Math.round((91 / 15) * LOGO_HEIGHT);
+
 const navbar = (
   <Navbar
     logo={
@@ -67,24 +79,18 @@ const navbar = (
         <img
           src={withBasePath("/logo-black.svg")}
           alt="Nostromo UI"
-          width={32}
-          height={32}
+          width={LOGO_WIDTH}
+          height={LOGO_HEIGHT}
           className="dark:hidden"
         />
         <img
           src={withBasePath("/logo-white.svg")}
           alt="Nostromo UI"
-          width={32}
-          height={32}
+          width={LOGO_WIDTH}
+          height={LOGO_HEIGHT}
           className="hidden dark:block"
         />
-        {/* Hidden on the narrowest screens: at 375px the wordmark, badge and the
-            GitHub/Discord/menu icons together forced the title onto two lines
-            and made the header twice as tall. The logo mark still identifies it. */}
-        <span className="hidden sm:inline font-semibold text-xl whitespace-nowrap">
-          Nostromo UI
-        </span>
-        <span className="ml-2 rounded-full border border-success/30 bg-success/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-tighter text-success">
+        <span className="rounded-full border border-success/30 bg-success/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-tighter text-success">
           v{pkg.version}
         </span>
       </span>
@@ -96,22 +102,22 @@ const navbar = (
 
 const footer = (
   <Footer className="flex-col items-center gap-4 text-center">
+    {/* Same wordmark, so no repeated text label here either. */}
     <span className="flex items-center gap-2 opacity-50 grayscale transition-all duration-500 hover:grayscale-0">
       <img
         src={withBasePath("/logo-white.svg")}
-        alt=""
-        width={24}
-        height={24}
+        alt="Nostromo UI"
+        width={LOGO_WIDTH}
+        height={LOGO_HEIGHT}
         className="hidden dark:block"
       />
       <img
         src={withBasePath("/logo-black.svg")}
-        alt=""
-        width={24}
-        height={24}
+        alt="Nostromo UI"
+        width={LOGO_WIDTH}
+        height={LOGO_HEIGHT}
         className="block dark:hidden"
       />
-      <span className="font-bold tracking-tighter">NOSTROMO UI</span>
     </span>
     <p className="text-sm">
       MIT licensed. Engineered for the deep space of digital interfaces.

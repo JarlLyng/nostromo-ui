@@ -88,26 +88,6 @@ pre {
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Add copy button via CSS (will be enhanced with JS later) */
-pre::before {
-  content: "";
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: hsl(var(--nostromo-color-neutral-800));
-  border: 1px solid hsl(var(--nostromo-color-neutral-700));
-  border-radius: var(--nostromo-radius-sm);
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-pre:hover::before {
-  opacity: 1;
-}
-
 /* Glassmorphism & Premium Utilities */
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);

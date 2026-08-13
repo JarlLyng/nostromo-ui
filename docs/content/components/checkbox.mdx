@@ -4,6 +4,26 @@ import LiveCode from "../../components/LiveCode";
 
 The Checkbox component provides you with checkbox components and groups.
 
+## Live Examples
+
+<LiveCode code={`import { Checkbox } from '@jarllyng/nostromo'
+
+export default function CheckboxExample() {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-2">
+        <Checkbox id="terms" />
+        <label htmlFor="terms">Accept terms and conditions</label>
+      </div>
+      
+      <div className="flex items-center space-x-2">
+        <Checkbox id="newsletter" />
+        <label htmlFor="newsletter">Subscribe to newsletter</label>
+      </div>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -28,26 +48,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Checkbox } from '@jarllyng/nostromo'
-
-export default function CheckboxExample() {
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center space-x-2">
-        <Checkbox id="terms" />
-        <label htmlFor="terms">Accept terms and conditions</label>
-      </div>
-      
-      <div className="flex items-center space-x-2">
-        <Checkbox id="newsletter" />
-        <label htmlFor="newsletter">Subscribe to newsletter</label>
-      </div>
-    </div>
-  )
-}`} />
 
 ## With Label
 

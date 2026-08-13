@@ -4,6 +4,26 @@ import LiveCode from "../../components/LiveCode";
 
 The Label component provides you with form labels and descriptions.
 
+## Live Examples
+
+<LiveCode code={`import { Label } from '@jarllyng/nostromo'
+
+export default function LabelExample() {
+  return (
+    <div className="space-y-4">
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <input id="email" type="email" className="mt-1" />
+      </div>
+      
+      <div>
+        <Label htmlFor="password">Password</Label>
+        <input id="password" type="password" className="mt-1" />
+      </div>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -26,26 +46,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Label } from '@jarllyng/nostromo'
-
-export default function LabelExample() {
-  return (
-    <div className="space-y-4">
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <input id="email" type="email" className="mt-1" />
-      </div>
-      
-      <div>
-        <Label htmlFor="password">Password</Label>
-        <input id="password" type="password" className="mt-1" />
-      </div>
-    </div>
-  )
-}`} />
 
 ## With Checkbox
 

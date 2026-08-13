@@ -4,6 +4,19 @@ import LiveCode from "../../components/LiveCode";
 
 The Textarea component provides you with multi-line text fields.
 
+## Live Examples
+
+<LiveCode code={`import { Textarea } from '@jarllyng/nostromo'
+
+export default function TextareaExample() {
+  return (
+    <div className="space-y-4">
+      <Textarea placeholder="Type your message here..." />
+      <Textarea placeholder="Large textarea" rows={6} />
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -34,19 +47,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Textarea } from '@jarllyng/nostromo'
-
-export default function TextareaExample() {
-  return (
-    <div className="space-y-4">
-      <Textarea placeholder="Type your message here..." />
-      <Textarea placeholder="Large textarea" rows={6} />
-    </div>
-  )
-}`} />
 
 ## With Label
 

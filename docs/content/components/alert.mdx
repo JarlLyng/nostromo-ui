@@ -4,29 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Alert component provides you with notifications and warnings for your application.
 
-## Import
-
-```tsx
-import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
-// or
-import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert";
-```
-
-## Usage
-
-```tsx
-import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
-
-export default function Example() {
-  return (
-    <Alert variant="default">
-      <AlertTitle>Information</AlertTitle>
-      <AlertDescription>This is an informative message.</AlertDescription>
-    </Alert>
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Alert, AlertDescription, AlertTitle } from '@jarllyng/nostromo'
@@ -50,6 +27,29 @@ export default function AlertExamples() {
     </div>
   )
 }`} />
+
+## Import
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
+// or
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert";
+```
+
+## Usage
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
+
+export default function Example() {
+  return (
+    <Alert variant="default">
+      <AlertTitle>Information</AlertTitle>
+      <AlertDescription>This is an informative message.</AlertDescription>
+    </Alert>
+  );
+}
+```
 
 ## Props
 

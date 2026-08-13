@@ -4,57 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The DataTable component is an advanced table with built-in search, filtering, sorting, and pagination. It's built on top of the Table component and provides enhanced data management capabilities.
 
-## Import
-
-```tsx
-import { DataTable } from "@jarllyng/nostromo";
-// or
-import { DataTable } from "@jarllyng/nostromo/data-table";
-```
-
-## Usage
-
-```tsx
-import { DataTable } from "@jarllyng/nostromo";
-
-const data = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    department: "Engineering",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    department: "Marketing",
-  },
-];
-
-const columns = [
-  { key: "name", title: "Name", dataIndex: "name", sortable: true },
-  { key: "email", title: "Email", dataIndex: "email" },
-  {
-    key: "department",
-    title: "Department",
-    dataIndex: "department",
-    sortable: true,
-  },
-];
-
-export default function Example() {
-  return (
-    <DataTable
-      data={data}
-      columns={columns}
-      searchable={true}
-      showPagination={true}
-    />
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { DataTable } from '@jarllyng/nostromo'
@@ -133,6 +82,57 @@ export default function DataTableWithFilters() {
     />
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { DataTable } from "@jarllyng/nostromo";
+// or
+import { DataTable } from "@jarllyng/nostromo/data-table";
+```
+
+## Usage
+
+```tsx
+import { DataTable } from "@jarllyng/nostromo";
+
+const data = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    department: "Engineering",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    department: "Marketing",
+  },
+];
+
+const columns = [
+  { key: "name", title: "Name", dataIndex: "name", sortable: true },
+  { key: "email", title: "Email", dataIndex: "email" },
+  {
+    key: "department",
+    title: "Department",
+    dataIndex: "department",
+    sortable: true,
+  },
+];
+
+export default function Example() {
+  return (
+    <DataTable
+      data={data}
+      columns={columns}
+      searchable={true}
+      showPagination={true}
+    />
+  );
+}
+```
 
 ## Features
 

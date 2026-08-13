@@ -4,6 +4,27 @@ import LiveCode from "../../components/LiveCode";
 
 The Card component provides you with content cards and layout components.
 
+## Live Examples
+
+<LiveCode code={`import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@jarllyng/nostromo'
+
+export default function CardExample() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Brief description of the content</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This is the content of the card.</p>
+      </CardContent>
+      <CardFooter>
+        <p>Footer content</p>
+      </CardFooter>
+    </Card>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -44,27 +65,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@jarllyng/nostromo'
-
-export default function CardExample() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Brief description of the content</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>This is the content of the card.</p>
-      </CardContent>
-      <CardFooter>
-        <p>Footer content</p>
-      </CardFooter>
-    </Card>
-  )
-}`} />
 
 ## With Buttons
 

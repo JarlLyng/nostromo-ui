@@ -4,35 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Features component provides you with feature showcase sections for landing pages.
 
-## Import
-
-```tsx
-import { Features, Icon } from "@jarllyng/nostromo";
-// or
-import { Features } from "@jarllyng/nostromo/features";
-```
-
-## Usage
-
-```tsx
-import { Features, Icon } from "@jarllyng/nostromo";
-
-export default function Example() {
-  return (
-    <Features
-      title="Why Choose Us?"
-      features={[
-        {
-          title: "Feature 1",
-          description: "Description of feature 1",
-          icon: <Icon name="star" />,
-        },
-      ]}
-    />
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Features, Icon } from '@jarllyng/nostromo'
@@ -123,6 +94,35 @@ export default function FeaturesMinimalExample() {
     />
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { Features, Icon } from "@jarllyng/nostromo";
+// or
+import { Features } from "@jarllyng/nostromo/features";
+```
+
+## Usage
+
+```tsx
+import { Features, Icon } from "@jarllyng/nostromo";
+
+export default function Example() {
+  return (
+    <Features
+      title="Why Choose Us?"
+      features={[
+        {
+          title: "Feature 1",
+          description: "Description of feature 1",
+          icon: <Icon name="star" />,
+        },
+      ]}
+    />
+  );
+}
+```
 
 ## Code Examples
 

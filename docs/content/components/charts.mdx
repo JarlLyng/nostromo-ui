@@ -4,32 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Charts component provides flexible data visualization with support for line, bar, area, and pie charts. Built on Recharts with full accessibility and customization options.
 
-## Import
-
-```tsx
-import { Chart } from "@jarllyng/nostromo";
-// or
-import { Chart } from "@jarllyng/nostromo/charts";
-```
-
-## Usage
-
-```tsx
-import { Chart } from "@jarllyng/nostromo";
-
-const data = [
-  { name: "Jan", sales: 4000 },
-  { name: "Feb", sales: 3000 },
-  { name: "Mar", sales: 2000 },
-];
-
-export default function Example() {
-  return (
-    <Chart type="line" data={data} dataKeys={["sales"]} title="Monthly Sales" />
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Chart } from '@jarllyng/nostromo'
@@ -89,6 +63,32 @@ export default function PieChartExample() {
     />
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { Chart } from "@jarllyng/nostromo";
+// or
+import { Chart } from "@jarllyng/nostromo/charts";
+```
+
+## Usage
+
+```tsx
+import { Chart } from "@jarllyng/nostromo";
+
+const data = [
+  { name: "Jan", sales: 4000 },
+  { name: "Feb", sales: 3000 },
+  { name: "Mar", sales: 2000 },
+];
+
+export default function Example() {
+  return (
+    <Chart type="line" data={data} dataKeys={["sales"]} title="Monthly Sales" />
+  );
+}
+```
 
 ## Chart Types
 

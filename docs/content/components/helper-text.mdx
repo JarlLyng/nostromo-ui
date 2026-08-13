@@ -4,6 +4,19 @@ import LiveCode from "../../components/LiveCode";
 
 The Helper Text component provides you with form helper text and descriptions.
 
+## Live Examples
+
+<LiveCode code={`import { HelperText, Input } from '@jarllyng/nostromo'
+
+export default function HelperTextExample() {
+  return (
+    <div className="space-y-2">
+      <Input type="password" placeholder="Enter password" />
+      <HelperText>Password must be at least 8 characters long</HelperText>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -26,19 +39,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { HelperText, Input } from '@jarllyng/nostromo'
-
-export default function HelperTextExample() {
-  return (
-    <div className="space-y-2">
-      <Input type="password" placeholder="Enter password" />
-      <HelperText>Password must be at least 8 characters long</HelperText>
-    </div>
-  )
-}`} />
 
 ## Props
 
