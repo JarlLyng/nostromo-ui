@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Pagination
 
@@ -7,26 +7,26 @@ The Pagination component provides you with page navigation and pagination.
 ## Import
 
 ```tsx
-import { Pagination } from '@jarllyng/nostromo'
+import { Pagination } from "@jarllyng/nostromo";
 // or
-import { Pagination } from '@jarllyng/nostromo/pagination'
+import { Pagination } from "@jarllyng/nostromo/pagination";
 ```
 
 ## Usage
 
 ```tsx
-import { Pagination } from '@jarllyng/nostromo'
+import { Pagination } from "@jarllyng/nostromo";
 
 export default function Example() {
-  const [currentPage, setCurrentPage] = React.useState(1)
-  
+  const [currentPage, setCurrentPage] = React.useState(1);
+
   return (
     <Pagination
       currentPage={currentPage}
       totalPages={10}
       onPageChange={setCurrentPage}
     />
-  )
+  );
 }
 ```
 
@@ -48,18 +48,18 @@ export default function PaginationExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `currentPage` | `number` | - | **Yes** | Current active page (1-indexed) |
-| `totalPages` | `number` | - | **Yes** | Total number of pages |
-| `onPageChange` | `(page: number) => void` | - | **Yes** | Callback when page changes |
-| `showFirstLast` | `boolean` | `true` | No | Whether to show first/last page buttons |
-| `showPrevNext` | `boolean` | `true` | No | Whether to show previous/next buttons |
-| `maxVisiblePages` | `number` | `5` | No | Maximum number of visible page buttons |
-| `disabled` | `boolean` | `false` | No | Whether pagination is disabled |
-| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of pagination buttons |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop              | Type                                | Default     | Required | Description                             |
+| ----------------- | ----------------------------------- | ----------- | -------- | --------------------------------------- |
+| `currentPage`     | `number`                            | -           | **Yes**  | Current active page (1-indexed)         |
+| `totalPages`      | `number`                            | -           | **Yes**  | Total number of pages                   |
+| `onPageChange`    | `(page: number) => void`            | -           | **Yes**  | Callback when page changes              |
+| `showFirstLast`   | `boolean`                           | `true`      | No       | Whether to show first/last page buttons |
+| `showPrevNext`    | `boolean`                           | `true`      | No       | Whether to show previous/next buttons   |
+| `maxVisiblePages` | `number`                            | `5`         | No       | Maximum number of visible page buttons  |
+| `disabled`        | `boolean`                           | `false`     | No       | Whether pagination is disabled          |
+| `variant`         | `"default" \| "outline" \| "ghost"` | `"default"` | No       | Visual variant                          |
+| `size`            | `"sm" \| "default" \| "lg"`         | `"default"` | No       | Size of pagination buttons              |
+| `className`       | `string`                            | `undefined` | No       | Additional CSS classes                  |
 
 ### Standard HTML Props
 

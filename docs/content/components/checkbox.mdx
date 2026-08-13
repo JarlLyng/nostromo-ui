@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Checkbox
 
@@ -7,29 +7,25 @@ The Checkbox component provides you with checkbox components and groups.
 ## Import
 
 ```tsx
-import { Checkbox } from '@jarllyng/nostromo'
+import { Checkbox } from "@jarllyng/nostromo";
 // or
-import { Checkbox } from '@jarllyng/nostromo/checkbox'
+import { Checkbox } from "@jarllyng/nostromo/checkbox";
 ```
 
 ## Usage
 
 ```tsx
-import { Checkbox, Label } from '@jarllyng/nostromo'
+import { Checkbox, Label } from "@jarllyng/nostromo";
 
 export default function Example() {
-  const [checked, setChecked] = React.useState(false)
-  
+  const [checked, setChecked] = React.useState(false);
+
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox 
-        id="terms" 
-        checked={checked}
-        onCheckedChange={setChecked}
-      />
+      <Checkbox id="terms" checked={checked} onCheckedChange={setChecked} />
       <Label htmlFor="terms">Accept terms</Label>
     </div>
-  )
+  );
 }
 ```
 
@@ -74,24 +70,25 @@ export default function CheckboxWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `checked` | `boolean` | `false` | No | Whether the checkbox is checked (controlled) |
-| `defaultChecked` | `boolean` | `false` | No | Default checked state (uncontrolled) |
-| `onCheckedChange` | `(checked: boolean) => void` | `undefined` | No | Callback when checked state changes |
-| `disabled` | `boolean` | `false` | No | Whether the checkbox is disabled |
-| `required` | `boolean` | `false` | No | Whether the checkbox is required |
-| `error` | `boolean` | `false` | No | Whether the checkbox is in an error state |
-| `label` | `string` | `undefined` | No | Label text (alternative to Label component) |
-| `helperText` | `string` | `undefined` | No | Helper text displayed below checkbox |
-| `id` | `string` | `undefined` | No | Checkbox ID (auto-generated if not provided) |
-| `name` | `string` | `undefined` | No | Name for form submission |
-| `value` | `string` | `undefined` | No | Value for form submission |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop              | Type                         | Default     | Required | Description                                  |
+| ----------------- | ---------------------------- | ----------- | -------- | -------------------------------------------- |
+| `checked`         | `boolean`                    | `false`     | No       | Whether the checkbox is checked (controlled) |
+| `defaultChecked`  | `boolean`                    | `false`     | No       | Default checked state (uncontrolled)         |
+| `onCheckedChange` | `(checked: boolean) => void` | `undefined` | No       | Callback when checked state changes          |
+| `disabled`        | `boolean`                    | `false`     | No       | Whether the checkbox is disabled             |
+| `required`        | `boolean`                    | `false`     | No       | Whether the checkbox is required             |
+| `error`           | `boolean`                    | `false`     | No       | Whether the checkbox is in an error state    |
+| `label`           | `string`                     | `undefined` | No       | Label text (alternative to Label component)  |
+| `helperText`      | `string`                     | `undefined` | No       | Helper text displayed below checkbox         |
+| `id`              | `string`                     | `undefined` | No       | Checkbox ID (auto-generated if not provided) |
+| `name`            | `string`                     | `undefined` | No       | Name for form submission                     |
+| `value`           | `string`                     | `undefined` | No       | Value for form submission                    |
+| `className`       | `string`                     | `undefined` | No       | Additional CSS classes                       |
 
 ### Standard HTML Input Props
 
 The Checkbox component extends all standard HTML input attributes (except `size`), including:
+
 - `autoFocus`, `form`, `formAction`, `formEncType`, `formMethod`, `formNoValidate`, `formTarget`
 - `aria-*` attributes for accessibility
 - `data-*` attributes for custom data

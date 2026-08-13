@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Alert
 
@@ -7,25 +7,23 @@ The Alert component provides you with notifications and warnings for your applic
 ## Import
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from '@jarllyng/nostromo'
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
 // or
-import { Alert, AlertTitle, AlertDescription } from '@jarllyng/nostromo/alert'
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo/alert";
 ```
 
 ## Usage
 
 ```tsx
-import { Alert, AlertTitle, AlertDescription } from '@jarllyng/nostromo'
+import { Alert, AlertTitle, AlertDescription } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
     <Alert variant="default">
       <AlertTitle>Information</AlertTitle>
-      <AlertDescription>
-        This is an informative message.
-      </AlertDescription>
+      <AlertDescription>This is an informative message.</AlertDescription>
     </Alert>
-  )
+  );
 }
 ```
 
@@ -57,28 +55,28 @@ export default function AlertExamples() {
 
 ### Alert
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "destructive" \| "success" \| "warning" \| "info"` | `"default"` | No | Visual variant of the alert |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the alert |
-| `title` | `string` | `undefined` | No | Alert title (alternative to AlertTitle component) |
-| `description` | `string` | `undefined` | No | Alert description (alternative to AlertDescription component) |
-| `dismissible` | `boolean` | `false` | No | Whether the alert can be dismissed |
-| `onDismiss` | `() => void` | `undefined` | No | Callback when alert is dismissed |
-| `icon` | `React.ReactNode` | `undefined` | No | Custom icon to display |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Alert content (AlertTitle, AlertDescription) |
+| Prop          | Type                                                             | Default     | Required | Description                                                   |
+| ------------- | ---------------------------------------------------------------- | ----------- | -------- | ------------------------------------------------------------- |
+| `variant`     | `"default" \| "destructive" \| "success" \| "warning" \| "info"` | `"default"` | No       | Visual variant of the alert                                   |
+| `size`        | `"sm" \| "default" \| "lg"`                                      | `"default"` | No       | Size of the alert                                             |
+| `title`       | `string`                                                         | `undefined` | No       | Alert title (alternative to AlertTitle component)             |
+| `description` | `string`                                                         | `undefined` | No       | Alert description (alternative to AlertDescription component) |
+| `dismissible` | `boolean`                                                        | `false`     | No       | Whether the alert can be dismissed                            |
+| `onDismiss`   | `() => void`                                                     | `undefined` | No       | Callback when alert is dismissed                              |
+| `icon`        | `React.ReactNode`                                                | `undefined` | No       | Custom icon to display                                        |
+| `className`   | `string`                                                         | `undefined` | No       | Additional CSS classes                                        |
+| `children`    | `React.ReactNode`                                                | `undefined` | No       | Alert content (AlertTitle, AlertDescription)                  |
 
 ### AlertTitle
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Title content |
+| Prop        | Type              | Default     | Required | Description            |
+| ----------- | ----------------- | ----------- | -------- | ---------------------- |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes |
+| `children`  | `React.ReactNode` | `undefined` | No       | Title content          |
 
 ### AlertDescription
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Description content |
+| Prop        | Type              | Default     | Required | Description            |
+| ----------- | ----------------- | ----------- | -------- | ---------------------- |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes |
+| `children`  | `React.ReactNode` | `undefined` | No       | Description content    |

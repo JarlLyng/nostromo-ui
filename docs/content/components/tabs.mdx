@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Tabs
 
@@ -7,15 +7,20 @@ The Tabs component provides you with tab navigation and sections.
 ## Import
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@jarllyng/nostromo'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo";
 // or
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@jarllyng/nostromo/tabs'
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@jarllyng/nostromo/tabs";
 ```
 
 ## Usage
 
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@jarllyng/nostromo'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -31,7 +36,7 @@ export default function Example() {
         <p>Password settings</p>
       </TabsContent>
     </Tabs>
-  )
+  );
 }
 ```
 
@@ -59,12 +64,14 @@ export default function TabsExample() {
 ## Accessibility
 
 ### Keyboard Navigation
+
 - **Arrow Keys**: Navigate between tabs
 - **Tab**: Moves focus to tab content
 - **Enter/Space**: Activates the focused tab
 - **Home/End**: Moves to first/last tab
 
 ### ARIA Attributes
+
 - **role="tablist"**: Identifies the tab container
 - **role="tab"**: Identifies individual tabs
 - **role="tabpanel"**: Identifies tab content
@@ -72,16 +79,19 @@ export default function TabsExample() {
 - **aria-controls**: Links tabs to their content panels
 
 ### Focus Management
+
 - **Roving tabindex**: Only one tab is focusable at a time
 - **Focus indicators**: Clear visual focus states
 - **Focus restoration**: Maintains focus when switching tabs
 
 ### Screen Reader Support
+
 - **Tab announcements**: Active tab is announced
 - **Content changes**: Tab content changes are announced
 - **Navigation hints**: Keyboard navigation is described
 
 ### Examples
+
 ```jsx
 // Accessible tabs with proper labeling
 <Tabs defaultValue="account" className="w-[400px]">
@@ -106,40 +116,40 @@ export default function TabsExample() {
 
 ### Tabs
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `defaultValue` | `string` | `undefined` | No | Default active tab value (uncontrolled) |
-| `value` | `string` | `undefined` | No | Active tab value (controlled) |
-| `onValueChange` | `(value: string) => void` | `undefined` | No | Callback when active tab changes |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | No | Tab orientation |
-| `dir` | `"ltr" \| "rtl"` | `"ltr"` | No | Text direction |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Tab content (TabsList, TabsContent) |
+| Prop            | Type                         | Default        | Required | Description                             |
+| --------------- | ---------------------------- | -------------- | -------- | --------------------------------------- |
+| `defaultValue`  | `string`                     | `undefined`    | No       | Default active tab value (uncontrolled) |
+| `value`         | `string`                     | `undefined`    | No       | Active tab value (controlled)           |
+| `onValueChange` | `(value: string) => void`    | `undefined`    | No       | Callback when active tab changes        |
+| `orientation`   | `"horizontal" \| "vertical"` | `"horizontal"` | No       | Tab orientation                         |
+| `dir`           | `"ltr" \| "rtl"`             | `"ltr"`        | No       | Text direction                          |
+| `className`     | `string`                     | `undefined`    | No       | Additional CSS classes                  |
+| `children`      | `React.ReactNode`            | `undefined`    | No       | Tab content (TabsList, TabsContent)     |
 
 ### TabsList
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "pills" \| "underline"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of tabs |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Tab triggers |
+| Prop        | Type                                  | Default     | Required | Description            |
+| ----------- | ------------------------------------- | ----------- | -------- | ---------------------- |
+| `variant`   | `"default" \| "pills" \| "underline"` | `"default"` | No       | Visual variant         |
+| `size`      | `"sm" \| "default" \| "lg"`           | `"default"` | No       | Size of tabs           |
+| `className` | `string`                              | `undefined` | No       | Additional CSS classes |
+| `children`  | `React.ReactNode`                     | `undefined` | No       | Tab triggers           |
 
 ### TabsTrigger
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `value` | `string` | - | **Yes** | Unique value for this tab |
-| `disabled` | `boolean` | `false` | No | Whether the tab is disabled |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Tab label content |
-| `asChild` | `boolean` | `false` | No | Render as child element |
+| Prop        | Type              | Default     | Required | Description                 |
+| ----------- | ----------------- | ----------- | -------- | --------------------------- |
+| `value`     | `string`          | -           | **Yes**  | Unique value for this tab   |
+| `disabled`  | `boolean`         | `false`     | No       | Whether the tab is disabled |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes      |
+| `children`  | `React.ReactNode` | `undefined` | No       | Tab label content           |
+| `asChild`   | `boolean`         | `false`     | No       | Render as child element     |
 
 ### TabsContent
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `value` | `string` | - | **Yes** | Value matching the corresponding TabsTrigger |
-| `forceMount` | `boolean` | `false` | No | Force mount content even when inactive |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Tab panel content |
+| Prop         | Type              | Default     | Required | Description                                  |
+| ------------ | ----------------- | ----------- | -------- | -------------------------------------------- |
+| `value`      | `string`          | -           | **Yes**  | Value matching the corresponding TabsTrigger |
+| `forceMount` | `boolean`         | `false`     | No       | Force mount content even when inactive       |
+| `className`  | `string`          | `undefined` | No       | Additional CSS classes                       |
+| `children`   | `React.ReactNode` | `undefined` | No       | Tab panel content                            |

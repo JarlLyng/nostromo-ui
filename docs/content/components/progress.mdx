@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Progress
 
@@ -7,20 +7,18 @@ The Progress component provides you with progress indicators.
 ## Import
 
 ```tsx
-import { Progress } from '@jarllyng/nostromo'
+import { Progress } from "@jarllyng/nostromo";
 // or
-import { Progress } from '@jarllyng/nostromo/progress'
+import { Progress } from "@jarllyng/nostromo/progress";
 ```
 
 ## Usage
 
 ```tsx
-import { Progress } from '@jarllyng/nostromo'
+import { Progress } from "@jarllyng/nostromo";
 
 export default function Example() {
-  return (
-    <Progress value={75} max={100} />
-  )
+  return <Progress value={75} max={100} />;
 }
 ```
 
@@ -56,18 +54,18 @@ export default function ProgressWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `value` | `number` | - | **Yes** | Current progress value |
-| `max` | `number` | `100` | No | Maximum value |
-| `showLabel` | `boolean` | `false` | No | Whether to show percentage label |
-| `label` | `string` | `undefined` | No | Custom label text (overrides percentage) |
-| `animated` | `boolean` | `false` | No | Whether to animate progress changes |
-| `glow` | `boolean` | `false` | No | Whether to show glow effect |
-| `indeterminate` | `boolean` | `false` | No | Whether progress is indeterminate (loading) |
-| `variant` | `"default" \| "success" \| "warning" \| "error"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the progress bar |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop            | Type                                             | Default     | Required | Description                                 |
+| --------------- | ------------------------------------------------ | ----------- | -------- | ------------------------------------------- |
+| `value`         | `number`                                         | -           | **Yes**  | Current progress value                      |
+| `max`           | `number`                                         | `100`       | No       | Maximum value                               |
+| `showLabel`     | `boolean`                                        | `false`     | No       | Whether to show percentage label            |
+| `label`         | `string`                                         | `undefined` | No       | Custom label text (overrides percentage)    |
+| `animated`      | `boolean`                                        | `false`     | No       | Whether to animate progress changes         |
+| `glow`          | `boolean`                                        | `false`     | No       | Whether to show glow effect                 |
+| `indeterminate` | `boolean`                                        | `false`     | No       | Whether progress is indeterminate (loading) |
+| `variant`       | `"default" \| "success" \| "warning" \| "error"` | `"default"` | No       | Visual variant                              |
+| `size`          | `"sm" \| "default" \| "lg"`                      | `"default"` | No       | Size of the progress bar                    |
+| `className`     | `string`                                         | `undefined` | No       | Additional CSS classes                      |
 
 ### Standard HTML Props
 

@@ -74,3 +74,37 @@ describe("documented imports resolve", () => {
     expect(missing).toEqual([]);
   });
 });
+
+/**
+ * Same idea one level down: `Icon` looks its name up in a map and only
+ * `console.warn`s on a miss, so a wrong name renders nothing and the page just
+ * looks empty. The Features example asked for `Code`, `Accessibility` and
+ * `Palette` - none of which were in the map, and all of which were silently
+ * dropped.
+ */
+describe("documented icon names resolve", () => {
+  const used = new Map<string, Set<string>>();
+
+  for (const file of mdxFiles(docsContent)) {
+    const label = file.slice(docsContent.length + 1);
+    for (const match of readFileSync(file, "utf8").matchAll(
+      /<Icon\s+name=["']([^"']+)["']/g,
+    )) {
+      if (!used.has(match[1])) used.set(match[1], new Set());
+      used.get(match[1])!.add(label);
+    }
+  }
+
+  it("finds icon usages to check", () => {
+    expect(used.size).toBeGreaterThan(0);
+  });
+
+  it("uses only names the icon map knows", () => {
+    const known = new Set(nostromo.iconNames as string[]);
+    const unknown = [...used.entries()]
+      .filter(([name]) => !known.has(name))
+      .map(([name, files]) => `${name} (used in ${[...files].join(", ")})`);
+
+    expect(unknown).toEqual([]);
+  });
+});

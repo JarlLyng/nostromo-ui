@@ -155,6 +155,10 @@ import {
   // Tools
   Wrench,
   PaintBrush,
+  Code,
+  Terminal,
+  Palette,
+  Wheelchair,
 
   // Nature
   Tree,
@@ -231,6 +235,9 @@ import {
 const iconMap: Record<string, React.ElementType> = {
   // Navigation
   house: House,
+  // Alias: "home" is what people reach for first, and the Icon docs page itself
+  // shipped <Icon name="home" /> against a map that only had "house".
+  home: House,
   user: User,
   settings: Gear,
   search: MagnifyingGlass,
@@ -380,6 +387,13 @@ const iconMap: Record<string, React.ElementType> = {
   // Tools
   wrench: Wrench,
   "paint-brush": PaintBrush,
+
+  // Developer and design vocabulary the set was missing - the Features example
+  // asked for code/accessibility/palette and got nothing back.
+  code: Code,
+  terminal: Terminal,
+  palette: Palette,
+  accessibility: Wheelchair,
 
   // Nature
   tree: Tree,

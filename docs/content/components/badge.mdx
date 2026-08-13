@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Badge
 
@@ -7,20 +7,18 @@ The Badge component provides you with status badges and labels for your applicat
 ## Import
 
 ```tsx
-import { Badge } from '@jarllyng/nostromo'
+import { Badge } from "@jarllyng/nostromo";
 // or
-import { Badge } from '@jarllyng/nostromo/badge'
+import { Badge } from "@jarllyng/nostromo/badge";
 ```
 
 ## Usage
 
 ```tsx
-import { Badge } from '@jarllyng/nostromo'
+import { Badge } from "@jarllyng/nostromo";
 
 export default function Example() {
-  return (
-    <Badge variant="default">Active</Badge>
-  )
+  return <Badge variant="default">Active</Badge>;
 }
 ```
 
@@ -65,16 +63,19 @@ export default function BadgeWithIcons() {
 ## Accessibility
 
 ### Semantic HTML
+
 - **Badge**: Uses semantic `<span>` element for inline badges
 - **Screen reader support**: Badge content is announced by screen readers
 - **Color contrast**: All variants meet WCAG 2.1 AA contrast requirements
 
 ### Usage Guidelines
+
 - **Status indicators**: Use for status, state, or category labels
 - **Short text**: Keep badge text concise and descriptive
 - **Color coding**: Use consistent colors for similar statuses
 
 ### Examples
+
 ```jsx
 // Accessible status badges
 <Badge variant="default" aria-label="Status: Active">Active</Badge>
@@ -91,12 +92,12 @@ export default function BadgeWithIcons() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "success" \| "warning" \| "info"` | `"default"` | No | Visual variant of the badge |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the badge |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Badge content |
+| Prop        | Type                                                                                         | Default     | Required | Description                 |
+| ----------- | -------------------------------------------------------------------------------------------- | ----------- | -------- | --------------------------- |
+| `variant`   | `"default" \| "secondary" \| "destructive" \| "outline" \| "success" \| "warning" \| "info"` | `"default"` | No       | Visual variant of the badge |
+| `size`      | `"sm" \| "default" \| "lg"`                                                                  | `"default"` | No       | Size of the badge           |
+| `className` | `string`                                                                                     | `undefined` | No       | Additional CSS classes      |
+| `children`  | `React.ReactNode`                                                                            | `undefined` | No       | Badge content               |
 
 ### Standard HTML Props
 

@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Table
 
@@ -7,34 +7,34 @@ The Table component provides you with data tables with sorting, pagination, and 
 ## Import
 
 ```tsx
-import { Table } from '@jarllyng/nostromo'
+import { Table } from "@jarllyng/nostromo";
 // or
-import { Table } from '@jarllyng/nostromo/table'
+import { Table } from "@jarllyng/nostromo/table";
 ```
 
 ## Usage
 
 ```tsx
-import { Table } from '@jarllyng/nostromo'
+import { Table } from "@jarllyng/nostromo";
 
 interface User {
-  id: string
-  name: string
-  email: string
+  id: string;
+  name: string;
+  email: string;
 }
 
 export default function Example() {
   const data: User[] = [
-    { id: '1', name: 'John Doe', email: 'john@example.com' },
-    { id: '2', name: 'Jane Smith', email: 'jane@example.com' }
-  ]
-  
+    { id: "1", name: "John Doe", email: "john@example.com" },
+    { id: "2", name: "Jane Smith", email: "jane@example.com" },
+  ];
+
   const columns = [
-    { key: 'name', title: 'Name', dataIndex: 'name' },
-    { key: 'email', title: 'Email', dataIndex: 'email' }
-  ]
-  
-  return <Table data={data} columns={columns} />
+    { key: "name", title: "Name", dataIndex: "name" },
+    { key: "email", title: "Email", dataIndex: "email" },
+  ];
+
+  return <Table data={data} columns={columns} />;
 }
 ```
 
@@ -98,9 +98,9 @@ export default function TableBordered() {
 <LiveCode code={`import { Table } from '@jarllyng/nostromo'
 
 interface User {
-  id: string
-  name: string
-  email: string
+id: string
+name: string
+email: string
 }
 
 export default function SortableTable() {
@@ -185,52 +185,52 @@ export default function PaginatedTable() {
 
 ### Table
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `data` | `T[]` | - | **Yes** | Array of data objects |
-| `columns` | `TableColumn<T>[]` | - | **Yes** | Column definitions |
-| `variant` | `"default" \| "striped" \| "bordered" \| "hover" \| "elevated" \| "interactive"` | `"default"` | No | Visual variant of the table |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | No | Size of table cells |
-| `loading` | `boolean` | `false` | No | Whether the table is loading |
-| `emptyText` | `string` | `"No data"` | No | Text to show when no data |
-| `caption` | `string` | `undefined` | No | Table caption (for accessibility) |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `rowKey` | `keyof T \| ((record: T) => string \| number)` | `"id"` | No | Unique key for each row |
-| `onRowClick` | `(record: T, index: number) => void` | `undefined` | No | Callback when row is clicked |
-| `onSort` | `(column: TableColumn<T>, direction: 'asc' \| 'desc') => void` | `undefined` | No | Callback when column is sorted |
-| `sortColumn` | `string` | `undefined` | No | Currently sorted column (controlled) |
-| `sortDirection` | `'asc' \| 'desc'` | `undefined` | No | Sort direction (controlled) |
-| `pagination` | `PaginationProps` | `undefined` | No | Pagination configuration |
-| `selection` | `SelectionProps` | `undefined` | No | Row selection configuration |
+| Prop            | Type                                                                             | Default     | Required | Description                          |
+| --------------- | -------------------------------------------------------------------------------- | ----------- | -------- | ------------------------------------ |
+| `data`          | `T[]`                                                                            | -           | **Yes**  | Array of data objects                |
+| `columns`       | `TableColumn<T>[]`                                                               | -           | **Yes**  | Column definitions                   |
+| `variant`       | `"default" \| "striped" \| "bordered" \| "hover" \| "elevated" \| "interactive"` | `"default"` | No       | Visual variant of the table          |
+| `size`          | `"sm" \| "md" \| "lg"`                                                           | `"md"`      | No       | Size of table cells                  |
+| `loading`       | `boolean`                                                                        | `false`     | No       | Whether the table is loading         |
+| `emptyText`     | `string`                                                                         | `"No data"` | No       | Text to show when no data            |
+| `caption`       | `string`                                                                         | `undefined` | No       | Table caption (for accessibility)    |
+| `className`     | `string`                                                                         | `undefined` | No       | Additional CSS classes               |
+| `rowKey`        | `keyof T \| ((record: T) => string \| number)`                                   | `"id"`      | No       | Unique key for each row              |
+| `onRowClick`    | `(record: T, index: number) => void`                                             | `undefined` | No       | Callback when row is clicked         |
+| `onSort`        | `(column: TableColumn<T>, direction: 'asc' \| 'desc') => void`                   | `undefined` | No       | Callback when column is sorted       |
+| `sortColumn`    | `string`                                                                         | `undefined` | No       | Currently sorted column (controlled) |
+| `sortDirection` | `'asc' \| 'desc'`                                                                | `undefined` | No       | Sort direction (controlled)          |
+| `pagination`    | `PaginationProps`                                                                | `undefined` | No       | Pagination configuration             |
+| `selection`     | `SelectionProps`                                                                 | `undefined` | No       | Row selection configuration          |
 
 ### TableColumn
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `key` | `string` | - | **Yes** | Unique column key |
-| `title` | `string` | - | **Yes** | Column header text |
-| `dataIndex` | `keyof T` | `undefined` | No | Property name in data object |
-| `render` | `(value: unknown, record: T, index: number) => React.ReactNode` | `undefined` | No | Custom render function |
-| `sortable` | `boolean` | `false` | No | Whether column is sortable |
-| `width` | `string \| number` | `undefined` | No | Column width |
-| `align` | `'left' \| 'center' \| 'right'` | `'left'` | No | Text alignment |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop        | Type                                                            | Default     | Required | Description                  |
+| ----------- | --------------------------------------------------------------- | ----------- | -------- | ---------------------------- |
+| `key`       | `string`                                                        | -           | **Yes**  | Unique column key            |
+| `title`     | `string`                                                        | -           | **Yes**  | Column header text           |
+| `dataIndex` | `keyof T`                                                       | `undefined` | No       | Property name in data object |
+| `render`    | `(value: unknown, record: T, index: number) => React.ReactNode` | `undefined` | No       | Custom render function       |
+| `sortable`  | `boolean`                                                       | `false`     | No       | Whether column is sortable   |
+| `width`     | `string \| number`                                              | `undefined` | No       | Column width                 |
+| `align`     | `'left' \| 'center' \| 'right'`                                 | `'left'`    | No       | Text alignment               |
+| `className` | `string`                                                        | `undefined` | No       | Additional CSS classes       |
 
 ### PaginationProps
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `current` | `number` | - | **Yes** | Current page number |
-| `pageSize` | `number` | - | **Yes** | Number of items per page |
-| `total` | `number` | - | **Yes** | Total number of items |
-| `onChange` | `(page: number, pageSize: number) => void` | - | **Yes** | Callback when page changes |
-| `showSizeChanger` | `boolean` | `false` | No | Whether to show page size changer |
-| `showQuickJumper` | `boolean` | `false` | No | Whether to show quick jumper |
+| Prop              | Type                                       | Default | Required | Description                       |
+| ----------------- | ------------------------------------------ | ------- | -------- | --------------------------------- |
+| `current`         | `number`                                   | -       | **Yes**  | Current page number               |
+| `pageSize`        | `number`                                   | -       | **Yes**  | Number of items per page          |
+| `total`           | `number`                                   | -       | **Yes**  | Total number of items             |
+| `onChange`        | `(page: number, pageSize: number) => void` | -       | **Yes**  | Callback when page changes        |
+| `showSizeChanger` | `boolean`                                  | `false` | No       | Whether to show page size changer |
+| `showQuickJumper` | `boolean`                                  | `false` | No       | Whether to show quick jumper      |
 
 ### SelectionProps
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `selectedRowKeys` | `(string \| number)[]` | - | **Yes** | Array of selected row keys |
-| `onChange` | `(selectedRowKeys: (string \| number)[], selectedRows: T[]) => void` | - | **Yes** | Callback when selection changes |
-| `getCheckboxProps` | `(record: T) => { disabled?: boolean }` | `undefined` | No | Function to get checkbox props for each row |
+| Prop               | Type                                                                 | Default     | Required | Description                                 |
+| ------------------ | -------------------------------------------------------------------- | ----------- | -------- | ------------------------------------------- |
+| `selectedRowKeys`  | `(string \| number)[]`                                               | -           | **Yes**  | Array of selected row keys                  |
+| `onChange`         | `(selectedRowKeys: (string \| number)[], selectedRows: T[]) => void` | -           | **Yes**  | Callback when selection changes             |
+| `getCheckboxProps` | `(record: T) => { disabled?: boolean }`                              | `undefined` | No       | Function to get checkbox props for each row |

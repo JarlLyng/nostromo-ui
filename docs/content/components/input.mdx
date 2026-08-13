@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Input
 
@@ -7,24 +7,18 @@ The Input component provides you with form input fields with validation and erro
 ## Import
 
 ```tsx
-import { Input } from '@jarllyng/nostromo'
+import { Input } from "@jarllyng/nostromo";
 // or
-import { Input } from '@jarllyng/nostromo/input'
+import { Input } from "@jarllyng/nostromo/input";
 ```
 
 ## Usage
 
 ```tsx
-import { Input } from '@jarllyng/nostromo'
+import { Input } from "@jarllyng/nostromo";
 
 export default function Example() {
-  return (
-    <Input 
-      type="email" 
-      placeholder="Enter your email"
-      label="Email"
-    />
-  )
+  return <Input type="email" placeholder="Enter your email" label="Email" />;
 }
 ```
 
@@ -63,7 +57,7 @@ export default function InputWithError() {
 ## With Label
 
 ```jsx
-import { Input, Label } from '@jarllyng/nostromo'
+import { Input, Label } from "@jarllyng/nostromo";
 
 export default function InputWithLabel() {
   return (
@@ -71,33 +65,34 @@ export default function InputWithLabel() {
       <Label htmlFor="email">Email</Label>
       <Input id="email" type="email" placeholder="your@email.com" />
     </div>
-  )
+  );
 }
 ```
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `type` | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search"` | `"text"` | No | HTML input type |
-| `variant` | `"default" \| "error" \| "success"` | `"default"` | No | Visual variant (auto-set based on error/success) |
-| `inputSize` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the input |
-| `label` | `string` | `undefined` | No | Label text displayed above input |
-| `helperText` | `string` | `undefined` | No | Helper text displayed below input |
-| `error` | `boolean` | `false` | No | Whether the input has an error state |
-| `success` | `boolean` | `false` | No | Whether the input has a success state |
-| `placeholder` | `string` | `undefined` | No | Placeholder text |
-| `disabled` | `boolean` | `false` | No | Whether the input is disabled |
-| `value` | `string` | `undefined` | No | Controlled input value |
-| `onChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | `undefined` | No | Change event handler |
-| `id` | `string` | `undefined` | No | Input ID (auto-generated if not provided) |
-| `name` | `string` | `undefined` | No | Input name for form submission |
-| `required` | `boolean` | `false` | No | Whether the input is required |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop          | Type                                                                        | Default     | Required | Description                                      |
+| ------------- | --------------------------------------------------------------------------- | ----------- | -------- | ------------------------------------------------ |
+| `type`        | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search"` | `"text"`    | No       | HTML input type                                  |
+| `variant`     | `"default" \| "error" \| "success"`                                         | `"default"` | No       | Visual variant (auto-set based on error/success) |
+| `inputSize`   | `"sm" \| "default" \| "lg"`                                                 | `"default"` | No       | Size of the input                                |
+| `label`       | `string`                                                                    | `undefined` | No       | Label text displayed above input                 |
+| `helperText`  | `string`                                                                    | `undefined` | No       | Helper text displayed below input                |
+| `error`       | `boolean`                                                                   | `false`     | No       | Whether the input has an error state             |
+| `success`     | `boolean`                                                                   | `false`     | No       | Whether the input has a success state            |
+| `placeholder` | `string`                                                                    | `undefined` | No       | Placeholder text                                 |
+| `disabled`    | `boolean`                                                                   | `false`     | No       | Whether the input is disabled                    |
+| `value`       | `string`                                                                    | `undefined` | No       | Controlled input value                           |
+| `onChange`    | `(event: React.ChangeEvent<HTMLInputElement>) => void`                      | `undefined` | No       | Change event handler                             |
+| `id`          | `string`                                                                    | `undefined` | No       | Input ID (auto-generated if not provided)        |
+| `name`        | `string`                                                                    | `undefined` | No       | Input name for form submission                   |
+| `required`    | `boolean`                                                                   | `false`     | No       | Whether the input is required                    |
+| `className`   | `string`                                                                    | `undefined` | No       | Additional CSS classes                           |
 
 ### Standard HTML Input Props
 
 The Input component extends all standard HTML input attributes, including:
+
 - `autoComplete`, `autoFocus`, `maxLength`, `minLength`, `pattern`, `readOnly`
 - `aria-*` attributes for accessibility
 - `data-*` attributes for custom data
