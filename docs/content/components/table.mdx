@@ -4,40 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Table component provides you with data tables with sorting, pagination, and selection.
 
-## Import
-
-```tsx
-import { Table } from "@jarllyng/nostromo";
-// or
-import { Table } from "@jarllyng/nostromo/table";
-```
-
-## Usage
-
-```tsx
-import { Table } from "@jarllyng/nostromo";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-export default function Example() {
-  const data: User[] = [
-    { id: "1", name: "John Doe", email: "john@example.com" },
-    { id: "2", name: "Jane Smith", email: "jane@example.com" },
-  ];
-
-  const columns = [
-    { key: "name", title: "Name", dataIndex: "name" },
-    { key: "email", title: "Email", dataIndex: "email" },
-  ];
-
-  return <Table data={data} columns={columns} />;
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { Table } from '@jarllyng/nostromo'
@@ -90,6 +56,40 @@ export default function TableBordered() {
   
   return <Table data={data} columns={columns} variant="bordered" />
 }`} />
+
+## Import
+
+```tsx
+import { Table } from "@jarllyng/nostromo";
+// or
+import { Table } from "@jarllyng/nostromo/table";
+```
+
+## Usage
+
+```tsx
+import { Table } from "@jarllyng/nostromo";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export default function Example() {
+  const data: User[] = [
+    { id: "1", name: "John Doe", email: "john@example.com" },
+    { id: "2", name: "Jane Smith", email: "jane@example.com" },
+  ];
+
+  const columns = [
+    { key: "name", title: "Name", dataIndex: "name" },
+    { key: "email", title: "Email", dataIndex: "email" },
+  ];
+
+  return <Table data={data} columns={columns} />;
+}
+```
 
 ## Advanced Examples
 

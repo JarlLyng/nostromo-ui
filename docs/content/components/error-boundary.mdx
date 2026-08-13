@@ -4,36 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Error Boundary component provides you with error handling and fallback UI for your application.
 
-## Import
-
-```tsx
-import { ErrorBoundary } from "@jarllyng/nostromo";
-// or
-import { ErrorBoundary } from "@jarllyng/nostromo/error-boundary";
-```
-
-## Usage
-
-```tsx
-import { ErrorBoundary } from "@jarllyng/nostromo";
-
-export default function Example() {
-  return (
-    <ErrorBoundary
-      fallback={({ error, resetError }) => (
-        <div>
-          <h2>Something went wrong!</h2>
-          <p>{error?.message}</p>
-          <button onClick={resetError}>Try again</button>
-        </div>
-      )}
-    >
-      <YourComponent />
-    </ErrorBoundary>
-  );
-}
-```
-
 ## Live Examples
 
 <LiveCode code={`import { ErrorBoundary } from '@jarllyng/nostromo'
@@ -63,6 +33,36 @@ export default function ErrorBoundaryExample() {
     </ErrorBoundary>
   )
 }`} noInline={true} />
+
+## Import
+
+```tsx
+import { ErrorBoundary } from "@jarllyng/nostromo";
+// or
+import { ErrorBoundary } from "@jarllyng/nostromo/error-boundary";
+```
+
+## Usage
+
+```tsx
+import { ErrorBoundary } from "@jarllyng/nostromo";
+
+export default function Example() {
+  return (
+    <ErrorBoundary
+      fallback={({ error, resetError }) => (
+        <div>
+          <h2>Something went wrong!</h2>
+          <p>{error?.message}</p>
+          <button onClick={resetError}>Try again</button>
+        </div>
+      )}
+    >
+      <YourComponent />
+    </ErrorBoundary>
+  );
+}
+```
 
 ## Code Examples
 

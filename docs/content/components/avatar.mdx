@@ -4,6 +4,25 @@ import LiveCode from "../../components/LiveCode";
 
 The Avatar component provides you with user avatars and profile pictures.
 
+## Live Examples
+
+<LiveCode code={`import { Avatar, AvatarFallback, AvatarImage } from '@jarllyng/nostromo'
+
+export default function AvatarExamples() {
+  return (
+    <div className="space-x-4">
+      <Avatar>
+        <AvatarImage src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EAB%3C/text%3E%3C/svg%3E" alt="User" />
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+      
+      <Avatar>
+        <AvatarFallback>AB</AvatarFallback>
+      </Avatar>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -26,25 +45,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Avatar, AvatarFallback, AvatarImage } from '@jarllyng/nostromo'
-
-export default function AvatarExamples() {
-  return (
-    <div className="space-x-4">
-      <Avatar>
-        <AvatarImage src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EAB%3C/text%3E%3C/svg%3E" alt="User" />
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-      
-      <Avatar>
-        <AvatarFallback>AB</AvatarFallback>
-      </Avatar>
-    </div>
-  )
-}`} />
 
 ## Sizes
 

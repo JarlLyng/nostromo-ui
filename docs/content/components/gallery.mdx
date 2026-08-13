@@ -4,6 +4,64 @@ import LiveCode from "../../components/LiveCode";
 
 The Gallery component provides you with image galleries and media showcases.
 
+## Live Examples
+
+<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
+
+export default function GalleryExample() {
+  return (
+    <Gallery
+      images={[
+        { id: 'img1', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%201%3C/text%3E%3C/svg%3E", alt: "Image 1" },
+        { id: 'img2', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%202%3C/text%3E%3C/svg%3E", alt: "Image 2" },
+        { id: 'img3', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%203%3C/text%3E%3C/svg%3E", alt: "Image 3" },
+        { id: 'img4', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%204%3C/text%3E%3C/svg%3E", alt: "Image 4" },
+        { id: 'img5', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%205%3C/text%3E%3C/svg%3E", alt: "Image 5" },
+        { id: 'img6', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%206%3C/text%3E%3C/svg%3E", alt: "Image 6" }
+      ]}
+      columns={3}
+      aspectRatio="square"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
+
+export default function GalleryMasonryExample() {
+  return (
+    <Gallery
+      variant="masonry"
+      images={[
+        { id: 'img7', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ETall%201%3C/text%3E%3C/svg%3E", alt: "Tall Image 1" },
+        { id: 'img8', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EWide%201%3C/text%3E%3C/svg%3E", alt: "Wide Image 1" },
+        { id: 'img9', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ESquare%201%3C/text%3E%3C/svg%3E", alt: "Square Image 1" },
+        { id: 'img10', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ETall%202%3C/text%3E%3C/svg%3E", alt: "Tall Image 2" },
+        { id: 'img11', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='350'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EMedium%201%3C/text%3E%3C/svg%3E", alt: "Medium Image 1" }
+      ]}
+      itemHover="overlay"
+    />
+  )
+}`} noInline={true} />
+
+<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
+
+export default function GalleryGridExample() {
+  return (
+    <Gallery
+      variant="grid"
+      images={[
+        { id: 'img12', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E1%3C/text%3E%3C/svg%3E", alt: "Image 1" },
+        { id: 'img13', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E2%3C/text%3E%3C/svg%3E", alt: "Image 2" },
+        { id: 'img14', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E3%3C/text%3E%3C/svg%3E", alt: "Image 3" },
+        { id: 'img15', src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E4%3C/text%3E%3C/svg%3E", alt: "Image 4" }
+      ]}
+      columns={2}
+      itemAspectRatio="square"
+      showLightbox={true}
+    />
+  )
+}`} noInline={true} />
+
 ## Import
 
 ```tsx
@@ -34,64 +92,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
-
-export default function GalleryExample() {
-  return (
-    <Gallery
-      images={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%201%3C/text%3E%3C/svg%3E", alt: "Image 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%202%3C/text%3E%3C/svg%3E", alt: "Image 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%203%3C/text%3E%3C/svg%3E", alt: "Image 3" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%204%3C/text%3E%3C/svg%3E", alt: "Image 4" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%205%3C/text%3E%3C/svg%3E", alt: "Image 5" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%206%3C/text%3E%3C/svg%3E", alt: "Image 6" }
-      ]}
-      columns={3}
-      aspectRatio="square"
-    />
-  )
-}`} noInline={true} />
-
-<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
-
-export default function GalleryMasonryExample() {
-  return (
-    <Gallery
-      variant="masonry"
-      images={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ETall%201%3C/text%3E%3C/svg%3E", alt: "Tall Image 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EWide%201%3C/text%3E%3C/svg%3E", alt: "Wide Image 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ESquare%201%3C/text%3E%3C/svg%3E", alt: "Square Image 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ETall%202%3C/text%3E%3C/svg%3E", alt: "Tall Image 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='350'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EMedium%201%3C/text%3E%3C/svg%3E", alt: "Medium Image 1" }
-      ]}
-      itemHover="overlay"
-    />
-  )
-}`} noInline={true} />
-
-<LiveCode code={`import { Gallery } from '@jarllyng/nostromo'
-
-export default function GalleryGridExample() {
-  return (
-    <Gallery
-      variant="grid"
-      images={[
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E1%3C/text%3E%3C/svg%3E", alt: "Image 1" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E2%3C/text%3E%3C/svg%3E", alt: "Image 2" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E3%3C/text%3E%3C/svg%3E", alt: "Image 3" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3E4%3C/text%3E%3C/svg%3E", alt: "Image 4" }
-      ]}
-      columns={2}
-      itemAspectRatio="square"
-      showLightbox={true}
-    />
-  )
-}`} noInline={true} />
 
 ## Code Examples
 

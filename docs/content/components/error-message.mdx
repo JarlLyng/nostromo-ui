@@ -4,6 +4,19 @@ import LiveCode from "../../components/LiveCode";
 
 The Error Message component provides you with form error messages and validation feedback.
 
+## Live Examples
+
+<LiveCode code={`import { ErrorMessage, Input } from '@jarllyng/nostromo'
+
+export default function ErrorMessageExample() {
+  return (
+    <div className="space-y-2">
+      <Input type="email" placeholder="Enter email" error />
+      <ErrorMessage>Please enter a valid email address</ErrorMessage>
+    </div>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -26,19 +39,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { ErrorMessage, Input } from '@jarllyng/nostromo'
-
-export default function ErrorMessageExample() {
-  return (
-    <div className="space-y-2">
-      <Input type="email" placeholder="Enter email" error />
-      <ErrorMessage>Please enter a valid email address</ErrorMessage>
-    </div>
-  )
-}`} />
 
 ## Props
 

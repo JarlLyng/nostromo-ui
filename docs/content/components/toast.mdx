@@ -4,42 +4,6 @@ import LiveCode from "../../components/LiveCode";
 
 The Toast component provides you with popup notifications with auto-dismiss and positioning.
 
-## Import
-
-```tsx
-import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo";
-// or
-import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo/toast";
-```
-
-## Usage
-
-```tsx
-import { ToastProvider, useToast } from "@jarllyng/nostromo";
-
-function App() {
-  return (
-    <ToastProvider>
-      <MyComponent />
-    </ToastProvider>
-  );
-}
-
-function MyComponent() {
-  const { addToast } = useToast();
-
-  const handleClick = () => {
-    addToast({
-      variant: "success",
-      title: "Success!",
-      description: "Your action was completed.",
-    });
-  };
-
-  return <button onClick={handleClick}>Show Toast</button>;
-}
-```
-
 ## Live Examples
 
 ### Using the Hook
@@ -106,6 +70,42 @@ export default function Example() {
     </ToastProvider>
   )
 }`} />
+
+## Import
+
+```tsx
+import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo";
+// or
+import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo/toast";
+```
+
+## Usage
+
+```tsx
+import { ToastProvider, useToast } from "@jarllyng/nostromo";
+
+function App() {
+  return (
+    <ToastProvider>
+      <MyComponent />
+    </ToastProvider>
+  );
+}
+
+function MyComponent() {
+  const { addToast } = useToast();
+
+  const handleClick = () => {
+    addToast({
+      variant: "success",
+      title: "Success!",
+      description: "Your action was completed.",
+    });
+  };
+
+  return <button onClick={handleClick}>Show Toast</button>;
+}
+```
 
 ## Best Practices
 

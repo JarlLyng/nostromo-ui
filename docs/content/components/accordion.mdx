@@ -4,6 +4,29 @@ import LiveCode from "../../components/LiveCode";
 
 The Accordion component provides you with expandable sections for FAQ and content organization.
 
+## Live Examples
+
+<LiveCode code={`import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@jarllyng/nostromo'
+
+export default function AccordionExample() {
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>What is Nostromo UI?</AccordionTrigger>
+        <AccordionContent>
+          Nostromo UI is a comprehensive UI library built with React, TypeScript and Tailwind CSS.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2">
+        <AccordionTrigger>How do I install it?</AccordionTrigger>
+        <AccordionContent>
+          You can install it with npm: <code>npm install @jarllyng/nostromo</code>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -45,29 +68,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@jarllyng/nostromo'
-
-export default function AccordionExample() {
-  return (
-    <Accordion type="single" collapsible>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>What is Nostromo UI?</AccordionTrigger>
-        <AccordionContent>
-          Nostromo UI is a comprehensive UI library built with React, TypeScript and Tailwind CSS.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>How do I install it?</AccordionTrigger>
-        <AccordionContent>
-          You can install it with npm: <code>npm install @jarllyng/nostromo</code>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  )
-}`} />
 
 ## Multiple Items
 

@@ -4,6 +4,27 @@ import LiveCode from "../../components/LiveCode";
 
 The Tabs component provides you with tab navigation and sections.
 
+## Live Examples
+
+<LiveCode code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from '@jarllyng/nostromo'
+
+export default function TabsExample() {
+  return (
+    <Tabs defaultValue="account" className="w-[400px]">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <p>Account content here.</p>
+      </TabsContent>
+      <TabsContent value="password">
+        <p>Password content here.</p>
+      </TabsContent>
+    </Tabs>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -39,27 +60,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Tabs, TabsContent, TabsList, TabsTrigger } from '@jarllyng/nostromo'
-
-export default function TabsExample() {
-  return (
-    <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <p>Account content here.</p>
-      </TabsContent>
-      <TabsContent value="password">
-        <p>Password content here.</p>
-      </TabsContent>
-    </Tabs>
-  )
-}`} />
 
 ## Accessibility
 

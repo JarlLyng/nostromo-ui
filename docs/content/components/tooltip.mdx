@@ -4,6 +4,23 @@ import LiveCode from "../../components/LiveCode";
 
 The Tooltip component provides you with help text when the user hovers over an element.
 
+## Live Examples
+
+<LiveCode code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@jarllyng/nostromo'
+
+export default function TooltipExample() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover over me</TooltipTrigger>
+        <TooltipContent>
+          <p>This is a tooltip</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}`} />
+
 ## Import
 
 ```tsx
@@ -45,23 +62,6 @@ export default function Example() {
   );
 }
 ```
-
-## Live Examples
-
-<LiveCode code={`import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@jarllyng/nostromo'
-
-export default function TooltipExample() {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>Hover over me</TooltipTrigger>
-        <TooltipContent>
-          <p>This is a tooltip</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  )
-}`} />
 
 ## With Buttons
 
