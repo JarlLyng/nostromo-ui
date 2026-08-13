@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Card
 
@@ -7,15 +7,29 @@ The Card component provides you with content cards and layout components.
 ## Import
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@jarllyng/nostromo'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@jarllyng/nostromo";
 // or
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@jarllyng/nostromo/card'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@jarllyng/nostromo/card";
 ```
 
 ## Usage
 
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent } from '@jarllyng/nostromo'
+import { Card, CardHeader, CardTitle, CardContent } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -27,7 +41,7 @@ export default function Example() {
         <p>Card content goes here</p>
       </CardContent>
     </Card>
-  )
+  );
 }
 ```
 
@@ -77,6 +91,7 @@ export default function CardWithButtons() {
 ## Accessibility
 
 ### Semantic HTML
+
 - **Card**: Uses semantic `<div>` element
 - **CardHeader**: Uses semantic `<div>` element for header content
 - **CardTitle**: Uses semantic `<h3>` element for titles
@@ -85,11 +100,13 @@ export default function CardWithButtons() {
 - **CardFooter**: Uses semantic `<div>` element for footer content
 
 ### Screen Reader Support
+
 - **Title hierarchy**: CardTitle uses proper heading level
 - **Content structure**: Clear content hierarchy for screen readers
 - **Descriptive text**: CardDescription provides context
 
 ### Examples
+
 ```jsx
 // Accessible card with proper structure
 <Card>
@@ -109,6 +126,7 @@ export default function CardWithButtons() {
 ## Best Practices
 
 ### Do ✅
+
 - Use `CardTitle` for semantic heading structure
 - Provide `CardDescription` for context
 - Use `CardFooter` for actions and metadata
@@ -116,6 +134,7 @@ export default function CardWithButtons() {
 - Use proper heading hierarchy (CardTitle should be h3 if inside a section with h2)
 
 ### Don't ❌
+
 - Don't skip `CardTitle` - always provide a title
 - Don't nest cards unnecessarily
 - Don't use cards for simple containers (use divs instead)
@@ -125,10 +144,10 @@ export default function CardWithButtons() {
 
 All Card components extend standard HTML attributes and accept:
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Component content |
+| Prop        | Type              | Default     | Required | Description            |
+| ----------- | ----------------- | ----------- | -------- | ---------------------- |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes |
+| `children`  | `React.ReactNode` | `undefined` | No       | Component content      |
 
 ### Component-Specific Props
 

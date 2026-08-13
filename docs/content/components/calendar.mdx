@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Calendar
 
@@ -7,24 +7,20 @@ The Calendar component provides a flexible date picker with support for single d
 ## Import
 
 ```tsx
-import { Calendar } from '@jarllyng/nostromo'
+import { Calendar } from "@jarllyng/nostromo";
 // or
-import { Calendar } from '@jarllyng/nostromo/calendar'
+import { Calendar } from "@jarllyng/nostromo/calendar";
 ```
 
 ## Usage
 
 ```tsx
-import { Calendar } from '@jarllyng/nostromo'
+import { Calendar } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
-    <Calendar
-      mode="single"
-      label="Select Date"
-      placeholder="Choose a date"
-    />
-  )
+    <Calendar mode="single" label="Select Date" placeholder="Choose a date" />
+  );
 }
 ```
 
@@ -69,22 +65,26 @@ export default function CalendarMultipleExample() {
 ## Features
 
 ### Selection Modes
+
 - **Single** - Select one date
 - **Range** - Select a date range (from/to)
 - **Multiple** - Select multiple individual dates
 
 ### Date Constraints
+
 - **Min/Max dates** - Restrict selectable date range
 - **Disabled dates** - Disable specific dates
 - **Disabled days** - Disable specific weekdays (e.g., weekends)
 
 ### Customization
+
 - **Locale support** - Customize date formatting
 - **First day of week** - Sunday or Monday
 - **Show outside days** - Display days from previous/next month
 - **Multiple months** - Display multiple months side-by-side
 
 ### Robust Date Handling
+
 - **date-fns integration** - Uses `date-fns` library for reliable date manipulation
 - **Leap year support** - Correctly handles leap years and edge cases
 - **Timezone aware** - Proper timezone handling for date operations
@@ -92,29 +92,29 @@ export default function CalendarMultipleExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `mode` | `"single" \| "range" \| "multiple"` | `"single"` | No | Selection mode |
-| `value` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | No | Controlled value |
-| `defaultValue` | `Date \| Date[] \| { from?: Date; to?: Date }` | `undefined` | No | Uncontrolled default value |
-| `onChange` | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined` | No | Callback when value changes |
-| `minDate` | `Date` | `undefined` | No | Minimum selectable date |
-| `maxDate` | `Date` | `undefined` | No | Maximum selectable date |
-| `disabledDates` | `Date[]` | `undefined` | No | Array of disabled dates |
-| `disabledDays` | `number[]` | `undefined` | No | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
-| `locale` | `string` | `"en-US"` | No | Locale for date formatting |
-| `placeholder` | `string` | `"Select date..."` | No | Input placeholder text |
-| `label` | `string` | `undefined` | No | Input label |
-| `error` | `boolean` | `false` | No | Error state |
-| `helperText` | `string` | `undefined` | No | Helper text below input |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `inputClassName` | `string` | `undefined` | No | Additional CSS classes for input |
-| `calendarClassName` | `string` | `undefined` | No | Additional CSS classes for calendar popover |
-| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Calendar visual variant |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | No | Calendar size |
-| `showOutsideDays` | `boolean` | `true` | No | Show days from previous/next month |
-| `numberOfMonths` | `number` | `1` | No | Number of months to display |
-| `firstDayOfWeek` | `0 \| 1` | `1` | No | First day of week (0=Sunday, 1=Monday) |
+| Prop                | Type                                                                         | Default            | Required | Description                                     |
+| ------------------- | ---------------------------------------------------------------------------- | ------------------ | -------- | ----------------------------------------------- |
+| `mode`              | `"single" \| "range" \| "multiple"`                                          | `"single"`         | No       | Selection mode                                  |
+| `value`             | `Date \| Date[] \| { from?: Date; to?: Date }`                               | `undefined`        | No       | Controlled value                                |
+| `defaultValue`      | `Date \| Date[] \| { from?: Date; to?: Date }`                               | `undefined`        | No       | Uncontrolled default value                      |
+| `onChange`          | `(value: Date \| Date[] \| { from?: Date; to?: Date } \| undefined) => void` | `undefined`        | No       | Callback when value changes                     |
+| `minDate`           | `Date`                                                                       | `undefined`        | No       | Minimum selectable date                         |
+| `maxDate`           | `Date`                                                                       | `undefined`        | No       | Maximum selectable date                         |
+| `disabledDates`     | `Date[]`                                                                     | `undefined`        | No       | Array of disabled dates                         |
+| `disabledDays`      | `number[]`                                                                   | `undefined`        | No       | Array of disabled weekdays (0=Sun, 1=Mon, etc.) |
+| `locale`            | `string`                                                                     | `"en-US"`          | No       | Locale for date formatting                      |
+| `placeholder`       | `string`                                                                     | `"Select date..."` | No       | Input placeholder text                          |
+| `label`             | `string`                                                                     | `undefined`        | No       | Input label                                     |
+| `error`             | `boolean`                                                                    | `false`            | No       | Error state                                     |
+| `helperText`        | `string`                                                                     | `undefined`        | No       | Helper text below input                         |
+| `className`         | `string`                                                                     | `undefined`        | No       | Additional CSS classes                          |
+| `inputClassName`    | `string`                                                                     | `undefined`        | No       | Additional CSS classes for input                |
+| `calendarClassName` | `string`                                                                     | `undefined`        | No       | Additional CSS classes for calendar popover     |
+| `variant`           | `"default" \| "outline" \| "ghost"`                                          | `"default"`        | No       | Calendar visual variant                         |
+| `size`              | `"sm" \| "md" \| "lg"`                                                       | `"md"`             | No       | Calendar size                                   |
+| `showOutsideDays`   | `boolean`                                                                    | `true`             | No       | Show days from previous/next month              |
+| `numberOfMonths`    | `number`                                                                     | `1`                | No       | Number of months to display                     |
+| `firstDayOfWeek`    | `0 \| 1`                                                                     | `1`                | No       | First day of week (0=Sunday, 1=Monday)          |
 
 ## Examples
 
@@ -125,7 +125,7 @@ export default function CalendarMultipleExample() {
   mode="single"
   label="Select Date"
   placeholder="Choose a date"
-  onChange={(date) => console.log('Selected:', date)}
+  onChange={(date) => console.log("Selected:", date)}
 />
 ```
 
@@ -136,7 +136,7 @@ export default function CalendarMultipleExample() {
   mode="range"
   label="Select Date Range"
   placeholder="Choose start and end date"
-  onChange={(range) => console.log('Range:', range)}
+  onChange={(range) => console.log("Range:", range)}
 />
 ```
 
@@ -147,7 +147,7 @@ export default function CalendarMultipleExample() {
   mode="multiple"
   label="Select Multiple Dates"
   placeholder="Choose multiple dates"
-  onChange={(dates) => console.log('Selected dates:', dates)}
+  onChange={(dates) => console.log("Selected dates:", dates)}
 />
 ```
 
@@ -189,7 +189,7 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   value={selectedDate}
   onChange={setSelectedDate}
   label="Controlled Calendar"
-/>
+/>;
 ```
 
 ## Accessibility
@@ -218,6 +218,7 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 ## Do's and Don'ts
 
 ### ✅ Do
+
 - Use appropriate mode for your use case
 - Provide clear labels and helper text
 - Set min/max dates when applicable
@@ -225,6 +226,7 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 - Provide error feedback when validation fails
 
 ### ❌ Don't
+
 - Use range mode for single date selection
 - Forget to handle empty states
 - Use without labels for accessibility
@@ -236,4 +238,3 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 - **[Input](/components/input)** - Used for the date input field
 - **[Popover](/components/popover)** - Used for calendar popover (Radix UI)
 - **[Button](/components/button)** - Used for navigation buttons
-

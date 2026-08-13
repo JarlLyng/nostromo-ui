@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Error Boundary
 
@@ -7,19 +7,19 @@ The Error Boundary component provides you with error handling and fallback UI fo
 ## Import
 
 ```tsx
-import { ErrorBoundary } from '@jarllyng/nostromo'
+import { ErrorBoundary } from "@jarllyng/nostromo";
 // or
-import { ErrorBoundary } from '@jarllyng/nostromo/error-boundary'
+import { ErrorBoundary } from "@jarllyng/nostromo/error-boundary";
 ```
 
 ## Usage
 
 ```tsx
-import { ErrorBoundary } from '@jarllyng/nostromo'
+import { ErrorBoundary } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
-    <ErrorBoundary 
+    <ErrorBoundary
       fallback={({ error, resetError }) => (
         <div>
           <h2>Something went wrong!</h2>
@@ -30,7 +30,7 @@ export default function Example() {
     >
       <YourComponent />
     </ErrorBoundary>
-  )
+  );
 }
 ```
 
@@ -39,8 +39,8 @@ export default function Example() {
 <LiveCode code={`import { ErrorBoundary } from '@jarllyng/nostromo'
 
 function BrokenComponent() {
-  throw new Error('Something went wrong!')
-  return null
+throw new Error('Something went wrong!')
+return null
 }
 
 export default function ErrorBoundaryExample() {
@@ -67,21 +67,21 @@ export default function ErrorBoundaryExample() {
 ## Code Examples
 
 ```jsx
-import { ErrorBoundary } from '@jarllyng/nostromo'
+import { ErrorBoundary } from "@jarllyng/nostromo";
 
 export default function ErrorBoundaryExample() {
   return (
     <ErrorBoundary fallback={<div>Something went wrong!</div>}>
       <YourComponent />
     </ErrorBoundary>
-  )
+  );
 }
 ```
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `fallback` | `React.ComponentType<{ error: Error \| undefined; resetError: () => void }> \| React.ReactNode` | `undefined` | No | Fallback UI component or element to show when error occurs |
-| `onError` | `(error: Error, errorInfo: React.ErrorInfo) => void` | `undefined` | No | Callback function called when an error is caught |
-| `children` | `React.ReactNode` | - | **Yes** | Child components to wrap with error boundary |
+| Prop       | Type                                                                                            | Default     | Required | Description                                                |
+| ---------- | ----------------------------------------------------------------------------------------------- | ----------- | -------- | ---------------------------------------------------------- |
+| `fallback` | `React.ComponentType<{ error: Error \| undefined; resetError: () => void }> \| React.ReactNode` | `undefined` | No       | Fallback UI component or element to show when error occurs |
+| `onError`  | `(error: Error, errorInfo: React.ErrorInfo) => void`                                            | `undefined` | No       | Callback function called when an error is caught           |
+| `children` | `React.ReactNode`                                                                               | -           | **Yes**  | Child components to wrap with error boundary               |

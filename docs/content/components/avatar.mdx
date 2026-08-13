@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Avatar
 
@@ -7,15 +7,15 @@ The Avatar component provides you with user avatars and profile pictures.
 ## Import
 
 ```tsx
-import { Avatar, AvatarImage, AvatarFallback } from '@jarllyng/nostromo'
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo";
 // or
-import { Avatar, AvatarImage, AvatarFallback } from '@jarllyng/nostromo/avatar'
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo/avatar";
 ```
 
 ## Usage
 
 ```tsx
-import { Avatar, AvatarImage, AvatarFallback } from '@jarllyng/nostromo'
+import { Avatar, AvatarImage, AvatarFallback } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -23,7 +23,7 @@ export default function Example() {
       <AvatarImage src="/avatar.jpg" alt="User" />
       <AvatarFallback>JD</AvatarFallback>
     </Avatar>
-  )
+  );
 }
 ```
 
@@ -35,7 +35,7 @@ export default function AvatarExamples() {
   return (
     <div className="space-x-4">
       <Avatar>
-        <AvatarImage src="https://via.placeholder.com/40?text=JD" alt="User" />
+        <AvatarImage src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EAB%3C/text%3E%3C/svg%3E" alt="User" />
         <AvatarFallback>JD</AvatarFallback>
       </Avatar>
       
@@ -70,27 +70,27 @@ export default function AvatarSizes() {
 
 ### Avatar
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the avatar |
-| `variant` | `"default" \| "rounded" \| "square"` | `"default"` | No | Shape variant |
-| `src` | `string` | `undefined` | No | Image source URL |
-| `alt` | `string` | `undefined` | No | Alt text for the image |
-| `fallback` | `string` | `undefined` | No | Fallback text when image fails to load |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Avatar content (AvatarImage, AvatarFallback) |
+| Prop        | Type                                 | Default     | Required | Description                                  |
+| ----------- | ------------------------------------ | ----------- | -------- | -------------------------------------------- |
+| `size`      | `"sm" \| "default" \| "lg"`          | `"default"` | No       | Size of the avatar                           |
+| `variant`   | `"default" \| "rounded" \| "square"` | `"default"` | No       | Shape variant                                |
+| `src`       | `string`                             | `undefined` | No       | Image source URL                             |
+| `alt`       | `string`                             | `undefined` | No       | Alt text for the image                       |
+| `fallback`  | `string`                             | `undefined` | No       | Fallback text when image fails to load       |
+| `className` | `string`                             | `undefined` | No       | Additional CSS classes                       |
+| `children`  | `React.ReactNode`                    | `undefined` | No       | Avatar content (AvatarImage, AvatarFallback) |
 
 ### AvatarImage
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `src` | `string` | - | **Yes** | Image source URL |
-| `alt` | `string` | `undefined` | No | Alt text for the image |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop        | Type     | Default     | Required | Description            |
+| ----------- | -------- | ----------- | -------- | ---------------------- |
+| `src`       | `string` | -           | **Yes**  | Image source URL       |
+| `alt`       | `string` | `undefined` | No       | Alt text for the image |
+| `className` | `string` | `undefined` | No       | Additional CSS classes |
 
 ### AvatarFallback
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Fallback content (usually initials) |
+| Prop        | Type              | Default     | Required | Description                         |
+| ----------- | ----------------- | ----------- | -------- | ----------------------------------- |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes              |
+| `children`  | `React.ReactNode` | `undefined` | No       | Fallback content (usually initials) |

@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Charts
 
@@ -7,31 +7,26 @@ The Charts component provides flexible data visualization with support for line,
 ## Import
 
 ```tsx
-import { Chart } from '@jarllyng/nostromo'
+import { Chart } from "@jarllyng/nostromo";
 // or
-import { Chart } from '@jarllyng/nostromo/charts'
+import { Chart } from "@jarllyng/nostromo/charts";
 ```
 
 ## Usage
 
 ```tsx
-import { Chart } from '@jarllyng/nostromo'
+import { Chart } from "@jarllyng/nostromo";
 
 const data = [
-  { name: 'Jan', sales: 4000 },
-  { name: 'Feb', sales: 3000 },
-  { name: 'Mar', sales: 2000 }
-]
+  { name: "Jan", sales: 4000 },
+  { name: "Feb", sales: 3000 },
+  { name: "Mar", sales: 2000 },
+];
 
 export default function Example() {
   return (
-    <Chart
-      type="line"
-      data={data}
-      dataKeys={['sales']}
-      title="Monthly Sales"
-    />
-  )
+    <Chart type="line" data={data} dataKeys={["sales"]} title="Monthly Sales" />
+  );
 }
 ```
 
@@ -40,10 +35,10 @@ export default function Example() {
 <LiveCode code={`import { Chart } from '@jarllyng/nostromo'
 
 const data = [
-  { name: 'Jan', sales: 4000, revenue: 2400 },
-  { name: 'Feb', sales: 3000, revenue: 1398 },
-  { name: 'Mar', sales: 2000, revenue: 9800 },
-  { name: 'Apr', sales: 2780, revenue: 3908 }
+{ name: 'Jan', sales: 4000, revenue: 2400 },
+{ name: 'Feb', sales: 3000, revenue: 1398 },
+{ name: 'Mar', sales: 2000, revenue: 9800 },
+{ name: 'Apr', sales: 2780, revenue: 3908 }
 ]
 
 export default function LineChartExample() {
@@ -60,9 +55,9 @@ export default function LineChartExample() {
 <LiveCode code={`import { Chart } from '@jarllyng/nostromo'
 
 const data = [
-  { name: 'Jan', sales: 4000, revenue: 2400 },
-  { name: 'Feb', sales: 3000, revenue: 1398 },
-  { name: 'Mar', sales: 2000, revenue: 9800 }
+{ name: 'Jan', sales: 4000, revenue: 2400 },
+{ name: 'Feb', sales: 3000, revenue: 1398 },
+{ name: 'Mar', sales: 2000, revenue: 9800 }
 ]
 
 export default function BarChartExample() {
@@ -79,9 +74,9 @@ export default function BarChartExample() {
 <LiveCode code={`import { Chart } from '@jarllyng/nostromo'
 
 const data = [
-  { name: 'Electronics', value: 400 },
-  { name: 'Clothing', value: 300 },
-  { name: 'Food', value: 200 }
+{ name: 'Electronics', value: 400 },
+{ name: 'Clothing', value: 300 },
+{ name: 'Food', value: 200 }
 ]
 
 export default function PieChartExample() {
@@ -98,75 +93,64 @@ export default function PieChartExample() {
 ## Chart Types
 
 ### Line Chart
+
 Best for showing trends over time or continuous data.
 
 ```tsx
-<Chart
-  type="line"
-  data={data}
-  dataKeys={['sales']}
-  title="Sales Trend"
-/>
+<Chart type="line" data={data} dataKeys={["sales"]} title="Sales Trend" />
 ```
 
 ### Bar Chart
+
 Best for comparing categories or discrete data points.
 
 ```tsx
 <Chart
   type="bar"
   data={data}
-  dataKeys={['sales', 'revenue']}
+  dataKeys={["sales", "revenue"]}
   title="Sales Comparison"
 />
 ```
 
 ### Area Chart
+
 Best for showing cumulative values or stacked data over time.
 
 ```tsx
-<Chart
-  type="area"
-  data={data}
-  dataKeys={['sales']}
-  title="Sales Area"
-/>
+<Chart type="area" data={data} dataKeys={["sales"]} title="Sales Area" />
 ```
 
 ### Pie Chart
+
 Best for showing proportions or percentages of a whole.
 
 ```tsx
-<Chart
-  type="pie"
-  data={data}
-  dataKeys={['value']}
-  title="Distribution"
-/>
+<Chart type="pie" data={data} dataKeys={["value"]} title="Distribution" />
 ```
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `type` | `"line" \| "bar" \| "pie" \| "area"` | - | **Yes** | Chart type |
-| `data` | `ChartDataPoint[]` | - | **Yes** | Array of data points |
-| `dataKeys` | `string[]` | - | **Yes** | Keys to plot from data |
-| `xAxisKey` | `string` | `"name"` | No | Key for X-axis labels |
-| `colors` | `(string \| undefined)[]` | `defaultColors` | No | Custom color palette |
-| `showGrid` | `boolean` | `true` | No | Show grid lines |
-| `showLegend` | `boolean` | `true` | No | Show legend |
-| `showTooltip` | `boolean` | `true` | No | Show tooltip on hover |
-| `title` | `string` | `undefined` | No | Chart title |
-| `description` | `string` | `undefined` | No | Chart description |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `variant` | `"default" \| "minimal" \| "detailed"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `"md"` | No | Chart size |
-| `height` | `number` | `undefined` | No | Custom height (overrides size) |
-| `ariaLabel` | `string` | `undefined` | No | ARIA label for accessibility |
-| `ariaLabelledBy` | `string` | `undefined` | No | ARIA labelledby reference |
-| `strokeWidth` | `number` | `2` | No | Line/area stroke width |
-| `fillOpacity` | `number` | `0.6` | No | Area fill opacity |
+| Prop             | Type                                   | Default         | Required | Description                    |
+| ---------------- | -------------------------------------- | --------------- | -------- | ------------------------------ |
+| `type`           | `"line" \| "bar" \| "pie" \| "area"`   | -               | **Yes**  | Chart type                     |
+| `data`           | `ChartDataPoint[]`                     | -               | **Yes**  | Array of data points           |
+| `dataKeys`       | `string[]`                             | -               | **Yes**  | Keys to plot from data         |
+| `xAxisKey`       | `string`                               | `"name"`        | No       | Key for X-axis labels          |
+| `colors`         | `(string \| undefined)[]`              | `defaultColors` | No       | Custom color palette           |
+| `showGrid`       | `boolean`                              | `true`          | No       | Show grid lines                |
+| `showLegend`     | `boolean`                              | `true`          | No       | Show legend                    |
+| `showTooltip`    | `boolean`                              | `true`          | No       | Show tooltip on hover          |
+| `title`          | `string`                               | `undefined`     | No       | Chart title                    |
+| `description`    | `string`                               | `undefined`     | No       | Chart description              |
+| `className`      | `string`                               | `undefined`     | No       | Additional CSS classes         |
+| `variant`        | `"default" \| "minimal" \| "detailed"` | `"default"`     | No       | Visual variant                 |
+| `size`           | `"sm" \| "md" \| "lg" \| "xl"`         | `"md"`          | No       | Chart size                     |
+| `height`         | `number`                               | `undefined`     | No       | Custom height (overrides size) |
+| `ariaLabel`      | `string`                               | `undefined`     | No       | ARIA label for accessibility   |
+| `ariaLabelledBy` | `string`                               | `undefined`     | No       | ARIA labelledby reference      |
+| `strokeWidth`    | `number`                               | `2`             | No       | Line/area stroke width         |
+| `fillOpacity`    | `number`                               | `0.6`           | No       | Area fill opacity              |
 
 ### ChartDataPoint Interface
 
@@ -185,7 +169,7 @@ interface ChartDataPoint {
 <Chart
   type="line"
   data={monthlyData}
-  dataKeys={['sales', 'revenue', 'profit']}
+  dataKeys={["sales", "revenue", "profit"]}
   title="Multiple Metrics"
 />
 ```
@@ -196,8 +180,8 @@ interface ChartDataPoint {
 <Chart
   type="bar"
   data={data}
-  dataKeys={['sales', 'revenue']}
-  colors={['#ef4444', '#10b981']}
+  dataKeys={["sales", "revenue"]}
+  colors={["#ef4444", "#10b981"]}
   title="Custom Colors"
 />
 ```
@@ -208,7 +192,7 @@ interface ChartDataPoint {
 <Chart
   type="line"
   data={data}
-  dataKeys={['sales']}
+  dataKeys={["sales"]}
   showGrid={false}
   showLegend={false}
   showTooltip={false}
@@ -222,7 +206,7 @@ interface ChartDataPoint {
 <Chart
   type="line"
   data={data}
-  dataKeys={['sales']}
+  dataKeys={["sales"]}
   size="lg"
   title="Large Chart"
 />
@@ -234,7 +218,7 @@ interface ChartDataPoint {
 <Chart
   type="line"
   data={data}
-  dataKeys={['sales']}
+  dataKeys={["sales"]}
   title="Monthly Sales"
   description="Sales data for the first quarter of 2025"
 />
@@ -252,6 +236,7 @@ interface ChartDataPoint {
 ## Styling
 
 Charts automatically use your theme's color palette:
+
 - Brand colors for primary data series
 - Semantic colors (success, warning, error, info) for additional series
 - Neutral colors for axes and grid
@@ -260,6 +245,7 @@ Charts automatically use your theme's color palette:
 ## Do's and Don'ts
 
 ### ✅ Do
+
 - Use appropriate chart type for your data
 - Provide meaningful titles and descriptions
 - Use custom colors that match your brand
@@ -267,6 +253,7 @@ Charts automatically use your theme's color palette:
 - Use multiple data keys for comparisons
 
 ### ❌ Don't
+
 - Use pie charts for more than 5-6 categories
 - Use line charts for discrete categories
 - Forget to provide titles for accessibility
@@ -283,10 +270,11 @@ Charts automatically use your theme's color palette:
 Charts component is built on [Recharts](https://recharts.org/), a composable charting library built on React and D3. The component provides a simplified API while maintaining full customization options.
 
 **Dependencies:**
+
 - `recharts` - Chart rendering library
 
 **Bundle Impact:**
+
 - Charts add ~150KB to bundle size (gzipped)
 - Tree-shakeable - only import what you use
 - Consider lazy loading for charts-heavy pages
-

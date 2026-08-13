@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Label
 
@@ -7,15 +7,15 @@ The Label component provides you with form labels and descriptions.
 ## Import
 
 ```tsx
-import { Label } from '@jarllyng/nostromo'
+import { Label } from "@jarllyng/nostromo";
 // or
-import { Label } from '@jarllyng/nostromo/label'
+import { Label } from "@jarllyng/nostromo/label";
 ```
 
 ## Usage
 
 ```tsx
-import { Label, Input } from '@jarllyng/nostromo'
+import { Label, Input } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -23,7 +23,7 @@ export default function Example() {
       <Label htmlFor="email">Email</Label>
       <Input id="email" type="email" />
     </div>
-  )
+  );
 }
 ```
 
@@ -62,14 +62,14 @@ export default function LabelWithCheckbox() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `htmlFor` | `string` | `undefined` | No | ID of the form control this label is for |
-| `variant` | `"default" \| "muted" \| "error"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the label |
-| `weight` | `"normal" \| "medium" \| "semibold" \| "bold"` | `"medium"` | No | Font weight |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Label content |
+| Prop        | Type                                           | Default     | Required | Description                              |
+| ----------- | ---------------------------------------------- | ----------- | -------- | ---------------------------------------- |
+| `htmlFor`   | `string`                                       | `undefined` | No       | ID of the form control this label is for |
+| `variant`   | `"default" \| "muted" \| "error"`              | `"default"` | No       | Visual variant                           |
+| `size`      | `"sm" \| "default" \| "lg"`                    | `"default"` | No       | Size of the label                        |
+| `weight`    | `"normal" \| "medium" \| "semibold" \| "bold"` | `"medium"`  | No       | Font weight                              |
+| `className` | `string`                                       | `undefined` | No       | Additional CSS classes                   |
+| `children`  | `React.ReactNode`                              | `undefined` | No       | Label content                            |
 
 ### Standard HTML Label Props
 

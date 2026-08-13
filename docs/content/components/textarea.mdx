@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Textarea
 
@@ -7,19 +7,19 @@ The Textarea component provides you with multi-line text fields.
 ## Import
 
 ```tsx
-import { Textarea } from '@jarllyng/nostromo'
+import { Textarea } from "@jarllyng/nostromo";
 // or
-import { Textarea } from '@jarllyng/nostromo/textarea'
+import { Textarea } from "@jarllyng/nostromo/textarea";
 ```
 
 ## Usage
 
 ```tsx
-import { Textarea, Label } from '@jarllyng/nostromo'
+import { Textarea, Label } from "@jarllyng/nostromo";
 
 export default function Example() {
-  const [value, setValue] = React.useState('')
-  
+  const [value, setValue] = React.useState("");
+
   return (
     <div className="space-y-2">
       <Label htmlFor="message">Message</Label>
@@ -31,7 +31,7 @@ export default function Example() {
         rows={4}
       />
     </div>
-  )
+  );
 }
 ```
 
@@ -63,31 +63,32 @@ export default function TextareaWithLabel() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "error" \| "success"` | `"default"` | No | Visual variant (auto-set based on error/success) |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the textarea |
-| `label` | `string` | `undefined` | No | Label text displayed above textarea |
-| `helperText` | `string` | `undefined` | No | Helper text displayed below textarea |
-| `error` | `boolean` | `false` | No | Whether the textarea has an error state |
-| `required` | `boolean` | `false` | No | Whether the textarea is required |
-| `autoResize` | `boolean` | `true` | No | Whether textarea automatically resizes |
-| `placeholder` | `string` | `undefined` | No | Placeholder text |
-| `rows` | `number` | `3` | No | Number of visible rows |
-| `disabled` | `boolean` | `false` | No | Whether the textarea is disabled |
-| `value` | `string` | `undefined` | No | Controlled textarea value |
-| `defaultValue` | `string` | `undefined` | No | Default value (uncontrolled) |
-| `onChange` | `(event: React.ChangeEvent<HTMLTextAreaElement>) => void` | `undefined` | No | Change event handler |
-| `id` | `string` | `undefined` | No | Textarea ID (auto-generated if not provided) |
-| `name` | `string` | `undefined` | No | Textarea name for form submission |
-| `maxLength` | `number` | `undefined` | No | Maximum character length |
-| `minLength` | `number` | `undefined` | No | Minimum character length |
-| `readOnly` | `boolean` | `false` | No | Whether the textarea is read-only |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop           | Type                                                      | Default     | Required | Description                                      |
+| -------------- | --------------------------------------------------------- | ----------- | -------- | ------------------------------------------------ |
+| `variant`      | `"default" \| "error" \| "success"`                       | `"default"` | No       | Visual variant (auto-set based on error/success) |
+| `size`         | `"sm" \| "default" \| "lg"`                               | `"default"` | No       | Size of the textarea                             |
+| `label`        | `string`                                                  | `undefined` | No       | Label text displayed above textarea              |
+| `helperText`   | `string`                                                  | `undefined` | No       | Helper text displayed below textarea             |
+| `error`        | `boolean`                                                 | `false`     | No       | Whether the textarea has an error state          |
+| `required`     | `boolean`                                                 | `false`     | No       | Whether the textarea is required                 |
+| `autoResize`   | `boolean`                                                 | `true`      | No       | Whether textarea automatically resizes           |
+| `placeholder`  | `string`                                                  | `undefined` | No       | Placeholder text                                 |
+| `rows`         | `number`                                                  | `3`         | No       | Number of visible rows                           |
+| `disabled`     | `boolean`                                                 | `false`     | No       | Whether the textarea is disabled                 |
+| `value`        | `string`                                                  | `undefined` | No       | Controlled textarea value                        |
+| `defaultValue` | `string`                                                  | `undefined` | No       | Default value (uncontrolled)                     |
+| `onChange`     | `(event: React.ChangeEvent<HTMLTextAreaElement>) => void` | `undefined` | No       | Change event handler                             |
+| `id`           | `string`                                                  | `undefined` | No       | Textarea ID (auto-generated if not provided)     |
+| `name`         | `string`                                                  | `undefined` | No       | Textarea name for form submission                |
+| `maxLength`    | `number`                                                  | `undefined` | No       | Maximum character length                         |
+| `minLength`    | `number`                                                  | `undefined` | No       | Minimum character length                         |
+| `readOnly`     | `boolean`                                                 | `false`     | No       | Whether the textarea is read-only                |
+| `className`    | `string`                                                  | `undefined` | No       | Additional CSS classes                           |
 
 ### Standard HTML Textarea Props
 
 The Textarea component extends all standard HTML textarea attributes, including:
+
 - `autoComplete`, `autoFocus`, `cols`, `form`, `wrap`
 - `aria-*` attributes for accessibility
 - `data-*` attributes for custom data

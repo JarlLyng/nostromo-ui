@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Breadcrumb
 
@@ -7,15 +7,36 @@ The Breadcrumb component provides you with navigation breadcrumbs for your appli
 ## Import
 
 ```tsx
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@jarllyng/nostromo'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@jarllyng/nostromo";
 // or
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@jarllyng/nostromo/breadcrumb'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@jarllyng/nostromo/breadcrumb";
 ```
 
 ## Usage
 
 ```tsx
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@jarllyng/nostromo'
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -30,7 +51,7 @@ export default function Example() {
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }
 ```
 
@@ -62,10 +83,10 @@ export default function BreadcrumbExample() {
 
 All Breadcrumb components extend standard HTML attributes and accept:
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Component content |
+| Prop        | Type              | Default     | Required | Description            |
+| ----------- | ----------------- | ----------- | -------- | ---------------------- |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes |
+| `children`  | `React.ReactNode` | `undefined` | No       | Component content      |
 
 ### Component-Specific Props
 

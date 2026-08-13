@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Select
 
@@ -7,19 +7,37 @@ The Select component provides you with dropdown menus and choices.
 ## Import
 
 ```tsx
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@jarllyng/nostromo'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@jarllyng/nostromo";
 // or
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@jarllyng/nostromo/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@jarllyng/nostromo/select";
 ```
 
 ## Usage
 
 ```tsx
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@jarllyng/nostromo'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@jarllyng/nostromo";
 
 export default function Example() {
-  const [value, setValue] = React.useState('')
-  
+  const [value, setValue] = React.useState("");
+
   return (
     <Select value={value} onValueChange={setValue}>
       <SelectTrigger>
@@ -30,7 +48,7 @@ export default function Example() {
         <SelectItem value="option2">Option 2</SelectItem>
       </SelectContent>
     </Select>
-  )
+  );
 }
 ```
 
@@ -78,6 +96,7 @@ export default function SelectWithLabel() {
 ## Accessibility
 
 ### Keyboard Navigation
+
 - **Arrow Keys**: Navigate through options
 - **Enter/Space**: Selects the focused option
 - **Escape**: Closes the dropdown
@@ -85,6 +104,7 @@ export default function SelectWithLabel() {
 - **Home/End**: Moves to first/last option
 
 ### ARIA Attributes
+
 - **role="combobox"**: Identifies the select as a combobox
 - **aria-expanded**: Indicates if the dropdown is open
 - **aria-haspopup**: Indicates the presence of a popup
@@ -92,16 +112,19 @@ export default function SelectWithLabel() {
 - **aria-labelledby**: References the label element
 
 ### Focus Management
+
 - **Focus trap**: Prevents focus from escaping the dropdown
 - **Focus restoration**: Returns focus to the trigger when closed
 - **Focus indicators**: Clear visual focus states
 
 ### Screen Reader Support
+
 - **Option announcements**: Selected options are announced
 - **State changes**: Open/close states are announced
 - **Navigation hints**: Keyboard navigation is described
 
 ### Examples
+
 ```jsx
 // Accessible select with proper labeling
 <Select>
@@ -125,6 +148,7 @@ export default function SelectWithLabel() {
 ## Best Practices
 
 ### Do ✅
+
 - Always provide a `SelectValue` with placeholder
 - Use `Label` component for form integration
 - Provide unique `value` props for each `SelectItem`
@@ -132,6 +156,7 @@ export default function SelectWithLabel() {
 - Handle disabled states appropriately
 
 ### Don't ❌
+
 - Don't forget to handle form submission with `name` prop
 - Don't use Select for navigation (use links instead)
 - Don't create too many options (consider search/filtering)
@@ -141,48 +166,48 @@ export default function SelectWithLabel() {
 
 ### Select
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `value` | `string` | `undefined` | No | Selected value (controlled) |
-| `defaultValue` | `string` | `undefined` | No | Default selected value (uncontrolled) |
-| `onValueChange` | `(value: string) => void` | `undefined` | No | Callback when value changes |
-| `disabled` | `boolean` | `false` | No | Whether the select is disabled |
-| `name` | `string` | `undefined` | No | Name for form submission |
-| `required` | `boolean` | `false` | No | Whether the select is required |
-| `children` | `React.ReactNode` | `undefined` | No | Select content (SelectTrigger, SelectContent) |
+| Prop            | Type                      | Default     | Required | Description                                   |
+| --------------- | ------------------------- | ----------- | -------- | --------------------------------------------- |
+| `value`         | `string`                  | `undefined` | No       | Selected value (controlled)                   |
+| `defaultValue`  | `string`                  | `undefined` | No       | Default selected value (uncontrolled)         |
+| `onValueChange` | `(value: string) => void` | `undefined` | No       | Callback when value changes                   |
+| `disabled`      | `boolean`                 | `false`     | No       | Whether the select is disabled                |
+| `name`          | `string`                  | `undefined` | No       | Name for form submission                      |
+| `required`      | `boolean`                 | `false`     | No       | Whether the select is required                |
+| `children`      | `React.ReactNode`         | `undefined` | No       | Select content (SelectTrigger, SelectContent) |
 
 ### SelectTrigger
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "outline" \| "ghost"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the trigger |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Trigger content (usually SelectValue) |
-| `asChild` | `boolean` | `false` | No | Render as child element |
+| Prop        | Type                                | Default     | Required | Description                           |
+| ----------- | ----------------------------------- | ----------- | -------- | ------------------------------------- |
+| `variant`   | `"default" \| "outline" \| "ghost"` | `"default"` | No       | Visual variant                        |
+| `size`      | `"sm" \| "default" \| "lg"`         | `"default"` | No       | Size of the trigger                   |
+| `className` | `string`                            | `undefined` | No       | Additional CSS classes                |
+| `children`  | `React.ReactNode`                   | `undefined` | No       | Trigger content (usually SelectValue) |
+| `asChild`   | `boolean`                           | `false`     | No       | Render as child element               |
 
 ### SelectValue
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `placeholder` | `string` | `undefined` | No | Placeholder text when no value selected |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop          | Type     | Default     | Required | Description                             |
+| ------------- | -------- | ----------- | -------- | --------------------------------------- |
+| `placeholder` | `string` | `undefined` | No       | Placeholder text when no value selected |
+| `className`   | `string` | `undefined` | No       | Additional CSS classes                  |
 
 ### SelectContent
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `position` | `"popper" \| "item-aligned"` | `"popper"` | No | Positioning strategy |
-| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"` | No | Side of trigger to align to |
-| `align` | `"start" \| "center" \| "end"` | `"start"` | No | Alignment relative to trigger |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Select items |
+| Prop        | Type                                     | Default     | Required | Description                   |
+| ----------- | ---------------------------------------- | ----------- | -------- | ----------------------------- |
+| `position`  | `"popper" \| "item-aligned"`             | `"popper"`  | No       | Positioning strategy          |
+| `side`      | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"`  | No       | Side of trigger to align to   |
+| `align`     | `"start" \| "center" \| "end"`           | `"start"`   | No       | Alignment relative to trigger |
+| `className` | `string`                                 | `undefined` | No       | Additional CSS classes        |
+| `children`  | `React.ReactNode`                        | `undefined` | No       | Select items                  |
 
 ### SelectItem
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `value` | `string` | - | **Yes** | Item value (must be unique) |
-| `disabled` | `boolean` | `false` | No | Whether the item is disabled |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Item content |
+| Prop        | Type              | Default     | Required | Description                  |
+| ----------- | ----------------- | ----------- | -------- | ---------------------------- |
+| `value`     | `string`          | -           | **Yes**  | Item value (must be unique)  |
+| `disabled`  | `boolean`         | `false`     | No       | Whether the item is disabled |
+| `className` | `string`          | `undefined` | No       | Additional CSS classes       |
+| `children`  | `React.ReactNode` | `undefined` | No       | Item content                 |

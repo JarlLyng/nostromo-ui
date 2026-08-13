@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Logo Wall
 
@@ -7,26 +7,32 @@ The Logo Wall component provides you with client/partner logo displays.
 ## Import
 
 ```tsx
-import { LogoWall } from '@jarllyng/nostromo'
+import { LogoWall } from "@jarllyng/nostromo";
 // or
-import { LogoWall } from '@jarllyng/nostromo/logo-wall'
+import { LogoWall } from "@jarllyng/nostromo/logo-wall";
 ```
 
 ## Usage
 
 ```tsx
-import { LogoWall } from '@jarllyng/nostromo'
+import { LogoWall } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
     <LogoWall
       title="Trusted by leading companies"
       logos={[
-        { src: "/logo1.png", alt: "Company 1" },
-        { src: "/logo2.png", alt: "Company 2" }
+        {
+          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%201%3C/text%3E%3C/svg%3E",
+          alt: "Company 1",
+        },
+        {
+          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%202%3C/text%3E%3C/svg%3E",
+          alt: "Company 2",
+        },
       ]}
     />
-  )
+  );
 }
 ```
 
@@ -39,12 +45,12 @@ export default function LogoWallExample() {
     <LogoWall
       title="Trusted by leading companies"
       logos={[
-        { src: "https://via.placeholder.com/150x80?text=Company+1", alt: "Company 1" },
-        { src: "https://via.placeholder.com/150x80?text=Company+2", alt: "Company 2" },
-        { src: "https://via.placeholder.com/150x80?text=Company+3", alt: "Company 3" },
-        { src: "https://via.placeholder.com/150x80?text=Company+4", alt: "Company 4" },
-        { src: "https://via.placeholder.com/150x80?text=Company+5", alt: "Company 5" },
-        { src: "https://via.placeholder.com/150x80?text=Company+6", alt: "Company 6" }
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%206%3C/text%3E%3C/svg%3E", alt: "Company 6" }
       ]}
       variant="grid"
       columns={3}
@@ -60,11 +66,11 @@ export default function LogoWallCarouselExample() {
       title="Trusted by industry leaders"
       variant="carousel"
       logos={[
-        { src: "https://via.placeholder.com/150x80?text=Company+1", alt: "Company 1" },
-        { src: "https://via.placeholder.com/150x80?text=Company+2", alt: "Company 2" },
-        { src: "https://via.placeholder.com/150x80?text=Company+3", alt: "Company 3" },
-        { src: "https://via.placeholder.com/150x80?text=Company+4", alt: "Company 4" },
-        { src: "https://via.placeholder.com/150x80?text=Company+5", alt: "Company 5" }
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%201%3C/text%3E%3C/svg%3E", alt: "Company 1" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%202%3C/text%3E%3C/svg%3E", alt: "Company 2" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%203%3C/text%3E%3C/svg%3E", alt: "Company 3" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%204%3C/text%3E%3C/svg%3E", alt: "Company 4" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ECompany%205%3C/text%3E%3C/svg%3E", alt: "Company 5" }
       ]}
       itemHover="opacity"
     />
@@ -78,10 +84,10 @@ export default function LogoWallMinimalExample() {
     <LogoWall
       variant="default"
       logos={[
-        { src: "https://via.placeholder.com/120x60?text=Logo+1", alt: "Logo 1" },
-        { src: "https://via.placeholder.com/120x60?text=Logo+2", alt: "Logo 2" },
-        { src: "https://via.placeholder.com/120x60?text=Logo+3", alt: "Logo 3" },
-        { src: "https://via.placeholder.com/120x60?text=Logo+4", alt: "Logo 4" }
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%201%3C/text%3E%3C/svg%3E", alt: "Logo 1" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%202%3C/text%3E%3C/svg%3E", alt: "Logo 2" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%203%3C/text%3E%3C/svg%3E", alt: "Logo 3" },
+        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%204%3C/text%3E%3C/svg%3E", alt: "Logo 4" }
       ]}
       itemSize="sm"
       imageFilter="grayscale"
@@ -94,22 +100,22 @@ export default function LogoWallMinimalExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `logos` | `LogoItem[]` | - | **Yes** | Array of logo objects (see LogoItem interface below) |
-| `title` | `string` | `undefined` | No | Section title |
-| `subtitle` | `string` | `undefined` | No | Section subtitle |
-| `variant` | `"default" \| "grid" \| "carousel"` | `"default"` | No | Display variant |
-| `itemVariant` | `"default" \| "outline" \| "filled"` | `"default"` | No | Visual variant for logo items |
-| `itemHover` | `"none" \| "scale" \| "opacity"` | `"scale"` | No | Hover effect for items |
-| `itemSize` | `"sm" \| "md" \| "lg"` | `"md"` | No | Size of logo items |
-| `imageFilter` | `"none" \| "grayscale" \| "sepia"` | `"none"` | No | Image filter effect |
-| `showTitle` | `boolean` | `true` | No | Whether to show section title |
-| `showCount` | `boolean` | `false` | No | Whether to show logo count |
-| `maxLogos` | `number` | `undefined` | No | Maximum number of logos to display |
-| `onLogoClick` | `(logo: LogoItem) => void` | `undefined` | No | Callback when logo is clicked |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `itemClassName` | `string` | `undefined` | No | Additional CSS classes for items |
+| Prop            | Type                                 | Default     | Required | Description                                          |
+| --------------- | ------------------------------------ | ----------- | -------- | ---------------------------------------------------- |
+| `logos`         | `LogoItem[]`                         | -           | **Yes**  | Array of logo objects (see LogoItem interface below) |
+| `title`         | `string`                             | `undefined` | No       | Section title                                        |
+| `subtitle`      | `string`                             | `undefined` | No       | Section subtitle                                     |
+| `variant`       | `"default" \| "grid" \| "carousel"`  | `"default"` | No       | Display variant                                      |
+| `itemVariant`   | `"default" \| "outline" \| "filled"` | `"default"` | No       | Visual variant for logo items                        |
+| `itemHover`     | `"none" \| "scale" \| "opacity"`     | `"scale"`   | No       | Hover effect for items                               |
+| `itemSize`      | `"sm" \| "md" \| "lg"`               | `"md"`      | No       | Size of logo items                                   |
+| `imageFilter`   | `"none" \| "grayscale" \| "sepia"`   | `"none"`    | No       | Image filter effect                                  |
+| `showTitle`     | `boolean`                            | `true`      | No       | Whether to show section title                        |
+| `showCount`     | `boolean`                            | `false`     | No       | Whether to show logo count                           |
+| `maxLogos`      | `number`                             | `undefined` | No       | Maximum number of logos to display                   |
+| `onLogoClick`   | `(logo: LogoItem) => void`           | `undefined` | No       | Callback when logo is clicked                        |
+| `className`     | `string`                             | `undefined` | No       | Additional CSS classes                               |
+| `itemClassName` | `string`                             | `undefined` | No       | Additional CSS classes for items                     |
 
 ### LogoItem Interface
 

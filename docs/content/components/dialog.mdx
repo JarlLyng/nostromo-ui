@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Dialog
 
@@ -7,19 +7,39 @@ The Dialog component provides you with modals and overlays for your application.
 ## Import
 
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@jarllyng/nostromo'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@jarllyng/nostromo";
 // or
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@jarllyng/nostromo/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@jarllyng/nostromo/dialog";
 ```
 
 ## Usage
 
 ```tsx
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@jarllyng/nostromo'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@jarllyng/nostromo";
 
 export default function Example() {
-  const [open, setOpen] = React.useState(false)
-  
+  const [open, setOpen] = React.useState(false);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>Open Dialog</DialogTrigger>
@@ -30,7 +50,7 @@ export default function Example() {
         <p>Dialog content goes here</p>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 ```
 
@@ -87,36 +107,42 @@ export default function DialogWithForm() {
 ## Accessibility
 
 ### Keyboard Navigation
+
 - **Tab**: Moves focus within the dialog
 - **Shift+Tab**: Moves focus backwards within the dialog
 - **Escape**: Closes the dialog
 - **Enter**: Activates focused buttons or form elements
 
 ### ARIA Attributes
+
 - **role="dialog"**: Identifies the element as a dialog
 - **aria-modal="true"**: Indicates the dialog is modal
 - **aria-labelledby**: References the dialog title
 - **aria-describedby**: References additional description text
 
 ### Focus Management
+
 - **Focus trap**: Prevents focus from escaping the dialog
 - **Initial focus**: Focuses the first interactive element
 - **Focus restoration**: Returns focus to the trigger element when closed
 - **Focus indicators**: Clear visual focus states
 
 ### Screen Reader Support
+
 - **Live regions**: Announces dialog state changes
 - **Title announcement**: Dialog title is announced when opened
 - **State changes**: Open/close states are announced
 
 ### Examples
+
 ```jsx
 // Accessible dialog with proper labeling
 <Dialog>
-  <DialogTrigger aria-label="Open settings dialog">
-    Settings
-  </DialogTrigger>
-  <DialogContent aria-labelledby="dialog-title" aria-describedby="dialog-description">
+  <DialogTrigger aria-label="Open settings dialog">Settings</DialogTrigger>
+  <DialogContent
+    aria-labelledby="dialog-title"
+    aria-describedby="dialog-description"
+  >
     <DialogHeader>
       <DialogTitle id="dialog-title">Settings</DialogTitle>
       <p id="dialog-description" className="sr-only">
@@ -131,6 +157,7 @@ export default function DialogWithForm() {
 ## Best Practices
 
 ### Do ✅
+
 - Always provide a `DialogTitle` for accessibility
 - Use `onOpenChange` to control dialog state
 - Provide `aria-label` for icon-only triggers
@@ -138,6 +165,7 @@ export default function DialogWithForm() {
 - Handle form submissions properly in dialogs
 
 ### Don't ❌
+
 - Don't nest dialogs (use nested content instead)
 - Don't forget to handle focus management
 - Don't use dialogs for non-modal content
@@ -147,27 +175,28 @@ export default function DialogWithForm() {
 
 ### Dialog
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `open` | `boolean` | `false` | No | Whether the dialog is open |
-| `onOpenChange` | `(open: boolean) => void` | `undefined` | No | Callback when open state changes |
-| `backdropVariant` | `"default" \| "subtle" \| "strong" \| "colored"` | `"default"` | No | Backdrop visual variant |
-| `children` | `React.ReactNode` | `undefined` | No | Dialog content |
+| Prop              | Type                                             | Default     | Required | Description                      |
+| ----------------- | ------------------------------------------------ | ----------- | -------- | -------------------------------- |
+| `open`            | `boolean`                                        | `false`     | No       | Whether the dialog is open       |
+| `onOpenChange`    | `(open: boolean) => void`                        | `undefined` | No       | Callback when open state changes |
+| `backdropVariant` | `"default" \| "subtle" \| "strong" \| "colored"` | `"default"` | No       | Backdrop visual variant          |
+| `children`        | `React.ReactNode`                                | `undefined` | No       | Dialog content                   |
 
 ### DialogContent
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "elevated" \| "outlined" \| "filled" \| "destructive"` | `"default"` | No | Visual variant of the dialog |
-| `size` | `"sm" \| "default" \| "lg" \| "xl" \| "full"` | `"default"` | No | Size of the dialog |
-| `animation` | `"default" \| "slide" \| "scale" \| "none"` | `"default"` | No | Animation variant |
-| `onClose` | `() => void` | `undefined` | No | Callback when dialog is closed |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Dialog content |
+| Prop        | Type                                                                 | Default     | Required | Description                    |
+| ----------- | -------------------------------------------------------------------- | ----------- | -------- | ------------------------------ |
+| `variant`   | `"default" \| "elevated" \| "outlined" \| "filled" \| "destructive"` | `"default"` | No       | Visual variant of the dialog   |
+| `size`      | `"sm" \| "default" \| "lg" \| "xl" \| "full"`                        | `"default"` | No       | Size of the dialog             |
+| `animation` | `"default" \| "slide" \| "scale" \| "none"`                          | `"default"` | No       | Animation variant              |
+| `onClose`   | `() => void`                                                         | `undefined` | No       | Callback when dialog is closed |
+| `className` | `string`                                                             | `undefined` | No       | Additional CSS classes         |
+| `children`  | `React.ReactNode`                                                    | `undefined` | No       | Dialog content                 |
 
 ### DialogHeader, DialogTitle, DialogDescription
 
 These components extend standard HTML attributes (`div`, `h2`, `p` respectively) and accept:
+
 - `className?: string` - Additional CSS classes
 - `children?: React.ReactNode` - Component content
 - All standard HTML attributes for their respective elements

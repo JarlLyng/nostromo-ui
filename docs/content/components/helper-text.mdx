@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Helper Text
 
@@ -7,15 +7,15 @@ The Helper Text component provides you with form helper text and descriptions.
 ## Import
 
 ```tsx
-import { HelperText } from '@jarllyng/nostromo'
+import { HelperText } from "@jarllyng/nostromo";
 // or
-import { HelperText } from '@jarllyng/nostromo/helper-text'
+import { HelperText } from "@jarllyng/nostromo/helper-text";
 ```
 
 ## Usage
 
 ```tsx
-import { HelperText, Input } from '@jarllyng/nostromo'
+import { HelperText, Input } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -23,7 +23,7 @@ export default function Example() {
       <Input type="password" />
       <HelperText>Password must be at least 8 characters long</HelperText>
     </div>
-  )
+  );
 }
 ```
 
@@ -42,12 +42,12 @@ export default function HelperTextExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "muted" \| "error"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the helper text |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Helper text content |
+| Prop        | Type                              | Default     | Required | Description             |
+| ----------- | --------------------------------- | ----------- | -------- | ----------------------- |
+| `variant`   | `"default" \| "muted" \| "error"` | `"default"` | No       | Visual variant          |
+| `size`      | `"sm" \| "default" \| "lg"`       | `"default"` | No       | Size of the helper text |
+| `className` | `string`                          | `undefined` | No       | Additional CSS classes  |
+| `children`  | `React.ReactNode`                 | `undefined` | No       | Helper text content     |
 
 ### Standard HTML Props
 

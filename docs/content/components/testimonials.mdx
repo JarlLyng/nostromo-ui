@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Testimonials
 
@@ -7,15 +7,15 @@ The Testimonials component provides you with customer testimonials and reviews.
 ## Import
 
 ```tsx
-import { Testimonials } from '@jarllyng/nostromo'
+import { Testimonials } from "@jarllyng/nostromo";
 // or
-import { Testimonials } from '@jarllyng/nostromo/testimonials'
+import { Testimonials } from "@jarllyng/nostromo/testimonials";
 ```
 
 ## Usage
 
 ```tsx
-import { Testimonials } from '@jarllyng/nostromo'
+import { Testimonials } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -25,11 +25,11 @@ export default function Example() {
         {
           content: "Great product!",
           author: "John Doe",
-          role: "Developer"
-        }
+          role: "Developer",
+        },
       ]}
     />
-  )
+  );
 }
 ```
 
@@ -113,16 +113,16 @@ export default function TestimonialsMinimalExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `testimonials` | `Testimonial[]` | - | **Yes** | Array of testimonials (see Testimonial interface below) |
-| `title` | `string` | `undefined` | No | Section title |
-| `subtitle` | `string` | `undefined` | No | Section subtitle |
-| `columns` | `1 \| 2 \| 3 \| 4` | `3` | No | Number of columns in grid |
-| `variant` | `"default" \| "cards" \| "minimal"` | `"default"` | No | Visual variant |
-| `cardVariant` | `"default" \| "outline" \| "filled"` | `"default"` | No | Card variant (when using cards variant) |
-| `showRatings` | `boolean` | `false` | No | Whether to show star ratings |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
+| Prop           | Type                                 | Default     | Required | Description                                             |
+| -------------- | ------------------------------------ | ----------- | -------- | ------------------------------------------------------- |
+| `testimonials` | `Testimonial[]`                      | -           | **Yes**  | Array of testimonials (see Testimonial interface below) |
+| `title`        | `string`                             | `undefined` | No       | Section title                                           |
+| `subtitle`     | `string`                             | `undefined` | No       | Section subtitle                                        |
+| `columns`      | `1 \| 2 \| 3 \| 4`                   | `3`         | No       | Number of columns in grid                               |
+| `variant`      | `"default" \| "cards" \| "minimal"`  | `"default"` | No       | Visual variant                                          |
+| `cardVariant`  | `"default" \| "outline" \| "filled"` | `"default"` | No       | Card variant (when using cards variant)                 |
+| `showRatings`  | `boolean`                            | `false`     | No       | Whether to show star ratings                            |
+| `className`    | `string`                             | `undefined` | No       | Additional CSS classes                                  |
 
 ### Testimonial Interface
 

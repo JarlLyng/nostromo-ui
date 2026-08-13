@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Toast
 
@@ -7,36 +7,36 @@ The Toast component provides you with popup notifications with auto-dismiss and 
 ## Import
 
 ```tsx
-import { Toast, ToastProvider, useToast } from '@jarllyng/nostromo'
+import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo";
 // or
-import { Toast, ToastProvider, useToast } from '@jarllyng/nostromo/toast'
+import { Toast, ToastProvider, useToast } from "@jarllyng/nostromo/toast";
 ```
 
 ## Usage
 
 ```tsx
-import { ToastProvider, useToast } from '@jarllyng/nostromo'
+import { ToastProvider, useToast } from "@jarllyng/nostromo";
 
 function App() {
   return (
     <ToastProvider>
       <MyComponent />
     </ToastProvider>
-  )
+  );
 }
 
 function MyComponent() {
-  const { addToast } = useToast()
-  
+  const { addToast } = useToast();
+
   const handleClick = () => {
     addToast({
-      variant: 'success',
-      title: 'Success!',
-      description: 'Your action was completed.'
-    })
-  }
-  
-  return <button onClick={handleClick}>Show Toast</button>
+      variant: "success",
+      title: "Success!",
+      description: "Your action was completed.",
+    });
+  };
+
+  return <button onClick={handleClick}>Show Toast</button>;
 }
 ```
 
@@ -47,26 +47,26 @@ function MyComponent() {
 <LiveCode code={`import { ToastProvider, useToast } from '@jarllyng/nostromo'
 
 function ToastDemo() {
-  const { addToast } = useToast()
-  
-  return (
-    <div className="space-x-2">
-      <button onClick={() => addToast({
-        variant: 'success',
-        title: 'Success!',
-        description: 'Your action was completed.'
-      })}>
-        Show Success
-      </button>
-      <button onClick={() => addToast({
-        variant: 'error',
-        title: 'Error',
-        description: 'Something went wrong.'
-      })}>
-        Show Error
-      </button>
-    </div>
-  )
+const { addToast } = useToast()
+
+return (
+<div className="space-x-2">
+<button onClick={() => addToast({
+variant: 'success',
+title: 'Success!',
+description: 'Your action was completed.'
+})}>
+Show Success
+</button>
+<button onClick={() => addToast({
+variant: 'error',
+title: 'Error',
+description: 'Something went wrong.'
+})}>
+Show Error
+</button>
+</div>
+)
 }
 
 export default function Example() {
@@ -82,21 +82,21 @@ export default function Example() {
 <LiveCode code={`import { ToastProvider, useToast } from '@jarllyng/nostromo'
 
 function ToastWithAction() {
-  const { addToast } = useToast()
-  
-  return (
-    <button onClick={() => addToast({
-      variant: 'default',
-      title: 'File deleted',
-      description: 'The file has been moved to trash.',
-      action: {
-        label: 'Undo',
-        onClick: () => console.log('Undo clicked')
-      }
-    })}>
-      Show Toast with Action
-    </button>
-  )
+const { addToast } = useToast()
+
+return (
+<button onClick={() => addToast({
+variant: 'default',
+title: 'File deleted',
+description: 'The file has been moved to trash.',
+action: {
+label: 'Undo',
+onClick: () => console.log('Undo clicked')
+}
+})}>
+Show Toast with Action
+</button>
+)
 }
 
 export default function Example() {
@@ -110,6 +110,7 @@ export default function Example() {
 ## Best Practices
 
 ### Do ✅
+
 - Wrap your app with `ToastProvider` at the root level
 - Use the `useToast` hook for easy toast management
 - Provide clear `title` and `description` for each toast
@@ -117,6 +118,7 @@ export default function Example() {
 - Set `duration={0}` for important toasts that require user action
 
 ### Don't ❌
+
 - Don't show too many toasts at once
 - Don't use toasts for critical errors (use dialogs instead)
 - Don't forget to handle toast actions
@@ -126,29 +128,30 @@ export default function Example() {
 
 ### Toast
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "success" \| "error" \| "warning" \| "info"` | `"default"` | No | Visual variant of the toast |
-| `position` | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"top-right"` | No | Toast position |
-| `title` | `string` | `undefined` | No | Toast title |
-| `description` | `string` | `undefined` | No | Toast description |
-| `duration` | `number` | `5000` | No | Auto-dismiss duration in ms (0 = no auto-dismiss) |
-| `onClose` | `() => void` | `undefined` | No | Callback when toast is closed |
-| `action` | `{ label: string; onClick: () => void }` | `undefined` | No | Action button configuration |
-| `appearDelay` | `number` | `10` | No | Delay before toast appears (ms) |
-| `animationMs` | `number` | `150` | No | Exit animation duration (ms) |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Toast content |
+| Prop          | Type                                                                                              | Default       | Required | Description                                       |
+| ------------- | ------------------------------------------------------------------------------------------------- | ------------- | -------- | ------------------------------------------------- |
+| `variant`     | `"default" \| "success" \| "error" \| "warning" \| "info"`                                        | `"default"`   | No       | Visual variant of the toast                       |
+| `position`    | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"top-right"` | No       | Toast position                                    |
+| `title`       | `string`                                                                                          | `undefined`   | No       | Toast title                                       |
+| `description` | `string`                                                                                          | `undefined`   | No       | Toast description                                 |
+| `duration`    | `number`                                                                                          | `5000`        | No       | Auto-dismiss duration in ms (0 = no auto-dismiss) |
+| `onClose`     | `() => void`                                                                                      | `undefined`   | No       | Callback when toast is closed                     |
+| `action`      | `{ label: string; onClick: () => void }`                                                          | `undefined`   | No       | Action button configuration                       |
+| `appearDelay` | `number`                                                                                          | `10`          | No       | Delay before toast appears (ms)                   |
+| `animationMs` | `number`                                                                                          | `150`         | No       | Exit animation duration (ms)                      |
+| `className`   | `string`                                                                                          | `undefined`   | No       | Additional CSS classes                            |
+| `children`    | `React.ReactNode`                                                                                 | `undefined`   | No       | Toast content                                     |
 
 ### ToastProvider
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `children` | `React.ReactNode` | - | **Yes** | App content |
+| Prop       | Type              | Default | Required | Description |
+| ---------- | ----------------- | ------- | -------- | ----------- |
+| `children` | `React.ReactNode` | -       | **Yes**  | App content |
 
 ### useToast Hook
 
 Returns:
+
 - `toasts: ToastProps[]` - Array of current toasts
 - `addToast: (toast: Omit<ToastProps, 'id'>) => string` - Add a new toast (returns toast ID)
 - `removeToast: (id: string) => void` - Remove a toast by ID

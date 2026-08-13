@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Error Message
 
@@ -7,15 +7,15 @@ The Error Message component provides you with form error messages and validation
 ## Import
 
 ```tsx
-import { ErrorMessage } from '@jarllyng/nostromo'
+import { ErrorMessage } from "@jarllyng/nostromo";
 // or
-import { ErrorMessage } from '@jarllyng/nostromo/error-message'
+import { ErrorMessage } from "@jarllyng/nostromo/error-message";
 ```
 
 ## Usage
 
 ```tsx
-import { ErrorMessage, Input } from '@jarllyng/nostromo'
+import { ErrorMessage, Input } from "@jarllyng/nostromo";
 
 export default function Example() {
   return (
@@ -23,7 +23,7 @@ export default function Example() {
       <Input type="email" error />
       <ErrorMessage>Please enter a valid email address</ErrorMessage>
     </div>
-  )
+  );
 }
 ```
 
@@ -42,12 +42,12 @@ export default function ErrorMessageExample() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `variant` | `"default" \| "inline"` | `"default"` | No | Visual variant |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the error message |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Error message content |
+| Prop        | Type                        | Default     | Required | Description               |
+| ----------- | --------------------------- | ----------- | -------- | ------------------------- |
+| `variant`   | `"default" \| "inline"`     | `"default"` | No       | Visual variant            |
+| `size`      | `"sm" \| "default" \| "lg"` | `"default"` | No       | Size of the error message |
+| `className` | `string`                    | `undefined` | No       | Additional CSS classes    |
+| `children`  | `React.ReactNode`           | `undefined` | No       | Error message content     |
 
 ### Standard HTML Props
 

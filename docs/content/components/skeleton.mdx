@@ -1,4 +1,4 @@
-import LiveCode from '../../components/LiveCode'
+import LiveCode from "../../components/LiveCode";
 
 # Skeleton
 
@@ -7,20 +7,18 @@ The Skeleton component provides you with loading placeholders.
 ## Import
 
 ```tsx
-import { Skeleton } from '@jarllyng/nostromo'
+import { Skeleton } from "@jarllyng/nostromo";
 // or
-import { Skeleton } from '@jarllyng/nostromo/skeleton'
+import { Skeleton } from "@jarllyng/nostromo/skeleton";
 ```
 
 ## Usage
 
 ```tsx
-import { Skeleton } from '@jarllyng/nostromo'
+import { Skeleton } from "@jarllyng/nostromo";
 
 export default function Example() {
-  return (
-    <Skeleton className="h-4 w-[250px]" />
-  )
+  return <Skeleton className="h-4 w-[250px]" />;
 }
 ```
 
@@ -55,17 +53,17 @@ export default function CardSkeleton() {
 
 ## Props
 
-| Prop | Type | Default | Required | Description |
-|------|------|---------|----------|-------------|
-| `shape` | `"default" \| "circle" \| "square"` | `"default"` | No | Shape of the skeleton |
-| `size` | `"sm" \| "default" \| "lg"` | `"default"` | No | Size of the skeleton |
-| `width` | `string \| number` | `undefined` | No | Width of the skeleton |
-| `height` | `string \| number` | `undefined` | No | Height of the skeleton |
-| `lines` | `number` | `undefined` | No | Number of lines (for text skeleton) |
-| `spacing` | `"none" \| "sm" \| "md" \| "lg"` | `"md"` | No | Spacing between lines |
-| `loading` | `boolean` | `true` | No | Whether skeleton is in loading state |
-| `className` | `string` | `undefined` | No | Additional CSS classes |
-| `children` | `React.ReactNode` | `undefined` | No | Skeleton content |
+| Prop        | Type                                | Default     | Required | Description                          |
+| ----------- | ----------------------------------- | ----------- | -------- | ------------------------------------ |
+| `shape`     | `"default" \| "circle" \| "square"` | `"default"` | No       | Shape of the skeleton                |
+| `size`      | `"sm" \| "default" \| "lg"`         | `"default"` | No       | Size of the skeleton                 |
+| `width`     | `string \| number`                  | `undefined` | No       | Width of the skeleton                |
+| `height`    | `string \| number`                  | `undefined` | No       | Height of the skeleton               |
+| `lines`     | `number`                            | `undefined` | No       | Number of lines (for text skeleton)  |
+| `spacing`   | `"none" \| "sm" \| "md" \| "lg"`    | `"md"`      | No       | Spacing between lines                |
+| `loading`   | `boolean`                           | `true`      | No       | Whether skeleton is in loading state |
+| `className` | `string`                            | `undefined` | No       | Additional CSS classes               |
+| `children`  | `React.ReactNode`                   | `undefined` | No       | Skeleton content                     |
 
 ### Standard HTML Props
 
