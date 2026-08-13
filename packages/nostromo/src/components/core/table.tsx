@@ -55,11 +55,32 @@ const tableHeaderVariants = cva(
   },
 );
 
+/**
+ * Row-level variants.
+ *
+ * `striped` has to live here, not on the cell: `even:` selects the even sibling
+ * among *cells within a row*, so applying it there striped columns instead of
+ * rows - and TableRow ignored the variant entirely, so nothing showed at all.
+ */
+const tableRowVariants = cva("border-b border-border transition-colors", {
+  variants: {
+    variant: {
+      default: "hover:bg-muted/50",
+      striped: "even:bg-muted/50 hover:bg-muted/80",
+      bordered: "hover:bg-muted/50",
+      hover: "hover:bg-muted/50",
+      elevated: "hover:bg-muted/80",
+      interactive: "hover:bg-primary/10 hover:text-primary",
+    },
+  },
+  defaultVariants: { variant: "default" },
+});
+
 const tableCellVariants = cva("border-border transition-all duration-200", {
   variants: {
     variant: {
       default: "border-b border-border hover:bg-muted/50",
-      striped: "border-b border-border even:bg-muted/50 hover:bg-muted/80",
+      striped: "border-b border-border hover:bg-muted/80",
       bordered: "border border-border hover:bg-muted/50",
       hover: "border-b border-border hover:bg-muted/50",
       elevated: "border-b border-border hover:bg-muted/80",
@@ -131,7 +152,7 @@ export interface TableBodyProps {
   children: React.ReactNode;
 }
 
-export interface TableRowProps {
+export interface TableRowProps extends VariantProps<typeof tableRowVariants> {
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -289,7 +310,7 @@ function TableComponent<
                       if (input) input.indeterminate = isIndeterminate || false;
                     }}
                     onChange={(e) => handleSelectAll(e.target.checked)}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="rounded border-input text-primary focus:ring-ring"
                     aria-label="Select all rows"
                   />
                 </th>
@@ -313,7 +334,7 @@ function TableComponent<
                       <button
                         type="button"
                         onClick={() => handleSort(column)}
-                        className="flex flex-col text-gray-400 hover:text-gray-600"
+                        className="flex flex-col text-muted-foreground hover:text-foreground"
                         aria-label={`Sort by ${column.title}`}
                       >
                         <svg
@@ -321,8 +342,8 @@ function TableComponent<
                             "w-3 h-3",
                             sortState?.column === column.key &&
                               sortState?.direction === "asc"
-                              ? "text-blue-600"
-                              : "text-gray-400",
+                              ? "text-primary"
+                              : "text-muted-foreground",
                           )}
                           fill="currentColor"
                           viewBox="0 0 20 20"
@@ -334,8 +355,8 @@ function TableComponent<
                             "w-3 h-3 -mt-1",
                             sortState?.column === column.key &&
                               sortState?.direction === "desc"
-                              ? "text-blue-600"
-                              : "text-gray-400",
+                              ? "text-primary"
+                              : "text-muted-foreground",
                           )}
                           fill="currentColor"
                           viewBox="0 0 20 20"
@@ -359,7 +380,7 @@ function TableComponent<
                   className="text-center py-8"
                 >
                   <div className="flex items-center justify-center gap-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
                     <span>Loading...</span>
                   </div>
                 </TableCell>
@@ -370,7 +391,7 @@ function TableComponent<
                   colSpan={columns.length + (selection ? 1 : 0)}
                   variant={variant}
                   size={size}
-                  className="text-center py-8 text-gray-500"
+                  className="text-center py-8 text-muted-foreground"
                 >
                   {emptyText}
                 </TableCell>
@@ -379,12 +400,9 @@ function TableComponent<
               data.map((record, index) => (
                 <TableRow
                   key={getRowKey(record, index)}
+                  variant={variant}
                   onClick={() => onRowClick?.(record, index)}
                   selected={isRowSelected(record, index)}
-                  className={cn(
-                    onRowClick && "cursor-pointer hover:bg-gray-50",
-                    isRowSelected(record, index) && "bg-blue-50",
-                  )}
                 >
                   {selection && (
                     <TableCell variant={variant} size={size}>
@@ -394,7 +412,7 @@ function TableComponent<
                         onChange={(e) =>
                           handleRowSelection(record, index, e.target.checked)
                         }
-                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        className="rounded border-input text-primary focus:ring-ring"
                         aria-label={`Select row ${index + 1}`}
                         {...selection.getCheckboxProps?.(record)}
                       />
@@ -451,7 +469,7 @@ function TableComponent<
               <select
                 value={pagination.pageSize}
                 onChange={(e) => pagination.onChange(1, Number(e.target.value))}
-                className="rounded border-gray-300 text-sm"
+                className="rounded border-input bg-background text-sm"
                 aria-label="Select page size"
               >
                 <option value={10}>10 / page</option>
@@ -471,7 +489,7 @@ function TableComponent<
                   )
                 }
                 disabled={pagination.current <= 1}
-                className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-1 text-sm border border-input rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Go to previous page"
               >
                 Previous
@@ -494,7 +512,7 @@ function TableComponent<
                   pagination.current >=
                   Math.ceil(pagination.total / pagination.pageSize)
                 }
-                className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-1 text-sm border border-input rounded hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Go to next page"
               >
                 Next
@@ -548,13 +566,13 @@ export const TableBody = React.forwardRef<
 TableBody.displayName = "TableBody";
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
-  ({ className, children, onClick, selected, ...props }, ref) => (
+  ({ className, children, onClick, selected, variant, ...props }, ref) => (
     <tr
       ref={ref}
       className={cn(
-        "border-b border-gray-200",
-        selected && "bg-blue-50",
-        onClick && "cursor-pointer hover:bg-gray-50",
+        tableRowVariants({ variant }),
+        selected && "bg-primary/10",
+        onClick && "cursor-pointer",
         className,
       )}
       onClick={onClick}

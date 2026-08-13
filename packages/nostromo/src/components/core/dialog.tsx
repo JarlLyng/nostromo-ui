@@ -9,7 +9,8 @@ const dialogVariants = cva(
       variant: {
         default: "border-border shadow-lg hover:shadow-xl",
         elevated: "border-border shadow-xl hover:shadow-2xl",
-        outlined: "border-2 border-border shadow-md hover:border-primary hover:shadow-lg",
+        outlined:
+          "border-2 border-border shadow-md hover:border-primary hover:shadow-lg",
         filled: "border-border bg-muted shadow-md hover:shadow-lg",
         destructive: "border-error-200 bg-error-50 shadow-lg hover:shadow-xl",
       },
@@ -32,35 +33,35 @@ const dialogVariants = cva(
       size: "default",
       animation: "default",
     },
-  }
+  },
 );
 
-const backdropVariants = cva(
-  "fixed inset-0 z-40 transition-all duration-300",
-  {
-    variants: {
-      variant: {
-        default: "bg-black/50 backdrop-blur-sm",
-        subtle: "bg-black/30 backdrop-blur-none",
-        strong: "bg-black/70 backdrop-blur-md",
-        colored: "bg-brand-500/20 backdrop-blur-sm",
-      },
+const backdropVariants = cva("fixed inset-0 z-40 transition-all duration-300", {
+  variants: {
+    variant: {
+      default: "bg-black/50 backdrop-blur-sm",
+      subtle: "bg-black/30 backdrop-blur-none",
+      strong: "bg-black/70 backdrop-blur-md",
+      colored: "bg-brand-500/20 backdrop-blur-sm",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 export interface DialogProps {
   open?: boolean;
+  /** Uncontrolled initial state, for when a DialogTrigger owns the opening. */
+  defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   children: React.ReactNode;
-  backdropVariant?: VariantProps<typeof backdropVariants>['variant'];
+  backdropVariant?: VariantProps<typeof backdropVariants>["variant"];
 }
 
-export interface DialogContentProps 
-  extends React.HTMLAttributes<HTMLDivElement>,
+export interface DialogContentProps
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof dialogVariants> {
   onClose?: () => void;
 }
@@ -71,73 +72,187 @@ export interface DialogTitleProps extends React.HTMLAttributes<HTMLHeadingElemen
 
 export interface DialogDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 
-const Dialog: React.FC<DialogProps> = ({ open, onOpenChange, children, backdropVariant = "default" }) => {
+interface DialogContextValue {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  /**
+   * Ties `DialogContent`'s `aria-labelledby` to whatever `DialogTitle` renders.
+   * Adding `role="dialog"` without this fails axe's aria-dialog-name rule - the
+   * role only means something to a screen reader if the node has a name.
+   */
+  titleId: string;
+}
+
+const DialogContext = React.createContext<DialogContextValue | null>(null);
+
+function useDialogContext(component: string): DialogContextValue {
+  const context = React.useContext(DialogContext);
+  if (!context) {
+    throw new Error(`${component} must be used inside <Dialog>`);
+  }
+  return context;
+}
+
+/**
+ * Dialog root.
+ *
+ * Renders its children whether or not it is open, and puts the open state on
+ * context. It used to return `null` while closed and draw the overlay itself,
+ * which made `DialogTrigger` impossible: a trigger nested in the dialog was
+ * unmounted exactly when you needed to click it. The overlay moved to
+ * `DialogContent`, which is what actually knows it is being shown.
+ *
+ * Works controlled (`open` + `onOpenChange`) or uncontrolled (`defaultOpen`).
+ */
+const Dialog: React.FC<DialogProps> = ({
+  open: controlledOpen,
+  defaultOpen = false,
+  onOpenChange,
+  children,
+  backdropVariant = "default",
+}) => {
+  const titleId = React.useId();
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : uncontrolledOpen;
+
+  const setOpen = React.useCallback(
+    (next: boolean) => {
+      if (!isControlled) setUncontrolledOpen(next);
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange],
+  );
+
   React.useEffect(() => {
+    if (!open) return;
+
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open) {
-        onOpenChange?.(false);
-      }
+      if (e.key === "Escape") setOpen(false);
     };
 
-    if (open) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
-    }
+    document.addEventListener("keydown", handleEscape);
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
-  }, [open, onOpenChange]);
+  }, [open, setOpen]);
 
-  if (!open) return null;
+  const context = React.useMemo(
+    () => ({ open, setOpen, titleId }),
+    [open, setOpen, titleId],
+  );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div
-        className={cn(backdropVariants({ variant: backdropVariant }))}
-        onClick={() => onOpenChange?.(false)}
-      />
-      <div className="relative z-50 w-full">
-        {children}
-      </div>
-    </div>
+    <DialogContext.Provider value={context}>
+      {children}
+      {open && (
+        <div
+          className={cn(backdropVariants({ variant: backdropVariant }))}
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+    </DialogContext.Provider>
   );
 };
 
-const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
-  ({ className, children, onClose, variant, size, animation, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        dialogVariants({ variant, size, animation }),
-        "p-4 sm:p-6 sm:rounded-lg",
-        className
-      )}
-      {...props}
-    >
-      {children}
+export interface DialogTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Render the child element instead of a button, forwarding the click. */
+  asChild?: boolean;
+}
+
+const DialogTrigger = React.forwardRef<HTMLButtonElement, DialogTriggerProps>(
+  ({ asChild, children, onClick, ...props }, ref) => {
+    const { open, setOpen } = useDialogContext("DialogTrigger");
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      onClick?.(event);
+      if (!event.defaultPrevented) setOpen(true);
+    };
+
+    if (asChild && React.isValidElement(children)) {
+      return React.cloneElement(
+        children as React.ReactElement<{
+          onClick?: React.MouseEventHandler;
+          "aria-expanded"?: boolean;
+        }>,
+        { onClick: handleClick, "aria-expanded": open },
+      );
+    }
+
+    return (
       <button
-        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-        onClick={onClose}
+        ref={ref}
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        onClick={handleClick}
+        {...props}
       >
-        <span className="sr-only">Close</span>
-        <svg
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
+        {children}
       </button>
-    </div>
-  )
+    );
+  },
+);
+
+DialogTrigger.displayName = "DialogTrigger";
+
+const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
+  (
+    { className, children, onClose, variant, size, animation, ...props },
+    ref,
+  ) => {
+    const { open, setOpen, titleId } = useDialogContext("DialogContent");
+
+    if (!open) return null;
+
+    // A caller-supplied name wins; otherwise point at the DialogTitle.
+    const hasOwnLabel =
+      props["aria-label"] !== undefined ||
+      props["aria-labelledby"] !== undefined;
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+        <div
+          ref={ref}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={hasOwnLabel ? undefined : titleId}
+          className={cn(
+            dialogVariants({ variant, size, animation }),
+            "pointer-events-auto p-4 sm:p-6 sm:rounded-lg",
+            className,
+          )}
+          {...props}
+        >
+          {children}
+          <button
+            type="button"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+            onClick={onClose ?? (() => setOpen(false))}
+          >
+            <span className="sr-only">Close</span>
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    );
+  },
 );
 DialogContent.displayName = "DialogContent";
 
@@ -147,37 +262,53 @@ const DialogHeader = React.forwardRef<HTMLDivElement, DialogHeaderProps>(
       ref={ref}
       className={cn(
         "flex flex-col space-y-1.5 text-center sm:text-left",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  ),
 );
 DialogHeader.displayName = "DialogHeader";
 
 const DialogTitle = React.forwardRef<HTMLHeadingElement, DialogTitleProps>(
-  ({ className, ...props }, ref) => (
-    <h2
-      ref={ref}
-      className={cn(
-        "text-lg font-semibold leading-none tracking-tight",
-        className
-      )}
-      {...props}
-    />
-  )
+  ({ className, id, ...props }, ref) => {
+    const { titleId } = useDialogContext("DialogTitle");
+
+    return (
+      <h2
+        ref={ref}
+        // Falls back to the shared id so DialogContent's aria-labelledby resolves.
+        id={id ?? titleId}
+        className={cn(
+          "text-lg font-semibold leading-none tracking-tight",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
 );
 DialogTitle.displayName = "DialogTitle";
 
-const DialogDescription = React.forwardRef<HTMLParagraphElement, DialogDescriptionProps>(
-  ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("text-sm text-muted-foreground", className)}
-      {...props}
-    />
-  )
-);
+const DialogDescription = React.forwardRef<
+  HTMLParagraphElement,
+  DialogDescriptionProps
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+));
 DialogDescription.displayName = "DialogDescription";
 
-export { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, dialogVariants, backdropVariants };
+export {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  dialogVariants,
+  backdropVariants,
+};

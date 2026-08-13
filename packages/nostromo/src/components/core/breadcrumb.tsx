@@ -22,39 +22,33 @@ const breadcrumbVariants = cva(
       variant: "default",
       separator: "default",
     },
-  }
+  },
 );
 
-const breadcrumbItemVariants = cva(
-  "flex items-center",
-  {
-    variants: {
-      variant: {
-        default: "",
-        current: "text-foreground font-medium",
-        link: "hover:text-foreground transition-colors",
-      },
+const breadcrumbItemVariants = cva("flex items-center", {
+  variants: {
+    variant: {
+      default: "",
+      current: "text-foreground font-medium",
+      link: "hover:text-foreground transition-colors",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-const breadcrumbSeparatorVariants = cva(
-  "flex-shrink-0 text-muted-foreground",
-  {
-    variants: {
-      variant: {
-        default: "mx-1",
-        compact: "mx-0.5",
-      },
+const breadcrumbSeparatorVariants = cva("flex-shrink-0 text-muted-foreground", {
+  variants: {
+    variant: {
+      default: "mx-1",
+      compact: "mx-0.5",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 export interface BreadcrumbEntry {
   label: string;
@@ -63,9 +57,16 @@ export interface BreadcrumbEntry {
 }
 
 export interface BreadcrumbProps
-  extends React.HTMLAttributes<HTMLElement>,
+  extends
+    React.HTMLAttributes<HTMLElement>,
     VariantProps<typeof breadcrumbVariants> {
-  items: BreadcrumbEntry[];
+  /**
+   * Data-driven mode. Omit it to compose `BreadcrumbList` / `BreadcrumbItem` /
+   * `BreadcrumbLink` as children instead - those sub-components were exported
+   * from the start but `items` was required, so the composable form every
+   * example used threw on `items.map`.
+   */
+  items?: BreadcrumbEntry[];
   separator?: "default" | "slash" | "arrow" | "dot";
   showHome?: boolean;
   homeHref?: string;
@@ -82,9 +83,10 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       showHome = false,
       homeHref = "/",
       onItemClick,
+      children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const getSeparator = () => {
       switch (separator) {
@@ -105,14 +107,18 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       }
     };
 
-    const renderItem = (item: BreadcrumbEntry, index: number, isLast: boolean) => {
+    const renderItem = (
+      item: BreadcrumbEntry,
+      index: number,
+      isLast: boolean,
+    ) => {
       const isCurrent = item.current || isLast;
       const itemContent = (
         <span
           className={cn(
             breadcrumbItemVariants({
               variant: isCurrent ? "current" : item.href ? "link" : "default",
-            })
+            }),
           )}
         >
           {item.label}
@@ -155,6 +161,20 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       );
     };
 
+    // Composable mode: the caller supplies the structure, so render it as-is.
+    if (!items) {
+      return (
+        <nav
+          ref={ref}
+          aria-label="Breadcrumb"
+          className={cn(breadcrumbVariants({ variant, separator }), className)}
+          {...props}
+        >
+          {children}
+        </nav>
+      );
+    }
+
     return (
       <nav
         ref={ref}
@@ -175,7 +195,11 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 </a>
               </li>
               <li>
-                <span role="presentation" aria-hidden="true" className={cn(breadcrumbSeparatorVariants({ variant }))}>
+                <span
+                  role="presentation"
+                  aria-hidden="true"
+                  className={cn(breadcrumbSeparatorVariants({ variant }))}
+                >
                   {getSeparator()}
                 </span>
               </li>
@@ -187,7 +211,11 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
               <li key={index} className="flex items-center">
                 {renderItem(item, index, isLast)}
                 {!isLast && (
-                  <span role="presentation" aria-hidden="true" className={cn(breadcrumbSeparatorVariants({ variant }))}>
+                  <span
+                    role="presentation"
+                    aria-hidden="true"
+                    className={cn(breadcrumbSeparatorVariants({ variant }))}
+                  >
                     {getSeparator()}
                   </span>
                 )}
@@ -197,7 +225,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         </ol>
       </nav>
     );
-  }
+  },
 );
 Breadcrumb.displayName = "Breadcrumb";
 
@@ -208,7 +236,10 @@ const BreadcrumbList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ol
     ref={ref}
-    className={cn("flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5", className)}
+    className={cn(
+      "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5",
+      className,
+    )}
     {...props}
   />
 ));
