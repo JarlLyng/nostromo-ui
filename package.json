@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@adobe/css-tools": "^4.5.0",
-    "@babel/runtime": "^7.29.7",
+    "@babel/runtime": "^8.0.0",
     "@changesets/cli": "^2.31.1",
     "@eslint/js": "^9.39.5",
     "@jest/diff-sequences": "^30.4.0",
@@ -99,7 +99,7 @@
     "jest-diff": "^30.4.1",
     "jest-matcher-utils": "^30.4.1",
     "js-tokens": "^10.0.0",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.3.0",
     "lodash.merge": "^4.6.2",
     "loupe": "^3.2.1",
     "lz-string": "^1.5.0",
