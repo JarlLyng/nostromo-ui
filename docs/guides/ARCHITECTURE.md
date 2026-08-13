@@ -73,7 +73,7 @@ output, and adds the base layer.
 ### Documentation
 
 - **Framework**: Nextra (Next.js + MDX)
-- **Features**: Storybook integration, live previews, interactive examples
+- **Features**: live previews, interactive examples, full-text search
 - **Development**: Local server at http://localhost:3000
 
 ## TypeScript Configuration
@@ -181,7 +181,7 @@ Each package has its own `tsconfig.json` that `extends` base config and defines:
 1. **Merge PR**: Changes merged to main
 2. **Version bump**: Changesets creates version PR
 3. **Publish**: Automated npm publish
-4. **Documentation**: Nextra-based documentation site with all 27 components and Storybook integration
+4. **Documentation**: Nextra-based documentation site with a page per component, each carrying live examples
 
 ## CI/CD Pipeline
 

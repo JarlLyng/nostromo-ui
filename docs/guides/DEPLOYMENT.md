@@ -4,17 +4,19 @@ This guide describes how the Nostromo UI documentation site is deployed and main
 
 ## 📋 Overview
 
-Nostromo UI uses a **Nextra-based documentation site** deployed to GitHub Pages. The site includes all components, Storybook integration, live code examples, and search functionality.
+Nostromo UI uses a **Nextra-based documentation site** deployed to GitHub Pages. The site includes all components, live code examples, and full-text search.
 
 ## 🌐 Deployment Targets
 
 ### **Production (GitHub Pages)**
+
 - **URL**: https://jarllyng.github.io/nostromo-ui/
 - **Custom Domain**: Coming soon - Currently using GitHub Pages
 - **Branch**: `main`
 - **Trigger**: Automatic on push to main branch
 
 ### **Development (Local)**
+
 - **URL**: http://localhost:3000
 - **Command**: `cd docs && npm run dev`
 
@@ -41,6 +43,7 @@ pnpm build
 For deployment issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
 
 **Common Issues:**
+
 - **Build errors**: Check dependencies and build logs
 - **GitHub Actions errors**: Check workflow logs
 - **GitHub Pages errors**: Verify repository settings and permissions

@@ -10,7 +10,7 @@ This file describes how to set up Nostromo UI for development, including install
 - [Build System](#build-system)
 - [Testing](#testing)
 - [Linting & Formatting](#linting--formatting)
-- [Storybook](#storybook)
+- [Documentation Site](#documentation-site)
 - [CI/CD Pipeline](#cicd-pipeline)
 - [Contribution Guidelines](#contribution-guidelines)
 - [Troubleshooting](#troubleshooting)
@@ -236,26 +236,27 @@ pnpm lint:fix
 
 **Note**: Pre-commit hooks will automatically run ESLint on staged files. If you need to bypass (not recommended), use `git commit --no-verify`.
 
-## Storybook
+## Documentation Site
 
-### Storybook Setup
-
-Nostromo UI har to separate Storybook instanser:
-
-#### React Storybook
+The docs site is how you look at a component while working on it. There is no
+separate component explorer - Storybook was removed, and every example now lives
+on the component's own page.
 
 ```bash
-# Start React Storybook
-cd packages/nostromo
-pnpm storybook
-# Kører på http://localhost:6006
+# Nextra dev server, on http://localhost:3000
+pnpm docs:dev
+
+# Full static export, exactly as CI builds it
+pnpm docs:build
 ```
 
-### Storybook Configuration
+`docs:dev` consumes the library through its `exports` map, so a component change
+needs a `pnpm --filter @jarllyng/nostromo build` before the page picks it up.
 
-Storybook uses React + Vite with Tailwind CSS v4. Configuration is in `packages/nostromo/.storybook/`.
-
-For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-issues).
+Pages live in `docs/content/`, and the sidebar order comes from the `_meta.ts`
+file in each directory. Examples are written with the `LiveCode` component,
+which compiles the snippet in the browser and renders it under the code. Those
+snippets are **not** type-checked - see [CONTRIBUTING.md](../../CONTRIBUTING.md#documentation-pages).
 
 ## Analytics (Umami)
 
@@ -264,7 +265,6 @@ For Storybook issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#storybook-is
 - Events implemented on docs site:
   - `theme_change`: fired when `data-theme` or `data-color-scheme` changes (payload: `{ theme, colorScheme }`)
   - `cta_get_started`: `/getting-started` hero CTA (payload: `{ placement: 'hero' }`)
-  - `cta_storybook`: Storybook hero CTA (payload: `{ placement: 'hero' }`)
   - `cta_view_components`: “View All Components” link (payload: `{ placement: 'components_list' }`)
 - How to emit custom events:
   - Import `track` and call `track('event_name', { optional: 'data' })` inside client-side handlers.
@@ -425,8 +425,8 @@ pnpm clean && rm -rf node_modules && pnpm install
 # Regenerate types
 pnpm type-check && pnpm build
 
-# Clear Storybook cache
-rm -rf .storybook/cache && pnpm storybook
+# Rebuild the docs site from scratch
+rm -rf docs/.next docs/out && pnpm docs:build
 ```
 
 For more help, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) or open a [GitHub Issue](https://github.com/JarlLyng/nostromo-ui/issues).

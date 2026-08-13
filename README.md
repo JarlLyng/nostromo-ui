@@ -175,9 +175,8 @@ own published entry points, and has no known broken components.
 - **Layout Components** - Accordion, Skeleton with animations
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (1077 unit and
   accessibility tests, plus a consumer smoke test against the built package)
-- **Storybook Setup** - React with dark theme
 - **Build System** - tsup with ESM + CJS output and type definitions
-- **Nextra Documentation Site** - Modern documentation with all 30 components, interactive Storybook examples and live previews
+- **Nextra Documentation Site** - Modern documentation with all 30 components and live, editable previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 - **Code Quality** - TypeScript strict mode, CI/CD pipeline, zero lint errors/warnings
 
@@ -190,9 +189,7 @@ own published entry points, and has no known broken components.
 - **DataTable Controlled Mode** - Added server-side pagination/sorting/filtering support with controlled mode props
 - **Code Quality** - TypeScript errors resolved, bundle size optimized
 - **CI/CD** - Parallelized workflow (lint, type-check, test run in parallel), improved lint error detection, all checks passing
-- **Documentation** - All components now have live, interactive examples (StorybookEmbed + LiveCode)
-- **Live Examples** - Every component documentation page includes multiple live, editable examples
-- **Storybook Integration** - Interactive Storybook embeds for all core components with stories, proper base path configuration
+- **Live Examples** - Every component documentation page includes multiple live, editable examples, rendered in place rather than embedded from an external tool
 - **Accessibility** - Comprehensive accessibility testing with axe-core integration (included in 842 tests)
 - **Performance** - Bundle size monitoring and optimization (~204 KB with tree-shaking support)
 - **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
@@ -203,7 +200,7 @@ own published entry points, and has no known broken components.
 
 ## 📚 Documentation
 
-**Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/) | **Storybook**: [https://jarllyng.github.io/nostromo-ui/storybook-static/](https://jarllyng.github.io/nostromo-ui/storybook-static/)
+**Live documentation**: [https://jarllyng.github.io/nostromo-ui/](https://jarllyng.github.io/nostromo-ui/)
 
 ### Main Guides
 

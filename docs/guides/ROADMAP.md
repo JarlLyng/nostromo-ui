@@ -115,7 +115,7 @@ Real prerequisites for gathering feedback:
   - [x] Global search functionality
   - [x] Column filtering (text, select, number, date, boolean)
   - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
-  - [x] Storybook stories and documentation
+  - [x] Documentation pages with live examples
 
 - [x] **Calendar Component** ✅ **COMPLETED**
   - [x] Date picker functionality
@@ -124,7 +124,7 @@ Real prerequisites for gathering feedback:
   - [x] Date constraints (min/max dates, disabled dates/days)
   - [x] Locale support and customization
   - [x] Comprehensive tests (15 unit tests, 5 accessibility tests)
-  - [x] Storybook stories and documentation
+  - [x] Documentation pages with live examples
 
 - [x] **Charts Component** ✅ **COMPLETED**
   - [x] Data visualization
@@ -133,7 +133,7 @@ Real prerequisites for gathering feedback:
   - [x] Multiple data series support
   - [x] Custom colors and styling
   - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
-  - [x] Storybook stories and documentation
+  - [x] Documentation pages with live examples
 
 ### **Phase 2.5: Code Quality & Stability** ✅ **COMPLETED**
 
@@ -287,7 +287,7 @@ Real prerequisites for gathering feedback:
   - Marketing package: 7 smoke tests (export + render verification)
   - Theme package: 3 smoke tests (preset structure validation)
 - **Accessibility**: ✅ **Compliant** (All core components pass WCAG 2.1 AA tests)
-- **Storybook**: ✅ **Core components covered** (React stories for all core components, marketing components documented on site)
+- **Component documentation**: ✅ **All components covered** (every component has a page with live, editable examples; Storybook was removed in favour of in-page rendering)
 - **Build System**: ✅ **Complete** (ESM/CJS output with type definitions)
 
 ### **Phase Progress**
