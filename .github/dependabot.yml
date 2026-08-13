@@ -67,6 +67,14 @@ updates:
         dependency-type: "production"
         update-types: ["minor", "patch"]
     ignore:
+      # size-limit 13 imports { glob } from "node:fs/promises", which only exists
+      # on Node 22+. CI runs Node 20, where it throws before measuring anything -
+      # and the failure reads as a bundle-size breach rather than a crash. Revisit
+      # when the workflows move off Node 20.
+      - dependency-name: "size-limit"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@size-limit/preset-small-lib"
+        update-types: ["version-update:semver-major"]
       # Pinned via root pnpm.overrides - see the note on the root entry.
       - dependency-name: "react"
       - dependency-name: "react-dom"
