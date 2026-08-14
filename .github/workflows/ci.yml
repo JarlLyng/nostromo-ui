@@ -18,8 +18,11 @@ permissions:
 # independently, which is how the repo ended up a full LTS line behind: Node 20
 # left maintenance in April 2026. Referencing a workflow-level env means the next
 # bump is one line, and no job can be forgotten.
+#
+# 24, not 22: Node 24 bundles npm 11.17, which already clears the 11.5.1 floor
+# that Trusted Publishing needs - so publish.yml installs no npm of its own.
 env:
-  NODE_VERSION: "22"
+  NODE_VERSION: "24"
 
 jobs:
   lint:
@@ -244,6 +247,23 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
 
+    # The one job that runs on more than NODE_VERSION. 20 is not a development
+    # target - it left maintenance in April 2026 and the toolchain floor is 22.22
+    # - it is the floor packages/nostromo declares in `engines.node`, and this is
+    # what keeps that declaration honest instead of merely asserted. If a future
+    # devDependency bump breaks this leg, that is the signal to raise the
+    # published floor in a major, which is a decision worth being forced to make
+    # rather than discovering from a consumer.
+    # NODE_VERSION cannot be referenced here - the env context is not available
+    # in `strategy`, so the second entry has to be written out. Keep it in step
+    # with NODE_VERSION above.
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "24"]
+
+    name: smoke (node ${{ matrix.node }})
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -254,7 +274,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ matrix.node }}
           cache: "pnpm"
 
       - name: Install dependencies

@@ -24,7 +24,7 @@ concurrency:
 # Keep in step with ci.yml's NODE_VERSION. Raising this is what let the npm pin
 # below move to @latest - see the note there.
 env:
-  NODE_VERSION: "22"
+  NODE_VERSION: "24"
 
 jobs:
   publish:
@@ -56,29 +56,24 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
-      # Node 22 bundles npm 10.9, and tokenless publishing via a Trusted
-      # Publisher needs 11.5.1 or newer. Without this the registry never sees an
-      # OIDC exchange, so NPM_TOKEN is silently required however npm's Trusted
-      # Publisher page is configured. Kept separate from the Node version so
-      # bumping Node cannot quietly undo it.
+      # Tokenless publishing via a Trusted Publisher needs npm 11.5.1 or newer.
+      # Below that the registry never sees an OIDC exchange, so NPM_TOKEN is
+      # silently required however npm's Trusted Publisher page is configured.
       #
-      # This used to be pinned to npm@11 because npm 12 declares
-      # `^22.22.2 || ^24.15.0 || >=26.0.0` and would have been an EBADENGINE on
-      # Node 20. NODE_VERSION is 22 now and setup-node resolves that to the
-      # newest 22.x, which is past 22.22.2, so @latest is back on the table. The
-      # assertion below is what actually guards the floor, not the tag.
-      - name: Use an npm that supports Trusted Publishing
+      # There used to be an `npm install -g` here: Node 20 bundled npm 10.8, too
+      # old, and npm@latest could not be used either because npm 12 declares
+      # `^22.22.2 || ^24.15.0 || >=26.0.0`. Node 24 bundles 11.17, which clears
+      # the floor on its own, so the install is gone and one moving part with it.
+      #
+      # The assertion stays. It is what actually guards the floor - an npm below
+      # 11.5.1 does not error, it just never attempts the exchange, so nothing
+      # else here would notice.
+      - name: Assert npm can do Trusted Publishing
         run: |
-          npm install -g npm@latest
           INSTALLED=$(npm --version)
-          echo "npm $INSTALLED"
-          # Assert rather than trust the tag. The version this resolves to is
-          # exactly the assumption that broke the previous attempt, and too old
-          # an npm fails silently: it just never attempts the OIDC exchange. An
-          # npm too new for the Node version fails loudly instead (EBADENGINE),
-          # so both directions are covered.
+          echo "npm $INSTALLED (bundled with node $(node --version))"
           if [ "$(printf '%s\n11.5.1\n' "$INSTALLED" | sort -V | head -1)" != "11.5.1" ]; then
-            echo "::error::npm $INSTALLED cannot do Trusted Publishing - 11.5.1 or newer is required. Either the pin above resolved to something older, or the install silently failed."
+            echo "::error::npm $INSTALLED cannot do Trusted Publishing - 11.5.1 or newer is required. The Node version above bundles too old an npm; either raise NODE_VERSION or reinstate an explicit npm install."
             exit 1
           fi
 
