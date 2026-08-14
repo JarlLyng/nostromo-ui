@@ -582,4 +582,33 @@ describe("TooltipContent visibility", () => {
     expect(tip).not.toHaveAttribute("aria-hidden");
     expect(tip.className).toContain("opacity-100");
   });
+
+  // `content` used to be a required prop while TooltipTrigger and TooltipContent
+  // were both exported, so the composed form - the one the docs show - did not
+  // type-check, and opening it rendered the shorthand slot as well: a second,
+  // empty bubble beside the real one.
+  it("renders exactly one bubble when composed without `content`", () => {
+    render(
+      <Tooltip open>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>Tip text</TooltipContent>
+      </Tooltip>,
+    );
+
+    const tips = screen.getAllByRole("tooltip", { hidden: true });
+    expect(tips).toHaveLength(1);
+    expect(tips[0]).toHaveTextContent("Tip text");
+  });
+
+  it("still renders the shorthand `content` form", () => {
+    render(
+      <Tooltip content="Shorthand tip" open>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+      </Tooltip>,
+    );
+
+    const tips = screen.getAllByRole("tooltip", { hidden: true });
+    expect(tips).toHaveLength(1);
+    expect(tips[0]).toHaveTextContent("Shorthand tip");
+  });
 });

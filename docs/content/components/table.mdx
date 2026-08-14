@@ -6,7 +6,7 @@ The Table component provides you with data tables with sorting, pagination, and 
 
 ## Live Examples
 
-<LiveCode code={`import { Table } from '@jarllyng/nostromo'
+<LiveCode code={`import { Table, type TableColumn } from '@jarllyng/nostromo'
 
 export default function TableDefault() {
   const data = [
@@ -15,7 +15,7 @@ export default function TableDefault() {
     { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
   ]
   
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { key: 'name', title: 'Name', dataIndex: 'name' },
     { key: 'email', title: 'Email', dataIndex: 'email' }
   ]
@@ -23,7 +23,7 @@ export default function TableDefault() {
   return <Table data={data} columns={columns} />
 }`} />
 
-<LiveCode code={`import { Table } from '@jarllyng/nostromo'
+<LiveCode code={`import { Table, type TableColumn } from '@jarllyng/nostromo'
 
 export default function TableStriped() {
   const data = [
@@ -32,7 +32,7 @@ export default function TableStriped() {
     { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
   ]
   
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { key: 'name', title: 'Name', dataIndex: 'name' },
     { key: 'email', title: 'Email', dataIndex: 'email' }
   ]
@@ -40,7 +40,7 @@ export default function TableStriped() {
   return <Table data={data} columns={columns} variant="striped" />
 }`} />
 
-<LiveCode code={`import { Table } from '@jarllyng/nostromo'
+<LiveCode code={`import { Table, type TableColumn } from '@jarllyng/nostromo'
 
 export default function TableBordered() {
   const data = [
@@ -49,7 +49,7 @@ export default function TableBordered() {
     { id: '3', name: 'Bob Johnson', email: 'bob@example.com' }
   ]
   
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { key: 'name', title: 'Name', dataIndex: 'name' },
     { key: 'email', title: 'Email', dataIndex: 'email' }
   ]
@@ -82,7 +82,7 @@ export default function Example() {
     { id: "2", name: "Jane Smith", email: "jane@example.com" },
   ];
 
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { key: "name", title: "Name", dataIndex: "name" },
     { key: "email", title: "Email", dataIndex: "email" },
   ];
@@ -95,9 +95,9 @@ export default function Example() {
 
 ### With Sorting
 
-<LiveCode code={`import { Table } from '@jarllyng/nostromo'
+<LiveCode code={`import { Table, type TableColumn } from '@jarllyng/nostromo'
 
-interface User {
+type User = {
 id: string
 name: string
 email: string
@@ -112,7 +112,7 @@ export default function SortableTable() {
     { id: '2', name: 'Jane Smith', email: 'jane@example.com' }
   ]
   
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { 
       key: 'name', 
       title: 'Name', 
@@ -146,7 +146,7 @@ export default function SortableTable() {
 
 ### With Pagination
 
-<LiveCode code={`import { Table } from '@jarllyng/nostromo'
+<LiveCode code={`import { Table, type TableColumn } from '@jarllyng/nostromo'
 
 export default function PaginatedTable() {
   const [currentPage, setCurrentPage] = React.useState(1)
@@ -158,7 +158,7 @@ export default function PaginatedTable() {
     email: \`user\${i + 1}@example.com\`
   }))
   
-  const columns = [
+  const columns: TableColumn<(typeof data)[number]>[] = [
     { key: 'name', title: 'Name', dataIndex: 'name' },
     { key: 'email', title: 'Email', dataIndex: 'email' }
   ]

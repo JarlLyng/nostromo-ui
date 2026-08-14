@@ -80,7 +80,15 @@ const arrowVariants = cva("absolute w-2 h-2 rotate-45", {
 // Types
 export interface TooltipProps extends VariantProps<typeof tooltipVariants> {
   children: React.ReactNode;
-  content: React.ReactNode;
+  /**
+   * The tooltip body, for the shorthand form:
+   * `<Tooltip content="...">        <button /></Tooltip>`.
+   *
+   * Optional, because `TooltipTrigger` and `TooltipContent` are exported and
+   * composing them is the other supported form - and the one the docs show. It
+   * was required, which meant the composed form did not type-check at all.
+   */
+  content?: React.ReactNode;
   trigger?: "hover" | "click" | "focus" | "manual";
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -283,7 +291,13 @@ const TooltipComponent = React.forwardRef<HTMLDivElement, TooltipProps>(
 
     // Only render the TooltipContent when open is true (and no pending close timer),
     // to help guard against duplicate tooltips in StrictMode/rapid toggles.
-    const shouldRenderContent = open === true;
+    //
+    // `content !== undefined` matters for the composed form. Without it, opening
+    // a `<Tooltip><TooltipTrigger /><TooltipContent /></Tooltip>` rendered this
+    // slot too, with `undefined` inside - a second, empty bubble next to the real
+    // one. The shorthand and the composed form are now mutually exclusive, which
+    // is what they always looked like from the outside.
+    const shouldRenderContent = open === true && content !== undefined;
 
     return (
       <TooltipContext.Provider value={contextValue}>

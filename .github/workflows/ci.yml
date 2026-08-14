@@ -188,6 +188,13 @@ jobs:
           fi
           echo "✅ Bundle sizes within limits"
 
+      # Deliberately part of `build` rather than a job of its own. It needs dist,
+      # which this job has just produced - and `build` is already a required
+      # check, so the examples are gated from the first run instead of waiting on
+      # a branch-protection change nobody would remember to make.
+      - name: Type-check the docs examples
+        run: pnpm validate:docs-examples
+
       - name: Upload error logs
         if: failure()
         uses: actions/upload-artifact@v4

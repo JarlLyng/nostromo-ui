@@ -52,36 +52,51 @@ export default function PricingExample() {
 `} noInline={true} />
 
 <LiveCode code={`import { Pricing } from '@jarllyng/nostromo'
-import { Button } from '@jarllyng/nostromo'
 
 export default function PricingComparisonExample() {
   return (
     <Pricing
       title="Compare Plans"
-      variant="comparison"
+      variant="muted"
+      columns={3}
       plans={[
         {
-          name: "Basic",
-          price: "$9",
-          period: "month",
-          features: ["5 projects", "Basic support"],
-          cta: <Button variant="outline">Get Started</Button>
+          id: 'basic',
+          name: 'Basic',
+          price: { monthly: 9 },
+          period: 'month',
+          features: [
+            { id: 'projects', name: '5 projects', included: true },
+            { id: 'support', name: 'Basic support', included: true },
+            { id: 'advanced', name: 'Advanced features', included: false },
+          ],
+          cta: { text: 'Get Started' },
         },
         {
-          name: "Pro",
-          price: "$29",
-          period: "month",
-          features: ["Unlimited projects", "Priority support", "Advanced features"],
-          cta: <Button>Get Started</Button>,
-          featured: true
+          id: 'pro',
+          name: 'Pro',
+          price: { monthly: 29 },
+          period: 'month',
+          popular: true,
+          features: [
+            { id: 'projects', name: 'Unlimited projects', included: true },
+            { id: 'support', name: 'Priority support', included: true },
+            { id: 'advanced', name: 'Advanced features', included: true },
+          ],
+          cta: { text: 'Get Started' },
         },
         {
-          name: "Enterprise",
-          price: "$99",
-          period: "month",
-          features: ["Everything in Pro", "Dedicated support", "Custom integrations"],
-          cta: <Button variant="outline">Contact Sales</Button>
-        }
+          id: 'enterprise',
+          name: 'Enterprise',
+          price: { monthly: 99 },
+          period: 'month',
+          features: [
+            { id: 'pro', name: 'Everything in Pro', included: true },
+            { id: 'support', name: 'Dedicated support', included: true },
+            { id: 'custom', name: 'Custom integrations', included: true },
+          ],
+          cta: { text: 'Contact Sales' },
+        },
       ]}
     />
   )
@@ -96,21 +111,30 @@ export default function PricingSimpleExample() {
       columns={2}
       plans={[
         {
-          name: "Monthly",
-          price: "$29",
-          period: "per month",
-          features: ["All features", "Email support"],
-          cta: "Start Free Trial"
+          id: 'monthly',
+          name: 'Monthly',
+          price: { monthly: 29 },
+          period: 'per month',
+          features: [
+            { id: 'all', name: 'All features', included: true },
+            { id: 'email', name: 'Email support', included: true },
+          ],
+          cta: { text: 'Start Free Trial' },
         },
         {
-          name: "Yearly",
-          price: "$290",
-          period: "per year",
-          description: "Save $58 per year",
-          features: ["All features", "Priority support", "Save 20%"],
-          cta: "Start Free Trial",
-          badge: "Best Value"
-        }
+          id: 'yearly',
+          name: 'Yearly',
+          description: 'Save $58 per year',
+          price: { monthly: 24, yearly: 290 },
+          period: 'per year',
+          badge: { text: 'Best Value', variant: 'success' },
+          features: [
+            { id: 'all', name: 'All features', included: true },
+            { id: 'priority', name: 'Priority support', included: true },
+            { id: 'save', name: 'Save 20%', included: true },
+          ],
+          cta: { text: 'Start Free Trial' },
+        },
       ]}
     />
   )
