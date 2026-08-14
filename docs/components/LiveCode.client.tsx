@@ -1,39 +1,14 @@
 "use client";
 
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
-import * as Nostromo from "@jarllyng/nostromo";
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { withBasePath } from "../utils/withBasePath";
+import { liveCodeScope, transformLiveCode } from "../lib/live-code";
 
+// Used by this component's own chrome, not by the examples.
 import { Button } from "@jarllyng/nostromo/components/core/button";
 import { Badge } from "@jarllyng/nostromo/components/core/badge";
-import { Card } from "@jarllyng/nostromo/components/core/card";
 import { Separator } from "@jarllyng/nostromo/components/core/separator";
-import { Icon } from "@jarllyng/nostromo/components/core/icon";
-
-// Scope for live code examples - includes all Nostromo components
-const scope = {
-  React,
-  ...Nostromo,
-  // Explicitly add commonly used components for better IDE support
-  Hero: Nostromo.Hero,
-  Features: Nostromo.Features,
-  Testimonials: Nostromo.Testimonials,
-  Pricing: Nostromo.Pricing,
-  Gallery: Nostromo.Gallery,
-  LogoWall: Nostromo.LogoWall,
-  Button: Nostromo.Button,
-  Input: Nostromo.Input,
-  // React hooks
-  useState: React.useState,
-  useEffect: React.useEffect,
-  useRef: React.useRef,
-  useCallback: React.useCallback,
-  useMemo: React.useMemo,
-  // No `render` here on purpose: react-live injects the real one in noInline
-  // mode, and a stub in scope shadows it, so the preview silently renders
-  // nothing instead of the component.
-};
 
 export interface LiveCodeProps {
   code: string;
@@ -76,50 +51,10 @@ export default function LiveCodeClient({
     }
   };
 
-  // The examples are written the way a consumer would write them - imports at
-  // the top, `export default function Example()` below - because that is what
-  // people copy out. react-live understands neither, so both get rewritten here
-  // rather than making every example carry react-live-specific boilerplate.
-  let transformedCode = code
-    .trim()
-    .split("\n")
-    .filter((line) => !line.trim().startsWith("import "))
-    .join("\n")
-    .trim();
-
-  // In noInline mode react-live evaluates the block as statements and requires a
-  // render() call. Turn the default export into one.
-  const defaultExport = transformedCode.match(
-    /export\s+default\s+function\s+([A-Za-z0-9_$]+)/,
+  const { code: transformedCode, noInline: needsNoInline } = transformLiveCode(
+    code,
+    noInline,
   );
-  if (defaultExport) {
-    transformedCode = `${transformedCode.replace(/export\s+default\s+/, "")}\n\nrender(<${defaultExport[1]} />)`;
-  } else {
-    transformedCode = transformedCode.replace(/export\s+default\s+/, "");
-
-    // Some examples declare the component without exporting it - `function
-    // ThemeDemo()` or `const ComponentPreview = () =>`. Those have no default
-    // export to rewrite, so nothing appended a render() call and react-live threw
-    // "No-Inline evaluations must call `render`". Pick up the last top-level
-    // PascalCase declaration and render that instead.
-    if (!/\brender\s*\(/.test(transformedCode)) {
-      const declarations = [
-        ...transformedCode.matchAll(
-          /^(?:function|const|let|var)\s+([A-Z][A-Za-z0-9_$]*)/gm,
-        ),
-      ];
-      const component = declarations.at(-1)?.[1];
-      if (component) {
-        transformedCode = `${transformedCode}\n\nrender(<${component} />)`;
-      }
-    }
-  }
-
-  // Derive the mode from the code instead of guessing at it. The previous
-  // version set noInline whenever the source contained `export default`, which
-  // is every example - and then react-live threw "No-Inline evaluations must
-  // call `render`" for all of them, because nothing added the render call.
-  const needsNoInline = noInline || /\brender\s*\(/.test(transformedCode);
 
   if (!mounted) return null;
 
@@ -128,7 +63,7 @@ export default function LiveCodeClient({
       <LiveProvider
         key={resetKey}
         code={transformedCode}
-        scope={scope}
+        scope={liveCodeScope}
         noInline={needsNoInline}
       >
         <div className="border border-border rounded-2xl overflow-hidden shadow-2xl bg-card transition-all duration-300 hover:border-accent/30">
