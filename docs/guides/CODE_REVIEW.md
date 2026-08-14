@@ -79,17 +79,22 @@ This guide helps reviewers understand how to effectively review code in the Nost
 ```
 nostromo-ui/
 ├── packages/
-│   ├── ui-core/              # Core components (27 components)
-│   │   ├── src/
-│   │   │   ├── components/   # Component implementations
-│   │   │   │   ├── button/
-│   │   │   │   │   ├── button.tsx
-│   │   │   │   │   └── button.test.tsx
-│   │   │   └── index.ts      # Public exports
-│   ├── ui-marketing/         # Marketing components (6 components)
-│   └── ui-tw/               # Tailwind preset & themes
-├── docs/                    # Nextra documentation site
-└── tools/                   # Shared tooling configs
+│   └── nostromo/                 # The published package, @jarllyng/nostromo
+│       └── src/
+│           ├── components/
+│           │   ├── core/         # 30 core components
+│           │   │   ├── button.tsx
+│           │   │   └── __tests__/
+│           │   │       ├── button.test.tsx
+│           │   │       └── button.a11y.test.tsx
+│           │   └── marketing/    # 6 marketing components
+│           ├── themes/           # The four theme stylesheets
+│           ├── styles/           # Tailwind entry and tokens
+│           ├── lib/              # Shared helpers (cn, lazy, performance)
+│           └── index.ts          # Public exports
+├── docs/                         # Nextra documentation site
+├── test-app/                     # Consumer smoke tests against dist
+└── scripts/                      # Release and validation scripts
 ```
 
 ### Component File Structure

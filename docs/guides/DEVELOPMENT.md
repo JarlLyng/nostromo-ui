@@ -96,8 +96,8 @@ nostromo-ui/
 
 ### Test Results
 
-- **Core Coverage**: 1089 tests passing (unit + accessibility) - 100% pass rate
-- **Test Coverage**: 81% lines, 75% branches, 85% functions, 83% statements
+- **Tests**: 1169 passing (unit + accessibility, 473 of them accessibility), plus 17 consumer smoke tests - 100% pass rate
+- **Coverage**: 84.4% lines, 78.3% branches, 86.6% functions, 83.0% statements
 
 ### Root Commands
 

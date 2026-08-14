@@ -20,29 +20,33 @@ Always use individual component imports for optimal tree-shaking:
 
 ```tsx
 // ✅ Recommended: Individual imports
-import { Button } from '@jarllyng/nostromo/button';
-import { Input } from '@jarllyng/nostromo/input';
+import { Button } from "@jarllyng/nostromo/button";
+import { Input } from "@jarllyng/nostromo/input";
 
 // ✅ Also OK: Barrel imports (still tree-shakeable)
-import { Button, Input } from '@jarllyng/nostromo';
+import { Button, Input } from "@jarllyng/nostromo";
 
 // ❌ Avoid: Full library import
-import * as Nostromo from '@jarllyng/nostromo';
+import * as Nostromo from "@jarllyng/nostromo";
 ```
 
 ### Bundle Size Limits
 
 We monitor bundle sizes with size-limit. Current sizes (minified + brotlied):
 
-- **Button**: 8.5 KB (limit: 10 KB)
-- **Input**: 8.27 KB (limit: 10 KB)
-- **Dialog**: 8.61 KB (limit: 12 KB)
-- **Select**: 31.29 KB (limit: 35 KB)
-- **Charts**: 104.71 KB (limit: 105 KB, includes recharts library)
-- **DataTable**: 11.73 KB (limit: 25 KB)
-- **Calendar**: 34.61 KB (limit: 35 KB, includes date-fns library)
-- **Icon**: 50.59 KB (limit: 51 KB, includes Phosphor icon library)
-- **Main bundle (index.js)**: 204.08 KB (limit: 420 KB, with tree-shaking)
+- **Button**: 10.06 kB (limit: 11 kB)
+- **Input**: 8.73 kB (limit: 11 kB)
+- **Dialog**: 9.52 kB (limit: 12 kB)
+- **Select**: 35.83 kB (limit: 40 kB)
+- **DataTable**: 12.21 kB (limit: 25 kB)
+- **Calendar**: 37.09 kB (limit: 40 kB, includes date-fns)
+- **Icon**: 52.45 kB (limit: 55 kB, includes the Phosphor icon set)
+- **Charts**: 113.1 kB (limit: 125 kB, includes recharts)
+- **Full barrel (index.js)**: 222.88 kB (limit: 420 kB)
+
+These are the numbers `pnpm --filter @jarllyng/nostromo size` prints, and
+the limits are the ones in that package's `size-limit` field - so run it rather
+than trusting this list, which is a snapshot.
 
 **Note**: These sizes are measured with all dependencies, minified and brotlied. Individual component imports enable tree-shaking for optimal bundle sizes.
 
@@ -69,22 +73,21 @@ All components are optimized with `React.memo` to prevent unnecessary re-renders
 import { useState } from 'react'
 
 const MemoizedComponents = () => {
-  const [count, setCount] = useState(0)
-  
-  return (
-    <div className="space-y-4">
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
-          Count: {count} - These components are memoized and won't re-render unnecessarily
-        </p>
-        <button 
-          onClick={() => setCount(count + 1)}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
-        >
-          Increment Count
-        </button>
-      </div>
-      
+const [count, setCount] = useState(0)
+
+return (
+<div className="space-y-4">
+<div>
+<p className="text-sm text-muted-foreground mb-2">
+Count: {count} - These components are memoized and won't re-render unnecessarily
+</p>
+<button
+onClick={() => setCount(count + 1)}
+className="px-4 py-2 bg-primary text-primary-foreground rounded-md" >
+Increment Count
+</button>
+</div>
+
       <div className="space-y-2">
         <Button>Memoized Button</Button>
         <Input placeholder="Memoized Input" />
@@ -93,13 +96,15 @@ const MemoizedComponents = () => {
         </Card>
       </div>
     </div>
-  )
+
+)
 }
 
 render(<MemoizedComponents />)
 `} noInline={true} />
 
 **How it works:**
+
 - Components automatically memoized
 - Only re-renders when props actually change
 - Prevents unnecessary DOM updates
@@ -121,34 +126,34 @@ For components with expensive calculations:
 import { Chart } from '@jarllyng/nostromo'
 
 const OptimizedChart = () => {
-  const [rawData] = useState([
-    { name: 'Jan', value: 100 },
-    { name: 'Feb', value: 200 },
-    { name: 'Mar', value: 150 },
-  ])
-  
-  // Memoize expensive calculations
-  const processedData = useMemo(() => {
-    return rawData.map(item => ({
-      ...item,
-      calculated: item.value * 2, // Simulated expensive calculation
-      formatted: \`\${item.name}: \${item.value}\`
-    }))
-  }, [rawData])
+const [rawData] = useState([
+{ name: 'Jan', value: 100 },
+{ name: 'Feb', value: 200 },
+{ name: 'Mar', value: 150 },
+])
 
-  return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
-        Data is memoized and only recalculates when rawData changes
-      </p>
-      <Chart 
-        type="line" 
-        data={processedData}
-        dataKeys={['value', 'calculated']}
-        size="sm"
-      />
-    </div>
-  )
+// Memoize expensive calculations
+const processedData = useMemo(() => {
+return rawData.map(item => ({
+...item,
+calculated: item.value * 2, // Simulated expensive calculation
+formatted: \`\${item.name}: \${item.value}\`
+}))
+}, [rawData])
+
+return (
+<div className="space-y-4">
+<p className="text-sm text-muted-foreground">
+Data is memoized and only recalculates when rawData changes
+</p>
+<Chart
+type="line"
+data={processedData}
+dataKeys={['value', 'calculated']}
+size="sm"
+/>
+</div>
+)
 }
 
 render(<OptimizedChart />)
@@ -165,6 +170,7 @@ With code splitting enabled in tsup config, heavy dependencies are automatically
 - Shared dependencies → vendor chunk
 
 This means:
+
 - Initial bundle size is smaller
 - Heavy components load on-demand
 - Better caching (chunks update independently)
@@ -190,22 +196,22 @@ Heavy components (Charts, DataTable, Calendar) should be lazy-loaded for optimal
 <LiveCode code={`import { LazyChart, Skeleton } from '@jarllyng/nostromo'
 
 const LazyChartExample = () => {
-  const data = [
-    { name: 'Jan', sales: 4000, revenue: 2400 },
-    { name: 'Feb', sales: 3000, revenue: 1398 },
-    { name: 'Mar', sales: 2000, revenue: 9800 },
-    { name: 'Apr', sales: 2780, revenue: 3908 },
-    { name: 'May', sales: 1890, revenue: 4800 },
-  ]
-  
-  return (
-    <LazyChart
-      type="line"
-      data={data}
-      dataKeys={['sales', 'revenue']}
-      fallback={<Skeleton className="h-64 w-full" />}
-    />
-  )
+const data = [
+{ name: 'Jan', sales: 4000, revenue: 2400 },
+{ name: 'Feb', sales: 3000, revenue: 1398 },
+{ name: 'Mar', sales: 2000, revenue: 9800 },
+{ name: 'Apr', sales: 2780, revenue: 3908 },
+{ name: 'May', sales: 1890, revenue: 4800 },
+]
+
+return (
+<LazyChart
+type="line"
+data={data}
+dataKeys={['sales', 'revenue']}
+fallback={<Skeleton className="h-64 w-full" />}
+/>
+)
 }
 
 render(<LazyChartExample />)
@@ -214,11 +220,13 @@ render(<LazyChartExample />)
 #### Option 2: Manual Lazy Loading
 
 ```tsx
-import { lazy, Suspense } from 'react';
-import { Skeleton } from '@jarllyng/nostromo';
+import { lazy, Suspense } from "react";
+import { Skeleton } from "@jarllyng/nostromo";
 
 // Lazy load Chart component
-const Chart = lazy(() => import('@jarllyng/nostromo/charts').then(m => ({ default: m.Chart })));
+const Chart = lazy(() =>
+  import("@jarllyng/nostromo/charts").then((m) => ({ default: m.Chart })),
+);
 
 function Dashboard() {
   return (
@@ -234,8 +242,8 @@ function Dashboard() {
 For components that should only load when visible:
 
 ```tsx
-import { LazyInView } from '@jarllyng/nostromo';
-import { Chart } from '@jarllyng/nostromo/charts';
+import { LazyInView } from "@jarllyng/nostromo";
+import { Chart } from "@jarllyng/nostromo/charts";
 
 function Dashboard() {
   return (
@@ -257,24 +265,24 @@ import { Button } from '@jarllyng/nostromo'
 import { useState } from 'react'
 
 const PerformanceMonitorExample = () => {
-  // Monitor render performance (only logs in development)
-  usePerformanceMonitor('PerformanceMonitorExample', {
-    threshold: 16, // ms (60fps)
-    logSlowRenders: true
-  })
-  
-  const [count, setCount] = useState(0)
-  
-  return (
-    <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
-        Check browser console to see performance metrics (development only)
-      </p>
-      <Button onClick={() => setCount(count + 1)}>
-        Render Count: {count}
-      </Button>
-    </div>
-  )
+// Monitor render performance (only logs in development)
+usePerformanceMonitor('PerformanceMonitorExample', {
+threshold: 16, // ms (60fps)
+logSlowRenders: true
+})
+
+const [count, setCount] = useState(0)
+
+return (
+<div className="space-y-4">
+<p className="text-sm text-muted-foreground">
+Check browser console to see performance metrics (development only)
+</p>
+<Button onClick={() => setCount(count + 1)}>
+Render Count: {count}
+</Button>
+</div>
+)
 }
 
 render(<PerformanceMonitorExample />)
@@ -288,24 +296,24 @@ Monitor memory usage (development only):
 import { Card } from '@jarllyng/nostromo'
 
 const MemoryMonitorExample = () => {
-  const memoryInfo = useMemoryMonitor()
+const memoryInfo = useMemoryMonitor()
 
-  return (
-    <Card className="p-4">
-      <h3 className="font-semibold mb-2">Memory Usage</h3>
-      {memoryInfo ? (
-        <div className="space-y-1 text-sm">
-          <p>Used: {(memoryInfo.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
-          <p>Total: {(memoryInfo.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
-          <p>Limit: {(memoryInfo.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB</p>
-        </div>
-      ) : (
-        <p className="text-sm text-muted-foreground">
-          Memory API not available (check browser console)
-        </p>
-      )}
-    </Card>
-  )
+return (
+<Card className="p-4">
+<h3 className="font-semibold mb-2">Memory Usage</h3>
+{memoryInfo ? (
+<div className="space-y-1 text-sm">
+<p>Used: {(memoryInfo.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
+<p>Total: {(memoryInfo.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB</p>
+<p>Limit: {(memoryInfo.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB</p>
+</div>
+) : (
+<p className="text-sm text-muted-foreground">
+Memory API not available (check browser console)
+</p>
+)}
+</Card>
+)
 }
 
 render(<MemoryMonitorExample />)
@@ -355,10 +363,10 @@ useEffect(() => {
     // Handle resize
   };
 
-  window.addEventListener('resize', handleResize);
+  window.addEventListener("resize", handleResize);
 
   return () => {
-    window.removeEventListener('resize', handleResize); // ✅ Cleanup
+    window.removeEventListener("resize", handleResize); // ✅ Cleanup
   };
 }, []);
 ```
@@ -372,6 +380,7 @@ pnpm test memory-leaks
 ```
 
 These tests verify:
+
 - Timeouts are cleaned up on unmount
 - Event listeners are removed on unmount
 - DOM references are cleared
@@ -396,14 +405,17 @@ Semantic HTML is faster to render and parse:
 Use React.memo, useMemo, and useCallback appropriately:
 
 ```tsx
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from "react";
 
 function Form({ onSubmit }) {
   // Memoize callbacks
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    onSubmit(data);
-  }, [onSubmit, data]);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      onSubmit(data);
+    },
+    [onSubmit, data],
+  );
 
   // Memoize expensive calculations
   const processedData = useMemo(() => {
@@ -426,8 +438,8 @@ Split your application into smaller chunks:
 
 ```tsx
 // Route-based code splitting
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const Settings = lazy(() => import('./pages/Settings'));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Settings = lazy(() => import("./pages/Settings"));
 ```
 
 ### 5. Avoid Unnecessary State Updates
@@ -436,7 +448,7 @@ Only update state when necessary:
 
 ```tsx
 // ✅ Good: Only update when value actually changes
-const [value, setValue] = useState('');
+const [value, setValue] = useState("");
 
 const handleChange = (e) => {
   const newValue = e.target.value;
@@ -454,16 +466,19 @@ useEffect(() => {
 ## Performance Targets
 
 ### Bundle Size Targets
+
 - **Core components**: < 30KB gzipped per component
 - **Total library**: < 100KB gzipped (with tree-shaking)
 - **Heavy components**: < 80KB gzipped (Charts, DataTable)
 
 ### Runtime Performance Targets
+
 - **Component render**: < 16ms (60fps)
 - **First paint**: < 100ms
 - **Time to interactive**: < 200ms
 
 ### Memory Usage Targets
+
 - **Baseline memory**: < 10MB
 - **Memory growth**: < 1MB/hour
 - **Memory leaks**: 0
@@ -500,4 +515,3 @@ useEffect(() => {
 ---
 
 **Last Updated**: January 2025
-

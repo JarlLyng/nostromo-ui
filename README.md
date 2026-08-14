@@ -121,32 +121,33 @@ All components are built with:
 
 ## 📊 Project Status
 
-**Current focus**: first npm release. The library builds, is tested against its
-own published entry points, and has no known broken components.
+**Current focus**: hardening the API. The library is published, builds
+reproducibly, is tested against its own published entry points, and has no known
+broken components.
 
 ### 📋 Factual Status Table
 
-| Metric                   | Status | Details                                                    |
-| ------------------------ | ------ | ---------------------------------------------------------- |
-| **Core Components**      | ✅     | 30 components (Charts also has a lazy-loading entry point) |
-| **Marketing Components** | ✅     | 6 components implemented                                   |
-| **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                |
-| **Total Tests**          | ✅     | 1077 unit + accessibility, plus 10 consumer smoke tests    |
-| **Test Coverage**        | ✅     | 84% lines, 78% branches, 86% functions, 83% statements     |
-| **TypeScript**           | ✅     | Zero errors, strict mode enabled                           |
-| **Linting**              | ✅     | 0 errors, 18 warnings                                      |
-| **CI/CD**                | ✅     | All critical checks passing (parallelized)                 |
-| **Documentation**        | ✅     | 12 guides + live examples                                  |
-| **Distribution**         | ⚠️     | Workspace-only (npm publishing planned)                    |
-| **Bundle Size**          | ✅     | 209 KB main bundle (minified + brotlied, tree-shakeable)   |
+| Metric                   | Status | Details                                                                                                             |
+| ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------- |
+| **Core Components**      | ✅     | 30 components (Charts also has a lazy-loading entry point)                                                          |
+| **Marketing Components** | ✅     | 6 components implemented                                                                                            |
+| **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                                                                         |
+| **Total Tests**          | ✅     | 1169 unit + accessibility (473 of them accessibility), plus 17 consumer smoke tests                                 |
+| **Test Coverage**        | ✅     | 84.4% lines, 78.3% branches, 86.6% functions, 83.0% statements                                                      |
+| **TypeScript**           | ✅     | Zero errors, strict mode enabled                                                                                    |
+| **Linting**              | ✅     | 0 errors, 0 warnings (`eslint --max-warnings=0`)                                                                    |
+| **CI/CD**                | ✅     | All critical checks passing (parallelized)                                                                          |
+| **Documentation**        | ✅     | 15 guides, plus a page per component with live examples                                                             |
+| **Distribution**         | ✅     | Published on npm as [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo), with build provenance |
+| **Bundle Size**          | ✅     | 222.88 kB full barrel, minified + brotlied (limit 420 kB); single components from 8.73 kB                           |
 
-> **Note**: Packages are currently workspace-only. npm publishing is planned for future release. See [Development Guide](docs/guides/DEVELOPMENT.md) for workspace setup.
+> **Note**: Every release is published through GitHub Actions with npm Trusted Publishing, so tarballs carry build provenance. See [Publishing Guide](docs/guides/PUBLISHING.md).
 
 ### What is actually true
 
-- **Tested** - 1077 unit and accessibility tests, 36 dedicated accessibility
-  test files using `jest-axe`, and a consumer smoke test that compiles the
-  published stylesheet and mounts components from `dist`
+- **Tested** - 1169 unit and accessibility tests, of which 473 live in 36
+  dedicated accessibility test files using `jest-axe`, plus 17 consumer smoke
+  tests that compile the published stylesheet and mount components from `dist`
 - **Accessible** - built on Radix primitives, with contrast validated against
   WCAG 2.1 AA in the test suite
 - **Tree-shakeable** - per-component entry points with enforced size budgets
@@ -154,8 +155,6 @@ own published entry points, and has no known broken components.
 
 ### What is not
 
-- **Not yet on npm.** The publishing pipeline works and the first release is
-  queued, but nothing is installable from the registry yet
 - **No production users that we know of.** The API has not been through the kind
   of external use that would justify calling it battle-tested
 - **The API is not frozen.** Migrating theming to Tailwind v4 was a breaking
@@ -173,10 +172,10 @@ own published entry points, and has no known broken components.
 - **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, sorting, and server-side support (controlled mode); Charts with line, bar, area, and pie visualizations
 - **Feedback Components** - Toast, Tooltip, Progress with accessibility
 - **Layout Components** - Accordion, Skeleton with animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (1077 unit and
-  accessibility tests, plus a consumer smoke test against the built package)
+- **Test Infrastructure** - Vitest + Testing Library + axe-core (1169 unit and
+  accessibility tests, plus 17 consumer smoke tests against the built package)
 - **Build System** - tsup with ESM + CJS output and type definitions
-- **Nextra Documentation Site** - Modern documentation with all 30 components and live, editable previews
+- **Nextra Documentation Site** - Modern documentation with a page for each of the 36 components and live, editable previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 - **Code Quality** - TypeScript strict mode, CI/CD pipeline, zero lint errors/warnings
 
@@ -190,8 +189,8 @@ own published entry points, and has no known broken components.
 - **Code Quality** - TypeScript errors resolved, bundle size optimized
 - **CI/CD** - Parallelized workflow (lint, type-check, test run in parallel), improved lint error detection, all checks passing
 - **Live Examples** - Every component documentation page includes multiple live, editable examples, rendered in place rather than embedded from an external tool
-- **Accessibility** - Comprehensive accessibility testing with axe-core integration (included in 842 tests)
-- **Performance** - Bundle size monitoring and optimization (~204 KB with tree-shaking support)
+- **Accessibility** - Comprehensive accessibility testing with axe-core integration (473 of the 1169 tests)
+- **Performance** - Bundle size monitoring and optimization (222.88 kB full barrel, tree-shakeable down to single components)
 - **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
 
 **Current Progress: 100% of MVP - Production Ready! 🎉**
