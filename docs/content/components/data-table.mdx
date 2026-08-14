@@ -6,7 +6,7 @@ The DataTable component is an advanced table with built-in search, filtering, so
 
 ## Live Examples
 
-<LiveCode code={`import { DataTable } from '@jarllyng/nostromo'
+<LiveCode code={`import { DataTable, type TableColumn } from '@jarllyng/nostromo'
 
 const data = [
 { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, department: 'Engineering', status: 'Active' },
@@ -15,7 +15,7 @@ const data = [
 { id: 4, name: 'Alice Brown', email: 'alice@example.com', age: 29, department: 'Engineering', status: 'Active' }
 ]
 
-const columns = [
+const columns: TableColumn<(typeof data)[number]>[] = [
 { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
 { key: 'email', title: 'Email', dataIndex: 'email' },
 { key: 'age', title: 'Age', dataIndex: 'age', sortable: true, align: 'center' },
@@ -35,7 +35,7 @@ export default function DataTableExample() {
   )
 }`} noInline={true} />
 
-<LiveCode code={`import { DataTable } from '@jarllyng/nostromo'
+<LiveCode code={`import { DataTable, type TableColumn } from '@jarllyng/nostromo'
 
 const data = [
 { id: 1, name: 'John Doe', email: 'john@example.com', department: 'Engineering', status: 'Active' },
@@ -44,7 +44,7 @@ const data = [
 { id: 4, name: 'Alice Brown', email: 'alice@example.com', department: 'Engineering', status: 'Active' }
 ]
 
-const columns = [
+const columns: TableColumn<(typeof data)[number]>[] = [
 { key: 'name', title: 'Name', dataIndex: 'name', sortable: true },
 { key: 'email', title: 'Email', dataIndex: 'email' },
 { key: 'department', title: 'Department', dataIndex: 'department', sortable: true },
@@ -111,7 +111,7 @@ const data = [
   },
 ];
 
-const columns = [
+const columns: TableColumn<(typeof data)[number]>[] = [
   { key: "name", title: "Name", dataIndex: "name", sortable: true },
   { key: "email", title: "Email", dataIndex: "email" },
   {

@@ -51,6 +51,7 @@
     "audit:contrast": "tsx scripts/audit-contrast.ts",
     "validate:theme-contrasts": "tsx scripts/validate-theme-contrasts.ts",
     "validate:exports": "tsx scripts/validate-exports.ts",
+    "validate:docs-examples": "node scripts/validate-docs-examples.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "node scripts/publish-package.mjs",

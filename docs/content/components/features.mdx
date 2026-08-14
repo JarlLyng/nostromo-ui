@@ -15,23 +15,30 @@ export default function FeaturesExample() {
       subtitle="Built with modern web standards and best practices"
       features={[
         {
+          id: 'typescript-first',
+
           title: "TypeScript First",
           description: "Full TypeScript support with strict type checking",
           icon: <Icon name="code" />
         },
         {
+          id: 'accessible',
+
           title: "Accessible",
           description: "WCAG 2.1 AA compliant components out of the box",
           icon: <Icon name="accessibility" />
         },
         {
+          id: 'customizable',
+
           title: "Customizable",
           description: "CSS variables and Tailwind for easy theming",
           icon: <Icon name="palette" />
         }
       ]}
     />
-  )
+
+)
 }`} noInline={true} />
 
 <LiveCode code={`import { Features, Icon } from '@jarllyng/nostromo'
@@ -41,27 +48,34 @@ export default function FeaturesCardsExample() {
     <Features
       title="Our Features"
       subtitle="Everything you need to build amazing products"
-      variant="cards"
+      cardVariant="accent"
       columns={3}
       features={[
         {
+          id: 'fast-performance',
+
           title: "Fast Performance",
           description: "Lightning-fast components built for speed",
           icon: <Icon name="zap" />
         },
         {
+          id: 'developer-experience',
+
           title: "Developer Experience",
           description: "Intuitive APIs and comprehensive documentation",
           icon: <Icon name="code" />
         },
         {
+          id: 'accessibility',
+
           title: "Accessibility",
           description: "WCAG 2.1 AA compliant out of the box",
           icon: <Icon name="accessibility" />
         }
       ]}
     />
-  )
+
+)
 }`} noInline={true} />
 
 <LiveCode code={`import { Features, Icon } from '@jarllyng/nostromo'
@@ -70,29 +84,38 @@ export default function FeaturesMinimalExample() {
   return (
     <Features
       title="Why Choose Us?"
-      variant="minimal"
+      variant="muted"
       columns={2}
       centered={true}
       features={[
         {
+          id: 'typescript-first',
+
           title: "TypeScript First",
           description: "Full TypeScript support with strict type checking"
         },
         {
+          id: 'customizable',
+
           title: "Customizable",
           description: "CSS variables and Tailwind for easy theming"
         },
         {
+          id: 'accessible',
+
           title: "Accessible",
           description: "WCAG 2.1 AA compliant components"
         },
         {
+          id: 'well-documented',
+
           title: "Well Documented",
           description: "Comprehensive documentation and examples"
         }
       ]}
     />
-  )
+
+)
 }`} noInline={true} />
 
 ## Import

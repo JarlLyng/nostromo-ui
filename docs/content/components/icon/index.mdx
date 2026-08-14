@@ -56,13 +56,13 @@ import { Icon } from '@jarllyng/nostromo'
 export default function IconSizes() {
   return (
     <div className="flex flex-wrap items-end gap-8">
-      {['sm', 'default', 'lg'].map((size) => (
+      {(['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const).map((size) => (
         <div key={size} className="flex flex-col items-center gap-2">
           <Icon name="star" size={size} />
           <span className="text-[10px] text-muted-foreground">{size}</span>
         </div>
       ))}
-      {['primary', 'success', 'warning', 'error', 'muted'].map((color) => (
+      {(['primary', 'secondary', 'success', 'warning', 'error', 'muted'] as const).map((color) => (
         <div key={color} className="flex flex-col items-center gap-2">
           <Icon name="star" size="lg" color={color} />
           <span className="text-[10px] text-muted-foreground">{color}</span>
