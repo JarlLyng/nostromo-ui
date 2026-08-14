@@ -222,7 +222,9 @@ Real prerequisites for gathering feedback:
   - [x] Performance monitoring hooks available
   - [x] Lazy loading exports for heavy components (LazyChart component)
   - [x] Code splitting optimization (enabled in tsup config, automatic chunk creation)
-  - [x] Main bundle reduced from 107KB to 8KB with code splitting (96% reduction!)
+  - [x] Entry chunk reduced from 107KB to 8KB with code splitting - the barrel
+        is now re-exports over shared chunks, so importing one component pulls
+        one chunk rather than the whole library
   - [x] Memory leak review completed - all components properly clean up resources
   - [x] Memory leak test suite created and passing
 
@@ -283,9 +285,8 @@ Real prerequisites for gathering feedback:
 - **Themes**: ✅ **4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
 - **Documentation**: ✅ **Complete** (Nextra-based documentation site with all components)
 - **Tests**:
-  - Core package: 842 tests (unit + accessibility) - 100% pass rate
-  - Marketing package: 7 smoke tests (export + render verification)
-  - Theme package: 3 smoke tests (preset structure validation)
+  - Library: 1169 tests (unit + accessibility, 473 of them accessibility) - 100% pass rate
+  - Consumer smoke tests: 17, run against the built `dist` through the package's own `exports` map
 - **Accessibility**: ✅ **Compliant** (All core components pass WCAG 2.1 AA tests)
 - **Component documentation**: ✅ **All components covered** (every component has a page with live, editable examples; Storybook was removed in favour of in-page rendering)
 - **Build System**: ✅ **Complete** (ESM/CJS output with type definitions)
@@ -346,7 +347,7 @@ Real prerequisites for gathering feedback:
 - [x] All components pass accessibility tests ✅
 - [x] WCAG 2.1 AA contrast compliance verified ✅
 - [x] Bundle size optimized ✅
-- [x] 100% test pass rate (842/842 tests) ✅
+- [x] 100% test pass rate (1169/1169 tests, plus 17 smoke tests) ✅
 - [x] Zero critical security vulnerabilities ✅
 - [x] Production-ready documentation ✅
 
