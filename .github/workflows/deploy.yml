@@ -22,7 +22,7 @@ permissions:
 
 # Keep in step with ci.yml's NODE_VERSION.
 env:
-  NODE_VERSION: "22"
+  NODE_VERSION: "24"
 
 jobs:
   build-and-deploy:
