@@ -296,7 +296,7 @@
     "eslint": "^9.39.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "jest-axe": "^10.0.0",
+    "jest-axe": "^11.0.0",
     "jsdom": "^27.4.0",
     "size-limit": "^13.0.3",
     "tsup": "^8.5.1",
