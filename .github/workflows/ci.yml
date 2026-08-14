@@ -195,6 +195,17 @@ jobs:
       - name: Type-check the docs examples
         run: pnpm validate:docs-examples
 
+      # The other half: compiling is not running. These mount every example
+      # through LiveCode's real transform and scope in jsdom, which is what
+      # catches the SyntaxError and ReferenceError class reported from the live
+      # site. Here rather than in the `test` job because that one only runs the
+      # library's own coverage, and here rather than in a job of its own because
+      # `build` is already required and already has the dist these resolve
+      # against.
+      - name: Render the docs examples
+        timeout-minutes: 10
+        run: pnpm --filter nostromo-ui-docs test:run
+
       - name: Upload error logs
         if: failure()
         uses: actions/upload-artifact@v4

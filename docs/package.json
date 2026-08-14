@@ -7,7 +7,10 @@
     "dev": "next dev",
     "build": "next build --webpack && pnpm run postbuild",
     "start": "next start",
-    "postbuild": "pagefind --site out --output-subdir _pagefind"
+    "postbuild": "pagefind --site out --output-subdir _pagefind",
+    "test": "vitest run",
+    "test:run": "vitest run",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@jarllyng/nostromo": "workspace:*",
@@ -23,13 +26,15 @@
     "@next/mdx": "^16.3.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "26.2.0",
-    "pagefind": "^1.4.0",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
     "autoprefixer": "^10.5.4",
+    "jsdom": "^27.4.0",
+    "pagefind": "^1.4.0",
     "postcss": "^8.5.26",
     "react-live": "^4.1.8",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   }
 }
