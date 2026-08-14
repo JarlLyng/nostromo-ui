@@ -247,23 +247,6 @@ jobs:
   smoke:
     runs-on: ubuntu-latest
 
-    # The one job that runs on more than NODE_VERSION. 20 is not a development
-    # target - it left maintenance in April 2026 and the toolchain floor is 22.22
-    # - it is the floor packages/nostromo declares in `engines.node`, and this is
-    # what keeps that declaration honest instead of merely asserted. If a future
-    # devDependency bump breaks this leg, that is the signal to raise the
-    # published floor in a major, which is a decision worth being forced to make
-    # rather than discovering from a consumer.
-    # NODE_VERSION cannot be referenced here - the env context is not available
-    # in `strategy`, so the second entry has to be written out. Keep it in step
-    # with NODE_VERSION above.
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ["20", "24"]
-
-    name: smoke (node ${{ matrix.node }})
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -274,7 +257,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
 
       - name: Install dependencies
@@ -289,6 +272,44 @@ jobs:
 
       - name: Type-check the consumer app
         run: pnpm --filter nostromo-ui-smoke run type-check
+
+  # The same consumer check on the oldest Node that packages/nostromo promises in
+  # `engines.node`. That floor is real - the built artifact loads and mounts on
+  # 20.20.2 - but nothing tested it once CI moved off Node 20, and an untested
+  # promise is the kind that rots quietly.
+  #
+  # A separate job rather than a matrix on `smoke` above, deliberately. A matrix
+  # renames the check to "smoke (20)" / "smoke (24)", and branch protection
+  # requires a context named exactly `smoke` - so adding one silently blocks every
+  # future pull request on a check that can no longer report. Found that the hard
+  # way on this branch.
+  #
+  # 20 is not a development target: it left maintenance in April 2026 and the
+  # toolchain floor is 22.22. If a devDependency bump breaks this job, that is the
+  # signal to raise the published floor in a major - a decision worth being forced
+  # to make rather than hearing about from a consumer.
+  smoke-node20:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run consumer smoke tests
+        timeout-minutes: 10
+        run: pnpm turbo run test:run --filter=nostromo-ui-smoke
 
   # Installs the packed tarball into a throwaway project for each supported React
   # version. peerDependencies shipped as an exact pin once, which made
