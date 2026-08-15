@@ -30,6 +30,7 @@ export default {
   // into a JSX expression that will not compile.
   icon: "Icon",
   separator: "Separator",
+  popover: "Popover",
   forms: {
     title: "Forms",
     type: "separator",
@@ -68,6 +69,7 @@ export default {
   "data-table": "DataTable",
   avatar: "Avatar",
   accordion: "Accordion",
+  collapsible: "Collapsible",
   advanced: {
     title: "Advanced",
     type: "separator",

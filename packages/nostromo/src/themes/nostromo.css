@@ -96,6 +96,12 @@
   --nostromo-radius-xl: 1rem; /* 16px */
   --nostromo-radius-full: 9999px;
 
+  /* Motion - how long enter/exit animations run. A token rather than a literal
+     so a consumer can slow it down or switch it off per theme; every animation
+     utility reads it with a fallback, so removing it degrades to the default
+     rather than to no animation. */
+  --nostromo-animate-duration: 150ms;
+
   /* Shadows - Modern, layered depth */
   --nostromo-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --nostromo-shadow-sm:

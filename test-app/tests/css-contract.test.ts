@@ -68,7 +68,8 @@ const NOT_CLASSES = new Set([
   "leading-trim",
 ]);
 
-const VARIANT = /^(?:[a-z0-9-]+|\[[^\]]*\]|data-\[[^\]]*\]|aria-\[[^\]]*\]|group-[a-z-]+|peer-[a-z-]+):/;
+const VARIANT =
+  /^(?:[a-z0-9-]+|\[[^\]]*\]|data-\[[^\]]*\]|aria-\[[^\]]*\]|group-[a-z-]+|peer-[a-z-]+):/;
 
 function stripVariants(cls: string): string {
   let out = cls;
@@ -205,7 +206,59 @@ describe("CSS contract", () => {
 
   it("generates every token-backed class the components use", () => {
     const missing = usedTokenClasses().filter((c) => !generated(c));
-    expect(missing, `classes that produce no CSS:\n  ${missing.join("\n  ")}`).toEqual([]);
+    expect(
+      missing,
+      `classes that produce no CSS:\n  ${missing.join("\n  ")}`,
+    ).toEqual([]);
+  });
+
+  // Dialog, Calendar and Toast carried `animate-in`, `fade-in-0`, `zoom-in-95`
+  // and `slide-in-from-*` in their class lists from the day they were written,
+  // and none of those utilities existed: tailwindcss-animate is a v3 plugin,
+  // this package is CSS-first on v4, and nothing defined them. They were inert
+  // strings, so none of those three ever animated. The class list looking right
+  // is exactly why it went unnoticed - which is what this asserts against.
+  it("generates the enter and exit animation utilities the components use", () => {
+    const animation = [
+      "animate-in",
+      "animate-out",
+      "fade-in-0",
+      "fade-out-0",
+      "zoom-in-95",
+      "zoom-out-95",
+      "slide-in-from-top-2",
+      "slide-in-from-bottom-2",
+      "slide-in-from-bottom-4",
+      "slide-in-from-left-2",
+      "slide-in-from-right-2",
+      "animate-collapsible-down",
+      "animate-collapsible-up",
+    ];
+    // `generated()` requires a leading dot, which is right for a bare utility -
+    // but these are used behind `data-[state=closed]:` and friends, so the class
+    // name sits after a colon in the selector. Accept either.
+    const emitted = (cls: string) =>
+      new RegExp(
+        `[.:]${cls.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`,
+      ).test(flatCss);
+    const missing = animation.filter((c) => !emitted(c));
+    expect(
+      missing,
+      `animation utilities that produce no CSS:\n  ${missing.join("\n  ")}`,
+    ).toEqual([]);
+  });
+
+  it("backs those utilities with real keyframes", () => {
+    // A utility that sets animation-name to a keyframes block nobody declared
+    // is the same dead end one level down.
+    for (const name of [
+      "nostromo-enter",
+      "nostromo-exit",
+      "nostromo-collapsible-down",
+      "nostromo-collapsible-up",
+    ]) {
+      expect(css, `@keyframes ${name} missing`).toContain(`@keyframes ${name}`);
+    }
   });
 
   it("defines every theme token the generated CSS references", () => {

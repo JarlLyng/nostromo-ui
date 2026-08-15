@@ -1,0 +1,144 @@
+/**
+ * Enter/exit animation utilities.
+ *
+ * Dialog, Calendar and Toast have carried `animate-in`, `fade-in-0`,
+ * `zoom-in-95` and `slide-in-from-*` in their class lists since they were
+ * written, and none of those utilities existed: `tailwindcss-animate` is a
+ * Tailwind v3 plugin, this package is CSS-first on v4 with no plugin to
+ * register, and nothing defined them here. They were inert strings, so those
+ * three components have never actually animated in or out.
+ *
+ * Written out rather than pulled from `tw-animate-css`, which is the maintained
+ * v4 successor. A consumer imports `@jarllyng/nostromo/tailwind.css` from their
+ * own project, so a bare `@import "tw-animate-css"` in here would have to
+ * resolve from *their* bundler against *our* node_modules - which works with
+ * some setups and not others. A published stylesheet should be self-contained.
+ *
+ * Only the utilities the components actually use are defined. Anything else
+ * would be more dead classes, which is the problem being fixed.
+ *
+ * The per-element variables are `--na-*`, not `--nostromo-*`, on purpose. The
+ * consumer CSS contract test asserts that every `--nostromo-*` the generated CSS
+ * references is defined as a theme token - that invariant is worth keeping, and
+ * these are locals a utility sets for its own keyframe to read, not tokens
+ * anyone should theme. `--nostromo-animate-duration` *is* a token, and is
+ * declared in all four themes.
+ */
+
+@keyframes nostromo-enter {
+  from {
+    opacity: var(--na-enter-opacity, 1);
+    transform: translate3d(
+        var(--na-enter-translate-x, 0),
+        var(--na-enter-translate-y, 0),
+        0
+      )
+      scale3d(
+        var(--na-enter-scale, 1),
+        var(--na-enter-scale, 1),
+        var(--na-enter-scale, 1)
+      );
+  }
+}
+
+@keyframes nostromo-exit {
+  to {
+    opacity: var(--na-exit-opacity, 1);
+    transform: translate3d(
+        var(--na-exit-translate-x, 0),
+        var(--na-exit-translate-y, 0),
+        0
+      )
+      scale3d(
+        var(--na-exit-scale, 1),
+        var(--na-exit-scale, 1),
+        var(--na-exit-scale, 1)
+      );
+  }
+}
+
+@utility animate-in {
+  animation-name: nostromo-enter;
+  animation-duration: var(--nostromo-animate-duration, 150ms);
+  animation-fill-mode: both;
+}
+
+@utility animate-out {
+  animation-name: nostromo-exit;
+  animation-duration: var(--nostromo-animate-duration, 150ms);
+  animation-fill-mode: both;
+}
+
+@utility fade-in-* {
+  --na-enter-opacity: calc(--value(integer) / 100);
+}
+
+@utility fade-out-* {
+  --na-exit-opacity: calc(--value(integer) / 100);
+}
+
+@utility zoom-in-* {
+  --na-enter-scale: calc(--value(integer) / 100);
+}
+
+@utility zoom-out-* {
+  --na-exit-scale: calc(--value(integer) / 100);
+}
+
+/* Direction is the side the element comes *from*, so the sign is inverted
+   relative to a translate utility: sliding in from the top starts above. */
+@utility slide-in-from-top-* {
+  --na-enter-translate-y: calc(--value(integer) * var(--spacing) * -1);
+}
+
+@utility slide-in-from-bottom-* {
+  --na-enter-translate-y: calc(--value(integer) * var(--spacing));
+}
+
+@utility slide-in-from-left-* {
+  --na-enter-translate-x: calc(--value(integer) * var(--spacing) * -1);
+}
+
+@utility slide-in-from-right-* {
+  --na-enter-translate-x: calc(--value(integer) * var(--spacing));
+}
+
+/* Collapsible and Accordion animate to a height Radix measures at runtime and
+   exposes as a custom property on the content element. */
+@keyframes nostromo-collapsible-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes nostromo-collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@utility animate-collapsible-down {
+  animation: nostromo-collapsible-down var(--nostromo-animate-duration, 150ms)
+    ease-out;
+}
+
+@utility animate-collapsible-up {
+  animation: nostromo-collapsible-up var(--nostromo-animate-duration, 150ms)
+    ease-out;
+}
+
+/* Respect the user's setting. Every animation above is decorative. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-out,
+  .animate-collapsible-down,
+  .animate-collapsible-up {
+    animation: none;
+  }
+}

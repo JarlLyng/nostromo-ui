@@ -1,0 +1,88 @@
+import LiveCode from "../../components/LiveCode";
+
+# Popover
+
+A floating panel anchored to a trigger, for settings, filters and quick forms.
+Built on Radix, so focus, dismissal and outside-click are handled.
+
+## Live Examples
+
+<LiveCode code={`import { Popover, PopoverTrigger, PopoverContent, Button, Input, Label } from '@jarllyng/nostromo'
+
+export default function PopoverExample() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline">Open settings</Button>
+      </PopoverTrigger>
+      <PopoverContent aria-label="Display settings">
+        <div className="space-y-3">
+          <p className="text-sm font-medium text-foreground">Display</p>
+          <div className="space-y-1">
+            <Label htmlFor="width">Width</Label>
+            <Input id="width" defaultValue="640" />
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}`} />
+
+## Import
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from "@jarllyng/nostromo";
+// or
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@jarllyng/nostromo/components/core/popover";
+```
+
+## An accessible name is required
+
+`PopoverContent` gets `role="dialog"` from Radix, and a dialog without a name is
+an `aria-dialog-name` violation: a screen reader announces "dialog" and nothing
+else. So `aria-label` or `aria-labelledby` is **required by the type** rather
+than merely recommended — leaving it out is a compile error, not something you
+find in an audit later.
+
+```tsx
+// ✅
+<PopoverContent aria-label="Display settings">…</PopoverContent>
+
+// ✅ when a heading inside the panel already names it
+<PopoverContent aria-labelledby="display-heading">
+  <h3 id="display-heading">Display</h3>
+</PopoverContent>
+
+// ❌ does not compile
+<PopoverContent>…</PopoverContent>
+```
+
+## Props
+
+### Popover
+
+Radix's root. `open`, `defaultOpen`, `onOpenChange`, `modal`.
+
+### PopoverContent
+
+| Prop              | Type                                     | Default     | Description                             |
+| ----------------- | ---------------------------------------- | ----------- | --------------------------------------- |
+| `aria-label`      | `string`                                 | -           | Required unless `aria-labelledby` given |
+| `aria-labelledby` | `string`                                 | -           | Required unless `aria-label` given      |
+| `size`            | `"sm" \| "default" \| "lg" \| "auto"`    | `"default"` | Panel width                             |
+| `align`           | `"start" \| "center" \| "end"`           | `"center"`  | Alignment against the trigger           |
+| `side`            | `"top" \| "right" \| "bottom" \| "left"` | `"bottom"`  | Preferred side                          |
+| `sideOffset`      | `number`                                 | `8`         | Gap from the trigger                    |
+
+The content is portalled to the body. An un-portalled panel inherits
+`overflow: hidden` and any stacking context it happens to sit inside, which is
+how popovers end up clipped by cards and table cells.
+
+## Related
+
+`Tooltip` for a label on hover, `Dialog` for something modal that interrupts,
+`Collapsible` for expanding in place rather than floating.
