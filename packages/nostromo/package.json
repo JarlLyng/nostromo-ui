@@ -232,7 +232,12 @@
       "import": "./dist/components/marketing/logo-wall.js",
       "require": "./dist/components/marketing/logo-wall.cjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./components/core/chart-composable": {
+      "types": "./dist/components/core/chart-composable.d.ts",
+      "import": "./dist/components/core/chart-composable.js",
+      "require": "./dist/components/core/chart-composable.cjs"
+    }
   },
   "files": [
     "dist"

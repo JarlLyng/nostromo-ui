@@ -32,6 +32,42 @@ export const liveCodeScope: Record<string, unknown> = {
   useMemo: React.useMemo,
 };
 
+/**
+ * Drop whole import statements, not lines that happen to start with `import`.
+ *
+ * This filtered line by line, which is fine until an example wraps its import
+ * across lines - a long `import { A, B, C } from '...'` is the natural way to
+ * write one. The opening line went and the rest stayed, leaving `ChartContainer,`
+ * and `} from '@jarllyng/nostromo'` behind as loose tokens, and react-live threw
+ * a SyntaxError on a preview that looked perfectly ordinary in the source.
+ *
+ * No parser here on purpose: consume from `import` until the line that closes the
+ * statement, which is either a quoted specifier after `from`, or a bare
+ * `import "x"` side-effect form.
+ */
+export function stripImports(source: string): string {
+  const lines = source.split("\n");
+  const kept: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^\s*import\b/.test(lines[i] as string)) {
+      kept.push(lines[i] as string);
+      continue;
+    }
+    // Skip forward to the end of this statement.
+    let line = lines[i] as string;
+    while (
+      i < lines.length &&
+      !/from\s*['"][^'"]*['"]|^\s*import\s*['"]/.test(line)
+    ) {
+      i++;
+      line = (lines[i] ?? "") as string;
+    }
+  }
+
+  return kept.join("\n");
+}
+
 export interface TransformedLiveCode {
   code: string;
   noInline: boolean;
@@ -48,12 +84,7 @@ export function transformLiveCode(
   source: string,
   noInline = false,
 ): TransformedLiveCode {
-  let code = source
-    .trim()
-    .split("\n")
-    .filter((line) => !line.trim().startsWith("import "))
-    .join("\n")
-    .trim();
+  let code = stripImports(source.trim()).trim();
 
   // In noInline mode react-live evaluates the block as statements and requires a
   // render() call. Turn the default export into one.

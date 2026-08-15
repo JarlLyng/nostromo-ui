@@ -64,6 +64,92 @@ export default function PieChartExample() {
   )
 }`} noInline={true} />
 
+## Composable Charts
+
+`<Chart type="..." />` renders one series type from a `dataKeys` array. That
+shape cannot express a stacked bar, a bar and a line together, a second axis, or
+a reference line - no additional `type` string fixes it, because the limitation
+is that the chart is one prop rather than a tree.
+
+The composable pieces sit alongside it. `Chart` is unchanged and stays supported.
+
+<LiveCode code={`import {
+  ChartContainer,
+  ChartGrid,
+  ChartXAxis,
+  ChartYAxis,
+  ChartTooltip,
+  ChartLegend,
+  ChartBar,
+  ChartLine,
+} from '@jarllyng/nostromo'
+
+const data = [
+{ month: 'Jan', desktop: 120, mobile: 80, target: 150 },
+{ month: 'Feb', desktop: 140, mobile: 95, target: 150 },
+{ month: 'Mar', desktop: 110, mobile: 120, target: 150 },
+{ month: 'Apr', desktop: 180, mobile: 130, target: 150 },
+]
+
+export default function StackedWithTarget() {
+  return (
+    <ChartContainer data={data} height={320} ariaLabel="Visitors by device, against target">
+      <ChartGrid />
+      <ChartXAxis dataKey="month" />
+      <ChartYAxis />
+      <ChartTooltip />
+      <ChartLegend />
+      <ChartBar dataKey="desktop" stackId="devices" />
+      <ChartBar dataKey="mobile" stackId="devices" />
+      <ChartLine dataKey="target" />
+    </ChartContainer>
+  )
+}`} />
+
+Each series takes its colour from the container's palette in the order it appears
+in the tree, so a chart is distinguishable without naming colours. Pass `color`
+on a series to override its slot, or `colors` on the container to replace the
+palette. Colours are keyed by `dataKey`, so adding a series does not recolour the
+ones already there.
+
+### Areas and reference lines
+
+<LiveCode code={`import {
+  ChartContainer,
+  ChartGrid,
+  ChartXAxis,
+  ChartYAxis,
+  ChartTooltip,
+  ChartArea,
+  ChartReferenceLine,
+} from '@jarllyng/nostromo'
+
+const data = [
+{ month: 'Jan', latency: 180 },
+{ month: 'Feb', latency: 240 },
+{ month: 'Mar', latency: 210 },
+{ month: 'Apr', latency: 320 },
+]
+
+export default function LatencyBudget() {
+  return (
+    <ChartContainer data={data} height={280} ariaLabel="Latency against budget">
+      <ChartGrid />
+      <ChartXAxis dataKey="month" />
+      <ChartYAxis />
+      <ChartTooltip />
+      <ChartArea dataKey="latency" />
+      <ChartReferenceLine y={250} label="Budget" />
+    </ChartContainer>
+  )
+}`} />
+
+### Which to use
+
+Reach for `Chart` when one series type and a list of keys says it. Reach for the
+composable pieces when the chart has more than one shape in it, needs a second
+axis, or needs anything drawn on top.
+
 ## Import
 
 ```tsx
