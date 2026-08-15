@@ -1,0 +1,110 @@
+import LiveCode from "../../components/LiveCode";
+
+# Sheet
+
+A panel that slides in from an edge: mobile navigation, a filter drawer, a detail
+pane beside a table. A sheet is a dialog — it traps focus, locks scrolling and
+makes the background inert.
+
+## Live Examples
+
+<LiveCode code={`import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose, Button } from '@jarllyng/nostromo'
+
+export default function SheetExample() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open filters</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Filters</SheetTitle>
+          <SheetDescription>Narrow the results</SheetDescription>
+        </SheetHeader>
+        <p className="text-sm text-muted-foreground">
+          Anything that would crowd the page goes here.
+        </p>
+        <SheetClose asChild>
+          <Button>Apply</Button>
+        </SheetClose>
+      </SheetContent>
+    </Sheet>
+  )
+}`} />
+
+### From another edge
+
+<LiveCode code={`import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, Button, Separator } from '@jarllyng/nostromo'
+
+export default function SheetLeft() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost">Menu</Button>
+      </SheetTrigger>
+      <SheetContent side="left">
+        <SheetHeader>
+          <SheetTitle>Navigation</SheetTitle>
+        </SheetHeader>
+        <nav className="flex flex-col gap-2 text-sm">
+          <a href="#components" className="text-foreground">Components</a>
+          <Separator />
+          <a href="#theming" className="text-foreground">Theming</a>
+        </nav>
+      </SheetContent>
+    </Sheet>
+  )
+}`} />
+
+## Import
+
+```tsx
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@jarllyng/nostromo";
+```
+
+## A title is required
+
+`SheetTitle` is the dialog's accessible name. Without one, Radix warns at runtime
+and axe reports `aria-dialog-name` — a screen reader announces "dialog" and
+stops.
+
+If the design has no room for a heading, keep the title and hide it visually:
+
+```tsx
+<SheetTitle srOnly>Navigation</SheetTitle>
+```
+
+The name still exists for assistive technology, which is the part that is not
+optional.
+
+## Props
+
+### SheetContent
+
+| Prop   | Type                                     | Default   | Description               |
+| ------ | ---------------------------------------- | --------- | ------------------------- |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | Which edge it enters from |
+
+Left and right sheets are `w-3/4` capped at `sm:max-w-sm`; top and bottom span
+the full width. Override with `className` when a wider panel is wanted.
+
+### SheetTitle
+
+| Prop     | Type      | Default | Description                                         |
+| -------- | --------- | ------- | --------------------------------------------------- |
+| `srOnly` | `boolean` | `false` | Hides the title visually, keeps the accessible name |
+
+## Why not `Dialog`
+
+`Sheet` is built on `@radix-ui/react-dialog` rather than on this package's own
+`Dialog`. They are the same primitive underneath, but ours is hand-rolled around
+a centred box; bending it into an edge-anchored panel would mean two layout modes
+in one component and a `variant` that quietly changes what every other prop
+means. Reach for `Dialog` when the thing is a centred, modal interruption, and
+`Sheet` when it belongs against an edge.

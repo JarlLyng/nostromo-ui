@@ -247,6 +247,16 @@
       "types": "./dist/components/core/collapsible.d.ts",
       "import": "./dist/components/core/collapsible.js",
       "require": "./dist/components/core/collapsible.cjs"
+    },
+    "./components/core/dropdown-menu": {
+      "types": "./dist/components/core/dropdown-menu.d.ts",
+      "import": "./dist/components/core/dropdown-menu.js",
+      "require": "./dist/components/core/dropdown-menu.cjs"
+    },
+    "./components/core/sheet": {
+      "types": "./dist/components/core/sheet.d.ts",
+      "import": "./dist/components/core/sheet.js",
+      "require": "./dist/components/core/sheet.cjs"
     }
   },
   "files": [
@@ -369,6 +379,14 @@
     {
       "path": "dist/components/core/collapsible.js",
       "limit": "14 KB"
+    },
+    {
+      "path": "dist/components/core/dropdown-menu.js",
+      "limit": "39 KB"
+    },
+    {
+      "path": "dist/components/core/sheet.js",
+      "limit": "23 KB"
     }
   ]
 }
