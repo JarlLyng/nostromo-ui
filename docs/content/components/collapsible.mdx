@@ -1,0 +1,87 @@
+import LiveCode from "../../components/LiveCode";
+
+# Collapsible
+
+A single region that expands and collapses. `Accordion` coordinates several
+sections so one is open at a time; `Collapsible` is the case where there is
+nothing to coordinate with — a filter panel, a sidebar group, a "show more".
+
+## Live Examples
+
+<LiveCode code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button, Card } from '@jarllyng/nostromo'
+
+export default function CollapsibleExample() {
+  return (
+    <Collapsible>
+      <CollapsibleTrigger asChild>
+        <Button variant="outline">Advanced filters</Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <Card className="mt-3 p-4">
+          <p className="text-sm text-muted-foreground">
+            Anything that should not take up room until it is asked for.
+          </p>
+        </Card>
+      </CollapsibleContent>
+    </Collapsible>
+  )
+}`} />
+
+### Open by default
+
+<LiveCode code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent, Button, Badge } from '@jarllyng/nostromo'
+
+export default function CollapsibleOpen() {
+  return (
+    <Collapsible defaultOpen>
+      <CollapsibleTrigger asChild>
+        <Button variant="ghost">
+          Deployment log <Badge variant="secondary" className="ml-2">3</Badge>
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+          <li>Build succeeded</li>
+          <li>Tests passed</li>
+          <li>Published</li>
+        </ul>
+      </CollapsibleContent>
+    </Collapsible>
+  )
+}`} />
+
+## Import
+
+```tsx
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+| Prop           | Type                      | Default | Description                |
+| -------------- | ------------------------- | ------- | -------------------------- |
+| `open`         | `boolean`                 | -       | Controlled open state      |
+| `defaultOpen`  | `boolean`                 | `false` | Uncontrolled initial state |
+| `onOpenChange` | `(open: boolean) => void` | -       | Fired on open and close    |
+| `disabled`     | `boolean`                 | `false` | Prevents toggling          |
+
+## The height animation
+
+`CollapsibleContent` carries `overflow-hidden` and the collapse animation
+itself, because the transition needs `--radix-collapsible-content-height` — a
+custom property Radix measures at runtime and sets **on the content element**.
+Putting the animation on a wrapper does nothing, which is not obvious from the
+outside, so it is built in rather than left to each caller to rediscover.
+
+The duration comes from the `--nostromo-animate-duration` theme token, so it can
+be tuned or switched off per theme. The animation is also disabled under
+`prefers-reduced-motion`.
+
+## Related
+
+`Accordion` when several sections should coordinate, `Popover` when the content
+should float over the page rather than push it down.

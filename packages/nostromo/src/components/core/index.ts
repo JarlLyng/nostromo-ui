@@ -304,3 +304,23 @@ export {
 
 // Utilities
 export { cn } from "../../lib/utils";
+
+// Popover: @radix-ui/react-popover was already a dependency for Calendar, but was
+// never exposed - a consumer wanting one had to add the package a second time.
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverAnchor,
+  PopoverClose,
+  PopoverArrow,
+  popoverContentVariants,
+} from "./popover";
+export type { PopoverContentProps } from "./popover";
+
+// Collapsible: the single-region case Accordion does not cover.
+export {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "./collapsible";

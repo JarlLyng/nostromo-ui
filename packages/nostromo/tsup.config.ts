@@ -40,6 +40,8 @@ export default defineConfig({
     "src/components/core/card.tsx",
     "src/components/core/charts-lazy.tsx",
     "src/components/core/charts.tsx",
+    "src/components/core/popover.tsx",
+    "src/components/core/collapsible.tsx",
     "src/components/core/chart-composable.tsx",
     "src/components/core/checkbox.tsx",
     "src/components/core/data-table.tsx",

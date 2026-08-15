@@ -22,6 +22,10 @@
    layering itself. */
 @import "./tokens.css";
 
+/* Enter/exit utilities. Also unlayered: @utility is a Tailwind at-rule and it
+   places these in the utilities layer itself. */
+@import "./animations.css";
+
 /* The reset and base typography go into Tailwind's `base` layer. Left
    unlayered they would outrank every layered rule in the document - including
    utility classes - and a blanket `* { margin: 0 }` beating utilities is not
