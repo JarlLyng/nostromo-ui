@@ -1,0 +1,283 @@
+import LiveCode from "../../components/LiveCode";
+
+# Blocks
+
+Whole sections, assembled from the components. Each one renders live below and the
+source is the source — copy it out and edit it.
+
+**Blocks are not exported from the package, on purpose.** A block is a starting
+point you are meant to change: move the sidebar, drop a column, swap the chart. If
+it were a component, every layout decision inside it would become API surface and
+every edit would need a prop. The marketing sections — `Hero`, `Features`,
+`Pricing`, `Testimonials`, `Gallery`, `LogoWall` — _are_ exported, because those
+are data-driven and the layout is the point of the component rather than something
+you rewrite.
+
+Every block on this page is type-checked against the published types and mounted
+in a test run on every commit, the same as every other example in these docs. A
+block that has drifted from the API fails the build rather than the reader.
+
+## Dashboard shell
+
+Sidebar navigation that becomes a `Sheet` on small screens, a header with a
+`DropdownMenu`, stat cards and a composable chart.
+
+<LiveCode code={`import {
+  Badge,
+  Button,
+  Card,
+  ChartArea,
+  ChartContainer,
+  ChartGrid,
+  ChartTooltip,
+  ChartXAxis,
+  ChartYAxis,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  Separator,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@jarllyng/nostromo'
+
+const traffic = [
+{ day: 'Mon', visits: 1840 },
+{ day: 'Tue', visits: 2120 },
+{ day: 'Wed', visits: 1990 },
+{ day: 'Thu', visits: 2540 },
+{ day: 'Fri', visits: 2810 },
+{ day: 'Sat', visits: 1420 },
+{ day: 'Sun', visits: 1180 },
+]
+
+const nav = ['Overview', 'Traffic', 'Sources', 'Settings']
+
+export default function DashboardShell() {
+  return (
+    <div className="rounded-xl border border-border bg-background">
+      <header className="flex items-center gap-3 border-b border-border px-4 py-3">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="sm" className="md:hidden">Menu</Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <SheetHeader>
+              <SheetTitle>Navigation</SheetTitle>
+            </SheetHeader>
+            <nav className="flex flex-col gap-1">
+              {nav.map((item) => (
+                <a key={item} href="#" className="rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-muted">
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+
+        <p className="text-sm font-semibold text-foreground">Analytics</p>
+        <Badge variant="secondary" className="ml-1">Live</Badge>
+
+        <div className="ml-auto">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm">Account</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Signed in</DropdownMenuLabel>
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem destructive>Sign out</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </header>
+
+      <div className="flex">
+        <aside className="hidden w-44 shrink-0 border-r border-border p-3 md:block">
+          <nav className="flex flex-col gap-1">
+            {nav.map((item, i) => (
+              <a
+                key={item}
+                href="#"
+                className={i === 0
+                  ? 'rounded-md bg-muted px-2 py-1.5 text-sm font-medium text-foreground'
+                  : 'rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted'}
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+        </aside>
+
+        <main className="flex-1 space-y-4 p-4">
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { label: 'Visits', value: '13.9k', delta: '+12%' },
+              { label: 'Signups', value: '412', delta: '+4%' },
+              { label: 'Churn', value: '1.2%', delta: '-0.3%' },
+            ].map((stat) => (
+              <Card key={stat.label} className="p-4">
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+                <p className="mt-1 text-2xl font-semibold text-foreground">{stat.value}</p>
+                <p className="text-xs text-success">{stat.delta}</p>
+              </Card>
+            ))}
+          </div>
+
+          <Card className="p-4">
+            <p className="mb-2 text-sm font-medium text-foreground">Visits this week</p>
+            <Separator className="mb-3" />
+            <ChartContainer data={traffic} height={220} ariaLabel="Visits per day this week">
+              <ChartGrid />
+              <ChartXAxis dataKey="day" />
+              <ChartYAxis />
+              <ChartTooltip />
+              <ChartArea dataKey="visits" />
+            </ChartContainer>
+          </Card>
+        </main>
+      </div>
+    </div>
+
+)
+}`} />
+
+## Sign-in card
+
+A centred auth card. `Input`, `Label`, `HelperText` and a `Separator` doing the
+"or" divider.
+
+<LiveCode code={`import { Button, Card, HelperText, Input, Label, Separator } from '@jarllyng/nostromo'
+
+export default function SignInCard() {
+  return (
+    <div className="flex justify-center bg-muted/30 p-8">
+      <Card className="w-full max-w-sm p-6">
+        <div className="space-y-1">
+          <h2 className="text-xl font-semibold text-foreground">Sign in</h2>
+          <p className="text-sm text-muted-foreground">Use your work address.</p>
+        </div>
+
+        <div className="mt-5 space-y-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="you@company.com" />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="password">Password</Label>
+            <Input id="password" type="password" />
+            <HelperText>At least 12 characters.</HelperText>
+          </div>
+          <Button className="w-full">Continue</Button>
+        </div>
+
+        <div className="my-5 flex items-center gap-3">
+          <Separator className="flex-1" />
+          <span className="text-xs uppercase tracking-wide text-muted-foreground">or</span>
+          <Separator className="flex-1" />
+        </div>
+
+        <Button variant="outline" className="w-full">Continue with SSO</Button>
+      </Card>
+    </div>
+
+)
+}`} />
+
+## Settings panel
+
+`Tabs` across the top, `Switch` rows, and a `Collapsible` for the settings most
+people never open.
+
+<LiveCode code={`import {
+  Badge,
+  Button,
+  Card,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  HelperText,
+  Input,
+  Label,
+  Separator,
+  Switch,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@jarllyng/nostromo'
+
+export default function SettingsPanel() {
+  const [notify, setNotify] = React.useState(true)
+  const [digest, setDigest] = React.useState(false)
+
+return (
+
+<Card className="p-5">
+<Tabs defaultValue="general">
+<TabsList>
+<TabsTrigger value="general">General</TabsTrigger>
+<TabsTrigger value="notifications">Notifications</TabsTrigger>
+</TabsList>
+
+        <TabsContent value="general" className="pt-4">
+          <div className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="workspace">Workspace name</Label>
+              <Input id="workspace" defaultValue="Nostromo" />
+              <HelperText>Shown in the header and in invitations.</HelperText>
+            </div>
+            <Separator />
+            <Collapsible>
+              <CollapsibleTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  Advanced <Badge variant="secondary" className="ml-2">2</Badge>
+                </Button>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="mt-3 space-y-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="slug">URL slug</Label>
+                    <Input id="slug" defaultValue="nostromo" />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="region">Data region</Label>
+                    <Input id="region" defaultValue="eu-north-1" />
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="notifications" className="pt-4">
+          <div className="space-y-4">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <Label htmlFor="notify">Product updates</Label>
+                <p className="text-sm text-muted-foreground">When something ships.</p>
+              </div>
+              <Switch id="notify" checked={notify} onCheckedChange={setNotify} />
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <Label htmlFor="digest">Weekly digest</Label>
+                <p className="text-sm text-muted-foreground">One email, Monday morning.</p>
+              </div>
+              <Switch id="digest" checked={digest} onCheckedChange={setDigest} />
+            </div>
+          </div>
+        </TabsContent>
+      </Tabs>
+    </Card>
+
+)
+}`} />

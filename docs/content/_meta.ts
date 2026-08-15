@@ -5,5 +5,6 @@ export default {
   theming: "Theming",
   "api-reference": "API Reference",
   components: "Components",
+  blocks: "Blocks",
   faq: "FAQ",
 };
