@@ -188,6 +188,37 @@ export type { CalendarProps, CalendarMode } from "./calendar";
 export { Chart, chartContainerVariants } from "./charts";
 export type { ChartProps, ChartType, ChartDataPoint } from "./charts";
 
+// The composable form, alongside `Chart`. `Chart` renders one series type from a
+// dataKeys array and cannot express a stacked bar, a bar and a line together, a
+// second axis or a reference line - see chart-composable.tsx.
+export {
+  ChartContainer,
+  ChartGrid,
+  ChartXAxis,
+  ChartYAxis,
+  ChartTooltip,
+  ChartLegend,
+  ChartBar,
+  ChartLine,
+  ChartArea,
+  ChartReferenceLine,
+  chartPalette,
+  buildColorMap,
+  resolveSeriesColor,
+} from "./chart-composable";
+export type {
+  ChartContainerProps,
+  ChartGridProps,
+  ChartXAxisProps,
+  ChartYAxisProps,
+  ChartTooltipProps,
+  ChartLegendProps,
+  ChartBarProps,
+  ChartLineProps,
+  ChartAreaProps,
+  ChartReferenceLineProps,
+} from "./chart-composable";
+
 // Lazy-loaded Chart component for better code splitting
 export { LazyChart } from "./charts-lazy";
 export type { LazyChartProps } from "./charts-lazy";

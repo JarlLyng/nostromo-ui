@@ -116,6 +116,26 @@ describe("documentation examples", () => {
     expect(error).toMatch(/undefined|Cannot read/i);
   });
 
+  // A wrapped import is the natural way to write a long one, and the transform
+  // used to filter line by line: the opening line went, the rest stayed as loose
+  // tokens, and the preview threw a SyntaxError while the source looked fine.
+  it("strips an import that wraps across lines", async () => {
+    const error = await renderExample(
+      [
+        "import {",
+        "  ChartContainer,",
+        "  ChartBar,",
+        "} from '@jarllyng/nostromo'",
+        "",
+        "export default function Wrapped() {",
+        "  return <div>ok</div>",
+        "}",
+      ].join("\n"),
+      false,
+    );
+    expect(error).toBe("");
+  });
+
   for (const example of examples) {
     it(`${example.file} #${example.index} mounts`, async () => {
       const error = await renderExample(example.code, false);

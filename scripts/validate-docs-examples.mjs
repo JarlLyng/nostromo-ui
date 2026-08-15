@@ -60,7 +60,10 @@ function aliasImport(line, prefix) {
   if (star) return `import * as ${prefix}_${star[1]} from "${specifier}";`;
 
   const named = clause.match(/\{([^}]*)\}/);
-  const defaultName = clause.replace(/\{[^}]*\}/, "").replace(/,/g, "").trim();
+  const defaultName = clause
+    .replace(/\{[^}]*\}/, "")
+    .replace(/,/g, "")
+    .trim();
 
   const parts = [];
   if (defaultName) parts.push(`default as ${prefix}_d_${defaultName}`);
@@ -68,7 +71,10 @@ function aliasImport(line, prefix) {
     for (const entry of named[1].split(",")) {
       const name = entry.trim();
       if (!name) continue;
-      const local = name.split(/\s+as\s+/).pop().trim();
+      const local = name
+        .split(/\s+as\s+/)
+        .pop()
+        .trim();
       const exported = name.split(/\s+as\s+/)[0].trim();
       if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(exported)) return null;
       parts.push(`${exported} as ${prefix}_${local}`);
@@ -85,7 +91,9 @@ const outDir = join(repoRoot, "docs", ".examples-typecheck");
 
 const examples = extractLiveExamples(contentDir, repoRoot);
 if (examples.length === 0) {
-  console.error("No <LiveCode> examples found - the extractor is broken, not the docs.");
+  console.error(
+    "No <LiveCode> examples found - the extractor is broken, not the docs.",
+  );
   process.exit(1);
 }
 
@@ -110,11 +118,14 @@ const PREAMBLE_LINES = PREAMBLE.split("\n").length - 1;
 // entry rather than off src is deliberate - the scope has to match what ships.
 const distEntry = join(repoRoot, "packages", "nostromo", "dist", "index.js");
 if (!existsSync(distEntry)) {
-  console.error(`${distEntry.replace(repoRoot + "/", "")} is missing - build the package first (pnpm --filter @jarllyng/nostromo build).`);
+  console.error(
+    `${distEntry.replace(repoRoot + "/", "")} is missing - build the package first (pnpm --filter @jarllyng/nostromo build).`,
+  );
   process.exit(1);
 }
-const scopeNames = Object.keys(await import(pathToFileURL(distEntry).href))
-  .filter((n) => /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(n) && n !== "default");
+const scopeNames = Object.keys(
+  await import(pathToFileURL(distEntry).href),
+).filter((n) => /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(n) && n !== "default");
 
 rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
@@ -125,19 +136,37 @@ for (const example of examples) {
   const importLines = [];
   const bodyLines = [];
 
-  example.code.split("\n").forEach((line) => {
-    if (/^\s*import\s/.test(line)) {
-      importLines.push(line.trim());
-      // Keep the line count aligned so diagnostics map back to the MDX.
-      bodyLines.push("");
-    } else {
+  // Whole statements, not lines beginning with `import`. A wrapped
+  // `import { A, B } from '...'` used to leave its continuation lines behind as
+  // loose tokens - see the same fix in docs/lib/live-code.ts, which is what the
+  // browser runs.
+  const srcLines = example.code.split("\n");
+  for (let i = 0; i < srcLines.length; i++) {
+    const line = srcLines[i];
+    if (!/^\s*import\b/.test(line)) {
       bodyLines.push(line);
+      continue;
     }
-  });
+    const statement = [line];
+    let cur = line;
+    while (
+      i < srcLines.length &&
+      !/from\s*['"][^'"]*['"]|^\s*import\s*['"]/.test(cur)
+    ) {
+      i++;
+      cur = srcLines[i] ?? "";
+      statement.push(cur);
+    }
+    importLines.push(statement.join(" ").replace(/\s+/g, " ").trim());
+    // Keep the line count aligned so diagnostics map back to the MDX.
+    for (let n = 0; n < statement.length; n++) bodyLines.push("");
+  }
 
   // Re-emit each import under aliases so the specifier and the named exports are
   // still resolved, without colliding with the injected scope bindings.
-  const aliased = importLines.map((line, i) => aliasImport(line, `${name}_${i}`)).filter(Boolean);
+  const aliased = importLines
+    .map((line, i) => aliasImport(line, `${name}_${i}`))
+    .filter(Boolean);
 
   // Type-only specifiers have to survive under their real names. They are not in
   // the runtime scope - types do not exist at runtime, so reading the export
@@ -159,14 +188,24 @@ for (const example of examples) {
       const raw = entry.trim();
       if (!raw) continue;
       const explicit = /^type\s+/.test(raw);
-      const bare = raw.replace(/^type\s+/, "").split(/\s+as\s+/)[0].trim();
-      const local = raw.replace(/^type\s+/, "").split(/\s+as\s+/).pop().trim();
+      const bare = raw
+        .replace(/^type\s+/, "")
+        .split(/\s+as\s+/)[0]
+        .trim();
+      const local = raw
+        .replace(/^type\s+/, "")
+        .split(/\s+as\s+/)
+        .pop()
+        .trim();
       if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(bare)) continue;
       if (explicit || isTypeOnlyLine || !scopeNames.includes(bare)) {
         wanted.push(bare === local ? bare : `${bare} as ${local}`);
       }
     }
-    if (wanted.length) typeImports.push(`import type { ${wanted.join(", ")} } from "${from[1]}";`);
+    if (wanted.length)
+      typeImports.push(
+        `import type { ${wanted.join(", ")} } from "${from[1]}";`,
+      );
   }
 
   // Only declare the scope names the snippet actually mentions: destructuring all
@@ -182,12 +221,20 @@ for (const example of examples) {
   const head = [...aliased, ...typeImports];
   writeFileSync(
     file,
-    PREAMBLE + head.join("\n") + (head.length ? "\n" : "") + scopeDecl + bodyLines.join("\n"),
+    PREAMBLE +
+      head.join("\n") +
+      (head.length ? "\n" : "") +
+      scopeDecl +
+      bodyLines.join("\n"),
   );
   generated.push({
     ...example,
     generatedFile: `${name}.tsx`,
-    offset: PREAMBLE_LINES + head.length + (head.length ? 1 : 0) + (scopeDecl ? scopeDecl.split("\n").length - 1 : 0),
+    offset:
+      PREAMBLE_LINES +
+      head.length +
+      (head.length ? 1 : 0) +
+      (scopeDecl ? scopeDecl.split("\n").length - 1 : 0),
   });
 }
 
@@ -221,14 +268,18 @@ writeFileSync(
   ),
 );
 
-console.log(`Type-checking ${generated.length} live examples from ${new Set(generated.map((g) => g.file)).size} pages...`);
+console.log(
+  `Type-checking ${generated.length} live examples from ${new Set(generated.map((g) => g.file)).size} pages...`,
+);
 
 // The local binary, not `npx tsc`: npx silently falls back to fetching from the
 // registry when it cannot resolve, which in CI is a slow path that looks like a
 // hang. Missing here should be a loud failure instead.
 const tsc = join(repoRoot, "docs", "node_modules", ".bin", "tsc");
 if (!existsSync(tsc)) {
-  console.error(`${tsc.replace(repoRoot + "/", "")} is missing - run pnpm install first.`);
+  console.error(
+    `${tsc.replace(repoRoot + "/", "")} is missing - run pnpm install first.`,
+  );
   process.exit(1);
 }
 
@@ -244,7 +295,9 @@ try {
 }
 
 if (!raw.trim()) {
-  console.log(`✅ All ${generated.length} examples type-check against the published types.`);
+  console.log(
+    `✅ All ${generated.length} examples type-check against the published types.`,
+  );
   rmSync(outDir, { recursive: true, force: true });
   process.exit(0);
 }
@@ -255,7 +308,9 @@ let unmapped = 0;
 for (const line of raw.split("\n")) {
   // tsc reports paths relative to its cwd, so the generated directory prefixes
   // the filename. Match the basename.
-  const m = line.match(/^(?:\S*[\\/])?([^\\/\s]+\.tsx)\((\d+),(\d+)\):\s*(.*)$/);
+  const m = line.match(
+    /^(?:\S*[\\/])?([^\\/\s]+\.tsx)\((\d+),(\d+)\):\s*(.*)$/,
+  );
   if (!m) continue;
   const [, file, lineNo, col, message] = m;
   const g = generated.find((x) => x.generatedFile === file);
@@ -266,17 +321,28 @@ for (const line of raw.split("\n")) {
   const mdxLine = g.line + Number(lineNo) - g.offset;
   const key = g.file;
   if (!byPage.has(key)) byPage.set(key, []);
-  byPage.get(key).push({ snippet: g.index, mdxLine, col: Number(col), message });
+  byPage
+    .get(key)
+    .push({ snippet: g.index, mdxLine, col: Number(col), message });
 }
 
-console.error(`\n❌ ${[...byPage.values()].reduce((n, v) => n + v.length, 0)} type errors in docs examples\n`);
+console.error(
+  `\n❌ ${[...byPage.values()].reduce((n, v) => n + v.length, 0)} type errors in docs examples\n`,
+);
 for (const [page, errors] of [...byPage].sort()) {
   console.error(`  ${page}`);
   for (const e of errors) {
-    console.error(`    example #${e.snippet}, around line ${e.mdxLine}: ${e.message}`);
+    console.error(
+      `    example #${e.snippet}, around line ${e.mdxLine}: ${e.message}`,
+    );
   }
   console.error("");
 }
-if (unmapped) console.error(`  (${unmapped} diagnostics could not be mapped back to a page)`);
-console.error(`Generated modules left in ${outDir.replace(repoRoot + "/", "")} for inspection.`);
+if (unmapped)
+  console.error(
+    `  (${unmapped} diagnostics could not be mapped back to a page)`,
+  );
+console.error(
+  `Generated modules left in ${outDir.replace(repoRoot + "/", "")} for inspection.`,
+);
 process.exit(1);
