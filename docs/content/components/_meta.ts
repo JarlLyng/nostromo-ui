@@ -31,6 +31,7 @@ export default {
   icon: "Icon",
   separator: "Separator",
   popover: "Popover",
+  "dropdown-menu": "DropdownMenu",
   forms: {
     title: "Forms",
     type: "separator",
@@ -77,6 +78,7 @@ export default {
   calendar: "Calendar",
   charts: "Charts",
   dialog: "Dialog",
+  sheet: "Sheet",
   "error-boundary": "ErrorBoundary",
   marketing: {
     title: "Marketing",

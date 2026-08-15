@@ -1,0 +1,105 @@
+import LiveCode from "../../components/LiveCode";
+
+# DropdownMenu
+
+The menu that hangs off a button: row actions, account menus, overflow. Radix
+owns the hard parts — roving focus, typeahead, submenu timing, pointer versus
+keyboard intent.
+
+`Select` is the neighbour and a different thing: it edits a form value and has a
+selected state. A dropdown menu runs commands.
+
+## Live Examples
+
+<LiveCode code={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, Button } from '@jarllyng/nostromo'
+
+export default function DropdownMenuExample() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Actions</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>Row</DropdownMenuLabel>
+        <DropdownMenuItem>
+          Edit
+          <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>Duplicate</DropdownMenuItem>
+        <DropdownMenuItem disabled>Archive</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem destructive>Delete</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}`} />
+
+### Checkbox and radio items
+
+<LiveCode code={`import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, Button } from '@jarllyng/nostromo'
+
+export default function DropdownMenuStateful() {
+  const [showGrid, setShowGrid] = React.useState(true)
+  const [density, setDensity] = React.useState('comfortable')
+
+return (
+
+<DropdownMenu>
+<DropdownMenuTrigger asChild>
+<Button variant="outline">View</Button>
+</DropdownMenuTrigger>
+<DropdownMenuContent>
+<DropdownMenuCheckboxItem checked={showGrid} onCheckedChange={setShowGrid}>
+Show grid
+</DropdownMenuCheckboxItem>
+<DropdownMenuSeparator />
+<DropdownMenuLabel>Density</DropdownMenuLabel>
+<DropdownMenuRadioGroup value={density} onValueChange={setDensity}>
+<DropdownMenuRadioItem value="comfortable">Comfortable</DropdownMenuRadioItem>
+<DropdownMenuRadioItem value="compact">Compact</DropdownMenuRadioItem>
+</DropdownMenuRadioGroup>
+</DropdownMenuContent>
+</DropdownMenu>
+)
+}`} />
+
+## Import
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+### DropdownMenuItem
+
+| Prop          | Type                     | Default | Description                                        |
+| ------------- | ------------------------ | ------- | -------------------------------------------------- |
+| `destructive` | `boolean`                | `false` | Pulls the item into the destructive palette        |
+| `inset`       | `boolean`                | `false` | Indents to line up with checkbox and radio items   |
+| `disabled`    | `boolean`                | `false` | Not selectable, and skipped by keyboard navigation |
+| `onSelect`    | `(event: Event) => void` | -       | Fired on click and on Enter                        |
+
+`DropdownMenuContent` takes Radix's positioning props — `side`, `align`,
+`sideOffset`, `collisionPadding`.
+
+## Portalled by default
+
+The content renders through a portal. An un-portalled menu is clipped by any
+ancestor with `overflow: hidden` — in practice every card and table it gets used
+in, which is the most common way a menu appears half-drawn.
+
+## Keyboard
+
+| Key               | Behaviour                     |
+| ----------------- | ----------------------------- |
+| `Enter` / `Space` | Open from the trigger; select |
+| `↑` `↓`           | Move between items            |
+| Letter keys       | Typeahead to a matching item  |
+| `→` / `←`         | Enter and leave a submenu     |
+| `Escape`          | Close and return focus        |

@@ -324,3 +324,40 @@ export {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "./collapsible";
+
+// DropdownMenu: the menu that hangs off a button. Select edits a form value and
+// has a selected state; this runs commands.
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+} from "./dropdown-menu";
+export type { DropdownMenuItemProps } from "./dropdown-menu";
+
+// Sheet: a dialog anchored to an edge. On Radix's dialog rather than this
+// package's own, see the note in sheet.tsx.
+export {
+  Sheet,
+  SheetTrigger,
+  SheetClose,
+  SheetPortal,
+  SheetOverlay,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+  sheetVariants,
+} from "./sheet";
+export type { SheetContentProps, SheetTitleProps } from "./sheet";
