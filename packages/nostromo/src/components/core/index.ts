@@ -420,3 +420,43 @@ export { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
 // ScrollArea: consistent scrollbars, native scrolling kept intact.
 export { ScrollArea, ScrollBar } from "./scroll-area";
 export type { ScrollAreaProps } from "./scroll-area";
+
+// Slider: one thumb per value, so a range slider is the same component with two
+// numbers rather than a second one.
+export { Slider, sliderTrackVariants, sliderThumbVariants } from "./slider";
+export type { SliderProps } from "./slider";
+
+// Menubar: the application menu bar. Its own primitive rather than a row of
+// dropdowns, because it behaves as one control. Third reader of menu-styles.
+export {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarLabel,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarGroup,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+} from "./menubar";
+export type { MenubarItemProps } from "./menubar";
+
+// NavigationMenu: site navigation with panels. A nav full of links, not a menu -
+// see the note in the file about why that distinction matters.
+export {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+  NavigationMenuViewport,
+  NavigationMenuIndicator,
+  navigationMenuTriggerStyle,
+} from "./navigation-menu";

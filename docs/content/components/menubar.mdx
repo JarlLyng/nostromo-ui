@@ -1,0 +1,82 @@
+import LiveCode from "../../components/LiveCode";
+
+# Menubar
+
+The application menu bar: File, Edit, View, each opening its own menu.
+
+Its own component rather than a row of `DropdownMenu`s, because a menu bar
+behaves as **one** control. Once a menu is open, moving the pointer to a
+neighbouring trigger switches to it without a click, and the arrow keys move
+between menus as well as within them.
+
+## Live Examples
+
+<LiveCode code={`import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarShortcut, MenubarCheckboxItem } from '@jarllyng/nostromo'
+
+export default function MenubarExample() {
+  const [wrap, setWrap] = React.useState(true)
+
+return (
+
+<Menubar>
+<MenubarMenu>
+<MenubarTrigger>File</MenubarTrigger>
+<MenubarContent>
+<MenubarItem>
+New file
+<MenubarShortcut>⌘N</MenubarShortcut>
+</MenubarItem>
+<MenubarItem>Open</MenubarItem>
+<MenubarSeparator />
+<MenubarItem destructive>Delete</MenubarItem>
+</MenubarContent>
+</MenubarMenu>
+
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            Undo
+            <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem disabled>Redo</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarCheckboxItem checked={wrap} onCheckedChange={setWrap}>
+            Wrap lines
+          </MenubarCheckboxItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+
+)
+}`} />
+
+Open one menu, then move the pointer sideways. The next menu opens on its own.
+
+## Import
+
+```tsx
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+`MenubarItem` takes `destructive` and `inset`, the same as `DropdownMenuItem`.
+Checkbox items, radio groups, labels, separators, shortcuts and submenus all have
+the same shape as their dropdown counterparts, and share their styling, so the
+three menus in this library cannot drift apart.
+
+## Related
+
+`DropdownMenu` for a single menu from a button, `ContextMenu` for right-click.

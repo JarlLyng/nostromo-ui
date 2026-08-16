@@ -46,6 +46,7 @@ export default {
   checkbox: "Checkbox",
   "radio-group": "RadioGroup",
   switch: "Switch",
+  slider: "Slider",
   select: "Select",
   label: "Label",
   "helper-text": "HelperText",
@@ -56,6 +57,8 @@ export default {
   },
   tabs: "Tabs",
   breadcrumb: "Breadcrumb",
+  menubar: "Menubar",
+  "navigation-menu": "NavigationMenu",
   pagination: "Pagination",
   feedback: {
     title: "Feedback",

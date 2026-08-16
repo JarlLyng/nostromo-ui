@@ -1,0 +1,85 @@
+import LiveCode from "../../components/LiveCode";
+
+# Slider
+
+A value picked by dragging along a range: volume, price, opacity.
+
+## Live Examples
+
+<LiveCode code={`import { Slider, Label } from '@jarllyng/nostromo'
+
+export default function SliderExample() {
+  const [volume, setVolume] = React.useState([60])
+
+return (
+
+<div className="max-w-sm space-y-2">
+<div className="flex items-baseline justify-between">
+<Label htmlFor="volume">Volume</Label>
+<span className="text-sm text-muted-foreground">{volume[0]}</span>
+</div>
+<Slider id="volume" value={volume} onValueChange={setVolume} thumbLabel="Volume" />
+</div>
+)
+}`} />
+
+### A range is the same component
+
+<LiveCode code={`import { Slider, Label } from '@jarllyng/nostromo'
+
+export default function SliderRange() {
+  const [price, setPrice] = React.useState([200, 800])
+
+return (
+
+<div className="max-w-sm space-y-2">
+<div className="flex items-baseline justify-between">
+<Label>Price</Label>
+<span className="text-sm text-muted-foreground">
+{price[0]} to {price[1]}
+</span>
+</div>
+<Slider
+value={price}
+onValueChange={setPrice}
+min={0}
+max={1000}
+step={50}
+thumbLabel={['Minimum', 'Maximum']}
+/>
+</div>
+)
+}`} />
+
+One thumb is rendered per entry in `value`, so a range slider is this component
+with two numbers rather than a separate one.
+
+## Import
+
+```tsx
+import { Slider } from "@jarllyng/nostromo";
+```
+
+## Props
+
+| Prop            | Type                        | Default     | Description                       |
+| --------------- | --------------------------- | ----------- | --------------------------------- |
+| `value`         | `number[]`                  | -           | Controlled value, one per thumb   |
+| `defaultValue`  | `number[]`                  | `[0]`       | Uncontrolled initial value        |
+| `onValueChange` | `(value: number[]) => void` | -           | Fired while dragging              |
+| `min` / `max`   | `number`                    | `0` / `100` | Range                             |
+| `step`          | `number`                    | `1`         | Increment, including by arrow key |
+| `thumbLabel`    | `string \| string[]`        | -           | Accessible name per thumb         |
+| `size`          | `"sm" \| "default" \| "lg"` | `"default"` | Track and thumb size              |
+| `disabled`      | `boolean`                   | `false`     | Not interactive                   |
+
+## Label every thumb
+
+A slider with no accessible name is announced as "slider" and nothing else, and
+a range slider says it twice. `thumbLabel` takes one string for a single thumb
+or an array for a range, so a screen reader says "Minimum" and "Maximum".
+
+## Keyboard
+
+Arrow keys move by `step`, Page Up and Page Down by a larger jump, Home and End
+go to the ends.
