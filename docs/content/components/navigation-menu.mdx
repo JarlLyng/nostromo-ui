@@ -1,0 +1,91 @@
+import LiveCode from "../../components/LiveCode";
+
+# NavigationMenu
+
+Site navigation with panels: a header where "Products" opens a grid of links.
+
+## Not a menu, despite the name
+
+A `DropdownMenu` runs commands and uses menu roles. This is a `<nav>` full of
+links, and Radix keeps it that way.
+
+That distinction is the whole reason to use this one for site navigation: a
+screen reader user gets a navigation landmark and a list of links, rather than a
+menu they are expected to act on. A test asserts there is no `menu` role
+anywhere in it.
+
+## Live Examples
+
+<LiveCode code={`import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, navigationMenuTriggerStyle } from '@jarllyng/nostromo'
+
+export default function NavigationMenuExample() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-2 md:grid-cols-2">
+              {[
+                { title: 'Components', body: 'Forty core components.' },
+                { title: 'Blocks', body: 'Whole sections to copy.' },
+                { title: 'Themes', body: 'Four, all WCAG AA.' },
+                { title: 'Charts', body: 'Composable, on recharts.' },
+              ].map((item) => (
+                <li key={item.title}>
+                  <NavigationMenuLink
+                    href={'#' + item.title.toLowerCase()}
+                    className="block rounded-md p-3 hover:bg-muted"
+                  >
+                    <p className="text-sm font-medium text-foreground">{item.title}</p>
+                    <p className="text-xs text-muted-foreground">{item.body}</p>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#docs" className={navigationMenuTriggerStyle()}>
+            Documentation
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+
+)
+}`} />
+
+## Import
+
+```tsx
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "@jarllyng/nostromo";
+```
+
+## The viewport
+
+The active panel is drawn in a viewport that sits outside the trigger row, so one
+panel can animate into the next without the row reflowing. `NavigationMenu`
+renders it for you; you only need `NavigationMenuViewport` directly when you want
+it somewhere else.
+
+Its size comes from `--radix-navigation-menu-viewport-width` and `-height`, which
+Radix measures from the active panel.
+
+## A top-level link
+
+Not every item needs a panel. Use `NavigationMenuLink` on its own with
+`navigationMenuTriggerStyle()` so it matches the triggers beside it.
+
+## Related
+
+`Menubar` for application menus that run commands, `DropdownMenu` for a single
+menu from a button.
