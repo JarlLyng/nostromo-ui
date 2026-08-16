@@ -34,6 +34,9 @@ export default {
   "aspect-ratio": "AspectRatio",
   popover: "Popover",
   "dropdown-menu": "DropdownMenu",
+  "context-menu": "ContextMenu",
+  "hover-card": "HoverCard",
+  "scroll-area": "ScrollArea",
   forms: {
     title: "Forms",
     type: "separator",

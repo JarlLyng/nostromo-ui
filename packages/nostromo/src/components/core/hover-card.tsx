@@ -1,0 +1,47 @@
+import * as React from "react";
+import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
+import { cn } from "../../lib/utils";
+
+/**
+ * A preview that appears on hover: a user card behind a mention, a repository
+ * summary behind a link.
+ *
+ * Not a `Tooltip`. A tooltip labels something in a few words and is announced as
+ * the element's description; a hover card holds real content, including links
+ * you can move the pointer into.
+ *
+ * It opens on hover and on keyboard focus, but its content is not reachable by
+ * keyboard beyond that, and it never opens on touch. So it has to stay
+ * supplementary: everything inside must also be available somewhere else. Radix
+ * marks it `aria-hidden` for that reason, which is correct and means a screen
+ * reader will not see it at all.
+ */
+
+const HoverCard = HoverCardPrimitive.Root;
+const HoverCardTrigger = HoverCardPrimitive.Trigger;
+
+const HoverCardContent = React.forwardRef<
+  React.ElementRef<typeof HoverCardPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>
+>(({ className, align = "center", sideOffset = 8, ...props }, ref) => (
+  <HoverCardPrimitive.Portal>
+    <HoverCardPrimitive.Content
+      ref={ref}
+      align={align}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 w-64 rounded-lg border border-border bg-background p-4 text-foreground shadow-lg outline-none " +
+          "data-[state=open]:animate-in data-[state=closed]:animate-out " +
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 " +
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 " +
+          "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 " +
+          "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className,
+      )}
+      {...props}
+    />
+  </HoverCardPrimitive.Portal>
+));
+HoverCardContent.displayName = HoverCardPrimitive.Content.displayName;
+
+export { HoverCard, HoverCardTrigger, HoverCardContent };

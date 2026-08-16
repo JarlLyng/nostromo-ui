@@ -1,0 +1,69 @@
+import LiveCode from "../../components/LiveCode";
+
+# ContextMenu
+
+The menu that opens on right-click, at the pointer.
+
+A separate component from `DropdownMenu` rather than a prop on it, because the
+two are genuinely different: this one has no visible trigger, opens where the
+pointer is, and on touch opens on long-press. They share their styling, so they
+look like the same menu.
+
+## Live Examples
+
+<LiveCode code={`import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, Card } from '@jarllyng/nostromo'
+
+export default function ContextMenuExample() {
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger asChild>
+        <Card className="flex h-32 items-center justify-center border-dashed text-sm text-muted-foreground">
+          Right click anywhere in this box
+        </Card>
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuLabel>File</ContextMenuLabel>
+        <ContextMenuItem>
+          Open
+          <ContextMenuShortcut>⌘O</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>Rename</ContextMenuItem>
+        <ContextMenuItem disabled>Move</ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuItem destructive>Delete</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  )
+}`} />
+
+## Never the only way to reach an action
+
+A context menu has no affordance: nothing on screen says it is there. It is
+awkward on touch, and a keyboard user reaches it only through the context-menu
+key, which many keyboards do not have.
+
+So treat it as a shortcut for people who already know it exists. Every action in
+one should also be reachable from a `DropdownMenu`, a toolbar, or a row of
+buttons.
+
+## Import
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+`ContextMenuItem` takes `destructive` and `inset`, the same as
+`DropdownMenuItem`. Checkbox items, radio groups, labels, separators, shortcuts
+and submenus all have the same shape as their dropdown counterparts.
+
+## Related
+
+`DropdownMenu` for the same menu from a button, which is where the same actions
+should also live.

@@ -1,0 +1,60 @@
+import LiveCode from "../../components/LiveCode";
+
+# ScrollArea
+
+A scrollable region with scrollbars that look the same on every platform.
+
+## Live Examples
+
+<LiveCode code={`import { ScrollArea, Separator } from '@jarllyng/nostromo'
+
+const releases = Array.from({ length: 24 }, (\_, i) => ({
+version: '3.' + (24 - i) + '.0',
+note: 'Release notes for version 3.' + (24 - i),
+}))
+
+export default function ScrollAreaExample() {
+  return (
+    <ScrollArea className="h-64 w-full rounded-lg border border-border">
+      <div className="p-4">
+        {releases.map((r, i) => (
+          <div key={r.version}>
+            <p className="text-sm font-medium text-foreground">{r.version}</p>
+            <p className="text-xs text-muted-foreground">{r.note}</p>
+            {i < releases.length - 1 && <Separator className="my-3" />}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+  )
+}`} />
+
+## Why not just `overflow-auto`
+
+Native scrollbars differ per platform, and on macOS with overlay scrollbars on
+they are invisible until you scroll. That is fine for a page and awkward for a
+panel inside one, where the absence of a scrollbar reads as "there is nothing
+more here".
+
+Radix keeps native scrolling and native keyboard behaviour and replaces only the
+scrollbar's appearance, so wheel, trackpad, touch, Page Up and Home all still
+work. Worth saying because scrollbar libraries that reimplement scrolling itself
+usually break at least one of those.
+
+## Import
+
+```tsx
+import { ScrollArea } from "@jarllyng/nostromo";
+```
+
+## Props
+
+| Prop                | Type                                        | Default      | Description                      |
+| ------------------- | ------------------------------------------- | ------------ | -------------------------------- |
+| `orientation`       | `"vertical" \| "horizontal" \| "both"`      | `"vertical"` | Which scrollbars to render       |
+| `viewportClassName` | `string`                                    | -            | Applied to the scrolling element |
+| `type`              | `"auto" \| "always" \| "scroll" \| "hover"` | `"hover"`    | When the scrollbar is visible    |
+
+The area needs a height from somewhere. Put it on the root with `className`, or
+on the viewport with `viewportClassName` when you want a `max-h` that shrinks to
+fit short content.
