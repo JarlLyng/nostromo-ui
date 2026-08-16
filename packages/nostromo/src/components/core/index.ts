@@ -361,3 +361,34 @@ export {
   sheetVariants,
 } from "./sheet";
 export type { SheetContentProps, SheetTitleProps } from "./sheet";
+
+// AlertDialog: a modal that interrupts to confirm something consequential. Not a
+// Dialog variant - Radix enforces role="alertdialog" and refuses dismissal by
+// outside click or Escape, which is the point of it.
+export {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "./alert-dialog";
+export type { AlertDialogActionProps } from "./alert-dialog";
+
+// Toggle and ToggleGroup: a button that stays pressed. Switch is the form
+// control; this is a toolbar control and announces aria-pressed.
+export { Toggle, ToggleGroup, ToggleGroupItem, toggleVariants } from "./toggle";
+export type {
+  ToggleProps,
+  ToggleGroupProps,
+  ToggleGroupItemProps,
+} from "./toggle";
+
+// AspectRatio: native CSS aspect-ratio, no dependency. See the note in the file.
+export { AspectRatio } from "./aspect-ratio";
+export type { AspectRatioProps } from "./aspect-ratio";

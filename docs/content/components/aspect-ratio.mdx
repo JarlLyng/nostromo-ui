@@ -1,0 +1,59 @@
+import LiveCode from "../../components/LiveCode";
+
+# AspectRatio
+
+Holds a box at a fixed ratio while its width is free: video embeds, image grids,
+map panes.
+
+## Live Examples
+
+<LiveCode code={`import { AspectRatio, Card } from '@jarllyng/nostromo'
+
+export default function AspectRatioExample() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-3">
+      {[
+        { label: '16 / 9', ratio: 16 / 9 },
+        { label: '1 / 1', ratio: 1 },
+        { label: '3 / 4', ratio: 3 / 4 },
+      ].map((item) => (
+        <div key={item.label} className="space-y-2">
+          <AspectRatio ratio={item.ratio} className="rounded-lg border border-border bg-muted">
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              {item.label}
+            </div>
+          </AspectRatio>
+          <p className="text-xs text-muted-foreground">{item.label}</p>
+        </div>
+      ))}
+    </div>
+  )
+}`} />
+
+## Import
+
+```tsx
+import { AspectRatio } from "@jarllyng/nostromo";
+```
+
+## Props
+
+| Prop    | Type     | Default | Description             |
+| ------- | -------- | ------- | ----------------------- |
+| `ratio` | `number` | `1`     | Width divided by height |
+
+Write it as a division rather than a decimal, so the intent survives in the
+source: `16 / 9`, not `1.7777`.
+
+The box is `overflow-hidden`, so an oversized child is cropped rather than
+spilling out, which is what giving something a ratio usually means.
+
+## No dependency for this one
+
+shadcn's version wraps `@radix-ui/react-aspect-ratio`. That package exists for
+the padding-bottom trick browsers needed before the CSS `aspect-ratio` property,
+and every browser this library supports has had it for years. `Gallery` already
+relies on it through Tailwind's `aspect-[3/4]`.
+
+So this sets one CSS property and takes no dependency. A dependency for that
+would be one more thing to audit, update and ship.

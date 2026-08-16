@@ -1,0 +1,110 @@
+import LiveCode from "../../components/LiveCode";
+
+# AlertDialog
+
+A modal that interrupts to confirm something consequential: delete, revoke,
+overwrite.
+
+Not a `Dialog` variant and not a styling choice. Radix enforces different
+behaviour, and that behaviour is the reason to use it.
+
+## Live Examples
+
+<LiveCode code={`import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel, Button } from '@jarllyng/nostromo'
+
+export default function AlertDialogExample() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">Delete project</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete this project?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Every deployment, log and secret goes with it. This cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Delete</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`} />
+
+### A confirmation that is not destructive
+
+<LiveCode code={`import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel, Button } from '@jarllyng/nostromo'
+
+export default function AlertDialogPublish() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>Publish</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Publish to production?</AlertDialogTitle>
+          <AlertDialogDescription>
+            The build will go live for everyone immediately.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Not yet</AlertDialogCancel>
+          <AlertDialogAction variant="default">Publish</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}`} />
+
+## What it does differently
+
+| Behaviour     | Dialog          | AlertDialog       |
+| ------------- | --------------- | ----------------- |
+| Role          | `dialog`        | `alertdialog`     |
+| Click outside | closes          | does nothing      |
+| Escape        | closes          | closes            |
+| Initial focus | first focusable | the Cancel button |
+
+Clicking outside does nothing, so a confirmation cannot be lost by missing the
+button. Focus starts on **Cancel**, so a reflexive Enter cancels rather than
+deletes.
+
+Escape does close it, and that is correct rather than a gap: a modal a keyboard
+user cannot leave is a trap, and cancelling is the safe outcome here so nothing
+is lost by it.
+
+## Import
+
+```tsx
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+### AlertDialogAction
+
+| Prop      | Type                         | Default         | Description    |
+| --------- | ---------------------------- | --------------- | -------------- |
+| `variant` | `"default" \| "destructive"` | `"destructive"` | Button styling |
+
+The default is destructive because most confirmations are. Pass
+`variant="default"` when the action is not.
+
+`AlertDialogTitle` and `AlertDialogDescription` supply the accessible name and
+description. Both are worth writing: the title says what will happen, the
+description says what it costs.
+
+## Related
+
+`Dialog` when the user opened it on purpose and can walk away. `AlertDialog` when
+the app is asking a question it needs answered.

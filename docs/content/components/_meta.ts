@@ -30,6 +30,8 @@ export default {
   // into a JSX expression that will not compile.
   icon: "Icon",
   separator: "Separator",
+  toggle: "Toggle",
+  "aspect-ratio": "AspectRatio",
   popover: "Popover",
   "dropdown-menu": "DropdownMenu",
   forms: {
@@ -79,6 +81,7 @@ export default {
   charts: "Charts",
   dialog: "Dialog",
   sheet: "Sheet",
+  "alert-dialog": "AlertDialog",
   "error-boundary": "ErrorBoundary",
   marketing: {
     title: "Marketing",

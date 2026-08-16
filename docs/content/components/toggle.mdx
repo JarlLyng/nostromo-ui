@@ -1,0 +1,99 @@
+import LiveCode from "../../components/LiveCode";
+
+# Toggle
+
+A button that stays pressed: bold in a toolbar, a filter chip, a view mode.
+
+Distinct from `Switch`, which is a form control with an on and an off state and
+belongs next to a label. A toggle is a button, announces itself with
+`aria-pressed`, and lives in a toolbar rather than a form.
+
+## Live Examples
+
+<LiveCode code={`import { Toggle } from '@jarllyng/nostromo'
+
+export default function ToggleExample() {
+  return (
+    <div className="flex gap-2">
+      <Toggle aria-label="Bold">B</Toggle>
+      <Toggle aria-label="Italic" defaultPressed>I</Toggle>
+      <Toggle aria-label="Underline" variant="outline">U</Toggle>
+      <Toggle aria-label="Strikethrough" disabled>S</Toggle>
+    </div>
+  )
+}`} />
+
+### ToggleGroup
+
+<LiveCode code={`import { ToggleGroup, ToggleGroupItem } from '@jarllyng/nostromo'
+
+export default function ToggleGroupExample() {
+  const [align, setAlign] = React.useState('left')
+  const [marks, setMarks] = React.useState(['bold'])
+
+return (
+
+<div className="space-y-4">
+<div>
+<p className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">
+Single: {align}
+</p>
+<ToggleGroup type="single" value={align} onValueChange={(v) => v && setAlign(v)} aria-label="Alignment" variant="outline">
+<ToggleGroupItem value="left">Left</ToggleGroupItem>
+<ToggleGroupItem value="center">Center</ToggleGroupItem>
+<ToggleGroupItem value="right">Right</ToggleGroupItem>
+</ToggleGroup>
+</div>
+
+      <div>
+        <p className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">
+          Multiple: {marks.join(', ') || 'none'}
+        </p>
+        <ToggleGroup type="multiple" value={marks} onValueChange={setMarks} aria-label="Formatting">
+          <ToggleGroupItem value="bold">B</ToggleGroupItem>
+          <ToggleGroupItem value="italic">I</ToggleGroupItem>
+          <ToggleGroupItem value="underline">U</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    </div>
+
+)
+}`} />
+
+## Import
+
+```tsx
+import { Toggle, ToggleGroup, ToggleGroupItem } from "@jarllyng/nostromo";
+```
+
+## Props
+
+### Toggle
+
+| Prop              | Type                         | Default     | Description                |
+| ----------------- | ---------------------------- | ----------- | -------------------------- |
+| `pressed`         | `boolean`                    | -           | Controlled state           |
+| `defaultPressed`  | `boolean`                    | `false`     | Uncontrolled initial state |
+| `onPressedChange` | `(pressed: boolean) => void` | -           | Fired on change            |
+| `variant`         | `"default" \| "outline"`     | `"default"` | Styling                    |
+| `size`            | `"sm" \| "default" \| "lg"`  | `"default"` | Control size               |
+| `disabled`        | `boolean`                    | `false`     | Not interactive            |
+
+### ToggleGroup
+
+`type` is required and picks the behaviour: `"single"` keeps one selected and
+gives you a string, `"multiple"` allows several and gives you an array.
+
+`variant` and `size` set on the group reach the items through context, so an item
+still gets the group's styling when it is wrapped in your own markup. An item can
+override either one.
+
+## An accessible name is worth writing
+
+An icon-only toggle has no text for a screen reader to announce, so give it
+`aria-label`. The examples above do it for every one.
+
+## Related
+
+`Switch` for a form field, `Checkbox` when the answer is part of a form's data,
+`Button` when it does not stay pressed.
