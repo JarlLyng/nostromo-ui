@@ -60,10 +60,29 @@ function* snippetsIn(source) {
     while (i < source.length) {
       const ch = source[i];
       if (ch === "\\") {
-        // Inside the literal, ` and ${ arrive escaped. Unescape those two and
-        // leave every other backslash alone - `\n` in a className must survive.
+        // Mirror what JavaScript does with a template literal, because that is
+        // what the browser evaluates. The two escapes that must survive are the
+        // ones with meaning: `\\` is one backslash, and \n \t \r are real
+        // whitespace. Every other `\x` is an unrecognised escape, and JS simply
+        // drops the backslash.
+        //
+        // That last rule is not pedantry. Prettier formats mdx as markdown and
+        // escapes markdown syntax inside the literal, so `(_, i)` in an example
+        // becomes `(\_, i)` on disk. The browser reads that back as `(_, i)` and
+        // renders fine; an extractor that keeps the backslash sees a syntax error
+        // that does not exist, and reports a broken page that works.
         const next = source[i + 1];
-        if (next === "`" || next === "$" || next === "\\") {
+        if (next === "\\") {
+          code += "\\";
+          i += 2;
+          continue;
+        }
+        if (next === "n" || next === "t" || next === "r") {
+          code += { n: "\n", t: "\t", r: "\r" }[next];
+          i += 2;
+          continue;
+        }
+        if (next !== undefined) {
           code += next;
           i += 2;
           continue;

@@ -1,6 +1,15 @@
 import * as React from "react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { cn } from "../../lib/utils";
+import {
+  menuDestructive,
+  menuItem,
+  menuItemInset,
+  menuLabel,
+  menuSeparator,
+  menuShortcut,
+  menuSurface,
+} from "./menu-styles";
 
 /**
  * The menu that hangs off a button: row actions, account menus, overflow.
@@ -18,19 +27,6 @@ const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
-
-const menuSurface =
-  "z-50 min-w-[8rem] overflow-hidden rounded-lg border border-border bg-background p-1 text-foreground shadow-lg " +
-  "data-[state=open]:animate-in data-[state=closed]:animate-out " +
-  "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 " +
-  "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 " +
-  "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 " +
-  "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2";
-
-const menuItem =
-  "relative flex cursor-pointer select-none items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none " +
-  "transition-colors focus:bg-muted focus:text-foreground " +
-  "data-[disabled]:pointer-events-none data-[disabled]:opacity-50";
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
@@ -67,9 +63,8 @@ const DropdownMenuItem = React.forwardRef<
     ref={ref}
     className={cn(
       menuItem,
-      inset && "pl-8",
-      destructive &&
-        "text-destructive focus:bg-destructive/10 focus:text-destructive",
+      inset && menuItemInset,
+      destructive && menuDestructive,
       className,
     )}
     {...props}
@@ -86,7 +81,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
-    className={cn(menuItem, "pl-8", className)}
+    className={cn(menuItem, menuItemInset, className)}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -119,7 +114,7 @@ const DropdownMenuRadioItem = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
-    className={cn(menuItem, "pl-8", className)}
+    className={cn(menuItem, menuItemInset, className)}
     {...props}
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -140,11 +135,7 @@ const DropdownMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenuPrimitive.Label
     ref={ref}
-    className={cn(
-      "px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground",
-      inset && "pl-8",
-      className,
-    )}
+    className={cn(menuLabel, inset && menuItemInset, className)}
     {...props}
   />
 ));
@@ -156,7 +147,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-border", className)}
+    className={cn(menuSeparator, className)}
     {...props}
   />
 ));
@@ -167,15 +158,7 @@ function DropdownMenuShortcut({
   className,
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) {
-  return (
-    <span
-      className={cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <span className={cn(menuShortcut, className)} {...props} />;
 }
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 
@@ -190,7 +173,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     className={cn(
       menuItem,
       "data-[state=open]:bg-muted",
-      inset && "pl-8",
+      inset && menuItemInset,
       className,
     )}
     {...props}

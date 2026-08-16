@@ -1,0 +1,74 @@
+import LiveCode from "../../components/LiveCode";
+
+# HoverCard
+
+A preview that appears on hover: a user card behind a mention, a repository
+summary behind a link.
+
+Not a `Tooltip`. A tooltip labels something in a few words and is announced as
+the element's description. A hover card holds real content, including links you
+can move the pointer into.
+
+## Live Examples
+
+<LiveCode code={`import { HoverCard, HoverCardTrigger, HoverCardContent, Avatar, Badge } from '@jarllyng/nostromo'
+
+export default function HoverCardExample() {
+  return (
+    <p className="text-sm text-foreground">
+      Maintained by{' '}
+      <HoverCard>
+        <HoverCardTrigger className="font-medium underline underline-offset-4">
+          @jarllyng
+        </HoverCardTrigger>
+        <HoverCardContent>
+          <div className="flex gap-3">
+            <Avatar fallback="JL" />
+            <div className="space-y-1">
+              <p className="text-sm font-semibold text-foreground">Jarl Lyng</p>
+              <p className="text-xs text-muted-foreground">
+                Builds component libraries.
+              </p>
+              <Badge variant="secondary">Copenhagen</Badge>
+            </div>
+          </div>
+        </HoverCardContent>
+      </HoverCard>
+      , who also wrote the theme system.
+    </p>
+  )
+}`} />
+
+## Supplementary by nature
+
+It opens on hover and on keyboard focus, but its content is not reachable by
+keyboard beyond that, and it never opens on touch. Radix marks the content
+`aria-hidden`, which is correct and means a screen reader will not see it at all.
+
+So everything inside a hover card must exist somewhere else too. Use it to save a
+click, never to carry the only copy of something.
+
+## Import
+
+```tsx
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@jarllyng/nostromo";
+```
+
+## Props
+
+| Prop         | Type     | Default | Description                   |
+| ------------ | -------- | ------- | ----------------------------- |
+| `openDelay`  | `number` | `700`   | Milliseconds before it opens  |
+| `closeDelay` | `number` | `300`   | Milliseconds before it closes |
+
+The delays matter more than they look. Too short and the card flashes open as
+the pointer crosses the trigger on its way somewhere else.
+
+## Related
+
+`Tooltip` for a short label, `Popover` when the content should stay open and be
+interactive, since that one is reachable by keyboard and touch.

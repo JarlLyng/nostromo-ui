@@ -136,6 +136,22 @@ describe("documentation examples", () => {
     expect(error).toBe("");
   });
 
+  // Prettier formats mdx as markdown and escapes markdown syntax inside the
+  // template literal, so `(_, i)` in an example is `(\_, i)` on disk. The
+  // browser reads that back as `(_, i)`, because JS drops an unrecognised
+  // escape. An extractor that kept the backslash would report a syntax error on
+  // a page that renders perfectly well, which is exactly what it did once.
+  it("reads escapes the way a template literal does", async () => {
+    const error = await renderExample(
+      "export default function Escaped() {\n" +
+        "  const items = Array.from({ length: 2 }, (_, i) => i)\n" +
+        "  return <div>{items.length}</div>\n" +
+        "}",
+      false,
+    );
+    expect(error).toBe("");
+  });
+
   for (const example of examples) {
     it(`${example.file} #${example.index} mounts`, async () => {
       const error = await renderExample(example.code, false);

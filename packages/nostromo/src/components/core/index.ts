@@ -392,3 +392,31 @@ export type {
 // AspectRatio: native CSS aspect-ratio, no dependency. See the note in the file.
 export { AspectRatio } from "./aspect-ratio";
 export type { AspectRatioProps } from "./aspect-ratio";
+
+// ContextMenu: the right-click menu. A separate primitive from DropdownMenu, but
+// the same menu to look at - shared styling lives in menu-styles.ts.
+export {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuGroup,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+} from "./context-menu";
+export type { ContextMenuItemProps } from "./context-menu";
+
+// HoverCard: a preview on hover. Supplementary by nature - see the note in the
+// file about why its content must exist elsewhere too.
+export { HoverCard, HoverCardTrigger, HoverCardContent } from "./hover-card";
+
+// ScrollArea: consistent scrollbars, native scrolling kept intact.
+export { ScrollArea, ScrollBar } from "./scroll-area";
+export type { ScrollAreaProps } from "./scroll-area";
