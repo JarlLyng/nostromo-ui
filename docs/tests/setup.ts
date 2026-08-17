@@ -28,6 +28,22 @@ if (!("ResizeObserver" in globalThis)) {
     NoopResizeObserver;
 }
 
+// cmdk scrolls the active item into view whenever the selection moves, and jsdom
+// implements no scrollIntoView at all - so mounting a Command threw
+// "i.scrollIntoView is not a function". A no-op is the whole of what is missing:
+// there is no viewport to scroll.
+if (typeof Element.prototype.scrollIntoView !== "function") {
+  Element.prototype.scrollIntoView = function scrollIntoView() {};
+}
+
+// Same for pointer capture, which vaul takes on pointerdown to follow a drag.
+for (const name of ["setPointerCapture", "releasePointerCapture"] as const) {
+  if (typeof Element.prototype[name] !== "function") {
+    (Element.prototype as unknown as Record<string, () => void>)[name] =
+      () => {};
+  }
+}
+
 // Same gap, same reasoning: no IntersectionObserver in jsdom, and Embla
 // constructs one to know which slides are on screen. A no-op means it is told
 // about nothing, which is accurate here.

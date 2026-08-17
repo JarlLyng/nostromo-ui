@@ -129,7 +129,7 @@ broken components.
 
 | Metric                   | Status | Details                                                                                                                                                   |
 | ------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Core Components**      | ✅     | 47 components (Charts also has a lazy-loading entry point)                                                                                                |
+| **Core Components**      | ✅     | 49 components (Charts also has a lazy-loading entry point)                                                                                                |
 | **Marketing Components** | ✅     | 6 components implemented                                                                                                                                  |
 | **Themes**               | ✅     | 4 themes (Nostromo, Mother, LV-426, Sulaco)                                                                                                               |
 | **Total Tests**          | ✅     | 1310 unit + accessibility (473 in dedicated accessibility files), plus 19 consumer smoke tests, and 112 type-checked / 118 mounted documentation examples |
@@ -139,7 +139,7 @@ broken components.
 | **CI/CD**                | ✅     | All critical checks passing (parallelized)                                                                                                                |
 | **Documentation**        | ✅     | 15 guides, plus a page per component with live examples                                                                                                   |
 | **Distribution**         | ✅     | Published on npm as [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo), with build provenance                                       |
-| **Bundle Size**          | ✅     | 264.85 kB full barrel, minified + brotlied (limit 420 kB); single components from 8.73 kB                                                                 |
+| **Bundle Size**          | ✅     | 276.76 kB full barrel, minified + brotlied (limit 420 kB); single components from 8.73 kB                                                                 |
 
 > **Note**: Every release is published through GitHub Actions with npm Trusted Publishing, so tarballs carry build provenance. See [Publishing Guide](docs/guides/PUBLISHING.md).
 
@@ -175,7 +175,7 @@ broken components.
 - **Test Infrastructure** - Vitest + Testing Library + axe-core (1310 unit and
   accessibility tests, plus 19 consumer smoke tests against the built package)
 - **Build System** - tsup with ESM + CJS output and type definitions
-- **Nextra Documentation Site** - Modern documentation with a page for each of the 53 components and live, editable previews
+- **Nextra Documentation Site** - Modern documentation with a page for each of the 55 components and live, editable previews
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 - **Code Quality** - TypeScript strict mode, CI/CD pipeline, zero lint errors/warnings
 
@@ -190,7 +190,7 @@ broken components.
 - **CI/CD** - Parallelized workflow (lint, type-check, test run in parallel), improved lint error detection, all checks passing
 - **Live Examples** - Every component documentation page includes multiple live, editable examples, rendered in place rather than embedded from an external tool
 - **Accessibility** - Comprehensive accessibility testing with axe-core integration (473 of the 1310 tests)
-- **Performance** - Bundle size monitoring and optimization (264.85 kB full barrel, tree-shakeable down to single components)
+- **Performance** - Bundle size monitoring and optimization (276.76 kB full barrel, tree-shakeable down to single components)
 - **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
 
 **Current Progress: 100% of MVP - Production Ready! 🎉**

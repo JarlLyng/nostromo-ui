@@ -53,6 +53,8 @@ export default defineConfig({
     "src/components/core/carousel.tsx",
     "src/components/core/input-otp.tsx",
     "src/components/core/resizable.tsx",
+    "src/components/core/command.tsx",
+    "src/components/core/drawer.tsx",
     "src/components/core/menubar.tsx",
     "src/components/core/navigation-menu.tsx",
     "src/components/core/aspect-ratio.tsx",

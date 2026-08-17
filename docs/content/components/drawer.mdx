@@ -1,0 +1,173 @@
+import LiveCode from "../../components/LiveCode";
+
+# Drawer
+
+A panel that slides in from an edge and can be dragged shut. Built on
+[vaul](https://vaul.emilkowal.ski/), which is a Radix Dialog underneath.
+
+## Live Examples
+
+<LiveCode code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose, Button } from '@jarllyng/nostromo'
+
+export default function DrawerExample() {
+return (
+
+<Drawer>
+<DrawerTrigger asChild>
+<Button variant="outline">Open drawer</Button>
+</DrawerTrigger>
+<DrawerContent>
+<DrawerHeader>
+<DrawerTitle>Move goal</DrawerTitle>
+<DrawerDescription>Set your daily activity goal.</DrawerDescription>
+</DrawerHeader>
+<div className="p-4 text-center text-4xl font-semibold">350</div>
+<DrawerFooter>
+<Button>Save</Button>
+<DrawerClose asChild>
+<Button variant="outline">Cancel</Button>
+</DrawerClose>
+</DrawerFooter>
+</DrawerContent>
+</Drawer>
+)
+}`} />
+
+Drag the panel down to dismiss it, or grab the bar at the top.
+
+### From the side
+
+<LiveCode code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, Button } from '@jarllyng/nostromo'
+
+export default function DrawerSide() {
+return (
+
+<Drawer direction="right">
+<DrawerTrigger asChild>
+<Button variant="outline">Open from the right</Button>
+</DrawerTrigger>
+<DrawerContent>
+<DrawerHeader>
+<DrawerTitle>Filters</DrawerTitle>
+<DrawerDescription>Narrow the results.</DrawerDescription>
+</DrawerHeader>
+<div className="p-4 text-sm text-muted-foreground">Filter controls go here.</div>
+</DrawerContent>
+</Drawer>
+)
+}`} />
+
+The grabber is only drawn for a drawer coming from the top or the bottom. A
+horizontal bar on a side panel would suggest the wrong direction.
+
+### Snap points
+
+<LiveCode code={`import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, Button } from '@jarllyng/nostromo'
+
+export default function DrawerSnap() {
+const [snap, setSnap] = React.useState<number | string | null>('148px')
+
+return (
+
+<Drawer snapPoints={['148px', '355px', 1]} activeSnapPoint={snap} setActiveSnapPoint={setSnap}>
+<DrawerTrigger asChild>
+<Button variant="outline">Open part way</Button>
+</DrawerTrigger>
+<DrawerContent>
+<DrawerHeader>
+<DrawerTitle>Details</DrawerTitle>
+<DrawerDescription>Drag up for more.</DrawerDescription>
+</DrawerHeader>
+<div className="p-4 text-sm text-muted-foreground">
+Currently at {String(snap)}.
+</div>
+</DrawerContent>
+</Drawer>
+)
+}`} />
+
+## Import
+
+```tsx
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerClose,
+} from "@jarllyng/nostromo";
+```
+
+## Parts
+
+| Part                | What it is                                                 |
+| ------------------- | ---------------------------------------------------------- |
+| `Drawer`            | The root. Owns `direction`, snap points and the open state |
+| `DrawerTrigger`     | Opens it. Takes `asChild`                                  |
+| `DrawerContent`     | The panel, with the overlay and the grabber                |
+| `DrawerHeader`      | Title and description, centred for top and bottom          |
+| `DrawerTitle`       | Names the dialog. Required for it to be announced          |
+| `DrawerDescription` | Describes it, announced after the title                    |
+| `DrawerFooter`      | Actions, pushed to the bottom                              |
+| `DrawerClose`       | Closes it. Takes `asChild`                                 |
+| `DrawerHandle`      | The grabber on its own, for a header of your own design    |
+| `DrawerNested`      | Use in place of `Drawer` for a drawer opened from a drawer |
+
+## Props
+
+| Prop                    | Type                                     | Default    | Description                                 |
+| ----------------------- | ---------------------------------------- | ---------- | ------------------------------------------- |
+| `direction`             | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Which edge it comes from                    |
+| `open`                  | `boolean`                                | -          | Controlled state                            |
+| `onOpenChange`          | `(open: boolean) => void`                | -          | Fires on open and close                     |
+| `snapPoints`            | `(number \| string)[]`                   | -          | Heights it settles at                       |
+| `activeSnapPoint`       | `number \| string \| null`               | -          | Controlled snap point                       |
+| `dismissible`           | `boolean`                                | `true`     | `false` blocks drag, Escape and the overlay |
+| `modal`                 | `boolean`                                | `true`     | `false` leaves the page interactive         |
+| `closeThreshold`        | `number`                                 | `0.25`     | How far to drag before it closes            |
+| `handleOnly`            | `boolean`                                | `false`    | Only the grabber starts a drag              |
+| `shouldScaleBackground` | `boolean`                                | `false`    | Push the page back as it opens              |
+
+`DrawerContent` also takes `withHandle`, default `true`.
+
+## Drawer or Sheet?
+
+They look alike. The difference is the gesture.
+
+|                    | `Sheet` | `Drawer` |
+| ------------------ | ------- | -------- |
+| Opens from an edge | yes     | yes      |
+| Drag to dismiss    | no      | yes      |
+| Snap points        | no      | yes      |
+| Grabber            | no      | yes      |
+| Extra dependency   | none    | vaul     |
+
+`Sheet` is a dialog anchored to an edge: it opens and closes, and that is all.
+`Drawer` adds the touch model, which is the mobile convention. If you would not
+use the drag, use `Sheet`.
+
+One difference in how they are modal: vaul does not put `aria-modal` on the
+dialog. It aria-hides the rest of the page instead, which confines a screen reader
+the same way.
+
+## Positioning comes from a data attribute
+
+`direction` is a prop on the root, and vaul writes it onto the content as
+`data-vaul-drawer-direction`. The styling reads that rather than taking a variant
+of its own, so the two cannot disagree: the drawer cannot be told to come from the
+left and then be styled along the bottom.
+
+That is also the hook for your own styles:
+
+```tsx
+<DrawerContent className="data-[vaul-drawer-direction=right]:sm:max-w-md">
+```
+
+## Always give it a title
+
+`DrawerTitle` is what names the dialog. Without one it is announced as "dialog".
+If the design has no visible heading, render the title with `className="sr-only"`
+rather than leaving it out.
