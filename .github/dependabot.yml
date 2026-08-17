@@ -58,14 +58,6 @@ updates:
       # until that promise changes. Minors and patches still come through.
       - dependency-name: "jsdom"
         update-types: ["version-update:semver-major"]
-      # @changesets/cli 3 requires pnpm >=10.0.0 in its engines; this workspace is
-      # pinned to pnpm@9.15.9 via packageManager, on lockfileVersion 9.0. Taking it
-      # means migrating the package manager and regenerating the lockfile, which is
-      # its own piece of work and not a dependency bump. It also drops
-      # read-yaml-file, so the `read-yaml-file>js-yaml` override above can go at
-      # the same time.
-      - dependency-name: "@changesets/cli"
-        update-types: ["version-update:semver-major"]
 
   # Docs package
   - package-ecosystem: "npm"
