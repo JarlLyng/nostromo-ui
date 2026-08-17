@@ -133,12 +133,40 @@
     ease-out;
 }
 
+/**
+ * The fake caret in InputOTP.
+ *
+ * The real input is transparent and off to the side, so its own caret is not
+ * visible in the slot the user is typing into. This draws one.
+ *
+ * Not wired to `--nostromo-animate-duration`. That token is around 150ms because
+ * it times enter and exit transitions; a caret blinking six times a second is
+ * not a themeable preference, it is a bug. 1s is the platform convention.
+ */
+@keyframes nostromo-caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
+
+@utility animate-caret-blink {
+  animation: nostromo-caret-blink 1s ease-out infinite;
+}
+
 /* Respect the user's setting. Every animation above is decorative. */
 @media (prefers-reduced-motion: reduce) {
   .animate-in,
   .animate-out,
   .animate-collapsible-down,
-  .animate-collapsible-up {
+  .animate-collapsible-up,
+  /* A caret that stays put is still a caret, and is the better default here. */
+  .animate-caret-blink {
     animation: none;
   }
 }

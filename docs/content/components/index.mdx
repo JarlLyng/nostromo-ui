@@ -44,7 +44,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 <ComponentPreview />`} />
 
-## Core Components (30)
+## Core Components (47)
 
 ### Primitives
 
@@ -100,12 +100,117 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/separator" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/separator"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Separator</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Visual separators with horizontal and vertical variants
+  </p>
+</Link>
+
+<Link
+  href="/components/toggle"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Toggle</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A button that stays pressed, on its own or in a group
+  </p>
+</Link>
+
+<Link
+  href="/components/aspect-ratio"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">AspectRatio</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Holds a box at a fixed ratio while an image loads
+  </p>
+</Link>
+
+<Link
+  href="/components/popover"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Popover</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A panel anchored to what opened it, for content rather than commands
+  </p>
+</Link>
+
+<Link
+  href="/components/dropdown-menu"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">DropdownMenu</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A menu of commands under a button, with checkboxes, radios and submenus
+  </p>
+</Link>
+
+<Link
+  href="/components/context-menu"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">ContextMenu</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    The same menu, opened by right-click or long-press
+  </p>
+</Link>
+
+<Link
+  href="/components/hover-card"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">HoverCard</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A preview on hover, for links worth glancing at before following
+  </p>
+</Link>
+
+  <Link href="/components/scroll-area" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">Separator</h3>
+      <h3 className="font-semibold">ScrollArea</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Visual separators with horizontal and vertical variants</p>
+    <p className="text-sm text-muted-foreground">A scroll container with scrollbars that look the same on every platform</p>
   </Link>
 </div>
 
@@ -223,12 +328,55 @@ Browse all 30 core components and 6 marketing components. All components are **p
   <p className="text-sm text-muted-foreground">Helper text for form fields</p>
 </Link>
 
-  <Link href="/components/error-message" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/error-message"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">ErrorMessage</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">Error messages for validation</p>
+</Link>
+
+<Link
+  href="/components/form"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Form</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Ties react-hook-form to Label, HelperText and ErrorMessage
+  </p>
+</Link>
+
+<Link
+  href="/components/input-otp"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">InputOTP</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A one-time code, one character per box, over a single real input
+  </p>
+</Link>
+
+  <Link href="/components/slider" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">ErrorMessage</h3>
+      <h3 className="font-semibold">Slider</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Error messages for validation</p>
+    <p className="text-sm text-muted-foreground">A value picked by dragging, one thumb or two for a range</p>
   </Link>
 </div>
 
@@ -258,12 +406,42 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/pagination" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/pagination"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Pagination</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Page navigation with keyboard accessibility
+  </p>
+</Link>
+
+<Link
+  href="/components/menubar"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Menubar</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    An application menu bar, the File and Edit row
+  </p>
+</Link>
+
+  <Link href="/components/navigation-menu" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">Pagination</h3>
+      <h3 className="font-semibold">NavigationMenu</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Page navigation with keyboard accessibility</p>
+    <p className="text-sm text-muted-foreground">Site navigation with panels. A nav full of links, not a menu</p>
   </Link>
 </div>
 
@@ -373,12 +551,42 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/accordion" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/accordion"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Accordion</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Collapsible sections with keyboard navigation
+  </p>
+</Link>
+
+<Link
+  href="/components/collapsible"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Collapsible</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    One section that opens and closes, height animated
+  </p>
+</Link>
+
+  <Link href="/components/carousel" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">Accordion</h3>
+      <h3 className="font-semibold">Carousel</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Collapsible sections with keyboard navigation</p>
+    <p className="text-sm text-muted-foreground">A strip of slides that snaps, with keyboard and drag support</p>
   </Link>
 </div>
 
@@ -423,12 +631,57 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/error-boundary" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/error-boundary"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">ErrorBoundary</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Error boundary component for React error handling
+  </p>
+</Link>
+
+<Link
+  href="/components/sheet"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Sheet</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A dialog that slides in from an edge
+  </p>
+</Link>
+
+<Link
+  href="/components/alert-dialog"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">AlertDialog</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A dialog that demands an answer, focus starting on Cancel
+  </p>
+</Link>
+
+  <Link href="/components/resizable" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">ErrorBoundary</h3>
+      <h3 className="font-semibold">Resizable</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Error boundary component for React error handling</p>
+    <p className="text-sm text-muted-foreground">Panels the user can drag apart, with a keyboard-operable divider</p>
   </Link>
 </div>
 
@@ -517,7 +770,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 All components are marked as **Stable**, meaning they are:
 
 - ✅ Production-ready
-- ✅ Fully tested (1169 tests passing, 473 of them accessibility)
+- ✅ Fully tested (1310 tests passing, 473 in dedicated accessibility files)
 - ✅ WCAG 2.1 AA compliant
 - ✅ TypeScript typed
 - ✅ Documented with examples
