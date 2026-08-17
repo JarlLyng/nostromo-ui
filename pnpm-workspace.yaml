@@ -1,5 +1,27 @@
 packages:
-  - 'packages/*'
-  - 'tools/*'
-  - 'docs'
-  - 'test-app'
+  - "packages/*"
+  - "tools/*"
+  - "docs"
+  - "test-app"
+
+# Radix ships its primitives as many small packages that the components reach
+# through peer-ish transitive paths; hoisting them keeps a single copy of each
+# in the tree instead of one per consumer.
+#
+# Here rather than in .npmrc because pnpm 10 reads its own settings from this
+# file, and npm warns "Unknown project config public-hoist-pattern" on every
+# command when they sit in .npmrc - which is noise in front of anything npm
+# actually has to say.
+#
+# The @storybook/* and ts-dedent patterns that used to sit alongside it went with
+# Storybook itself - the .storybook config is gone, and nothing imported either.
+publicHoistPattern:
+  - "@radix-ui/*"
+
+# pnpm 10 does not run a dependency's install scripts unless it is named here.
+# esbuild is the only one in this tree that needs to: its postinstall puts the
+# platform binary in place, and without it tsup cannot build. `pnpm
+# ignored-builds` reports None with this list, which is the check that it is
+# complete.
+onlyBuiltDependencies:
+  - esbuild

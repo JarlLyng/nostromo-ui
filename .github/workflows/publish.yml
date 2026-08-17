@@ -224,8 +224,10 @@ jobs:
         uses: changesets/action@v1
         with:
           # Not `changeset publish`: it sniffs the workspace, finds pnpm, and
-          # runs `pnpm publish`, which cannot do OIDC on pnpm 9. See
-          # scripts/publish-package.mjs.
+          # runs `pnpm publish`, which does not do npm's Trusted Publishing
+          # exchange. Still true on pnpm 10.34.5, checked rather than assumed:
+          # `pnpm publish --help` offers neither `--provenance` nor any OIDC
+          # option. See scripts/publish-package.mjs, which shells out to npm.
           publish: pnpm release
           version: pnpm changeset version
           commit: "chore: version packages"
