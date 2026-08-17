@@ -1,0 +1,172 @@
+import LiveCode from "../../components/LiveCode";
+
+# Carousel
+
+A strip of slides that snaps as you drag it. Built on
+[Embla](https://www.embla-carousel.com/), which does the measuring, the dragging
+and the snapping.
+
+## Live Examples
+
+<LiveCode code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Card, CardContent } from '@jarllyng/nostromo'
+
+export default function CarouselExample() {
+return (
+
+<div className="mx-auto max-w-xs px-12">
+<Carousel aria-label="Numbers">
+<CarouselContent>
+{[1, 2, 3, 4, 5].map((n) => (
+<CarouselItem key={n}>
+<Card>
+<CardContent className="flex aspect-square items-center justify-center p-6">
+<span className="text-3xl font-semibold">{n}</span>
+</CardContent>
+</Card>
+</CarouselItem>
+))}
+</CarouselContent>
+<CarouselPrevious />
+<CarouselNext />
+</Carousel>
+</div>
+)
+}`} />
+
+### More than one slide at a time
+
+Slide width is a class on `CarouselItem`, so the number visible is CSS rather
+than a prop.
+
+<LiveCode code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Card, CardContent } from '@jarllyng/nostromo'
+
+export default function CarouselMultiple() {
+return (
+
+<div className="mx-auto max-w-sm px-12">
+<Carousel aria-label="Numbers" opts={{ align: 'start' }}>
+<CarouselContent>
+{[1, 2, 3, 4, 5, 6].map((n) => (
+<CarouselItem key={n} className="basis-1/3">
+<Card>
+<CardContent className="flex aspect-square items-center justify-center p-4">
+<span className="text-xl font-semibold">{n}</span>
+</CardContent>
+</Card>
+</CarouselItem>
+))}
+</CarouselContent>
+<CarouselPrevious />
+<CarouselNext />
+</Carousel>
+</div>
+)
+}`} />
+
+### A slide counter, through setApi
+
+Dots, autoplay, "slide 3 of 7" and a progress bar all read state Embla owns.
+`setApi` hands you the instance, and its `select` event is when to re-read it.
+
+<LiveCode code={`import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, Card, CardContent, type CarouselApi } from '@jarllyng/nostromo'
+
+export default function CarouselCounter() {
+const [api, setApi] = React.useState<CarouselApi>()
+const [current, setCurrent] = React.useState(0)
+const [count, setCount] = React.useState(0)
+
+React.useEffect(() => {
+if (!api) return
+setCount(api.scrollSnapList().length)
+setCurrent(api.selectedScrollSnap() + 1)
+const onSelect = () => setCurrent(api.selectedScrollSnap() + 1)
+api.on('select', onSelect)
+// off() is chainable and returns the api, so the cleanup needs a block body.
+return () => {
+api.off('select', onSelect)
+}
+}, [api])
+
+return (
+
+<div className="mx-auto max-w-xs px-12">
+<Carousel aria-label="Numbers" setApi={setApi}>
+<CarouselContent>
+{[1, 2, 3, 4].map((n) => (
+<CarouselItem key={n}>
+<Card>
+<CardContent className="flex aspect-square items-center justify-center p-6">
+<span className="text-3xl font-semibold">{n}</span>
+</CardContent>
+</Card>
+</CarouselItem>
+))}
+</CarouselContent>
+<CarouselPrevious />
+<CarouselNext />
+</Carousel>
+<p className="mt-2 text-center text-sm text-muted-foreground">
+Slide {current} of {count}
+</p>
+</div>
+)
+}`} />
+
+## Import
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@jarllyng/nostromo";
+```
+
+## Parts
+
+| Part               | What it is                                                       |
+| ------------------ | ---------------------------------------------------------------- |
+| `Carousel`         | The region. Holds the Embla instance, and is a tab stop          |
+| `CarouselContent`  | Viewport and track. Embla measures one and translates the other  |
+| `CarouselItem`     | One slide. `basis-*` here decides how many are visible           |
+| `CarouselPrevious` | Back button. Disabled when there is nowhere to go                |
+| `CarouselNext`     | Forward button                                                   |
+| `useCarousel`      | The context, for a part of your own. Throws outside a `Carousel` |
+
+## Props
+
+| Prop          | Type                         | Default        | Description                            |
+| ------------- | ---------------------------- | -------------- | -------------------------------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Axis. Also picks which arrow keys move |
+| `opts`        | `EmblaOptionsType`           | -              | Embla options. `axis` is ignored       |
+| `plugins`     | `EmblaPluginType[]`          | -              | Embla plugins, autoplay for instance   |
+| `setApi`      | `(api: CarouselApi) => void` | -              | Receives the Embla instance            |
+
+`CarouselPrevious` and `CarouselNext` take everything `Button` takes, plus a
+`label` for the screen-reader text, which defaults to "Previous slide" and "Next
+slide".
+
+## orientation, not opts.axis
+
+Embla takes `axis: "x" | "y"`. This component derives it from `orientation`,
+because the padding on `CarouselItem` and the placement of the buttons have to
+agree with it. Passing `opts={{ axis: 'y' }}` will not work: `orientation`
+overwrites it.
+
+## Keyboard
+
+The region is a tab stop, and the arrow keys move between slides once it has
+focus: left and right when horizontal, up and down when vertical. Arrow keys
+inside a text field are left alone, so an input on a slide still works normally.
+
+Without that tab stop the arrow keys would only ever fire for a key pressed on
+something inside the carousel, and a keyboard user would get the two buttons and
+no way to reach the slides.
+
+## Name the region
+
+`Carousel` renders `role="region"` with `aria-roledescription="carousel"`, and a
+region needs a name. Pass `aria-label`, or `aria-labelledby` pointing at your
+heading.

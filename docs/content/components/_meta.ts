@@ -43,6 +43,7 @@ export default {
   },
   form: "Form",
   input: "Input",
+  "input-otp": "InputOTP",
   textarea: "Textarea",
   checkbox: "Checkbox",
   "radio-group": "RadioGroup",
@@ -80,6 +81,7 @@ export default {
   avatar: "Avatar",
   accordion: "Accordion",
   collapsible: "Collapsible",
+  carousel: "Carousel",
   advanced: {
     title: "Advanced",
     type: "separator",
@@ -89,6 +91,7 @@ export default {
   dialog: "Dialog",
   sheet: "Sheet",
   "alert-dialog": "AlertDialog",
+  resizable: "Resizable",
   "error-boundary": "ErrorBoundary",
   marketing: {
     title: "Marketing",

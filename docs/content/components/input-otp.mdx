@@ -1,0 +1,126 @@
+import LiveCode from "../../components/LiveCode";
+
+# InputOTP
+
+A one-time code, one character per box.
+
+## Live Examples
+
+<LiveCode code={`import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator, Label } from '@jarllyng/nostromo'
+
+export default function InputOTPExample() {
+const [code, setCode] = React.useState('')
+
+return (
+
+<div className="space-y-2">
+<Label htmlFor="otp">Verification code</Label>
+<InputOTP id="otp" maxLength={6} value={code} onChange={setCode}>
+<InputOTPGroup>
+<InputOTPSlot index={0} />
+<InputOTPSlot index={1} />
+<InputOTPSlot index={2} />
+</InputOTPGroup>
+<InputOTPSeparator />
+<InputOTPGroup>
+<InputOTPSlot index={3} />
+<InputOTPSlot index={4} />
+<InputOTPSlot index={5} />
+</InputOTPGroup>
+</InputOTP>
+<p className="text-sm text-muted-foreground">Entered: {code || 'nothing yet'}</p>
+</div>
+)
+}`} />
+
+### Four boxes, no separator
+
+<LiveCode code={`import { InputOTP, InputOTPGroup, InputOTPSlot } from '@jarllyng/nostromo'
+
+export default function InputOTPFour() {
+return (
+
+<InputOTP maxLength={4} onComplete={(value) => window.alert('Code: ' + value)}>
+<InputOTPGroup>
+<InputOTPSlot index={0} />
+<InputOTPSlot index={1} />
+<InputOTPSlot index={2} />
+<InputOTPSlot index={3} />
+</InputOTPGroup>
+</InputOTP>
+)
+}`} />
+
+`onComplete` fires when the last box is filled, which is usually where you submit.
+
+## Import
+
+```tsx
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "@jarllyng/nostromo";
+```
+
+## Parts
+
+| Part                | What it is                                                   |
+| ------------------- | ------------------------------------------------------------ |
+| `InputOTP`          | The real input, invisible, plus the wrapper the boxes sit in |
+| `InputOTPGroup`     | A run of boxes that share borders                            |
+| `InputOTPSlot`      | One box. Takes `index`, from 0                               |
+| `InputOTPSeparator` | The gap between groups. Decorative                           |
+
+## Props
+
+| Prop                 | Type                      | Default | Description                                    |
+| -------------------- | ------------------------- | ------- | ---------------------------------------------- |
+| `maxLength`          | `number`                  | -       | Required. How many characters                  |
+| `value`              | `string`                  | -       | Controlled value                               |
+| `onChange`           | `(value: string) => void` | -       | Gets the whole code, not an event              |
+| `onComplete`         | `(value: string) => void` | -       | Fires when the last box is filled              |
+| `pattern`            | `string`                  | -       | Regex source. Characters that fail are dropped |
+| `disabled`           | `boolean`                 | `false` | Not interactive                                |
+| `containerClassName` | `string`                  | -       | Class for the row of boxes                     |
+
+`className` goes on the hidden input, not on the boxes. That is what
+`containerClassName` is for.
+
+## One input, not six
+
+There is exactly one `<input>` under here, stretched across the whole row and
+made invisible. The boxes are `<div>`s that read their character from context.
+
+That is the point. The browser sees a single ordinary text field, so paste,
+autofill, `autocomplete="one-time-code"`, backspace, mobile keyboards and
+password managers all work without special handling. Six real inputs look
+identical on screen and get every one of those wrong.
+
+Two consequences worth knowing:
+
+- The caret is drawn by CSS, because the real caret is not where the boxes are.
+  It respects `prefers-reduced-motion` and stops blinking.
+- The boxes are `aria-hidden`. Everything a screen reader needs is on the input,
+  and announcing the boxes as well would read the code out twice.
+
+## Slot indices are positional
+
+`InputOTPSlot` takes an `index`, and the indices must run `0` to `maxLength - 1`
+in the order they appear. An index outside that range throws rather than
+rendering a box that stays empty forever.
+
+Nothing enforces the ordering, because the grouping is a visual choice: two
+groups of three, one group of four, a separator or not.
+
+## Only digits
+
+`pattern` takes a regex source string. Characters that do not match are dropped
+as they are typed.
+
+```tsx
+<InputOTP maxLength={6} pattern="^[0-9]+$">
+  ...
+</InputOTP>
+```

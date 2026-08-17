@@ -90,6 +90,11 @@
       "import": "./dist/components/core/card.js",
       "require": "./dist/components/core/card.cjs"
     },
+    "./carousel": {
+      "types": "./dist/components/core/carousel.d.ts",
+      "import": "./dist/components/core/carousel.js",
+      "require": "./dist/components/core/carousel.cjs"
+    },
     "./chart-composable": {
       "types": "./dist/components/core/chart-composable.d.ts",
       "import": "./dist/components/core/chart-composable.js",
@@ -164,6 +169,11 @@
       "types": "./dist/components/core/card.d.ts",
       "import": "./dist/components/core/card.js",
       "require": "./dist/components/core/card.cjs"
+    },
+    "./components/core/carousel": {
+      "types": "./dist/components/core/carousel.d.ts",
+      "import": "./dist/components/core/carousel.js",
+      "require": "./dist/components/core/carousel.cjs"
     },
     "./components/core/chart-composable": {
       "types": "./dist/components/core/chart-composable.d.ts",
@@ -245,6 +255,11 @@
       "import": "./dist/components/core/input.js",
       "require": "./dist/components/core/input.cjs"
     },
+    "./components/core/input-otp": {
+      "types": "./dist/components/core/input-otp.d.ts",
+      "import": "./dist/components/core/input-otp.js",
+      "require": "./dist/components/core/input-otp.cjs"
+    },
     "./components/core/label": {
       "types": "./dist/components/core/label.d.ts",
       "import": "./dist/components/core/label.js",
@@ -279,6 +294,11 @@
       "types": "./dist/components/core/radio-group.d.ts",
       "import": "./dist/components/core/radio-group.js",
       "require": "./dist/components/core/radio-group.cjs"
+    },
+    "./components/core/resizable": {
+      "types": "./dist/components/core/resizable.d.ts",
+      "import": "./dist/components/core/resizable.js",
+      "require": "./dist/components/core/resizable.cjs"
     },
     "./components/core/scroll-area": {
       "types": "./dist/components/core/scroll-area.d.ts",
@@ -445,6 +465,11 @@
       "import": "./dist/components/core/input.js",
       "require": "./dist/components/core/input.cjs"
     },
+    "./input-otp": {
+      "types": "./dist/components/core/input-otp.d.ts",
+      "import": "./dist/components/core/input-otp.js",
+      "require": "./dist/components/core/input-otp.cjs"
+    },
     "./label": {
       "types": "./dist/components/core/label.d.ts",
       "import": "./dist/components/core/label.js",
@@ -490,6 +515,11 @@
       "types": "./dist/components/core/radio-group.d.ts",
       "import": "./dist/components/core/radio-group.js",
       "require": "./dist/components/core/radio-group.cjs"
+    },
+    "./resizable": {
+      "types": "./dist/components/core/resizable.d.ts",
+      "import": "./dist/components/core/resizable.js",
+      "require": "./dist/components/core/resizable.cjs"
     },
     "./scroll-area": {
       "types": "./dist/components/core/scroll-area.d.ts",
@@ -597,8 +627,8 @@
   "peerDependencies": {
     "react": "^18.2.0 || ^19.0.0",
     "react-dom": "^18.2.0 || ^19.0.0",
-    "tailwindcss": "^4.0.0",
-    "react-hook-form": "^7.50.0"
+    "react-hook-form": "^7.50.0",
+    "tailwindcss": "^4.0.0"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.23",
@@ -621,7 +651,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
     "phosphor-react": "^1.4.1",
+    "react-resizable-panels": "^4.12.3",
     "recharts": "^3.10.1",
     "tailwind-merge": "^3.6.0"
   },
@@ -748,6 +781,18 @@
     {
       "path": "dist/components/core/form.js",
       "limit": "12 KB"
+    },
+    {
+      "path": "dist/components/core/carousel.js",
+      "limit": "22 KB"
+    },
+    {
+      "path": "dist/components/core/input-otp.js",
+      "limit": "15 KB"
+    },
+    {
+      "path": "dist/components/core/resizable.js",
+      "limit": "22 KB"
     }
   ],
   "peerDependenciesMeta": {

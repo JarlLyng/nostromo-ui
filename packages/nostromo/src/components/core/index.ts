@@ -460,3 +460,40 @@ export {
   NavigationMenuIndicator,
   navigationMenuTriggerStyle,
 } from "./navigation-menu";
+
+// Carousel: slides that snap. `orientation` is the only axis control, and
+// anything past next/previous goes through `setApi` - see the file.
+export {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  useCarousel,
+} from "./carousel";
+export type {
+  CarouselApi,
+  CarouselOptions,
+  CarouselPlugin,
+  CarouselProps,
+  CarouselButtonProps,
+} from "./carousel";
+
+// InputOTP: one real input behind boxes that only look like separate fields.
+// That is what keeps paste, autofill and mobile keyboards working.
+export {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "./input-otp";
+export type { InputOTPProps, InputOTPSlotProps } from "./input-otp";
+
+// Resizable: draggable panels. Note that the group sizes itself with inline
+// styles, so a height class on it is a no-op - the file explains what to do.
+export {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "./resizable";
+export type { ResizableHandleProps } from "./resizable";
