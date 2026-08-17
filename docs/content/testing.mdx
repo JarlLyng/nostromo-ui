@@ -103,15 +103,26 @@ a test:
 **Colours transition.** Card and Button animate their colours, so a computed style
 read straight after a theme switch catches the transition mid-flight. Nostromo's
 dark card is `0 0% 15%`, about `rgb(38,38,38)`, and it read back as
-`rgb(241,241,241)`. `theming.spec.ts` polls until two consecutive reads agree
-rather than waiting a fixed number of milliseconds, which would rot the first time
-a duration changed.
+`rgb(241,241,241)`.
+
+Polling until the value stopped changing looked like the fix and was not: a slow
+transition can hand out two identical samples while still moving, which passed on
+macOS and failed on Linux WebKit. `theming.spec.ts` switches the transitions off
+instead. The question there is whether flipping `data-theme` re-resolves a colour,
+not how it travels, so the answer is deterministic on the first read in every
+engine.
+
+The general rule that came out of it: **wait for a specific value, never for
+"stopped changing"**. Every other wait in the suite names the value it expects.
 
 **Animations race drags.** vaul measures a drag from wherever the panel currently
 is, so grabbing a drawer while it is still sliding in measures from a moving
 origin. That looked exactly like a WebKit bug - the same drag dismissed the drawer
 in Chromium and not in WebKit - and was a race in the test. With the transform
 settled first, both engines translate by precisely the pointer delta.
+
+The wait is for `transform: none`, the value an open and untouched drawer has,
+rather than for the transform to stop moving.
 
 ## Consumer contract tests
 

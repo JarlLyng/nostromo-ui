@@ -16,37 +16,33 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 const THEMES = ["nostromo", "mother", "lv-426", "sulaco"] as const;
 
 /**
- * Reads a computed colour once it has stopped moving.
+ * Colour transitions are switched off for this file, and the reads are plain.
  *
- * Card and Button transition their colours, so a single read taken just after a
- * theme switch catches the transition mid-flight. It is not subtle either: on the
- * first version of these tests, nostromo's dark card - which is `0 0% 15%`, so
- * about rgb(38,38,38) - read back as rgb(241,241,241), and switching light to dark
- * to light returned 249 instead of the 250 it started at. Both are the same
- * animation sampled at the wrong moment.
+ * Card and Button animate their colours, so a computed style read after a theme
+ * switch can catch the transition mid-flight. The first version of these tests
+ * saw nostromo's dark card - `0 0% 15%`, about rgb(38,38,38) - come back as
+ * rgb(241,241,241), and light to dark to light return 249 where it started at 250.
  *
- * Polling until two consecutive reads agree is the fix. Waiting a fixed number of
- * milliseconds would work today and rot the first time a duration changes.
+ * The second version polled until two consecutive reads agreed. That passed on
+ * macOS and failed on Linux WebKit, where the transition is slow enough to give
+ * two identical samples while still moving. Polling harder would only make the
+ * window smaller.
+ *
+ * So the transition goes instead. What these tests are about is whether flipping
+ * `data-theme` re-resolves a colour, not how it travels there, and with no
+ * transition the computed value is the final one in every engine on the first
+ * read. Deterministic by construction rather than by timing.
  */
-async function colour(
-  locator: Locator,
-  property = "background-color",
-): Promise<string> {
-  const read = () =>
-    locator.evaluate(
-      (el, prop) => getComputedStyle(el).getPropertyValue(prop),
-      property,
-    );
+const NO_TRANSITIONS = `*, *::before, *::after {
+  transition-property: none !important;
+  animation-duration: 0s !important;
+}`;
 
-  let previous = await read();
-  for (let i = 0; i < 40; i++) {
-    await locator.page().waitForTimeout(25);
-    const next = await read();
-    if (next === previous) return next;
-    previous = next;
-  }
-  throw new Error(`${property} never settled on ${await locator.toString()}`);
-}
+const colour = (locator: Locator, property = "background-color") =>
+  locator.evaluate(
+    (el, prop) => getComputedStyle(el).getPropertyValue(prop),
+    property,
+  );
 
 async function setTheme(page: Page, name: string) {
   await page.getByTestId(`theme-${name}`).click();
@@ -65,6 +61,7 @@ async function setScheme(page: Page, name: string) {
 test.describe("runtime theme switching", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?case=theme");
+    await page.addStyleTag({ content: NO_TRANSITIONS });
     await expect(page.getByTestId("card")).toBeVisible();
   });
 

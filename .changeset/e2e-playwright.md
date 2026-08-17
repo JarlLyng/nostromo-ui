@@ -10,7 +10,9 @@ Both were races against animations, not defects:
 
 - Reading a computed colour straight after a theme switch catches the transition
   mid-flight. Nostromo's dark card is `0 0% 15%`, about `rgb(38,38,38)`, and it
-  read back as `rgb(241,241,241)`.
+  read back as `rgb(241,241,241)`. Waiting for the value to stop changing was not
+  enough either: a slow transition hands out two identical samples while still
+  moving, which passed on macOS and failed on Linux WebKit.
 - Grabbing a Drawer while it is still sliding in makes vaul measure the drag from
   a moving origin. That looked like a WebKit bug - the same drag dismissed the
   drawer in Chromium and not in WebKit - and was a race in the test.

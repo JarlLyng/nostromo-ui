@@ -169,7 +169,7 @@ test.describe("Resizable", () => {
 
 test.describe("Drawer", () => {
   /**
-   * Waits for the panel to stop sliding in.
+   * Waits for the panel to reach its resting position.
    *
    * vaul measures a drag from where the panel currently is, so grabbing it while
    * the open transition is still running measures from a moving origin. That is
@@ -178,17 +178,24 @@ test.describe("Drawer", () => {
    * With the transform settled first, both engines translate by exactly the
    * pointer delta - 30, 60, 90 ... 240 - and both dismiss. The engines never
    * disagreed; the test was racing an animation.
+   *
+   * The wait is for the specific resting value rather than for the transform to
+   * stop changing. "Stopped changing" is what the theming tests tried first, and
+   * a slow transition can hand out two identical samples while still moving -
+   * which is exactly how it failed on Linux WebKit and not on macOS. `none` is
+   * the value an open, untouched drawer has, so waiting for it cannot be
+   * satisfied early.
    */
   async function settled(page: Page) {
-    const panel = page.getByRole("dialog");
-    let previous = await panel.evaluate((el) => getComputedStyle(el).transform);
-    for (let i = 0; i < 40; i++) {
-      await page.waitForTimeout(25);
-      const next = await panel.evaluate((el) => getComputedStyle(el).transform);
-      if (next === previous) return;
-      previous = next;
-    }
-    throw new Error("the drawer never stopped animating");
+    await expect
+      .poll(
+        () =>
+          page
+            .getByRole("dialog")
+            .evaluate((el) => getComputedStyle(el).transform),
+        { timeout: 5000 },
+      )
+      .toBe("none");
   }
 
   test("opens, and a drag downwards dismisses it", async ({ page }) => {
