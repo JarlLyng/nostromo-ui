@@ -212,7 +212,7 @@ For detailed testing examples and strategies, see [BEST_PRACTICES.md](./BEST_PRA
 
 **Unit Tests**: Use Vitest + Testing Library for component testing  
 **Accessibility Tests**: Use axe-core for automated a11y testing  
-**E2E Tests**: Use Playwright for end-to-end testing
+**Browser Tests**: Playwright, in `e2e/`, for what jsdom cannot answer - see [Testing](/testing)
 
 ## Linting & Formatting
 

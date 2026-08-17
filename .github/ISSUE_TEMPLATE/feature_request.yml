@@ -89,7 +89,7 @@ body:
         ```tsx
         // Example of how the feature might be used
         import { NewComponent } from '@nostromo/ui-core';
-        
+
         function MyComponent() {
           return <NewComponent prop="value" />;
         }

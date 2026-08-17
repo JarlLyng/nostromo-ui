@@ -36,6 +36,7 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "test:run": "turbo run test:run",
+    "test:e2e": "turbo run test:e2e --filter=nostromo-ui-e2e",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
     "lint": "turbo run lint",

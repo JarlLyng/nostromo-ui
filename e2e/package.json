@@ -1,0 +1,30 @@
+{
+  "name": "nostromo-ui-e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser tests for the things jsdom cannot do: layout, pointer drags, and whether the shipped stylesheet actually applies.",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@jarllyng/nostromo": "workspace:*"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "^5.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.2.1"
+  }
+}
