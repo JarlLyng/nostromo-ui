@@ -497,3 +497,37 @@ export {
   ResizableHandle,
 } from "./resizable";
 export type { ResizableHandleProps } from "./resizable";
+
+// Command: a searchable list, on cmdk. A combobox over a listbox, not a menu -
+// see the file for why that distinction decides which one you want.
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  CommandLoading,
+} from "./command";
+export type { CommandDialogProps } from "./command";
+
+// Drawer: a Sheet you can drag shut, on vaul. Pick Sheet if you would not use
+// the drag; the file has the comparison.
+export {
+  Drawer,
+  DrawerNested,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHandle,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+} from "./drawer";
+export type { DrawerContentProps } from "./drawer";

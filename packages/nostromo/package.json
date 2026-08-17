@@ -120,6 +120,11 @@
       "import": "./dist/components/core/collapsible.js",
       "require": "./dist/components/core/collapsible.cjs"
     },
+    "./command": {
+      "types": "./dist/components/core/command.d.ts",
+      "import": "./dist/components/core/command.js",
+      "require": "./dist/components/core/command.cjs"
+    },
     "./components/core/accordion": {
       "types": "./dist/components/core/accordion.d.ts",
       "import": "./dist/components/core/accordion.js",
@@ -200,6 +205,11 @@
       "import": "./dist/components/core/collapsible.js",
       "require": "./dist/components/core/collapsible.cjs"
     },
+    "./components/core/command": {
+      "types": "./dist/components/core/command.d.ts",
+      "import": "./dist/components/core/command.js",
+      "require": "./dist/components/core/command.cjs"
+    },
     "./components/core/context-menu": {
       "types": "./dist/components/core/context-menu.d.ts",
       "import": "./dist/components/core/context-menu.js",
@@ -214,6 +224,11 @@
       "types": "./dist/components/core/dialog.d.ts",
       "import": "./dist/components/core/dialog.js",
       "require": "./dist/components/core/dialog.cjs"
+    },
+    "./components/core/drawer": {
+      "types": "./dist/components/core/drawer.d.ts",
+      "import": "./dist/components/core/drawer.js",
+      "require": "./dist/components/core/drawer.cjs"
     },
     "./components/core/dropdown-menu": {
       "types": "./dist/components/core/dropdown-menu.d.ts",
@@ -409,6 +424,11 @@
       "types": "./dist/components/core/dialog.d.ts",
       "import": "./dist/components/core/dialog.js",
       "require": "./dist/components/core/dialog.cjs"
+    },
+    "./drawer": {
+      "types": "./dist/components/core/drawer.d.ts",
+      "import": "./dist/components/core/drawer.js",
+      "require": "./dist/components/core/drawer.cjs"
     },
     "./dropdown-menu": {
       "types": "./dist/components/core/dropdown-menu.d.ts",
@@ -650,13 +670,15 @@
     "@radix-ui/react-toggle-group": "^1.1.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "date-fns": "^4.4.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "phosphor-react": "^1.4.1",
     "react-resizable-panels": "^4.12.3",
     "recharts": "^3.10.1",
-    "tailwind-merge": "^3.6.0"
+    "tailwind-merge": "^3.6.0",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
@@ -793,6 +815,14 @@
     {
       "path": "dist/components/core/resizable.js",
       "limit": "22 KB"
+    },
+    {
+      "path": "dist/components/core/command.js",
+      "limit": "30 KB"
+    },
+    {
+      "path": "dist/components/core/drawer.js",
+      "limit": "32 KB"
     }
   ],
   "peerDependenciesMeta": {

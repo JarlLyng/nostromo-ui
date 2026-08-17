@@ -64,6 +64,15 @@ export interface DialogContentProps
     React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof dialogVariants> {
   onClose?: () => void;
+  /**
+   * Draw the corner close button.
+   *
+   * Defaults to true. Turn it off when the content owns its own top edge - the
+   * button is absolutely positioned at the top right, so over a search field or
+   * a toolbar it lands on top of the content. `CommandDialog` is the case that
+   * needed it. Escape and the backdrop still close the dialog either way.
+   */
+  showCloseButton?: boolean;
 }
 
 export interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -202,7 +211,16 @@ DialogTrigger.displayName = "DialogTrigger";
 
 const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
   (
-    { className, children, onClose, variant, size, animation, ...props },
+    {
+      className,
+      children,
+      onClose,
+      variant,
+      size,
+      animation,
+      showCloseButton = true,
+      ...props
+    },
     ref,
   ) => {
     const { open, setOpen, titleId } = useDialogContext("DialogContent");
@@ -229,26 +247,28 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
           {...props}
         >
           {children}
-          <button
-            type="button"
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-            onClick={onClose ?? (() => setOpen(false))}
-          >
-            <span className="sr-only">Close</span>
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {showCloseButton && (
+            <button
+              type="button"
+              className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+              onClick={onClose ?? (() => setOpen(false))}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              <span className="sr-only">Close</span>
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     );

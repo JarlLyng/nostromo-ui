@@ -1,0 +1,178 @@
+import LiveCode from "../../components/LiveCode";
+
+# Command
+
+A searchable list of things to do: a command palette, or the list inside a
+combobox. Built on [cmdk](https://cmdk.paco.me/), which owns the filtering, the
+scoring and the keyboard model.
+
+## Live Examples
+
+<LiveCode code={`import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from '@jarllyng/nostromo'
+
+export default function CommandExample() {
+return (
+
+<Command className="max-w-md rounded-lg border border-border">
+<CommandInput placeholder="Type a command or search" />
+<CommandList>
+<CommandEmpty>No results found.</CommandEmpty>
+<CommandGroup heading="Files">
+<CommandItem value="new-file">
+New file
+<CommandShortcut>⌘N</CommandShortcut>
+</CommandItem>
+<CommandItem value="open-file">
+Open file
+<CommandShortcut>⌘O</CommandShortcut>
+</CommandItem>
+<CommandItem value="save">Save</CommandItem>
+</CommandGroup>
+<CommandSeparator />
+<CommandGroup heading="Account">
+<CommandItem value="profile">Profile</CommandItem>
+<CommandItem value="billing" disabled>Billing</CommandItem>
+<CommandItem value="sign-out">Sign out</CommandItem>
+</CommandGroup>
+</CommandList>
+</Command>
+)
+}`} />
+
+Type `nf`. It finds "New file", because the match is a fuzzy score rather than a
+substring.
+
+### As a palette
+
+<LiveCode code={`import { CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, Button } from '@jarllyng/nostromo'
+
+export default function CommandPalette() {
+const [open, setOpen] = React.useState(false)
+
+React.useEffect(() => {
+const onKeyDown = (e: KeyboardEvent) => {
+if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+e.preventDefault()
+setOpen((o) => !o)
+}
+}
+document.addEventListener('keydown', onKeyDown)
+return () => {
+document.removeEventListener('keydown', onKeyDown)
+}
+}, [])
+
+return (
+
+<div>
+<Button variant="outline" onClick={() => setOpen(true)}>
+Open palette
+</Button>
+<p className="mt-2 text-sm text-muted-foreground">Or press ⌘K.</p>
+<CommandDialog open={open} onOpenChange={setOpen}>
+<CommandInput placeholder="Type a command or search" />
+<CommandList>
+<CommandEmpty>No results found.</CommandEmpty>
+<CommandGroup heading="Suggestions">
+<CommandItem value="calendar" onSelect={() => setOpen(false)}>Calendar</CommandItem>
+<CommandItem value="search-emoji" onSelect={() => setOpen(false)}>Search emoji</CommandItem>
+<CommandItem value="calculator" onSelect={() => setOpen(false)}>Calculator</CommandItem>
+</CommandGroup>
+</CommandList>
+</CommandDialog>
+</div>
+)
+}`} />
+
+The ⌘K listener is yours to add. It is a page-level keyboard shortcut, and a
+component that installed a global listener on mount would fight with whatever else
+the page wants that key for.
+
+## Import
+
+```tsx
+import {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  CommandShortcut,
+} from "@jarllyng/nostromo";
+```
+
+## Parts
+
+| Part               | What it is                                                  |
+| ------------------ | ----------------------------------------------------------- |
+| `Command`          | The root. Holds the query and the filtered results          |
+| `CommandDialog`    | The same thing in a dialog, with a hidden title             |
+| `CommandInput`     | The search field. `role="combobox"`                         |
+| `CommandList`      | The results. `role="listbox"`                               |
+| `CommandEmpty`     | Shown when a query matches nothing                          |
+| `CommandGroup`     | A named section. Hides itself when all its items filter out |
+| `CommandItem`      | One option. `role="option"`                                 |
+| `CommandSeparator` | A line between groups. Decorative                           |
+| `CommandShortcut`  | The keyboard hint on the right of an item. Decorative       |
+| `CommandLoading`   | Shown while server-side results are on the way              |
+
+## Props
+
+`Command`
+
+| Prop            | Type                                  | Default | Description                                       |
+| --------------- | ------------------------------------- | ------- | ------------------------------------------------- |
+| `label`         | `string`                              | -       | Accessible name for the list                      |
+| `value`         | `string`                              | -       | Controlled selected item value                    |
+| `onValueChange` | `(value: string) => void`             | -       | Fires when the selection moves                    |
+| `shouldFilter`  | `boolean`                             | `true`  | Turn off when the results arrive already filtered |
+| `filter`        | `(value, search, keywords) => number` | -       | Replace the scoring function                      |
+| `loop`          | `boolean`                             | `false` | Arrow keys wrap around the ends                   |
+
+`CommandItem`
+
+| Prop       | Type                      | Default         | Description                       |
+| ---------- | ------------------------- | --------------- | --------------------------------- |
+| `value`    | `string`                  | The item's text | What the query is matched against |
+| `keywords` | `string[]`                | -               | Extra terms that should find it   |
+| `onSelect` | `(value: string) => void` | -               | Fires on Enter or click           |
+| `disabled` | `boolean`                 | `false`         | Not selectable                    |
+
+`CommandDialog` takes everything `Dialog` takes, plus `title` and `description`.
+
+## Not a DropdownMenu
+
+A `DropdownMenu` is a menu: `role="menu"`, items you activate, no typing. This is
+a combobox over a listbox, which is what a screen reader needs to hear when the
+list narrows as you type. Filtering a menu would leave a screen reader announcing
+a menu whose contents silently change underneath it.
+
+Choosing from a short fixed set of commands is `DropdownMenu`. Searching is this.
+
+## Filtering is fuzzy, and it is cmdk's
+
+Each item is scored against the query, so `gh` finds `GitHub` and the best match
+sorts to the top. Items match on their `value`, which defaults to their text.
+
+- Give `value` explicitly when the text is not what someone would type.
+- Add `keywords` for synonyms: `<CommandItem value="sign-out" keywords={['logout', 'log out']}>`.
+- Pass `shouldFilter={false}` when the list comes from a server and is already
+  filtered, or cmdk will filter the results a second time.
+
+## Name the dialog
+
+`CommandDialog` renders a visually hidden `title` and `description`, defaulting to
+"Command palette" and "Search for a command to run". A palette shows a search
+field rather than a heading, so without them the dialog is announced as "dialog"
+and nothing else. Override them to match your product's language.
+
+The corner close button is deliberately absent: it is positioned at the top right,
+which is where the search field is. Escape and the backdrop still close it.
+
+## Keyboard
+
+Arrow up and down move the selection, Enter runs the selected item, and typing
+filters. Home and End go to the ends. Set `loop` to wrap at the ends.

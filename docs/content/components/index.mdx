@@ -44,7 +44,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 <ComponentPreview />`} />
 
-## Core Components (47)
+## Core Components (49)
 
 ### Primitives
 
@@ -205,12 +205,27 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/scroll-area" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/scroll-area"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">ScrollArea</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    A scroll container with scrollbars that look the same on every platform
+  </p>
+</Link>
+
+  <Link href="/components/command" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">ScrollArea</h3>
+      <h3 className="font-semibold">Command</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">A scroll container with scrollbars that look the same on every platform</p>
+    <p className="text-sm text-muted-foreground">A searchable list of commands, on cmdk. A combobox, not a menu</p>
   </Link>
 </div>
 
@@ -676,12 +691,27 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/resizable" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/resizable"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Resizable</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Panels the user can drag apart, with a keyboard-operable divider
+  </p>
+</Link>
+
+  <Link href="/components/drawer" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">Resizable</h3>
+      <h3 className="font-semibold">Drawer</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Panels the user can drag apart, with a keyboard-operable divider</p>
+    <p className="text-sm text-muted-foreground">A Sheet you can drag shut, with snap points and a grabber</p>
   </Link>
 </div>
 
