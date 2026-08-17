@@ -1,0 +1,144 @@
+# Testing
+
+Five suites, each answering something the others cannot. The reason there are five
+rather than one is that every layer of this library has been broken at some point
+in a way the layer below could not see.
+
+| Suite                  | Where                             | Runs against                                  | Count                         |
+| ---------------------- | --------------------------------- | --------------------------------------------- | ----------------------------- |
+| Unit and accessibility | `packages/nostromo`               | source, in jsdom                              | 1367                          |
+| Consumer contract      | `test-app`                        | the built package and its stylesheet          | 19                            |
+| Documentation examples | `docs`                            | every live example on every page              | 119 type-checked, 125 mounted |
+| Browser                | `e2e`                             | the built package, in Chromium and WebKit     | 66                            |
+| React compatibility    | `scripts/verify-react-compat.mjs` | the packed tarball, on React 18, 19 and 19 RC | 3 installs                    |
+
+```bash
+pnpm test:run
+```
+
+```bash
+pnpm test:e2e
+```
+
+## Unit tests
+
+Vitest and Testing Library, in jsdom, against `src`. This is where almost
+everything belongs: it runs in seconds, and a failure points at a line.
+
+473 of them live in 36 dedicated `*.a11y.test.tsx` files using `jest-axe`. Every
+component has one.
+
+## What jsdom cannot do
+
+jsdom has no layout engine, does not apply stylesheets it did not parse, has no
+pointer physics and no `:focus-visible`. That is not a small list, and it left
+real gaps:
+
+- **Carousel** could not be scrolled. Embla measures element widths to find its
+  snap points, and with every element 0 wide it finds one - so both buttons are
+  permanently disabled and no test could move a slide.
+- **Resizable** could not be dragged. A resize is a pointer delta as a percentage
+  of a measured width.
+- **Drawer**'s drag-to-dismiss, its whole reason for existing next to `Sheet`,
+  was untested.
+- **`sr-only`** could only be checked as a class name. Whether the text is
+  actually hidden is a cascade question.
+- **Theme switching at runtime** was untested entirely, and it is the
+  architecture the token layer exists for.
+
+## Browser tests
+
+Playwright, in `e2e/`. The rule for what goes there is narrow: **only things
+jsdom cannot answer**. Anything else belongs in a unit test, where it runs in a
+second rather than a minute.
+
+The app under test is an ordinary Vite project that imports `@jarllyng/nostromo`
+through its `exports` map and compiles the two `@import` lines the installation
+instructions give you. A failure there is a failure of the published artifact, not
+of the source.
+
+Four groups:
+
+**`layout.spec.ts`** - Carousel scrolling by button, by arrow key and by pointer
+drag, including the disabled state at each end; Resizable dragging, its `minSize`
+floor and its keyboard resize; Drawer dismissing on a drag past the threshold and
+staying put on one below it.
+
+**`styling.spec.ts`** - whether the stylesheet arrived at all, `sr-only` really
+clipping, the `animate-caret-blink` utility running and stopping under
+`prefers-reduced-motion`, the sidebar tokens resolving, and `:focus-visible`
+drawing a ring for the keyboard and not for the mouse.
+
+**`theming.spec.ts`** - all four themes and both colour schemes, switched at
+runtime by flipping `data-theme` on `<html>`, asserting the computed colours change
+and change back exactly. Plus the mechanism itself: `--color-card` is absent from
+the root while `bg-card` still paints, which is what `@theme inline` means.
+
+**`responsive.spec.ts`** - Sidebar at 375px and 1280px, the 768px boundary from
+either side, the state cookie surviving a reload, and the page leaving the
+accessibility tree while the phone sheet is open.
+
+### Two browsers
+
+Chromium and WebKit. WebKit is there because it is a different CSS and layout
+engine, which is the only thing that makes a stylesheet test more than "Blink
+agrees with itself". Firefox is left out: it is a third download for a third
+opinion on the same questions.
+
+Two tests are Chromium-only, and it is written into the file why. Whether clicking
+a button focuses it, and whether Tab reaches one at all, is platform policy -
+WebKit follows the macOS convention where neither happens by default - so running
+the `:focus-visible` tests there would test Safari's opinion rather than the
+library's ring.
+
+### Writing one
+
+Fixtures live in `e2e/app/cases`, one file per scenario, picked with `?case=`. A
+router rather than one long page: several tests measure geometry and drag things
+around, and neighbouring fixtures would change the numbers.
+
+Two things cost a debugging round each, and both are worth knowing before you add
+a test:
+
+**Colours transition.** Card and Button animate their colours, so a computed style
+read straight after a theme switch catches the transition mid-flight. Nostromo's
+dark card is `0 0% 15%`, about `rgb(38,38,38)`, and it read back as
+`rgb(241,241,241)`. `theming.spec.ts` polls until two consecutive reads agree
+rather than waiting a fixed number of milliseconds, which would rot the first time
+a duration changed.
+
+**Animations race drags.** vaul measures a drag from wherever the panel currently
+is, so grabbing a drawer while it is still sliding in measures from a moving
+origin. That looked exactly like a WebKit bug - the same drag dismissed the drawer
+in Chromium and not in WebKit - and was a race in the test. With the transform
+settled first, both engines translate by precisely the pointer delta.
+
+## Consumer contract tests
+
+`test-app` installs the workspace package the way a project does and compiles the
+published stylesheet with PostCSS. It exists because a total CSS failure once
+shipped: the package declared Tailwind v4 as a peer while shipping a v3 setup, so
+none of the semantic colour utilities were generated, and 1089 unit tests stayed
+green throughout.
+
+It also asserts that every `--nostromo-*` variable the generated CSS references is
+defined by a theme, and that the RSC boundary holds.
+
+## Documentation examples
+
+Every `<LiveCode>` snippet in the docs is extracted twice: once to be
+type-checked against the published types, and once to be mounted. Both catch real
+breakage, because a snippet in a template literal is invisible to every other
+check in the repo.
+
+## React compatibility
+
+`verify:react-compat` packs the tarball and installs it into a throwaway project
+for React 18, 19 and 19 RC. It exists because `peerDependencies` shipped as an
+exact pin once, which made `npm install` fail for anyone not on that precise
+version - and nothing in the workspace could see it, because the pnpm overrides
+pin the same version locally.
+
+It also asserts that `Form` stays out of the barrel, since `react-hook-form` is an
+optional peer and a barrel that re-exported it would fail to build for anyone who
+had not installed it.

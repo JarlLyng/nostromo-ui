@@ -3,6 +3,7 @@ packages:
   - "tools/*"
   - "docs"
   - "test-app"
+  - "e2e"
 
 # Radix ships its primitives as many small packages that the components reach
 # through peer-ish transitive paths; hoisting them keeps a single copy of each

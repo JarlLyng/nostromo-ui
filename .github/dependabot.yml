@@ -59,6 +59,38 @@ updates:
       - dependency-name: "jsdom"
         update-types: ["version-update:semver-major"]
 
+  # Browser tests
+  #
+  # Covered because the value of that suite depends on the browser versions, and
+  # those arrive with @playwright/test. A Playwright left to go stale means
+  # Chromium and WebKit go stale with it, and the suite quietly stops being a test
+  # of what people run.
+  #
+  # test-app is deliberately not listed here and never has been. Its devDeps do
+  # not decide what is being tested, only how it is asserted.
+  - package-ecosystem: "npm"
+    directory: "/e2e"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 2
+    labels:
+      - "dependencies"
+      - "testing"
+      - "automated"
+    versioning-strategy: increase
+    groups:
+      dev-dependencies:
+        dependency-type: "development"
+        update-types: ["minor", "patch"]
+    ignore:
+      # Pinned via root pnpm.overrides - see the note on the root entry.
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "@types/react"
+      - dependency-name: "@types/react-dom"
+
   # Docs package
   - package-ecosystem: "npm"
     directory: "/docs"

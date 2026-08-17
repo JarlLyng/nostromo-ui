@@ -64,7 +64,7 @@ body:
       placeholder: |
         ```tsx
         import { Button } from '@nostromo/ui-core';
-        
+
         function MyComponent() {
           return <Button>My Button</Button>;
         }

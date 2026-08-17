@@ -6,5 +6,6 @@ export default {
   "api-reference": "API Reference",
   components: "Components",
   blocks: "Blocks",
+  testing: "Testing",
   faq: "FAQ",
 };

@@ -1,0 +1,9 @@
+/* Exactly what the published setup instructions tell a consumer to write, and
+   the same pair the smoke app imports. If these two lines are not enough for the
+   components to be styled, the styling tests fail - which is most of the reason
+   this app exists. */
+@import "@jarllyng/nostromo/tailwind.css";
+@import "@jarllyng/nostromo/themes/nostromo.css";
+@import "@jarllyng/nostromo/themes/mother.css";
+@import "@jarllyng/nostromo/themes/lv-426.css";
+@import "@jarllyng/nostromo/themes/sulaco.css";
