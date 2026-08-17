@@ -88,6 +88,17 @@
   --nostromo-color-popover-foreground: var(--nostromo-color-neutral-900);
   --nostromo-color-card: var(--nostromo-color-neutral-50);
   --nostromo-color-card-foreground: var(--nostromo-color-neutral-900);
+
+  /* Sidebar. Defaults to this scheme's card surface, its accent pair and
+     its border and ring, so the family is themeable without inventing
+     colours that no contrast test has seen. Override any of them to give the
+     sidebar a surface of its own. */
+  --nostromo-color-sidebar: var(--nostromo-color-neutral-50);
+  --nostromo-color-sidebar-foreground: var(--nostromo-color-neutral-900);
+  --nostromo-color-sidebar-border: var(--nostromo-color-neutral-200);
+  --nostromo-color-sidebar-accent: var(--nostromo-color-brand-100);
+  --nostromo-color-sidebar-accent-foreground: var(--nostromo-color-brand-900);
+  --nostromo-color-sidebar-ring: var(--nostromo-color-brand-500);
   --nostromo-color-border: var(--nostromo-color-neutral-200);
   --nostromo-color-input: var(--nostromo-color-neutral-200);
   /* Contrast validated: primary-foreground/primary 4.52:1 */
@@ -182,6 +193,17 @@
     --nostromo-color-neutral-900
   ); /* Changed from 800 to 900 for better contrast */
   --nostromo-color-card-foreground: var(--nostromo-color-neutral-50);
+
+  /* Sidebar. Defaults to this scheme's card surface, its accent pair and
+     its border and ring, so the family is themeable without inventing
+     colours that no contrast test has seen. Override any of them to give the
+     sidebar a surface of its own. */
+  --nostromo-color-sidebar: var(--nostromo-color-neutral-900);
+  --nostromo-color-sidebar-foreground: var(--nostromo-color-neutral-50);
+  --nostromo-color-sidebar-border: var(--nostromo-color-neutral-700);
+  --nostromo-color-sidebar-accent: var(--nostromo-color-brand-800);
+  --nostromo-color-sidebar-accent-foreground: var(--nostromo-color-brand-100);
+  --nostromo-color-sidebar-ring: var(--nostromo-color-brand-400);
   --nostromo-color-border: var(--nostromo-color-neutral-700);
   --nostromo-color-input: var(--nostromo-color-neutral-700);
   --nostromo-color-primary: var(

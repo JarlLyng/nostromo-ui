@@ -62,6 +62,7 @@ export default {
   breadcrumb: "Breadcrumb",
   menubar: "Menubar",
   "navigation-menu": "NavigationMenu",
+  sidebar: "Sidebar",
   pagination: "Pagination",
   feedback: {
     title: "Feedback",

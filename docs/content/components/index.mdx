@@ -44,7 +44,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 <ComponentPreview />`} />
 
-## Core Components (49)
+## Core Components (50)
 
 ### Primitives
 
@@ -451,12 +451,27 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </p>
 </Link>
 
-  <Link href="/components/navigation-menu" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
+<Link
+  href="/components/navigation-menu"
+  className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all"
+>
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">NavigationMenu</h3>
+    <Badge variant="secondary" size="sm">
+      Stable
+    </Badge>
+  </div>
+  <p className="text-sm text-muted-foreground">
+    Site navigation with panels. A nav full of links, not a menu
+  </p>
+</Link>
+
+  <Link href="/components/sidebar" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
     <div className="flex items-center justify-between mb-2">
-      <h3 className="font-semibold">NavigationMenu</h3>
+      <h3 className="font-semibold">Sidebar</h3>
       <Badge variant="secondary" size="sm">Stable</Badge>
     </div>
-    <p className="text-sm text-muted-foreground">Site navigation with panels. A nav full of links, not a menu</p>
+    <p className="text-sm text-muted-foreground">A collapsible navigation column, a Sheet on a phone</p>
   </Link>
 </div>
 
@@ -800,7 +815,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 All components are marked as **Stable**, meaning they are:
 
 - ✅ Production-ready
-- ✅ Fully tested (1310 tests passing, 473 in dedicated accessibility files)
+- ✅ Fully tested (1367 tests passing, 473 in dedicated accessibility files)
 - ✅ WCAG 2.1 AA compliant
 - ✅ TypeScript typed
 - ✅ Documented with examples
