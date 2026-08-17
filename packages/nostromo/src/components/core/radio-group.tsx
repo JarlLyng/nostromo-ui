@@ -242,4 +242,15 @@ const RadioItem = React.forwardRef<HTMLInputElement, RadioItemProps>(
 );
 RadioItem.displayName = "RadioItem";
 
-export { RadioGroup, RadioItem, radioGroupVariants, radioItemVariants };
+// Both names, on purpose. `RadioGroupItem` is what shadcn calls it and what
+// every example in the docs uses; `RadioItem` is what this file has always
+// called it. The alias used to live only in the barrel, so
+// `@jarllyng/nostromo/radio-group` and `@jarllyng/nostromo` disagreed about the
+// name of the same component - and the documented subpath import did not resolve.
+export {
+  RadioGroup,
+  RadioItem,
+  RadioItem as RadioGroupItem,
+  radioGroupVariants,
+  radioItemVariants,
+};

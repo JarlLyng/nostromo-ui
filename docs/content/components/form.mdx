@@ -1,0 +1,164 @@
+import LiveCode from "../../components/LiveCode";
+
+# Form
+
+Wires `react-hook-form` to this library's `Label`, `HelperText` and
+`ErrorMessage`, and generates the ids that connect them.
+
+Those three have always existed separately, and connecting them was left to you:
+an id on the input, a matching `htmlFor`, an `aria-describedby` listing the
+description and the error, and `aria-invalid` toggled by hand. Four things per
+field, and the failure is silent. A form that looks correct and tells a screen
+reader nothing.
+
+## Install react-hook-form
+
+`react-hook-form` is an **optional peer dependency**, so install it yourself:
+
+```bash
+pnpm add react-hook-form
+```
+
+## Import from the subpath, not the barrel
+
+```tsx
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from "@jarllyng/nostromo/components/core/form";
+```
+
+**`Form` is deliberately not exported from `@jarllyng/nostromo`.** react-hook-form
+is around 25kB, and a bundler has to resolve every import in a module before it
+can tree-shake anything, so a barrel that re-exported this would fail to build
+for anyone who has not installed the peer, even if all they wanted was `Button`.
+
+Keeping it on its own entry point means you pay for it only if you use it. The
+`react-compat` CI job asserts it stays out of the barrel, in a project that has
+no react-hook-form installed.
+
+## Live Examples
+
+<LiveCode code={`import { Button, Card, Checkbox, Input, Label, HelperText, ErrorMessage } from '@jarllyng/nostromo'
+
+// The docs preview cannot import the form subpath, so this shows the shape by
+// hand. In your app, FormField and FormControl do this wiring for you.
+export default function FormShape() {
+const [email, setEmail] = React.useState('')
+const touched = email.length > 0
+const invalid = touched && !email.includes('@')
+
+return (
+
+<Card className="max-w-sm p-5">
+<div className="space-y-1.5">
+<Label htmlFor="email" className={invalid ? 'text-destructive' : undefined}>
+Email
+</Label>
+<Input
+id="email"
+value={email}
+onChange={(e) => setEmail(e.target.value)}
+aria-describedby={invalid ? 'email-description email-message' : 'email-description'}
+aria-invalid={invalid || undefined}
+/>
+<HelperText id="email-description">We only use this to sign you in.</HelperText>
+{invalid && <ErrorMessage id="email-message">That is not an email address.</ErrorMessage>}
+</div>
+<Button className="mt-4 w-full" disabled={invalid || !touched}>Continue</Button>
+</Card>
+)
+}`} />
+
+## What it looks like with Form
+
+```tsx
+const form = useForm<Values>({ defaultValues: { email: "" } });
+
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField
+      control={form.control}
+      name="email"
+      rules={{ required: "Email is required" }}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+          <FormControl>
+            <Input {...field} />
+          </FormControl>
+          <FormDescription>We only use this to sign you in.</FormDescription>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+    <Button type="submit">Continue</Button>
+  </form>
+</Form>;
+```
+
+No ids, no `htmlFor`, no `aria-describedby`. `FormField` generates one id per
+field and `FormControl` applies the wiring to whatever it wraps.
+
+## The parts
+
+| Component         | What it does                                                      |
+| ----------------- | ----------------------------------------------------------------- |
+| `Form`            | react-hook-form's `FormProvider`                                  |
+| `FormField`       | One field. Wraps `Controller`, so controlled components work too  |
+| `FormItem`        | Layout wrapper                                                    |
+| `FormLabel`       | `Label` with `htmlFor` set, and destructive colour when invalid   |
+| `FormControl`     | A `Slot` that applies the id and the aria attributes to its child |
+| `FormDescription` | `HelperText`, referenced by `aria-describedby`                    |
+| `FormMessage`     | `ErrorMessage` with the field's error, or nothing                 |
+
+## Details worth knowing
+
+**Description and error are both announced.** A field can have guidance and an
+error at the same time, so `aria-describedby` lists both rather than replacing
+one with the other.
+
+**`FormMessage` renders nothing when there is no error**, not an empty element
+that still takes up space. Give it `children` for a hint that the error replaces.
+
+**Nested names work.** `name="address.city"` finds its error by walking the error
+object rather than looking for a single key.
+
+**`useFormField` throws outside a `FormField`.** The quiet alternative is a label
+whose `htmlFor` points at nothing, which is the failure this component exists to
+remove.
+
+**This library's `Checkbox` is a native input.** It takes `checked` and
+`onChange`, not Radix's `onCheckedChange`:
+
+```tsx
+<FormControl>
+  <Checkbox
+    name={field.name}
+    ref={field.ref}
+    checked={field.value}
+    onChange={field.onChange}
+    onBlur={field.onBlur}
+  />
+</FormControl>
+```
+
+## Validation
+
+Any resolver react-hook-form supports works. With zod:
+
+```bash
+pnpm add zod @hookform/resolvers
+```
+
+```tsx
+const schema = z.object({ email: z.string().email("Invalid email") });
+const form = useForm({ resolver: zodResolver(schema) });
+```
+
+`FormMessage` shows whatever message the resolver produced.

@@ -41,6 +41,7 @@ export default {
     title: "Forms",
     type: "separator",
   },
+  form: "Form",
   input: "Input",
   textarea: "Textarea",
   checkbox: "Checkbox",

@@ -65,4 +65,27 @@ for (const [name, make] of Object.entries(cases)) {
 process.stdout.write(
   `  react ${reactPkg.version}: ${Object.keys(cases).length - failed}/${Object.keys(cases).length} rendered\n`,
 );
+
+// `Form` needs react-hook-form, which is an optional peer, and this project
+// installs only react, react-dom and the tarball. Everything above already
+// proves the barrel imports without that peer - if Form were re-exported from
+// it, the import at the top of this file would have failed outright, because a
+// bundler has to resolve every import in a module before it can drop anything.
+//
+// Asserting it here turns that from a property this job happens to have into one
+// it checks. Putting Form in the barrel would break every consumer who does not
+// use forms, and it would break loudly here first.
+const barrel = await import("@jarllyng/nostromo");
+const leaked = ["Form", "FormField", "FormControl", "FormMessage"].filter(
+  (name) => name in barrel,
+);
+if (leaked.length) {
+  process.stdout.write(
+    `    FAILED   form must stay out of the barrel: ${leaked.join(", ")} leaked into it.\n` +
+      `             react-hook-form is an optional peer; anything in the barrel forces it on every consumer.\n`,
+  );
+  process.exit(1);
+}
+process.stdout.write("    ok       form stays out of the barrel\n");
+
 process.exit(failed ? 1 : 0);

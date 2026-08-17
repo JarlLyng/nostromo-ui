@@ -49,6 +49,7 @@ export default defineConfig({
     "src/components/core/hover-card.tsx",
     "src/components/core/scroll-area.tsx",
     "src/components/core/slider.tsx",
+    "src/components/core/form.tsx",
     "src/components/core/menubar.tsx",
     "src/components/core/navigation-menu.tsx",
     "src/components/core/aspect-ratio.tsx",

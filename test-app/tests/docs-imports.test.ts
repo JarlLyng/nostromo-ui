@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import * as nostromo from "@jarllyng/nostromo";
 
 const docsContent = join(
   dirname(fileURLToPath(import.meta.url)),
@@ -24,6 +23,7 @@ function mdxFiles(dir: string, found: string[] = []): string[] {
  * Reads the fenced code blocks, because those are the examples that actually run
  * in the live previews - and they are what a reader copies out.
  */
+/** Key is `specifier::name`, so a name is checked against the module it came from. */
 function importedNames(): Map<string, Set<string>> {
   const wanted = new Map<string, Set<string>>();
 
@@ -32,16 +32,18 @@ function importedNames(): Map<string, Set<string>> {
     const label = file.slice(docsContent.length + 1);
 
     for (const match of source.matchAll(
-      /import\s*\{([^}]+)\}\s*from\s*['"]@jarllyng\/nostromo(?:\/[^'"]*)?['"]/g,
+      /import\s*\{([^}]+)\}\s*from\s*['"](@jarllyng\/nostromo(?:\/[^'"]*)?)['"]/g,
     )) {
-      for (const raw of match[1].split(",")) {
+      const specifier = match[2]!;
+      for (const raw of match[1]!.split(",")) {
         const name = raw
           .trim()
           .split(/\s+as\s+/)[0]
           .trim();
         if (!name || name.startsWith("type ")) continue;
-        if (!wanted.has(name)) wanted.set(name, new Set());
-        wanted.get(name)!.add(label);
+        const key = `${specifier}::${name}`;
+        if (!wanted.has(key)) wanted.set(key, new Set());
+        wanted.get(key)!.add(label);
       }
     }
   }
@@ -66,10 +68,24 @@ describe("documented imports resolve", () => {
     expect(wanted.size).toBeGreaterThan(20);
   });
 
-  it("exports every name the docs import", () => {
-    const missing = [...wanted.entries()]
-      .filter(([name]) => !(name in nostromo))
-      .map(([name, files]) => `${name} (used in ${[...files].join(", ")})`);
+  it("exports every name the docs import, from the module they import it from", async () => {
+    const modules = new Map<string, Record<string, unknown>>();
+    const missing: string[] = [];
+
+    for (const [key, files] of wanted) {
+      const [specifier, name] = key.split("::") as [string, string];
+      if (!modules.has(specifier)) {
+        modules.set(
+          specifier,
+          (await import(specifier)) as Record<string, unknown>,
+        );
+      }
+      if (!(name in modules.get(specifier)!)) {
+        missing.push(
+          `${name} from "${specifier}" (used in ${[...files].join(", ")})`,
+        );
+      }
+    }
 
     expect(missing).toEqual([]);
   });
@@ -99,8 +115,9 @@ describe("documented icon names resolve", () => {
     expect(used.size).toBeGreaterThan(0);
   });
 
-  it("uses only names the icon map knows", () => {
-    const known = new Set(nostromo.iconNames as string[]);
+  it("uses only names the icon map knows", async () => {
+    const { iconNames } = await import("@jarllyng/nostromo");
+    const known = new Set(iconNames as string[]);
     const unknown = [...used.entries()]
       .filter(([name]) => !known.has(name))
       .map(([name, files]) => `${name} (used in ${[...files].join(", ")})`);
