@@ -1,0 +1,268 @@
+import LiveCode from "../../components/LiveCode";
+
+# Sidebar
+
+An application sidebar: a collapsible navigation column, with a phone form and a
+desktop form.
+
+## Live Examples
+
+<LiveCode code={`import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuBadge, SidebarInset, SidebarTrigger, SidebarRail, SidebarSeparator } from '@jarllyng/nostromo'
+
+export default function SidebarExample() {
+const [current, setCurrent] = React.useState('Home')
+const items = ['Home', 'Inbox', 'Projects', 'Settings']
+
+return (
+
+<div className="h-80 overflow-hidden rounded-lg border border-border">
+<SidebarProvider className="min-h-full">
+<Sidebar collapsible="icon">
+<SidebarHeader className="px-4 py-3 font-semibold">Acme</SidebarHeader>
+<SidebarSeparator />
+<SidebarContent>
+<SidebarGroup>
+<SidebarGroupLabel>Platform</SidebarGroupLabel>
+<SidebarGroupContent>
+<SidebarMenu>
+{items.map((item) => (
+<SidebarMenuItem key={item}>
+<SidebarMenuButton
+isActive={current === item}
+tooltip={item}
+onClick={() => setCurrent(item)}
+>
+<span>{item}</span>
+</SidebarMenuButton>
+{item === 'Inbox' && <SidebarMenuBadge>3</SidebarMenuBadge>}
+</SidebarMenuItem>
+))}
+</SidebarMenu>
+</SidebarGroupContent>
+</SidebarGroup>
+</SidebarContent>
+<SidebarFooter className="px-4 py-3 text-xs text-muted-foreground">
+Signed in
+</SidebarFooter>
+<SidebarRail />
+</Sidebar>
+<SidebarInset>
+<div className="flex items-center gap-2 border-b border-border px-3 py-2">
+<SidebarTrigger />
+<span className="text-sm font-medium">{current}</span>
+</div>
+<div className="p-4 text-sm text-muted-foreground">
+Press ⌘B, or use the button, to collapse the sidebar.
+</div>
+</SidebarInset>
+</SidebarProvider>
+</div>
+)
+}`} />
+
+### Sub-items and a loading state
+
+<LiveCode code={`import { SidebarProvider, Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton, SidebarMenuSkeleton, SidebarInset, SidebarTrigger } from '@jarllyng/nostromo'
+
+export default function SidebarNested() {
+const [loading, setLoading] = React.useState(true)
+
+return (
+
+<div className="h-80 overflow-hidden rounded-lg border border-border">
+<SidebarProvider className="min-h-full">
+<Sidebar>
+<SidebarContent>
+<SidebarGroup>
+<SidebarGroupLabel>Projects</SidebarGroupLabel>
+<SidebarMenu>
+{loading ? (
+<>
+<SidebarMenuItem><SidebarMenuSkeleton showIcon /></SidebarMenuItem>
+<SidebarMenuItem><SidebarMenuSkeleton showIcon /></SidebarMenuItem>
+<SidebarMenuItem><SidebarMenuSkeleton showIcon /></SidebarMenuItem>
+</>
+) : (
+<SidebarMenuItem>
+<SidebarMenuButton isActive>
+<span>Nostromo</span>
+</SidebarMenuButton>
+<SidebarMenuSub>
+<SidebarMenuSubItem>
+<SidebarMenuSubButton href="#" isActive>
+Components
+</SidebarMenuSubButton>
+</SidebarMenuSubItem>
+<SidebarMenuSubItem>
+<SidebarMenuSubButton href="#">Themes</SidebarMenuSubButton>
+</SidebarMenuSubItem>
+</SidebarMenuSub>
+</SidebarMenuItem>
+)}
+</SidebarMenu>
+</SidebarGroup>
+</SidebarContent>
+</Sidebar>
+<SidebarInset>
+<div className="flex items-center gap-2 border-b border-border px-3 py-2">
+<SidebarTrigger />
+<button
+className="text-sm underline"
+onClick={() => setLoading((value) => !value)}
+>
+{loading ? 'Finish loading' : 'Load again'}
+</button>
+</div>
+</SidebarInset>
+</SidebarProvider>
+</div>
+)
+}`} />
+
+## Import
+
+```tsx
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarInset,
+  SidebarTrigger,
+} from "@jarllyng/nostromo";
+```
+
+## Parts
+
+| Part                   | What it is                                                 |
+| ---------------------- | ---------------------------------------------------------- |
+| `SidebarProvider`      | Wraps the whole layout. Owns the state and the shortcut    |
+| `Sidebar`              | The column, or the sheet on a phone                        |
+| `SidebarInset`         | The page beside it. A `<main>`, so it is a landmark        |
+| `SidebarTrigger`       | The toggle button. Put it in the inset, not in the sidebar |
+| `SidebarRail`          | The strip along the edge that also toggles. Pointer only   |
+| `SidebarHeader`        | Top of the column                                          |
+| `SidebarFooter`        | Bottom of the column, pushed down                          |
+| `SidebarContent`       | The scrolling middle                                       |
+| `SidebarSeparator`     | A divider, inset from the edges                            |
+| `SidebarGroup`         | A section of the navigation                                |
+| `SidebarGroupLabel`    | Its heading. Fades out when collapsed to icons             |
+| `SidebarGroupAction`   | A button in the group's top-right corner                   |
+| `SidebarGroupContent`  | Wrapper for the group's body                               |
+| `SidebarMenu`          | A `<ul>`, so it is announced with a length                 |
+| `SidebarMenuItem`      | An `<li>`                                                  |
+| `SidebarMenuButton`    | The row you click. Takes `isActive` and `tooltip`          |
+| `SidebarMenuAction`    | A second button on a row, optionally on hover              |
+| `SidebarMenuBadge`     | A count on the right of a row                              |
+| `SidebarMenuSkeleton`  | A placeholder row while the navigation loads               |
+| `SidebarMenuSub`       | A nested list under a row                                  |
+| `SidebarMenuSubItem`   | An item in it                                              |
+| `SidebarMenuSubButton` | An `<a>` in it. Takes `isActive`                           |
+| `SidebarInput`         | A search field sized for the column                        |
+| `useSidebar`           | The state, for a part of your own                          |
+| `useIsMobile`          | The breakpoint hook `Sidebar` branches on                  |
+
+## Props
+
+`SidebarProvider`
+
+| Prop               | Type                      | Default | Description                                        |
+| ------------------ | ------------------------- | ------- | -------------------------------------------------- |
+| `defaultOpen`      | `boolean`                 | `true`  | Starting state. Pass the cookie here on the server |
+| `open`             | `boolean`                 | -       | Controlled state                                   |
+| `onOpenChange`     | `(open: boolean) => void` | -       | Fires on every toggle                              |
+| `keyboardShortcut` | `boolean`                 | `true`  | Install ⌘B / Ctrl+B                                |
+
+`Sidebar`
+
+| Prop          | Type                                 | Default             | Description                         |
+| ------------- | ------------------------------------ | ------------------- | ----------------------------------- |
+| `side`        | `"left" \| "right"`                  | `"left"`            | Which edge it sits on               |
+| `variant`     | `"sidebar" \| "floating" \| "inset"` | `"sidebar"`         | Flush, detached, or inset page      |
+| `collapsible` | `"offcanvas" \| "icon" \| "none"`    | `"offcanvas"`       | What collapsing does                |
+| `title`       | `string`                             | `"Sidebar"`         | Accessible name for the phone sheet |
+| `description` | `string`                             | `"Site navigation"` | Description for the phone sheet     |
+
+`SidebarMenuButton`
+
+| Prop       | Type                        | Default     | Description                               |
+| ---------- | --------------------------- | ----------- | ----------------------------------------- |
+| `isActive` | `boolean`                   | `false`     | Current page. Sets `aria-current="page"`  |
+| `tooltip`  | `string`                    | -           | Label shown only while collapsed to icons |
+| `asChild`  | `boolean`                   | `false`     | Render your own element, a router link    |
+| `variant`  | `"default" \| "outline"`    | `"default"` | Look                                      |
+| `size`     | `"default" \| "sm" \| "lg"` | `"default"` | Row height                                |
+
+## The phone form is a different tree
+
+Below 768px a `Sidebar` is a `Sheet`: a modal panel over the page. Above it, a
+fixed column beside the page. Those are different elements with different
+semantics, so the branch happens in JS rather than in CSS.
+
+Two things follow from that.
+
+**Put `SidebarTrigger` in the inset, not in the sidebar.** On a phone the sidebar
+is a closed dialog, and everything inside it is unrendered - a trigger in there
+could never be reached to open it.
+
+**The open state is two states.** `open` is the desktop column, `openMobile` is
+the sheet. `toggleSidebar` picks whichever applies, and `useSidebar` exposes both.
+
+## State goes in a cookie, and your server has to read it
+
+Collapsing the sidebar writes `sidebar_state`. That is what stops it flashing open
+on every navigation in a server-rendered app - but only if the server passes it
+back as `defaultOpen`. Nothing in the component can do that for you.
+
+In a Next.js layout:
+
+```tsx
+import { cookies } from "next/headers";
+
+export default async function Layout({ children }) {
+  const store = await cookies();
+  const defaultOpen = store.get("sidebar_state")?.value !== "false";
+
+  return (
+    <SidebarProvider defaultOpen={defaultOpen}>{children}</SidebarProvider>
+  );
+}
+```
+
+Left alone, the cookie is written and never read, and the sidebar starts expanded
+every time.
+
+## Colours are their own token family
+
+`bg-sidebar`, `text-sidebar-foreground`, `border-sidebar-border`,
+`bg-sidebar-accent`, `text-sidebar-accent-foreground` and `ring-sidebar-ring`, so
+a sidebar can be a different surface from a card.
+
+Every theme defaults them to that theme's own card, accent, border and ring, so
+nothing looks different until you override them:
+
+```css
+[data-theme="nostromo"] {
+  --nostromo-color-sidebar: 240 6% 10%;
+  --nostromo-color-sidebar-foreground: 0 0% 98%;
+  --nostromo-color-sidebar-border: 240 4% 20%;
+}
+```
+
+Values are HSL channels without the `hsl()`, same as every other token.
+
+## Keyboard
+
+⌘B on a Mac, Ctrl+B elsewhere, toggles the sidebar. Pass
+`keyboardShortcut={false}` if the key is already taken in your app.
+
+`SidebarTrigger` carries `aria-expanded`, so a screen reader user knows whether
+pressing it opens or closes. `SidebarRail` does the same thing with a pointer and
+is deliberately outside the tab order: two tab stops for one action is worse than
+one.

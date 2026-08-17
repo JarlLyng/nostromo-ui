@@ -335,6 +335,11 @@
       "import": "./dist/components/core/sheet.js",
       "require": "./dist/components/core/sheet.cjs"
     },
+    "./components/core/sidebar": {
+      "types": "./dist/components/core/sidebar.d.ts",
+      "import": "./dist/components/core/sidebar.js",
+      "require": "./dist/components/core/sidebar.cjs"
+    },
     "./components/core/skeleton": {
       "types": "./dist/components/core/skeleton.d.ts",
       "import": "./dist/components/core/skeleton.js",
@@ -560,6 +565,11 @@
       "types": "./dist/components/core/sheet.d.ts",
       "import": "./dist/components/core/sheet.js",
       "require": "./dist/components/core/sheet.cjs"
+    },
+    "./sidebar": {
+      "types": "./dist/components/core/sidebar.d.ts",
+      "import": "./dist/components/core/sidebar.js",
+      "require": "./dist/components/core/sidebar.cjs"
     },
     "./skeleton": {
       "types": "./dist/components/core/skeleton.d.ts",
@@ -822,6 +832,10 @@
     },
     {
       "path": "dist/components/core/drawer.js",
+      "limit": "32 KB"
+    },
+    {
+      "path": "dist/components/core/sidebar.js",
       "limit": "32 KB"
     }
   ],

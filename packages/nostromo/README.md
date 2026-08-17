@@ -2,7 +2,7 @@
 
 Accessible React component library with CSS-first Tailwind v4 theming.
 
-55 components, 49 for products and apps and 6 for marketing pages, themed entirely
+56 components, 50 for products and apps and 6 for marketing pages, themed entirely
 through CSS custom properties. No `tailwind.config.js`, no plugin to register.
 
 The name comes from the _USCSS Nostromo_ in **Alien** (1979).

@@ -177,6 +177,17 @@
   --nostromo-color-popover-foreground: 0 0% 9%;
   --nostromo-color-card: 0 0% 98%;
   --nostromo-color-card-foreground: 0 0% 9%;
+
+  /* Sidebar. Defaults to this scheme's card surface, its accent pair and
+     its border and ring, so the family is themeable without inventing
+     colours that no contrast test has seen. Override any of them to give the
+     sidebar a surface of its own. */
+  --nostromo-color-sidebar: 0 0% 98%;
+  --nostromo-color-sidebar-foreground: 0 0% 9%;
+  --nostromo-color-sidebar-border: 0 0% 90%;
+  --nostromo-color-sidebar-accent: 262 84% 90%;
+  --nostromo-color-sidebar-accent-foreground: 262 84% 15%;
+  --nostromo-color-sidebar-ring: 262 84% 52%;
   --nostromo-color-border: 0 0% 90%;
   --nostromo-color-input: 0 0% 90%;
   --nostromo-color-primary: 262 84% 52%;
@@ -252,6 +263,17 @@
   --nostromo-color-popover-foreground: 0 0% 95%; /* Light text on dark popover */
   --nostromo-color-card: 0 0% 15%;
   --nostromo-color-card-foreground: 0 0% 95%;
+
+  /* Sidebar. Defaults to this scheme's card surface, its accent pair and
+     its border and ring, so the family is themeable without inventing
+     colours that no contrast test has seen. Override any of them to give the
+     sidebar a surface of its own. */
+  --nostromo-color-sidebar: 0 0% 15%;
+  --nostromo-color-sidebar-foreground: 0 0% 95%;
+  --nostromo-color-sidebar-border: 0 0% 75%;
+  --nostromo-color-sidebar-accent: 262 84% 25%;
+  --nostromo-color-sidebar-accent-foreground: 262 84% 90%;
+  --nostromo-color-sidebar-ring: 262 84% 60%;
   --nostromo-color-border: 0 0% 75%;
   --nostromo-color-input: 0 0% 75%;
   --nostromo-color-primary: 262 84% 60%;

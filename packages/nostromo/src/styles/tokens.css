@@ -100,6 +100,18 @@
   --color-popover-foreground: hsl(var(--nostromo-color-popover-foreground));
   --color-card: hsl(var(--nostromo-color-card));
   --color-card-foreground: hsl(var(--nostromo-color-card-foreground));
+
+  /* Sidebar surface. Its own family so a sidebar can be coloured apart from a
+     card; every theme defaults it to that theme's card, accent, border and
+     ring, so nothing looks different until someone overrides it. */
+  --color-sidebar: hsl(var(--nostromo-color-sidebar));
+  --color-sidebar-foreground: hsl(var(--nostromo-color-sidebar-foreground));
+  --color-sidebar-border: hsl(var(--nostromo-color-sidebar-border));
+  --color-sidebar-accent: hsl(var(--nostromo-color-sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(
+    var(--nostromo-color-sidebar-accent-foreground)
+  );
+  --color-sidebar-ring: hsl(var(--nostromo-color-sidebar-ring));
   --color-background: hsl(var(--nostromo-color-background));
   --color-foreground: hsl(var(--nostromo-color-foreground));
   --color-border: hsl(var(--nostromo-color-border));

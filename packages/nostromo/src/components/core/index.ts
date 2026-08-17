@@ -531,3 +531,48 @@ export {
   DrawerDescription,
 } from "./drawer";
 export type { DrawerContentProps } from "./drawer";
+
+// Sidebar: a collapsible navigation column. A Sheet on a phone and a fixed
+// column on a desktop - different trees, so the branch is in JS. The state goes
+// in a cookie your server has to read back; the file explains why.
+export {
+  Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarRail,
+  SidebarInset,
+  SidebarInput,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarSeparator,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
+  sidebarMenuButtonVariants,
+  useSidebar,
+} from "./sidebar";
+export type {
+  SidebarProps,
+  SidebarProviderProps,
+  SidebarGroupLabelProps,
+  SidebarGroupActionProps,
+  SidebarMenuButtonProps,
+  SidebarMenuActionProps,
+  SidebarMenuSkeletonProps,
+  SidebarMenuSubButtonProps,
+} from "./sidebar";
+
+// The breakpoint hook Sidebar branches on, exported so a layout can use the same
+// one rather than picking its own number.
+export { useIsMobile, MOBILE_BREAKPOINT } from "../../hooks/use-is-mobile";
