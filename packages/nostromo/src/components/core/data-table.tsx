@@ -62,11 +62,51 @@ export interface DataTableProps<T = Record<string, unknown>> extends Omit<
   onPageSizeChange?: (size: number) => void;
   totalItems?: number; // Required for server-side pagination
 
+  /**
+   * Who does the work.
+   *
+   * Passing `searchTerm`, `columnFilters` or `sortColumn` makes DataTable
+   * controlled - it stops owning that piece of state - but it kept filtering and
+   * sorting the rows you gave it anyway. For a server-backed table that is
+   * actively wrong: a server searching without accent distinctions returns
+   * `{ name: "José" }` for the query `jose`, and the local substring filter then
+   * threw the row away while `totalItems` still counted it. Controlled sorting
+   * likewise reordered the page the server had already ordered.
+   *
+   * Controlled state and processing ownership are separate questions now. Set
+   * these when the rows arriving in `data` are already searched, filtered or
+   * sorted; the callbacks still fire so you know what the user asked for.
+   *
+   * Pagination has always worked this way, under a different name: it is manual
+   * when `currentPage` and `totalItems` are both given.
+   */
+  manualSearch?: boolean;
+  manualFiltering?: boolean;
+  manualSorting?: boolean;
+
   // UI
   showSearch?: boolean;
   showFilters?: boolean;
   filterBarClassName?: string;
   searchBarClassName?: string;
+}
+
+/**
+ * What a boolean filter value means, from a control or from a consumer.
+ *
+ * The select below emits real booleans, but a controlled `columnFilters` may hold
+ * whatever the consumer put there, and "false" arriving as a string used to mean
+ * true.
+ */
+function asBoolean(value: unknown): boolean {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") return value !== "false" && value !== "";
+  return Boolean(value);
+}
+
+/** Empty for a value that is absent, and "0" or "false" when that is the value. */
+function inputValue(value: unknown): string {
+  return value === undefined || value === null ? "" : String(value);
 }
 
 // Filter bar component
@@ -98,6 +138,9 @@ export function DataTable<
   searchTerm: controlledSearchTerm,
   onSearchTermChange,
   filterable = false,
+  manualSearch = false,
+  manualFiltering = false,
+  manualSorting = false,
   filters = [],
   onFilter,
   columnFilters: controlledColumnFilters,
@@ -169,28 +212,11 @@ export function DataTable<
   const sortDirection = isControlledSort
     ? controlledSortDirection
     : internalSortDirection;
-  const setSortColumn = useMemo(
-    () =>
-      isControlledSort
-        ? (column: string | undefined) => {
-            if (column && onSortChange && sortDirection) {
-              onSortChange(column, sortDirection);
-            }
-          }
-        : setInternalSortColumn,
-    [isControlledSort, onSortChange, sortDirection],
-  );
-  const setSortDirection = useMemo(
-    () =>
-      isControlledSort
-        ? (dir: "asc" | "desc") => {
-            if (sortColumn && onSortChange) {
-              onSortChange(sortColumn, dir);
-            }
-          }
-        : setInternalSortDirection,
-    [isControlledSort, onSortChange, sortColumn],
-  );
+  // Only the uncontrolled path uses these. A controlled table goes through
+  // `handleSort`, which emits both values at once - see the comment there for
+  // what the controlled versions of these used to do.
+  const setSortColumn = setInternalSortColumn;
+  const setSortDirection = setInternalSortDirection;
 
   // Pagination state (controlled or uncontrolled)
   const [internalCurrentPage, setInternalCurrentPage] = useState(1);
@@ -217,6 +243,9 @@ export function DataTable<
 
   // Apply search
   const searchFilteredData = useMemo(() => {
+    // The rows already are the search result; searching them again would only
+    // remove what the server decided to include.
+    if (manualSearch) return initialData;
     if (!searchable || !searchTerm.trim()) {
       return initialData;
     }
@@ -238,10 +267,11 @@ export function DataTable<
         return String(value).toLowerCase().includes(term);
       });
     });
-  }, [initialData, searchTerm, searchable, searchKeys, columns]);
+  }, [initialData, searchTerm, searchable, searchKeys, columns, manualSearch]);
 
   // Apply column filters
   const filterFilteredData = useMemo(() => {
+    if (manualFiltering) return searchFilteredData;
     if (
       !filterable ||
       filters.length === 0 ||
@@ -276,10 +306,20 @@ export function DataTable<
             return String(recordValue)
               .toLowerCase()
               .includes(String(filterValue).toLowerCase());
-          case "number":
-            return Number(recordValue) === Number(filterValue);
+          case "number": {
+            // A filter value that is not a number matches nothing rather than
+            // matching zero. `Number("")` is 0, which is how a cleared input used
+            // to leave only the zero-valued rows on screen.
+            const wanted = Number(filterValue);
+            if (Number.isNaN(wanted)) return true;
+            return Number(recordValue) === wanted;
+          }
           case "boolean":
-            return Boolean(recordValue) === Boolean(filterValue);
+            // Not `Boolean(filterValue)`. The control used to be a text input, so
+            // typing "false" gave the string "false", and `Boolean("false")` is
+            // true - the filter selected exactly the records it was asked to
+            // exclude.
+            return Boolean(recordValue) === asBoolean(filterValue);
           case "select":
             return String(recordValue) === String(filterValue);
           default:
@@ -287,10 +327,13 @@ export function DataTable<
         }
       });
     });
-  }, [searchFilteredData, columnFilters, filterable, filters]);
+  }, [searchFilteredData, columnFilters, filterable, filters, manualFiltering]);
 
   // Apply sorting
   const sortedData = useMemo(() => {
+    // Keep the order the server sent. Re-sorting a page it has already ordered
+    // produces a different order, not the same one.
+    if (manualSorting) return filterFilteredData;
     if (!sortColumn) {
       return filterFilteredData;
     }
@@ -326,7 +369,7 @@ export function DataTable<
     });
 
     return sorted;
-  }, [filterFilteredData, sortColumn, sortDirection, columns]);
+  }, [filterFilteredData, sortColumn, sortDirection, columns, manualSorting]);
 
   // Apply pagination
   // In controlled mode with server-side pagination, use provided data directly
@@ -397,12 +440,29 @@ export function DataTable<
     [columnFilters, setColumnFilters, setCurrentPage, isControlledPagination],
   );
 
+  /**
+   * One callback per click, carrying both new values.
+   *
+   * The controlled setters each emitted `onSortChange` on their own, and each one
+   * read the *other* value from the render it was created in. Clicking "Age" on a
+   * table sorted by name descending produced `("age", "desc")` immediately
+   * followed by `("name", "asc")` - two requests, the second of which put the old
+   * column back. A consumer writing both values from the callback, which is what
+   * the docs show, ended up where it started.
+   *
+   * It also never fired at all for a controlled table that started unsorted,
+   * because the setter guarded on an existing column and direction.
+   */
   const handleSort = useCallback(
     (column: TableColumn<T>, direction: "asc" | "desc") => {
+      if (isControlledSort) {
+        onSortChange?.(column.key, direction);
+        return;
+      }
       setSortColumn(column.key);
       setSortDirection(direction);
     },
-    [setSortColumn, setSortDirection],
+    [isControlledSort, onSortChange, setSortColumn, setSortDirection],
   );
 
   const handlePageChange = useCallback(
@@ -454,11 +514,51 @@ export function DataTable<
               {filters.map((filter) => {
                 const filterValue = columnFilters[filter.key];
 
+                // A boolean needs three states - either value, or no filter -
+                // which a text box cannot express. It used to be one, and typing
+                // "false" selected the records where the value was true.
+                if (filter.type === "boolean") {
+                  return (
+                    <select
+                      key={filter.key}
+                      value={
+                        filterValue === undefined || filterValue === null
+                          ? ""
+                          : asBoolean(filterValue)
+                            ? "true"
+                            : "false"
+                      }
+                      onChange={(e) =>
+                        handleFilterChange(
+                          filter.key,
+                          e.target.value === ""
+                            ? undefined
+                            : e.target.value === "true",
+                        )
+                      }
+                      className="rounded-md border border-input px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary"
+                      aria-label={`Filter by ${filter.key}`}
+                    >
+                      <option value="">All {filter.key}</option>
+                      <option value="true">
+                        {filter.placeholder
+                          ? `${filter.placeholder}: yes`
+                          : "Yes"}
+                      </option>
+                      <option value="false">
+                        {filter.placeholder
+                          ? `${filter.placeholder}: no`
+                          : "No"}
+                      </option>
+                    </select>
+                  );
+                }
+
                 if (filter.type === "select" && filter.options) {
                   return (
                     <select
                       key={filter.key}
-                      value={String(filterValue || "")}
+                      value={inputValue(filterValue)}
                       onChange={(e) =>
                         handleFilterChange(
                           filter.key,
@@ -485,13 +585,20 @@ export function DataTable<
                     placeholder={
                       filter.placeholder || `Filter ${filter.key}...`
                     }
-                    value={String(filterValue || "")}
+                    // `String(filterValue || "")` blanked a legitimate 0 and a
+                    // legitimate false, so the box disagreed with the filter it
+                    // was showing.
+                    value={inputValue(filterValue)}
                     onChange={(e) =>
                       handleFilterChange(
                         filter.key,
-                        filter.type === "number"
-                          ? Number(e.target.value)
-                          : e.target.value,
+                        // An emptied box is no filter. `Number("")` is 0, which
+                        // used to leave only the zero-valued rows behind.
+                        e.target.value === ""
+                          ? undefined
+                          : filter.type === "number"
+                            ? Number(e.target.value)
+                            : e.target.value,
                       )
                     }
                     className="min-w-[150px]"
