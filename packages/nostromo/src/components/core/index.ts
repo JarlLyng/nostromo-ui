@@ -183,7 +183,7 @@ export { DataTable } from "./data-table";
 export type { DataTableProps, ColumnFilter, FilterType } from "./data-table";
 
 export { Calendar, calendarVariants, calendarDayVariants } from "./calendar";
-export type { CalendarProps, CalendarMode } from "./calendar";
+export type { CalendarProps, CalendarMode, CalendarLabels } from "./calendar";
 
 export { Chart, chartContainerVariants } from "./charts";
 export type { ChartProps, ChartType, ChartDataPoint } from "./charts";

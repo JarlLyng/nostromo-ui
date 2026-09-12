@@ -9,7 +9,6 @@ import {
   isWithinInterval,
   isBefore,
   isAfter,
-  format as dateFnsFormat,
   startOfDay,
   endOfDay,
 } from "date-fns";
@@ -88,6 +87,8 @@ export interface CalendarProps extends VariantProps<typeof calendarVariants> {
   calendarClassName?: string;
   showOutsideDays?: boolean;
   firstDayOfWeek?: 0 | 1; // 0 = Sunday, 1 = Monday
+  /** Overrides for the calendar's own words. See {@link CalendarLabels}. */
+  labels?: CalendarLabels;
 }
 
 // Helper functions using date-fns for robust date manipulation
@@ -140,16 +141,26 @@ const isDateDisabled = (
   return false;
 };
 
+/**
+ * Formats through Intl, which every browser and Node already carries a full set
+ * of locales for.
+ *
+ * This used to be `dateFnsFormat(date, "MMM d, yyyy")` with the locale accepted
+ * and ignored, so `locale="da-DK"` produced "Sep 14, 2026" next to a Danish month
+ * heading. date-fns needs a locale *object* imported per language, which would
+ * mean either bundling all of them or asking the caller to pass one; Intl needs
+ * neither.
+ */
 const formatDate = (
   date: Date | undefined,
-  _locale: string = "en-US",
+  locale: string = "en-US",
 ): string => {
   if (!date) return "";
-  // Use date-fns format for consistent formatting
-  // Note: date-fns uses locale objects, but we'll use a simple format for now
-  // For full locale support, import locale from 'date-fns/locale'
-  // Locale parameter is kept for API compatibility but not yet used
-  return dateFnsFormat(date, "MMM d, yyyy");
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(date);
 };
 
 const formatDateRange = (
@@ -168,11 +179,105 @@ const formatDateRange = (
 
 const formatMultipleDates = (
   dates: Date[],
-  _locale: string = "en-US",
+  locale: string = "en-US",
+  multipleSelected: (count: number) => string = (count) =>
+    `${count} dates selected`,
 ): string => {
   if (dates.length === 0) return "";
-  if (dates.length === 1) return formatDate(dates[0], _locale);
-  return `${dates.length} dates selected`;
+  if (dates.length === 1) return formatDate(dates[0], locale);
+  return multipleSelected(dates.length);
+};
+
+/**
+ * Weekday headings in the calendar's own language.
+ *
+ * They were the hardcoded strings Sun..Sat. 2024-01-07 is a Sunday, so seven days
+ * from it is one full week in a known order, and Intl names them.
+ */
+const getDayNames = (locale: string, firstDayOfWeek: 0 | 1): string[] => {
+  const formatter = new Intl.DateTimeFormat(locale, { weekday: "short" });
+  const sundayFirst = Array.from({ length: 7 }, (_, index) =>
+    formatter.format(new Date(2024, 0, 7 + index)),
+  );
+  return firstDayOfWeek === 1
+    ? [...sundayFirst.slice(1), sundayFirst[0]!]
+    : sundayFirst;
+};
+
+/**
+ * Every string the calendar says on its own behalf.
+ *
+ * `locale` moves the dates; it cannot translate "Today". Without somewhere to put
+ * these, a Danish calendar had Danish months and English buttons.
+ */
+export interface CalendarLabels {
+  /** Accessible name of the trigger. Defaults to "Open calendar". */
+  openCalendar?: string;
+  /** Shown on the trigger when nothing is selected. The `placeholder` prop wins. */
+  placeholder?: string;
+  previousMonth?: string;
+  nextMonth?: string;
+  today?: string;
+  /** Shown in range mode between picking the start and the end. */
+  selectEndDate?: string;
+  /** Trigger text for more than one date in multiple mode. */
+  multipleSelected?: (count: number) => string;
+}
+
+const DEFAULT_LABELS: Required<CalendarLabels> = {
+  openCalendar: "Open calendar",
+  placeholder: "Select date...",
+  previousMonth: "Previous month",
+  nextMonth: "Next month",
+  today: "Today",
+  selectEndDate: "Select end date",
+  multipleSelected: (count) => `${count} dates selected`,
+};
+
+/** The date a selection is anchored on, whatever shape the selection has. */
+const anchorDate = (
+  value: Date | Date[] | { from?: Date; to?: Date } | undefined,
+): Date | undefined => {
+  if (!value) return undefined;
+  if (value instanceof Date) return value;
+  if (Array.isArray(value)) return value[0];
+  return value.from ?? value.to;
+};
+
+/**
+ * Walks from `start` in `step`-day increments until it finds a date that is not
+ * disabled.
+ *
+ * Roving focus used to move one day and stop there whether or not that day could
+ * be focused. A disabled day is a disabled button, and a disabled button cannot
+ * take focus - but it was still the only cell with `tabIndex=0`, so a calendar
+ * with Tuesdays disabled had zero reachable dates and ArrowRight could not get
+ * past Monday.
+ *
+ * `limit` is what stops this searching forever when every date is disabled, which
+ * `disabledDays={[0,1,2,3,4,5,6]}` or an empty min/max window can produce. On
+ * giving up it returns undefined and the caller leaves focus where it was.
+ */
+const findEnabledDate = (
+  start: Date,
+  step: number,
+  isDisabled: (date: Date) => boolean,
+  limit = 366,
+): Date | undefined => {
+  const candidate = new Date(start);
+  for (let i = 0; i < limit; i++) {
+    if (!isDisabled(candidate)) return new Date(candidate);
+    candidate.setDate(candidate.getDate() + step);
+  }
+  return undefined;
+};
+
+/** Same day number in another month, clamped to that month's length. */
+const shiftMonth = (date: Date, months: number): Date => {
+  const target = new Date(date.getFullYear(), date.getMonth() + months, 1);
+  const lastDay = dateFnsGetDaysInMonth(target);
+  target.setDate(Math.min(date.getDate(), lastDay));
+  return target;
 };
 
 export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
@@ -198,12 +303,23 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       size,
       showOutsideDays = true,
       firstDayOfWeek = 1,
+      labels: labelOverrides,
       ...props
     },
     ref,
   ) => {
+    const labels = useMemo(
+      () => ({ ...DEFAULT_LABELS, ...labelOverrides }),
+      [labelOverrides],
+    );
+
     const [open, setOpen] = useState(false);
-    const [currentMonth, setCurrentMonth] = useState(new Date());
+    // Opening a calendar that already has a value used to land on the current
+    // month: `value={new Date(2020, 0, 15)}` opened September 2026 and left the
+    // reader to page back eighty months.
+    const [currentMonth, setCurrentMonth] = useState(
+      () => anchorDate(value ?? defaultValue) ?? new Date(),
+    );
     const [focusedDate, setFocusedDate] = useState<Date | null>(null);
     const calendarRef = useRef<HTMLDivElement>(null);
     const dayButtonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
@@ -216,14 +332,46 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     const isControlled = value !== undefined;
     const calendarValue = isControlled ? value : internalValue;
 
-    // Set focused date when calendar opens
+    const isDisabledDate = React.useCallback(
+      (date: Date) =>
+        isDateDisabled(date, minDate, maxDate, disabledDates, disabledDays),
+      [minDate, maxDate, disabledDates, disabledDays],
+    );
+
+    /**
+     * Where focus starts when the calendar opens.
+     *
+     * It used to be today, unconditionally. That is the wrong date twice over: it
+     * ignores a selection the reader already made, and today may be disabled - in
+     * which case the only cell with `tabIndex=0` was a disabled button, so the
+     * grid had no tab stop at all.
+     *
+     * The order is: the selected date, then today, then the first enabled day of
+     * the month on screen. If nothing in reach is enabled, focus stays unset and
+     * the grid simply has no tab stop, which is the truth.
+     */
     React.useLayoutEffect(() => {
-      if (open && !focusedDate) {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        setFocusedDate(today);
+      if (!open || focusedDate) return;
+
+      const today = startOfDay(new Date());
+      const selected = anchorDate(calendarValue);
+      const preferred = [selected, today].find(
+        (date): date is Date => !!date && !isDisabledDate(date),
+      );
+      if (preferred) {
+        setFocusedDate(startOfDay(preferred));
+        return;
       }
-    }, [open, focusedDate]);
+
+      const monthStart = startOfMonth(currentMonth);
+      const firstEnabled = findEnabledDate(
+        monthStart,
+        1,
+        isDisabledDate,
+        dateFnsGetDaysInMonth(currentMonth),
+      );
+      if (firstEnabled) setFocusedDate(firstEnabled);
+    }, [open, focusedDate, calendarValue, currentMonth, isDisabledDate]);
 
     // Handle value changes
     const handleValueChange = (
@@ -284,9 +432,13 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         const range = calendarValue as { from?: Date; to?: Date };
         return formatDateRange(range.from, range.to, locale);
       } else {
-        return formatMultipleDates(calendarValue as Date[], locale);
+        return formatMultipleDates(
+          calendarValue as Date[],
+          locale,
+          labels.multipleSelected,
+        );
       }
-    }, [calendarValue, mode, locale]);
+    }, [calendarValue, mode, locale, labels.multipleSelected]);
 
     // Generate calendar days
     const calendarDays = useMemo(() => {
@@ -294,6 +446,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         date: Date;
         isCurrentMonth: boolean;
         isToday: boolean;
+        /** A spacer that holds a column open without showing a date. */
+        placeholder?: boolean;
       }> = [];
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -301,8 +455,17 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       const firstDay = getFirstDayOfMonth(currentMonth, firstDayOfWeek);
       const daysInMonth = getDaysInMonth(currentMonth);
 
-      // Previous month days
-      if (showOutsideDays && firstDay > 0) {
+      // Previous month days.
+      //
+      // The leading cells exist whether or not the dates in them are shown: they
+      // are what puts the first of the month under the right weekday. Only adding
+      // them when `showOutsideDays` was on meant a September starting on a
+      // Tuesday rendered its 1st in the Monday column, with every date of the
+      // month one heading out for the rest of the grid.
+      //
+      // With outside days hidden they become empty, non-interactive placeholders
+      // instead - see the `placeholder` flag below.
+      if (firstDay > 0) {
         const prevMonth = new Date(
           currentMonth.getFullYear(),
           currentMonth.getMonth() - 1,
@@ -322,6 +485,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             date,
             isCurrentMonth: false,
             isToday: isSameDay(date, today),
+            placeholder: !showOutsideDays,
           });
         }
       }
@@ -365,22 +529,51 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     }, [currentMonth, showOutsideDays, firstDayOfWeek]);
 
     // Navigate months
-    const goToPreviousMonth = () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1),
+    /**
+     * Moves the grid, and brings focus with it.
+     *
+     * The header buttons only moved the month. Focus stayed on a date that was no
+     * longer rendered, so the grid lost its tab stop and an arrow key jumped back
+     * to the month you had just left.
+     */
+    const goToMonth = (months: number) => {
+      const target = new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth() + months,
+        1,
       );
+      setCurrentMonth(target);
+
+      if (!focusedDate) return;
+      const sameDayNextMonth = shiftMonth(focusedDate, months);
+      const landing =
+        findEnabledDate(
+          sameDayNextMonth,
+          1,
+          isDisabledDate,
+          dateFnsGetDaysInMonth(target),
+        ) ??
+        findEnabledDate(
+          sameDayNextMonth,
+          -1,
+          isDisabledDate,
+          dateFnsGetDaysInMonth(target),
+        );
+      if (landing) setFocusedDate(landing);
     };
 
-    const goToNextMonth = () => {
-      setCurrentMonth(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1),
-      );
-    };
+    const goToPreviousMonth = () => goToMonth(-1);
+    const goToNextMonth = () => goToMonth(1);
 
     const goToToday = () => {
-      const today = new Date();
+      const today = startOfDay(new Date());
       setCurrentMonth(today);
-      setFocusedDate(today);
+      // Today can be disabled, in which case focus goes to the nearest day of
+      // that month that is not.
+      const landing =
+        findEnabledDate(today, 1, isDisabledDate, 31) ??
+        findEnabledDate(today, -1, isDisabledDate, 31);
+      if (landing) setFocusedDate(landing);
     };
 
     // Keyboard navigation
@@ -391,101 +584,95 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
         return;
       }
 
+      /**
+       * Every movement lands on a date that can actually take focus.
+       *
+       * Each key used to step once and stop, disabled or not. The resulting cell
+       * got the grid's only `tabIndex=0` while being a disabled button, so
+       * ArrowRight into a disabled Tuesday left the grid with no tab stop and no
+       * way forward - pressing it again did the same thing from the same place.
+       */
+      const moveFocus = (
+        candidate: Date,
+        step: number,
+        limit?: number,
+      ): void => {
+        const target = findEnabledDate(candidate, step, isDisabledDate, limit);
+        // Nothing enabled in that direction: stay where we are rather than
+        // moving focus onto something that cannot hold it.
+        if (!target) return;
+
+        setFocusedDate(target);
+        if (
+          target.getMonth() !== currentMonth.getMonth() ||
+          target.getFullYear() !== currentMonth.getFullYear()
+        ) {
+          setCurrentMonth(new Date(target.getFullYear(), target.getMonth(), 1));
+        }
+      };
+
+      const step = (days: number) => {
+        const candidate = new Date(date);
+        candidate.setDate(candidate.getDate() + days);
+        moveFocus(candidate, days > 0 ? 1 : -1);
+      };
+
       if (e.key === "ArrowRight") {
         e.preventDefault();
-        const nextDate = new Date(date);
-        nextDate.setDate(nextDate.getDate() + 1);
-        setFocusedDate(nextDate);
-        // Update month if needed
-        if (nextDate.getMonth() !== currentMonth.getMonth()) {
-          setCurrentMonth(
-            new Date(nextDate.getFullYear(), nextDate.getMonth(), 1),
-          );
-        }
+        step(1);
         return;
       }
 
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        const prevDate = new Date(date);
-        prevDate.setDate(prevDate.getDate() - 1);
-        setFocusedDate(prevDate);
-        // Update month if needed
-        if (prevDate.getMonth() !== currentMonth.getMonth()) {
-          setCurrentMonth(
-            new Date(prevDate.getFullYear(), prevDate.getMonth(), 1),
-          );
-        }
+        step(-1);
         return;
       }
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        const nextDate = new Date(date);
-        nextDate.setDate(nextDate.getDate() + 7);
-        setFocusedDate(nextDate);
-        // Update month if needed
-        if (nextDate.getMonth() !== currentMonth.getMonth()) {
-          setCurrentMonth(
-            new Date(nextDate.getFullYear(), nextDate.getMonth(), 1),
-          );
-        }
+        step(7);
         return;
       }
 
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        const prevDate = new Date(date);
-        prevDate.setDate(prevDate.getDate() - 7);
-        setFocusedDate(prevDate);
-        // Update month if needed
-        if (prevDate.getMonth() !== currentMonth.getMonth()) {
-          setCurrentMonth(
-            new Date(prevDate.getFullYear(), prevDate.getMonth(), 1),
-          );
-        }
+        step(-7);
         return;
       }
 
       if (e.key === "Home") {
         e.preventDefault();
-        const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        setFocusedDate(firstDay);
+        // Forwards from the 1st: the first day of the month that is enabled.
+        moveFocus(
+          new Date(date.getFullYear(), date.getMonth(), 1),
+          1,
+          dateFnsGetDaysInMonth(date),
+        );
         return;
       }
 
       if (e.key === "End") {
         e.preventDefault();
-        const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-        setFocusedDate(lastDay);
+        moveFocus(
+          new Date(date.getFullYear(), date.getMonth() + 1, 0),
+          -1,
+          dateFnsGetDaysInMonth(date),
+        );
         return;
       }
 
       if (e.key === "PageUp") {
         e.preventDefault();
-        const prevMonth = new Date(
-          date.getFullYear(),
-          date.getMonth() - 1,
-          date.getDate(),
-        );
-        setFocusedDate(prevMonth);
-        setCurrentMonth(
-          new Date(prevMonth.getFullYear(), prevMonth.getMonth(), 1),
-        );
+        // `new Date(y, m - 1, 31)` from 31 March is 3 March, so a month-step from
+        // the end of a long month used to skip the short month entirely.
+        moveFocus(shiftMonth(date, -1), -1);
         return;
       }
 
       if (e.key === "PageDown") {
         e.preventDefault();
-        const nextMonth = new Date(
-          date.getFullYear(),
-          date.getMonth() + 1,
-          date.getDate(),
-        );
-        setFocusedDate(nextMonth);
-        setCurrentMonth(
-          new Date(nextMonth.getFullYear(), nextMonth.getMonth(), 1),
-        );
+        moveFocus(shiftMonth(date, 1), 1);
         return;
       }
 
@@ -508,13 +695,10 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     }, [focusedDate, open]);
 
     // Day names
-    const dayNames = useMemo(() => {
-      const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      if (firstDayOfWeek === 1) {
-        return [...names.slice(1), names[0]];
-      }
-      return names;
-    }, [firstDayOfWeek]);
+    const dayNames = useMemo(
+      () => getDayNames(locale, firstDayOfWeek),
+      [locale, firstDayOfWeek],
+    );
 
     // Month/year display
     const monthYearDisplay = currentMonth.toLocaleDateString(locale, {
@@ -549,12 +733,12 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 // date closed it and immediately reopened it - the flicker. It
                 // also popped the calendar open when tabbing past the field.
                 onClick={() => setOpen(true)}
-                aria-label={label || "Open calendar"}
+                aria-label={label || labels.openCalendar}
                 aria-invalid={error}
               >
                 {displayValue || (
                   <span className="text-muted-foreground">
-                    {placeholder || "Select date..."}
+                    {placeholder ?? labels.placeholder}
                   </span>
                 )}
               </button>
@@ -600,7 +784,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       variant="ghost"
                       size="sm"
                       onClick={goToPreviousMonth}
-                      aria-label="Previous month"
+                      aria-label={labels.previousMonth}
                     >
                       <svg
                         className="h-4 w-4"
@@ -628,7 +812,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       variant="ghost"
                       size="sm"
                       onClick={goToNextMonth}
-                      aria-label="Next month"
+                      aria-label={labels.nextMonth}
                     >
                       <svg
                         className="h-4 w-4"
@@ -652,7 +836,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                     onClick={goToToday}
                     className="text-xs"
                   >
-                    Today
+                    {labels.today}
                   </Button>
                 </div>
 
@@ -703,6 +887,24 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                     const dateKey = `${day.date.getFullYear()}-${day.date.getMonth()}-${day.date.getDate()}`;
                     const isFocused =
                       focusedDate && isSameDay(day.date, focusedDate);
+
+                    // A leading spacer: it holds the column open so the first
+                    // of the month lands under the right weekday, and it is not
+                    // a control, so it is out of the tab order and out of the
+                    // accessibility tree.
+                    if (day.placeholder) {
+                      return (
+                        <div
+                          key={`placeholder-${index}`}
+                          aria-hidden="true"
+                          data-calendar-placeholder=""
+                          className={cn(
+                            calendarDayVariants({ variant: "default", size }),
+                            "invisible",
+                          )}
+                        />
+                      );
+                    }
 
                     return (
                       <button
@@ -780,7 +982,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   !(calendarValue as { from?: Date; to?: Date })?.to && (
                     <div className="mt-4 pt-4 border-t border-border">
                       <p className="text-xs text-muted-foreground text-center">
-                        Select end date
+                        {labels.selectEndDate}
                       </p>
                     </div>
                   )}

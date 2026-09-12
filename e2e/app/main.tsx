@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 
 import "./app.css";
+import { CalendarCase } from "./cases/calendar";
 import { CarouselCase } from "./cases/carousel";
 import { CommandCase } from "./cases/command";
 import { DrawerCase } from "./cases/drawer";
@@ -20,6 +21,7 @@ import { ToastCase } from "./cases/toast";
  * numbers, and a drag that overshoots would land on someone else's component.
  */
 const CASES: Record<string, React.ComponentType> = {
+  calendar: CalendarCase,
   carousel: CarouselCase,
   command: CommandCase,
   drawer: DrawerCase,
