@@ -191,8 +191,13 @@ test.describe("focus-visible", () => {
     await expect(button).toBeFocused();
     expect(await focusVisible(button)).toBe(true);
 
-    // ring-2 plus ring-offset-2 is two more painted layers than at rest.
-    expect(await paintedLayers(button)).toBeGreaterThan(resting);
+    // ring-2 plus ring-offset-2 is two more painted layers than at rest, and the
+    // wait is for that count rather than for a moment in time. The ring fades in:
+    // read too early and the new layers are still `rgba(..., 0)` with no spread,
+    // which counts as nothing. Sampling once passed alone and failed under
+    // parallel load - the same shape as the theming tests, and the same rule
+    // applies. Wait for the value, never for "it should have settled by now".
+    await expect.poll(() => paintedLayers(button)).toBeGreaterThan(resting);
   });
 
   // The assertion is `:focus-visible` rather than a box-shadow comparison. The

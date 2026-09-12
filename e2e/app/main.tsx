@@ -6,6 +6,7 @@ import { ButtonLinkCase } from "./cases/button-link";
 import { CalendarCase } from "./cases/calendar";
 import { CarouselCase } from "./cases/carousel";
 import { CommandCase } from "./cases/command";
+import { GalleryCase } from "./cases/gallery";
 import { DrawerCase } from "./cases/drawer";
 import { FocusCase } from "./cases/focus";
 import { InputOtpCase } from "./cases/input-otp";
@@ -28,6 +29,7 @@ const CASES: Record<string, React.ComponentType> = {
   command: CommandCase,
   drawer: DrawerCase,
   focus: FocusCase,
+  gallery: GalleryCase,
   "input-otp": InputOtpCase,
   resizable: ResizableCase,
   sidebar: SidebarCase,
