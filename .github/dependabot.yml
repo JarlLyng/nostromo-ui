@@ -1,22 +1,43 @@
 version: 2
 updates:
-  # Root package.json
+  # The whole pnpm workspace, from the root.
+  #
+  # One npm entry, not one per package. Dependabot reads pnpm-workspace.yaml and
+  # updates every package in the workspace from here, lockfile included: a single
+  # grouped PR has bumped `vite` in e2e/package.json, `@next/mdx` in
+  # docs/package.json, `@types/node` in four package.json files and
+  # pnpm-lock.yaml, all at once.
+  #
+  # There used to be extra entries for /docs and /e2e, and every PR they opened
+  # was dead on arrival. A directory entry edits the package.json in that
+  # directory and nothing else, and in a pnpm workspace the lockfile lives at the
+  # root, outside it - so CI failed at the first step with
+  # ERR_PNPM_OUTDATED_LOCKFILE every single time. Four such PRs were open at once
+  # (#217, #226, #227, #234) against two that came from here and passed.
+  #
+  # They were also quietly overriding the policy below: the /e2e entry carried no
+  # major-version ignores, so it offered TypeScript 7 and @vitejs/plugin-react 6
+  # to one package of a workspace the root entry deliberately holds at 5 and 5.
+  #
+  # So: do not add a per-directory npm entry here. If a package's dependencies are
+  # not being updated, the root entry is the thing to fix.
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 3
+    # 5, not 3. This entry now carries the whole workspace on its own, where the
+    # three npm entries it replaced had 3 + 2 + 2 between them. The groups below
+    # keep minor and patch updates down to two PRs; the rest of the budget is for
+    # majors, which arrive one PR each.
+    open-pull-requests-limit: 5
     labels:
       - "dependencies"
       - "automated"
     commit-message:
       prefix: "chore"
       include: "scope"
-    # Note: Dependabot may not always update pnpm-lock.yaml correctly in monorepos.
-    # If CI fails with ERR_PNPM_OUTDATED_LOCKFILE, manually update lockfile:
-    # git checkout <pr-branch> && pnpm install && git commit -am "chore: update pnpm-lock.yaml"
     versioning-strategy: increase
     # Group updates to reduce PR noise
     groups:
@@ -58,77 +79,15 @@ updates:
       # until that promise changes. Minors and patches still come through.
       - dependency-name: "jsdom"
         update-types: ["version-update:semver-major"]
-
-  # Browser tests
-  #
-  # Covered because the value of that suite depends on the browser versions, and
-  # those arrive with @playwright/test. A Playwright left to go stale means
-  # Chromium and WebKit go stale with it, and the suite quietly stops being a test
-  # of what people run.
-  #
-  # test-app is deliberately not listed here and never has been. Its devDeps do
-  # not decide what is being tested, only how it is asserted.
-  - package-ecosystem: "npm"
-    directory: "/e2e"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 2
-    labels:
-      - "dependencies"
-      - "testing"
-      - "automated"
-    versioning-strategy: increase
-    groups:
-      dev-dependencies:
-        dependency-type: "development"
-        update-types: ["minor", "patch"]
-    ignore:
-      # Pinned via root pnpm.overrides - see the note on the root entry.
-      - dependency-name: "react"
-      - dependency-name: "react-dom"
-      - dependency-name: "@types/react"
-      - dependency-name: "@types/react-dom"
-
-  # Docs package
-  - package-ecosystem: "npm"
-    directory: "/docs"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-    open-pull-requests-limit: 2
-    labels:
-      - "dependencies"
-      - "docs"
-      - "automated"
-    versioning-strategy: increase
-    groups:
-      dev-dependencies:
-        dependency-type: "development"
-        update-types: ["minor", "patch"]
-      production-dependencies:
-        dependency-type: "production"
-        update-types: ["minor", "patch"]
-    ignore:
-      # Pinned via root pnpm.overrides - see the note on the root entry.
-      - dependency-name: "react"
-      - dependency-name: "react-dom"
-      - dependency-name: "@types/react"
-      - dependency-name: "@types/react-dom"
-      - dependency-name: "typescript"
-        update-types: ["version-update:semver-major"]
-      # Ignore major updates for Next.js and Nextra (require coordinated migration)
+      # Next and Nextra majors need a coordinated migration of the docs site, not
+      # a dependency PR. These three moved here from the /docs entry when it was
+      # removed; without them, deleting that entry would have quietly started
+      # offering Next 17.
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
       - dependency-name: "nextra"
         update-types: ["version-update:semver-major"]
       - dependency-name: "nextra-theme-docs"
-        update-types: ["version-update:semver-major"]
-      # Same ceiling as the root entry: jsdom 30 drops Node 20, and docs must stay
-      # installable alongside test-app, which is pinned below it by smoke-node20.
-      - dependency-name: "jsdom"
         update-types: ["version-update:semver-major"]
 
   # GitHub Actions
