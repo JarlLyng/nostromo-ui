@@ -142,7 +142,7 @@ export default function Example() {
 - **Custom search keys** to specify which columns to search
 - **Real-time filtering** as you type
 - **Search callback** for custom handling
-- **Controlled mode** - Use `searchTerm` and `onSearchTermChange` for server-side search
+- **Controlled mode** - Use `searchTerm` and `onSearchTermChange`. Add `manualSearch` when the server does the searching
 
 ### Filtering
 
@@ -150,13 +150,13 @@ export default function Example() {
 - **Multiple filters** can be applied simultaneously
 - **Custom filter functions** for advanced filtering logic
 - **Clear filters** button to reset all filters
-- **Controlled mode** - Use `columnFilters` and `onColumnFiltersChange` for server-side filtering
+- **Controlled mode** - Use `columnFilters` and `onColumnFiltersChange`. Add `manualFiltering` when the server does the filtering
 
 ### Sorting
 
 - **Column sorting** with ascending/descending order
 - **Default sort** column and direction
-- **Controlled mode** - Use `sortColumn`, `sortDirection`, and `onSortChange` for server-side sorting
+- **Controlled mode** - Use `sortColumn`, `sortDirection`, and `onSortChange`. Add `manualSorting` when the server does the sorting
 - **Sort indicators** in column headers
 
 ### Pagination
@@ -380,3 +380,69 @@ export default function ServerSideDataTable() {
 - **[Input](/components/input)** - Used for search input
 - **[Select](/components/select)** - Used for filter dropdowns
 - **[Pagination](/components/pagination)** - Used for pagination controls
+
+## Controlled is not the same as server-side
+
+Passing `searchTerm`, `columnFilters` or `sortColumn` makes DataTable controlled:
+it stops owning that piece of state and tells you when the user changes it. It
+does **not** stop it processing the rows you give it.
+
+That distinction matters as soon as a server is involved. A server searching
+without accent distinctions returns `{ name: "José" }` for the query `jose`, and
+a local substring match then drops the row while `totalItems` still counts it.
+Controlled sorting has the same shape: the page arrives in the server's order and
+gets reordered locally.
+
+Say who does the work:
+
+```tsx
+<DataTable
+  data={rows} // already searched, filtered and sorted by the server
+  columns={columns}
+  manualSearch
+  manualFiltering
+  manualSorting
+  searchTerm={query}
+  onSearchTermChange={setQuery}
+  columnFilters={filters}
+  onColumnFiltersChange={setFilters}
+  sortColumn={sort.column}
+  sortDirection={sort.direction}
+  onSortChange={(column, direction) => setSort({ column, direction })}
+  currentPage={page}
+  onPageChange={setPage}
+  totalItems={total}
+/>
+```
+
+In manual mode the rows and their order are kept exactly as given, and the
+callbacks still fire so you know what to ask the server for next.
+
+Pagination has always worked this way, under a different name: it is manual when
+`currentPage` and `totalItems` are both given.
+
+## onSortChange fires once
+
+One click, one call, carrying both the new column and the new direction. Writing
+both values back from it is safe:
+
+```tsx
+onSortChange={(column, direction) => setSort({ column, direction })}
+```
+
+It used to emit twice, the second call carrying the previous column, so a
+consumer doing exactly the above ended up back where it started and sent the
+server two requests.
+
+## Filter values keep their type
+
+A `boolean` filter is a three-state select: all, yes, no. It was a text box, and
+`Boolean("false")` is `true`, so asking for the false records returned the true
+ones.
+
+A `number` filter that is emptied applies no filter. `Number("")` is `0`, so
+clearing the box used to leave only the rows whose value was zero. An explicitly
+entered `0` still filters for zero.
+
+Both controls show `0` and `false` rather than blanking them, which is what
+`String(value || "")` did to legitimate values.
