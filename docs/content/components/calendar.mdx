@@ -115,6 +115,7 @@ export default function Example() {
 | `showOutsideDays`   | `boolean`                                                                    | `true`             | No       | Show days from previous/next month              |
 | `numberOfMonths`    | `number`                                                                     | `1`                | No       | Number of months to display                     |
 | `firstDayOfWeek`    | `0 \| 1`                                                                     | `1`                | No       | First day of week (0=Sunday, 1=Monday)          |
+| `labels`            | `CalendarLabels`                                                             | English defaults   | No       | The words the calendar says itself              |
 
 ## Examples
 
@@ -232,6 +233,63 @@ const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 - Use without labels for accessibility
 - Disable too many dates (hurts UX)
 - Use multiple mode for date ranges
+
+## Localisation
+
+`locale` moves every date: the value on the trigger, the weekday headings, the
+month heading and the day labels a screen reader reads. It is passed to `Intl`, so
+any locale tag the runtime knows works and nothing has to be imported.
+
+```tsx
+<Calendar locale="da-DK" value={new Date(2026, 8, 14)} />
+// 14. sep. 2026, over søn. man. tirs. ons. tors. fre. lør.
+```
+
+A locale cannot translate "Today". Those words are `labels`:
+
+```tsx
+<Calendar
+  locale="da-DK"
+  labels={{
+    openCalendar: "Åbn kalender",
+    placeholder: "Vælg dato...",
+    previousMonth: "Forrige måned",
+    nextMonth: "Næste måned",
+    today: "I dag",
+    selectEndDate: "Vælg slutdato",
+    multipleSelected: (count) => `${count} datoer valgt`,
+  }}
+/>
+```
+
+Anything you leave out keeps its English default, and the `placeholder` prop still
+wins over `labels.placeholder`.
+
+## Hiding the outside days keeps the columns
+
+`showOutsideDays={false}` hides the dates from the neighbouring months, and the
+cells they occupied stay behind as empty spacers. They are what puts the 1st of
+the month under the right weekday.
+
+The spacers are `aria-hidden` and are not controls, so a screen reader and the Tab
+key both skip them.
+
+## Keyboard
+
+Arrow keys move a day or a week, Home and End go to the ends of the month, Page Up
+and Page Down move a month, Enter and Space select, Escape closes.
+
+Every one of them lands on a date that can actually be focused. A movement that
+would land on a disabled date keeps going in the same direction until it finds one
+that is not, and if nothing in that direction is enabled, focus stays where it is
+rather than moving to a control that cannot hold it.
+
+A month step keeps the day number where the target month has one: Page Down from
+31 March is 30 April, not 1 May.
+
+Opening the calendar puts focus on the selected date, or on today, or on the first
+enabled day of the month shown, in that order. The month shown is the month of the
+selected date.
 
 ## Related Components
 
