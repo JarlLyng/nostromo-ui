@@ -1,0 +1,15 @@
+# pnpm owns this file's formatting.
+#
+# Prettier reformatted it on every commit, and pnpm 10 writes YAML in a different
+# quote style to the one Prettier prefers, so the two rewrote it past each other:
+#
+#   f11758f  Dependabot's lockfile   4134 insertions, 7587 deletions   '9.0'
+#   72251e6  the next local commit   7557 insertions, 4092 deletions   "9.0"
+#
+# Two commits an hour apart, near-exact inverses, 11k lines each. Dependabot does
+# not run the pre-commit hook, so every one of its lockfile updates flipped the
+# file one way and the next local commit flipped it back, burying the real change.
+#
+# It did not show before pnpm 10, because pnpm 9 happened to quote the way
+# Prettier does.
+pnpm-lock.yaml

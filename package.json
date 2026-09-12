@@ -51,6 +51,7 @@
     "audit:contrast": "tsx scripts/audit-contrast.ts",
     "validate:theme-contrasts": "tsx scripts/validate-theme-contrasts.ts",
     "validate:exports": "tsx scripts/validate-exports.ts",
+    "validate:dependabot": "node scripts/validate-dependabot-ignores.mjs",
     "validate:docs-examples": "node scripts/validate-docs-examples.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
@@ -83,6 +84,7 @@
     "prettier": "^3.9.6",
     "tsx": "^4.23.12",
     "turbo": "^2.10.9",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "yaml": "^2.9.0"
   }
 }
