@@ -163,3 +163,44 @@ The Button component extends all standard HTML button attributes, including:
 - `aria-*` attributes for accessibility
 - `data-*` attributes for custom data
 - All other standard HTML button attributes
+
+## asChild, disabled and loading
+
+`asChild` renders whatever element you pass instead of a `<button>`, usually a
+link:
+
+```tsx
+<Button asChild>
+  <a href="/checkout">Continue</a>
+</Button>
+```
+
+`disabled` and `loading` work on that link too, and blocking it takes more than an
+attribute. `disabled` is a form-control attribute: put it on an anchor and the
+browser ignores it, so the link would announce itself disabled and then navigate
+anyway.
+
+What happens instead:
+
+- The click and the Enter or Space key are both cancelled, in the capture phase,
+  so **neither your handler nor the child's own handler runs** and the navigation
+  does not happen.
+- `aria-disabled="true"` is set, and no meaningless `disabled` attribute. A
+  slotted `<button>` still gets the real attribute, because it understands it.
+- The button looks disabled. The styling is keyed on `aria-disabled` as well as
+  `:disabled`, since `:disabled` never matches an anchor.
+- It **stays focusable**. That is the aria-disabled convention: a disabled control
+  that has been removed from the tab order cannot be found by someone navigating
+  by keyboard, so they never learn it is there.
+
+One limit worth knowing: a capture handler on the child element itself runs before
+the guard and is not blocked. Regular `onClick` on either side is.
+
+```tsx
+<Button asChild disabled onClick={parentHandler}>
+  <a href="/checkout" onClick={childHandler}>
+    Continue
+  </a>
+</Button>
+// Click: neither handler runs, and the page does not navigate.
+```
