@@ -234,3 +234,39 @@ export default function PaginatedTable() {
 | `selectedRowKeys`  | `(string \| number)[]`                                               | -           | **Yes**  | Array of selected row keys                  |
 | `onChange`         | `(selectedRowKeys: (string \| number)[], selectedRows: T[]) => void` | -           | **Yes**  | Callback when selection changes             |
 | `getCheckboxProps` | `(record: T) => { disabled?: boolean }`                              | `undefined` | No       | Function to get checkbox props for each row |
+
+## Selection spans pages, the checkbox does not
+
+`selectedRowKeys` is the whole selection. It can name records that are not on the
+page being rendered, and the Table never discards them.
+
+That shapes two things worth knowing.
+
+**Select-all acts on this page.** It adds every selectable row you can currently
+see to the selection, or removes them, and leaves every other key untouched. Its
+checked state is read the same way: all of the selectable rows on this page, some
+of them, or none. Keys belonging to other pages neither check it nor leave it
+indeterminate.
+
+**A disabled row is skipped, not selected for you.** `getCheckboxProps` returning
+`{ disabled: true }` takes the row out of select-all as well as out of its own
+checkbox. Once every row that can be selected is selected, select-all reads as
+checked rather than staying permanently indeterminate because of the rows that
+cannot be.
+
+## The keys are authoritative, the records are what is on screen
+
+`onChange` gives you both:
+
+```tsx
+onChange={(keys, rows) => { ... }}
+```
+
+`keys` is the complete selection. `rows` is only the subset present in `data`,
+because the component has never been given the rest. If you paginate server-side,
+keep your own key-to-record map and treat the keys as the source of truth.
+
+## Zero is a key
+
+`rowKey` falls back to the row's index only when the value is `null` or
+`undefined`. A record with `id: 0`, or an empty-string key, keeps its own key.
