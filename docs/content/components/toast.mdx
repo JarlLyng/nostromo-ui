@@ -14,6 +14,7 @@ function ToastDemo() {
 const { addToast } = useToast()
 
 return (
+
 <div className="space-x-2">
 <button onClick={() => addToast({
 variant: 'success',
@@ -49,6 +50,7 @@ function ToastWithAction() {
 const { addToast } = useToast()
 
 return (
+
 <button onClick={() => addToast({
 variant: 'default',
 title: 'File deleted',
@@ -156,3 +158,62 @@ Returns:
 - `addToast: (toast: Omit<ToastProps, 'id'>) => string` - Add a new toast (returns toast ID)
 - `removeToast: (id: string) => void` - Remove a toast by ID
 - `clearToasts: () => void` - Clear all toasts
+
+Both `removeToast` and `clearToasts` animate the notification out rather than
+cutting it from the DOM, and the entry leaves `toasts` when that finishes.
+
+## Notifications are announced by default
+
+A toast carries `role="status"` and `aria-live="polite"`, so a message that
+appears without warning is read out without you arranging anything. The `error`
+variant is `role="alert"` and `aria-live="assertive"` instead, because an error is
+the one kind worth interrupting for.
+
+They are also `aria-atomic`, so the title and the description are read as one
+message rather than as two separate arrivals.
+
+Pass `role` or `aria-live` to override either:
+
+```tsx
+addToast({
+  title: "Saved",
+  // A background sync finishing does not need to interrupt anyone.
+  role: "log",
+  "aria-live": "off",
+});
+```
+
+**Focus is deliberately not moved.** A notification that takes the caret
+interrupts whatever the reader was doing, which is worse than the problem it
+solves. The close button and any action stay reachable by Tab.
+
+## Stacking, and where the toasts go
+
+`ToastProvider` renders one bounded column per position, and the notifications in
+it stack in normal flow with a gap. Columns at the bottom of the window stack
+upwards, so the newest is always nearest the edge.
+
+The column is `w-[calc(100vw-2rem)] max-w-sm`: full width minus the inset on each
+side, up to a readable maximum. That pair is what keeps a notification on screen
+at any window width, including a phone.
+
+A standalone `<Toast position="bottom-right">` outside a provider still positions
+itself, and takes the same width bound.
+
+## One dismissal path
+
+Every route out of a notification behaves the same way: the close button, the
+timeout, `dismiss(id)` and `clear()` all start the exit animation, and the toast
+leaves `toasts` when the animation ends.
+
+Two things follow.
+
+`onClose` fires **exactly once** per notification, whichever route dismissed it
+and however many times the button is clicked.
+
+`toasts.length` is the number of notifications you can see. It used to keep
+entries for notifications that had already gone, so a persistent toast dismissed
+ten times left ten invisible entries behind.
+
+There is also one timer per notification rather than two. Inside a provider the
+provider owns it; a standalone `<Toast duration={4000}>` owns its own.

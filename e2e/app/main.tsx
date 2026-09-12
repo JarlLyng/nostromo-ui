@@ -10,6 +10,7 @@ import { InputOtpCase } from "./cases/input-otp";
 import { ResizableCase } from "./cases/resizable";
 import { SidebarCase } from "./cases/sidebar";
 import { ThemeCase } from "./cases/theme";
+import { ToastCase } from "./cases/toast";
 
 /**
  * One page per scenario, chosen with `?case=`.
@@ -27,6 +28,7 @@ const CASES: Record<string, React.ComponentType> = {
   resizable: ResizableCase,
   sidebar: SidebarCase,
   theme: ThemeCase,
+  toast: ToastCase,
 };
 
 function App() {
