@@ -60,6 +60,21 @@ updates:
       - dependency-name: "react-dom"
       - dependency-name: "@types/react"
       - dependency-name: "@types/react-dom"
+      # postcss is the same shape as React above, and broke the same way: it is
+      # both a devDependency of docs and test-app and a `>=` security floor in
+      # pnpm.overrides. Bumping the range rewrote the lockfile's overrides block
+      # and left package.json's alone, and every install failed with
+      # ERR_PNPM_LOCKFILE_CONFIG_MISMATCH (#256).
+      #
+      # Nothing is lost by ignoring it. The override decides what gets installed,
+      # so the resolved version is already the newest that clears the floor; the
+      # dependency range is decoration next to it. The floor moves by editing the
+      # override.
+      #
+      # `pnpm validate:dependabot` enforces this rule for the whole overrides
+      # list, so the next package to land in this position fails a check rather
+      # than a week of CI.
+      - dependency-name: "postcss"
       # Ignore major updates for TypeScript (breaking changes)
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]

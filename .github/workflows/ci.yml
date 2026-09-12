@@ -49,6 +49,12 @@ jobs:
       - name: Run linter
         run: pnpm lint
 
+      # Catches a package becoming both a pnpm.overrides pin and a direct
+      # dependency, which Dependabot cannot update without breaking the lockfile.
+      # In the lint job because it reads two config files and needs no build.
+      - name: Check Dependabot's ignore list against pnpm.overrides
+        run: pnpm validate:dependabot
+
   type-check:
     runs-on: ubuntu-latest
     steps:
