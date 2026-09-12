@@ -3,9 +3,59 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import { memo } from "../../lib/memo";
 
+/**
+ * Notifications, and the provider that owns them.
+ *
+ * Three things about this component are worth reading before changing it.
+ *
+ * ## The viewport positions, the toast does not
+ *
+ * A `ToastProvider` renders one `ToastViewport` per position: a fixed, bounded
+ * column that stacks its children in normal flex flow with a gap. The toasts
+ * inside it are ordinary block elements.
+ *
+ * Every toast used to position itself instead, with `fixed right-4` plus `w-full`
+ * and a `translateY(index * 8px)` for stacking. Both halves were wrong. `w-full`
+ * against a fixed right offset made a 1200px-wide box starting at x=-16, so the
+ * notification ran off the left edge of the window; and 8px of offset for a box
+ * about 94px tall meant the second notification covered nearly all of the first.
+ *
+ * A standalone `<Toast position="top-right">` still positions itself, because
+ * that is a supported way to use it. `ToastViewportContext` is how a toast knows
+ * which of the two it is in.
+ *
+ * ## One dismissal path
+ *
+ * Closing a toast used to leave it in the provider's `toasts` array forever: the
+ * component unmounted itself and nothing told the provider. A persistent toast
+ * dismissed ten times left ten invisible entries behind.
+ *
+ * Now every route - the close button, the timeout, `dismiss(id)`, `clear()` -
+ * goes through the same two steps. `removeToast` marks the toast as dismissing,
+ * which starts its exit animation; when the animation ends the toast reports back
+ * and the provider drops it from state. `onClose` fires exactly once, guarded by
+ * a ref, whichever route was taken.
+ *
+ * There is also exactly one timer per toast. Inside a viewport the provider owns
+ * it; standalone, the toast owns its own. Previously both ran, and the provider's
+ * could remove a toast before its own exit finished.
+ *
+ * ## Announcement is the default, not an opt-in
+ *
+ * A toast carries `role="status"` and `aria-live="polite"`, or `role="alert"` and
+ * `aria-live="assertive"` for the error variant, so a message that appears
+ * without warning is announced without the caller arranging anything. It is also
+ * `aria-atomic`, so the title and description are read as one message rather than
+ * as two arrivals. Pass `role` or `aria-live` to override either.
+ *
+ * Focus is deliberately not moved. A notification that steals focus interrupts
+ * whatever the reader was doing, which is worse than the problem it solves; the
+ * close button and any action stay reachable by Tab.
+ */
+
 // Toast variants
 const toastVariants = cva(
-  "relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300",
+  "relative flex items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all duration-300",
   {
     variants: {
       variant: {
@@ -19,13 +69,22 @@ const toastVariants = cva(
           "border-warning-200 bg-warning-50 text-warning-900 shadow-lg hover:shadow-xl",
         info: "border-info-200 bg-info-50 text-info-900 shadow-lg hover:shadow-xl",
       },
+      // Only applied when the toast is positioning itself. Inside a viewport the
+      // column owns the position and the toast just fills its width.
+      //
+      // The width bound is the fix for the clipping: `w-full` next to a fixed
+      // right offset is a full-viewport box pushed 16px off the left edge.
       position: {
-        "top-left": "fixed top-4 left-4 z-50",
-        "top-center": "fixed top-4 left-1/2 -translate-x-1/2 z-50",
-        "top-right": "fixed top-4 right-4 z-50",
-        "bottom-left": "fixed bottom-4 left-4 z-50",
-        "bottom-center": "fixed bottom-4 left-1/2 -translate-x-1/2 z-50",
-        "bottom-right": "fixed bottom-4 right-4 z-50",
+        "top-left": "fixed top-4 left-4 z-50 w-[calc(100vw-2rem)] max-w-sm",
+        "top-center":
+          "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-2rem)] max-w-sm",
+        "top-right": "fixed top-4 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm",
+        "bottom-left":
+          "fixed bottom-4 left-4 z-50 w-[calc(100vw-2rem)] max-w-sm",
+        "bottom-center":
+          "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-2rem)] max-w-sm",
+        "bottom-right":
+          "fixed bottom-4 right-4 z-50 w-[calc(100vw-2rem)] max-w-sm",
       },
       animation: {
         default: "animate-in slide-in-from-right-full duration-300",
@@ -61,6 +120,14 @@ const toastIconVariants = cva(
   },
 );
 
+export type ToastPosition =
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right";
+
 // Types
 export interface ToastProps
   extends
@@ -79,6 +146,14 @@ export interface ToastProps
   children?: React.ReactNode;
   appearDelay?: number; // time in ms before first render becomes visible; default 10
   animationMs?: number; // exit animation duration; default 150
+  /**
+   * Internal. Set by the viewport to start the exit animation, so that a
+   * programmatic `dismiss(id)` animates out like a click on the close button
+   * rather than vanishing.
+   */
+  dismissing?: boolean;
+  /** Internal. Told to the provider when the exit animation has finished. */
+  onExited?: () => void;
 }
 
 export interface ToastContextType {
@@ -93,6 +168,15 @@ const ToastContext = React.createContext<ToastContextType | undefined>(
   undefined,
 );
 
+/**
+ * True inside a `ToastViewport`.
+ *
+ * A contained toast does not position itself and does not run its own
+ * auto-dismiss timer, because the viewport does the first and the provider does
+ * the second. Both used to happen twice.
+ */
+const ToastViewportContext = React.createContext(false);
+
 export const useToast = () => {
   const context = React.useContext(ToastContext);
   if (!context) {
@@ -101,24 +185,67 @@ export const useToast = () => {
   return context;
 };
 
+/**
+ * Ids are a counter, not `Math.random()`.
+ *
+ * Random ids differ between a server render and the client that hydrates it,
+ * which is a hydration mismatch waiting for the first server-rendered toast. A
+ * counter is stable for a given sequence of calls, and these ids are only ever
+ * used to address a toast within one provider.
+ */
+let toastSequence = 0;
+const nextToastId = () => `toast-${++toastSequence}`;
+
 // Toast Provider
 export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
+  // Toasts whose exit animation is running. They are still in `toasts` - and so
+  // still rendered - until the animation reports back.
+  const [dismissing, setDismissing] = useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
   const timeoutRefs = useRef<Map<string, ReturnType<typeof setTimeout>>>(
     new Map(),
   );
 
-  const removeToast = useCallback((id: string) => {
-    // Clear timeout if it exists
+  const clearTimer = useCallback((id: string) => {
     const timeoutId = timeoutRefs.current.get(id);
     if (timeoutId) {
       clearTimeout(timeoutId);
       timeoutRefs.current.delete(id);
     }
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
+
+  /** Starts the exit. The toast leaves the array in `finalize`, not here. */
+  const removeToast = useCallback(
+    (id: string) => {
+      clearTimer(id);
+      setDismissing((prev) => {
+        if (prev.has(id)) return prev;
+        const next = new Set(prev);
+        next.add(id);
+        return next;
+      });
+    },
+    [clearTimer],
+  );
+
+  /** The exit has finished: drop it. */
+  const finalize = useCallback(
+    (id: string) => {
+      clearTimer(id);
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+      setDismissing((prev) => {
+        if (!prev.has(id)) return prev;
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+    },
+    [clearTimer],
+  );
 
   const removeToastRef = useRef(removeToast);
   useEffect(() => {
@@ -126,16 +253,17 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [removeToast]);
 
   const addToast = useCallback((toast: Omit<ToastProps, "id">) => {
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = nextToastId();
     const newToast = { ...toast, id };
 
     setToasts((prev) => [...prev, newToast]);
 
-    // Auto remove toast after duration
+    // The provider owns the timer for a toast it renders, and it starts the same
+    // exit a click on the close button would. The toast's own timer is disabled
+    // inside a viewport, so this is the only one.
     if (toast.duration !== 0) {
       const timeoutId = setTimeout(() => {
         removeToastRef.current(id);
-        timeoutRefs.current.delete(id);
       }, toast.duration || 5000);
       timeoutRefs.current.set(id, timeoutId);
     }
@@ -144,10 +272,14 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const clearToasts = useCallback(() => {
-    // Clear all timeouts
     timeoutRefs.current.forEach((timeoutId) => clearTimeout(timeoutId));
     timeoutRefs.current.clear();
-    setToasts([]);
+    // Animate them all out rather than cutting to nothing, so `clear()` looks
+    // like dismissing each one.
+    setToasts((prev) => {
+      setDismissing(new Set(prev.map((toast) => toast.id!)));
+      return prev;
+    });
   }, []);
 
   // Cleanup on unmount
@@ -164,50 +296,86 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{ toasts, addToast, removeToast, clearToasts }}
     >
       {children}
-      <ToastContainer toasts={toasts} />
+      <ToastContainer
+        toasts={toasts}
+        dismissing={dismissing}
+        onExited={finalize}
+      />
     </ToastContext.Provider>
   );
 };
 
+const VIEWPORT_POSITIONS: Record<ToastPosition, string> = {
+  // Bottom edges stack upwards, so the newest is nearest the edge and the older
+  // ones move away from it. Reversing the column is what does that.
+  "top-left": "top-4 left-4 flex-col",
+  "top-center": "top-4 left-1/2 -translate-x-1/2 flex-col",
+  "top-right": "top-4 right-4 flex-col",
+  "bottom-left": "bottom-4 left-4 flex-col-reverse",
+  "bottom-center": "bottom-4 left-1/2 -translate-x-1/2 flex-col-reverse",
+  "bottom-right": "bottom-4 right-4 flex-col-reverse",
+};
+
+/**
+ * One bounded column per position.
+ *
+ * `w-[calc(100vw-2rem)] max-w-sm` is the pair that keeps it on screen: full width
+ * minus the 16px inset on each side, up to a readable maximum. The column is
+ * `pointer-events-none` so it does not swallow clicks on the page underneath it,
+ * and each toast turns pointer events back on for itself.
+ */
+const ToastViewport: React.FC<{
+  position: ToastPosition;
+  children: React.ReactNode;
+}> = ({ position, children }) => (
+  <ToastViewportContext.Provider value={true}>
+    <ol
+      data-toast-viewport={position}
+      className={cn(
+        "pointer-events-none fixed z-50 flex w-[calc(100vw-2rem)] max-w-sm gap-2 m-0 list-none p-0",
+        VIEWPORT_POSITIONS[position],
+      )}
+    >
+      {children}
+    </ol>
+  </ToastViewportContext.Provider>
+);
+
 // Toast Container
-const ToastContainer: React.FC<{ toasts: ToastProps[] }> = ({ toasts }) => {
+const ToastContainer: React.FC<{
+  toasts: ToastProps[];
+  dismissing: ReadonlySet<string>;
+  onExited: (id: string) => void;
+}> = ({ toasts, dismissing, onExited }) => {
   if (toasts.length === 0) return null;
 
-  // Group toasts by position for stacking
   const toastsByPosition = toasts.reduce(
     (acc, toast) => {
-      const position = toast.position || "top-right";
-      if (!acc[position]) {
-        acc[position] = [];
-      }
-      acc[position].push(toast);
+      const position = (toast.position ?? "top-right") as ToastPosition;
+      (acc[position] ??= []).push(toast);
       return acc;
     },
-    {} as Record<string, ToastProps[]>,
+    {} as Record<ToastPosition, ToastProps[]>,
   );
 
   return (
-    <div className="fixed inset-0 z-50 pointer-events-none">
-      {Object.entries(toastsByPosition).map(([position, positionToasts]) => (
-        <div key={position} className="pointer-events-none">
-          {positionToasts.map((toast, index) => {
-            const { style: toastStyle, ...toastProps } = toast;
-            return (
+    <>
+      {(
+        Object.entries(toastsByPosition) as [ToastPosition, ToastProps[]][]
+      ).map(([position, positionToasts]) => (
+        <ToastViewport key={position} position={position}>
+          {positionToasts.map((toast) => (
+            <li key={toast.id} className="contents">
               <Toast
-                key={toast.id}
-                {...toastProps}
-                style={{
-                  ...toastStyle,
-                  // Stack toasts with offset
-                  transform: `translateY(${index * 8}px) ${toastStyle?.transform || ""}`,
-                  marginBottom: index < positionToasts.length - 1 ? "8px" : "0",
-                }}
+                {...toast}
+                dismissing={dismissing.has(toast.id!)}
+                onExited={() => onExited(toast.id!)}
               />
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ToastViewport>
       ))}
-    </div>
+    </>
   );
 };
 
@@ -228,10 +396,13 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
       children,
       appearDelay = 10,
       animationMs = 150,
+      dismissing = false,
+      onExited,
       ...props
     },
     ref,
   ) => {
+    const contained = React.useContext(ToastViewportContext);
     const [isVisible, setIsVisible] = useState(appearDelay <= 0);
     const [isLeaving, setIsLeaving] = useState(false);
 
@@ -243,22 +414,48 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
       return () => clearTimeout(timer);
     }, [appearDelay]);
 
+    // `onClose` fires once, whichever route got here: the close button, the
+    // timeout, `dismiss(id)` or `clear()`. Without the guard, a second click
+    // during the exit animation fired it twice.
+    const closedRef = useRef(false);
+    const onCloseRef = useRef(onClose);
+    const onExitedRef = useRef(onExited);
+    useEffect(() => {
+      onCloseRef.current = onClose;
+      onExitedRef.current = onExited;
+    }, [onClose, onExited]);
+
     const handleClose = useCallback(() => {
+      if (closedRef.current) return;
+      closedRef.current = true;
       setIsLeaving(true);
       window.setTimeout(() => {
-        onClose?.();
+        onCloseRef.current?.();
         setIsVisible(false);
+        // The provider drops it from state here, after the animation, so the
+        // array and the screen agree.
+        onExitedRef.current?.();
       }, animationMs);
-    }, [onClose, animationMs]);
+    }, [animationMs]);
 
-    // Auto close after duration
+    // Started from outside: `dismiss(id)`, `clear()`, or the provider's timeout.
     useEffect(() => {
+      if (dismissing) handleClose();
+    }, [dismissing, handleClose]);
+
+    // Auto close after duration.
+    //
+    // Only when standalone. Inside a viewport the provider owns this timer, and
+    // running both meant a toast could be removed from state while its own exit
+    // was still going.
+    useEffect(() => {
+      if (contained) return undefined;
       if (duration > 0) {
         const timer = window.setTimeout(handleClose, duration);
         return () => clearTimeout(timer);
       }
       return undefined;
-    }, [duration, handleClose]);
+    }, [contained, duration, handleClose]);
 
     const getIcon = () => {
       switch (variant) {
@@ -325,25 +522,44 @@ const ToastComponent = React.forwardRef<HTMLDivElement, ToastProps>(
 
     if (!isVisible) return null;
 
+    // An error is the one variant a reader should be interrupted for. Everything
+    // else waits for a pause. A caller who knows better can pass either.
+    const isUrgent = variant === "error";
+    const { style: callerStyle, ...restProps } = props;
+
     return (
       <div
         ref={ref}
+        role={props.role ?? (isUrgent ? "alert" : "status")}
+        aria-live={props["aria-live"] ?? (isUrgent ? "assertive" : "polite")}
+        // Read the title and the description as one message rather than as two
+        // separate arrivals.
+        aria-atomic={props["aria-atomic"] ?? true}
         className={cn(
-          toastVariants({ variant, position, animation }),
+          toastVariants({
+            variant,
+            // Inside a viewport the column positions it; on its own it has to.
+            position: contained ? null : position,
+            animation,
+          }),
+          contained && "w-full",
           isLeaving ? "opacity-0" : "opacity-100",
           "pointer-events-auto",
           className,
         )}
         data-visible={isVisible ? "true" : "false"}
         data-leaving={isLeaving ? "true" : "false"}
+        {...restProps}
         style={{
           transition: `all ${animationMs}ms ease-in-out`,
+          ...callerStyle,
+          // Last, so the exit is not silently overridden by a caller's transform.
+          // It used to be first, and the container passed a transform on every
+          // toast, so the exit animation never ran for a toast in a provider.
           transform: isLeaving
             ? "translateX(100%)"
-            : props.style?.transform || "translateX(0)",
-          ...props.style,
+            : (callerStyle?.transform ?? "translateX(0)"),
         }}
-        {...props}
       >
         <div className="flex items-start space-x-3">
           {getIcon()}

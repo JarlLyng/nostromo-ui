@@ -231,7 +231,7 @@ export {
   toastVariants,
   toastIconVariants,
 } from "./toast";
-export type { ToastProps, ToastContextType } from "./toast";
+export type { ToastProps, ToastContextType, ToastPosition } from "./toast";
 
 export {
   Tooltip,
