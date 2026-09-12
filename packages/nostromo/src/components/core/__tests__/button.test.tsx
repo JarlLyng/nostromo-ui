@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Button } from "../button";
 
@@ -172,5 +172,180 @@ describe("Button", () => {
       expect(link).toHaveTextContent("Working…");
       expect(link).not.toHaveTextContent("Explore");
     });
+  });
+});
+
+/**
+ * `asChild` with `disabled` or `loading` (#243, 2026-09-12 audit).
+ *
+ * `disabled` is a form-control attribute. On the anchor `asChild` usually renders
+ * it is inert, so the button announced itself disabled and then navigated anyway,
+ * running both the caller's onClick and the anchor's own.
+ */
+describe("Button asChild while disabled", () => {
+  const clickLink = (label: string) => {
+    const event = new MouseEvent("click", { bubbles: true, cancelable: true });
+    fireEvent(screen.getByText(label), event);
+    return event;
+  };
+
+  it("runs neither handler and cancels the navigation", () => {
+    const parent = vi.fn();
+    const child = vi.fn();
+    render(
+      <Button asChild disabled onClick={parent}>
+        <a href="/checkout" onClick={child}>
+          Continue
+        </a>
+      </Button>,
+    );
+
+    const event = clickLink("Continue");
+    expect(parent).not.toHaveBeenCalled();
+    expect(child).not.toHaveBeenCalled();
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  it("does the same while loading", () => {
+    const parent = vi.fn();
+    const child = vi.fn();
+    render(
+      <Button asChild loading onClick={parent}>
+        <a href="/checkout" onClick={child}>
+          Continue
+        </a>
+      </Button>,
+    );
+
+    const event = clickLink("Continue");
+    expect(parent).not.toHaveBeenCalled();
+    expect(child).not.toHaveBeenCalled();
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  // An anchor activates on Enter, which is a separate path from the click.
+  it("blocks Enter and Space", () => {
+    const parent = vi.fn();
+    render(
+      <Button asChild disabled onKeyDown={parent}>
+        <a href="/checkout">Continue</a>
+      </Button>,
+    );
+
+    const link = screen.getByText("Continue");
+    for (const key of ["Enter", " "]) {
+      const event = new KeyboardEvent("keydown", {
+        key,
+        bubbles: true,
+        cancelable: true,
+      });
+      fireEvent(link, event);
+      expect(event.defaultPrevented).toBe(true);
+    }
+    expect(parent).not.toHaveBeenCalled();
+  });
+
+  it("lets other keys through", () => {
+    const onKeyDown = vi.fn();
+    render(
+      <Button asChild disabled onKeyDown={onKeyDown}>
+        <a href="/checkout">Continue</a>
+      </Button>,
+    );
+
+    fireEvent.keyDown(screen.getByText("Continue"), { key: "Tab" });
+    expect(onKeyDown).toHaveBeenCalled();
+  });
+
+  // A caller's own capture handler must not be able to re-enable it.
+  it("wins over a capture handler passed by the caller", () => {
+    const sneaky = vi.fn();
+    const parent = vi.fn();
+    render(
+      <Button asChild disabled onClickCapture={sneaky} onClick={parent}>
+        <a href="/checkout">Continue</a>
+      </Button>,
+    );
+
+    const event = clickLink("Continue");
+    expect(sneaky).not.toHaveBeenCalled();
+    expect(parent).not.toHaveBeenCalled();
+    expect(event.defaultPrevented).toBe(true);
+  });
+
+  // `disabled=""` on an anchor is meaningless markup. The state a reader hears
+  // comes from aria-disabled, and the element stays focusable so it can be found
+  // at all - the aria-disabled convention rather than removing it from the tab
+  // order.
+  it("does not put a form-control attribute on an anchor", () => {
+    render(
+      <Button asChild disabled>
+        <a href="/checkout">Continue</a>
+      </Button>,
+    );
+
+    const link = screen.getByText("Continue");
+    expect(link).not.toHaveAttribute("disabled");
+    expect(link).toHaveAttribute("aria-disabled", "true");
+    expect(link).not.toHaveAttribute("tabindex", "-1");
+  });
+
+  it("looks disabled, which a class keyed on :disabled could not manage", () => {
+    render(
+      <Button asChild disabled>
+        <a href="/checkout">Continue</a>
+      </Button>,
+    );
+
+    expect(screen.getByText("Continue")).toHaveClass(
+      "aria-disabled:opacity-50",
+      "aria-disabled:cursor-not-allowed",
+    );
+  });
+
+  // A slotted <button> does understand the attribute, and should keep getting it.
+  it("still gives a slotted button the real attribute", () => {
+    render(
+      <Button asChild disabled>
+        <button type="button">Continue</button>
+      </Button>,
+    );
+
+    expect(screen.getByText("Continue")).toBeDisabled();
+  });
+
+  it("leaves an enabled link alone", () => {
+    const parent = vi.fn();
+    const child = vi.fn();
+    render(
+      <Button asChild onClick={parent}>
+        <a href="/checkout" onClick={child}>
+          Continue
+        </a>
+      </Button>,
+    );
+
+    const event = clickLink("Continue");
+    expect(parent).toHaveBeenCalledTimes(1);
+    expect(child).toHaveBeenCalledTimes(1);
+    expect(event.defaultPrevented).toBe(false);
+    expect(screen.getByText("Continue")).not.toHaveAttribute(
+      "aria-disabled",
+      "true",
+    );
+  });
+
+  it("leaves a plain disabled button working the way it always did", () => {
+    const onClick = vi.fn();
+    render(
+      <Button disabled onClick={onClick}>
+        Continue
+      </Button>,
+    );
+
+    const button = screen.getByRole("button", { name: "Continue" });
+    expect(button).toBeDisabled();
+    fireEvent.click(button);
+    expect(onClick).not.toHaveBeenCalled();
   });
 });

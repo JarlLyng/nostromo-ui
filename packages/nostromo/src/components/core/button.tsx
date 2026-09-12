@@ -6,7 +6,10 @@ import { memo } from "../../lib/memo";
 
 const buttonVariants = cva(
   // Base styles with improved spacing and transitions
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  // `aria-disabled:` alongside `disabled:` because `asChild` renders whatever the
+  // caller passed - an anchor, usually - and `:disabled` matches only real form
+  // controls. Without it a disabled link looked entirely enabled.
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:opacity-50 aria-disabled:cursor-not-allowed",
   {
     variants: {
       variant: {
@@ -123,6 +126,70 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Component = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
 
+    /**
+     * Stops a disabled `asChild` button from doing anything.
+     *
+     * `disabled` is a form-control attribute. Put it on an anchor - which is what
+     * `asChild` usually renders - and the browser ignores it, so
+     * `<Button asChild disabled><a href="/checkout">` navigated, ran the caller's
+     * onClick, and ran the anchor's own onClick. `aria-disabled` announced a
+     * disabled state that nothing implemented.
+     *
+     * The guards are *capture* handlers, and the phase is the whole point. Radix
+     * Slot merges its props with the child's by calling the child's handler
+     * first, with no check for `defaultPrevented` - measured, not assumed:
+     *
+     *     child capture -> parent capture -> child onClick -> parent onClick
+     *
+     * So a bubble-phase handler here would run last, after both onClicks had
+     * already fired. From the capture phase, `stopPropagation` reaches the bubble
+     * phase before either of them does, and `preventDefault` cancels the
+     * navigation.
+     *
+     * The one thing it cannot intercept is a capture handler on the child itself,
+     * which runs before this one. That is rare enough to document rather than
+     * design around.
+     */
+    const blockActivation = (event: React.SyntheticEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+
+    const disabledGuards =
+      asChild && isDisabled
+        ? {
+            onClickCapture: blockActivation,
+            onKeyDownCapture: (event: React.KeyboardEvent) => {
+              // The two keys that activate a link or a button.
+              if (event.key === "Enter" || event.key === " ") {
+                blockActivation(event);
+              }
+            },
+          }
+        : {};
+
+    /**
+     * `disabled` goes on elements that have it.
+     *
+     * On an anchor React renders a literal `disabled=""` that means nothing and
+     * does nothing. A slotted `<button>` is a different matter, and still gets
+     * the real thing.
+     */
+    const NATIVE_DISABLEABLE = [
+      "button",
+      "input",
+      "select",
+      "textarea",
+      "fieldset",
+      "optgroup",
+      "option",
+    ];
+    const slottedIsNativeControl =
+      React.isValidElement(children) &&
+      typeof children.type === "string" &&
+      NATIVE_DISABLEABLE.includes(children.type);
+    const passNativeDisabled = !asChild || slottedIsNativeControl;
+
     // Determine final state: loading prop takes precedence over state prop
     const finalState = loading ? "loading" : state;
 
@@ -141,9 +208,12 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({ variant, size, state: finalState, className }),
         )}
         ref={ref}
-        disabled={isDisabled}
+        {...(passNativeDisabled ? { disabled: isDisabled } : {})}
         aria-disabled={isDisabled}
         {...props}
+        // After the spread: a caller's own capture handler does not get to
+        // re-enable a disabled button.
+        {...disabledGuards}
       >
         {loading && (
           <svg
