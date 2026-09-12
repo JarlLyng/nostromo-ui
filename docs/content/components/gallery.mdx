@@ -122,3 +122,23 @@ interface GalleryImage {
   thumbnail?: string;
 }
 ```
+
+## The lightbox is a real modal
+
+It is a Radix Dialog, which means the things `aria-modal="true"` promises are
+actually done:
+
+- Focus moves into the lightbox when it opens, and cannot leave it by Tab while it
+  is open.
+- Escape closes it, from the moment it opens, without needing a click first.
+- The arrow keys move between images for the same reason.
+- The page behind it is out of the accessibility tree and cannot be scrolled.
+- Closing returns focus to the gallery item that opened it, not to the top of the
+  page.
+
+The dialog is named from the image's `title`, falling back to its `alt`, and the
+id is generated per instance. Two galleries on one page no longer share one.
+
+None of this needed configuring before either. It simply did not happen: focus
+stayed on the gallery item behind the overlay, and the key handlers were bound to
+an element that never had focus, so Escape did nothing.

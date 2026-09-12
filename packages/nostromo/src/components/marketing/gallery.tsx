@@ -1,73 +1,71 @@
-import React, { useState, useCallback } from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../../lib/utils';
-import { Button } from '../../components/core/button';
+import React, { useState, useCallback, useRef } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils";
+import { Button } from "../../components/core/button";
 
-const galleryVariants = cva(
-  'grid gap-4',
-  {
-    variants: {
-      columns: {
-        1: 'grid-cols-1',
-        2: 'grid-cols-1 sm:grid-cols-2',
-        3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-        4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
-        5: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5',
-        6: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6',
-      },
-      spacing: {
-        sm: 'gap-2',
-        md: 'gap-4',
-        lg: 'gap-6',
-        xl: 'gap-8',
-      },
+const galleryVariants = cva("grid gap-4", {
+  variants: {
+    columns: {
+      1: "grid-cols-1",
+      2: "grid-cols-1 sm:grid-cols-2",
+      3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+      4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+      5: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5",
+      6: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6",
     },
-    defaultVariants: {
-      columns: 3,
-      spacing: 'md',
+    spacing: {
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-6",
+      xl: "gap-8",
     },
-  }
-);
+  },
+  defaultVariants: {
+    columns: 3,
+    spacing: "md",
+  },
+});
 
 const galleryItemVariants = cva(
-  'relative overflow-hidden rounded-lg bg-muted/50 transition-all duration-300 hover:scale-105 hover:shadow-lg',
+  "relative overflow-hidden rounded-lg bg-muted/50 transition-all duration-300 hover:scale-105 hover:shadow-lg",
   {
     variants: {
       aspectRatio: {
-        square: 'aspect-square',
-        video: 'aspect-video',
-        portrait: 'aspect-[3/4]',
-        landscape: 'aspect-[4/3]',
-        wide: 'aspect-[16/9]',
+        square: "aspect-square",
+        video: "aspect-video",
+        portrait: "aspect-[3/4]",
+        landscape: "aspect-[4/3]",
+        wide: "aspect-[16/9]",
       },
       hover: {
-        none: '',
-        scale: 'hover:scale-105',
-        zoom: 'hover:scale-110',
-        lift: 'hover:-translate-y-2',
+        none: "",
+        scale: "hover:scale-105",
+        zoom: "hover:scale-110",
+        lift: "hover:-translate-y-2",
       },
     },
     defaultVariants: {
-      aspectRatio: 'square',
-      hover: 'scale',
+      aspectRatio: "square",
+      hover: "scale",
     },
-  }
+  },
 );
 
 const lightboxVariants = cva(
-  'fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm',
+  "fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm",
   {
     variants: {
       animation: {
-        fade: 'animate-in fade-in duration-300',
-        slide: 'animate-in slide-in-from-bottom duration-300',
-        zoom: 'animate-in zoom-in duration-300',
+        fade: "animate-in fade-in duration-300",
+        slide: "animate-in slide-in-from-bottom duration-300",
+        zoom: "animate-in zoom-in duration-300",
       },
     },
     defaultVariants: {
-      animation: 'fade',
+      animation: "fade",
     },
-  }
+  },
 );
 
 export interface GalleryImage {
@@ -84,12 +82,12 @@ export interface GalleryProps extends VariantProps<typeof galleryVariants> {
   className?: string;
   itemClassName?: string;
   showLightbox?: boolean;
-  lightboxAnimation?: VariantProps<typeof lightboxVariants>['animation'];
+  lightboxAnimation?: VariantProps<typeof lightboxVariants>["animation"];
   onImageClick?: (image: GalleryImage, index: number) => void;
-  itemHover?: VariantProps<typeof galleryItemVariants>['hover'];
-  itemAspectRatio?: VariantProps<typeof galleryItemVariants>['aspectRatio'];
+  itemHover?: VariantProps<typeof galleryItemVariants>["hover"];
+  itemAspectRatio?: VariantProps<typeof galleryItemVariants>["aspectRatio"];
   showThumbnails?: boolean;
-  thumbnailSize?: 'sm' | 'md' | 'lg';
+  thumbnailSize?: "sm" | "md" | "lg";
 }
 
 export const Gallery: React.FC<GalleryProps> = ({
@@ -97,26 +95,41 @@ export const Gallery: React.FC<GalleryProps> = ({
   className,
   itemClassName,
   columns = 3,
-  spacing = 'md',
+  spacing = "md",
   showLightbox = true,
-  lightboxAnimation = 'fade',
+  lightboxAnimation = "fade",
   onImageClick,
-  itemHover = 'scale',
-  itemAspectRatio = 'square',
+  itemHover = "scale",
+  itemAspectRatio = "square",
   showThumbnails = false,
-  thumbnailSize: _thumbnailSize = 'md',
+  thumbnailSize: _thumbnailSize = "md",
   ...props
 }) => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
-  const handleImageClick = useCallback((image: GalleryImage, index: number) => {
-    if (showLightbox) {
-      setSelectedImage(image);
-      setSelectedIndex(index);
-    }
-    onImageClick?.(image, index);
-  }, [showLightbox, onImageClick]);
+  /**
+   * The item that opened the lightbox, so focus can go back to it.
+   *
+   * Radix restores focus to whatever was focused when the dialog mounted, and in
+   * this tree it did not: focus came back to `document.body`, measured rather
+   * than assumed. Remembering the element and putting focus back explicitly is
+   * both more certain and more precise - this is the exact item, not whatever
+   * happened to be focused at the time.
+   */
+  const triggerRef = useRef<HTMLElement | null>(null);
+
+  const handleImageClick = useCallback(
+    (image: GalleryImage, index: number, trigger?: HTMLElement | null) => {
+      if (trigger) triggerRef.current = trigger;
+      if (showLightbox) {
+        setSelectedImage(image);
+        setSelectedIndex(index);
+      }
+      onImageClick?.(image, index);
+    },
+    [showLightbox, onImageClick],
+  );
 
   const handleCloseLightbox = useCallback(() => {
     setSelectedImage(null);
@@ -139,19 +152,23 @@ export const Gallery: React.FC<GalleryProps> = ({
     }
   }, [selectedIndex, images]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleCloseLightbox();
-    } else if (e.key === 'ArrowLeft') {
-      handlePrevious();
-    } else if (e.key === 'ArrowRight') {
-      handleNext();
-    }
-  }, [handleCloseLightbox, handlePrevious, handleNext]);
+  // Escape is Radix's, and it handles it whether or not focus is on this
+  // element - which is the half that was broken. The arrows are ours, and they
+  // work now because focus is inside the dialog to begin with.
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        handlePrevious();
+      } else if (e.key === "ArrowRight") {
+        handleNext();
+      }
+    },
+    [handlePrevious, handleNext],
+  );
 
   return (
     <>
-      <div 
+      <div
         className={cn(galleryVariants({ columns, spacing }), className)}
         {...props}
       >
@@ -159,25 +176,27 @@ export const Gallery: React.FC<GalleryProps> = ({
           <div
             key={image.id || index}
             className={cn(
-              galleryItemVariants({ 
-                aspectRatio: itemAspectRatio, 
-                hover: itemHover 
+              galleryItemVariants({
+                aspectRatio: itemAspectRatio,
+                hover: itemHover,
               }),
-              itemClassName
+              itemClassName,
             )}
             role="button"
             tabIndex={0}
-            onClick={() => handleImageClick(image, index)}
+            onClick={(e) => handleImageClick(image, index, e.currentTarget)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                handleImageClick(image, index);
+                handleImageClick(image, index, e.currentTarget);
               }
             }}
             aria-label={`View image ${index + 1}: ${image.alt}`}
           >
             <img
-              src={showThumbnails && image.thumbnail ? image.thumbnail : image.src}
+              src={
+                showThumbnails && image.thumbnail ? image.thumbnail : image.src
+              }
               alt={image.alt}
               className="w-full h-full object-cover"
               loading="lazy"
@@ -202,90 +221,135 @@ export const Gallery: React.FC<GalleryProps> = ({
         ))}
       </div>
 
-      {selectedImage && showLightbox && (
-        <div
-          className={cn(lightboxVariants({ animation: lightboxAnimation }))}
-          onClick={handleCloseLightbox}
-          onKeyDown={handleKeyDown}
-          tabIndex={-1}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="lightbox-title"
-        >
-          <div 
-            className="relative max-w-4xl max-h-[90vh] mx-4"
-            onClick={(e) => e.stopPropagation()}
+      {/*
+        The lightbox is a Radix Dialog rather than a div with role="dialog".
+
+        It used to be the latter, and it said `aria-modal="true"` without being
+        modal in any respect that matters. Opening it left focus on the gallery
+        item behind it, so `document.activeElement` was still "View image 1";
+        Escape and the arrow keys were bound to the overlay, which never had
+        focus, so neither worked; and every control behind the overlay was still
+        reachable by Tab.
+
+        Radix brings initial focus, focus containment, focus returned to whatever
+        opened it, Escape, scroll locking and aria-hiding the rest of the page.
+        Hand-rolling those is how the original ended up claiming all of them and
+        implementing none. It also generates the ids, which replaces the fixed
+        `lightbox-title` that collided as soon as a page had two galleries.
+      */}
+      <DialogPrimitive.Root
+        open={selectedImage !== null && showLightbox}
+        onOpenChange={(next) => {
+          if (!next) handleCloseLightbox();
+        }}
+      >
+        <DialogPrimitive.Portal>
+          <DialogPrimitive.Overlay
+            className={cn(lightboxVariants({ animation: lightboxAnimation }))}
+          />
+          <DialogPrimitive.Content
+            className="fixed inset-0 z-50 flex items-center justify-center focus:outline-none"
+            onCloseAutoFocus={(event) => {
+              event.preventDefault();
+              triggerRef.current?.focus();
+            }}
+            onKeyDown={handleKeyDown}
+            // Clicking the backdrop closes it, the same as before. The panel
+            // below stops the click from reaching here.
+            onClick={handleCloseLightbox}
           >
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
-              id="lightbox-title"
-            />
-            
-            {(selectedImage.title || selectedImage.description) && (
-              <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
-                {selectedImage.title && (
-                  <h3 className="font-semibold text-lg mb-2">
-                    {selectedImage.title}
-                  </h3>
-                )}
-                {selectedImage.description && (
-                  <p className="text-sm text-white/80">
+            {selectedImage && (
+              <div
+                className="relative max-w-4xl max-h-[90vh] mx-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/*
+                  Radix names the dialog from its Title, and warns without one.
+                  The alt text is the only description of the image there is, so
+                  it is the name; it is visually hidden because the image itself
+                  is already on screen.
+                */}
+                <DialogPrimitive.Title className="sr-only">
+                  {selectedImage.title || selectedImage.alt}
+                </DialogPrimitive.Title>
+                {selectedImage.description ? (
+                  <DialogPrimitive.Description className="sr-only">
                     {selectedImage.description}
-                  </p>
-                )}
-              </div>
-            )}
+                  </DialogPrimitive.Description>
+                ) : null}
 
-            {/* Navigation buttons */}
-            {images.length > 1 && (
-              <>
-                {selectedIndex > 0 && (
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="max-w-full max-h-full object-contain rounded-lg"
+                />
+
+                {(selectedImage.title || selectedImage.description) && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/80 text-white p-4 rounded-b-lg">
+                    {selectedImage.title && (
+                      <h3 className="font-semibold text-lg mb-2">
+                        {selectedImage.title}
+                      </h3>
+                    )}
+                    {selectedImage.description && (
+                      <p className="text-sm text-white/80">
+                        {selectedImage.description}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Navigation buttons */}
+                {images.length > 1 && (
+                  <>
+                    {selectedIndex > 0 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+                        onClick={handlePrevious}
+                        aria-label="Previous image"
+                      >
+                        ←
+                      </Button>
+                    )}
+                    {selectedIndex < images.length - 1 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
+                        onClick={handleNext}
+                        aria-label="Next image"
+                      >
+                        →
+                      </Button>
+                    )}
+                  </>
+                )}
+
+                {/* Close button */}
+                <DialogPrimitive.Close asChild>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
-                    onClick={handlePrevious}
-                    aria-label="Previous image"
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
+                    aria-label="Close lightbox"
                   >
-                    ←
+                    ✕
                   </Button>
-                )}
-                {selectedIndex < images.length - 1 && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white"
-                    onClick={handleNext}
-                    aria-label="Next image"
-                  >
-                    →
-                  </Button>
-                )}
-              </>
-            )}
+                </DialogPrimitive.Close>
 
-            {/* Close button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
-              onClick={handleCloseLightbox}
-              aria-label="Close lightbox"
-            >
-              ✕
-            </Button>
-
-            {/* Image counter */}
-            {images.length > 1 && (
-              <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-                {selectedIndex + 1} / {images.length}
+                {/* Image counter */}
+                {images.length > 1 && (
+                  <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    {selectedIndex + 1} / {images.length}
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        </div>
-      )}
+          </DialogPrimitive.Content>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     </>
   );
 };
