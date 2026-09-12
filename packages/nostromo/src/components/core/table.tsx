@@ -135,7 +135,17 @@ export interface TableProps<T = Record<string, unknown>> extends VariantProps<
   };
   selection?: {
     selectedRowKeys: (string | number)[];
+    /**
+     * `selectedRowKeys` is the complete selection, including keys for records on
+     * other pages. `selectedRows` is only the subset present in `data`, because
+     * the component has never been given the rest. Paginating server-side means
+     * keeping your own key-to-record map and treating the keys as authoritative.
+     */
     onChange: (selectedRowKeys: (string | number)[], selectedRows: T[]) => void;
+    /**
+     * A disabled row cannot be selected individually, and select-all skips it
+     * rather than selecting it on the consumer's behalf.
+     */
     getCheckboxProps?: (record: T) => { disabled?: boolean };
   };
 }
@@ -234,12 +244,50 @@ function TableComponent<
     onSort?.(column, newDirection);
   };
 
+  /**
+   * Nullish, not falsy.
+   *
+   * `record[rowKey] || index` reads a record with `id: 0` as having no key and
+   * falls back to its position, so a zero-keyed row at index 1 reported itself as
+   * key `1` - which is a different record's id. Empty string is a legitimate key
+   * for the same reason.
+   */
   const getRowKey = (record: T, index: number): string | number => {
     if (typeof rowKey === "function") {
       return rowKey(record);
     }
-    return (record[rowKey] as string | number) || index;
+    return (record[rowKey] as string | number | undefined) ?? index;
   };
+
+  const isRowDisabled = (record: T): boolean =>
+    selection?.getCheckboxProps?.(record).disabled === true;
+
+  /**
+   * The rows on this page that a checkbox can actually act on.
+   *
+   * Everything below is expressed in terms of these rather than in terms of
+   * `data.length` or `selectedRowKeys.length`. Selection is a list of keys that
+   * may name records on other pages, so comparing its length to the number of
+   * visible rows answered a question nobody asked: with two rows on screen and
+   * two rows selected elsewhere, "select all" showed as checked.
+   */
+  const selectableKeys = selection
+    ? data
+        .map((record, index) => ({ record, key: getRowKey(record, index) }))
+        .filter(({ record }) => !isRowDisabled(record))
+        .map(({ key }) => key)
+    : [];
+
+  /**
+   * The records behind a set of keys, as far as this page can tell.
+   *
+   * A key belonging to another page cannot be resolved here, because the
+   * component has only been given the current page. The keys are the complete
+   * answer; the records are the subset that is on screen. Documented on the prop,
+   * because a consumer paginating server-side has to keep its own map.
+   */
+  const recordsForKeys = (keys: (string | number)[]): T[] =>
+    data.filter((record, index) => keys.includes(getRowKey(record, index)));
 
   const isRowSelected = (record: T, index: number): boolean => {
     if (!selection) return false;
@@ -252,39 +300,51 @@ function TableComponent<
     index: number,
     checked: boolean,
   ): void => {
-    if (!selection) return;
+    if (!selection || isRowDisabled(record)) return;
 
     const key = getRowKey(record, index);
     const newSelectedKeys = checked
-      ? [...selection.selectedRowKeys, key]
+      ? selection.selectedRowKeys.includes(key)
+        ? selection.selectedRowKeys
+        : [...selection.selectedRowKeys, key]
       : selection.selectedRowKeys.filter((k) => k !== key);
 
-    const newSelectedRows = data.filter((_, i) =>
-      newSelectedKeys.includes(getRowKey(_, i)),
-    );
-
-    selection.onChange(newSelectedKeys, newSelectedRows);
+    selection.onChange(newSelectedKeys, recordsForKeys(newSelectedKeys));
   };
 
+  /**
+   * Adds or removes this page's selectable rows, and leaves every other key
+   * alone.
+   *
+   * It used to replace the whole selection with either every visible key or
+   * nothing, so paging through a table and pressing select-all on the second page
+   * silently discarded the first page's selection - and it included rows the
+   * consumer had disabled.
+   */
   const handleSelectAll = (checked: boolean) => {
     if (!selection) return;
 
-    const allKeys = data.map((record, index) => getRowKey(record, index));
-    const newSelectedKeys = checked ? allKeys : [];
-    const newSelectedRows = checked ? data : [];
+    const others = selection.selectedRowKeys.filter(
+      (key) => !selectableKeys.includes(key),
+    );
+    const newSelectedKeys = checked ? [...others, ...selectableKeys] : others;
 
-    selection.onChange(newSelectedKeys, newSelectedRows);
+    selection.onChange(newSelectedKeys, recordsForKeys(newSelectedKeys));
   };
+
+  const selectedOnPage = selectableKeys.filter((key) =>
+    selection?.selectedRowKeys.includes(key),
+  );
 
   const isAllSelected =
     selection &&
-    data.length > 0 &&
-    selection.selectedRowKeys.length === data.length;
+    selectableKeys.length > 0 &&
+    selectedOnPage.length === selectableKeys.length;
 
   const isIndeterminate =
     selection &&
-    selection.selectedRowKeys.length > 0 &&
-    selection.selectedRowKeys.length < data.length;
+    selectedOnPage.length > 0 &&
+    selectedOnPage.length < selectableKeys.length;
 
   return (
     <div className="w-full overflow-x-auto">
