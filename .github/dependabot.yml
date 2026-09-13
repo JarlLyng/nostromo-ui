@@ -75,6 +75,12 @@ updates:
       # list, so the next package to land in this position fails a check rather
       # than a week of CI.
       - dependency-name: "postcss"
+      # zod joined the same set when the docs gained the react-hook-form
+      # examples as a devDependency: it is pinned exactly in pnpm.overrides and
+      # is now also a direct dependency, which is the combination above. Caught
+      # by `pnpm validate:dependabot` rather than by a failing PR, which is what
+      # that check is for.
+      - dependency-name: "zod"
       # Ignore major updates for TypeScript (breaking changes)
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]

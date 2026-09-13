@@ -82,14 +82,8 @@ export default function Example() {
     <LogoWall
       title="Trusted by leading companies"
       logos={[
-        {
-          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%201%3C/text%3E%3C/svg%3E",
-          alt: "Company 1",
-        },
-        {
-          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3ELogo%202%3C/text%3E%3C/svg%3E",
-          alt: "Company 2",
-        },
+        { id: "wy", name: "Weyland-Yutani", logo: "/logos/weyland.svg" },
+        { id: "usc", name: "USCSS", logo: "/logos/uscss.svg" },
       ]}
     />
   );

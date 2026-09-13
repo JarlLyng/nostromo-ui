@@ -55,6 +55,11 @@ jobs:
       - name: Check Dependabot's ignore list against pnpm.overrides
         run: pnpm validate:dependabot
 
+      # The two component counts the README states by hand. Here for the same
+      # reason as the check above: it reads the tree and needs no build.
+      - name: Check the documented counts against the repository
+        run: pnpm validate:doc-counts
+
   type-check:
     runs-on: ubuntu-latest
     steps:

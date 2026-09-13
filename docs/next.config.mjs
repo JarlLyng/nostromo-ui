@@ -1,9 +1,10 @@
-import nextra from 'nextra'
-import path from 'path'
-import { fileURLToPath } from 'url'
+import nextra from "nextra";
+import rehypeMarkFragments from "./lib/rehype-mark-fragments.mjs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // No `theme` or `themeConfig`: Nextra 4 takes those as props on the Layout
 // component in app/layout.tsx instead, and theme.config.tsx is gone.
@@ -12,7 +13,12 @@ const __dirname = path.dirname(__filename)
 // auto-injected an unlayered `import 'nextra-theme-docs/style.css'` that broke
 // Tailwind v4's cascade. Nextra 4 declares its own cascade layers, so the alias
 // and the layered re-import it existed for are both gone.
-const withNextra = nextra({})
+// rehypeMarkFragments has to run here rather than in the code block component:
+// Nextra renders the language from the info string and discards the rest, so a
+// fence's `fragment` marker never reaches the page on its own.
+const withNextra = nextra({
+  mdxOptions: { rehypePlugins: [rehypeMarkFragments] },
+});
 
 // basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
 // IMPORTANT: allow empty string as a valid value (custom domain)
@@ -21,16 +27,16 @@ const withNextra = nextra({})
 const basePath =
   process.env.NEXT_PUBLIC_BASE_PATH !== undefined
     ? process.env.NEXT_PUBLIC_BASE_PATH
-    : process.env.NODE_ENV === 'production'
-      ? '/nostromo-ui'
-      : ''
+    : process.env.NODE_ENV === "production"
+      ? "/nostromo-ui"
+      : "";
 
 /** @type {import('next').NextConfig} */
 export default withNextra({
-  outputFileTracingRoot: path.join(__dirname, '../'),
-  transpilePackages: ['@jarllyng/nostromo'],
+  outputFileTracingRoot: path.join(__dirname, "../"),
+  transpilePackages: ["@jarllyng/nostromo"],
   images: { unoptimized: true },
-  output: 'export',
+  output: "export",
   trailingSlash: true,
   assetPrefix: basePath,
   basePath: basePath,
@@ -41,4 +47,4 @@ export default withNextra({
   // 'useMemoCache')`. The pnpm.overrides in the root package.json pin a single
   // React version across the workspace, which is what actually prevents the
   // duplicate the alias was reaching for.
-})
+});

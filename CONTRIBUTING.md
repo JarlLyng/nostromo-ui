@@ -21,9 +21,18 @@ This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating
 
 ### Prerequisites
 
-- **Node.js**: >= 20.0.0
-- **pnpm**: >= 9.0.0
+Building the library asks for more than using it does, and the two are worth
+keeping apart. These are the workspace's requirements, from the root
+`package.json`:
+
+- **Node.js**: >= 22.22.1
+- **pnpm**: 10.34.5, pinned by `packageManager` - run `corepack enable` and the
+  right version is used automatically
 - **Git**: Latest version
+
+The published package asks only for Node >= 20 and React ^18.2 or ^19. A
+consumer on Node 20 is supported; a contributor on Node 20 cannot install this
+repository.
 
 ### Setup
 
@@ -243,9 +252,29 @@ The snippet must declare a component and export it as `default` - `LiveCode`
 falls back to the last top-level PascalCase declaration, but relying on that is
 how several examples ended up throwing at runtime.
 
-These pages are not type-checked. Nothing catches a prop you imagined, so check
-your example against the component's actual props before you push, and open the
-page locally with `pnpm docs:dev`.
+These pages are type-checked. `pnpm validate:docs-examples` compiles every
+`<LiveCode>` snippet and every fenced block that imports from the package,
+against the built `dist` types rather than against `src`, and it runs in CI. A
+prop you imagined is a failing check with the page and line in the message.
+
+A fenced block that is deliberately partial - a single JSX tag, an object
+literal, a snippet continuing from an import shown earlier - carries `fragment`
+on its fence:
+
+````
+```tsx fragment
+<ResizablePanelGroup className="h-96">
+```
+````
+
+That word is read by the validator, which then skips the block, and by the docs
+build, which labels it "excerpt" on the page. One marker for both, so what the
+check ignores and what the reader is warned about cannot drift apart. Use it
+only when the block genuinely cannot stand alone; reaching for it to silence a
+real error is how the drift it exists to prevent gets back in.
+
+Open the page locally with `pnpm docs:dev` as well: the check compiles an
+example, it does not look at it.
 
 ### README Updates
 

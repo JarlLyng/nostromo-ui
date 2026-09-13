@@ -273,7 +273,7 @@ it says nothing at all. `showYearlyDiscount={false}` removes it, and
 matches what it does. A plan that gives both navigates and calls the handler,
 which is the shape analytics usually wants.
 
-```tsx
+```tsx fragment
 { text: "Get Started", href: "/signup" }              // <a href="/signup">
 { text: "Contact Sales", onClick: openSalesModal }    // <button type="button">
 { text: "Start trial", href: "/signup", onClick: track } // both

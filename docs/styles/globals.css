@@ -158,3 +158,49 @@ h4 {
   letter-spacing: -0.02em;
   font-weight: 700;
 }
+
+/*
+ * Code blocks that are excerpts rather than runnable examples.
+ *
+ * The `fragment` word on the fence is read by two things: the docs type-checker
+ * in scripts/validate-docs-examples.mjs, which holds every other block to a
+ * compiling standard, and lib/rehype-mark-fragments.mjs, which puts the
+ * attribute below on the `<pre>`. One marker, so the page and the check cannot
+ * disagree about which snippets are meant to be copied out.
+ *
+ * The label is the point of #252: Pricing's Usage block described an API the
+ * component never had, and a reader pasted it and watched it throw. A snippet
+ * that was never meant to stand on its own should say so on the page.
+ */
+[data-fragment="true"] pre {
+  position: relative;
+  border-style: dashed;
+}
+
+[data-fragment="true"] {
+  position: relative;
+}
+
+[data-fragment="true"]::before {
+  content: "excerpt";
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 0.125rem 0.5rem;
+  border-bottom-left-radius: 0.375rem;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  /*
+   * The semantic tokens rather than a point on the neutral scale, so the label
+   * follows the theme and the colour scheme without a rule of its own. A
+   * `prefers-color-scheme` block would have been wrong here anyway: this site
+   * switches on `[data-color-scheme]`, so the OS query never fires for the
+   * toggle in the sidebar.
+   */
+  color: hsl(var(--nostromo-color-muted-foreground));
+  background: hsl(var(--nostromo-color-muted));
+}
