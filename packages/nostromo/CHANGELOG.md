@@ -1,5 +1,60 @@
 # @jarllyng/nostromo
 
+## 3.16.0
+
+### Minor Changes
+
+- 1c434e0: Pricing: a real switch, working links, and honest yearly prices.
+
+  The billing toggle was an empty `<button>`: no accessible name, no state, and
+  `type` defaulting to `submit`, so it posted any form it sat inside. It was also
+  rendered inside the header block, which meant it vanished unless you passed a
+  `title` or a `subtitle`. It is now a `role="switch"` with `aria-checked`, a
+  `billingToggleLabel` for its name, `type="button"`, and a place of its own that
+  depends on `onToggleBilling` rather than on headings.
+
+  `PricingPlan.cta.href` was declared and then ignored: every plan rendered a
+  button, so "Get Started" went nowhere without JavaScript, and could not be
+  opened in a new tab. A plan with an `href` now renders an anchor; one with only
+  an `onClick` renders a `type="button"` button; one with both navigates and calls
+  the handler.
+
+  Yearly prices were picked with `showYearly && plan.price.yearly`, a truthiness
+  test. A plan priced at `yearly: 0` fell through to its monthly figure and
+  labelled it `/year`, and so did a plan with no yearly price at all. The check is
+  now on `undefined`, and a plan without a yearly price keeps its own period.
+
+  The "(Save 20%)" beside the toggle was hardcoded, unrelated to the prices on the
+  page and wrong for most of them. It is now computed from the plans: the best
+  saving, exact when they agree and "up to" when they differ, nothing at all when
+  there is nothing to save. `showYearlyDiscount={false}` removes it and
+  `yearlyDiscountLabel` rewords it.
+
+  Closes #245, #246, #247.
+
+### Patch Changes
+
+- 13cbfb9: Gallery: the lightbox is a real modal now, not one that said so.
+
+  It carried `aria-modal="true"` and implemented none of it (#244). Opening it left
+  focus on the gallery item behind the overlay, so `document.activeElement` was
+  still "View image 1"; Escape and the arrow keys were bound to the overlay, which
+  never had focus, so pressing Escape did nothing; and everything behind the overlay
+  stayed reachable by Tab.
+
+  It is a Radix Dialog now, which brings initial focus, focus containment, Escape,
+  scroll locking and aria-hiding the rest of the page in one piece. Hand-rolling
+  those is how the original came to claim all of them and do none.
+
+  Focus returns to the gallery item that opened the lightbox. That part is explicit
+  rather than left to the primitive: Radix restores focus to whatever was focused
+  when the dialog mounted, and in this tree it came back to `document.body` instead,
+  measured rather than assumed.
+
+  The dialog is also named per instance, from the image's `title` falling back to
+  its `alt`. It used to point at a fixed `lightbox-title` id, which collided as soon
+  as a page had two galleries.
+
 ## 3.15.1
 
 ### Patch Changes
