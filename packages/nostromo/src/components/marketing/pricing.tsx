@@ -1,72 +1,66 @@
-import React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '../../lib/utils';
+import React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils";
 
-const pricingVariants = cva(
-  'py-16 md:py-24',
-  {
-    variants: {
-      variant: {
-        default: 'bg-background',
-        muted: 'bg-muted/30',
-        accent: 'bg-accent/10',
-      },
+const pricingVariants = cva("py-16 md:py-24", {
+  variants: {
+    variant: {
+      default: "bg-background",
+      muted: "bg-muted/30",
+      accent: "bg-accent/10",
     },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-const pricingGridVariants = cva(
-  'grid gap-8',
-  {
-    variants: {
-      columns: {
-        1: 'grid-cols-1 max-w-md mx-auto',
-        2: 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto',
-        3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto',
-        4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto',
-      },
+const pricingGridVariants = cva("grid gap-8", {
+  variants: {
+    columns: {
+      1: "grid-cols-1 max-w-md mx-auto",
+      2: "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto",
+      3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto",
+      4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto",
     },
-    defaultVariants: {
-      columns: 3,
-    },
-  }
-);
+  },
+  defaultVariants: {
+    columns: 3,
+  },
+});
 
 const pricingCardVariants = cva(
-  'relative p-8 rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200',
+  "relative p-8 rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200",
   {
     variants: {
       variant: {
-        default: 'border-border',
-        accent: 'border-accent/20 bg-accent/5',
-        popular: 'border-primary/20 bg-primary/5 ring-2 ring-primary/10',
-        muted: 'border-muted bg-muted/20',
+        default: "border-border",
+        accent: "border-accent/20 bg-accent/5",
+        popular: "border-primary/20 bg-primary/5 ring-2 ring-primary/10",
+        muted: "border-muted bg-muted/20",
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: "default",
     },
-  }
+  },
 );
 
 const pricingBadgeVariants = cva(
-  'absolute -top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-medium',
+  "absolute -top-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-medium",
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground',
-        accent: 'bg-accent text-accent-foreground',
-        success: 'bg-success-100 text-success-800',
-        warning: 'bg-warning-100 text-warning-800',
+        default: "bg-primary text-primary-foreground",
+        accent: "bg-accent text-accent-foreground",
+        success: "bg-success-100 text-success-800",
+        warning: "bg-warning-100 text-warning-800",
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: "default",
     },
-  }
+  },
 );
 
 export interface PricingFeature {
@@ -93,7 +87,7 @@ export interface PricingPlan {
   };
   badge?: {
     text: string;
-    variant?: VariantProps<typeof pricingBadgeVariants>['variant'];
+    variant?: VariantProps<typeof pricingBadgeVariants>["variant"];
   };
   popular?: boolean;
 }
@@ -102,10 +96,73 @@ export interface PricingProps extends VariantProps<typeof pricingVariants> {
   plans: PricingPlan[];
   title?: string;
   subtitle?: string;
-  columns?: VariantProps<typeof pricingGridVariants>['columns'];
+  columns?: VariantProps<typeof pricingGridVariants>["columns"];
   className?: string;
   showYearly?: boolean;
   onToggleBilling?: (yearly: boolean) => void;
+  /**
+   * Accessible name for the monthly/yearly switch.
+   *
+   * The visible "Monthly" and "Yearly" text sits either side of it, so it has no
+   * name of its own to take. It used to have none at all: an empty button, which
+   * axe reports as `button-name`.
+   */
+  billingToggleLabel?: string;
+  /**
+   * Show what a yearly plan saves. Defaults to true, and shows nothing when the
+   * prices do not actually save anything.
+   */
+  showYearlyDiscount?: boolean;
+  /** The wording of that saving. */
+  yearlyDiscountLabel?: (percent: number, exact: boolean) => string;
+}
+
+/**
+ * What a plan costs in the period being shown, and what to call that period.
+ *
+ * `showYearly && plan.price.yearly` was a truthiness test, so a plan priced at
+ * `yearly: 0` - free for the year, which is a real offer - fell through to the
+ * monthly figure and labelled it `/year`. A plan with no yearly price did the
+ * same, quietly presenting a monthly amount as an annual one.
+ *
+ * A missing yearly price now keeps its own period rather than borrowing the
+ * wrong one. Multiplying the monthly price by twelve would be inventing a number
+ * the caller did not give.
+ */
+function displayPrice(plan: PricingPlan, showYearly: boolean) {
+  const yearly = plan.price.yearly;
+  if (showYearly && yearly !== undefined) {
+    return { amount: yearly, period: plan.period ?? "year" };
+  }
+  return { amount: plan.price.monthly, period: plan.period ?? "month" };
+}
+
+/**
+ * What yearly billing actually saves, from the prices given.
+ *
+ * The component used to say "(Save 20%)" next to the Yearly label always, whether
+ * the yearly prices saved twenty percent, nothing, or cost more. That is a claim
+ * about money made without looking at any.
+ *
+ * Plans can disagree, and the label sits next to one global switch, so the number
+ * is the best saving on offer and says "up to" when the plans differ. Nothing is
+ * claimed when nothing is saved.
+ */
+function yearlySaving(plans: PricingPlan[]): {
+  percent: number;
+  exact: boolean;
+} | null {
+  const savings = plans
+    .filter((plan) => plan.price.yearly !== undefined && plan.price.monthly > 0)
+    .map((plan) => {
+      const fullYear = plan.price.monthly * 12;
+      return Math.round(((fullYear - plan.price.yearly!) / fullYear) * 100);
+    })
+    .filter((percent) => percent > 0);
+
+  if (savings.length === 0) return null;
+  const best = Math.max(...savings);
+  return { percent: best, exact: savings.every((s) => s === best) };
 }
 
 export const Pricing: React.FC<PricingProps> = ({
@@ -117,11 +174,16 @@ export const Pricing: React.FC<PricingProps> = ({
   className,
   showYearly = false,
   onToggleBilling,
+  billingToggleLabel = "Bill yearly",
+  showYearlyDiscount = true,
+  yearlyDiscountLabel = (percent, exact) =>
+    exact ? `(Save ${percent}%)` : `(Save up to ${percent}%)`,
   ...props
 }) => {
-  const formatPrice = (price: number, currency = 'USD') => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
+  const saving = showYearlyDiscount ? yearlySaving(plans) : null;
+  const formatPrice = (price: number, currency = "USD") => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
       currency,
       minimumFractionDigits: 0,
     }).format(price);
@@ -138,55 +200,87 @@ export const Pricing: React.FC<PricingProps> = ({
               </h2>
             )}
             {subtitle && (
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 {subtitle}
               </p>
             )}
-            
-            {onToggleBilling && (
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <span className={cn('text-sm', !showYearly && 'text-foreground font-medium')}>
-                  Monthly
-                </span>
-                <button
-                  onClick={() => onToggleBilling(!showYearly)}
-                  className="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                >
-                  <span
-                    className={cn(
-                      'inline-block h-4 w-4 transform rounded-full bg-background transition-transform',
-                      showYearly ? 'translate-x-6' : 'translate-x-1'
-                    )}
-                  />
-                </button>
-                <span className={cn('text-sm', showYearly && 'text-foreground font-medium')}>
-                  Yearly
-                  <span className="ml-1 text-xs text-success-600">
-                    (Save 20%)
-                  </span>
-                </span>
-              </div>
-            )}
           </div>
         )}
-        
+
+        {/*
+          Its own block, keyed on the billing callback.
+
+          It used to live inside the heading, so a Pricing with no `title` and no
+          `subtitle` - both optional props - rendered no way to switch between
+          monthly and yearly at all, however the callback was configured.
+        */}
+        {onToggleBilling && (
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <span
+              className={cn(
+                "text-sm",
+                !showYearly && "text-foreground font-medium",
+              )}
+            >
+              Monthly
+            </span>
+            {/*
+              A switch, with a name and a state. It was an empty <button>: axe
+              reported `button-name`, nothing announced which way it was set, and
+              without a type it submitted any form it happened to sit in.
+            */}
+            <button
+              type="button"
+              role="switch"
+              aria-checked={showYearly}
+              aria-label={billingToggleLabel}
+              onClick={() => onToggleBilling(!showYearly)}
+              className="relative inline-flex h-6 w-11 items-center rounded-full bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              <span
+                className={cn(
+                  "inline-block h-4 w-4 transform rounded-full bg-background transition-transform",
+                  showYearly ? "translate-x-6" : "translate-x-1",
+                )}
+              />
+            </button>
+            <span
+              className={cn(
+                "text-sm",
+                showYearly && "text-foreground font-medium",
+              )}
+            >
+              Yearly
+              {saving && (
+                <span className="ml-1 text-xs text-success-600">
+                  {yearlyDiscountLabel(saving.percent, saving.exact)}
+                </span>
+              )}
+            </span>
+          </div>
+        )}
+
         <div className={cn(pricingGridVariants({ columns }))}>
           {plans.map((plan, idx) => (
             <div
               key={plan.id || idx}
               className={cn(
-                pricingCardVariants({ 
-                  variant: plan.popular ? 'popular' : 'default' 
+                pricingCardVariants({
+                  variant: plan.popular ? "popular" : "default",
                 }),
-                plan.popular && 'scale-105'
+                plan.popular && "scale-105",
               )}
             >
               {plan.badge && (
-                <div className={cn(pricingBadgeVariants({ variant: plan.badge.variant }))}>
+                <div
+                  className={cn(
+                    pricingBadgeVariants({ variant: plan.badge.variant }),
+                  )}
+                >
                   {plan.badge.text}
                 </div>
               )}
-              
+
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 {plan.description && (
@@ -197,52 +291,84 @@ export const Pricing: React.FC<PricingProps> = ({
                 <div className="mb-4">
                   <span className="text-4xl font-bold">
                     {formatPrice(
-                      showYearly && plan.price.yearly 
-                        ? plan.price.yearly 
-                        : plan.price.monthly,
-                      plan.currency
+                      displayPrice(plan, showYearly).amount,
+                      plan.currency,
                     )}
                   </span>
                   <span className="text-muted-foreground ml-1">
-                    /{plan.period || (showYearly ? 'year' : 'month')}
+                    /{displayPrice(plan, showYearly).period}
                   </span>
                 </div>
               </div>
-              
+
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature) => (
                   <li key={feature.id} className="flex items-center gap-3">
                     <span
                       className={cn(
-                        'w-5 h-5 rounded-full flex items-center justify-center text-xs',
+                        "w-5 h-5 rounded-full flex items-center justify-center text-xs",
                         feature.included
-                          ? 'bg-success-100 text-success-600'
-                          : 'bg-muted text-muted-foreground'
+                          ? "bg-success-100 text-success-600"
+                          : "bg-muted text-muted-foreground",
                       )}
                     >
-                      {feature.included ? '✓' : '✗'}
+                      {feature.included ? "✓" : "✗"}
                     </span>
-                    <span className={cn(
-                      'text-sm',
-                      !feature.included && 'text-muted-foreground line-through'
-                    )}>
+                    <span
+                      className={cn(
+                        "text-sm",
+                        !feature.included &&
+                          "text-muted-foreground line-through",
+                      )}
+                    >
                       {feature.name}
                     </span>
                   </li>
                 ))}
               </ul>
-              
-              <button
-                className={cn(
-                  'w-full py-3 px-4 rounded-lg font-medium transition-colors',
-                  plan.popular
-                    ? 'bg-primary text-primary-foreground hover:bg-primary/90'
-                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
-                )}
-                onClick={plan.cta.onClick}
-              >
-                {plan.cta.text}
-              </button>
+
+              {/*
+                A link when the plan gives a destination, a button when it gives
+                a callback.
+
+                `PricingPlan.cta` has had an optional `href` since it was written
+                and nothing ever read it, so a plan configured with a destination
+                and no `onClick` rendered a button that did nothing at all.
+
+                With both, it is a link that also runs the callback: a plan that
+                navigates to checkout and reports the click on the way is the
+                normal shape of that, and a button could not do the navigating.
+
+                `type="button"` on the callback form, so a pricing table inside a
+                form does not submit it.
+              */}
+              {plan.cta.href ? (
+                <a
+                  href={plan.cta.href}
+                  onClick={plan.cta.onClick}
+                  className={cn(
+                    "block w-full py-3 px-4 rounded-lg font-medium text-center transition-colors",
+                    plan.popular
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80",
+                  )}
+                >
+                  {plan.cta.text}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  className={cn(
+                    "w-full py-3 px-4 rounded-lg font-medium transition-colors",
+                    plan.popular
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80",
+                  )}
+                  onClick={plan.cta.onClick}
+                >
+                  {plan.cta.text}
+                </button>
+              )}
             </div>
           ))}
         </div>

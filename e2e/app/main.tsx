@@ -10,6 +10,7 @@ import { GalleryCase } from "./cases/gallery";
 import { DrawerCase } from "./cases/drawer";
 import { FocusCase } from "./cases/focus";
 import { InputOtpCase } from "./cases/input-otp";
+import { PricingCase } from "./cases/pricing";
 import { ResizableCase } from "./cases/resizable";
 import { SidebarCase } from "./cases/sidebar";
 import { ThemeCase } from "./cases/theme";
@@ -31,6 +32,7 @@ const CASES: Record<string, React.ComponentType> = {
   focus: FocusCase,
   gallery: GalleryCase,
   "input-otp": InputOtpCase,
+  pricing: PricingCase,
   resizable: ResizableCase,
   sidebar: SidebarCase,
   theme: ThemeCase,
