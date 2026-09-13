@@ -140,6 +140,45 @@ export default function PricingSimpleExample() {
   )
 }`} noInline={true} />
 
+<LiveCode code={`import { Pricing } from '@jarllyng/nostromo'
+
+export default function PricingBillingExample() {
+  const [yearly, setYearly] = React.useState(false)
+
+return (
+
+<Pricing
+title="Monthly or yearly"
+showYearly={yearly}
+onToggleBilling={setYearly}
+columns={2}
+plans={[
+{
+id: 'starter',
+name: 'Starter',
+price: { monthly: 9, yearly: 90 },
+features: [
+{ id: 'projects', name: 'Up to 5 projects', included: true },
+{ id: 'sso', name: 'SSO', included: false },
+],
+cta: { text: 'Get Started', href: '#' },
+},
+{
+id: 'team',
+name: 'Team',
+price: { monthly: 29, yearly: 290 },
+popular: true,
+features: [
+{ id: 'projects', name: 'Unlimited projects', included: true },
+{ id: 'sso', name: 'SSO', included: true },
+],
+cta: { text: 'Contact Sales', onClick: () => alert('Sales') },
+},
+]}
+/>
+)
+}`} noInline={true} />
+
 ## Import
 
 ```tsx
@@ -159,10 +198,15 @@ export default function Example() {
       title="Choose Your Plan"
       plans={[
         {
+          id: "starter",
           name: "Starter",
-          price: "$9",
+          price: { monthly: 9 },
           period: "month",
-          features: ["Feature 1", "Feature 2"],
+          features: [
+            { id: "projects", name: "Up to 5 projects", included: true },
+            { id: "sso", name: "SSO", included: false },
+          ],
+          cta: { text: "Get Started", href: "/signup" },
         },
       ]}
     />
@@ -170,32 +214,116 @@ export default function Example() {
 }
 ```
 
-## Code Examples
+## Monthly and yearly
+
+The switch appears as soon as you pass `onToggleBilling`, and `showYearly` says
+which way it is set. The component does not hold that state itself, so the
+period shown is always the one you asked for.
+
+A plan is billed yearly only if it has a `yearly` price. One without keeps its
+monthly amount and its monthly period, rather than presenting a monthly figure
+under a `/year` label.
+
+```tsx
+import React from "react";
+import { Pricing } from "@jarllyng/nostromo";
+
+export default function Example() {
+  const [yearly, setYearly] = React.useState(false);
+
+  return (
+    <Pricing
+      showYearly={yearly}
+      onToggleBilling={setYearly}
+      plans={[
+        {
+          id: "pro",
+          name: "Pro",
+          price: { monthly: 29, yearly: 290 },
+          features: [{ id: "sso", name: "SSO", included: true }],
+          cta: { text: "Start free trial", href: "/signup" },
+        },
+      ]}
+    />
+  );
+}
+```
+
+The saving beside the switch is worked out from the prices themselves: 290
+against 29 a month is 17% off, so that is what it says. When the plans save
+different amounts it reports the best one as "up to", and when nothing is saved
+it says nothing at all. `showYearlyDiscount={false}` removes it, and
+`yearlyDiscountLabel` rewords it:
+
+```tsx
+<Pricing
+  showYearly={yearly}
+  onToggleBilling={setYearly}
+  billingToggleLabel="Skift til årlig betaling"
+  yearlyDiscountLabel={(percent, exact) =>
+    exact ? `(Spar ${percent}%)` : `(Spar op til ${percent}%)`
+  }
+  plans={plans}
+/>
+```
+
+## Calls to action
+
+`cta.href` renders a link and `cta.onClick` renders a button, so the control
+matches what it does. A plan that gives both navigates and calls the handler,
+which is the shape analytics usually wants.
+
+```tsx
+{ text: "Get Started", href: "/signup" }              // <a href="/signup">
+{ text: "Contact Sales", onClick: openSalesModal }    // <button type="button">
+{ text: "Start trial", href: "/signup", onClick: track } // both
+```
 
 ## Props
 
-| Prop              | Type                                      | Default     | Required | Description                                              |
-| ----------------- | ----------------------------------------- | ----------- | -------- | -------------------------------------------------------- |
-| `plans`           | `PricingPlan[]`                           | -           | **Yes**  | Array of pricing plans (see PricingPlan interface below) |
-| `title`           | `string`                                  | `undefined` | No       | Section title                                            |
-| `subtitle`        | `string`                                  | `undefined` | No       | Section subtitle                                         |
-| `columns`         | `1 \| 2 \| 3 \| 4`                        | `3`         | No       | Number of columns in grid                                |
-| `variant`         | `"default" \| "featured" \| "comparison"` | `"default"` | No       | Visual variant                                           |
-| `showYearly`      | `boolean`                                 | `false`     | No       | Whether to show yearly billing toggle                    |
-| `onToggleBilling` | `(yearly: boolean) => void`               | `undefined` | No       | Callback when billing period toggles                     |
-| `className`       | `string`                                  | `undefined` | No       | Additional CSS classes                                   |
+| Prop                  | Type                                          | Default                   | Required | Description                                       |
+| --------------------- | --------------------------------------------- | ------------------------- | -------- | ------------------------------------------------- |
+| `plans`               | `PricingPlan[]`                               | -                         | **Yes**  | The plans to show (see the interface below)       |
+| `title`               | `string`                                      | `undefined`               | No       | Section title                                     |
+| `subtitle`            | `string`                                      | `undefined`               | No       | Section subtitle                                  |
+| `columns`             | `1 \| 2 \| 3 \| 4`                            | `3`                       | No       | Columns in the grid                               |
+| `variant`             | `"default" \| "muted" \| "accent"`            | `"default"`               | No       | Section background                                |
+| `showYearly`          | `boolean`                                     | `false`                   | No       | Whether yearly prices are the ones shown          |
+| `onToggleBilling`     | `(yearly: boolean) => void`                   | `undefined`               | No       | Pass it to render the switch; it reports the flip |
+| `billingToggleLabel`  | `string`                                      | `"Bill yearly"`           | No       | Accessible name for that switch                   |
+| `showYearlyDiscount`  | `boolean`                                     | `true`                    | No       | Show what the yearly prices save                  |
+| `yearlyDiscountLabel` | `(percent: number, exact: boolean) => string` | `(percent, exact) => ...` | No       | Wording of the saving                             |
+| `className`           | `string`                                      | `undefined`               | No       | Additional CSS classes                            |
 
-### PricingPlan Interface
+### PricingPlan
 
 ```tsx
 interface PricingPlan {
+  id: string;
   name: string;
-  price: string;
-  period?: string;
   description?: string;
-  features: string[];
-  cta?: React.ReactNode | string;
+  /** `yearly` is optional; a plan without one is never billed yearly. */
+  price: { monthly: number; yearly?: number };
+  currency?: string;
+  /**
+   * Overrides the period label, which is otherwise "month" or "year".
+   * It is used for both, so leave it off if the plan can be billed yearly.
+   */
+  period?: string;
+  features: PricingFeature[];
+  /** `href` renders a link, `onClick` a button, both render a link that calls it. */
+  cta: { text: string; href?: string; onClick?: () => void };
+  badge?: {
+    text: string;
+    variant?: "default" | "accent" | "success" | "warning";
+  };
   popular?: boolean;
-  badge?: string;
+}
+
+interface PricingFeature {
+  id: string;
+  name: string;
+  /** A feature the plan does not have is struck through rather than dropped. */
+  included: boolean;
 }
 ```
