@@ -1,386 +1,98 @@
 # Roadmap
 
-This file describes Nostromo UI's development plan, milestones and priorities. It is updated continuously to reflect the project's current status and future direction.
+What is done, what is next, and what is not planned.
 
-## 📋 Contents
+This file used to describe a plan to reach 1.0.0 and publish to npm, with
+"create the npm organization" as the next focus, while the package was several
+major versions past that and installable from the registry. It also carried a
+"Last reviewed July 2026" beside a "Next review February 2025", two
+incompatible phase numberings, and counts of components and tests that no longer
+matched the repository. Those claims are gone rather than corrected in place: a
+roadmap that reports finished work as pending is worse than none, because it
+sends you to look at the wrong thing.
 
-- [Current Status](#current-status)
-- [What's Next](#whats-next)
-- [Key Metrics](#key-metrics)
-- [Future Roadmap](#future-roadmap)
-- [Success Criteria](#success-criteria)
+The rule that replaces them: nothing here restates a number that is recorded
+somewhere else. Versions, component counts and test counts move every release,
+and a copy of them in this file is a copy that goes stale between one release
+and the next. Where a canonical source exists, this links to it.
 
 ---
 
-## 🎯 Current Status
+## Where the project is
 
-**Current focus**: getting the first release onto npm.
+Published on npm as [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo),
+built and released from CI with npm provenance, so every version on the registry
+is traceable to the commit and workflow that produced it.
 
-The library is feature-complete and tested, the docs site is deployed, and the
-publishing pipeline works end to end. Nothing is installable from the registry
-yet.
+|                                     |                                                                                                  |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Current version and install size    | [npm](https://www.npmjs.com/package/@jarllyng/nostromo)                                          |
+| What changed in each release        | [CHANGELOG.md](https://github.com/JarlLyng/nostromo-ui/blob/main/packages/nostromo/CHANGELOG.md) |
+| Every component, with live examples | [the components index](https://jarllyng.github.io/nostromo-ui/components)                        |
+| What currently passes               | [CI on main](https://github.com/JarlLyng/nostromo-ui/actions)                                    |
 
-### 🧪 Community feedback - not started
+Shipped and not expected to change shape:
 
-This section previously claimed a completed beta phase with 10+ testers, 20+
-issues of feedback, testing across 5+ project setups and confirmed API
-stability. None of that happened. The repository has no external users, and the
-one bug report it has received came from someone finding the docs site broken.
+- Components covering the shadcn/ui surface, each with a documentation page and
+  editable in-page examples.
+- Four themes (Nostromo, Mother, LV-426, Sulaco), switchable at runtime through
+  `[data-theme]` with a separate light and dark scheme. The token layer is
+  bridged with Tailwind v4's `@theme inline`, which is what makes a theme change
+  re-colour the page without rebuilding the stylesheet.
+- CSS-first theming. There is no JavaScript preset and no `tailwind.config.js`
+  to extend.
+- Accessibility tests alongside the unit tests, and WCAG 2.1 AA contrast
+  verified for every theme and scheme by `pnpm audit:contrast`.
+- A browser suite in Chromium and WebKit for the things jsdom cannot answer:
+  layout, the real cascade, pointer physics, `:focus-visible`, media queries.
+- Releases through Changesets, published with OIDC trusted publishing.
 
-Removing the claim rather than restating it: a roadmap that marks unstarted work
-as done is worse than no roadmap, because it stops you looking at the thing that
-actually needs doing.
+---
 
-Real prerequisites for gathering feedback:
+## What is next
 
-- [ ] Publish to npm so the library can be installed at all
+The backlog is the issue tracker, not this file. Anything here without a link is
+an idea rather than a plan.
+
+- [Performance benchmarks in CI](https://github.com/JarlLyng/nostromo-ui/issues/85).
+  Bundle size is already enforced by size-limit; render performance is not
+  measured at all.
+- [A CLI for project setup](https://github.com/JarlLyng/nostromo-ui/issues/87).
+- [Vue support](https://github.com/JarlLyng/nostromo-ui/issues/86). The largest
+  of the three by some distance, and the one most likely to stay open: the
+  themes and tokens port cleanly, the components do not.
+
+[Open issues](https://github.com/JarlLyng/nostromo-ui/issues) is the current
+list, and it is shorter than this file used to imply.
+
+---
+
+## Community feedback: not started
+
+The repository has no external users. An earlier version of this file described
+a completed beta with ten or more testers, twenty or more issues of feedback and
+confirmed API stability. None of that happened.
+
+Being published is the prerequisite, and that is now true. The rest is not:
+
 - [ ] Confirm the documented setup works in a project nobody here wrote
+- [ ] Any feedback from someone who did not write the library
 - [ ] Decide whether the API is stable enough to ask people to build on
 
 ---
 
-## 🚀 What's Next
+## Not planned
 
-### **Phase 1: Stable Release (1.0.0)** ✅ **RELEASED**
+Listed because they were once listed as future work, and leaving them there
+implies an intent that does not exist:
 
-**Target**: ✅ **COMPLETED** (January 2025)  
-**Goal**: Production-ready release
-
-#### **Quality Assurance** ✅ **COMPLETED**
-
-- [x] **Full Documentation** ✅ **COMPLETED**
-  - [x] Complete API reference (API_REFERENCE.md)
-  - [x] Migration guides (MIGRATION_GUIDES.md)
-  - [x] Best practices (BEST_PRACTICES.md)
-  - [x] Troubleshooting (TROUBLESHOOTING.md)
-
-- [x] **Accessibility Audit** ✅ **COMPLETED**
-  - [x] WCAG 2.1 AA compliance (338 accessibility tests)
-  - [x] Screen reader testing
-  - [x] Keyboard navigation
-  - [x] Color contrast verification
-
-- [x] **Performance Audit** ✅ **COMPLETED**
-  - [x] Bundle size optimization
-  - [x] Runtime performance
-  - [x] Memory usage
-  - [x] Loading times
-
-#### **Stability & Support** ✅ **COMPLETED**
-
-- [x] **Semver Stability** ✅ **COMPLETED**
-  - [x] API stability guarantees
-  - [x] Breaking change policy
-  - [x] Migration guides
-
-- [x] **Community Support** ✅ **COMPLETED**
-  - [x] GitHub discussions (activated)
-  - [x] Issue templates (4 professional templates)
-  - [x] Contribution guidelines (existing)
-
-- [x] **Documentation Cleanup** ✅ **COMPLETED**
-  - [x] Consolidated redundant files (28 → 17 files)
-  - [x] Fixed fake emails and URLs
-  - [x] Updated cursor rules to prevent AI from inventing information
-  - [x] Merged COMPONENT_API.md into API_REFERENCE.md
-  - [x] Merged TECHNICAL_SETUP.md into ARCHITECTURE.md
-  - [x] Simplified packages/docs-advanced/ folder
-
-### **Phase 2: Advanced Features (1.1.0)**
-
-**Target**: 🎯 **CURRENT FOCUS**  
-**Goal**: Advanced tooling and features
-
-#### **Distribution & Marketing**
-
-- [ ] **npm Publishing** - Publish packages to npm registry
-  - [ ] Set up npm account and organization
-  - [ ] Configure package publishing
-  - [ ] Publish @jarllyng/nostromo, @jarllyng/nostromo, @jarllyng/nostromo
-  - [ ] Set up automated publishing workflow
-
-- [ ] **Release Announcement** - Announce 1.0.0 release publicly
-  - [ ] Social media posts (Twitter, LinkedIn)
-  - [ ] Reddit posts (r/reactjs, r/webdev)
-  - [ ] Blog post or article
-  - [ ] Community engagement
-
-#### **Advanced Components** ✅ **COMPLETED**
-
-- [x] **Data Table Component** ✅ **COMPLETED**
-  - [x] Advanced table with sorting/filtering
-  - [x] Pagination integration
-  - [x] Accessibility features
-  - [x] Responsive design
-  - [x] Global search functionality
-  - [x] Column filtering (text, select, number, date, boolean)
-  - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
-  - [x] Documentation pages with live examples
-
-- [x] **Calendar Component** ✅ **COMPLETED**
-  - [x] Date picker functionality
-  - [x] Accessibility features (keyboard navigation, ARIA labels)
-  - [x] Variants (single, range, multiple)
-  - [x] Date constraints (min/max dates, disabled dates/days)
-  - [x] Locale support and customization
-  - [x] Comprehensive tests (15 unit tests, 5 accessibility tests)
-  - [x] Documentation pages with live examples
-
-- [x] **Charts Component** ✅ **COMPLETED**
-  - [x] Data visualization
-  - [x] Accessibility features (ARIA labels, role attributes)
-  - [x] Variants (line, bar, pie, area)
-  - [x] Multiple data series support
-  - [x] Custom colors and styling
-  - [x] Comprehensive tests (14 unit tests, 7 accessibility tests)
-  - [x] Documentation pages with live examples
-
-### **Phase 2.5: Code Quality & Stability** ✅ **COMPLETED**
-
-**Target**: ✅ **COMPLETED**  
-**Goal**: Ensure production-ready code quality
-
-#### **Code Quality Improvements** ✅ **COMPLETED**
-
-- [x] **ESLint Warnings** ✅ **COMPLETED**
-  - [x] Resolved all 22 ESLint warnings
-  - [x] Replaced all `any` types with proper TypeScript types
-  - [x] Fixed react-hooks/exhaustive-deps warnings
-  - [x] Improved type safety across all components
-
-- [x] **TypeScript Build Errors** ✅ **COMPLETED**
-  - [x] Fixed all TypeScript compilation errors
-  - [x] Improved type definitions for all components
-  - [x] Enhanced type safety for forwardRef components
-
-- [x] **CI/CD Pipeline** ✅ **COMPLETED**
-  - [x] Improved lint error detection
-  - [x] Removed deprecated configurations
-  - [x] All CI checks passing
-
-- [x] **Documentation** ✅ **COMPLETED**
-  - [x] Fixed API reference routing
-  - [x] Updated all internal links
-  - [x] Improved documentation consistency
-  - [x] Added live examples to all component documentation pages
-  - [x] Integrated LiveCode for interactive component demos (migrated from StorybookEmbed for better rendering)
-  - [x] Added multiple LiveCode examples showing different variants and use cases
-
-- [x] **Bundle Size Management** ✅ **COMPLETED**
-  - [x] Updated size limits for new components
-  - [x] Verified tree-shaking support
-  - [x] Documented bundle size strategy
-
-### **Phase 2.6: WCAG AA Design Optimization** ✅ **COMPLETED**
-
-**Target**: ✅ **COMPLETED**  
-**Goal**: Ensure all components meet WCAG 2.1 AA contrast requirements
-
-#### **Design System Improvements** ✅ **COMPLETED**
-
-- [x] **Semantic Color Tokens** ✅ **COMPLETED**
-  - [x] Refactored all components to use semantic tokens (background, foreground, muted, primary, etc.)
-  - [x] Extended Tailwind preset with semantic token mappings
-  - [x] Updated all theme CSS files with semantic color variables
-  - [x] Created contrast validation scripts and tools
-
-- [x] **WCAG AA Contrast Compliance** ✅ **COMPLETED**
-  - [x] Validated all theme color pairs for WCAG AA compliance (4.5:1 for normal text, 3:1 for large text/UI)
-  - [x] Adjusted color values in all 4 themes (Nostromo, Mother, LV-426, Sulaco) for both light and dark modes
-  - [x] Fixed contrast issues for foreground/background, muted-foreground/muted, card-foreground/card, popover-foreground/popover, primary-foreground/primary, secondary-foreground/secondary pairs
-  - [x] All components now pass WCAG AA contrast requirements
-
-- [x] **Component Refactoring** ✅ **COMPLETED**
-  - [x] Refactored all form components (Button, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Label, HelperText, ErrorMessage)
-  - [x] Refactored all data display components (Card, Badge, Avatar, Table, DataTable, Charts)
-  - [x] Refactored all feedback components (Alert, Toast, Tooltip)
-  - [x] Refactored all navigation components (Tabs)
-  - [x] Refactored all overlay components (Dialog, Accordion, Calendar)
-  - [x] Updated all unit tests to use semantic tokens
-
-- [x] **Documentation Updates** ✅ **COMPLETED**
-  - [x] Updated THEMING.md with semantic tokens documentation
-  - [x] Updated .cursor/rules/theming.mdc with best practices
-  - [x] Created contrast validation scripts and documentation
-
-### **Phase 3: Performance & Optimization (1.2.0)**
-
-**Target**: ✅ **COMPLETED**  
-**Goal**: Performance optimization and bundle size reduction
-
-#### **Performance Optimization**
-
-- [x] **Bundle Analysis** ✅ **COMPLETED**
-  - [x] Size monitoring with size-limit
-  - [x] Bundle analyzer script (analyze-bundle.js)
-  - [x] Extended size-limit configuration for all components
-  - [x] Performance benchmarks test suite
-
-- [x] **Runtime Optimization** ✅ **COMPLETED**
-  - [x] React.memo added to all major components (Button, Input, Card, Badge, Avatar, Alert, Progress, Skeleton, Chart, Toast, Tooltip, DataTable)
-  - [x] Performance test suite created and passing (11/11 tests)
-  - [x] Performance monitoring hooks available
-  - [x] Lazy loading exports for heavy components (LazyChart component)
-  - [x] Code splitting optimization (enabled in tsup config, automatic chunk creation)
-  - [x] Entry chunk reduced from 107KB to 8KB with code splitting - the barrel
-        is now re-exports over shared chunks, so importing one component pulls
-        one chunk rather than the whole library
-  - [x] Memory leak review completed - all components properly clean up resources
-  - [x] Memory leak test suite created and passing
-
-### **Phase 4: Distribution & Publishing (1.3.0)**
-
-**Target**: 🎯 **NEXT FOCUS**  
-**Goal**: Publish packages to npm and prepare for public release
-
-#### **npm Publishing**
-
-- [ ] **Package Preparation**
-  - [ ] Verify all package.json configurations
-  - [ ] Ensure proper exports and entry points
-  - [ ] Test package installation locally
-  - [ ] Verify peer dependencies
-
-- [ ] **npm Account Setup**
-  - [ ] Create npm organization (@jarllyng)
-  - [ ] Configure 2FA for security
-  - [ ] Set up automated publishing workflow
-  - [ ] Configure access tokens for CI/CD
-
-- [ ] **Package Publishing**
-  - [ ] Publish @jarllyng/nostromo to npm
-  - [ ] Publish @jarllyng/nostromo to npm
-  - [ ] Publish @jarllyng/nostromo to npm
-  - [ ] Verify packages are installable
-  - [ ] Test in clean project environment
-
-#### **Release Preparation**
-
-- [ ] **Version Management**
-  - [ ] Set up Changesets for versioning
-  - [ ] Create release workflow
-  - [ ] Document versioning strategy
-
-- [ ] **Documentation Updates**
-  - [ ] Update installation instructions
-  - [ ] Add npm package links
-  - [ ] Update README with npm badges
-  - [ ] Create migration guide from local to npm
-
-- [ ] **Release Announcement**
-  - [ ] Prepare release notes
-  - [ ] Create social media posts
-  - [ ] Write blog post or article
-  - [ ] Post on Reddit (r/reactjs, r/webdev)
-  - [ ] Share on Twitter/LinkedIn
+- A plugin system, theme marketplace or extension API.
+- Enterprise tiers, priority support or SLAs. This is one person's library.
+- React Native, Solid and Svelte ports. Vue is the only other framework with an
+  issue, and even that is not committed.
+- A rich text editor. Out of scope for a component library of this shape.
 
 ---
 
-## 📊 Key Metrics
-
-### **Current Status**
-
-- **Components**: ✅ **30 Core Components** + **6 Marketing Components** completed
-  - 27 base components + 3 advanced components (DataTable, Calendar, Charts)
-- **Themes**: ✅ **4 Themes** completed (Nostromo, Mother, LV-426, Sulaco)
-- **Documentation**: ✅ **Complete** (Nextra-based documentation site with all components)
-- **Tests**:
-  - Library: 1169 tests (unit + accessibility, 473 of them accessibility) - 100% pass rate
-  - Consumer smoke tests: 17, run against the built `dist` through the package's own `exports` map
-- **Accessibility**: ✅ **Compliant** (All core components pass WCAG 2.1 AA tests)
-- **Component documentation**: ✅ **All components covered** (every component has a page with live, editable examples; Storybook was removed in favour of in-page rendering)
-- **Build System**: ✅ **Complete** (ESM/CJS output with type definitions)
-
-### **Phase Progress**
-
-- **Phase 1 (MVP 0.1.0)**: ✅ **Complete**
-- **Phase 2 (0.2.0)**: ✅ **Complete**
-- **Phase 3 (0.3.0)**: ✅ **Complete**
-- **Phase 4 (0.4.0)**: ✅ **Complete**
-- **Phase 5 (1.0.0)**: ✅ **Released** (January 2025)
-- **Phase 6 (1.1.0 - Advanced Components)**: ✅ **Completed** (January 2025)
-- **Phase 7 (1.2.0 - Performance)**: ✅ **Completed**
-- **Phase 8 (1.3.0 - Distribution)**: 🎯 **Next Focus**
-
----
-
-## 🔮 Future Roadmap
-
-### **Potential Features**
-
-- [ ] **Additional Frameworks**
-  - [ ] React Native support
-  - [ ] Solid.js support
-  - [ ] Svelte support
-
-- [ ] **Additional Advanced Components**
-  - [x] Data visualization ✅ (Charts component completed)
-  - [x] Chart components ✅ (Line, Bar, Area, Pie charts completed)
-  - [ ] Advanced forms
-  - [ ] Rich text editor
-
-- [ ] **Tooling**
-  - [ ] CLI for project setup
-  - [ ] VS Code extension
-  - [ ] Figma plugin
-  - [ ] Design token system
-
-### **Community Features**
-
-- [ ] **Plugin System**
-  - [ ] Third-party components
-  - [ ] Theme marketplace
-  - [ ] Extension API
-
-- [ ] **Enterprise Features**
-  - [ ] Advanced theming
-  - [ ] Custom components
-  - [ ] Priority support
-  - [ ] SLA guarantees
-
----
-
-## ✅ Success Criteria
-
-### **Quality Assurance**
-
-- [x] All components pass accessibility tests ✅
-- [x] WCAG 2.1 AA contrast compliance verified ✅
-- [x] Bundle size optimized ✅
-- [x] 100% test pass rate (1169/1169 tests, plus 17 smoke tests) ✅
-- [x] Zero critical security vulnerabilities ✅
-- [x] Production-ready documentation ✅
-
-### **Community Engagement**
-
-- [ ] Any external user at all
-- [ ] Feedback from someone who did not write the library
-- [ ] Components tested in 5+ different project setups
-- [ ] API stability confirmed
-
----
-
-## 📝 Notes
-
-### **Development Principles**
-
-- **Accessibility First**: All components must be accessible
-- **Performance Focused**: Minimal bundle impact
-- **Developer Experience**: Excellent DX and documentation
-- **Community Driven**: Open to feedback and contributions
-
-### **Risk Mitigation**
-
-- **Technical Risks**: Regular architecture reviews
-- **Timeline Risks**: Buffer time in estimates
-- **Quality Risks**: Automated testing and CI/CD
-- **Community Risks**: Clear communication and expectations
-
----
-
-**Last reviewed**: July 2026  
-**Next Review**: February 2025
-
----
-
-_This roadmap is a living document and will be updated regularly to reflect project progress and changing priorities._
+_Written against the repository rather than from memory. If something here
+disagrees with the code, the code is right and this is a bug._

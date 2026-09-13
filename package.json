@@ -52,6 +52,7 @@
     "validate:theme-contrasts": "tsx scripts/validate-theme-contrasts.ts",
     "validate:exports": "tsx scripts/validate-exports.ts",
     "validate:dependabot": "node scripts/validate-dependabot-ignores.mjs",
+    "validate:doc-counts": "node scripts/validate-doc-counts.mjs",
     "validate:docs-examples": "node scripts/validate-docs-examples.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",

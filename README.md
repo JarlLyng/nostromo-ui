@@ -165,17 +165,19 @@ broken components.
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables with HSL colors and 4 complete themes
 - **Tailwind v4 Bridge** - design tokens registered in CSS via `@theme`, no JS preset
-- **30 Core Components** - Button, Input, Dialog, Badge, Card, Avatar, Tabs, Select, Label, HelperText, ErrorMessage, Icon, Table, DataTable, Toast, Tooltip, Accordion, Skeleton, Progress, Alert, Checkbox, RadioGroup, Switch, Textarea, Breadcrumb, Pagination, Separator, Calendar, Charts
+- **Core Components** - covering the shadcn/ui surface, each with a documentation page and live examples. [The components index](https://jarllyng.github.io/nostromo-ui/components) is the list; it does not go stale.
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall with full design system integration
 - **Form Components** - Complete set of form-related components
 - **Navigation Components** - Tabs and Select with keyboard accessibility
 - **Data Components** - Table with sortable columns, pagination and responsive design; DataTable with search, filtering, sorting, and server-side support (controlled mode); Charts with line, bar, area, and pie visualizations
 - **Feedback Components** - Toast, Tooltip, Progress with accessibility
 - **Layout Components** - Accordion, Skeleton with animations
-- **Test Infrastructure** - Vitest + Testing Library + axe-core (1310 unit and
-  accessibility tests, plus 19 consumer smoke tests against the built package)
+- **Test Infrastructure** - Vitest + Testing Library + axe-core, consumer smoke
+  tests against the built package, and a Playwright suite in Chromium and WebKit
+  for what jsdom cannot answer. [CI on main](https://github.com/JarlLyng/nostromo-ui/actions)
+  reports the counts.
 - **Build System** - tsup with ESM + CJS output and type definitions
-- **Nextra Documentation Site** - Modern documentation with a page for each of the 56 components and live, editable previews
+- **Nextra Documentation Site** - a page for every component with live, editable previews, and every example type-checked against the published types in CI
 - **Complete Theme System** - 4 themes: Nostromo, Mother, LV-426, Sulaco
 - **Code Quality** - TypeScript strict mode, CI/CD pipeline, zero lint errors/warnings
 
@@ -189,11 +191,13 @@ broken components.
 - **Code Quality** - TypeScript errors resolved, bundle size optimized
 - **CI/CD** - Parallelized workflow (lint, type-check, test run in parallel), improved lint error detection, all checks passing
 - **Live Examples** - Every component documentation page includes multiple live, editable examples, rendered in place rather than embedded from an external tool
-- **Accessibility** - Comprehensive accessibility testing with axe-core integration (473 of the 1442 tests)
-- **Performance** - Bundle size monitoring and optimization (280.06 kB full barrel, tree-shakeable down to single components)
+- **Accessibility** - axe-core assertions alongside the unit tests, and WCAG 2.1 AA contrast verified for every theme and colour scheme by `pnpm audit:contrast`
+- **Performance** - bundle size enforced in CI by size-limit, tree-shakeable down to single components
 - **Dependency Management** - Dependabot configured for automated dependency updates, pre-commit hooks with Husky
 
-**Current Progress: 100% of MVP - Production Ready! 🎉**
+Published on npm with provenance, and released from CI through Changesets. It
+has no external users yet; [the roadmap](docs/guides/ROADMAP.md) says what that
+would take.
 
 ---
 
