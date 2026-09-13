@@ -43,6 +43,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 import { extractLiveExamples } from "./lib/extract-live-examples.mjs";
+import { extractFencedExamples } from "./lib/extract-fenced-examples.mjs";
 
 /**
  * Re-emit an import so its module specifier and named exports are still resolved,
@@ -84,18 +85,104 @@ function aliasImport(line, prefix) {
   return `import { ${parts.join(", ")} } from "${specifier}";`;
 }
 
+/** Every local name an import statement binds, default and namespace included. */
+function boundNames(line) {
+  const from = line.match(/from\s*["']([^"']+)["']/);
+  if (!from) return [];
+  const clause = line.slice(line.indexOf("import") + 6, from.index).trim();
+  const names = [];
+  const star = clause.match(/^\*\s+as\s+([A-Za-z0-9_$]+)$/);
+  if (star) return [star[1]];
+  const named = clause.match(/\{([^}]*)\}/);
+  const defaultName = clause
+    .replace(/\{[^}]*\}/, "")
+    .replace(/,/g, "")
+    .trim();
+  if (defaultName) names.push(defaultName);
+  if (named) {
+    for (const entry of named[1].split(",")) {
+      const local = entry
+        .trim()
+        .replace(/^type\s+/, "")
+        .split(/\s+as\s+/)
+        .pop()
+        .trim();
+      if (/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(local)) names.push(local);
+    }
+  }
+  return names;
+}
+
+const PACKAGE = "@jarllyng/nostromo";
+/** Names the generated preamble already declares. */
+const PREAMBLE_BOUND = new Set([
+  "React",
+  "useState",
+  "useEffect",
+  "useRef",
+  "useCallback",
+  "useMemo",
+  "render",
+]);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const contentDir = join(repoRoot, "docs", "content");
 // Inside docs/ so that `@jarllyng/nostromo` resolves through its node_modules.
 const outDir = join(repoRoot, "docs", ".examples-typecheck");
 
-const examples = extractLiveExamples(contentDir, repoRoot);
-if (examples.length === 0) {
+const live = extractLiveExamples(contentDir, repoRoot).map((e) => ({
+  ...e,
+  kind: "live",
+}));
+if (live.length === 0) {
   console.error(
     "No <LiveCode> examples found - the extractor is broken, not the docs.",
   );
   process.exit(1);
 }
+
+// The fenced blocks under Usage and Examples. A reader copies these out of the
+// page the same way they copy a live one, and until #252 nothing compiled them.
+const fencedAll = extractFencedExamples(contentDir, repoRoot);
+if (fencedAll.length === 0) {
+  console.error(
+    "No fenced tsx examples found - the extractor is broken, not the docs.",
+  );
+  process.exit(1);
+}
+/**
+ * Which fenced blocks are meant to be copied out and run.
+ *
+ * The ones that import from the package. That is not a proxy for "complete", it
+ * is the definition: a reader who pastes a snippet into their editor needs the
+ * imports, and a block that has them is presenting itself as something that
+ * runs. Pricing's Usage example - the one #252 is about, which threw on paste -
+ * is exactly this shape.
+ *
+ * The rest are illustrative by construction. Measured rather than assumed: of
+ * the 208 fenced TypeScript blocks in the docs, the 100 without a package import
+ * are single JSX tags, bare prop assignments, object literals, and snippets that
+ * continue from an import shown a paragraph earlier. Compiling those produces
+ * "Cannot find name 'data'" ninety times over and buries anything real.
+ *
+ * A block that does import and is still deliberately partial carries `fragment`
+ * on its fence. There are eleven of those, and the marker sits next to the code
+ * rather than in a skip-list here, so it moves with the block and a reader can
+ * see why it is not held to the same standard.
+ */
+const importsPackage = (code) =>
+  new RegExp(`^\\s*import[\\s\\S]*?from\\s*["']${PACKAGE}`, "m").test(code);
+
+const fenced = fencedAll
+  .filter((e) => !e.fragment && importsPackage(e.code))
+  .map((e) => ({ ...e, kind: "fenced" }));
+const illustrative = fencedAll.length - fenced.length;
+
+// Indices have to be unique per file across both kinds, because the generated
+// module name is built from them.
+const examples = [
+  ...live,
+  ...fenced.map((e) => ({ ...e, index: `f${e.index}` })),
+];
 
 // Kept in step with the scope in docs/components/LiveCode.client.tsx. If that
 // gains a binding and this does not, a snippet using it fails here with
@@ -164,9 +251,39 @@ for (const example of examples) {
 
   // Re-emit each import under aliases so the specifier and the named exports are
   // still resolved, without colliding with the injected scope bindings.
-  const aliased = importLines
-    .map((line, i) => aliasImport(line, `${name}_${i}`))
-    .filter(Boolean);
+  //
+  // Only this package's imports, though. The aliasing exists to keep an import
+  // of `Button` from clashing with the `Button` the scope already declares, and
+  // nothing outside the package is in that scope. Aliasing them anyway is what
+  // made the react-hook-form examples fail: `useForm` became `x_0_useForm` and
+  // the body calling `useForm()` could not see it. Those imports are emitted as
+  // written, and the names they bind are kept out of the scope declaration below
+  // so the two cannot collide either.
+  const foreignNames = new Set();
+  const aliased = [];
+  for (const [i, line] of importLines.entries()) {
+    const from = line.match(/from\s*["']([^"']+)["']/);
+    const specifier = from?.[1] ?? "";
+    const locals = boundNames(line);
+    // Alias this package's imports, and anything that would redeclare a name the
+    // preamble already binds. `import React from "react"` and `import { useState }
+    // from "react"` are the common case: the preamble provides both, and emitting
+    // the import as written is a duplicate identifier rather than a check of
+    // anything. Everything else is emitted verbatim, so the names it binds are
+    // the ones the body actually calls.
+    const collides = locals.some((n) => PREAMBLE_BOUND.has(n));
+    if (
+      specifier === PACKAGE ||
+      specifier.startsWith(`${PACKAGE}/`) ||
+      collides
+    ) {
+      const emitted = aliasImport(line, `${name}_${i}`);
+      if (emitted) aliased.push(emitted);
+      continue;
+    }
+    for (const local of locals) foreignNames.add(local);
+    aliased.push(line.endsWith(";") ? line : `${line};`);
+  }
 
   // Type-only specifiers have to survive under their real names. They are not in
   // the runtime scope - types do not exist at runtime, so reading the export
@@ -177,11 +294,21 @@ for (const example of examples) {
   // Detection: an explicit `type` modifier, or a specifier that is not a runtime
   // export of the package. The second rule is what catches `import { Table, type
   // TableColumn }` written without the modifier.
+  //
+  // It is checked against this package's exports, so it only applies to imports
+  // from this package. Widening the input to the fenced blocks brought in
+  // examples that import from `react-hook-form` and `zod`, and "not one of our
+  // exports" is true of every name in those - which turned `useForm` into a type
+  // and then failed on it being called.
   const typeImports = [];
   for (const line of importLines) {
     const from = line.match(/from\s*["']([^"']+)["']/);
     const named = line.match(/\{([^}]*)\}/);
     if (!from || !named) continue;
+    const ours = from[1] === PACKAGE || from[1].startsWith(`${PACKAGE}/`);
+    // A foreign import is emitted verbatim above, so its names are already
+    // bound; re-importing them here would be a duplicate declaration.
+    if (!ours) continue;
     const isTypeOnlyLine = /^\s*import\s+type\s/.test(line);
     const wanted = [];
     for (const entry of named[1].split(",")) {
@@ -198,7 +325,7 @@ for (const example of examples) {
         .pop()
         .trim();
       if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(bare)) continue;
-      if (explicit || isTypeOnlyLine || !scopeNames.includes(bare)) {
+      if (explicit || isTypeOnlyLine || (ours && !scopeNames.includes(bare))) {
         wanted.push(bare === local ? bare : `${bare} as ${local}`);
       }
     }
@@ -210,8 +337,9 @@ for (const example of examples) {
 
   // Only declare the scope names the snippet actually mentions: destructuring all
   // 164 exports collides with locally declared helpers in some examples.
-  const mentioned = scopeNames.filter((n) =>
-    new RegExp(`(?:<|\\b)${n}\\b`).test(example.code),
+  const mentioned = scopeNames.filter(
+    (n) =>
+      !foreignNames.has(n) && new RegExp(`(?:<|\\b)${n}\\b`).test(example.code),
   );
   const scopeDecl = mentioned.length
     ? `const { ${mentioned.join(", ")} } = __scope;\nvoid [${mentioned.join(", ")}];\n`
@@ -269,7 +397,10 @@ writeFileSync(
 );
 
 console.log(
-  `Type-checking ${generated.length} live examples from ${new Set(generated.map((g) => g.file)).size} pages...`,
+  `Type-checking ${live.length} live and ${fenced.length} fenced examples ` +
+    `from ${new Set(generated.map((g) => g.file)).size} pages` +
+    (illustrative ? ` (${illustrative} illustrative blocks skipped)` : "") +
+    "...",
 );
 
 // The local binary, not `npx tsc`: npx silently falls back to fetching from the
@@ -321,9 +452,13 @@ for (const line of raw.split("\n")) {
   const mdxLine = g.line + Number(lineNo) - g.offset;
   const key = g.file;
   if (!byPage.has(key)) byPage.set(key, []);
-  byPage
-    .get(key)
-    .push({ snippet: g.index, mdxLine, col: Number(col), message });
+  byPage.get(key).push({
+    snippet: g.index,
+    kind: g.kind,
+    mdxLine,
+    col: Number(col),
+    message,
+  });
 }
 
 console.error(
@@ -333,7 +468,7 @@ for (const [page, errors] of [...byPage].sort()) {
   console.error(`  ${page}`);
   for (const e of errors) {
     console.error(
-      `    example #${e.snippet}, around line ${e.mdxLine}: ${e.message}`,
+      `    ${e.kind} example #${e.snippet}, around line ${e.mdxLine}: ${e.message}`,
     );
   }
   console.error("");

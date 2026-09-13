@@ -42,7 +42,11 @@ export default function Example() {
 
   return (
     <div className="flex items-center space-x-2">
-      <Checkbox id="terms" checked={checked} onCheckedChange={setChecked} />
+      <Checkbox
+        id="terms"
+        checked={checked}
+        onChange={(event) => setChecked(event.target.checked)}
+      />
       <Label htmlFor="terms">Accept terms</Label>
     </div>
   );

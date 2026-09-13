@@ -94,7 +94,7 @@ import { DataTable } from "@jarllyng/nostromo/data-table";
 ## Usage
 
 ```tsx
-import { DataTable } from "@jarllyng/nostromo";
+import { DataTable, type TableColumn } from "@jarllyng/nostromo";
 
 const data = [
   {
@@ -304,10 +304,18 @@ interface ColumnFilter<T = Record<string, unknown>> {
 ### DataTable with Server-Side Pagination (Controlled Mode)
 
 ```tsx
-import { useState } from "react";
-import { DataTable } from "@jarllyng/nostromo";
+import { useEffect, useState } from "react";
+import { DataTable, type TableColumn } from "@jarllyng/nostromo";
+
+type Employee = { id: number; name: string; email: string };
+
+const columns: TableColumn<Employee>[] = [
+  { key: "name", title: "Name", dataIndex: "name", sortable: true },
+  { key: "email", title: "Email", dataIndex: "email" },
+];
 
 export default function ServerSideDataTable() {
+  const [rows, setRows] = useState<Employee[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [sortColumn, setSortColumn] = useState("name");
@@ -315,19 +323,28 @@ export default function ServerSideDataTable() {
   const [searchTerm, setSearchTerm] = useState("");
   const [totalItems, setTotalItems] = useState(0);
 
-  // Fetch data from server based on current state
-  const fetchData = async () => {
-    const response = await fetch(
+  // Every controlled prop the table reads is also a dependency here: the server
+  // is doing the paging, sorting and searching, so a change to any of them is a
+  // new request rather than a re-filter of what is already on screen.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(
       `/api/employees?page=${currentPage}&pageSize=${pageSize}&sort=${sortColumn}&direction=${sortDirection}&search=${searchTerm}`,
-    );
-    const { data, total } = await response.json();
-    setTotalItems(total);
-    return data;
-  };
+    )
+      .then((response) => response.json())
+      .then((body: { data: Employee[]; total: number }) => {
+        if (cancelled) return;
+        setRows(body.data);
+        setTotalItems(body.total);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [currentPage, pageSize, sortColumn, sortDirection, searchTerm]);
 
   return (
     <DataTable
-      data={data}
+      data={rows}
       columns={columns}
       // Controlled props for server-side operations
       currentPage={currentPage}
@@ -426,7 +443,7 @@ Pagination has always worked this way, under a different name: it is manual when
 One click, one call, carrying both the new column and the new direction. Writing
 both values back from it is safe:
 
-```tsx
+```tsx fragment
 onSortChange={(column, direction) => setSort({ column, direction })}
 ```
 

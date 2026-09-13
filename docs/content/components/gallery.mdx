@@ -79,14 +79,8 @@ export default function Example() {
   return (
     <Gallery
       images={[
-        {
-          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%201%3C/text%3E%3C/svg%3E",
-          alt: "Image 1",
-        },
-        {
-          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='100%25' height='100%25' fill='%23e4e4e7'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='14' fill='%2371717a' text-anchor='middle' dy='.35em'%3EImage%202%3C/text%3E%3C/svg%3E",
-          alt: "Image 2",
-        },
+        { id: "img1", src: "/photos/hangar.jpg", alt: "The hangar bay" },
+        { id: "img2", src: "/photos/bridge.jpg", alt: "The bridge" },
       ]}
     />
   );

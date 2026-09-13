@@ -83,6 +83,13 @@ function MyForm() {
     resolver: zodResolver(schema),
   });
 
+  // Named here rather than left to the reader: `handleSubmit` wants a function,
+  // and the version of this example that referred to a bare `onSubmit` threw on
+  // paste.
+  const onSubmit = (values: { email: string }) => {
+    console.log(values);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Input {...register("email")} />

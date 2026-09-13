@@ -58,7 +58,7 @@ export default function Example() {
         </div>
       )}
     >
-      <YourComponent />
+      <p>The rest of the page.</p>
     </ErrorBoundary>
   );
 }
@@ -66,13 +66,19 @@ export default function Example() {
 
 ## Code Examples
 
-```jsx
+```tsx
 import { ErrorBoundary } from "@jarllyng/nostromo";
+
+// `fallback` takes a component, not an element, because the boundary calls it
+// with the error and a reset function. Passing `<div>...</div>` does not compile.
+function SomethingWentWrong() {
+  return <div>Something went wrong!</div>;
+}
 
 export default function ErrorBoundaryExample() {
   return (
-    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
-      <YourComponent />
+    <ErrorBoundary fallback={SomethingWentWrong}>
+      <p>The rest of the page.</p>
     </ErrorBoundary>
   );
 }

@@ -124,7 +124,7 @@ instance.
 The group sets `display`, `flex-direction`, `width: 100%` and `height: 100%` as
 **inline** styles. Inline styles beat classes, so this does nothing at all:
 
-```tsx
+```tsx fragment
 <ResizablePanelGroup className="h-96">
 ```
 
@@ -132,7 +132,7 @@ The class lands on the element and is then overridden, with no warning. Put the
 height on the element around the group, which is what the examples above do, or
 pass it as a style, which merges:
 
-```tsx
+```tsx fragment
 <ResizablePanelGroup style={{ height: "24rem" }}>
 ```
 

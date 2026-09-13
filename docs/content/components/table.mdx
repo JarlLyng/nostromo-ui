@@ -68,13 +68,16 @@ import { Table } from "@jarllyng/nostromo/table";
 ## Usage
 
 ```tsx
-import { Table } from "@jarllyng/nostromo";
+import { Table, type TableColumn } from "@jarllyng/nostromo";
 
-interface User {
+// A type alias rather than an interface. `data` is typed `Record<string,
+// unknown>[]`, and an interface has no index signature, so TypeScript refuses
+// it where an equivalent alias is accepted.
+type User = {
   id: string;
   name: string;
   email: string;
-}
+};
 
 export default function Example() {
   const data: User[] = [
@@ -258,7 +261,7 @@ cannot be.
 
 `onChange` gives you both:
 
-```tsx
+```tsx fragment
 onChange={(keys, rows) => { ... }}
 ```
 

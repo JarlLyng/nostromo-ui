@@ -21,6 +21,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^5.9.1",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.3.0",
@@ -32,9 +33,11 @@
     "jsdom": "^29.0.0",
     "pagefind": "^1.4.0",
     "postcss": "^8.5.26",
+    "react-hook-form": "^7.85.0",
     "react-live": "^4.1.8",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "zod": "4.3.6"
   }
 }
