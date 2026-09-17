@@ -204,3 +204,135 @@ h4 {
   color: hsl(var(--nostromo-color-muted-foreground));
   background: hsl(var(--nostromo-color-muted));
 }
+
+/*
+ * The shell spans the viewport; the prose does not.
+ *
+ * Nextra caps its whole chrome - navbar, sidebar, article and table of contents
+ * together - at `--nextra-content-width`, 90rem by default, and centres the lot.
+ * On anything wider than 1440px that leaves a dead gutter down both sides and
+ * the sidebar floats inward rather than sitting against the edge. Measured at a
+ * 1900px viewport: the navbar ran from x=226 to x=1666, so 226px of nothing on
+ * each side, with the sidebar starting somewhere in the middle of it.
+ *
+ * Releasing the cap fixes the gutter but would also stretch body text across the
+ * full width, which is worse. So the two are separated: the shell takes the
+ * viewport, and the article keeps a measure of its own. `--nostromo-doc-measure`
+ * is that measure, set a little wider than Nextra's effective 832px because the
+ * live component previews on these pages want the room more than a paragraph
+ * does.
+ */
+/*
+ * `:root:root`, not `:root`. Nextra sets `--nextra-content-width` from an inline
+ * `<style>` that the framework injects into the head, and both rules are
+ * unlayered with the same specificity, so document order decides and the inline
+ * one is always last. Doubling the selector wins on specificity instead, which
+ * does not depend on where either stylesheet ends up. Verified by reading the
+ * two rules back out of `document.styleSheets`.
+ */
+:root:root {
+  --nextra-content-width: 100%;
+  --nostromo-doc-measure: 56rem;
+}
+
+/* The article itself stays full-width: it carries the page padding, and the
+ * measure belongs to the content inside it so full-bleed sections can opt out. */
+main {
+  max-width: var(--nostromo-doc-measure);
+  margin-inline: auto;
+}
+
+/*
+ * A landing page is not an article, and the measure would fight it.
+ *
+ * Nextra's `layout: "full"` widens the article but adds no class to hang this
+ * on - checked against the built markup, where the home page's `<article>` and a
+ * component page's are identical. So the page declares itself: the landing
+ * component's own wrapper is the hook, and `:has()` lets the ancestor react to
+ * it. That keeps the exception next to the page that needs it rather than in a
+ * list of routes here, which is the kind of list that goes stale.
+ */
+main:has(.nostromo-landing) {
+  max-width: none;
+}
+
+/*
+ * Cancel the article's horizontal padding for one band.
+ *
+ * The article carries `px-4` and `md:px-12`, which is right for prose and wrong
+ * for a hero: a full-width gradient that stops 48px short of the sidebar reads
+ * as a mistake rather than as a band. The values mirror those two utilities, and
+ * the breakpoint is Tailwind's `md`.
+ */
+.nostromo-bleed {
+  margin-inline: -1rem;
+}
+
+@media (min-width: 48rem) {
+  .nostromo-bleed {
+    margin-inline: -3rem;
+  }
+}
+
+/*
+ * The hero's ground.
+ *
+ * `--nostromo-color-primary`, not `--nostromo-color-primary-500`. The scale
+ * suffix exists on `brand`, not on the semantic tokens, and an `hsl()` built
+ * from an undefined variable is an invalid declaration - so the whole shorthand
+ * was dropped and the hero had no background at all. Caught by the browser test,
+ * which read `backgroundImage` back as "none"; nothing else would have noticed,
+ * since a missing background looks like a plain section.
+ *
+ * This replaces a `/hero-bg.jpg` that was never added to public/ and answered
+ * 404 on every visit. A gradient rather than a replacement photograph: it costs
+ * no request, there is no asset to keep in step with the themes, and because it
+ * is built from the semantic tokens it follows whichever theme and colour scheme
+ * the reader has chosen instead of staying one fixed image.
+ */
+.nostromo-hero-surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      60rem 30rem at 50% -10%,
+      hsl(var(--nostromo-color-primary) / 0.18),
+      transparent 70%
+    ),
+    linear-gradient(
+      to bottom,
+      hsl(var(--nostromo-color-muted) / 0.5),
+      hsl(var(--nostromo-color-background))
+    );
+}
+
+/*
+ * A faint grid over it, masked so it fades out before the text starts. Drawn
+ * with two repeating gradients rather than an image, for the same reasons.
+ * `aria-hidden` is unnecessary: a pseudo-element has no accessible presence.
+ */
+.nostromo-hero-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      hsl(var(--nostromo-color-border) / 0.5) 0 1px,
+      transparent 1px 5rem
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      hsl(var(--nostromo-color-border) / 0.5) 0 1px,
+      transparent 1px 5rem
+    );
+  mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent 75%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .nostromo-hero-surface::before {
+    display: none;
+  }
+}
