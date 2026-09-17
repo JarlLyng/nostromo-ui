@@ -21,7 +21,21 @@ import pkg from "@jarllyng/nostromo/package.json";
 // shim is gone - see the deleted styles/nextra-layered.css.
 import "../styles/layers.css";
 import "@jarllyng/nostromo/tailwind.css";
+// All four, not just the default. Each theme file scopes its tokens to its own
+// `[data-theme="..."]`, so a page that loads one of them can set the attribute to
+// any of the other three and nothing happens - the selector matches no rule and
+// the tokens stay at nostromo's values. That is what was wrong with the theme
+// demos: measured on the theming page, `--nostromo-color-brand-500` resolved to
+// `262 84% 52%` under all four values, and the document carried 15 rules for
+// nostromo and none at all for the others. The switcher was setting an attribute
+// nothing responded to.
+//
+// They are token declarations, about 40kB uncompressed for the three additions,
+// and scoped by attribute so they cannot collide.
 import "@jarllyng/nostromo/themes/nostromo.css";
+import "@jarllyng/nostromo/themes/mother.css";
+import "@jarllyng/nostromo/themes/lv-426.css";
+import "@jarllyng/nostromo/themes/sulaco.css";
 import "nextra-theme-docs/style.css";
 import "../styles/globals.css";
 import "../styles/themes.css";
