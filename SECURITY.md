@@ -20,18 +20,21 @@ We take security issues seriously. If you discover a security vulnerability, ple
 
 **IMPORTANT**: For security vulnerabilities, **DO NOT** create a public GitHub issue.
 
-Instead, please email security concerns to: **security@nostromo-ui.dev** (or use GitHub Security Advisory if available)
+Instead, please report it privately through GitHub:
 
-If you must use GitHub, create a **private** security advisory through:
-1. Go to the repository's Security tab
+1. Go to the repository's [Security tab](https://github.com/JarlLyng/nostromo-ui/security)
 2. Click "Report a vulnerability"
 3. Fill out the security advisory form
 
+The report is visible only to the maintainers until an advisory is published,
+and the thread stays private while a fix is prepared.
+
 Include the following information:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
-   - Suggested fix (if relevant)
+
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if relevant)
 
 ### What to Expect
 
@@ -43,6 +46,7 @@ Include the following information:
 ### Responsible Disclosure
 
 We follow responsible disclosure principles:
+
 1. **Private Report**: Initial report is private
 2. **Investigation**: We investigate and confirm the issue
 3. **Fix Development**: We develop a fix
@@ -54,11 +58,13 @@ We follow responsible disclosure principles:
 ### Component Security
 
 #### Input Validation
+
 - All input components validate data
 - XSS protection via proper escaping
 - CSRF tokens where relevant
 
 #### Accessibility Security
+
 - ARIA attributes are validated
 - Keyboard navigation is secure
 - Screen reader compatibility
@@ -66,11 +72,13 @@ We follow responsible disclosure principles:
 ### Build Security
 
 #### Dependencies
+
 - Regular security audits
 - Automated dependency updates
 - Vulnerability scanning in CI/CD
 
 #### Bundle Security
+
 - Tree shaking for minimal attack surface
 - No eval() or dynamic code execution
 - Content Security Policy compliance
@@ -78,11 +86,13 @@ We follow responsible disclosure principles:
 ### Runtime Security
 
 #### SSR Safety
+
 - No client-side secrets
 - Proper hydration without mismatches
 - Server-side rendering security
 
 #### Theme Security
+
 - CSS variable validation
 - No arbitrary code execution
 - Safe theme switching
@@ -92,11 +102,13 @@ We follow responsible disclosure principles:
 ### For Developers
 
 #### Code Review
+
 - Security-focused code reviews
 - Static analysis tools
 - Dependency vulnerability checks
 
 #### Testing
+
 - Security testing in CI/CD
 - Penetration testing for critical components
 - Regular security audits
@@ -104,6 +116,7 @@ We follow responsible disclosure principles:
 ### For Users
 
 #### Installation
+
 ```bash
 # Always use specific versions
 npm install @nostromo/ui-core@1.0.0
@@ -113,24 +126,25 @@ npm audit
 ```
 
 #### Usage
+
 ```tsx
 // Sanitize user input
 const sanitizedInput = DOMPurify.sanitize(userInput);
 
 // Use proper event handlers
-<Button onClick={(e) => handleClick(e)}>
-  Safe Button
-</Button>
+<Button onClick={(e) => handleClick(e)}>Safe Button</Button>;
 ```
 
 ## 🔍 Security Audit
 
 ### Regular Audits
+
 - **Monthly**: Dependency vulnerability scans
 - **Quarterly**: Security code reviews
 - **Annually**: Third-party security audit
 
 ### Tools Used
+
 - **npm audit**: Dependency vulnerabilities
 - **Snyk**: Security scanning
 - **ESLint security**: Code analysis
@@ -139,6 +153,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 📋 Security Checklist
 
 ### Before Release
+
 - [ ] All dependencies updated
 - [ ] Security audit passed
 - [ ] No hardcoded secrets
@@ -148,6 +163,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 - [ ] Accessibility security verified
 
 ### For Contributors
+
 - [ ] No sensitive data in code
 - [ ] Proper error handling
 - [ ] Input sanitization
@@ -157,6 +173,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 🚨 Incident Response
 
 ### Security Incident Process
+
 1. **Detection**: Identify security issue
 2. **Assessment**: Evaluate severity and impact
 3. **Containment**: Prevent further damage
@@ -165,6 +182,7 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 6. **Lessons Learned**: Improve security
 
 ### Communication
+
 - **Internal**: Immediate team notification
 - **Users**: Security advisory via GitHub
 - **Public**: Coordinated disclosure
@@ -172,11 +190,13 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 📞 Contact
 
 ### Security Team
-- **Security Reports**: Use private email (security@nostromo-ui.dev) or GitHub Security Advisory only
+
+- **Security Reports**: [GitHub Security Advisories](https://github.com/JarlLyng/nostromo-ui/security/advisories/new) only
 - **Response Time**: 48 hours
 - **Availability**: 24/7 for critical issues
 
 ### General Security Questions
+
 - **GitHub Discussions**: Use "security" label
 - **Documentation**: Check security guides
 - **Community**: Ask in Discord (coming soon)
@@ -184,11 +204,13 @@ const sanitizedInput = DOMPurify.sanitize(userInput);
 ## 🔗 Resources
 
 ### Security Documentation
+
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [React Security](https://reactjs.org/docs/security.html)
 - [Tailwind CSS Security](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
 
 ### Tools
+
 - [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit)
 - [Snyk](https://snyk.io/)
 - [ESLint Security](https://github.com/eslint-community/eslint-plugin-security)
