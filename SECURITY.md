@@ -1,26 +1,25 @@
 # Security Policy
 
-## 🛡️ Supported Versions
+## 🛡️ Supported versions
 
-We provide security updates for the following versions:
+Security fixes go into the current release of `@jarllyng/nostromo` and are
+published as a new version. There are no maintenance branches: the library is
+one package released through Changesets, and a fix reaches you by upgrading.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x.x   | :white_check_mark: |
-| 0.3.x   | :white_check_mark: |
-| 0.2.x   | :white_check_mark: |
-| 0.1.x   | :white_check_mark: |
-| < 0.1   | :x:                |
+| Version         | Supported          |
+| --------------- | ------------------ |
+| Current release | :white_check_mark: |
+| Anything older  | :x:                |
 
-## 🚨 Reporting a Vulnerability
+The current release is whatever
+[npm](https://www.npmjs.com/package/@jarllyng/nostromo) reports, so this file
+does not carry a version number that would go stale between releases.
 
-We take security issues seriously. If you discover a security vulnerability, please report it responsibly.
+## 🚨 Reporting a vulnerability
 
-### How to Report
+**Please do not open a public issue for a security problem.**
 
-**IMPORTANT**: For security vulnerabilities, **DO NOT** create a public GitHub issue.
-
-Instead, please report it privately through GitHub:
+Report it privately through GitHub:
 
 1. Go to the repository's [Security tab](https://github.com/JarlLyng/nostromo-ui/security)
 2. Click "Report a vulnerability"
@@ -29,194 +28,129 @@ Instead, please report it privately through GitHub:
 The report is visible only to the maintainers until an advisory is published,
 and the thread stays private while a fix is prepared.
 
-Include the following information:
+Include what you have: a description, steps to reproduce, the impact you think
+it has, and a suggested fix if you have one. A partial report is worth sending.
 
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (if relevant)
+### What to expect
 
-### What to Expect
+This library is maintained by one person in their own time, so the honest
+answer is that there is no response-time guarantee. What you can expect:
 
-- **Response Time**: We respond within 48 hours
-- **Acknowledgment**: Confirmation of receipt
-- **Timeline**: We work on a fix and coordinate release
-- **Credit**: We credit you in security advisory (if desired)
+- An acknowledgement when the report is read, not within a fixed window
+- A say in the timing of disclosure
+- Credit in the published advisory, unless you would rather not be named
 
-### Responsible Disclosure
+A stated deadline that is then missed is worse than no deadline, because it
+stops you escalating elsewhere while you wait for it.
 
-We follow responsible disclosure principles:
+## 🔒 What this library does and does not protect against
 
-1. **Private Report**: Initial report is private
-2. **Investigation**: We investigate and confirm the issue
-3. **Fix Development**: We develop a fix
-4. **Coordinated Release**: We coordinate release with you
-5. **Public Disclosure**: We disclose publicly after fix is available
+A component library is a small part of an application's security surface. Being
+specific about which part is more useful than a general assurance.
 
-## 🔒 Security Considerations
+### What it does
 
-### Component Security
+- **No dynamic code execution.** The published bundle contains no `eval()` and
+  no `new Function()`. Verified against `dist`, not asserted.
+- **Published with provenance.** Releases are built and published from CI with
+  npm's trusted publishing, so every version on the registry is traceable to the
+  commit and workflow that produced it. `npm audit signatures` checks it.
+- **Tree-shakeable.** Every component has its own entry point, so importing one
+  does not pull the rest in. Less code shipped is less code to attack.
+- **No network access.** The library issues no requests of its own. Verified:
+  no `fetch` and no `XMLHttpRequest` anywhere in the components.
 
-#### Input Validation
+### One thing it does store
 
-- All input components validate data
-- XSS protection via proper escaping
-- CSRF tokens where relevant
+`Sidebar` writes a cookie so a server-rendered app can paint the right width on
+the first request, which is the only reason the value is a cookie rather than
+local storage:
 
-#### Accessibility Security
+```
+sidebar_state=<true|false>; path=/; max-age=604800; SameSite=Lax
+```
 
-- ARIA attributes are validated
-- Keyboard navigation is secure
-- Screen reader compatibility
+It holds a boolean, nothing identifying, and it is the only thing the library
+persists. Two things worth knowing if you are writing a policy around it: it is
+set without the `Secure` attribute, so it travels over plain HTTP if your site
+is served that way, and `path=/` means it is sent with every request to the
+origin. Neither matters for a collapse state, and neither is a reason to send it
+anywhere it should not go.
 
-### Build Security
+### What it does not
 
-#### Dependencies
+- **Input validation.** The form components are controlled inputs. They carry
+  your value and report changes; they do not validate, sanitise or escape
+  anything. Validate on the server.
+- **XSS.** React escapes interpolated values, and that protection is React's
+  rather than this library's. It does not extend to `dangerouslySetInnerHTML`,
+  to a `href` you build from user input, or to anything you pass through as raw
+  HTML.
+- **CSRF.** The library sends no requests, so it has no CSRF surface and no
+  token to manage. That belongs to whatever does your fetching.
 
-- Regular security audits
-- Automated dependency updates
-- Vulnerability scanning in CI/CD
+### Content Security Policy
 
-#### Bundle Security
+No `eval()` or `new Function()`, so a strict `script-src` is fine.
 
-- Tree shaking for minimal attack surface
-- No eval() or dynamic code execution
-- Content Security Policy compliance
+`style-src` needs thought. Some components set inline styles, because the value
+is computed at runtime and cannot be expressed as a class: a progress bar's
+width, a panel's size after a drag, an aspect ratio. Under a strict `style-src`
+without `'unsafe-inline'` or a nonce, those will not render correctly.
+Everything else is class-based and unaffected.
 
-### Runtime Security
-
-#### SSR Safety
-
-- No client-side secrets
-- Proper hydration without mismatches
-- Server-side rendering security
-
-#### Theme Security
-
-- CSS variable validation
-- No arbitrary code execution
-- Safe theme switching
-
-## 🛠️ Security Best Practices
-
-### For Developers
-
-#### Code Review
-
-- Security-focused code reviews
-- Static analysis tools
-- Dependency vulnerability checks
-
-#### Testing
-
-- Security testing in CI/CD
-- Penetration testing for critical components
-- Regular security audits
-
-### For Users
-
-#### Installation
+At the time of writing that is `AspectRatio`, `Charts`, `ChartComposable`,
+`Hero`, `Progress`, `Resizable`, `Sidebar`, `Skeleton`, `Toast` and `Tooltip`.
+Rather than trust a list in a file to stay current, ask the source:
 
 ```bash
-# Always use specific versions
-npm install @nostromo/ui-core@1.0.0
-
-# Verify package integrity
-npm audit
+grep -rl "style={" packages/nostromo/src/components --include="*.tsx" \
+  | grep -v __tests__
 ```
 
-#### Usage
+## 🛠️ What runs on every change
 
-```tsx
-// Sanitize user input
-const sanitizedInput = DOMPurify.sanitize(userInput);
+The tooling that actually runs, rather than a list of products:
 
-// Use proper event handlers
-<Button onClick={(e) => handleClick(e)}>Safe Button</Button>;
+- **CodeQL**, through GitHub's default setup, on JavaScript, TypeScript and the
+  workflow files, weekly and on pull requests
+- **Dependabot**, for the npm ecosystem and GitHub Actions, with a guard
+  (`pnpm validate:dependabot`) that fails the build when a package is both
+  pinned in `pnpm.overrides` and a direct dependency, a combination Dependabot
+  cannot update without breaking the lockfile
+- **size-limit** in CI, which fails the build when the bundle grows past budget
+- **Unit, accessibility and browser tests**, with the published `dist` rather
+  than `src` as the thing under test in the smoke and browser suites
+
+## 📦 Installing safely
+
+```bash
+# Install the current version
+pnpm add @jarllyng/nostromo
+
+# Check the registry's own audit, and that the release came from this repo's CI
+pnpm audit
+npm audit signatures
 ```
 
-## 🔍 Security Audit
+## 🧑‍💻 For contributors
 
-### Regular Audits
-
-- **Monthly**: Dependency vulnerability scans
-- **Quarterly**: Security code reviews
-- **Annually**: Third-party security audit
-
-### Tools Used
-
-- **npm audit**: Dependency vulnerabilities
-- **Snyk**: Security scanning
-- **ESLint security**: Code analysis
-- **OWASP ZAP**: Web application testing
-
-## 📋 Security Checklist
-
-### Before Release
-
-- [ ] All dependencies updated
-- [ ] Security audit passed
-- [ ] No hardcoded secrets
-- [ ] Input validation implemented
-- [ ] XSS protection enabled
-- [ ] CSRF protection where needed
-- [ ] Accessibility security verified
-
-### For Contributors
-
-- [ ] No sensitive data in code
-- [ ] Proper error handling
-- [ ] Input sanitization
-- [ ] Secure coding practices
-- [ ] Security tests included
-
-## 🚨 Incident Response
-
-### Security Incident Process
-
-1. **Detection**: Identify security issue
-2. **Assessment**: Evaluate severity and impact
-3. **Containment**: Prevent further damage
-4. **Eradication**: Remove threat
-5. **Recovery**: Restore normal operations
-6. **Lessons Learned**: Improve security
-
-### Communication
-
-- **Internal**: Immediate team notification
-- **Users**: Security advisory via GitHub
-- **Public**: Coordinated disclosure
+- Publishing uses npm Trusted Publishing over OIDC, and no `NPM_TOKEN` is
+  configured, so there is no registry credential in the repository to leak. The
+  workflow keeps a token path for the case where OIDC is unavailable; leaving
+  the secret unset is what makes npm perform the OIDC exchange at all.
+- One repository secret exists, `RELEASE_PAT`, so that the release PR is
+  authored by a real user. GitHub deliberately does not run workflows on events
+  raised by `GITHUB_TOKEN`, which is why it cannot be used there.
+- Treat anything a component receives as untrusted, and do not interpolate it
+  into HTML.
+- A change that adds an inline style adds one to the CSP list above, so say so.
 
 ## 📞 Contact
 
-### Security Team
+Security reports go through
+[GitHub Security Advisories](https://github.com/JarlLyng/nostromo-ui/security/advisories/new)
+only.
 
-- **Security Reports**: [GitHub Security Advisories](https://github.com/JarlLyng/nostromo-ui/security/advisories/new) only
-- **Response Time**: 48 hours
-- **Availability**: 24/7 for critical issues
-
-### General Security Questions
-
-- **GitHub Discussions**: Use "security" label
-- **Documentation**: Check security guides
-- **Community**: Ask in Discord (coming soon)
-
-## 🔗 Resources
-
-### Security Documentation
-
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [React Security](https://reactjs.org/docs/security.html)
-- [Tailwind CSS Security](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
-
-### Tools
-
-- [npm audit](https://docs.npmjs.com/cli/v8/commands/npm-audit)
-- [Snyk](https://snyk.io/)
-- [ESLint Security](https://github.com/eslint-community/eslint-plugin-security)
-
----
-
-**Security is part of our DNA** 🛡️
-
-We take security seriously and continuously work to improve our security standards. If you have questions or concerns, please feel free to contact us.
+For anything that is not a vulnerability, use
+[Discussions](https://github.com/JarlLyng/nostromo-ui/discussions).
