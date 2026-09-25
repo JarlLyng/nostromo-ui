@@ -685,9 +685,9 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.5.0",
     "phosphor-react": "^1.4.1",
-    "react-resizable-panels": "^4.12.4",
+    "react-resizable-panels": "^4.13.3",
     "recharts": "^3.10.1",
-    "tailwind-merge": "^3.6.0",
+    "tailwind-merge": "^3.7.0",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
