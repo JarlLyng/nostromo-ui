@@ -43,6 +43,7 @@ import "../styles/themes.css";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { ThemeSync } from "../components/ThemeSync";
 import { withBasePath } from "../utils/withBasePath";
+import { openGraphBase, twitterBase } from "../utils/socialCard";
 
 export const metadata: Metadata = {
   title: {
@@ -51,10 +52,23 @@ export const metadata: Metadata = {
   },
   description:
     "Accessible React component library with CSS-first Tailwind v4 theming.",
+  // The card a link to this site produces. It had a title and a description and
+  // no image at all, under a `summary` card, which renders as a line of text.
+  // The shared fields are in utils/socialCard.ts, because the page route has to
+  // repeat them: Next replaces `openGraph` wholesale rather than merging it.
   openGraph: {
-    title: "Nostromo UI",
-    description:
-      "Accessible React component library with CSS-first Tailwind v4 theming.",
+    ...openGraphBase,
+    title: {
+      default: "Nostromo UI",
+      template: "%s – Nostromo UI",
+    },
+  },
+  twitter: {
+    ...twitterBase,
+    title: {
+      default: "Nostromo UI",
+      template: "%s – Nostromo UI",
+    },
   },
   icons: {
     icon: [
