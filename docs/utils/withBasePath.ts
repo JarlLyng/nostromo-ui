@@ -1,8 +1,11 @@
 /**
  * Helper function to prepend basePath to a path
- * basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable
- * For custom domain (nostromo-ui.dev): NEXT_PUBLIC_BASE_PATH=""
- * For GitHub Pages: NEXT_PUBLIC_BASE_PATH="/nostromo-ui"
+ * basePath can be set via NEXT_PUBLIC_BASE_PATH environment variable.
+ * GitHub Pages, which is where the site is served: NEXT_PUBLIC_BASE_PATH="/nostromo-ui"
+ * A custom domain at its root would set it to "".
+ *
+ * An earlier version named nostromo-ui.dev as that custom domain. It is not
+ * registered, and neither the site nor anything else lives there.
  */
 export function withBasePath(path: string): string {
   const basePath =
