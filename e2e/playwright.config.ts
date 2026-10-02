@@ -71,6 +71,15 @@ export default defineConfig({
       testMatch: /docs\//,
       use: { ...devices["Desktop Chrome"], baseURL: DOCS_BASE },
     },
+    // The exception. The live-code editor is a contentEditable surface, and how
+    // a double-click selects a word and typing replaces it is engine behaviour,
+    // which is the case WebKit is in this suite for. It also checks that the
+    // docs bundle runs in Safari now that react-live ships es2022 output.
+    {
+      name: "docs-webkit",
+      testMatch: /docs\/live-code\.spec\.ts/,
+      use: { ...devices["Desktop Safari"], baseURL: DOCS_BASE },
+    },
   ],
   // The built app, not the dev server: this is meant to be the production output
   // of an ordinary consumer project, and the dev server transforms differently.
