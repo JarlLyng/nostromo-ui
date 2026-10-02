@@ -34,7 +34,7 @@
     "pagefind": "^1.4.0",
     "postcss": "^8.5.26",
     "react-hook-form": "^7.88.0",
-    "react-live": "^4.1.8",
+    "react-live": "^5.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11",
