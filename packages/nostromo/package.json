@@ -712,7 +712,7 @@
     "jest-axe": "^11.0.0",
     "jsdom": "^29.0.0",
     "react-hook-form": "^7.88.0",
-    "size-limit": "^13.0.3",
+    "size-limit": "^14.1.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11"
