@@ -137,8 +137,8 @@ importers:
         specifier: ^7.88.0
         version: 7.88.0(react@19.2.8)
       react-live:
-        specifier: ^4.1.8
-        version: 4.1.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^5.0.0
+        version: 5.0.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
@@ -5022,9 +5022,8 @@ packages:
   react-is@19.3.0:
     resolution: {integrity: sha512-UpMYezM4v5/18F28aC66AEsjXIgE02kyEMH6yLdgLXu/UTfa1Ntwck/nNLrbqJsEXW7gPb0coNO9FQse9WTovA==}
 
-  react-live@4.1.8:
-    resolution: {integrity: sha512-B2SgNqwPuS2ekqj4lcxi5TibEcjWkdVyYykBEUBshPAPDQ527x2zPEZg560n8egNtAjUpwXFQm7pcXV65aAYmg==}
-    engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
+  react-live@5.0.0:
+    resolution: {integrity: sha512-7bedhRQx8DmF1tppVijaKAu6El99x+fKDYB2/h5oIwaJK6DBzshuJtq4IHRYEuAVGXg6f+xUOi4vPcNwS0f8HQ==}
     peerDependencies:
       react: 19.2.8
       react-dom: 19.2.8
@@ -10932,7 +10931,7 @@ snapshots:
 
   react-is@19.3.0: {}
 
-  react-live@4.1.8(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  react-live@5.0.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       prism-react-renderer: 2.4.1(react@19.2.8)
       react: 19.2.8
