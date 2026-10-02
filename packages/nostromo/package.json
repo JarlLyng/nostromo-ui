@@ -692,7 +692,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@size-limit/preset-small-lib": "^13.0.3",
+    "@size-limit/preset-small-lib": "^14.1.0",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
@@ -712,7 +712,7 @@
     "jest-axe": "^11.0.0",
     "jsdom": "^29.0.0",
     "react-hook-form": "^7.88.0",
-    "size-limit": "^13.0.3",
+    "size-limit": "^14.1.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11"
@@ -723,119 +723,119 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "420 KB"
+      "limit": "384.4 KB"
     },
     {
       "path": "dist/components/core/button.js",
-      "limit": "11 KB"
+      "limit": "10.7 KB"
     },
     {
       "path": "dist/components/core/input.js",
-      "limit": "11 KB"
+      "limit": "10.6 KB"
     },
     {
       "path": "dist/components/core/dialog.js",
-      "limit": "12 KB"
+      "limit": "11.7 KB"
     },
     {
       "path": "dist/components/core/select.js",
-      "limit": "40 KB"
+      "limit": "37.9 KB"
     },
     {
       "path": "dist/components/core/charts.js",
-      "limit": "125 KB"
+      "limit": "116.5 KB"
     },
     {
       "path": "dist/components/core/data-table.js",
-      "limit": "25 KB"
+      "limit": "24.1 KB"
     },
     {
       "path": "dist/components/core/calendar.js",
-      "limit": "40 KB"
+      "limit": "37.9 KB"
     },
     {
       "path": "dist/components/core/icon.js",
-      "limit": "55 KB"
+      "limit": "49.6 KB"
     },
     {
       "path": "dist/components/core/popover.js",
-      "limit": "32 KB"
+      "limit": "30.4 KB"
     },
     {
       "path": "dist/components/core/collapsible.js",
-      "limit": "14 KB"
+      "limit": "13.3 KB"
     },
     {
       "path": "dist/components/core/dropdown-menu.js",
-      "limit": "39 KB"
+      "limit": "36.9 KB"
     },
     {
       "path": "dist/components/core/sheet.js",
-      "limit": "23 KB"
+      "limit": "21.8 KB"
     },
     {
       "path": "dist/components/core/alert-dialog.js",
-      "limit": "24 KB"
+      "limit": "22.8 KB"
     },
     {
       "path": "dist/components/core/toggle.js",
-      "limit": "18 KB"
+      "limit": "17 KB"
     },
     {
       "path": "dist/components/core/aspect-ratio.js",
-      "limit": "9 KB"
+      "limit": "8.7 KB"
     },
     {
       "path": "dist/components/core/context-menu.js",
-      "limit": "39 KB"
+      "limit": "36.8 KB"
     },
     {
       "path": "dist/components/core/hover-card.js",
-      "limit": "26 KB"
+      "limit": "24.7 KB"
     },
     {
       "path": "dist/components/core/scroll-area.js",
-      "limit": "16 KB"
+      "limit": "15.5 KB"
     },
     {
       "path": "dist/components/core/slider.js",
-      "limit": "19 KB"
+      "limit": "18.1 KB"
     },
     {
       "path": "dist/components/core/menubar.js",
-      "limit": "39 KB"
+      "limit": "36.9 KB"
     },
     {
       "path": "dist/components/core/navigation-menu.js",
-      "limit": "22 KB"
+      "limit": "20.9 KB"
     },
     {
       "path": "dist/components/core/form.js",
-      "limit": "12 KB"
+      "limit": "11.6 KB"
     },
     {
       "path": "dist/components/core/carousel.js",
-      "limit": "22 KB"
+      "limit": "21.1 KB"
     },
     {
       "path": "dist/components/core/input-otp.js",
-      "limit": "15 KB"
+      "limit": "14.4 KB"
     },
     {
       "path": "dist/components/core/resizable.js",
-      "limit": "22 KB"
+      "limit": "21.1 KB"
     },
     {
       "path": "dist/components/core/command.js",
-      "limit": "30 KB"
+      "limit": "28.3 KB"
     },
     {
       "path": "dist/components/core/drawer.js",
-      "limit": "32 KB"
+      "limit": "30.3 KB"
     },
     {
       "path": "dist/components/core/sidebar.js",
-      "limit": "32 KB"
+      "limit": "30.6 KB"
     }
   ],
   "peerDependenciesMeta": {

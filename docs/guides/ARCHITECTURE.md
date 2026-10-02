@@ -217,7 +217,7 @@ The CI pipeline runs on every push and pull request to `main` and `develop` bran
   - 80% lines, 80% functions, 80% statements, 75% branches
   - Coverage reports generated and uploaded as artifacts
 - **Accessibility**: axe-core automated testing
-- **Bundle size**: size-limit budgets per entry point (calendar.js: 40 kB, charts.js: 125 kB, index.js: 420 kB)
+- **Bundle size**: size-limit budgets per entry point, in the `size-limit` field of `packages/nostromo/package.json`
 - **Pre-commit hooks**: Husky + lint-staged for code quality
 
 ## Scaling

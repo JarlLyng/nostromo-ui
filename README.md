@@ -139,7 +139,7 @@ broken components.
 | **CI/CD**                | ✅     | All critical checks passing (parallelized)                                                                                                                                                     |
 | **Documentation**        | ✅     | 15 guides, plus a page per component with live examples                                                                                                                                        |
 | **Distribution**         | ✅     | Published on npm as [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo), with build provenance                                                                            |
-| **Bundle Size**          | ✅     | 280.06 kB full barrel, minified + brotlied (limit 420 kB); single components from 8.73 kB                                                                                                      |
+| **Bundle Size**          | ✅     | Budgeted per entry point and enforced in CI; `pnpm --filter @jarllyng/nostromo size` reports the current sizes                                                                                 |
 
 > **Note**: Every release is published through GitHub Actions with npm Trusted Publishing, so tarballs carry build provenance. See [Publishing Guide](docs/guides/PUBLISHING.md).
 

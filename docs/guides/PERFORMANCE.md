@@ -32,21 +32,31 @@ import * as Nostromo from "@jarllyng/nostromo";
 
 ### Bundle Size Limits
 
-We monitor bundle sizes with size-limit. Current sizes (minified + brotlied):
+Every entry point has a budget, in the `size-limit` field of
+`packages/nostromo/package.json`, and CI fails the build when one is exceeded.
+For the current sizes, ask the tool rather than this page:
 
-- **Button**: 10.06 kB (limit: 11 kB)
-- **Input**: 8.73 kB (limit: 11 kB)
-- **Dialog**: 9.52 kB (limit: 12 kB)
-- **Select**: 35.83 kB (limit: 40 kB)
-- **DataTable**: 12.21 kB (limit: 25 kB)
-- **Calendar**: 37.09 kB (limit: 40 kB, includes date-fns)
-- **Icon**: 52.45 kB (limit: 55 kB, includes the Phosphor icon set)
-- **Charts**: 113.1 kB (limit: 125 kB, includes recharts)
-- **Full barrel (index.js)**: 222.88 kB (limit: 420 kB)
+```bash
+pnpm --filter @jarllyng/nostromo build
+pnpm --filter @jarllyng/nostromo size
+```
 
-These are the numbers `pnpm --filter @jarllyng/nostromo size` prints, and
-the limits are the ones in that package's `size-limit` field - so run it rather
-than trusting this list, which is a snapshot.
+This page used to list them, and the list drifted: it gave the full barrel as
+222.88 kB when the tool was measuring 278.53. The heavy entries are heavy for a
+reason worth knowing, though: `Calendar` includes date-fns, `Icon` the Phosphor
+icon set, and `Charts` recharts.
+
+### Why the numbers moved in size-limit 14
+
+size-limit 14 measures with rolldown where 13 used esbuild. Rolldown minifies
+more aggressively, so the same files measure 3 to 10 percent smaller - the full
+barrel went from 278.53 kB to 254.87 kB without a byte of the build changing.
+
+The budgets were rescaled to match, each by the ratio its own file moved, so
+every entry keeps the headroom it had. They had been set close on purpose:
+5 percent over the actual size for `Icon`, 11 percent at the median. Leaving
+them alone would have roughly doubled what a regression could add before CI
+noticed, which is a policy change nobody had made.
 
 **Note**: These sizes are measured with all dependencies, minified and brotlied. Individual component imports enable tree-shaking for optimal bundle sizes.
 
