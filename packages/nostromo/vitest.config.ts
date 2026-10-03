@@ -22,9 +22,14 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html", "lcov"],
+      // Directory patterns end in `/**`. vitest 5 stopped treating a bare
+      // directory path as "everything under it": `"src/test/"` matched nothing,
+      // so the test helpers in it started counting as production code, and
+      // `src/test/theme-tokens.ts` appeared in the report. Written the explicit
+      // way, the covered files are the same 64 as under vitest 4.
       exclude: [
-        "node_modules/",
-        "src/test/",
+        "**/node_modules/**",
+        "src/test/**",
         "**/*.d.ts",
         "**/*.stories.*",
         "**/*.test.*",
