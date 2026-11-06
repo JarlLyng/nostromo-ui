@@ -1,6 +1,6 @@
 {
   "name": "@jarllyng/nostromo",
-  "version": "3.16.2",
+  "version": "3.16.3",
   "description": "Accessible React component library with CSS-first Tailwind v4 theming",
   "keywords": [
     "react",
