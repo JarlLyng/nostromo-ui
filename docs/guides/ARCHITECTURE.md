@@ -39,7 +39,7 @@ nostromo-ui/
 
 **Theming:**
 
-- Tailwind preset with Nostromo tokens
+- Tokens registered with Tailwind v4 through `@theme inline` in `tailwind.css`, with no JS preset
 - 4 complete themes (Nostromo, Mother, LV-426, Sulaco)
 - CSS variable system for custom theming
 

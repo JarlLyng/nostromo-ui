@@ -66,48 +66,15 @@ import { Button } from "@jarllyng/nostromo";
 
 ## 🧩 Available Components
 
-### Core Components
+The [components index](https://jarllyng.github.io/nostromo-ui/components) has
+every component, each on its own page with live examples you can edit in place.
+A list here would only repeat it and fall behind.
 
-- **Button** - Interactive buttons with loading states and variants
-- **Input** - Text input fields with validation and form integration
-- **Dialog** - Modal dialogs with accessibility and focus management
-- **Badge** - Status indicators and labels
-- **Card** - Container components for content
-- **Avatar** - User profile images with fallback support
-- **Tabs** - Tab navigation with keyboard accessibility
-- **Select** - Dropdown selects with search and multi-select
-- **Label** - Form labels with accessibility features
-- **HelperText** - Helper text for form fields
-- **ErrorMessage** - Error messages for validation
-- **Icon** - SVG icons with customizable styling
-- **Table** - Data tables with sortable columns, pagination and responsive design
-- **DataTable** - Advanced tables with search, filtering, sorting, and pagination
-- **Toast** - Notification system with auto-dismiss and positioning
-- **Tooltip** - Contextual information with positioning and triggers
-- **Accordion** - Collapsible sections with keyboard navigation
-- **Skeleton** - Loading states with animations and specialized components
-- **Progress** - Progress indicators with variants and accessibility
-- **Alert** - Notification alerts with variants and dismiss functionality
-- **Checkbox** - Form checkboxes with accessibility and validation
-- **RadioGroup** - Radio button groups with keyboard navigation
-- **Switch** - Toggle switches with accessibility and variants
-- **Textarea** - Multi-line text input with validation and resize
-- **Breadcrumb** - Navigation breadcrumbs with accessibility
-- **Pagination** - Page navigation with keyboard accessibility
-- **Separator** - Visual separators with horizontal and vertical variants
-- **Calendar** - Date picker with single, range, and multiple selection modes (uses `date-fns` for robust date handling)
-- **Charts** - Data visualization with line, bar, area, and pie charts (also
-  available as a lazy-loaded entry point for deferring `recharts`)
-- **ErrorBoundary** - Catches render errors in a subtree and shows a fallback
-
-### Marketing Components
-
-- **Hero** - Hero sections with customizable layouts and call-to-action buttons
-- **Testimonials** - Customer testimonials with ratings, avatars and responsive grids
-- **Features** - Feature showcase grids with icons and hover effects
-- **Pricing** - Pricing tables with yearly/monthly toggle and popular plan highlighting
-- **Gallery** - Image galleries with lightbox functionality and responsive grids
-- **Logo Wall** - Client logos with hover effects and responsive layouts
+Most of them are the usual pieces of an application: form controls, overlays such
+as Dialog, Sheet, Drawer and Popover, menus and navigation, data display with
+Table, DataTable, Calendar and Charts, and feedback such as Toast and Progress.
+The marketing blocks for landing pages are Hero, Features, Testimonials, Pricing,
+Gallery and Logo Wall.
 
 All components are built with:
 
@@ -137,7 +104,7 @@ broken components.
 | **TypeScript**           | ✅     | Zero errors, strict mode enabled                                                                                                                                                               |
 | **Linting**              | ✅     | 0 errors, 0 warnings (`eslint --max-warnings=0`)                                                                                                                                               |
 | **CI/CD**                | ✅     | All critical checks passing (parallelized)                                                                                                                                                     |
-| **Documentation**        | ✅     | 15 guides, plus a page per component with live examples                                                                                                                                        |
+| **Documentation**        | ✅     | Guides, plus a page per component with live examples                                                                                                                                           |
 | **Distribution**         | ✅     | Published on npm as [`@jarllyng/nostromo`](https://www.npmjs.com/package/@jarllyng/nostromo), with build provenance                                                                            |
 | **Bundle Size**          | ✅     | Budgeted per entry point and enforced in CI; `pnpm --filter @jarllyng/nostromo size` reports the current sizes                                                                                 |
 
@@ -165,7 +132,7 @@ broken components.
 - **Monorepo Setup** - pnpm workspaces + Turborepo
 - **Theming System** - CSS variables with HSL colors and 4 complete themes
 - **Tailwind v4 Bridge** - design tokens registered in CSS via `@theme`, no JS preset
-- **Core Components** - covering the shadcn/ui surface, each with a documentation page and live examples. [The components index](https://jarllyng.github.io/nostromo-ui/components) is the list; it does not go stale.
+- **Core Components** - covering the shadcn/ui surface, each with a documentation page and live examples. [The components index](https://jarllyng.github.io/nostromo-ui/components) is the list, and CI checks that it links every component page.
 - **6 Marketing Components** - Hero, Testimonials, Features, Pricing, Gallery, Logo Wall with full design system integration
 - **Form Components** - Complete set of form-related components
 - **Navigation Components** - Tabs and Select with keyboard accessibility
@@ -221,7 +188,7 @@ would take.
 - **[Contributing](CONTRIBUTING.md)** - How to contribute
 - **[Code Review](docs/guides/CODE_REVIEW.md)** - Review guidelines
 - **[Security](SECURITY.md)** - Security policy
-- **[Changelog](CHANGELOG.md)** - Version history
+- **[Changelog](packages/nostromo/CHANGELOG.md)** - Version history, written by Changesets on every release
 
 ---
 
