@@ -501,20 +501,77 @@ describe("Calendar focus", () => {
     expect(stops[0]).not.toBeDisabled();
   });
 
-  it("opens on an enabled date when the selected one is disabled", async () => {
-    render(
-      <Calendar
-        value={new Date(2026, 8, 15)}
-        disabledDates={[new Date(2026, 8, 15)]}
-      />,
-    );
-    await open();
+  /*
+   * These pin the clock. When the selected date is disabled, focus falls back to
+   * today, and whether today is on screen depends on the real date. The first
+   * version of this test read the real clock and passed for weeks, because the
+   * September grid runs on to 11 October and "today" was inside it. On 6
+   * November it was not, and the grid had no tab stop at all.
+   */
+  describe("when the selected date is disabled", () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
 
-    const stops = dayButtons().filter(
-      (button) => button.getAttribute("tabindex") === "0",
-    );
-    expect(stops).toHaveLength(1);
-    expect(stops[0]).not.toBeDisabled();
+    const renderDisabledSelection = () =>
+      render(
+        <Calendar
+          value={new Date(2026, 8, 15)}
+          disabledDates={[new Date(2026, 8, 15)]}
+        />,
+      );
+
+    const tabStops = () =>
+      dayButtons().filter((button) => button.getAttribute("tabindex") === "0");
+
+    it("opens on today when today is in the month on screen", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date(2026, 8, 22));
+      renderDisabledSelection();
+      await open();
+
+      const stops = tabStops();
+      expect(stops).toHaveLength(1);
+      expect(stops[0]).not.toBeDisabled();
+      expect(stops[0]).toHaveAttribute(
+        "aria-label",
+        expect.stringMatching(/september 22, 2026/i),
+      );
+    });
+
+    // The regression. Today was preferred whether or not it was rendered, so a
+    // keyboard user could not tab into the grid at all.
+    it("opens on the first enabled day on screen when today is in another month", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date(2026, 10, 6));
+      renderDisabledSelection();
+      await open();
+
+      const stops = tabStops();
+      expect(stops).toHaveLength(1);
+      expect(stops[0]).not.toBeDisabled();
+      expect(stops[0]).toHaveAttribute(
+        "aria-label",
+        expect.stringMatching(/september 1, 2026/i),
+      );
+    });
+
+    // Also a regression, quieter. A September grid shows the first days of
+    // October, and when today was one of those, focus went to October while the
+    // calendar said September.
+    it("does not open on a day from the next month shown at the edge of the grid", async () => {
+      vi.useFakeTimers({ toFake: ["Date"] });
+      vi.setSystemTime(new Date(2026, 9, 3));
+      renderDisabledSelection();
+      await open();
+
+      const stops = tabStops();
+      expect(stops).toHaveLength(1);
+      expect(stops[0]).toHaveAttribute(
+        "aria-label",
+        expect.stringMatching(/september 1, 2026/i),
+      );
+    });
   });
 
   // Every date disabled is a legitimate configuration, and the search for an
