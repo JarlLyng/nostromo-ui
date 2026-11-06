@@ -1,480 +1,118 @@
-# Development Workflow Guide
+# Development Workflow
 
-This document describes the recommended workflow for developing Nostromo UI after the 1.0.0 release.
+How a change gets from a branch to a release in this repository. Publishing
+itself, and what to do when a release stalls, is in
+[PUBLISHING.md](PUBLISHING.md).
 
-## 📋 Overview
-
-After releasing 1.0.0, we follow a **hybrid workflow** that balances development speed with stability:
-
-- **Feature branches** for new features and significant changes
-- **Direct to main** for small fixes, documentation, and non-breaking changes
-- **Changesets** for version management
-- **Semantic versioning** for releases
-- **GitHub Issues** for tracking work and project management
-
----
-
-## 📝 Issue Management
-
-### Creating Issues
-
-When creating new issues, follow these guidelines:
-
-1. **Assign to maintainer**: All issues should be assigned to `@JarlLyng` (or the project maintainer)
-2. **Add to project**: Add issues to the **IAMJARL** project
-3. **Set initial status**: New issues start with status **Backlog**
-4. **Add labels**: Use appropriate labels (bug, enhancement, documentation, etc.)
-5. **Set priority**: Add priority labels (priority:high, priority:medium, priority:low)
-
-### Issue Status Workflow
-
-Issues move through the following statuses in the IAMJARL project:
-
-- **Backlog** (default) - New issues start here. Ready to be worked on but not yet started.
-- **In Progress** - Issue is actively being worked on.
-- **On Hold** - Temporarily paused, needs discussion, or waiting for dependencies.
-- **Done** - Issue is completed and ready for review/merge.
-
-### Status Guidelines
-
-**When to move to "In Progress":**
-
-- You start actively working on the issue
-- Code changes are being made
-- Implementation has begun
-
-**When to move to "On Hold":**
-
-- Blocked by external dependencies
-- Needs discussion or decision
-- Waiting for feedback or approval
-- Temporarily deprioritized
-
-**When to move to "Done":**
-
-- All tasks in the issue are completed
-- Code is merged to main branch
-- Documentation is updated (if applicable)
-- Tests are passing
-
-### Example Issue Setup
-
-When creating a new issue:
-
-```markdown
 ## Overview
 
-Brief description of the issue or feature
+Every change reaches `main` through a pull request, including documentation and
+one-line fixes. `main` is protected: the required CI checks have to pass, and the
+branch has to be up to date with `main`, before a pull request can merge. Changes
+that users of the package will notice carry a changeset, and changesets are what
+produce a release.
 
-## Current Status
+## Issue Management
 
-- What exists now
-- What's missing
+Work is tracked in GitHub issues and in the **IAMJARL** project. Open issues from
+the templates (bug report, feature request, documentation, support), which set
+the title prefix and the label for the kind of work. Then:
 
-## Tasks
+1. Assign the issue to `@JarlLyng`.
+2. Add it to the IAMJARL project, where new issues start in **Backlog**.
+3. Add a priority label: `priority:high`, `priority:medium` or `priority:low`.
 
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3
+The project's statuses, in order, are **Backlog**, **To Do**, **In Progress**,
+**On Hold** and **Done**. An issue moves to In Progress when work on it starts,
+to On Hold when it is blocked or waiting for a decision, and to Done when the
+pull request that resolves it has merged.
 
-## Priority
+## Making a Change
 
-High/Medium/Low - Brief explanation
-```
+1. Branch from an up-to-date `main`. Name the branch with the same prefix the
+   commit will use, for example `fix/calendar-focus`, `feat/data-table` or
+   `docs/workflow`.
+2. Make the change, with tests. A new component also needs a docs page and an
+   entry in that section's `_meta.ts`, and a changed one needs its docs page
+   brought up to date.
+3. Run what CI runs:
 
-Then:
+   ```bash
+   pnpm lint
+   pnpm type-check
+   pnpm test:run
+   pnpm build
+   ```
 
-1. Assign to `@JarlLyng`
-2. Add to **IAMJARL** project
-3. Set status to **Backlog**
-4. Add relevant labels
+   For a component change, run the accessibility suite as well:
 
----
+   ```bash
+   pnpm --filter @jarllyng/nostromo test:a11y
+   ```
 
-## 🌿 Branching Strategy
+4. Add a changeset if users will notice the change (see below).
+5. Open a pull request against `main`. The
+   [pull request template](../../.github/pull_request_template.md) asks for a
+   description and the issue it resolves.
 
-### Main Branch
+## Changesets
 
-- **Purpose**: Always stable and deployable
-- **Protection**: CI/CD runs on every push
-- **Direct pushes allowed**: Yes, for small changes (see guidelines below)
-
-### Feature Branches
-
-- **Naming**: `feature/component-name` or `feature/description`
-- **Purpose**: New features, major refactors, breaking changes
-- **Workflow**: Create branch → Develop → Test → PR → Merge
-
-### Release Branches (Optional)
-
-- **Naming**: `release/1.1.0`
-- **Purpose**: Prepare for major releases
-- **When to use**: Major version bumps or complex releases
-
----
-
-## 🔄 Recommended Workflow
-
-### For Small Changes (Direct to Main) ✅
-
-**What counts as "small":**
-
-- Bug fixes (non-breaking)
-- Documentation updates
-- Typo fixes
-- Test improvements
-- Small styling tweaks
-- Dependency updates (patch/minor)
-
-**Workflow:**
-
-```bash
-# Make changes directly on main
-git checkout main
-git pull origin main
-
-# Make your changes
-# ... edit files ...
-
-# Test locally
-pnpm test
-pnpm lint
-pnpm type-check
-pnpm build
-
-# Commit and push
-git add .
-git commit -m "fix: description of fix"
-git push origin main
-```
-
-**No changeset needed** for documentation-only or test-only changes.
-
-### For New Features (Feature Branch) 🌟
-
-**What counts as "new feature":**
-
-- New components
-- New props or API changes
-- Major refactoring
-- Breaking changes
-- Performance improvements
-- New themes
-
-**Workflow:**
-
-```bash
-# Create feature branch
-git checkout -b feature/data-table
-
-# Make changes
-# ... develop feature ...
-
-# Test thoroughly
-pnpm test
-pnpm test:coverage
-pnpm lint
-pnpm type-check
-pnpm build
-
-# Create changeset
-pnpm changeset
-# Select packages affected
-# Choose version bump (patch/minor/major)
-# Write description
-
-# Commit changes
-git add .
-git commit -m "feat: add DataTable component"
-
-# Push and create PR
-git push origin feature/data-table
-# Create PR on GitHub
-```
-
-### For Bug Fixes (Feature Branch or Direct) 🐛
-
-**Minor bugs (direct to main):**
-
-- Small typos
-- CSS tweaks
-- Minor accessibility fixes
-- Test fixes
-
-**Major bugs (feature branch):**
-
-- Security issues
-- Critical functionality bugs
-- Breaking bugs
-- Bugs requiring significant changes
-
----
-
-## 📦 Changesets Workflow
-
-### When to Create Changesets
-
-**Always create changeset for:**
-
-- ✅ New features
-- ✅ Bug fixes that affect users
-- ✅ Breaking changes
-- ✅ API changes
-- ✅ New components
-
-**No changeset needed for:**
-
-- ❌ Documentation-only changes
-- ❌ Test-only changes
-- ❌ Build/config changes (unless they affect users)
-- ❌ Internal refactoring (unless it changes behavior)
-
-### Creating a Changeset
+A changeset is a short Markdown file in `.changeset/` that says how the next
+version should change and what the changelog should say. Add one for anything a
+user of the package would notice: a new component or prop, a bug fix, a changed
+default, a raised minimum version of a dependency. Leave it out for
+documentation, tests, CI and refactors that do not change behavior.
 
 ```bash
 pnpm changeset
 ```
 
-Follow the prompts:
+Pick `@jarllyng/nostromo` and the size of the change:
 
-1. **Select packages**: Choose which packages are affected
-2. **Version bump**:
-   - `patch` (1.0.0 → 1.0.1) - Bug fixes
-   - `minor` (1.0.0 → 1.1.0) - New features
-   - `major` (1.0.0 → 2.0.0) - Breaking changes
-3. **Write description**: Clear description of changes
+- **patch** for a fix, or anything else that leaves existing code working
+- **minor** for new components, props and features
+- **major** for anything that can break existing code. See
+  [What counts as a breaking change](PUBLISHING.md#what-counts-as-a-breaking-change).
 
-### Changeset File Format
-
-Changesets are stored in `.changeset/` directory:
+Then write the description for someone reading the changelog: what changed, and
+what they may notice. It goes into `packages/nostromo/CHANGELOG.md` as written.
 
 ```markdown
 ---
 "@jarllyng/nostromo": minor
 ---
 
-Add DataTable component with sorting and filtering
-
-- Add DataTable component
-- Add sorting functionality
-- Add filtering functionality
-- Add pagination integration
+Add a `DataTable` component with sorting, filtering and pagination.
 ```
 
----
+## Releases
 
-## 🚀 Release Process
+Versions, tags and GitHub releases come from the publish workflow, not from
+anyone's machine.
 
-### Automatic Releases (Recommended)
+1. When a pull request with a changeset merges, the workflow opens a pull request
+   titled **"chore: version packages"**, or updates the one already open. It
+   raises the version, writes the changelog and removes the changesets it used.
+2. When that pull request merges, the workflow publishes to npm with provenance
+   and creates the tag and GitHub release, both named
+   `@jarllyng/nostromo@<version>`.
 
-When you're ready to release:
+Merging the version pull request is the step that publishes. Nothing before it
+touches npm, so several changes can collect in one release.
 
-1. **Merge all PRs** with changesets to main
-2. **Create version PR**:
+If the version pull request does not appear, or cannot merge,
+[PUBLISHING.md](PUBLISHING.md#troubleshooting) lists the causes, including an
+expired `RELEASE_PAT`, which stops the run at Checkout. It also covers publishing
+by hand when the workflow is unavailable.
 
-   ```bash
-   pnpm version-packages
-   ```
+## Commit Messages
 
-   This will:
-   - Update package.json versions
-   - Update `packages/nostromo/CHANGELOG.md`
-   - Create a commit
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/):
+`feat`, `fix`, `docs`, `test`, `ci`, `refactor` and `chore`, with a scope where one
+fits, such as `fix(calendar):` or `chore(deps):`. Pull requests are
+squash-merged, so the pull request title becomes the commit on `main` and should
+follow the same form.
 
-3. **Review and merge** the version PR
-4. **Create GitHub Release**:
-   - Go to GitHub Releases
-   - Click "Draft a new release"
-   - Select the new tag
-   - Copy changelog content
-   - Publish
+## Roadmap
 
-### Manual Releases
-
-If you prefer manual control:
-
-```bash
-# 1. Update versions manually in package.json files
-# 2. Update packages/nostromo/CHANGELOG.md
-# 3. Commit
-git commit -m "chore: release 1.1.0"
-
-# 4. Create tag
-git tag -a v1.1.0 -m "Release 1.1.0"
-git push origin v1.1.0
-
-# 5. Create GitHub Release (via UI)
-```
-
----
-
-## 📊 Decision Tree
-
-```
-Is this a new feature or major change?
-├─ YES → Use feature branch + changeset
-└─ NO
-   ├─ Is it a bug fix?
-   │  ├─ Minor bug → Direct to main (optional changeset)
-   │  └─ Major bug → Feature branch + changeset
-   └─ Is it documentation/test only?
-      └─ YES → Direct to main (no changeset)
-```
-
----
-
-## ✅ Best Practices
-
-### Before Pushing to Main
-
-1. **Run tests**: `pnpm test`
-2. **Check linting**: `pnpm lint`
-3. **Type check**: `pnpm type-check`
-4. **Build**: `pnpm build`
-5. **Test locally**: Verify changes work
-
-### Before Creating PR
-
-1. **All tests pass**: `pnpm test:run`
-2. **Coverage maintained**: `pnpm test:coverage`
-3. **Accessibility tests**: `pnpm test:a11y` (if component changes)
-4. **Documentation updated**: Update relevant docs
-5. **Changeset created**: If needed
-6. **Docs page updated**: If component changes
-
-### Commit Messages
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-- `feat:` - New feature
-- `fix:` - Bug fix
-- `docs:` - Documentation
-- `style:` - Formatting
-- `refactor:` - Code refactoring
-- `test:` - Tests
-- `chore:` - Maintenance
-
----
-
-## 🎯 Current Roadmap (Phase 2: 1.1.0)
-
-Based on ROADMAP.md, current focus areas:
-
-### Distribution & Marketing
-
-- npm Publishing
-- Release Announcement
-
-### Advanced Components
-
-- DataTable Component
-- Calendar Component
-- Charts Component
-
-### Performance Optimization
-
-- Bundle Analysis
-- Runtime Optimization
-
-**Recommendation**: Use feature branches for these, as they're significant features.
-
----
-
-## 🔒 Main Branch Protection
-
-While we allow direct pushes to main, we recommend:
-
-1. **Always test locally** before pushing
-2. **Keep main stable** - if unsure, use a branch
-3. **Use PRs for review** - even for small changes if you want feedback
-4. **CI/CD will catch issues** - but don't rely on it
-
----
-
-## 📝 Example Workflows
-
-### Example 1: Small Bug Fix
-
-```bash
-# Direct to main
-git checkout main
-git pull
-
-# Fix bug
-# ... edit file ...
-
-# Test
-pnpm test
-pnpm lint
-
-# Commit
-git commit -m "fix: resolve button hover state issue"
-git push origin main
-```
-
-### Example 2: New Component
-
-```bash
-# Feature branch
-git checkout -b feature/data-table
-git pull origin main
-
-# Develop component
-# ... create DataTable component ...
-
-# Test
-pnpm test
-pnpm test:coverage
-pnpm lint
-pnpm type-check
-pnpm build
-
-# Create changeset
-pnpm changeset
-# Select: @jarllyng/nostromo
-# Version: minor
-# Description: Add DataTable component
-
-# Commit
-git add .
-git commit -m "feat: add DataTable component"
-git push origin feature/data-table
-
-# Create PR on GitHub
-```
-
-### Example 3: Documentation Update
-
-```bash
-# Direct to main
-git checkout main
-git pull
-
-# Update docs
-# ... edit README.md ...
-
-# Commit (no changeset needed)
-git commit -m "docs: update installation instructions"
-git push origin main
-```
-
----
-
-## 🆘 When in Doubt
-
-**If you're unsure whether to use a branch or push directly:**
-
-1. **Ask yourself**: "Could this break something?"
-   - YES → Use feature branch
-   - NO → Direct to main is fine
-
-2. **Ask yourself**: "Is this a significant change?"
-   - YES → Use feature branch
-   - NO → Direct to main is fine
-
-3. **When in doubt**: Use a feature branch. It's always safe!
-
----
-
-**Last Updated**: January 2025  
-**Next Review**: As needed
+What is planned is in [ROADMAP.md](ROADMAP.md).

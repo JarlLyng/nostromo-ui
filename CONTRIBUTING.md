@@ -54,20 +54,17 @@ For detailed setup instructions, see [DEVELOPMENT.md](docs/guides/DEVELOPMENT.md
 
 ### Branching Strategy
 
-We use a **hybrid workflow**:
+Every change goes through a pull request against `main`, including small fixes
+and documentation. `main` is protected, so nothing is pushed to it directly. See
+[WORKFLOW.md](docs/guides/WORKFLOW.md) for the full workflow.
 
-- **Feature branches** for new features and significant changes
-- **Direct to main** for small fixes, documentation, and non-breaking changes
-
-See [WORKFLOW.md](docs/guides/WORKFLOW.md) for detailed guidelines.
-
-### 1. Create Feature Branch (for new features)
+### 1. Create a Branch
 
 ```bash
-git checkout -b feature/your-feature-name
+git checkout -b fix/short-description
 ```
 
-**Or push directly to main** (for small fixes and documentation)
+Use the prefix the commit will use: `feat/`, `fix/`, `docs/` or `chore/`.
 
 ### 2. Make Changes
 
@@ -301,7 +298,7 @@ Use the [PR template](.github/pull_request_template.md) when creating your pull 
 ### Review Process
 
 1. **Automated checks**: CI/CD pipeline runs automatically
-2. **Code review**: At least one approver required
+2. **Code review**: The maintainer reviews pull requests before they merge
 3. **Testing**: Manual testing of changes
 4. **Documentation**: Verify documentation is updated
 

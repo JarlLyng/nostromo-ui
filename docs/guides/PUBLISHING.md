@@ -36,8 +36,11 @@ Then add it as the repository secret `RELEASE_PAT`. `publish.yml` falls back to
 `GITHUB_TOKEN` when the secret is absent, so the workflow still runs without it -
 it just cannot produce a mergeable release PR.
 
-Fine-grained tokens expire. When releases start failing with a 403 on the PR
-creation call, an expired `RELEASE_PAT` is the first thing to check.
+Fine-grained tokens expire. The workflow checks out the repository with
+`RELEASE_PAT` too, so an expired token fails the run at its first step,
+Checkout, with `fatal: could not read Username for 'https://github.com':
+terminal prompts disabled`. Regenerate the token with the same permissions,
+update the secret, and re-run the failed run.
 
 ### Option 1: Trusted Publishing (Recommended for CI/CD)
 
@@ -229,6 +232,9 @@ them without failing.
 
 ### The release PR never appears
 
+- If the run failed at Checkout with `could not read Username`, `RELEASE_PAT`
+  has expired or been revoked. See
+  [Why RELEASE_PAT is required](#why-release_pat-is-required) for the fix
 - Check the run log. If it ends by complaining that Actions is not permitted to
   create pull requests, the branch was pushed but the PR was not. Enable the
   setting under Settings → Actions → General, or open the PR by hand from the
