@@ -12,7 +12,7 @@ function Example() {
     <HoverCard openDelay={0} closeDelay={0}>
       <HoverCardTrigger href="#profile">@jarllyng</HoverCardTrigger>
       <HoverCardContent>
-        <p>Jarl Lyng</p>
+        <p>Jarl</p>
         <p>Builds component libraries.</p>
       </HoverCardContent>
     </HoverCard>
@@ -22,7 +22,7 @@ function Example() {
 describe("HoverCard", () => {
   it("stays closed until the trigger is hovered", () => {
     render(<Example />);
-    expect(screen.queryByText("Jarl Lyng")).not.toBeInTheDocument();
+    expect(screen.queryByText("Jarl")).not.toBeInTheDocument();
   });
 
   it("opens on hover and closes when the pointer leaves", async () => {
@@ -30,11 +30,11 @@ describe("HoverCard", () => {
     render(<Example />);
 
     await user.hover(screen.getByText("@jarllyng"));
-    expect(await screen.findByText("Jarl Lyng")).toBeInTheDocument();
+    expect(await screen.findByText("Jarl")).toBeInTheDocument();
 
     await user.unhover(screen.getByText("@jarllyng"));
     await waitFor(() =>
-      expect(screen.queryByText("Jarl Lyng")).not.toBeInTheDocument(),
+      expect(screen.queryByText("Jarl")).not.toBeInTheDocument(),
     );
   });
 
@@ -44,14 +44,14 @@ describe("HoverCard", () => {
 
     await user.tab();
     expect(screen.getByText("@jarllyng")).toHaveFocus();
-    expect(await screen.findByText("Jarl Lyng")).toBeInTheDocument();
+    expect(await screen.findByText("Jarl")).toBeInTheDocument();
   });
 
   it("has no accessibility violations when open", async () => {
     const user = userEvent.setup();
     render(<Example />);
     await user.hover(screen.getByText("@jarllyng"));
-    await screen.findByText("Jarl Lyng");
+    await screen.findByText("Jarl");
 
     const results = await axe(document.body, {
       rules: { region: { enabled: false } },

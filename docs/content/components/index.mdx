@@ -11,7 +11,7 @@ import Link from "next/link";
 
 # Components
 
-Browse all 30 core components and 6 marketing components. All components are **production-ready** and **WCAG 2.1 AA compliant**.
+Every component in the library, each with its own page of live examples you can edit in place.
 
 ## Quick Preview
 
@@ -44,7 +44,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 <ComponentPreview />`} />
 
-## Core Components (50)
+## Core Components
 
 ### Primitives
 
@@ -730,7 +730,7 @@ Browse all 30 core components and 6 marketing components. All components are **p
   </Link>
 </div>
 
-## Marketing Components (6)
+## Marketing Components
 
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
   <Link href="/components/hero" className="block p-4 border rounded-lg hover:border-primary hover:shadow-md transition-all">
@@ -812,13 +812,15 @@ Browse all 30 core components and 6 marketing components. All components are **p
 
 ## Component Status
 
-All components are marked as **Stable**, meaning they are:
+Every component is typed, documented with live examples, and tested for its
+behaviour and its accessibility. Colour contrast is checked against WCAG 2.1 AA in
+every theme and colour scheme. What a test without a browser cannot see, such as
+layout, the CSS cascade and dragging with a pointer, is covered by a separate
+browser suite for the components where it matters.
 
-- ✅ Production-ready
-- ✅ Fully tested (1442 tests passing, 473 in dedicated accessibility files)
-- ✅ WCAG 2.1 AA compliant
-- ✅ TypeScript typed
-- ✅ Documented with examples
+The API is not frozen yet. Breaking changes ship as major versions and are
+described in the
+[changelog](https://github.com/JarlLyng/nostromo-ui/blob/main/packages/nostromo/CHANGELOG.md).
 
 ## Quick Links
 

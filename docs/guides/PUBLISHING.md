@@ -121,6 +121,21 @@ If you prefer using a token instead:
 Because the token publishes from CI, generate it as an automation token so npm
 does not demand a 2FA prompt no one is there to answer.
 
+## What counts as a breaking change
+
+A release is a major version when it changes something a consumer's code or
+stylesheet relies on: a component's props, the classes components render, the
+`--nostromo-*` token names, the entry points in the package's `exports` map, or
+an exported TypeScript type. Adding to those without changing them is a minor
+release, and a fix that touches none of them is a patch. Pick the bump in the
+changeset with that in mind, because Changesets takes it at its word.
+
+The library has broken all of these at some point. On the way to 3.0.0 the
+tokens moved from `--color-*` to `--nostromo-*`, because the old names collided
+with the variables Tailwind v4 emits for `@theme`, and the `./preset` and
+`./plugin` exports were removed, because Tailwind v4 reads neither. The
+[changelog](../../packages/nostromo/CHANGELOG.md) has the detail.
+
 ## Publishing Workflow
 
 ### Automated Publishing (Recommended)

@@ -278,7 +278,7 @@ When you're ready to release:
 
    This will:
    - Update package.json versions
-   - Update CHANGELOG.md
+   - Update `packages/nostromo/CHANGELOG.md`
    - Create a commit
 
 3. **Review and merge** the version PR
@@ -295,7 +295,7 @@ If you prefer manual control:
 
 ```bash
 # 1. Update versions manually in package.json files
-# 2. Update CHANGELOG.md
+# 2. Update packages/nostromo/CHANGELOG.md
 # 3. Commit
 git commit -m "chore: release 1.1.0"
 

@@ -333,7 +333,7 @@ import "@jarllyng/nostromo/themes/nostromo.css";
 ```
 
 2. Verify `data-theme` is set on the HTML element
-3. Ensure Tailwind is configured with the Nostromo preset
+3. Check that `@jarllyng/nostromo/tailwind.css` is imported. It registers the tokens with Tailwind, and there is no preset to configure
 4. Check browser DevTools to see if CSS variables are loaded
 
 ### Tree-shaking not working?

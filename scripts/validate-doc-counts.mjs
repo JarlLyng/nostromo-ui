@@ -106,6 +106,51 @@ if (coreClaim !== null && marketingClaim !== null) {
   }
 }
 
+/*
+ * The components index links every component page.
+ *
+ * README sends readers to the index instead of keeping a list of its own, after
+ * the list it used to keep had fallen 19 components behind (#299). That swap only
+ * holds if the index is complete, and the index is written by hand, so it is
+ * checked here rather than trusted: every page under docs/content/components has
+ * to be linked from it.
+ */
+function componentSlugs(dir, nested = false) {
+  const slugs = [];
+  for (const entry of readdirSync(join(repoRoot, dir), {
+    withFileTypes: true,
+  })) {
+    if (entry.isDirectory()) {
+      slugs.push(...componentSlugs(join(dir, entry.name), true));
+      continue;
+    }
+    if (!entry.name.endsWith(".mdx")) continue;
+    if (entry.name === "index.mdx") {
+      // The section's own index is the page being checked; a nested index.mdx
+      // is that component's page (`icon/index.mdx`).
+      if (nested) slugs.push(dir.split("/").pop());
+      continue;
+    }
+    slugs.push(entry.name.replace(/\.mdx$/, ""));
+  }
+  return slugs;
+}
+
+const index = read("docs/content/components/index.mdx");
+const linked = new Set(
+  [...index.matchAll(/\/components\/([a-z0-9-]+)/g)].map((match) => match[1]),
+);
+const unlinked = componentSlugs("docs/content/components").filter(
+  (slug) => !linked.has(slug),
+);
+if (unlinked.length) {
+  failures.push(
+    `The components index does not link ${unlinked.length} component page(s): ` +
+      `${unlinked.join(", ")}.\n` +
+      `    README points readers at the index as the full list, so it has to be complete.`,
+  );
+}
+
 if (failures.length) {
   console.error("\n❌ Documented counts do not match the repository\n");
   for (const failure of failures) console.error(`  - ${failure}\n`);
@@ -114,5 +159,5 @@ if (failures.length) {
 
 console.log(
   `💡 Documented counts check out: ${coreClaim} core + ${marketingClaim} marketing ` +
-    `= ${docPages} component pages.`,
+    `= ${docPages} component pages, all linked from the components index.`,
 );
