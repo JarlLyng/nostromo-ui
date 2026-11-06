@@ -6,6 +6,7 @@ import {
   startOfMonth,
   getDay,
   isSameDay as dateFnsIsSameDay,
+  isSameMonth,
   isWithinInterval,
   isBefore,
   isAfter,
@@ -349,6 +350,13 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
      * The order is: the selected date, then today, then the first enabled day of
      * the month on screen. If nothing in reach is enabled, focus stays unset and
      * the grid simply has no tab stop, which is the truth.
+     *
+     * A candidate also has to be in the month on screen. Today used to qualify
+     * wherever it fell, so with a disabled selection in September and today in
+     * November, focus went to a day that was not rendered and the grid had no
+     * tab stop - the same failure this effect exists to prevent. When today was
+     * one of the next month's days shown at the edge of the grid, focus went
+     * there instead, to October while the calendar said September.
      */
     React.useLayoutEffect(() => {
       if (!open || focusedDate) return;
@@ -356,7 +364,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       const today = startOfDay(new Date());
       const selected = anchorDate(calendarValue);
       const preferred = [selected, today].find(
-        (date): date is Date => !!date && !isDisabledDate(date),
+        (date): date is Date =>
+          !!date && isSameMonth(date, currentMonth) && !isDisabledDate(date),
       );
       if (preferred) {
         setFocusedDate(startOfDay(preferred));
