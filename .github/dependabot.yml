@@ -100,6 +100,17 @@ updates:
       # until that promise changes. Minors and patches still come through.
       - dependency-name: "jsdom"
         update-types: ["version-update:semver-major"]
+      # vitest 5 declares `^22.12.0 || ^24.0.0 || >=26.0.0`, dropping Node 20 the
+      # same way jsdom 30 does. The library and docs moved to 5 by hand (#291).
+      # test-app stays on 4, because smoke-node20 runs it on Node 20, and without
+      # this entry Dependabot offers it the major every week (#294). The next
+      # major will be a manual move for the library too, as 5 was.
+      # @vitest/coverage-v8 names its own exact version of vitest as a peer, so
+      # the two move together and are ignored together.
+      - dependency-name: "vitest"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@vitest/coverage-v8"
+        update-types: ["version-update:semver-major"]
       # Next and Nextra majors need a coordinated migration of the docs site, not
       # a dependency PR. These three moved here from the /docs entry when it was
       # removed; without them, deleting that entry would have quietly started
